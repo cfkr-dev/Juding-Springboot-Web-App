@@ -1,7 +1,7 @@
 # JUDING
 ![Judo Federation of Madrid](documentation_imgs/judoFederationLogo.png "Judo Federation of Madrid")
 
-JUDO FEDERATION OF MADRID
+**JUDO FEDERATION OF MADRID**
 
 This application try to replace the [official website](https://www.fmjudo.es/) of Judo Federation of Madrid, adding new tools for competitions, competitors and referees management. In order to unify the diferents existing tools such as the register of the differents kinds of users and the monitoring of the results of the competitions.
 
