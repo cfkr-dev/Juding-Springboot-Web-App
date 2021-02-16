@@ -21,8 +21,8 @@ ___
 ### Entities
 * **User**. Users are the *cornerstone* of our application. There are different types of users and all of them are part of this great community.
 * **Competitions**. Competitions are the tournaments where competitors fight. There are a lot of competitions for many people: for kids, for young people and for adults.
-* **Competitors**: They are all the people that fights or have ever fought in some competitions.
-* **Fight**. Competitions are made of fights. Each fight is played with two competitors.
+* **Fight**. Competitions are made of fights. Each bout is played with two competitors and there is one referee per fight.
+* **Post**. All types of users will be able to see small news items about the world of judo and recent activities on the same topic on the main page of the application.
 
 ### User roles and permissions
 * **Unregistered users**. Anonymous users can read generic information about judo and about the Federation.
