@@ -1,0 +1,39 @@
+/*
+RESPONSIVE TABLES
+DOCUMENTATION COMING SOON
+ */
+
+.responsiveTable {
+    display: flex;
+    flex-direction: column;
+}
+
+.responsiveTable > .fila {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(222, 226, 230);
+    justify-content: space-around;
+    padding: .5em 1em;
+}
+
+.responsiveTable > .fila:first-child {
+    border-top: 1px solid rgb(222, 226, 230);
+}
+
+.width40{
+    width: 40%;
+}
+
+.width60{
+    width: 60%;
+}
+
+@media screen and (max-width: 768px){
+    .responsiveTable > .fila{
+        flex-direction: column;
+    }
+
+    .width40, .width60{
+        width: 100%;
+    }
+}
