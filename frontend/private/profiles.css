@@ -1,6 +1,13 @@
 body {
-    background: url('https://www.sportlife.es/uploads/s1/75/91/45/4/5f0b58810ee694110c8fe159-el-combate-del-judo-contra-el-covid.jpeg') no-repeat center center;
-    background-size: 105% 105%
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: lightgray;
+}
+
+body > .container{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    background-color: white;
 }
 
 .avatar {
