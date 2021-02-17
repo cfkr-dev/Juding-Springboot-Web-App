@@ -55,7 +55,16 @@ ul, li {
     list-style-type: none;
 }
 
-
+.header{
+    padding: 2px;
+    background: rgb(52, 58, 64);
+}
+.image{
+    width: 55px;
+    height: 55px;
+    padding-bottom: 5px;
+    margin-left: 15px;
+}
 /*---------------------------------------------*/
 input {
     outline: none;
@@ -192,7 +201,6 @@ iframe {
     width: 100%;
     display: block;
 }
-
 
 
 /*------------------------------------------------------------------
