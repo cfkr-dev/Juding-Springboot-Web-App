@@ -6,11 +6,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="login.js"></script>
-    <link rel="stylesheet" type="text/css" href="login.css">
+    <script src="loginAndRegistration.js"></script>
+    <link rel="stylesheet" type="text/css" href="loginAndRegistration.css">
 </head>
 <body>
-<div class="header">
+<div class="header fixed-top">
     <a href=""><img class="image" src="https://tramites.fmjudo.es/inc/logo.png"></a>
 </div>
 <div class="container-login100">
@@ -32,7 +32,7 @@
                      Teléfono
 					</span>
             <div class="wrap-input100 validate-input " data-validate = "Username is required">
-                <input class="input100" type="text" >
+                <input class="input100" type="text" pattern="(?=.*\d).{9}"  title="Must contain 9 digits" >
                 <span class="focus-input100"></span>
             </div>
 
@@ -40,30 +40,27 @@
                      Correo electrónico / Email <span class="asterisk">*</span>
 					</span>
             <div class="wrap-input100 validate-input " data-validate = "Username is required">
-                <input class="input100" type="text" name="username" required>
+                <input class="input100" type="email" name="username" required>
                 <span class="focus-input100"></span>
             </div>
 
             <span class="txt1">
 						Contraseña <span class="asterisk">*</span>
 					</span>
-            <div class="wrap-input100 validate-input" data-validate = "Password is required">
+            <div class="wrap-input100alt validate-input" >
 						<span class="btn-show-pass" onclick="showPassword()">
 							<i class="fa fa-eye-slash"></i>
 						</span>
-                <input class="input100" type="password" name="pass"id="txtPassword" required>
+                <input class="input100" type="password" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  id="txtPassword" required>
                 <span class="focus-input100"></span>
             </div>
-
-
+            <div class="passwrequirements">Recuerda que la contraseña debe tener al menos 8 caracteres incluyendo un número y una mayúscula</div>
             <div class="container-login100-form-btn">
                 <button class="login100-form-btn">
                     Registrarse
                 </button>
             </div>
-
         </form>
-
     </div>
 </div>
 </body>

@@ -12,12 +12,12 @@
 
 body, html {
     height: 100%;
-    font-family: sans-serif;
+    font-family: "Segoe UI", sans-serif;
 }
 
 /*---------------------------------------------*/
 a {
-    font-family:sans-serif;
+    font-family: "Segoe UI", sans-serif;
     font-size: 14px;
     line-height: 1.7;
     color: #666666;
@@ -43,7 +43,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 p {
-    font-family: sans-serif;
+    font-family: "Segoe UI", sans-serif;
     font-size: 14px;
     line-height: 1.7;
     color: #666666;
@@ -125,24 +125,24 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
 .txt1 {
-    font-family: sans-serif;
+    font-family: "Segoe UI", sans-serif;
     padding-bottom: 11px;
-    font-size: 13px;
+    font-size: 14px;
     color: #555555;
     line-height: 1.4;
     text-transform: uppercase;
 }
 
 .txt2 {
-    font-family: Raleway-Regular;
-    font-size: 13px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 15px;
     color: #999999;
     line-height: 1.4;
 }
 
 .txt3 {
-    font-family: Raleway-Regular;
-    font-size: 13px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 15px;
     color: #555555;
     line-height: 1.4;
 }
@@ -179,6 +179,7 @@ iframe {
     background: #fff;
     border-radius: 10px;
     position: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -191,7 +192,7 @@ iframe {
 }
 
 .login100-form-title {
-    font-family: Raleway-Medium;
+    font-family: "Segoe UI", sans-serif;
     padding-bottom: 32px;
     font-size: 30px;
     color: #555555;
@@ -208,14 +209,29 @@ iframe {
 
 .wrap-input100 {
     width: 100%;
-    margin-bottom: 36px;
+    margin-bottom: 30px;
     position: relative;
     background-color: #fff;
     border: 1px solid #e6e6e6;
     border-radius: 2px;
     align-content: center;
 }
-
+.wrap-input100alt {
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 2px;
+    align-content: center;
+}
+.passwrequirements{
+    color: #999999;
+    font-style: italic;
+    font-size: 14px;
+    padding-left: 12px;
+    margin-bottom: 18px;
+}
 
 #newAccount{
     margin-top: 45px;
@@ -223,7 +239,7 @@ iframe {
 }
 /*---------------------------------------------*/
 .input100 {
-    font-family: Raleway-Medium;
+    font-family: "Segoe UI", sans-serif;
     color: #555555;
     line-height: 1.2;
     font-size: 18px;
@@ -333,7 +349,7 @@ iframe {
 }
 
 .label-checkbox100 {
-    font-family: Raleway-Regular;
+    font-family: "Segoe UI",sans-serif;
     font-size: 13px;
     color: #999999;
     line-height: 1.4;
@@ -346,7 +362,7 @@ iframe {
 
 .label-checkbox100::before {
     content: "\f00c";
-    font-family: FontAwesome;
+    font-family: "Segoe UI", sans-serif;
     font-size: 13px;
     color: transparent;
 
@@ -391,7 +407,7 @@ iframe {
 }
 
 .login100-form-btn {
-    font-family: Raleway-Bold;
+    font-family: "Segoe UI", sans-serif;
     font-size: 16px;
     color: #fff;
     line-height: 1.2;
