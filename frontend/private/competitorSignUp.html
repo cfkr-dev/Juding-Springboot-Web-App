@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrarse</title>
+    <link href="../assets/vendor/font-awesome/css/all.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/loginAndRegistration.css" rel="stylesheet">
+</head>
+<body>
+<div class="header fixed-top">
+    <a href=""><img class="image" src="https://tramites.fmjudo.es/inc/logo.png"></a>
+</div>
+<div class="container-login100">
+    <div class="wrap-login100">
+        <form class="login100-form validate-form flex-sb flex-w">
+					<span class="login100-form-title">
+						Create tu cuenta
+					</span>
+            <!-- TODO AÑADIR CAMPOS NOMBRE Y APELLIDOS-->
+
+            <span class="txt1">
+                     Nombre de usuario <span class="asterisk">*</span>
+					</span>
+            <div class="wrap-input100 validate-input " data-validate="Username is required">
+                <input class="form-control form-control-lg" type="text" name="username" required>
+                <span class="focus-input100"></span>
+            </div>
+            <!-- todo añadir género -->
+            <span class="txt1">
+                     Teléfono
+					</span>
+            <div class="wrap-input100 validate-input " data-validate="Username is required">
+                <input class="form-control form-control-lg" type="text" pattern="(?=.*\d).{9}"
+                       title="Must contain 9 digits">
+                <span class="focus-input100"></span>
+            </div>
+
+            <span class="txt1">
+                     Correo electrónico / Email <span class="asterisk">*</span>
+					</span>
+            <div class="wrap-input100 validate-input " data-validate="Username is required">
+                <input class="form-control form-control-lg" type="email" name="username" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <!-- todo añadir selector fecha nacimiento (mirar librerías datepicker) -->
+
+            <span class="txt1">
+						Contraseña <span class="asterisk">*</span>
+					</span>
+            <div class="wrap-input100alt validate-input">
+						<span class="btn-show-pass" onclick="showPassword()">
+							<i class="fa fa-eye-slash"></i>
+						</span>
+                <input class="form-control form-control-lg" type="password" name="pass"
+                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                       title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                       id="txtPassword" required>
+                <span class="focus-input100"></span>
+            </div>
+            <div class="passwrequirements">Recuerda que la contraseña debe tener al menos 8 caracteres incluyendo un
+                número y una mayúscula
+            </div>
+            <div class="container-login100-form-btn">
+                <button class="btn btn-primary">
+                    Registrarse
+                </button>
+            </div>
+
+            <!-- TODO AÑADIR CAMPOS NÚMERO LICENCIA (OBL), GIMNASIO (OBL), PESO (OBL), selector cinturón -->
+        </form>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery.js"></script>
+<script src="scripts/loginAndRegistration.js"></script>
+</body>
+</html>

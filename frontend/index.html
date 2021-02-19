@@ -12,7 +12,6 @@
 
     <!-- Favicons -->
     <link href="assets/img/hero-img.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
@@ -23,12 +22,9 @@
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
     <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -224,8 +220,6 @@
                             <a class="nav-link" data-bs-toggle="pill" href="#tab3">Deporte Completo</a>
                         </li>
                     </ul><!-- End Tabs -->
-
-                    <!-- Tab Content -->
                     <div class="tab-content">
 
                         <div class="tab-pane fade show active" id="tab1">
@@ -485,14 +479,39 @@
             </header>
 
             <div class="row">
-
                 <div class="col-lg-4">
                     <div class="post-box">
                         <div class="post-img"><img src="assets/img/blog/blog-1.jpg" class="img-fluid" alt=""></div>
                         <span class="post-date">15/02/2021</span>
                         <h3 class="post-title">I JORNADA CLUB PANDY</h3>
-                        <a href="#" class="readmore stretched-link mt-auto"><span>Leer más</span><i
-                                class="bi bi-arrow-right"></i></a>
+                        <div class="readmore stretched-link mt-auto" id="openingModal" data-bs-toggle="modal" data-bs-target="#myModal"><span>Leer más</span><i
+                                class="bi bi-arrow-right"></i></div>
+                        <div class="info" style="display: none;">
+                            El pasado sábado 13 de febrero, se celebró en las Instalaciones del CETD Villaviciosa de Odón la I Jornada de Judo en Familia del Club Pandy bajo el lema “Respeto”. Pasamos un día muy divertido realizando actividades lúdicas de padres e hijos dirigidas por el Maestro José Miguel Urrea y con la colaboración de David y Javier Ramírez. Queremos hacer un especial agradecimiento a la Direccion General de Deportes de la Comunidad de Madrid, por impulsar la práctica deportiva de manera segura y facilitarnos el poder realizar actividades como la de este fin de semana. ¡¡¡¡GRACIAS!!!!!!!
+                            Y por supuesto, un inmenso agradecimiento a los profesores, padres, deportistas que habéis participado y que habéis cumplido todos los requisitos, formularios, orden, horario…Haciendo de esta Jornada, un día muy especial ¡¡¡¡GRACIAS!!!!!
+                            Además iniciamos el primer sorteo con el Club Pandy, en el que participan todos los niños asistentes, fue retransmitido en directo en Instagram y queremos publicarlo aquí también y recordaros que la entrega de los premios será en la próxima Jornada de Judo en Familia programada para el día 6 de marzo.
+                            ¡Enhorabuena a los ganadores! ¡¡¡¡Y os esperamos en la siguiente Jornada del Club Pandy Judo en Familia!!!!
+                            Resolucion del sorteo:
+                            1° premio Tablet numero -143
+                            2° premio Gorra oficial JJ Del Mediterraneo cedida por Javier y David Ramirez - 14
+                            3° premio Gorra oficial JJ Del Mediterraneo cedida por Javier y David Ramirez - 48
+                            4° Precio Pandidoka Peluche -2
+                            5° Premio Pandidoka Peluche -185
+                            6° Premio Pandidoka Peluche -177
+                            7° Premio Pandidoka Peluche -42
+                            8° Premio Pandidoka Peluche -187
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal" id="myModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">XXX</h5>
+                            </div>
+                            <div class="modal-body" id="modalOpenedBody"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -511,13 +530,14 @@
                         <div class="post-img"><img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt=""></div>
                         <span class="post-date">10/02/2021</span>
                         <h3 class="post-title">RAÚL CAMACHO NOMINADO PARA LOS JUEGOS OLÍMPICOS</h3>
-                        <a href="#" class="readmore stretched-link mt-auto"><span>Leer más</span><i
-                                class="bi bi-arrow-right"></i></a>
+                        <div class="readmore stretched-link mt-auto" data-bs-toggle="modal" data-bs-target="#myModal"><span>Leer más</span><i
+                                class="bi bi-arrow-right"></i></div>
+                        <div class="info" style="display: none;">
+                            Saludos Raúl Camacho
+                        </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
 
     </section><!-- End Recent Blog Posts Section -->
@@ -569,17 +589,19 @@
         class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.js"></script>
 <script src="assets/vendor/aos/aos.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
-<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="assets/vendor/purecounter/purecounter.js"></script>
 <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
-
+<script src="assets/vendor/jquery/jquery.js"></script>
+<script>
+    $(function(){
+        $(".readmore").click(function(){
+            $("#modalOpenedBody").html($(this).siblings(".info").html());
+        })
+    })
+</script>
 </body>
 
 </html>

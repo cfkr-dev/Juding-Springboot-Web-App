@@ -1529,8 +1529,14 @@ section {
   position: relative;
 }
 
+.post-img{
+  height: 250px;
+
+}
+
 .recent-blog-posts .post-box .post-img img {
   transition: 0.5s;
+  width: 100%;
 }
 
 .recent-blog-posts .post-box .post-date {
