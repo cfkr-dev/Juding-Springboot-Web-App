@@ -1,0 +1,44 @@
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: lightgray;
+}
+
+body > .container{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    background-color: white;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+}
+
+.avatar > img {
+    border-radius: 50%;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.nombre {
+    font-weight: 500;
+    font-size: 2em;
+}
+
+.apellidos {
+    font-weight: 700;
+    font-size: 2em;
+}
+
+.nick {
+    font-weight: 400;
+    font-size: 1.5em;
+}
+
+.biggerText {
+    font-size: 1.1em;
+    color: white; /* Advertencia: esto lo debería poner Bootstrap pero no lo está poniendo y no sé por qué */
+}
