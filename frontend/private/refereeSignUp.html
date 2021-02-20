@@ -162,27 +162,20 @@
                 <span class="focus-input100"></span>
             </div>
 
-            <!-- Gym selector -->
+            <!-- Range selector -->
 
             <span class="txt1">
-                    Selecciona tu gimnasio <span class="asterisk">*</span>
+                    Selecciona tu rango como árbitro <span class="asterisk">*</span>
 					</span>
-            <div class="gymSelector">
-                <div class="wrap-input100 validate-input " data-validate="gym is required">
-                    <input class="form-control form-control-lg" type="text" name="gym" required>
-                    <span class="focus-input100"></span>
+            <div class="rangeSelector">
+                <div class="wrap-input100 validate-input " data-validate="Range is required">
+                    <select class="form-select" required>
+                        <option selected>Selecciona tu rango</option>
+                        <option value="1">Árbitro estandar</option>
+                        <option value="2">Árbitro de competición</option>
+                        <option value="3">Árbitro auxiliar</option>
+                    </select>
                 </div>
-            </div>
-
-            <!-- Weight field -->
-
-            <span class="txt1">
-                    Selecciona tu peso <span class="asterisk">*</span>
-					</span>
-            <div class="wrap-input100 validate-input " data-validate="Weight is required">
-                <input class="form-control form-control-lg" type="number" value="40" pattern="^[1-9][0-9]+$"
-                       title="Must be a number">
-                <span class="focus-input100"></span>
             </div>
 
             <!-- Belt selector -->
