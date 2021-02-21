@@ -798,7 +798,6 @@ section {
 
 .post-img{
     height: 250px;
-
 }
 
 .posts .post-box .post-img img {
@@ -825,6 +824,10 @@ section {
 
 .posts .post-box .post-info {
     display: none;
+}
+
+.posts .post-box .post-info p{
+    text-align: justify;
 }
 
 .posts .post-box .readmore {
