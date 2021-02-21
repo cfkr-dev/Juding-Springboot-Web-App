@@ -162,4 +162,13 @@
         aos_init();
     });
 
+    /**
+     * Listener on opening post modal
+     * MADE BY AUTHORS OF WEBAPP2-JUDING-DAW
+     */
+    $("#modalPost").on("show.bs.modal", function (evt) {
+        $("#modalPost #modalOpenedTitle").html($(evt.relatedTarget).siblings(".post-title").html());
+        $("#modalPost #modalOpenedBody").html($(evt.relatedTarget).siblings(".post-info").html());
+    });
+
 })();
