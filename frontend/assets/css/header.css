@@ -12,10 +12,12 @@
     transition: all 0.5s;
     z-index: 997;
     padding: 20px 0;
+    background-color: white;
 }
 
 .header.header-scrolled {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
     padding: 15px 0;
     box-shadow: 0 2px 20px rgba(112, 1, 1, 0.1);
 }
@@ -45,6 +47,13 @@
 
 .header + *.noMargin {
     margin-top: 0;
+}
+
+/*--------------------------------------------------------------
+# Header descendants
+--------------------------------------------------------------*/
+.header + *.container{
+    box-shadow: 0 20px 20px rgba(137, 1, 1, 0.35);
 }
 
 /*--------------------------------------------------------------
@@ -116,7 +125,7 @@
     opacity: 0;
     visibility: hidden;
     background: #fff;
-    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+    box-shadow: 0 0 30px rgba(127, 137, 161, 0.25);
     transition: 0.3s;
     border-radius: 4px;
 }
@@ -238,6 +247,19 @@
     margin: 15px;
 }
 
+.navbar .login {
+    background: #f14141;
+    padding: 8px 20px;
+    margin-left: 30px;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.navbar .login:hover {
+    color: #fff;
+    background: #f35959;
+}
+
 .navbar-mobile .dropdown ul {
     position: static;
     display: none;
@@ -247,7 +269,7 @@
     opacity: 1;
     visibility: visible;
     background: #fff;
-    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+    box-shadow: 0 0 30px rgba(127, 137, 161, 0.25);
 }
 
 .navbar-mobile .dropdown ul li {
