@@ -73,7 +73,7 @@
     let selectHeader = select('#header')
     if (selectHeader) {
         const headerScrolled = () => {
-            if (window.scrollY > 100) {
+            if (window.scrollY > 10) {
                 selectHeader.classList.add('header-scrolled')
             } else {
                 selectHeader.classList.remove('header-scrolled')
@@ -89,7 +89,7 @@
     let backtotop = select('.back-to-top')
     if (backtotop) {
         const toggleBacktotop = () => {
-            if (window.scrollY > 100) {
+            if (window.scrollY > 10) {
                 backtotop.classList.add('active')
             } else {
                 backtotop.classList.remove('active')
@@ -104,8 +104,8 @@
      */
     on('click', '.mobile-nav-toggle', function(e) {
         select('#navbar').classList.toggle('navbar-mobile')
-        this.classList.toggle('bi-list')
-        this.classList.toggle('bi-x')
+        this.classList.toggle('fa-bars')
+        this.classList.toggle('fa-times')
     })
 
     /**
@@ -129,15 +129,15 @@
             if (navbar.classList.contains('navbar-mobile')) {
                 navbar.classList.remove('navbar-mobile')
                 let navbarToggle = select('.mobile-nav-toggle')
-                navbarToggle.classList.toggle('bi-list')
-                navbarToggle.classList.toggle('bi-x')
+                navbarToggle.classList.toggle('fa-bars')
+                navbarToggle.classList.toggle('fa-times')
             }
             scrollto(this.hash)
         }
     }, true)
 
     /**
-     * Scroll with ofset on page load with hash links in the url
+     * Scroll with offset on page load with hash links in the url
      */
     window.addEventListener('load', () => {
         if (window.location.hash) {
