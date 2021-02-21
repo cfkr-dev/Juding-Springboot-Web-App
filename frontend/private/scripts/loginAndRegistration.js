@@ -15,3 +15,13 @@ $(document).ready(function () {
         $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
     });
 });
+
+$("#beltSelector").change(function(){
+    if ($(this).val() === "N"){
+        console.log("N");
+        $(this).siblings("#danField").css("display", "inherit");
+    } else {
+        console.log("No N");
+        $(this).siblings("#danField").css("display", "none");
+    }
+})

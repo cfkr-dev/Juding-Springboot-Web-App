@@ -165,10 +165,7 @@ iframe {
 
 
 .wrap-login100 {
-    padding-left: 85px;
-    padding-right: 85px;
-    padding-top: 55px;
-    padding-bottom: 35px;
+    padding: 55px 85px 35px;
     width: 760px;
     background: #fff;
     border-radius: 10px;
@@ -206,7 +203,7 @@ iframe {
     margin-bottom: 30px;
     position: relative;
     background-color: #fff;
-    border: 1px solid #e6e6e6;
+    border: 0;
     border-radius: 2px;
     align-content: center;
 }
@@ -230,6 +227,15 @@ iframe {
 #newAccount{
     margin-top: 45px;
     font-family: sans-serif;
+}
+
+.radioSelection, .birthdate, .gymSelector, .rangeSelector, .BeltSelector{
+    margin-bottom: 30px;
+    font-size: 1.25rem;
+}
+
+#danField{
+    display: none;
 }
 /*---------------------------------------------*/
 .input100 {
