@@ -2,7 +2,7 @@
  * Competitor Bar Chart
  */
 let ctx=document.getElementById("medalChart").getContext("2d")
-const myBarChart = new Chart(ctx, {
+new Chart(ctx, {
     type: 'bar',
     data: {
             labels: ['Bronce','Plata','Oro','Competiciones'],
@@ -40,7 +40,7 @@ const myBarChart = new Chart(ctx, {
  */
 let ctx2=document.getElementById("rankingChart").getContext("2d")
 
-var speedData = {
+var competitorLineChartData = {
     labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"],
     datasets: [{
         label: "Puntos del Ranking",
@@ -70,9 +70,10 @@ var chartOptions = {
         }
     }
 };
-
-var lineChart = new Chart(ctx2, {
+new Chart(ctx2, {
     type: 'line',
-    data: speedData,
+    data: competitorLineChartData,
     options: chartOptions
 });
+
+
