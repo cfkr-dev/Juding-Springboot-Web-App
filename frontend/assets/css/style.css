@@ -826,7 +826,9 @@ section {
 .posts .post-box .post-info {
     display: none;
 }
-
+.posts .post-box .post-info p{
+    text-align: justify;
+}
 .posts .post-box .readmore {
     display: flex;
     align-items: center;
