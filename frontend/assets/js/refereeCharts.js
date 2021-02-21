@@ -1,18 +1,16 @@
 /**
  * Referee Bar Chart
  */
-let ctx3=document.getElementById("performanceChart").getContext("2d")
-new Chart(ctx3, {
+let ctx=document.getElementById("performanceChart").getContext("2d")
+new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Asistencias','Confirmaciones','Ausencias','Convocatorias'],
+        labels: ['Confirmaciones','Convocatorias'],
         datasets: [{
             label: 'Competiciones',
-            data:[5,7,2,7],
+            data:[7, 10],
             backgroundColor:[
-                'rgb(0, 170, 228)',
                 'rgb(50, 205, 50)',
-                'rgb(255, 36, 0)',
                 'rgb(125, 127, 125)',
 
             ]
@@ -34,3 +32,22 @@ new Chart(ctx3, {
         }
     }
 });
+
+/**
+ * Referee Donut Chart
+ */
+let ctx2=document.getElementById("assistanceChart").getContext("2d")
+var myDoughnutChart = new Chart(ctx2, {
+    type: 'doughnut',
+    data: {
+        labels: ['Asistencias', 'Ausencias'],
+        datasets: [{
+            data: [5, 2],
+            backgroundColor: [
+                "rgb(25, 255, 61)",
+                "rgb(255, 69, 8)",
+            ]
+        }]
+    }
+});
+
