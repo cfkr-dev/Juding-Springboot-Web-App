@@ -5,11 +5,8 @@
     <title>Registrarse</title>
     <link href="../assets/vendor/font-awesome/css/all.css" rel="stylesheet">
     <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet">
     <link href="styles/loginAndRegistration.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
-          rel="stylesheet">
-
-
 </head>
 <body>
 <div class="header fixed-top">
@@ -30,7 +27,7 @@
                      Nombre <span class="asterisk">*</span>
 					</span>
                     <div class="wrap-input100 validate-input " data-validate="Name is required">
-                        <input class="form-control form-control-lg" type="text" name="name" required>
+                        <input class="form-control form-control-lg" name="name" required type="text">
                         <span class="focus-input100"></span>
                     </div>
                 </div>
@@ -40,7 +37,7 @@
                      Apellidos <span class="asterisk">*</span>
 					</span>
                     <div class="wrap-input100 validate-input " data-validate="Surname is required">
-                        <input class="form-control form-control-lg" type="text" name="surname" required>
+                        <input class="form-control form-control-lg" name="surname" required type="text">
                         <span class="focus-input100"></span>
                     </div>
                 </div>
@@ -52,7 +49,7 @@
                      Nick <span class="asterisk">*</span>
 					</span>
             <div class="wrap-input100 validate-input " data-validate="Nickname is required">
-                <input class="form-control form-control-lg" type="text" name="username" required>
+                <input class="form-control form-control-lg" name="username" required type="text">
                 <span class="focus-input100"></span>
             </div>
 
@@ -63,22 +60,22 @@
 					</span>
             <div class="radioSelection">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                           required>
+                    <input class="form-check-input" id="flexRadioDefault1" name="flexRadioDefault" required
+                           type="radio">
                     <label class="form-check-label" for="flexRadioDefault1">
                         Hombre
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                           required>
+                    <input class="form-check-input" id="flexRadioDefault2" name="flexRadioDefault" required
+                           type="radio">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Mujer
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
-                           required>
+                    <input class="form-check-input" id="flexRadioDefault3" name="flexRadioDefault" required
+                           type="radio">
                     <label class="form-check-label" for="flexRadioDefault1">
                         Otro
                     </label>
@@ -91,8 +88,8 @@
                      Teléfono
 					</span>
             <div class="wrap-input100 validate-input " data-validate="Telephone is required">
-                <input class="form-control form-control-lg" type="text" pattern="(?=.*\d).{9}"
-                       title="Must contain 9 digits">
+                <input class="form-control form-control-lg" pattern="(?=.*\d).{9}" title="Must contain 9 digits"
+                       type="text">
                 <span class="focus-input100"></span>
             </div>
 
@@ -102,22 +99,20 @@
                      Correo electrónico / Email <span class="asterisk">*</span>
 					</span>
             <div class="wrap-input100 validate-input " data-validate="Email is required">
-                <input class="form-control form-control-lg" type="email" name="email" required>
+                <input class="form-control form-control-lg" name="email" required type="email">
                 <span class="focus-input100"></span>
             </div>
 
             <!-- Datepicker -->
             <!-- NOT WORKS!!! -->
 
-            <span class="txt1">
-                     Fecha de nacimiento <span class="asterisk">*</span>
-					</span>
+            <span class="txt1">Fecha de nacimiento <span class="asterisk">*</span></span>
             <div class="birthdate">
-                <div class="input-group date" id="datetimepicker">
-                    <input type="text" class="form-control">
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+                <div class="form-group mb-4">
+                    <div class="date input-group p-0 shadow-sm" id="birthDate">
+                        <input type="text" placeholder="Choose a reservation date" class="form-control py-4 px-4" id="reservationDate">
+                        <div class="input-group-append"><span class="input-group-text px-4"><i class="far fa-clock-o"></i></span></div>
+                    </div>
                 </div>
             </div>
 
@@ -130,10 +125,10 @@
 						<span class="btn-show-pass" onclick="showPassword()">
 							<i class="fa fa-eye-slash"></i>
 						</span>
-                <input class="form-control form-control-lg" type="password" name="pass"
+                <input class="form-control form-control-lg" id="txtPassword" name="pass"
                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                       title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                       id="txtPassword" required>
+                       required
+                       title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" type="password">
                 <span class="focus-input100"></span>
             </div>
             <div class="passwrequirements">Recuerda que la contraseña debe tener al menos 8 caracteres incluyendo un
@@ -146,8 +141,8 @@
                     Número de licencia <span class="asterisk">*</span>
 					</span>
             <div class="wrap-input100 validate-input " data-validate="Licence ID is required">
-                <input class="form-control form-control-lg" type="text" pattern="^[A-Z]{3}(?=.*\d).{8}$"
-                       title="Must contain 3 uppercase letters following by 8 numbers">
+                <input class="form-control form-control-lg" pattern="^[A-Z]{3}(?=.*\d).{8}$" title="Must contain 3 uppercase letters following by 8 numbers"
+                       type="text">
                 <span class="focus-input100"></span>
             </div>
 
@@ -157,8 +152,8 @@
                     DNI <span class="asterisk">*</span>
 					</span>
             <div class="wrap-input100 validate-input " data-validate="NID is required">
-                <input class="form-control form-control-lg" type="text" pattern="^[0-9]{8}[A-Z]{1}$"
-                       title="Must contain 8 numbers following by 1 uppercase letter">
+                <input class="form-control form-control-lg" pattern="^[0-9]{8}[A-Z]{1}$" title="Must contain 8 numbers following by 1 uppercase letter"
+                       type="text">
                 <span class="focus-input100"></span>
             </div>
 
@@ -185,7 +180,7 @@
 					</span>
             <div class="BeltSelector">
                 <div class="wrap-input100 validate-input " data-validate="Belt is required">
-                    <select class="form-select" name="beltSelector" id="beltSelector" required>
+                    <select class="form-select" id="beltSelector" name="beltSelector" required>
                         <option selected>Selecciona tu cinturón</option>
                         <option value="B">Blanco</option>
                         <option value="BA">Blanco-Amarillo</option>
@@ -204,8 +199,8 @@
                         <span class="txt1">
                     Tu dan <span class="asterisk">*</span>
 					</span>
-                        <input class="form-control form-control-lg" type="number" name="dan" value="1" max="10" min="1"
-                               title="Must be a number">
+                        <input class="form-control form-control-lg" max="10" min="1" name="dan" title="Must be a number" type="number"
+                               value="1">
                     </div>
                 </div>
             </div>
@@ -222,14 +217,20 @@
 </div>
 
 <script src="../assets/vendor/jquery/jquery.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="scripts/loginAndRegistration.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="../assets/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
+<script src="../assets/vendor/bootstrap-datepicker/bootstrap-datepicker.es.js"></script>
 <script type="text/javascript">
-    $(function (){
-        $('#datetimepicker').datetimepicker();
+    $(function () {
+        $('#birthDate').datepicker({
+            clearBtn: true,
+            format: "dd/mm/yyyy",
+            language: "es",
+            todayHighlight: true,
+            weekStart: 1
+        });
     });
 </script>
 </body>
