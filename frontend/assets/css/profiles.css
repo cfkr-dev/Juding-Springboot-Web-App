@@ -2,13 +2,11 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    background-color: lightgray;
 }
 
 body > .container{
     background-color: white;
     padding-bottom: 15px;
-    padding-top: 70px;
 }
 
 .avatar {
@@ -41,7 +39,7 @@ body > .container{
 
 .biggerText {
     font-size: 1.1em;
-    color: white; /* Advertencia: esto lo debería poner Bootstrap pero no lo está poniendo y no sé por qué */
+    color: white;
 }
 
 .container-login100-form-btn {
@@ -66,7 +64,6 @@ body > .container{
 }
 
 .profileModificationsTitle {
-    font-family: "Segoe UI", sans-serif;
     padding-bottom: 32px;
     font-size: 30px;
     color: #555555;

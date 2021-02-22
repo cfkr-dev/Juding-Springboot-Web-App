@@ -1,0 +1,146 @@
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Editar perfil - Juding</title>
+
+    <!-- Favicons -->
+    <link href="../../assets/img/hero-img.png" rel="icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/vendor/font-awesome/css/all.css" rel="stylesheet">
+
+    <!-- Own CSS Files -->
+    <link href="../../assets/css/header.css" rel="stylesheet">
+    <link href="../../assets/css/bootstrapAccomodations.css" rel="stylesheet">
+    <link href="../../assets/css/loginAndRegistration.css" rel="stylesheet">
+    <link href="../../assets/css/profiles.css" rel="stylesheet">
+</head>
+<body>
+<header class="header fixed-top" id="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a class="logo d-flex align-items-center" href="index.html">
+            <img alt="" src="../../assets/img/hero-img.png">
+            <span>Juding</span>
+        </a>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a class="nav-link scrollto" href="index.html">Inicio</a></li>
+                <li><a class="nav-link scrollto" href="viewProfile.html">Mi perfil</a></li>
+                <li><a class="login scrollto" href="../../index.html">Cerrar sesión</a></li>
+            </ul>
+            <i class="far fa-bars mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header>
+<div class="container">
+    <span class="profileModificationsTitle">
+        Modifica tus datos
+    </span>
+    <form action="#" method="post">
+        <div class="px-2">
+            <h3 class="h3">Información para competición</h3>
+            <div class="responsiveTable">
+                <div class="rtRow">
+                    <div class="width40"><label class="txt1" for="beltSelector">Cinturón <span class="asterisk">*</span></label>
+                    </div>
+                    <div class="width60">
+                        <div class="wrap-input100 validate-input">
+                            <select class="form-select" id="beltSelector" name="belt">
+                                <option selected>Selecciona tu cinturón</option>
+                                <option value="B">Blanco</option>
+                                <option value="BA">Blanco-Amarillo</option>
+                                <option value="A">Amarillo</option>
+                                <option value="AN">Amarillo-Naranja</option>
+                                <option value="Na">Naranja</option>
+                                <option value="NaV">Naranja-Verde</option>
+                                <option value="V">Verde</option>
+                                <option value="VA">Verde-Azul</option>
+                                <option value="Az">Azul</option>
+                                <option value="AzM">Azul-Marrón</option>
+                                <option value="M">Marrón</option>
+                                <option value="N">Negro</option>
+                            </select>
+                            <div id="danField">
+                                <label class="txt1" for="dan">Dan <span class="asterisk">*</span></label>
+                                <input class="form-control" id="dan" max="10" min="1" name="dan"
+                                       type="number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rtRow">
+                    <div class="width40"><label for="range" class="txt1">Rango <span class="asterisk">*</span></label></div>
+                    <div class="width60">
+                        <div class="rangeSelector">
+                            <div class="wrap-input100 validate-input " data-validate="Range is required">
+                                <select class="form-select" id="range" name="range" required>
+                                    <option selected>Selecciona tu rango</option>
+                                    <option value="1">Árbitro estándar</option>
+                                    <option value="2">Árbitro de competición</option>
+                                    <option value="3">Árbitro auxiliar</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="px-2 mt-3">
+            <h3>Mi información personal</h3>
+            <div class="responsiveTable">
+                <div class="rtRow">
+                    <div class="width40"><label class="txt1" for="nick">Nick <span class="asterisk">*</span></label>
+                    </div>
+                    <div class="width60">
+                        <div class="wrap-input100 validate-input" data-validate="Nickname is required">
+                            <input class="form-control" id="nick" name="nickname" required type="text">
+                            <span class="focus-input100"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rtRow">
+                    <div class="width40"><label for="phone" class="txt1">Teléfono <span class="asterisk">*</span></label></div>
+                    <div class="width60">
+                        <div class="wrap-input100 validate-input">
+                            <input class="form-control" id="phone" name="phone" pattern="(?=.*\d).{9}"
+                                   type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="rtRow">
+                    <div class="width40"><label for="email" class="txt1">Correo electrónico <span class="asterisk">*</span></label></div>
+                    <div class="width60">
+                        <div class="wrap-input100 validate-input">
+                            <input class="form-control" id="email" name="email" type="email">
+                        </div>
+                    </div>
+                </div>
+                <div class="rtRow">
+                    <div class="width40"><label for="image" class="txt1">Imagen de perfil <span class="asterisk">*</span></label></div>
+                    <div class="width60">
+                        <div class="wrap-input100 validate-input">
+                            <input class="form-control" id="image" name="image" type="file">
+                            <span class="focus-input100"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-login100-form-btn">
+            <button class="btn btn-corporative" type="submit">Guardar cambios</button>
+        </div>
+    </form>
+</div>
+
+<!-- Vendor JS Files -->
+<script src="../../assets/vendor/jquery/jquery.js"></script>
+<script src="../../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../../assets/vendor/aos/aos.js"></script>
+<script src="../../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<!-- Own JS Files -->
+<script src="../../assets/js/formControl.js"></script>
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>

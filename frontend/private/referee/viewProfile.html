@@ -3,35 +3,38 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Mi perfil - Juding</title>
-    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/css/responsiveTable.css" rel="stylesheet">
-    <link href="../assets/css/profiles.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link href="../../assets/img/hero-img.png" rel="icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/vendor/font-awesome/css/all.css" rel="stylesheet">
+
+    <!-- Own CSS Files -->
+    <link href="../../assets/css/header.css" rel="stylesheet">
+    <link href="../../assets/css/responsiveTable.css" rel="stylesheet">
+    <link href="../../assets/css/profiles.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="#">Juding</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Mi perfil</a>
-                </li>
-                <li class="nav-item">
-                    <a href="../index.html" class="nav-link">Salir</a>
-                </li>
+<header class="header fixed-top" id="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a class="logo d-flex align-items-center" href="index.html">
+            <img alt="" src="../../assets/img/hero-img.png">
+            <span>Juding</span>
+        </a>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a class="nav-link scrollto" href="index.html">Inicio</a></li>
+                <li><a class="nav-link scrollto active" href="#">Mi perfil</a></li>
+                <li><a class="login scrollto" href="../../index.html">Cerrar sesión</a></li>
             </ul>
-        </div>
+            <i class="far fa-bars mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
     </div>
-</nav>
+</header>
 <div class="container">
-    <h1 class="h1 pt-2">Mi perfil</h1>
+    <h1 class="h1">Mi perfil</h1>
     <div class="row d-flex flex-column align-items-center text-center">
         <div class="avatar">
             <img src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png" alt="avatar">
@@ -106,7 +109,7 @@
             <div class="rtRow">
                 <div class="width40">Competición solicitada 2</div>
                 <div class="width15 text-center">
-                    <div class="badge badge-success">Pendiente</div>
+                    <div class="badge bg-success">Pendiente</div>
                 </div>
                 <div class="width20 text-center">01/04/2021</div>
                 <div class="width15 text-center">-</div>
@@ -115,7 +118,7 @@
             <div class="rtRow">
                 <div class="width40">Competición en curso</div>
                 <div class="width15 text-center">
-                    <div class="badge badge-primary">En curso</div>
+                    <div class="badge bg-info">En curso</div>
                 </div>
                 <div class="width20 text-center">20/02/2021</div>
                 <div class="width15 text-center">-</div>
@@ -126,7 +129,7 @@
             <div class="rtRow">
                 <div class="width40">Competición pasada</div>
                 <div class="width15 text-center">
-                    <div class="badge badge-secondary">Finalizado</div>
+                    <div class="badge bg-secondary">Finalizado</div>
                 </div>
                 <div class="width20 text-center">01/01/2021</div>
                 <div class="width15 text-center">2</div>
@@ -137,7 +140,11 @@
         </div>
     </div>
 </div>
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Vendor JS Files -->
+<script src="../../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Own JS Files -->
+<script src="../../assets/js/main.js"></script>
 </body>
 </html>

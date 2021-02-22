@@ -1,84 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Iniciar sesión</title>
+
+    <!-- Favicons -->
+    <link href="../assets/img/hero-img.png" rel="icon">
+
+    <!-- Vendor CSS Files -->
     <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/loginAndRegistration.css">
-    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/all.css">
+    <link href="../assets/vendor/font-awesome/css/all.css" rel="stylesheet">
+
+    <!-- Own CSS Files -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/loginAndRegistration.css" rel="stylesheet">
 </head>
 <body>
-<div class="header fixed-top">
-    <a href=""><img class="image" src="https://tramites.fmjudo.es/inc/logo.png"></a>
-</div>
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">Juding</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigatiom" >
-            <span class="navbar-toggler-icon"</span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Salir</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="login.html">Iniciar sesión</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="competitorSignUp.html">Registrarse</a>
-                </li>
+<!-- ======= Header ======= -->
+<header class="header fixed-top" id="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a class="logo d-flex align-items-center" href="../index.html">
+            <img alt="" src="../assets/img/hero-img.png">
+            <span>Juding</span>
+        </a>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" href="#">Inicio de sesión</a>
+                <li><a class="login scrollto" href="../index.html">Volver al inicio</a></li>
             </ul>
-        </div>
-</nav>-->
+            <i class="far fa-bars mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
 
 <div class="container-login100">
     <div class="wrap-login100">
         <form class="login100-form validate-form flex-sb flex-w">
-					<span class="login100-form-title">
-						Iniciar Sesión
-					</span>
-            <span class="txt1">
-                     Nombre de usuario <span class="asterisk">*</span>
-					</span>
+            <span class="login100-form-title">Iniciar sesión</span>
+            <span class="txt1">Nombre de usuario <span class="asterisk">*</span></span>
             <div class="wrap-input100 validate-input " data-validate="Username is required">
-                <input class="form-control form-control-lg" type="text" name="username" required>
+                <input class="form-control form-control-lg" name="username" required type="text">
                 <span class="focus-input100"></span>
             </div>
-
-            <span class="txt1">
-						Contraseña <span class="asterisk">*</span>
-					</span>
+            <span class="txt1">Contraseña <span class="asterisk">*</span></span>
             <div class="wrap-input100 validate-input" data-validate="Password is required">
-						<span class="btn-show-pass" onclick="showPassword()">
-							<i class="fa fa-eye-slash"></i>
-						</span>
-                <input class="form-control form-control-lg" type="password" name="pass" id="txtPassword" required>
+                <span class="btn-show-pass"><i class="far fa-eye-slash"></i></span>
+                <input class="form-control form-control-lg" id="txtPassword" name="pass" required type="password">
                 <span class="focus-input100"></span>
             </div>
             <div id="beforeLogin">
-                <a href="#" class="txt3">
-                    ¿Olvidaste tu contraseña?
-                </a>
+                <a class="txt3" href="#">¿Olvidaste tu contraseña?</a>
             </div>
-
             <div class="container-login100-form-btn">
-                <button class="login100-form-btn">
-                    Iniciar sesión
-                </button>
+                <button class="login100-form-btn">Iniciar sesión</button>
             </div>
-
         </form>
         <div id="newAccount">
-            ¿Eres nuevo en Judin? <a href="competitorSignUp.html">Create una cuenta.</a>
+            ¿Eres nuevo en Juding? <a href="competitor/signUp.html">Créate una cuenta.</a>
         </div>
     </div>
 </div>
 
+<!-- Vendor JS Files -->
 <script src="../assets/vendor/jquery/jquery.js"></script>
-<script src="../assets/js/loginAndRegistration.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<!-- Own JS Files -->
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/formControl.js"></script>
 </body>
 </html>
