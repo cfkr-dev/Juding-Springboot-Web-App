@@ -15,6 +15,7 @@
     <!-- Own CSS Files -->
     <link href="../../assets/css/style.css" rel="stylesheet">
     <link href="../../assets/css/header.css" rel="stylesheet">
+    <link href="../../assets/css/bootstrapAccomodations.css" rel="stylesheet">
     <link href="../../assets/css/responsiveTable.css" rel="stylesheet">
     <link href="../../assets/css/profiles.css" rel="stylesheet">
 </head>
@@ -37,7 +38,16 @@
     </div>
 </header>
 <div class="container">
-    <h1 class="h1">Mi perfil</h1>
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="h1">Mi perfil</h1>
+        </div>
+        <div class="col-md-4 d-flex justify-content-end align-items-center">
+            <a href="editProfile.html">
+                <button class="btn btn-corporative"><i class="far fa-pencil"></i> Editar perfil</button>
+            </a>
+        </div>
+    </div>
     <div class="row d-flex flex-column align-items-center text-center">
         <img class="avatar" src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png" alt="avatar">
         <div>
