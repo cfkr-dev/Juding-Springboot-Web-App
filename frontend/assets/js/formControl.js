@@ -6,10 +6,10 @@ $(document).ready(function () {
         $('#showPassword').click(function () {
             let passwordField = $("#password");
             if (passwordField.attr("type") === "password") {
-                $('i').removeClass('fa-eye-slash').addClass('fa-eye');
+                $("#showPassword i, #showPassword + i").removeClass('fa-eye-slash').addClass('fa-eye');
                 passwordField.attr("type", "text");
             } else {
-                $('i').removeClass('fa-eye').addClass('fa-eye-slash');
+                $("#showPassword i, #showPassword + i").removeClass('fa-eye').addClass('fa-eye-slash');
                 passwordField.attr("type", "password");
             }
         });
