@@ -37,7 +37,7 @@ new Chart(ctx, {
  * Referee Donut Chart
  */
 let ctx2=document.getElementById("assistanceChart").getContext("2d")
-var myDoughnutChart = new Chart(ctx2, {
+new Chart(ctx2, {
     type: 'doughnut',
     data: {
         labels: ['Asistencias', 'Ausencias'],
