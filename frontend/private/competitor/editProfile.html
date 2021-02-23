@@ -39,7 +39,7 @@
     <span class="profileModificationsTitle">
         Modifica tus datos
     </span>
-    <form action="#" method="post">
+    <form action="editProfile.html" class="needs-validation flex-sb flex-w" method="post" novalidate>
         <div class="px-2">
             <h3 class="h3">Información para competición</h3>
             <div class="responsiveTable">
@@ -47,7 +47,7 @@
                     <div class="width40"><label for="beltSelector">Cinturón</label></div>
                     <div class="width60">
                         <div class="beltSelector">
-                            <select class="form-select" id="beltSelector" name="beltSelector">
+                            <select class="form-select" id="beltSelector" name="beltSelector" required>
                                 <option selected>Selecciona tu cinturón</option>
                                 <option value="B">Blanco</option>
                                 <option value="BA">Blanco-Amarillo</option>
@@ -64,8 +64,10 @@
                             </select>
                             <div id="danField">
                                 <label for="dan">Dan</label>
-                                <input class="form-control" id="dan" max="10" min="1" name="dan" type="number"
-                                       value="1">
+                                <input class="form-control" id="dan" max="10" min="1" name="dan" required type="number">
+                            </div>
+                            <div class="invalid-feedback">
+                                Es obligatorio seleccionar un cinturón.
                             </div>
                         </div>
                     </div>
@@ -75,14 +77,20 @@
                         <label for="gym">Gimnasio</label>
                     </div>
                     <div class="width60">
-                        <input class="form-control" id="gym" name="gym" type="text">
+                        <input class="form-control" id="gym" name="gym" required type="text">
+                        <div class="invalid-feedback">
+                            El gimnasio no puede estar vacío.
+                        </div>
                     </div>
                 </div>
                 <div class="rtRow">
                     <div class="width40"><label for="weight">Peso</label></div>
                     <div class="width60">
-                        <input class="form-control" id="weight" name="weight" pattern="^[1-9][0-9]+$" type="number"
-                               value="40">
+                        <input class="form-control" id="weight" name="weight" pattern="^[1-9][0-9]+$" required
+                               type="number">
+                        <div class="invalid-feedback">
+                            El peso no puede estar vacío.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -94,24 +102,36 @@
                     <div class="width40"><label for="nick">Apodo</label></div>
                     <div class="width60">
                         <input class="form-control" id="nick" name="nick" required type="text">
+                        <div class="invalid-feedback">
+                            El apodo no puede estar vacío.
+                        </div>
                     </div>
                 </div>
                 <div class="rtRow">
                     <div class="width40"><label for="phone">Teléfono</label></div>
                     <div class="width60">
                         <input class="form-control" id="phone" name="phone" pattern="(?=.*\d).{9}" type="text">
+                        <div class="invalid-feedback">
+                            El teléfono no verifica el formato requerido.
+                        </div>
                     </div>
                 </div>
                 <div class="rtRow">
                     <div class="width40"><label for="email">Correo electrónico</label></div>
                     <div class="width60">
-                        <input class="form-control" id="email" name="email" type="email">
+                        <input class="form-control" id="email" name="email" required type="email">
+                        <div class="invalid-feedback">
+                            El correo electrónico no verifica el formato requerido.
+                        </div>
                     </div>
                 </div>
                 <div class="rtRow">
                     <div class="width40"><label for="image">Imagen de perfil</label></div>
                     <div class="width60">
                         <input class="form-control" id="image" name="image" type="file">
+                        <div class="invalid-feedback">
+                            Prueba de nuevo a subir la imagen.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,6 +148,7 @@
 <script src="../../assets/vendor/aos/aos.js"></script>
 <!-- Own JS Files -->
 <script src="../../assets/js/formControl.js"></script>
+<script src="../../assets/js/validationScript.js"></script>
 <script src="../../assets/js/main.js"></script>
 </body>
 </html>

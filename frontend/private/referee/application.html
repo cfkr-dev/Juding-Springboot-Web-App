@@ -34,32 +34,32 @@
     </div>
 </header>
 <div class="container pb-4">
-    <form class="login100-form validate-form flex-sb flex-w">
+    <form action="application.html" class="needs-validation flex-sb flex-w" method="post" novalidate>
         <h2 class="h2">Solicitar cuenta de árbitro</h2>
 
         <!-- Name and surname -->
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-12 col-lg-6">
                 <label class="txt1" for="name">Nombre <span class="asterisk">*</span></label>
-                <div class="wrap-input100 validate-input " data-validate="Name is required">
-                    <input class="form-control" id="name" name="name" required type="text">
-                    <span class="focus-input100"></span>
+                <input class="form-control" id="name" name="name" required type="text">
+                <div class="invalid-feedback">
+                    Es obligatorio introducir el nombre.
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-12 col-lg-6">
                 <label class="txt1" for="surname">Apellidos <span class="asterisk">*</span></label>
-                <div class="wrap-input100 validate-input " data-validate="Surname is required">
-                    <input class="form-control" id="surname" name="surname" required type="text">
-                    <span class="focus-input100"></span>
+                <input class="form-control" id="surname" name="surname" required type="text">
+                <div class="invalid-feedback">
+                    Es obligatorio introducir los apellidos.
                 </div>
             </div>
         </div>
 
         <!-- Nickname field -->
         <label class="txt1" for="nick">Apodo <span class="asterisk">*</span></label>
-        <div class="wrap-input100 validate-input">
-            <input class="form-control" id="nick" name="nick" required type="text">
-            <span class="focus-input100"></span>
+        <input class="form-control" id="nick" name="nick" required type="text">
+        <div class="invalid-feedback">
+            El apodo no puede estar vacío.
         </div>
 
         <!-- Gender radio selection -->
@@ -72,6 +72,9 @@
             <div class="form-check">
                 <input class="form-check-input" id="gender2" name="gender" required type="radio">
                 <label class="form-check-label" for="gender2">Mujer</label>
+                <div class="invalid-feedback">
+                    Es obligatorio seleccionar número.
+                </div>
             </div>
         </div>
 
@@ -79,72 +82,75 @@
             <div class="col-lg-6">
                 <!-- Phone field -->
                 <label class="txt1" for="phone">Teléfono</label>
-                <div class="wrap-input100">
-                    <input class="wrap-input100 form-control" id="phone" name="phone"
-                           pattern="(?=.*\d).{9}"
-                           type="text">
+                <input class="form-control" id="phone" name="phone" pattern="(?=.*\d).{9}" type="text">
+                <div class="invalid-feedback">
+                    El teléfono debe contener 9 dígitos.
                 </div>
             </div>
             <div class="col-lg-6">
                 <!-- Email field -->
                 <label class="txt1" for="email">Correo electrónico <span class="asterisk">*</span></label>
-                <div class="wrap-input100">
-                    <input class="form-control" id="email" name="email" required type="email">
-                    <span class="focus-input100"></span>
+                <input class="form-control" id="email" name="email" required type="email">
+                <div class="invalid-feedback">
+                    El correo electrónico no tiene el formato adecuado.
                 </div>
             </div>
         </div>
 
         <!-- Birth date field -->
         <label class="txt1" for="birthdate">Fecha de nacimiento <span class="asterisk">*</span></label>
-        <div class="wrap-input100">
-            <input class="form-control" id="birthdate" type="text">
+        <input class="form-control" id="birthdate" type="text">
+        <div class="invalid-feedback">
+            La fecha de nacimiento es obligatoria y debe introducirse en formato dd/mm/yyyy.
         </div>
 
         <!-- Password -->
         <label class="txt1" for="password">Contraseña <span class="asterisk">*</span></label>
-        <div class="wrap-input100alt">
-            <span class="btn-show-pass" id="showPassword">
-                <i class="far fa-eye-slash"></i>
-            </span>
+        <div class="input-group">
             <input class="form-control" id="password" name="password"
                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required type="password">
+            <span class="input-group-text" id="showPassword">
+                <i class="far fa-eye-slash"></i>
+            </span>
         </div>
-        <div class="passwrequirements">Recuerda que la contraseña debe tener al menos 8 caracteres incluyendo un
-            número y una mayúscula
+        <div class="invalid-feedback">
+            Esta contraseña no se acoge al formato solicitado.
+        </div>
+        <div class="passwrequirements">La contraseña debe tener al menos 8 caracteres incluyendo al menos un
+            número, una letra minúscula y una letra mayúscula.
         </div>
 
         <!-- License ID -->
         <label class="txt1" for="licenseId">Número de licencia <span class="asterisk">*</span></label>
-        <div class="wrap-input100 validate-input ">
-            <input class="form-control" id="licenseId" name="licenseId" pattern="^[A-Z]{3}(?=.*\d).{8}$"
-                   type="text">
+        <input class="form-control" id="licenseId" name="licenseId" pattern="JU-[0-9]{10}$" type="text">
+        <div class="invalid-feedback">
+            La licencia no se ajusta al formato JU-(10 dígitos).
         </div>
 
         <!-- DNI -->
         <label class="txt1" for="dni">DNI <span class="asterisk">*</span></label>
-        <div class="wrap-input100 validate-input">
-            <input class="form-control" id="dni" name="dni" pattern="^[0-9]{8}[A-Z]{1}$" type="text">
+        <input class="form-control" id="dni" name="dni" pattern="^([0-9]{8}|[XYZ][0-9]{7})[A-Z]{1}$" type="text">
+        <div class="invalid-feedback">
+            El DNI no sigue el formato requerido (ejemplo: 12345678Z).
         </div>
 
         <!-- Range selector -->
         <label class="txt1" for="range">Rango <span class="asterisk">*</span></label>
-        <div class="rangeSelector">
-            <div class="wrap-input100 validate-input">
-                <select class="form-select" id="range" name="range" required>
-                    <option selected>Selecciona tu rango</option>
-                    <option value="1">Árbitro estandar</option>
-                    <option value="2">Árbitro de competición</option>
-                    <option value="3">Árbitro auxiliar</option>
-                </select>
-            </div>
+        <select class="form-select" id="range" name="range" required>
+            <option selected>Selecciona tu rango</option>
+            <option value="1">Árbitro estandar</option>
+            <option value="2">Árbitro de competición</option>
+            <option value="3">Árbitro auxiliar</option>
+        </select>
+        <div class="invalid-feedback">
+            Es obligatorio seleccionar algún rango.
         </div>
 
         <!-- Belt selector -->
         <label class="txt1" for="beltSelector">Cinturón <span class="asterisk">*</span></label>
         <div class="wrap-input100 validate-input" id="">
             <div class="wrap-input100 validate-input">
-                <select class="form-select" id="beltSelector" name="belt">
+                <select class="form-select" id="beltSelector" name="belt" required>
                     <option selected>Selecciona tu cinturón</option>
                     <option value="B">Blanco</option>
                     <option value="BA">Blanco-Amarillo</option>
@@ -166,11 +172,13 @@
                 </div>
             </div>
         </div>
+        <div class="invalid-feedback">
+            El cinturón es obligatorio.
+        </div>
         <div class="container-login100-form-btn">
             <button class="btn btn-corporative" type="submit">Solicitar</button>
         </div>
     </form>
-</div>
 </div>
 
 <!-- Vendor JS Files -->
@@ -183,5 +191,6 @@
 <!-- Own JS Files -->
 <script src="../../assets/js/main.js"></script>
 <script src="../../assets/js/formControl.js"></script>
+<script src="../../assets/js/validationScript.js"></script>
 </body>
 </html>

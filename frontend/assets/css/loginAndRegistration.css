@@ -133,12 +133,6 @@ iframe {
     text-transform: uppercase;
 }
 
-.txt2 {
-    font-size: 15px;
-    color: #999999;
-    line-height: 1.4;
-}
-
 .txt3 {
     font-size: 15px;
     color: #555555;
@@ -204,15 +198,6 @@ iframe {
     align-content: center;
 }
 
-.wrap-input100alt {
-    width: 100%;
-    margin-bottom: 10px;
-    position: relative;
-    background-color: #fff;
-    border-radius: 2px;
-    align-content: center;
-}
-
 .passwrequirements {
     color: #999999;
     font-style: italic;
@@ -227,17 +212,6 @@ iframe {
 }
 
 /*---------------------------------------------*/
-.input100 {
-    color: #555555;
-    line-height: 1.2;
-    font-size: 18px;
-
-    display: block;
-    width: 100%;
-    background: transparent;
-    height: 55px;
-    padding: 0 25px 0 25px;
-}
 
 #beforeLogin {
     margin-bottom: 23px;
@@ -273,17 +247,6 @@ iframe {
 }
 
 .input100:focus + .focus-input100 {
-    visibility: visible;
-    opacity: 1;
-
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1);
-}
-
-.eff-focus-selection {
     visibility: visible;
     opacity: 1;
 
@@ -332,54 +295,6 @@ iframe {
     padding-left: 2px;
     color: #ff0000 !important;
 }
-
-.input-checkbox100 {
-    display: none;
-}
-
-.label-checkbox100 {
-    font-family: "Segoe UI", sans-serif;
-    font-size: 13px;
-    color: #999999;
-    line-height: 1.4;
-
-    display: block;
-    position: relative;
-    padding-left: 26px;
-    cursor: pointer;
-}
-
-.label-checkbox100::before {
-    content: "\f00c";
-    font-size: 13px;
-    color: transparent;
-
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    border-radius: 2px;
-    background: #fff;
-    border: 1px solid #e6e6e6;
-    left: 0;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-
-.input-checkbox100:checked + .label-checkbox100::before {
-    color: #f14141;
-}
-
 
 /*------------------------------------------------------------------
 [ Button ]*/
