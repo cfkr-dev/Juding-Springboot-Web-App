@@ -521,8 +521,12 @@ section {
 /*--------------------------------------------------------------
 # Posts
 --------------------------------------------------------------*/
+.posts .col-lg-4{
+    margin-bottom: 20px;
+}
+
 .posts .post-box {
-    box-shadow: 0px 0 30px rgba(1, 41, 112, 0.08);
+    box-shadow: 0 0 30px rgba(1, 41, 112, 0.08);
     transition: 0.3s;
     height: 100%;
     overflow: hidden;
