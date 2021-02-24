@@ -29,6 +29,9 @@ new Chart(ctx, {
                     offsetGridLines: true
                 }
             }]
+        },
+        legend: {
+            display: false
         }
     }
 });

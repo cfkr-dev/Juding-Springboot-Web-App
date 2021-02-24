@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
     <title>Inicio - Juding</title>
 
@@ -42,91 +42,174 @@
     <!-- Page Features -->
     <h1 class="h1">Inicio</h1>
     <div class="row d-flex flex-column align-items-center text-center">
-        <img class="avatar" src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png" alt="avatar">
-        <div>
-            <span class="nick">Nick</span>
+        <div class="row d-flex flex-column align-items-center text-center">
+            <div class="col-7">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img alt="avatar" class="avatar"
+                                 src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <h5 class="card-title">Apodo</h5>
+                                    </div>
+                                    <div class="col-2">
+                                        <i class="fas fa-user-ninja fa-2x" style="color: green;"></i>
+                                    </div>
+                                </div>
+                                <div class="card-text text-start">
+                                    Nombre <strong>Apellido1 Apellido2</strong><br>
+                                    <strong>Licencia:</strong> 1234567890.<br>
+                                    <strong>DNI:</strong> 12345678Z.<br>
+                                    <strong>Gimnasio:</strong> Madrid Centro.<br>
+                                    <strong>Peso:</strong> 50 kg.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
     <div class="row">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6 text-center">
+            <h4 class="h4">Gráfico de medallas</h4>
             <div>
                 <canvas id="medalChart"></canvas>
             </div>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6 text-center">
+            <h4 class="h4">Evolución anual</h4>
             <div>
                 <canvas id="rankingChart"></canvas>
             </div>
         </div>
     </div>
-
+    <div class="row mx-3 my-3">
+        <div class="alert alert-info">
+            <div class="row">
+                <h2 class="h2">Competición actual</h2>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-4 text-center">
+                    <div class="card h-100">
+                        <img alt="" class="card-img-top" src="../../assets/img/federation.jpg">
+                        <div class="card-body">
+                            <h4 class="card-title">Competición</h4>
+                            <p class="card-text">CTO. ESPAÑA JUNIOR DE JUDO MASCULINO Y FEMENINO 2021</p>
+                            <div class="row text-center">
+                                <div class="col-6">
+                                    <i class="far fa-calendar"></i> 1/3/2021
+                                </div>
+                                <div class="col-6">
+                                    <i class="fas fa-user-ninja"></i> 16
+                                </div>
+                            </div>
+                            <span class="badge bg-success">Activa actualmente</span>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary" href="#">Ver detalle</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="px-2 mt-2 pb-3">
         <h3>Competiciones Futuras</h3>
         <div class="alert alert-info">
-            <i class="fa fa-alert"></i><strong>Alerta</strong>: Comprueba las competiciones. Puede haber nuevas.
+            <i class="fa fa-alert"></i><strong>Alerta</strong>: Puede haber competiciones nuevas. ¡Revisa las nuevas
+            competiciones y apúntate!
         </div>
-        <div class="shadow p-3 mb-5 bg-white rounded">
-            <div class="alert alert-light" role="alert">
-                CTO. ESPAÑA JUNIOR DE JUDO MASCULINO Y FEMENINO 2021
+        <div class="row text-center">
+            <div class="col-4">
+                <div class="card h-100">
+                    <img alt="" class="card-img-top" src="../../assets/img/federation.jpg">
+                    <div class="card-body">
+                        <h4 class="card-title">Competición</h4>
+                        <p class="card-text">CTO. ESPAÑA JUNIOR DE JUDO MASCULINO Y FEMENINO 2021</p>
+                        <div class="row text-center">
+                            <div class="col-6">
+                                <i class="far fa-calendar"></i> 21/3/2021
+                            </div>
+                            <div class="col-6">
+                                <i class="fas fa-user-ninja"></i> 14
+                            </div>
+                        </div>
+                        <span class="badge bg-info">Asistencia confirmada</span>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">Ver detalle</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="shadow p-3 mb-5 bg-white rounded">
-            <div class="alert alert-light" role="alert">
-                CTO. DE MADRID ABSOLUTO DE JUDO MASCULINO Y FEMENINO 2021
+            <div class="col-4">
+                <div class="card h-100">
+                    <img alt="" class="card-img-top" src="../../assets/img/federation.jpg">
+                    <div class="card-body">
+                        <h4 class="card-title">Competición</h4>
+                        <p class="card-text">CTO. DE MADRID ABSOLUTO DE JUDO MASCULINO Y FEMENINO 2021</p>
+                        <div class="row text-center">
+                            <div class="col-6">
+                                <i class="far fa-calendar"></i> 8/4/2021
+                            </div>
+                            <div class="col-6">
+                                <i class="fas fa-user-ninja"></i> 9
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn btn-success" href="#">Apuntarme</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card h-100">
+                    <img alt="" class="card-img-top" src="../../assets/img/federation.jpg">
+                    <div class="card-body">
+                        <h4 class="card-title">Competición</h4>
+                        <p class="card-text">CTO. DE MADRID ABSOLUTO DE JUDO MASCULINO Y FEMENINO 2021</p>
+                        <div class="row text-center">
+                            <div class="col-6">
+                                <i class="far fa-calendar"></i> 20/7/2021
+                            </div>
+                            <div class="col-6">
+                                <i class="fas fa-user-ninja"></i> 0
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn btn-success" href="#">Apuntarme</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="px-2 mt-2 pb-3">
         <h3>Historial de competiciones</h3>
-        <div class="shadow p-3 mb-5 bg-white rounded">
+        <div class="shadow p-1 mb-5 bg-white rounded">
             <div class="alert alert-light" role="alert">
-                <a href="#" class="alert-link"><i class="fas fa-award fa-2x" ></i></a>CTO. ESPAÑA JUNIOR DE JUDO MASCULINO Y FEMENINO 2020  <a href="#" class="alert-link"><i class="fas fa-award fa-2x" ></i></a>
+                CTO. ESPAÑA JUNIOR DE JUDO MASCULINO Y FEMENINO 2020
+                <a class="alert-link" href="#"><i class="fas fa-award fa-2x"></i></a>
             </div>
         </div>
-        <div class="shadow p-3 mb-5 bg-white rounded">
+        <div class="shadow p-1 mb-5 bg-white rounded">
             <div class="alert alert-light" role="alert">
-                <a href="#" class="alert-link"><i class="fas fa-award fa-2x" ></i></a>JJMM DE JUDO DEL AYTO. DE MADRID, ZONA 1 INFANTIL Y CADETE MASCULINOS +65 KG  <a href="#" class="alert-link"><i class="fas fa-award fa-2x" ></i></a>
+                JJMM DE JUDO DEL AYTO. DE MADRID, ZONA 1 INFANTIL Y CADETE MASCULINOS +65 KG
+                <a class="alert-link" href="#"><i class="fas fa-award fa-2x"></i></a>
             </div>
         </div>
-        <div class="shadow p-3 mb-5 bg-white rounded">
+        <div class="shadow p-1 mb-5 bg-white rounded">
             <div class="alert alert-light" role="alert">
-                <a href="#" class="alert-link"><i class="fas fa-award fa-2x" ></i></a>4º.CAMPEONATO DE INICIACIÓN DE JUDO MINI BENJAMIN  <a href="#" class="alert-link"><i class="fas fa-award fa-2x"></i></a>
+                4º.CAMPEONATO DE INICIACIÓN DE JUDO MINI BENJAMIN
+                <a class="alert-link" href="#"><i class="fas fa-award fa-2x"></i></a>
             </div>
         </div>
     </div>
-
-    <div class="row text-center">
-
-        <div class="col-lg-6 col-md-6 mb-6">
-            <div class="card h-100">
-                <img class="card-img-top" src="../../assets/img/federation.jpg" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Competición</h4>
-                    <p class="card-text">CTO. ESPAÑA JUNIOR DE JUDO MASCULINO Y FEMENINO 2021</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Inscripción</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 mb-6">
-            <div class="card h-100">
-                <img class="card-img-top" src="../../assets/img/federation.jpg" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Competición</h4>
-                    <p class="card-text">CTO. DE MADRID ABSOLUTO DE JUDO MASCULINO Y FEMENINO 2021</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Inscripción</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.row -->
-
 
 </div>
 <!-- /.container -->
@@ -137,6 +220,6 @@
 <script src="../../assets/vendor/chart/Chart.js"></script>
 <!-- Own JS Files -->
 <script src="../../assets/js/main.js"></script>
-<script src="../../assets/js/refereeCharts.js"></script>
+<script src="../../assets/js/competitorCharts.js"></script>
 </body>
 </html>

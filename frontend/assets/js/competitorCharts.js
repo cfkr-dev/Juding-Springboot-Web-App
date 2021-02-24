@@ -31,6 +31,9 @@ new Chart(ctx, {
                     offsetGridLines: true
                 }
             }]
+        },
+        legend: {
+            display: false
         }
     }
 });
@@ -44,30 +47,24 @@ let competitorLineChartData = {
     labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"],
     datasets: [{
         label: "Puntos del Ranking",
-        data: [0, 0, 0, 0, 1, 1, 3, 3, 4, 4, 5, 8, 10, 11, 12, 15, 17, 17, 20, 22],
+        data: [0, 0, 0, 0, 1, 1, 3, 3, 4, 4, 5, 8, 10, 11, 12, 15, 17, 20, 22, 25],
         lineTension: 0,
         fill: false,
-        borderColor: 'black',
+        borderColor: '#333333',
         backgroundColor: 'transparent',
-        borderDash: [5, 5],
-        pointBorderColor: 'black',
-        pointBackgroundColor: 'rgba(0,0,0,1)',
-        pointRadius: 5,
-        pointHoverRadius: 10,
-        pointHitRadius: 30,
+        pointBorderColor: '#333333',
+        pointBackgroundColor: '#333333',
+        pointRadius: 4,
+        pointHoverRadius: 5,
+        pointHitRadius: 7,
         pointBorderWidth: 2,
-        pointStyle: 'rectRounded'
+        pointStyle: 'round'
     }]
 };
 
 let chartOptions = {
     legend: {
-        display: true,
-        position: 'top',
-        labels: {
-            boxWidth: 80,
-            fontColor: 'black'
-        }
+        display: false
     }
 };
 new Chart(ctx2, {
