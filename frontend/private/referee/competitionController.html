@@ -1,0 +1,213 @@
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Mi perfil - Juding</title>
+
+    <!-- Favicons -->
+    <link href="../../assets/img/hero-img.png" rel="icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/vendor/font-awesome/css/all.css" rel="stylesheet">
+
+    <!-- Own CSS Files -->
+    <link href="../../assets/css/header.css" rel="stylesheet">
+    <link href="../../assets/css/responsiveTable.css" rel="stylesheet">
+    <link href="../../assets/css/profiles.css" rel="stylesheet">
+    <link href="../../assets/css/competitionController.css" rel="stylesheet">
+
+</head>
+<body>
+<header class="header fixed-top" id="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a class="logo d-flex align-items-center" href="index.html">
+            <img alt="" src="../../assets/img/hero-img.png">
+            <span>Juding</span>
+        </a>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a class="nav-link scrollto" href="index.html">Inicio</a></li>
+                <li><a class="nav-link scrollto active" href="#">Mi perfil</a></li>
+                <li><a class="login scrollto" href="../../index.html">Cerrar sesión</a></li>
+            </ul>
+            <i class="far fa-bars mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header>
+<div class="container">
+
+    <!-- COMPETITORS VIEW -->
+    <div class="competitorsView d-flex flex-column justify-content-end text-center">
+
+        <!-- COMPETITOR 1 VIEW -->
+        <div class="row border-2">
+            <div class="col-lg-3 col-3">
+                Perfil
+            </div>
+
+            <div class="col-lg-6 col-6">
+                Sanciones
+            </div>
+
+            <div class="col-lg-3 col-3">
+                Puntuación
+            </div>
+        </div>
+
+        <!-- COMPETITOR 2 VIEW -->
+        <div class="row">
+            <div class="col-lg-3 col-3">
+                Perfil
+            </div>
+
+            <div class="col-lg-6 col-6">
+                Sanciones
+            </div>
+
+            <div class="col-lg-3 col-3">
+                Puntuación
+            </div>
+        </div>
+    </div>
+
+    <!-- CRONO -->
+    <div class="row d-flex text-center crono ">
+
+        <!-- BIG CRONO -->
+        <div class="col-lg-7 col-7 bigCrono">
+            BigCrono
+        </div>
+
+        <!-- SMALL CRONO -->
+        <div class="col-lg-5 col-5 smallCrono">
+            SmallCrono
+        </div>
+    </div>
+
+    <!-- BUTTONS CONTROL PANEL -->
+    <div class="row controller d-flex justify-content-center text-center">
+
+        <!-- COMPETITOR 1 CONTROLLER -->
+        <div class="col-lg-4 col-12 competitorController">
+            <div class="buttonStart">
+                <button type="button" class="btn btn-primary">
+                    INI 1
+                </button>
+            </div>
+
+            <div class="pointsAndFoulsController">
+                <h3>PUNTOS</h3>
+                <div class="row justify-content-center pointsController">
+                    <div class="col-lg-2 col-2 d-flex justify-content-center">
+                        <button type="button" class="btn btn-success">
+                            +
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-2 d-flex justify-content-center">
+                        <button type="button" class="btn btn-danger">
+                            +
+                        </button>
+                    </div>
+                </div>
+
+                <h3>SANCIONES</h3>
+                <div class="row justify-content-center foulsController">
+                    <div class="col-lg-2 col-2 d-flex justify-content-center">
+                        <button type="button" class="btn btn-success">
+                            +
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-2 d-flex justify-content-center">
+                        <button type="button" class="btn btn-danger">
+                            +
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CRONO CONTROLLER -->
+        <div class="col-lg-4 col-12 d-flex flex-column my-auto cronoController">
+
+            <div class="row justify-content-center bigCronoController">
+                <div class="col-lg-3 col-3 d-flex justify-content-center">
+                    <button type="button" class="btn btn-danger btnL">
+                        STOP
+                    </button>
+                </div>
+                <div class="col-lg-3 col-3 d-flex justify-content-center">
+                    <button type="button" class="btn btn-warning btnR">
+                        RESET
+                    </button>
+                </div>
+            </div>
+            <div class="row justify-content-center smallCronoController">
+                <div class="col-lg-3 col-3 d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary btnL">
+                        INI
+                    </button>
+                </div>
+                <div class="col-lg-3 col-3 d-flex justify-content-center">
+                    <button type="button" class="btn btn-danger btnR">
+                        STOP
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-12 endButton d-flex justify-content-center">
+                <button type="button" class="btn btn-danger">
+                    FIN
+                </button>
+            </div>
+        </div>
+
+        <!-- COMPETITOR 2 CONTROLLER -->
+        <div class="col-lg-4 col-12 competitorController" id="competitor2">
+            <div class="buttonStart">
+                <button type="button" class="btn btn-primary">
+                    INI 2
+                </button>
+            </div>
+
+            <div class="pointsAndFoulsController">
+                <h3>PUNTOS</h3>
+                <div class="row justify-content-center pointsController">
+                    <div class="col-lg-2 col-2 d-flex justify-content-center">
+                        <button type="button" class="btn btn-success">
+                            +
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-2 d-flex justify-content-center">
+                        <button type="button" class="btn btn-danger">
+                            +
+                        </button>
+                    </div>
+                </div>
+
+                <h3>SANCIONES</h3>
+                <div class="row justify-content-center foulsController">
+                    <div class="col-lg-2 col-2 d-flex justify-content-center">
+                        <button type="button" class="btn btn-success">
+                            +
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-2 d-flex justify-content-center">
+                        <button type="button" class="btn btn-danger">
+                            +
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Vendor JS Files -->
+<script src="../../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Own JS Files -->
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>
