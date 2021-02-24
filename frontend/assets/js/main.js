@@ -102,7 +102,7 @@
     /**
      * Mobile nav toggle
      */
-    on('click', '.mobile-nav-toggle', function(e) {
+    on('click', '.mobile-nav-toggle', function() {
         select('#navbar').classList.toggle('navbar-mobile')
         this.classList.toggle('fa-bars')
         this.classList.toggle('fa-times')

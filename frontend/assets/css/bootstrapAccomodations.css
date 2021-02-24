@@ -27,3 +27,13 @@
     background-color: #f14141;
     border-color: #f14141;
 }
+
+
+.alert-corporative {
+    color: #ee1212;
+    background-color: #fab7b7;
+    border-color: #f35959;
+}
+.alert-corporative .alert-link {
+    color: #d61010;
+}

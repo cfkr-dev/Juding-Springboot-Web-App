@@ -99,22 +99,22 @@
 
         <!-- Birth date field -->
         <label class="txt1" for="birthdate">Fecha de nacimiento <span class="asterisk">*</span></label>
-        <input class="form-control" id="birthdate" type="text">
+        <input class="form-control" id="birthdate" name="birthdate" required type="text">
         <div class="invalid-feedback">
             La fecha de nacimiento es obligatoria y debe introducirse en formato dd/mm/yyyy.
         </div>
 
         <!-- Password -->
         <label class="txt1" for="password">Contraseña <span class="asterisk">*</span></label>
-        <div class="input-group">
+        <div class="input-group has-validation">
             <input class="form-control" id="password" name="password"
                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required type="password">
             <span class="input-group-text" id="showPassword">
                 <i class="far fa-eye-slash"></i>
             </span>
-        </div>
-        <div class="invalid-feedback">
-            Esta contraseña no se acoge al formato solicitado.
+            <div class="invalid-feedback">
+                Esta contraseña no se acoge al formato solicitado.
+            </div>
         </div>
         <div class="passwrequirements">La contraseña debe tener al menos 8 caracteres incluyendo al menos un
             número, una letra minúscula y una letra mayúscula.
@@ -122,36 +122,29 @@
 
         <!-- License ID -->
         <label class="txt1" for="licenseId">Número de licencia <span class="asterisk">*</span></label>
-        <input class="form-control" id="licenseId" name="licenseId" pattern="[0-9]{10}$" type="text">
+        <input class="form-control" id="licenseId" name="licenseId" pattern="[0-9]{10}$" required type="text">
         <div class="invalid-feedback">
             La licencia no se ajusta al formato requerido (10 dígitos).
         </div>
 
         <!-- DNI -->
         <label class="txt1" for="dni">DNI <span class="asterisk">*</span></label>
-        <input class="form-control" id="dni" name="dni" pattern="^([0-9]{8}|[XYZ][0-9]{7})[A-Z]{1}$" type="text">
+        <input class="form-control" id="dni" name="dni" pattern="^([0-9]{8}|[XYZ][0-9]{7})[A-Z]{1}$" required
+               type="text">
         <div class="invalid-feedback">
             El DNI no sigue el formato requerido (ejemplo: 12345678Z).
         </div>
 
         <!-- Gym -->
         <label class="txt1" for="gym">Gimnasio <span class="asterisk">*</span></label>
-        <div class="gymSelector">
-            <div class="wrap-input100 validate-input " data-validate="gym is required">
-                <input class="form-control" id="gym" name="gym" required type="text">
-                <span class="focus-input100"></span>
-            </div>
-        </div>
+        <input class="form-control" id="gym" name="gym" required type="text">
         <div class="invalid-feedback">
             El gimnasio es obligatorio.
         </div>
 
         <!-- Weight -->
         <label class="txt1" for="weight">Peso <span class="asterisk">*</span></label>
-        <div class="wrap-input100 validate-input">
-            <input class="form-control" id="weight" name="weight" pattern="^[1-9][0-9]+$" type="number">
-            <span class="focus-input100"></span>
-        </div>
+        <input class="form-control" id="weight" name="weight" pattern="^[1-9][0-9]+$" type="number" required>
         <div class="invalid-feedback">
             El peso es obligatorio.
         </div>

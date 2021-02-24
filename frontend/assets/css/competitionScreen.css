@@ -154,3 +154,12 @@
     background-color: #ffd700;
     border: 2px solid #ffd700;
 }
+
+/*
+BOOTSTRAP ACCOMODATIONS FOR THIS PAGE
+ */
+.accordion-body{
+    max-height: 80vh;
+    height: 80vh;
+    overflow: scroll;
+}

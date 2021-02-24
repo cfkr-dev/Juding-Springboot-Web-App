@@ -15,6 +15,7 @@
     <!-- Own CSS Files -->
     <link href="../../assets/css/style.css" rel="stylesheet">
     <link href="../../assets/css/header.css" rel="stylesheet">
+    <link href="../../assets/css/bootstrapAccomodations.css" rel="stylesheet">
     <link href="../../assets/css/responsiveTable.css" rel="stylesheet">
     <link href="../../assets/css/profiles.css" rel="stylesheet">
 </head>
@@ -28,6 +29,7 @@
         <nav class="navbar" id="navbar">
             <ul>
                 <li><a class="nav-link scrollto" href="index.html">Inicio</a></li>
+                <li><a class="nav-link scrollto" href="ranking.html">Ranking</a></li>
                 <li><a class="nav-link scrollto active" href="#">Mi perfil</a></li>
                 <li><a class="login scrollto" href="../../index.html">Cerrar sesión</a></li>
             </ul>
@@ -36,7 +38,16 @@
     </div>
 </header>
 <div class="container">
-    <h1 class="h1">Mi perfil</h1>
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="h1">Mi perfil</h1>
+        </div>
+        <div class="col-md-4 d-flex justify-content-end align-items-center">
+            <a href="editProfile.html">
+                <button class="btn btn-corporative"><i class="far fa-pencil"></i> Editar perfil</button>
+            </a>
+        </div>
+    </div>
     <div class="row d-flex flex-column align-items-center text-center">
         <img class="avatar" src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png" alt="avatar">
         <div>
@@ -55,7 +66,7 @@
         <div class="responsiveTable">
             <div class="rtRow">
                 <div class="width40">Número de licencia</div>
-                <div class="width60">LIC12345677</div>
+                <div class="width60">1234567890</div>
             </div>
             <div class="rtRow">
                 <div class="width40">Cinturón</div>
@@ -166,7 +177,10 @@
         </div>
     </div>
 </div>
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Vendor JS Files -->
+<script src="../../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Own JS Files -->
+<script src="../../assets/js/main.js"></script>
 </body>
 </html>
