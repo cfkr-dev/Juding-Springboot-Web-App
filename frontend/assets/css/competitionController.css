@@ -4,7 +4,7 @@
     padding-top: 10px;
 }
 
-/*  CONPETITORS VIEW STYLES   */
+/*  COMPETITORS VIEW STYLES   */
 
 .competitorsView {
     padding: 30px 30px 7px;
@@ -27,7 +27,7 @@
 }
 
 .redBack{
-    background-color: #ee8787;
+    background-color: #ef5350;
 }
 
 /*  CRONOS STYLES   */
@@ -58,33 +58,27 @@
 /*  CONTROLLERS VIEW STYLES   */
 
 .controller {
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin: 20px;
     font-size: 30px;
 }
 
 .competitorController {
-    width: auto;
     padding: 15px;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
     font-size: 30px;
 }
 
 .competitor2 {
-    background-color: #aad7ff;
+    background-color: #90CAF9;
 }
 
 .cronoController {
-    width: auto;
     padding: 15px;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
-    margin-right: 10%;
-    margin-left: 10%;
     font-size: 30px;
+}
+
+.colShadow{
+    box-shadow: 0 0 25px rgb(160, 160, 160);
+    border-radius: 10px;
+    padding: 20px;
 }
 
 .btn {
@@ -112,16 +106,4 @@
 
 .endButton{
     margin-top: 40px;
-}
-
-@media screen and (min-width: 768px) and (max-width: 1023px){
-    #controls1{
-        order: 1;
-    }
-    #controls2{
-        order: 2;
-    }
-    #cronoControllers{
-        order: 3;
-    }
 }
