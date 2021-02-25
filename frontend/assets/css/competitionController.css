@@ -21,11 +21,14 @@
     border-radius: 5px;
 }
 
-.competitorsView .col-lg-6 {
-    border-right: 1px solid #ccc !important;
-    border-left: 1px solid #ccc !important;
+.competitorsView .col-md-6 {
+    border-right: 1px solid #333 !important;
+    border-left: 1px solid #333 !important;
 }
 
+.redBack{
+    background-color: #ee8787;
+}
 
 /*  CRONOS STYLES   */
 
@@ -34,8 +37,13 @@
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 20px 20px 20px 30%;
-    font-size: 30px;
+    font-size: 1.8rem;
+}
 
+@media screen and (max-width: 768px){
+    .crono{
+        margin-left: 20px;
+    }
 }
 
 .bigCrono {
@@ -50,7 +58,7 @@
 /*  CONTROLLERS VIEW STYLES   */
 
 .controller {
-    padding: 15px;
+    padding: 40px;
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 20px;
@@ -62,11 +70,10 @@
     padding: 15px;
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
-    margin: 20px;
     font-size: 30px;
 }
 
-#competitor2 {
+.competitor2 {
     background-color: #aad7ff;
 }
 
@@ -104,8 +111,17 @@
 }
 
 .endButton{
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
-
-
+@media screen and (min-width: 768px) and (max-width: 1023px){
+    #controls1{
+        order: 1;
+    }
+    #controls2{
+        order: 2;
+    }
+    #cronoControllers{
+        order: 3;
+    }
+}
