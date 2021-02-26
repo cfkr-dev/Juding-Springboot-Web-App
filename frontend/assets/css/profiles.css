@@ -4,7 +4,7 @@ body {
     background-position: center center;
 }
 
-body > .container{
+body > .container {
     background-color: white;
     padding-bottom: 15px;
 }
@@ -54,12 +54,12 @@ body > .container{
     margin-top: 20px;
 }
 
-.txt1>.asterisk{
+.txt1 > .asterisk {
     padding-left: 2px;
     color: #ff0000 !important;
 }
 
-#danField{
+#danField {
     display: none;
 }
 

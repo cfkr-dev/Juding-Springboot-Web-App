@@ -1,4 +1,4 @@
-$(function(){
+$(function () {
     // Simulator is initialized
     // Needed variables:
     let points1 = 0;
@@ -36,8 +36,8 @@ $(function(){
     /**
      * Button for starting the simulator should be only available when a fight is selected
      */
-    fightSel.change(function(){
-        if ($(this).val() !== "-1"){
+    fightSel.change(function () {
+        if ($(this).val() !== "-1") {
             console.log("Value was selected");
             keyG.removeAttr("disabled");
             $(this).attr("disabled", "");
@@ -48,7 +48,7 @@ $(function(){
     /**
      * Simulator is fully available only when keyG is pressed
      */
-    function keyGAction(){
+    function keyGAction() {
         keyQ.removeAttr("disabled");
         keyW.removeAttr("disabled");
         keyE.removeAttr("disabled");
@@ -67,33 +67,37 @@ $(function(){
         keyG.prop("disabled", "");
         screenFullFunc = true;
     }
+
     keyG.click(keyGAction);
 
     /**
      * Adding a point to fighter 1
      */
-    function keyWPress(){
+    function keyWPress() {
         points1++;
         points1Screen.html(points1);
     }
+
     /**
      * Subtracting a point to fighter 1
      */
-    function keyEPress(){
+    function keyEPress() {
         points1 = (points1 - 1 >= 0) ? points1 - 1 : 0;
         points1Screen.html(points1);
     }
+
     /**
      * Adding a penalty to fighter 1
      */
-    function keySPress(){
+    function keySPress() {
         penalties1++;
         penalties1Screen.html(penalties1);
     }
+
     /**
      * Subtracting a penalty to fighter 1
      */
-    function keyDPress(){
+    function keyDPress() {
         penalties1 = (penalties1 - 1 >= 0) ? penalties1 - 1 : 0;
         penalties1Screen.html(penalties1);
     }
@@ -101,35 +105,38 @@ $(function(){
     /**
      * Adding a point to fighter 2
      */
-    function keyIPress(){
+    function keyIPress() {
         points2++;
         points2Screen.html(points2);
     }
+
     /**
      * Subtracting a point to fighter 2
      */
-    function keyOPress(){
+    function keyOPress() {
         points2 = (points2 - 1 >= 0) ? points2 - 1 : 0;
         points2Screen.html(points2);
     }
+
     /**
      * Adding a penalty to fighter 2
      */
-    function keyKPress(){
+    function keyKPress() {
         penalties2++;
         penalties2Screen.html(penalties2);
     }
+
     /**
      * Subtracting a penalty to fighter 2
      */
-    function keyLPress(){
+    function keyLPress() {
         penalties2 = (penalties2 - 1 >= 0) ? penalties2 - 1 : 0;
         penalties2Screen.html(penalties2);
     }
 
 
-    $(document).keypress(function(evt){
-        switch(evt.key){
+    $(document).keypress(function (evt) {
+        switch (evt.key) {
             case 'w':
             case 'W':
                 if (screenFullFunc) keyWPress();
