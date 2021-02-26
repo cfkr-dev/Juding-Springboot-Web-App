@@ -1,10 +1,3 @@
-/**
-* Template Name: FlexStart - v1.1.1
-* Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -229,10 +222,12 @@ section {
         height: auto;
         padding: 120px 0 60px 0;
     }
+
     .hero .hero-img {
         text-align: center;
         margin-top: 80px;
     }
+
     .hero .hero-img img {
         width: 80%;
     }
@@ -242,13 +237,16 @@ section {
     .hero {
         text-align: center;
     }
+
     .hero h1 {
         font-size: 32px;
 
     }
+
     .hero h2 {
         font-size: 24px;
     }
+
     .hero .hero-img img {
         width: 100%;
     }
@@ -521,7 +519,7 @@ section {
 /*--------------------------------------------------------------
 # Posts
 --------------------------------------------------------------*/
-.posts .col-lg-4{
+.posts .col-lg-4 {
     margin-bottom: 20px;
 }
 
@@ -543,7 +541,7 @@ section {
     position: relative;
 }
 
-.post-img{
+.post-img {
     height: 250px;
 
 }
