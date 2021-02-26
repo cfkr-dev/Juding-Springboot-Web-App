@@ -51,14 +51,14 @@
                     <div class="width60">
                         <div class="beltSelector">
                             <select class="form-select" id="beltSelector" name="beltSelector" required>
-                                <option selected>Selecciona tu cinturón</option>
+                                <option>Selecciona tu cinturón</option>
                                 <option value="B">Blanco</option>
                                 <option value="BA">Blanco-Amarillo</option>
                                 <option value="A">Amarillo</option>
                                 <option value="AN">Amarillo-Naranja</option>
                                 <option value="Na">Naranja</option>
                                 <option value="NaV">Naranja-Verde</option>
-                                <option value="V">Verde</option>
+                                <option selected value="V">Verde</option>
                                 <option value="VA">Verde-Azul</option>
                                 <option value="Az">Azul</option>
                                 <option value="AzM">Azul-Marrón</option>
@@ -80,7 +80,7 @@
                         <label for="gym">Gimnasio</label>
                     </div>
                     <div class="width60">
-                        <input class="form-control" id="gym" name="gym" required type="text">
+                        <input class="form-control" id="gym" name="gym" required type="text" value="Madrid Centro">
                         <div class="invalid-feedback">
                             El gimnasio no puede estar vacío.
                         </div>
@@ -90,7 +90,7 @@
                     <div class="width40"><label for="weight">Peso</label></div>
                     <div class="width60">
                         <input class="form-control" id="weight" name="weight" pattern="^[1-9][0-9]+$" required
-                               type="number">
+                               type="number" value="50">
                         <div class="invalid-feedback">
                             El peso no puede estar vacío.
                         </div>
@@ -104,7 +104,7 @@
                 <div class="rtRow">
                     <div class="width40"><label for="nick">Apodo</label></div>
                     <div class="width60">
-                        <input class="form-control" id="nick" name="nick" required type="text">
+                        <input class="form-control" id="nick" name="nick" required type="text" value="joaco98">
                         <div class="invalid-feedback">
                             El apodo no puede estar vacío.
                         </div>
@@ -113,7 +113,8 @@
                 <div class="rtRow">
                     <div class="width40"><label for="phone">Teléfono</label></div>
                     <div class="width60">
-                        <input class="form-control" id="phone" name="phone" pattern="(?=.*\d).{9}" type="text">
+                        <input class="form-control" id="phone" name="phone" pattern="(?=.*\d).{9}" type="text"
+                               value="912345678">
                         <div class="invalid-feedback">
                             El teléfono no verifica el formato requerido.
                         </div>
@@ -122,7 +123,8 @@
                 <div class="rtRow">
                     <div class="width40"><label for="email">Correo electrónico</label></div>
                     <div class="width60">
-                        <input class="form-control" id="email" name="email" required type="email">
+                        <input class="form-control" id="email" name="email" required type="email"
+                               value="joaco@joaco.com">
                         <div class="invalid-feedback">
                             El correo electrónico no verifica el formato requerido.
                         </div>
