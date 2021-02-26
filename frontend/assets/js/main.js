@@ -1,4 +1,4 @@
-(function() {
+(function () {
     /**
      * Easy selector helper function
      */
@@ -102,7 +102,7 @@
     /**
      * Mobile nav toggle
      */
-    on('click', '.mobile-nav-toggle', function() {
+    on('click', '.mobile-nav-toggle', function () {
         select('#navbar').classList.toggle('navbar-mobile')
         this.classList.toggle('fa-bars')
         this.classList.toggle('fa-times')
@@ -111,7 +111,7 @@
     /**
      * Mobile nav dropdowns activate
      */
-    on('click', '.navbar .dropdown > a', function(e) {
+    on('click', '.navbar .dropdown > a', function (e) {
         if (select('#navbar').classList.contains('navbar-mobile')) {
             e.preventDefault()
             this.nextElementSibling.classList.toggle('dropdown-active')
@@ -121,7 +121,7 @@
     /**
      * Scroll with offset on links with a class name .scrollto
      */
-    on('click', '.scrollto', function(e) {
+    on('click', '.scrollto', function (e) {
         if (select(this.hash)) {
             e.preventDefault()
 
@@ -158,6 +158,7 @@
             mirror: false
         });
     }
+
     window.addEventListener('load', () => {
         aos_init();
     });

@@ -1,4 +1,3 @@
-
 /**
  * Function for showing password
  */
