@@ -26,7 +26,7 @@
     border-left: 1px solid #333 !important;
 }
 
-.redBack{
+.redBack {
     background-color: #ef5350;
 }
 
@@ -40,8 +40,8 @@
     font-size: 1.8rem;
 }
 
-@media screen and (max-width: 768px){
-    .crono{
+@media screen and (max-width: 768px) {
+    .crono {
         margin-left: 20px;
     }
 }
@@ -75,7 +75,7 @@
     font-size: 30px;
 }
 
-.colShadow{
+.colShadow {
     box-shadow: 0 0 25px rgb(160, 160, 160);
     border-radius: 10px;
     padding: 20px;
@@ -104,6 +104,6 @@
     margin-left: 50px;
 }
 
-.endButton{
+.endButton {
     margin-top: 40px;
 }
