@@ -1,27 +1,27 @@
 /**
  * Competitor Bar Chart
  */
-let ctx=document.getElementById("medalChart").getContext("2d")
+let ctx = document.getElementById("medalChart").getContext("2d")
 new Chart(ctx, {
     type: 'bar',
     data: {
-            labels: ['Bronce','Plata','Oro','Competiciones'],
-            datasets: [{
-                label: 'Mis medallas',
-                data:[5,4,3,20],
-                backgroundColor:[
-                    'rgb(205,127,50)',
-                    'rgb(192, 192, 192)',
-                    'rgb(255, 215, 0)',
-                    'rgb(125, 127, 125)',
+        labels: ['Bronce', 'Plata', 'Oro', 'Competiciones'],
+        datasets: [{
+            label: 'Mis medallas',
+            data: [5, 4, 3, 20],
+            backgroundColor: [
+                'rgb(205,127,50)',
+                'rgb(192, 192, 192)',
+                'rgb(255, 215, 0)',
+                'rgb(125, 127, 125)',
 
-                ]
-            }],
+            ]
+        }],
 
     },
     options: {
-        scales:{
-            yAxes:[{
+        scales: {
+            yAxes: [{
                 ticks: {
                     beginAtZero: true
                 }
@@ -41,7 +41,7 @@ new Chart(ctx, {
 /**
  * Competitor Line Chart
  */
-let ctx2=document.getElementById("rankingChart").getContext("2d")
+let ctx2 = document.getElementById("rankingChart").getContext("2d")
 
 let competitorLineChartData = {
     labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"],
