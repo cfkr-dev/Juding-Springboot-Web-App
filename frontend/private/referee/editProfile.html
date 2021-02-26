@@ -50,7 +50,7 @@
                     <div class="width60">
                         <div class="beltSelector">
                             <select class="form-select" id="beltSelector" name="beltSelector" required>
-                                <option selected>Selecciona tu cinturón</option>
+                                <option>Selecciona tu cinturón</option>
                                 <option value="B">Blanco</option>
                                 <option value="BA">Blanco-Amarillo</option>
                                 <option value="A">Amarillo</option>
@@ -62,11 +62,11 @@
                                 <option value="Az">Azul</option>
                                 <option value="AzM">Azul-Marrón</option>
                                 <option value="M">Marrón</option>
-                                <option value="N">Negro</option>
+                                <option value="N" selected>Negro</option>
                             </select>
                             <div id="danField">
                                 <label for="dan">Dan</label>
-                                <input class="form-control" id="dan" max="10" min="1" name="dan" required type="number">
+                                <input class="form-control" value="3" id="dan" max="10" min="1" name="dan" required type="number">
                             </div>
                             <div class="invalid-feedback">
                                 Es obligatorio seleccionar un cinturón.
@@ -80,8 +80,8 @@
                     </div>
                     <div class="width60">
                         <select class="form-select" id="range" name="range" required>
-                            <option selected>Selecciona tu rango</option>
-                            <option value="1">Árbitro estandar</option>
+                            <option>Selecciona tu rango</option>
+                            <option value="1" selected>Árbitro estándar</option>
                             <option value="2">Árbitro de competición</option>
                             <option value="3">Árbitro auxiliar</option>
                         </select>
@@ -98,7 +98,7 @@
                 <div class="rtRow">
                     <div class="width40"><label for="nick">Apodo</label></div>
                     <div class="width60">
-                        <input class="form-control" id="nick" name="nick" required type="text">
+                        <input class="form-control" id="nick" value="pepelu89" name="nick" required type="text">
                         <div class="invalid-feedback">
                             El apodo no puede estar vacío.
                         </div>
@@ -107,7 +107,7 @@
                 <div class="rtRow">
                     <div class="width40"><label for="phone">Teléfono</label></div>
                     <div class="width60">
-                        <input class="form-control" id="phone" name="phone" pattern="(?=.*\d).{9}" type="text">
+                        <input class="form-control" value="912345679" id="phone" name="phone" pattern="(?=.*\d).{9}" type="text">
                         <div class="invalid-feedback">
                             El teléfono no verifica el formato requerido.
                         </div>
@@ -116,7 +116,7 @@
                 <div class="rtRow">
                     <div class="width40"><label for="email">Correo electrónico</label></div>
                     <div class="width60">
-                        <input class="form-control" id="email" name="email" required type="email">
+                        <input class="form-control" value="pepelu@pepelu.com" id="email" name="email" required type="email">
                         <div class="invalid-feedback">
                             El correo electrónico no verifica el formato requerido.
                         </div>
