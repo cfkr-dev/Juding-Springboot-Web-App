@@ -10,14 +10,14 @@ register of the differents kinds of users and the monitoring of the results of t
 
 ## The team: developers
 
-| Full Name | Corporative email | Github nickname | | - | - | - | | Ismael González Sastre |
-i.gonzalezs.2018@alumnos.urjc.es | [Ismaelgzse](https://github.com/Ismaelgzse) | | Diego Guerrero Carrasco |
-d.guerrero.2018@alumnos.urjc.es | [diego-guerrero](https://github.com/diego-guerrero) | | Alberto Pérez Pérez |
-a.perezpe.2018@alumnos.urjc.es | [C0nf1cker](https://github.com/C0nf1cker)  | | José Luis Toledano Díaz |
-jl.toledano.2018@alumnos.urjc.es | [jolutoher18](https://github.com/jolutoher18) |
+| Full Name | Corporative email | Github nickname |
+| - | - | - |
+| Ismael González Sastre | i.gonzalezs.2018@alumnos.urjc.es | [Ismaelgzse](https://github.com/Ismaelgzse) |
+| Diego Guerrero Carrasco | d.guerrero.2018@alumnos.urjc.es | [diego-guerrero](https://github.com/diego-guerrero) |
+| Alberto Pérez Pérez | a.perezpe.2018@alumnos.urjc.es | [C0nf1cker](https://github.com/C0nf1cker) |
+| José Luis Toledano Díaz | jl.toledano.2018@alumnos.urjc.es | [jolutoher18](https://github.com/jolutoher18) |
 
-The group is organised using the Trello tool. Our board can be viewed
-here: [Trello](https://trello.com/b/rGpiD6eO/daw-grupo-2).
+The group is organised using the Trello tool. Our board can be viewed here: [Trello](https://trello.com/b/rGpiD6eO/daw-grupo-2).
 
 ___
 
@@ -75,7 +75,7 @@ There will be shown two different graphics:
 
 ---
 
-## Stage 1: Layout of pages with HTML and CSS ("frontend")
+## Stage 1: Layout of pages with HTML and CSS (*frontend*)
 
 The different screens that make up this web application have been coded with a letter and two digits according to the
 following criteria.
