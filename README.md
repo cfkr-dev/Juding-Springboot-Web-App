@@ -51,3 +51,34 @@ There will be shown two different graphics:
 ### Advanced algorithm
 * When the result of a fight is sent by a referee, the clasification score and tree will be automatically updated.
 * The bar chart of medals (and the amount of medals obtained) will be dynamically obtained by comparing the results of each competition and resolving by the result if the competitor had scored 1st, 2nd or in any of the 3rd positions.
+
+--
+
+##Stage 1: Layout of pages with HTML and CSS 
+###Table of contents:
+The different screens that make up this web application have been coded with a letter and two digits according to the following criteria.
+* A-XX:Screens that can be viewed by all types of users (registered and unregistered).
+* CR-XX:Screens that can be seen by competitors and referees.
+* C-XX:Screens that competitors can see.
+* R-XX:Screens that referees can see.
+
+The application consists of the following screens:
+* A-01: Homepage.
+* A-02: Terms and conditions of use.
+* A-03: Cookies policy.
+* A-04: Login.
+* A-05: Competitors' registration.
+* A-06: Referee registration.
+* CR-01: License validation. First step to change a user's password.
+* CR-02: Security question. Second step to change a user's password.
+* CR-03: Password change. Last step to change a user's password.
+* CR-04: Competition information. This screen reflects the details of a competition as well as the draw for the competition, the results and the venue.
+* C-01: Competitors' homepage. On this page you can see some details of their profile, their statistics and the competitions they can enter or have already entered.
+* C-02: Ranking of competitors
+* C-03: Competitor profile
+* C-04: Modification of data. In this screen competitors can change some of the aspects of their own profile.
+* R-01: Referees' homepage. On this page you can see some details of their profile, their statistics and the competitions they can enter or have already entered.
+* R-02: Ranking of competitors
+* R-03: Referee profile
+* R-04: Modification of data. In this screen referees can change some of the aspects of their own profile.
+* R-05: Combat control panel. The referee can manage from here by recording the scores and controlling the fight times.
