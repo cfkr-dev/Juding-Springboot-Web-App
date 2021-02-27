@@ -10,11 +10,12 @@ register of the differents kinds of users and the monitoring of the results of t
 
 ## The team: developers
 
-| Full Name | Corporative email | Github nickname | | - | - | - | | Ismael González Sastre |
-i.gonzalezs.2018@alumnos.urjc.es | [Ismaelgzse](https://github.com/Ismaelgzse) | | Diego Guerrero Carrasco |
-d.guerrero.2018@alumnos.urjc.es | [diego-guerrero](https://github.com/diego-guerrero) | | Alberto Pérez Pérez |
-a.perezpe.2018@alumnos.urjc.es | [C0nf1cker](https://github.com/C0nf1cker)  | | José Luis Toledano Díaz |
-jl.toledano.2018@alumnos.urjc.es | [jolutoher18](https://github.com/jolutoher18) |
+| Full Name | Corporative email | Github nickname |
+| - | - | - |
+| Ismael González Sastre | i.gonzalezs.2018@alumnos.urjc.es | [Ismaelgzse](https://github.com/Ismaelgzse) |
+| Diego Guerrero Carrasco | d.guerrero.2018@alumnos.urjc.es | [diego-guerrero](https://github.com/diego-guerrero) |
+| Alberto Pérez Pérez | a.perezpe.2018@alumnos.urjc.es | [C0nf1cker](https://github.com/C0nf1cker)  |
+| José Luis Toledano Díaz | jl.toledano.2018@alumnos.urjc.es | [jolutoher18](https://github.com/jolutoher18) |
 
 The group is organised using the Trello tool. Our board can be viewed
 here: [Trello](https://trello.com/b/rGpiD6eO/daw-grupo-2).
@@ -25,13 +26,13 @@ ___
 
 ### Entities
 
-* **User**. Users are the *cornerstone* of our application. There are different types of users and all of them are part
+* **Users**. Users are the *cornerstone* of our application. There are different types of users and all of them are part
   of this great community.
 * **Competitions**. Competitions are the tournaments where competitors fight. There are a lot of competitions for many
   people: for kids, for young people and for adults.
-* **Fight**. Competitions are made of fights. Each bout is played with two competitors and there is one referee per
+* **Fights**. Competitions are made of fights. Each bout is played with two competitors and there is one referee per
   fight.
-* **Post**. All types of users will be able to see small news items about the world of judo and recent activities on the
+* **Posts**. All types of users will be able to see small news items about the world of judo and recent activities on the
   same topic on the main page of the application.
 
 ### User roles and permissions
@@ -105,7 +106,7 @@ The application consists of the following screens:
   ![](documentation_imgs/stage1/screenshots/CR-01.png)
 * CR-02: Security question. Second step to change a user's password.
   ![](documentation_imgs/stage1/screenshots/CR-02.png)
-* CR-03: Password change. Last step to change a user's password.
+* CR-03: Password change. Third and last step to change a user's password.
   ![](documentation_imgs/stage1/screenshots/CR-03.png)
 * CR-04: Competition information. This screen reflects the details of a competition as well as the draw for the
   competition, the results and the venue.
@@ -117,18 +118,18 @@ The application consists of the following screens:
   ![](documentation_imgs/stage1/screenshots/C-02.png)
 * C-03: Competitor profile.
   ![](documentation_imgs/stage1/screenshots/C-03.png)
-* C-04: Modification of data. In this screen competitors can change some of the aspects of their own profile.
+* C-04: Profile edition screen. Competitors can change some of the aspects of their own profile here.
   ![](documentation_imgs/stage1/screenshots/C-04.png)
-* R-01: Referees' homepage. On this page you can see some details of their profile, their statistics and the
+* R-01: Referees' homepage. On this page, referees can see some details of their profile, their statistics and the
   competitions they can enter or have already entered.
   ![](documentation_imgs/stage1/screenshots/R-01.png)
 * R-02: Ranking of competitors.
   ![](documentation_imgs/stage1/screenshots/R-02.png)
 * R-03: Referee profile.
   ![](documentation_imgs/stage1/screenshots/R-03.png)
-* R-04: Modification of data. In this screen referees can change some of the aspects of their own profile.
+* R-04: Profile edition screen. Referees can change some of the aspects of their own profile here.
   ![](documentation_imgs/stage1/screenshots/R-04.png)
-* R-05: Combat control panel. The referee can manage from here by recording the scores and controlling the fight times.
+* R-05: Fight control panel. The referee can manage from here by recording the scores and controlling the fight times.
   ![](documentation_imgs/stage1/screenshots/R-05.png)
 
 ### Navigation diagram
