@@ -110,26 +110,24 @@ The application consists of the following screens:
 * CR-04: Competition information. This screen reflects the details of a competition as well as the draw for the
   competition, the results and the venue.
   ![](documentation_imgs/stage1/screenshots/CR-04.png)
+* CR-05: Ranking of competitors.
+  ![](documentation_imgs/stage1/screenshots/CR-05.png)
 * C-01: Competitors' homepage. On this page you can see some details of their profile, their statistics and the
   competitions they can enter or have already entered.
   ![](documentation_imgs/stage1/screenshots/C-01.png)
-* C-02: Ranking of competitors.
+* C-02: Competitor profile.
   ![](documentation_imgs/stage1/screenshots/C-02.png)
-* C-03: Competitor profile.
+* C-03: Profile edition screen. Competitors can change some of the aspects of their own profile here.
   ![](documentation_imgs/stage1/screenshots/C-03.png)
-* C-04: Profile edition screen. Competitors can change some of the aspects of their own profile here.
-  ![](documentation_imgs/stage1/screenshots/C-04.png)
 * R-01: Referees' homepage. On this page, referees can see some details of their profile, their statistics and the
   competitions they can enter or have already entered.
   ![](documentation_imgs/stage1/screenshots/R-01.png)
-* R-02: Ranking of competitors.
+* R-02: Referee profile.
   ![](documentation_imgs/stage1/screenshots/R-02.png)
-* R-03: Referee profile.
+* R-03: Profile edition screen. Referees can change some of the aspects of their own profile here.
   ![](documentation_imgs/stage1/screenshots/R-03.png)
-* R-04: Profile edition screen. Referees can change some of the aspects of their own profile here.
+* R-04: Fight control panel. The referee can manage from here by recording the scores and controlling the fight times.
   ![](documentation_imgs/stage1/screenshots/R-04.png)
-* R-05: Fight control panel. The referee can manage from here by recording the scores and controlling the fight times.
-  ![](documentation_imgs/stage1/screenshots/R-05.png)
 
 ### Navigation diagram
 
