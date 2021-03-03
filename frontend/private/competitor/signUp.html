@@ -122,6 +122,16 @@
             número, una letra minúscula y una letra mayúscula.
         </div>
 
+        <div class="row">
+            <div class="width40"><label for="image">Imagen de perfil</label></div>
+            <div class="width60">
+                <input class="form-control" id="image" name="image" type="file">
+                <div class="invalid-feedback">
+                    Prueba de nuevo a subir la imagen.
+                </div>
+            </div>
+        </div>
+
         <!-- License ID -->
         <label class="txt1" for="licenseId">Número de licencia <span class="asterisk">*</span></label>
         <input class="form-control" id="licenseId" name="licenseId" pattern="[0-9]{10}$" required type="text">
@@ -187,6 +197,7 @@
         <div class="container-login100-form-btn">
             <button class="btn btn-corporative" type="submit">Registrarse</button>
         </div>
+
     </form>
 </div>
 
