@@ -30,9 +30,9 @@
     background-color: #ef5350;
 }
 
-/*  CRONOS STYLES   */
+/*  STOPWATCH STYLES   */
 
-.crono {
+.stopwatch {
     padding: 15px;
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -41,16 +41,16 @@
 }
 
 @media screen and (max-width: 768px) {
-    .crono {
+    .stopwatch {
         margin-left: 20px;
     }
 }
 
-.bigCrono {
+.bigstopwatch {
     border-right: 1px solid #ccc !important;
 }
 
-.crono .col-lg-5 {
+.stopwatch .col-lg-5 {
     padding-right: 0;
 }
 
@@ -70,7 +70,7 @@
     background-color: #90CAF9;
 }
 
-.cronoController {
+.stopwatchController {
     padding: 15px;
     font-size: 30px;
 }
