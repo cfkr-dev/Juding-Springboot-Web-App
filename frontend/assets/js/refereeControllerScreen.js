@@ -288,7 +288,7 @@ $(function () {
                 } else {
                     smallStopwatch[2]++;
                 }
-                // Imprimo
+                // HTML UI change: new time
                 smallStopwatch[0].html(("0" + smallStopwatch[2]).slice(-2));
             }, 1000);
         }
@@ -396,7 +396,8 @@ $(function () {
      * All the functions introduced on simulator can be used by pressing some keys.
      */
     $(document).keypress(function (evt) {
-        if (screenFullFunc) {
+        // Keyboard shortcuts is only working when screenFullFunc is enabled or when it's starting the fight
+        if (screenFullFunc || evt.keyCode === 71 || evt.keyCode === 103) {
             switch (evt.keyCode) {
                 case 87: // W
                 case 119: // w
@@ -465,7 +466,7 @@ $(function () {
      * TRIGGERS (II): event onClick
      * All the functions introduced on simulator can be used by clicking some buttons on HTML UI.
      */
-    keyG.click(() => startFight);
+    keyG.click(() => startFight());
 
     keyW.click(() => addPointPlayer1());
     keyE.click(() => subtractPointPlayer1());
