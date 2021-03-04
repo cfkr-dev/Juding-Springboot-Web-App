@@ -369,8 +369,9 @@ $(function () {
         keySpace2.prop("disabled", true);
         screenFullFunc = false;
 
-        // Stopping big stopwatch
+        // Stopping stopwatches
         bigStopwatchTurnOff();
+        smallStopwatchTurnOff();
 
         // Package JSON Array
         let endInfoJSONArray;
