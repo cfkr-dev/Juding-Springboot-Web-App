@@ -288,6 +288,10 @@ $(function () {
                 } else {
                     smallStopwatch[2]++;
                 }
+                if (smallStopwatch[2] === 12){
+                    if (smallStopwatch[1] === 1) addPointPlayer1();
+                    else addPointPlayer2();
+                }
                 // HTML UI change: new time
                 smallStopwatch[0].html(("0" + smallStopwatch[2]).slice(-2));
             }, 1000);
@@ -313,11 +317,6 @@ $(function () {
         if (smallStopwatch[3]) {
             // SET small stopwatch is stopped (isActivated = false)
             smallStopwatch[3] = false;
-            // IF time when stopped is between 11 and 19, then current player adds a point
-            if (smallStopwatch[2] >= 11 && smallStopwatch[2] <= 19) {
-                if (smallStopwatch[1] === 1) addPointPlayer1();
-                else addPointPlayer2();
-            }
             // CSS UI changes (buttons getting outlined and filled)
             keyQ.addClass("btn-outline-primary").removeClass("btn-primary");
             keyP.addClass("btn-outline-primary").removeClass("btn-primary");
@@ -334,11 +333,6 @@ $(function () {
     function smallStopwatchReset() {
         // STOP interval handler function for small stopwatch
         clearInterval(smallStopwatchInterv);
-        // IF time when stopped is between 11 and 19, then current player adds a point
-        if (smallStopwatch[2] >= 11 && smallStopwatch[2] <= 19) {
-            if (smallStopwatch[1] === 1) addPointPlayer1();
-            else addPointPlayer2();
-        }
         // RESTART values: timing is set to 0 (both value and HTML UI showed time)
         smallStopwatch[2] = 0;
         smallStopwatch[0].html("--").css({"color": "black"});
@@ -374,6 +368,9 @@ $(function () {
         keySpace1.prop("disabled", true);
         keySpace2.prop("disabled", true);
         screenFullFunc = false;
+
+        // Stopping big stopwatch
+        bigStopwatchTurnOff();
 
         // Package JSON Array
         let endInfoJSONArray;
