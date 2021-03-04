@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Lista de competidores - Juding</title>
+
+    <!-- Favicons -->
+    <link href="../assets/img/hero-img.png" rel="icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="../assets/vendor/font-awesome/css/all.css" rel="stylesheet">
+
+    <!-- Own CSS Files -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/bootstrapAccomodations.css" rel="stylesheet">
+    <link href="../assets/css/responsiveTable.css" rel="stylesheet">
+    <link href="../assets/css/competitorsListScreen.css" rel="stylesheet">
+</head>
+<body>
+<header class="header fixed-top" id="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a class="logo d-flex align-items-center" href="index.html">
+            <img alt="" src="../assets/img/hero-img.png">
+            <span>Juding</span>
+        </a>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" href="competitorsList.html">Lista de competidores</a></li>
+                <li><a class="nav-link scrollto" href="#">Editar datos de competidores</a></li>
+                <li><a class="login scrollto" href="index.html">Volver al inicio</a></li>
+            </ul>
+            <i class="far fa-bars mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header>
+<div class="container">
+    <div class="responsiveTable">
+        <div class="rtRow rtHeader">
+            <div class="width10 text-center">Licencia</div>
+            <div class="width10 text-center">Nick</div>
+            <div class="width10 text-center">Nombre</div>
+            <div class="width20 text-center">Apellidos</div>
+            <div class="width20 text-center">Correo Electrónico</div>
+            <div class="width20 text-center">Acciones</div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">1234567890</div>
+            <div class="width10 text-center">Joaquincito</div>
+            <div class="width10 text-center">Joaquín</div>
+            <div class="width20 text-center">González Martinez</div>
+            <div class="width20 text-center">joaquincitomolon89@gmail.com</div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle opctionIcons edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit opctionIcons"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Joaquincito</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Joaquín <strong>González Martinez</strong><br>
+                            <strong>Licencia:</strong> 9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Correo Electrónico:</strong> joaquincitomolon89@gmail.com. <br>
+                            <strong>Peso:</strong> 52kg. <br>
+                            <strong>Gym:</strong> Vallecas. <br>
+                            <strong>Fecha de nacimiento:</strong> 14 abril de 1998<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">1234567890</div>
+            <div class="width10 text-center">Joaquincito</div>
+            <div class="width10 text-center">Joaquín</div>
+            <div class="width20 text-center">González Martinez</div>
+            <div class="width20 text-center">joaquincitomolon89@gmail.com</div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle opctionIcons edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit opctionIcons"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Joaquincito</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Joaquín <strong>González Martinez</strong><br>
+                            <strong>Licencia:</strong> 9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Correo Electrónico:</strong> joaquincitomolon89@gmail.com. <br>
+                            <strong>Peso:</strong> 52kg. <br>
+                            <strong>Gym:</strong> Vallecas. <br>
+                            <strong>Fecha de nacimiento:</strong> 14 abril de 1998<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">1234567890</div>
+            <div class="width10 text-center">Joaquincito</div>
+            <div class="width10 text-center">Joaquín</div>
+            <div class="width20 text-center">González Martinez</div>
+            <div class="width20 text-center">joaquincitomolon89@gmail.com</div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle opctionIcons edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit opctionIcons"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Joaquincito</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Joaquín <strong>González Martinez</strong><br>
+                            <strong>Licencia:</strong> 9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Correo Electrónico:</strong> joaquincitomolon89@gmail.com. <br>
+                            <strong>Peso:</strong> 52kg. <br>
+                            <strong>Gym:</strong> Vallecas. <br>
+                            <strong>Fecha de nacimiento:</strong> 14 abril de 1998<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">1234567890</div>
+            <div class="width10 text-center">Joaquincito</div>
+            <div class="width10 text-center">Joaquín</div>
+            <div class="width20 text-center">González Martinez</div>
+            <div class="width20 text-center">joaquincitomolon89@gmail.com</div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle opctionIcons edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit opctionIcons"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Joaquincito</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Joaquín <strong>González Martinez</strong><br>
+                            <strong>Licencia:</strong> 9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Correo Electrónico:</strong> joaquincitomolon89@gmail.com. <br>
+                            <strong>Peso:</strong> 52kg. <br>
+                            <strong>Gym:</strong> Vallecas. <br>
+                            <strong>Fecha de nacimiento:</strong> 14 abril de 1998<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">1234567890</div>
+            <div class="width10 text-center">Joaquincito</div>
+            <div class="width10 text-center">Joaquín</div>
+            <div class="width20 text-center">González Martinez</div>
+            <div class="width20 text-center">joaquincitomolon89@gmail.com</div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle opctionIcons edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit opctionIcons"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Joaquincito</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Joaquín <strong>González Martinez</strong><br>
+                            <strong>Licencia:</strong> 9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Correo Electrónico:</strong> joaquincitomolon89@gmail.com. <br>
+                            <strong>Peso:</strong> 52kg. <br>
+                            <strong>Gym:</strong> Vallecas. <br>
+                            <strong>Fecha de nacimiento:</strong> 14 abril de 1998<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">1234567890</div>
+            <div class="width10 text-center">Joaquincito</div>
+            <div class="width10 text-center">Joaquín</div>
+            <div class="width20 text-center">González Martinez</div>
+            <div class="width20 text-center">joaquincitomolon89@gmail.com</div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle opctionIcons edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit opctionIcons"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Joaquincito</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Joaquín <strong>González Martinez</strong><br>
+                            <strong>Licencia:</strong> 9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Correo Electrónico:</strong> joaquincitomolon89@gmail.com. <br>
+                            <strong>Peso:</strong> 52kg. <br>
+                            <strong>Gym:</strong> Vallecas. <br>
+                            <strong>Fecha de nacimiento:</strong> 14 abril de 1998<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">1234567890</div>
+            <div class="width10 text-center">Joaquincito</div>
+            <div class="width10 text-center">Joaquín</div>
+            <div class="width20 text-center">González Martinez</div>
+            <div class="width20 text-center">joaquincitomolon89@gmail.com</div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle opctionIcons edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit opctionIcons"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Joaquincito</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Joaquín <strong>González Martinez</strong><br>
+                            <strong>Licencia:</strong> 9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Correo Electrónico:</strong> joaquincitomolon89@gmail.com. <br>
+                            <strong>Peso:</strong> 52kg. <br>
+                            <strong>Gym:</strong> Vallecas. <br>
+                            <strong>Fecha de nacimiento:</strong> 14 abril de 1998<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">1234567890</div>
+            <div class="width10 text-center">Joaquincito</div>
+            <div class="width10 text-center">Joaquín</div>
+            <div class="width20 text-center">González Martinez</div>
+            <div class="width20 text-center">joaquincitomolon89@gmail.com</div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle opctionIcons edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit opctionIcons"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Joaquincito</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Joaquín <strong>González Martinez</strong><br>
+                            <strong>Licencia:</strong> 9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Correo Electrónico:</strong> joaquincitomolon89@gmail.com. <br>
+                            <strong>Peso:</strong> 52kg. <br>
+                            <strong>Gym:</strong> Vallecas. <br>
+                            <strong>Fecha de nacimiento:</strong> 14 abril de 1998<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">1234567890</div>
+            <div class="width10 text-center">Joaquincito</div>
+            <div class="width10 text-center">Joaquín</div>
+            <div class="width20 text-center">González Martinez</div>
+            <div class="width20 text-center">joaquincitomolon89@gmail.com</div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle opctionIcons edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit opctionIcons"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Joaquincito</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Joaquín <strong>González Martinez</strong><br>
+                            <strong>Licencia:</strong> 9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Correo Electrónico:</strong> joaquincitomolon89@gmail.com. <br>
+                            <strong>Peso:</strong> 52kg. <br>
+                            <strong>Gym:</strong> Vallecas. <br>
+                            <strong>Fecha de nacimiento:</strong> 14 abril de 1998<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">1234567890</div>
+            <div class="width10 text-center">Joaquincito</div>
+            <div class="width10 text-center">Joaquín</div>
+            <div class="width20 text-center">González Martinez</div>
+            <div class="width20 text-center">joaquincitomolon89@gmail.com</div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle opctionIcons edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit opctionIcons"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Joaquincito</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Joaquín <strong>González Martinez</strong><br>
+                            <strong>Licencia:</strong> 9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Correo Electrónico:</strong> joaquincitomolon89@gmail.com. <br>
+                            <strong>Peso:</strong> 52kg. <br>
+                            <strong>Gym:</strong> Vallecas. <br>
+                            <strong>Fecha de nacimiento:</strong> 14 abril de 1998<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">1234567890</div>
+            <div class="width10 text-center">Joaquincito</div>
+            <div class="width10 text-center">Joaquín</div>
+            <div class="width20 text-center">González Martinez</div>
+            <div class="width20 text-center">joaquincitomolon89@gmail.com</div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle opctionIcons edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit opctionIcons"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Joaquincito</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Joaquín <strong>González Martinez</strong><br>
+                            <strong>Licencia:</strong> 9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Correo Electrónico:</strong> joaquincitomolon89@gmail.com. <br>
+                            <strong>Peso:</strong> 52kg. <br>
+                            <strong>Gym:</strong> Vallecas. <br>
+                            <strong>Fecha de nacimiento:</strong> 14 abril de 1998<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal for posts info -->
+<div class="modal fade" id="modalProfile" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalOpenedTitle"></h5>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="card mb-3">
+                            <div class="row g-0" id="modalOpenedBody"></div>
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Vendor JS Files -->
+<script src="../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/aos/aos.js"></script>
+
+<!-- Own JS Files -->
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/competitorsList.js"></script>
+</body>
+</html>

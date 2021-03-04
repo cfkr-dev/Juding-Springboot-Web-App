@@ -1,0 +1,17 @@
+.opctionIcons {
+    font-size: 1.5rem;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.edit {
+    color: #0b5ed7;
+}
+
+.delete {
+    color: red;
+}
+
+.profile {
+    display: none;
+}
