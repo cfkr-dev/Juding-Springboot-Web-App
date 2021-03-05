@@ -1,15 +1,13 @@
-.opctionIcons {
-    font-size: 1.5rem;
-    margin-left: 10px;
-    margin-right: 10px;
+.responsiveTable .rtRow:nth-child(2n+1){
+    background-color: rgba(255, 204, 204, 0.5);
 }
 
-.edit {
-    color: #0b5ed7;
+.responsiveTable .rtRow.rtHeader{
+    background-color: white;
 }
 
 .delete {
-    color: red;
+    color: #f14141;
 }
 
 .profile {
