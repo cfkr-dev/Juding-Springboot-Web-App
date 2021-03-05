@@ -170,8 +170,6 @@
     $("#modalPost").on("show.bs.modal", function (evt) {
         $("#modalPost #modalOpenedTitle").html($(evt.relatedTarget).siblings(".post-title").html());
         $("#modalPost #modalOpenedBody").html($(evt.relatedTarget).siblings(".post-info").html());
-        var modalId = $(this).siblings(".post-info").dataset.id
-        //console.log(modalId)
     });
 
 })();
