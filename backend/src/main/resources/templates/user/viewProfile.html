@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Mi perfil - Juding</title>
+
+    <!-- Favicons -->
+    <link href="../../assets/img/hero-img.png" rel="icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="../../assets/vendor/font-awesome/css/all.css" rel="stylesheet">
+
+    <!-- Own CSS Files -->
+    <link href="../../assets/css/style.css" rel="stylesheet">
+    <link href="../../assets/css/header.css" rel="stylesheet">
+    <link href="../../assets/css/bootstrapAccomodations.css" rel="stylesheet">
+    <link href="../../assets/css/responsiveTable.css" rel="stylesheet">
+    <link href="../../assets/css/profiles.css" rel="stylesheet">
+</head>
+<body>
+<header class="header fixed-top" id="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a class="logo d-flex align-items-center" href="index.html">
+            <img alt="" src="../../assets/img/hero-img.png">
+            <span>Juding</span>
+        </a>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a class="nav-link scrollto" href="index.html">Inicio</a></li>
+                <li><a class="nav-link scrollto" href="ranking.html">Ranking</a></li>
+                <li><a class="nav-link scrollto active" href="#">Mi perfil</a></li>
+                <li><a class="login scrollto" href="../../index.html">Cerrar sesión</a></li>
+            </ul>
+            <i class="far fa-bars mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="h1">Mi perfil</h1>
+        </div>
+        <div class="col-md-4 d-flex justify-content-end align-items-center">
+            <a href="editProfile.html">
+                <button class="btn btn-corporative"><i class="far fa-pencil"></i> Editar perfil</button>
+            </a>
+        </div>
+    </div>
+    <div class="row d-flex flex-column align-items-center text-center">
+        <img class="avatar" src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png" alt="avatar">
+        <div>
+            <span class="nombre">Joaquín</span>&nbsp;<span class="apellidos">González Díaz</span>
+        </div>
+        <div>
+            <span class="nick">joaco98</span>
+        </div>
+        <div>
+            <span class="badge bg-secondary biggerText">Competidor</span>
+        </div>
+    </div>
+    <br>
+    <div class="px-2">
+        <h3>Información para competición</h3>
+        <div class="responsiveTable">
+            <div class="rtRow">
+                <div class="width40">Número de licencia</div>
+                <div class="width60">1234567890</div>
+            </div>
+            <div class="rtRow">
+                <div class="width40">Cinturón</div>
+                <div class="width60">Verde</div>
+            </div>
+            <div class="rtRow">
+                <div class="width40">Gimnasio</div>
+                <div class="width60">Madrid Centro</div>
+            </div>
+            <div class="rtRow">
+                <div class="width40">Peso</div>
+                <div class="width60">50 kg</div>
+            </div>
+        </div>
+    </div>
+    <div class="px-2 mt-3">
+        <h3>Mi información personal</h3>
+        <div class="responsiveTable">
+            <div class="rtRow">
+                <div class="width40">DNI</div>
+                <div class="width60">12345678Z</div>
+            </div>
+            <div class="rtRow">
+                <div class="width40">Género</div>
+                <div class="width60">Hombre</div>
+            </div>
+            <div class="rtRow">
+                <div class="width40">Teléfono</div>
+                <div class="width60">+34 91 234 56 78</div>
+            </div>
+            <div class="rtRow">
+                <div class="width40">Correo electrónico</div>
+                <div class="width60">joaco@joaco.com</div>
+            </div>
+            <div class="rtRow">
+                <div class="width40">Fecha de nacimiento</div>
+                <div class="width60">29 de febrero de 1998</div>
+            </div>
+        </div>
+    </div>
+    <div class="px-2 mt-2 pb-3">
+        <h3>Mis competiciones</h3>
+        <div class="alert alert-info">
+            <i class="fa fa-alert"></i><strong>Alerta</strong>: No hay competiciones asociadas con tu perfil.
+            ¡Inscríbete en una!
+        </div>
+        <div class="responsiveTable">
+            <div class="rtRow rtHeader">
+                <div class="width40">Nombre de competición</div>
+                <div class="width15 text-center">Estado</div>
+                <div class="width20 text-center">Fecha</div>
+                <div class="width15 text-center">Posición</div>
+                <div class="width10 text-center">Acciones</div>
+            </div>
+            <div class="rtRow">
+                <div class="width40">Competición solicitada 2</div>
+                <div class="width15 text-center">
+                    <div class="badge bg-success">Aceptado</div>
+                </div>
+                <div class="width20 text-center">01/04/2021</div>
+                <div class="width15 text-center">-</div>
+                <div class="width10 text-center">
+                    <button class="btn btn-danger btn-sm">Renun</button>
+                </div>
+            </div>
+            <div class="rtRow">
+                <div class="width40">Competición solicitada 1</div>
+                <div class="width15 text-center">
+                    <div class="badge bg-danger">Rechazado</div>
+                </div>
+                <div class="width20 text-center">01/03/2021</div>
+                <div class="width15 text-center">-</div>
+                <div class="width10 text-center"></div>
+            </div>
+            <div class="rtRow">
+                <div class="width40">Competición solicitada 3</div>
+                <div class="width15 text-center">
+                    <div class="badge bg-warning">Solicitado</div>
+                </div>
+                <div class="width20 text-center">30/02/2021</div>
+                <div class="width15 text-center">-</div>
+                <div class="width10 text-center">
+                    <button class="btn btn-danger btn-sm">Del</button>
+                </div>
+            </div>
+            <div class="rtRow">
+                <div class="width40">Competición en curso</div>
+                <div class="width15 text-center">
+                    <div class="badge bg-primary">En curso</div>
+                </div>
+                <div class="width20 text-center">20/02/2021</div>
+                <div class="width15 text-center">-</div>
+                <div class="width10 text-center">
+                    <button class="btn btn-info btn-sm">Ver</button>
+                </div>
+            </div>
+            <div class="rtRow">
+                <div class="width40">Competición pasada</div>
+                <div class="width15 text-center">
+                    <div class="badge bg-secondary">Finalizado</div>
+                </div>
+                <div class="width20 text-center">01/01/2021</div>
+                <div class="width15 text-center">2</div>
+                <div class="width10 text-center">
+                    <button class="btn btn-info btn-sm">Ver</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Vendor JS Files -->
+<script src="../../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Own JS Files -->
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>
