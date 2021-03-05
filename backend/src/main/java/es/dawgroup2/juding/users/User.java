@@ -31,7 +31,7 @@ public class User implements Serializable {
     private String dni;
 
     @Column(nullable = false)
-    private int gym;
+    private String gym;
 
     @Column(nullable = false)
     private int weight;
@@ -59,7 +59,7 @@ public class User implements Serializable {
     protected User() {
     }
 
-    public User(String licenseId, String name, String surname, String email, int phone, char gender, Date birthDate, String dni, int gym, int weight, String belt, String nickname, String password, String securityQuestion, String securityAnswer, int role) {
+    public User(String licenseId, String name, String surname, String email, int phone, char gender, Date birthDate, String dni, String gym, int weight, String belt, String nickname, String password, String securityQuestion, String securityAnswer, int role) {
         this.licenseId = licenseId;
         this.name = name;
         this.surname = surname;
@@ -142,11 +142,11 @@ public class User implements Serializable {
         this.dni = dni;
     }
 
-    public int getGym() {
+    public String getGym() {
         return gym;
     }
 
-    public void setGym(int gym) {
+    public void setGym(String gym) {
         this.gym = gym;
     }
 
