@@ -1,0 +1,15 @@
+.responsiveTable .rtRow:nth-child(2n+1){
+    background-color: rgba(255, 204, 204, 0.5);
+}
+
+.responsiveTable .rtRow.rtHeader{
+    background-color: white;
+}
+
+.delete {
+    color: #f14141;
+}
+
+.profile {
+    display: none;
+}
