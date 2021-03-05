@@ -61,37 +61,37 @@
         <!-- COMPETITOR 1 VIEW -->
         <div class="row border-2">
             <div class="col-md-3">
-                Perfil
+                apodo1
             </div>
             <div class="col-md-6">
-                <span id="points1">X</span> puntos
+                <span id="points1">0</span> puntos
             </div>
             <div class="col-md-3 redBack">
-                <span id="penalties1">X</span> sanciones
+                <span id="penalties1">0</span> sanciones
             </div>
         </div>
         <!-- COMPETITOR 2 VIEW -->
         <div class="row competitor2">
             <div class="col-md-3">
-                Perfil
+                apodo2
             </div>
             <div class="col-md-6">
-                <span id="points2">X</span> puntos
+                <span id="points2">0</span> puntos
             </div>
             <div class="col-md-3 redBack">
-                <span id="penalties2">X</span> sanciones
+                <span id="penalties2">0</span> sanciones
             </div>
         </div>
     </div>
-    <!-- CRONO -->
-    <div class="row d-flex text-center crono ">
-        <!-- BIG CRONO -->
-        <div class="col-lg-7 col-7 bigCrono" id="bigCrono">
+    <!-- STOPWATCH -->
+    <div class="row d-flex text-center stopwatch">
+        <!-- BIG STOPWATCH -->
+        <div class="col-lg-7 col-7 bigstopwatch" id="bigStopwatch">
             00:00
         </div>
-        <!-- SMALL CRONO -->
-        <div class="col-lg-5 col-5 smallCrono" id="smallCrono">
-            00:00
+        <!-- SMALL STOPWATCH -->
+        <div class="col-lg-5 col-5 smallstopwatch" id="smallStopwatch">
+            --
         </div>
     </div>
     <!-- BUTTONS CONTROL PANEL -->
@@ -100,8 +100,8 @@
         <div class="col-md-4 competitorController" id="controls1">
             <div class="colShadow">
                 <div class="buttonStart">
-                    <button class="btn btn-primary" disabled id="keyQ" type="button">
-                        INI 1
+                    <button class="btn btn-outline-primary" disabled id="keyQ" type="button">
+                        <i class="fas fa-stopwatch"></i> <i class="fas fa-play"></i> 1
                     </button>
                 </div>
                 <div class="pointsAndFoulsController">
@@ -109,12 +109,12 @@
                     <div class="row justify-content-center pointsController">
                         <div class="col-lg-2 col-2 d-flex justify-content-center">
                             <button class="btn btn-success" disabled id="keyW" type="button">
-                                +
+                                <i class="fas fa-plus"></i>
                             </button>
                         </div>
                         <div class="col-lg-2 col-2 d-flex justify-content-center">
                             <button class="btn btn-danger" disabled id="keyE" type="button">
-                                -
+                                <i class="fas fa-minus"></i>
                             </button>
                         </div>
                     </div>
@@ -122,44 +122,44 @@
                     <div class="row justify-content-center foulsController">
                         <div class="col-lg-2 col-2 d-flex justify-content-center">
                             <button class="btn btn-success" disabled id="keyS" type="button">
-                                +
+                                <i class="fas fa-plus"></i>
                             </button>
                         </div>
                         <div class="col-lg-2 col-2 d-flex justify-content-center">
                             <button class="btn btn-danger" disabled id="keyD" type="button">
-                                -
+                                <i class="fas fa-minus"></i>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- CRONO CONTROLLER -->
-        <div class="col-md-4 d-flex flex-column my-auto cronoController" id="cronoControllers">
+        <!-- stopwatch CONTROLLER -->
+        <div class="col-md-4 d-flex flex-column my-auto stopwatchController" id="stopwatchControllers">
             <div class="colShadow">
                 <h5 class="h5">Cronómetro pequeño</h5>
-                <div class="row justify-content-center bigCronoController">
+                <div class="row justify-content-center bigstopwatchController">
                     <div class="col-lg-3 col-3 d-flex justify-content-center">
-                        <button class="btn btn-danger btnL" disabled id="keyV" type="button">
-                            STOP
+                        <button class="btn btn-outline-danger btnL" disabled id="keyV" type="button">
+                            <i class="fas fa-pause"></i>
                         </button>
                     </div>
                     <div class="col-lg-3 col-3 d-flex justify-content-center">
-                        <button class="btn btn-warning btnR" disabled id="keyB" type="button">
-                            RESET
+                        <button class="btn btn-outline-warning btnR" disabled id="keyB" type="button">
+                            <i class="fas fa-redo-alt"></i>
                         </button>
                     </div>
                 </div>
                 <h5 class="h5">Cronómetro general</h5>
-                <div class="row justify-content-center smallCronoController">
+                <div class="row justify-content-center smallstopwatchController">
                     <div class="col-lg-3 col-3 d-flex justify-content-center">
-                        <button class="btn btn-primary btnL" disabled id="keySpace1" type="button">
-                            INI
+                        <button class="btn btn-outline-primary btnL" disabled id="keySpace1" type="button">
+                            <i class="fas fa-play"></i>
                         </button>
                     </div>
                     <div class="col-lg-3 col-3 d-flex justify-content-center">
-                        <button class="btn btn-danger btnR" disabled id="keySpace2" type="button">
-                            STOP
+                        <button class="btn btn-outline-danger btnR" disabled id="keySpace2" type="button">
+                            <i class="fas fa-pause"></i>
                         </button>
                     </div>
                 </div>
@@ -174,8 +174,8 @@
         <div class="col-md-4 competitorController" id="controls2">
             <div class="colShadow competitor2">
                 <div class="buttonStart">
-                    <button class="btn btn-primary" disabled id="keyP" type="button">
-                        INI 2
+                    <button class="btn btn-outline-primary" disabled id="keyP" type="button">
+                        <i class="fas fa-stopwatch"></i> <i class="fas fa-play"></i> 2
                     </button>
                 </div>
                 <div class="pointsAndFoulsController">
@@ -183,12 +183,12 @@
                     <div class="row justify-content-center pointsController">
                         <div class="col-lg-2 col-2 d-flex justify-content-center">
                             <button class="btn btn-success" disabled id="keyI" type="button">
-                                +
+                                <i class="fas fa-plus"></i>
                             </button>
                         </div>
                         <div class="col-lg-2 col-2 d-flex justify-content-center">
                             <button class="btn btn-danger" disabled id="keyO" type="button">
-                                -
+                                <i class="fas fa-minus"></i>
                             </button>
                         </div>
                     </div>
@@ -196,12 +196,12 @@
                     <div class="row justify-content-center foulsController">
                         <div class="col-lg-2 col-2 d-flex justify-content-center">
                             <button class="btn btn-success" disabled id="keyK" type="button">
-                                +
+                                <i class="fas fa-plus"></i>
                             </button>
                         </div>
                         <div class="col-lg-2 col-2 d-flex justify-content-center">
                             <button class="btn btn-danger" disabled id="keyL" type="button">
-                                -
+                                <i class="fas fa-minus"></i>
                             </button>
                         </div>
                     </div>
