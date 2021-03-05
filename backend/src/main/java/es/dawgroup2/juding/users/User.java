@@ -16,7 +16,7 @@ public class User {
     @Column(nullable = false)
     private String surname;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     private int phone;
@@ -27,7 +27,7 @@ public class User {
     @Column(nullable = false)
     private Date birthDate;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private int dni;
 
     @Column(nullable = false)
@@ -39,7 +39,7 @@ public class User {
     @Column(nullable = false)
     private String belt;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nickname;
 
     @Column(nullable = false)
