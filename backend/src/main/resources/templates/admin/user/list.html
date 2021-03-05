@@ -20,7 +20,7 @@
     <link href="/assets/css/profiles.css" rel="stylesheet">
     <link href="/assets/css/bootstrapAccomodations.css" rel="stylesheet">
     <link href="/assets/css/responsiveTable.css" rel="stylesheet">
-    <link href="/assets/css/competitorsListScreen.css" rel="stylesheet">
+    <link href="/assets/css/adminScreen.css" rel="stylesheet">
 </head>
 <body>
 <header class="header fixed-top" id="header">
@@ -31,15 +31,26 @@
         </a>
         <nav class="navbar" id="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" href="competitorsList.html">Lista de competidores</a></li>
-                <li><a class="nav-link scrollto" href="#">Editar datos de competidores</a></li>
-                <li><a class="login scrollto" href="index.html">Volver al inicio</a></li>
+                <li><a class="nav-link scrollto" href="/">Inicio</a></li>
+                <li><a class="nav-link scrollto" href="/ranking">Ranking</a></li>
+                <li><a class="nav-link scrollto" href="/myProfile">Mi perfil</a></li>
+                <li class="dropdown">
+                    <a href="#"><span>Administración</span> <i class="far fa-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="/admin/user/list">Usuarios</a></li>
+                        <li><a href="/admin/competition/list">Competiciones</a></li>
+                        <li><a href="/admin/posts/list">Noticias</a></li>
+                    </ul>
+                </li>
+                <li><a class="login scrollto" href="../../index.html">Cerrar sesión</a></li>
             </ul>
             <i class="far fa-bars mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
     </div>
 </header>
-<div class="container pb-5">
+<div class="container pb-3">
+
+    <h1 class="h1">Lista de usuarios</h1>
     <div class="responsiveTable">
         <div class="rtRow rtHeader">
             <div class="width5 text-center">Rol</div>
@@ -58,10 +69,16 @@
             <div class="width10 text-center">{{ name }}</div>
             <div class="width20 text-center">{{ surname }}</div>
             <div class="width20 text-center">{{ email }}</div>
-            <div class="width15 text-center ">
-                <i class="fas fa-info-circle" data-bs-target="#modalProfile" data-bs-toggle="modal"></i>
-                <i class="fas fa-edit"></i>
-                <i class="fas fa-trash-alt opctionIcons delete"></i>
+            <div class="width15 text-center">
+                <button class="btn btn-outline-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <a href="/admin/user/edit/{{ licenseId }}" class="btn btn-outline-corporative">
+                    <i class="fas fa-pencil"></i>
+                </a>
+                <button class="btn btn-corporative">
+                    <i class="fas fa-trash-alt delete"></i>
+                </button>
             </div>
             <div class="viewMore" style="display: none">
                 <div class="col-md-4">
