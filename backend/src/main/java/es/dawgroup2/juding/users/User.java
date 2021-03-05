@@ -1,12 +1,12 @@
 package es.dawgroup2.juding.users;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
-public class User {
+@Table(indexes = {@Index(columnList = "dni, nickname", unique = true)})
+public class User implements Serializable {
     @Id
     private String licenseId;
 
@@ -27,8 +27,8 @@ public class User {
     @Column(nullable = false)
     private Date birthDate;
 
-    @Column(nullable = false, unique = true)
-    private int dni;
+    @Column(nullable = false)
+    private String dni;
 
     @Column(nullable = false)
     private int gym;
@@ -39,7 +39,7 @@ public class User {
     @Column(nullable = false)
     private String belt;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String nickname;
 
     @Column(nullable = false)
@@ -59,7 +59,7 @@ public class User {
     protected User() {
     }
 
-    public User(String licenseId, String name, String surname, String email, int phone, char gender, Date birthDate, int dni, int gym, int weight, String belt, String nickname, String password, String securityQuestion, String securityAnswer, int role) {
+    public User(String licenseId, String name, String surname, String email, int phone, char gender, Date birthDate, String dni, int gym, int weight, String belt, String nickname, String password, String securityQuestion, String securityAnswer, int role) {
         this.licenseId = licenseId;
         this.name = name;
         this.surname = surname;
@@ -134,11 +134,11 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
