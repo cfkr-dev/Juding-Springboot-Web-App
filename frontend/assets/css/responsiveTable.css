@@ -26,6 +26,10 @@ to be adapted in mobile devices since media queries have been used.
     border-top: 1px solid rgb(222, 226, 230);
 }
 
+.width5 {
+    width: 5%;
+}
+
 .width10 {
     width: 10%;
 }
@@ -38,12 +42,68 @@ to be adapted in mobile devices since media queries have been used.
     width: 20%;
 }
 
+.width25 {
+    width: 25%;
+}
+
+.width30 {
+    width: 30%;
+}
+
+.width35 {
+    width: 35%;
+}
+
 .width40 {
     width: 40%;
 }
 
+.width45 {
+    width: 45%;
+}
+
+.width50 {
+    width: 50%;
+}
+
+.width55 {
+    width: 55%;
+}
+
 .width60 {
     width: 60%;
+}
+
+.width65 {
+    width: 65%;
+}
+
+.width70 {
+    width: 70%;
+}
+
+.width75 {
+    width: 75%;
+}
+
+.width80 {
+    width: 80%;
+}
+
+.width85 {
+    width: 85%;
+}
+
+.width90 {
+    width: 90%;
+}
+
+.width95 {
+    width: 95%;
+}
+
+.width100 {
+    width: 95%;
 }
 
 @media screen and (max-width: 768px) {
@@ -51,7 +111,7 @@ to be adapted in mobile devices since media queries have been used.
         flex-direction: column;
     }
 
-    .width10, .width15, .width20, .width40, .width60 {
+    .width5, .width10, .width15, .width20, .width25, .width30, .width35, .width40, .width45, .width50, .width55, .width60, .width65, .width70, .width75, .width80, .width85, .width90, .width95, .width100 {
         width: 100%;
     }
 }

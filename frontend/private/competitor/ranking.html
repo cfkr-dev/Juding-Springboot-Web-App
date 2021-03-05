@@ -57,89 +57,475 @@
         </div>
         <div class="col-2 d-flex align-items-center justify-content-center">
             <a class="login scrollto" href="#">
-                <button type="button" class="btn btn-corporative"><i class="fal fa-file-pdf"></i> Generar PDF</button>
+                <button class="btn btn-corporative" type="button"><i class="fal fa-file-pdf"></i> Generar PDF</button>
             </a>
         </div>
     </div>
     <br>
     <div class="responsiveTable">
         <div class="rtRow rtHeader">
-            <div class="width40">Nombre del competidor</div>
+            <div class="width5 text-center">Nº</div>
+            <div class="width30 nameModal">Nombre del competidor</div>
             <div class="width20 text-center">Rango</div>
-            <div class="width15 text-center">NºCompeticiones</div>
+            <div class="width15 text-center">Núm. competiciones</div>
             <div class="width15 text-center">Puntos</div>
+            <div class="width5"></div>
         </div>
         <div class="rtRow">
-            <div class="width40">Joaquín</div>
+            <div class="width5 text-center">1</div>
+            <div class="width30 nameModal">Estefanía</div>
             <div class="width20 text-center"><i class="fas fa-user-ninja"></i></div>
             <div class="width15 text-center">7</div>
             <div class="width15 text-center">19</div>
+            <div class="width5 text-center">
+                <button class="btn btn-sm btn-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">pepelu89</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Estefanía <strong>Navarro Pérez</strong><br>
+                            <strong>Licencia:</strong> JU-9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Rango:</strong> Árbitro estándar.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="rtRow">
-            <div class="width40">Alfonso</div>
+            <div class="width5 text-center">2</div>
+            <div class="width30 nameModal">Alfonso</div>
             <div class="width20 text-center"><i class="fas fa-user-ninja"></i></div>
             <div class="width15 text-center">7</div>
             <div class="width15 text-center">18</div>
+            <div class="width5 text-center">
+                <button class="btn btn-sm btn-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">pepelu89</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Alfonso <strong>Navarro Pérez</strong><br>
+                            <strong>Licencia:</strong> JU-9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Rango:</strong> Árbitro estándar.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="rtRow">
-            <div class="width40">Eduardo</div>
+            <div class="width5 text-center">3</div>
+            <div class="width30 nameModal">Eduardo</div>
             <div class="width20 text-center"><i class="fas fa-user-ninja"></i></div>
             <div class="width15 text-center">7</div>
             <div class="width15 text-center">16</div>
+            <div class="width5 text-center">
+                <button class="btn btn-sm btn-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">pepelu89</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Eduardo <strong>Navarro Pérez</strong><br>
+                            <strong>Licencia:</strong> JU-9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Rango:</strong> Árbitro estándar.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="rtRow">
-            <div class="width40">Carlos</div>
+            <div class="width5 text-center">4</div>
+            <div class="width30 nameModal">Carlos</div>
             <div class="width20 text-center"><i class="fas fa-user-ninja"></i></div>
             <div class="width15 text-center">5</div>
             <div class="width15 text-center">15</div>
+            <div class="width5 text-center">
+                <button class="btn btn-sm btn-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">pepelu89</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Carlos <strong>Navarro Pérez</strong><br>
+                            <strong>Licencia:</strong> JU-9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Rango:</strong> Árbitro estándar.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="rtRow">
-            <div class="width40">Cristina</div>
+            <div class="width5 text-center">5</div>
+            <div class="width30 nameModal">Cristina</div>
             <div class="width20 text-center"><i class="fas fa-user-ninja"></i></div>
             <div class="width15 text-center">2</div>
             <div class="width15 text-center">6</div>
+            <div class="width5 text-center">
+                <button class="btn btn-sm btn-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">pepelu89</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Cristina <strong>Navarro Pérez</strong><br>
+                            <strong>Licencia:</strong> JU-9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Rango:</strong> Árbitro estándar.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="rtRow">
-            <div class="width40">David</div>
+            <div class="width5 text-center">6</div>
+            <div class="width30 nameModal">David</div>
             <div class="width20 text-center"><i class="fas fa-user-ninja"></i></div>
             <div class="width15 text-center">1</div>
             <div class="width15 text-center">3</div>
+            <div class="width5 text-center">
+                <button class="btn btn-sm btn-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">pepelu89</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            David <strong>Navarro Pérez</strong><br>
+                            <strong>Licencia:</strong> JU-9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Rango:</strong> Árbitro estándar.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="rtRow">
-            <div class="width40">Estefanía</div>
+            <div class="width5 text-center">7</div>
+            <div class="width30 nameModal">Joaquín</div>
             <div class="width20 text-center"><i class="fas fa-user-ninja"></i></div>
             <div class="width15 text-center">2</div>
             <div class="width15 text-center">2</div>
+            <div class="width5 text-center">
+                <button class="btn btn-sm btn-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">pepelu89</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Joaquín <strong>Navarro Pérez</strong><br>
+                            <strong>Licencia:</strong> JU-9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Rango:</strong> Árbitro estándar.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="rtRow">
-            <div class="width40">Margarita</div>
+            <div class="width5 text-center">8</div>
+            <div class="width30 nameModal">Margarita</div>
             <div class="width20 text-center"><i class="fas fa-user-ninja"></i></div>
             <div class="width15 text-center">1</div>
             <div class="width15 text-center">1</div>
+            <div class="width5 text-center">
+                <button class="btn btn-sm btn-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">pepelu89</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Margarita <strong>Navarro Pérez</strong><br>
+                            <strong>Licencia:</strong> JU-9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Rango:</strong> Árbitro estándar.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="rtRow">
-            <div class="width40">José</div>
+            <div class="width5 text-center">9</div>
+            <div class="width30 nameModal">José</div>
             <div class="width20 text-center"><i class="fas fa-user-ninja"></i></div>
             <div class="width15 text-center">2</div>
             <div class="width15 text-center">0</div>
+            <div class="width5 text-center">
+                <button class="btn btn-sm btn-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">pepelu89</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            José <strong>Navarro Pérez</strong><br>
+                            <strong>Licencia:</strong> JU-9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Rango:</strong> Árbitro estándar.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="rtRow">
-            <div class="width40">Javier</div>
+            <div class="width5 text-center">10</div>
+            <div class="width30 nameModal">Javier</div>
             <div class="width20 text-center"><i class="fas fa-user-ninja"></i></div>
             <div class="width15 text-center">1</div>
             <div class="width15 text-center">0</div>
+            <div class="width5 text-center">
+                <button class="btn btn-sm btn-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">pepelu89</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Javier <strong>Navarro Pérez</strong><br>
+                            <strong>Licencia:</strong> JU-9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Rango:</strong> Árbitro estándar.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="rtRow">
-            <div class="width40">Teresa</div>
+            <div class="width5 text-center">11</div>
+            <div class="width30 nameModal">Teresa</div>
             <div class="width20 text-center"><i class="fas fa-user-ninja"></i></div>
             <div class="width15 text-center">1</div>
             <div class="width15 text-center">0</div>
+            <div class="width5 text-center">
+                <button class="btn btn-sm btn-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">pepelu89</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Teresa <strong>Navarro Pérez</strong><br>
+                            <strong>Licencia:</strong> JU-9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Rango:</strong> Árbitro estándar.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="rtRow">
-            <div class="width40">Hugo</div>
+            <div class="width5 text-center">12</div>
+            <div class="width30 nameModal">Hugo</div>
             <div class="width20 text-center"><i class="fas fa-user-ninja"></i></div>
             <div class="width15 text-center">1</div>
             <div class="width15 text-center">0</div>
+            <div class="width5 text-center">
+                <button class="btn btn-sm btn-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">pepelu89</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Hugo <strong>Navarro Pérez</strong><br>
+                            <strong>Licencia:</strong> JU-9876543201.<br>
+                            <strong>DNI:</strong> 12345679A.<br>
+                            <strong>Rango:</strong> Árbitro estándar.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal for posts info -->
+<div class="modal fade" id="modalProfile" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalOpenedTitle"></h5>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="card mb-3">
+                            <div class="row g-0" id="modalOpenedBody"></div>
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -147,10 +533,9 @@
 <!-- Vendor JS Files -->
 <script src="../../assets/vendor/jquery/jquery.min.js"></script>
 <script src="../../assets/vendor/aos/aos.js"></script>
-<script src="../../assets/vendor/chart/Chart.js"></script>
 
 <!-- Own JS Files -->
 <script src="../../assets/js/main.js"></script>
-<script src="../../assets/js/refereeCharts.js"></script>
+<script src="../../assets/js/rankingModal.js"></script>
 </body>
 </html>
