@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Editar - Administración - Juding</title>
+
+    <!-- Favicons -->
+    <link href="/assets/img/hero-img.png" rel="icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet">
+    <link href="/assets/vendor/font-awesome/css/all.css" rel="stylesheet">
+
+    <!-- Own CSS Files -->
+    <link href="/assets/css/header.css" rel="stylesheet">
+    <link href="/assets/css/bootstrapAccomodations.css" rel="stylesheet">
+    <link href="/assets/css/loginAndRegistration.css" rel="stylesheet">
+</head>
+<body>
+<header class="header fixed-top" id="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a class="logo d-flex align-items-center" href="">
+            <img alt="" src="/assets/img/hero-img.png">
+            <span>Juding</span>
+        </a>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" href="#">Editar competidor</a></li>
+                <li><a class="login scrollto" href="/admin/user/list">Volver</a></li>
+            </ul>
+            <i class="far fa-bars mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header>
+<div class="container pb-4">
+    <form action="editCompetitor.html" class="needs-validation flex-sb flex-w" method="post" novalidate>
+        <h2 class="h2">Formulario competidor</h2>
+        <h3 class="h3">Información personal</h3>
+
+        <!-- License ID -->
+        <label class="txt1" for="licenseId">Número de licencia <span class="asterisk">*</span></label>
+        <input class="form-control" id="licenseId" name="licenseId" pattern="[0-9]{10}$" required type="text"
+               value="{{ user.licenseId }}">
+        <div class="invalid-feedback">
+            La licencia no se ajusta al formato requerido (10 dígitos).
+        </div>
+
+        <!-- Name and Surname fields -->
+        <div class="row">
+            <div class="col-lg-6">
+                <label class="txt1" for="name">Nombre <span class="asterisk">*</span></label>
+                <input class="form-control" id="name" name="name" required type="text" value="{{ user.name }}">
+                <div class="invalid-feedback">
+                    El campo no puede estar vacío.
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="txt1" for="surname">Apellidos <span class="asterisk">*</span></label>
+                <input class="form-control" id="surname" name="surname" required type="text" value="{{ user.surname }}">
+                <div class="invalid-feedback">
+                    El campo no puede estar vacío.
+                </div>
+            </div>
+        </div>
+
+        <!-- DNI -->
+        <label class="txt1" for="dni">DNI <span class="asterisk">*</span></label>
+        <input class="form-control" id="dni" name="dni" pattern="^([0-9]{8}|[XYZ][0-9]{7})[A-Z]{1}$" required
+               type="text" value="{{ user.dni }}">
+        <div class="invalid-feedback">
+            El DNI no sigue el formato requerido (ejemplo: 12345678Z).
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- Phone field -->
+                <label class="txt1" for="phone">Teléfono</label>
+                <input class="form-control" id="phone" name="phone" pattern="(?=.*\d).{9}" type="text"
+                       value="{{ user.phone }}">
+                <div class="invalid-feedback">
+                    El teléfono debe contener 9 dígitos.
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <!-- Email field -->
+                <label class="txt1" for="email">Correo electrónico <span class="asterisk">*</span></label>
+                <input class="form-control" id="email" name="email" required type="email" value="{{ user.email }}">
+                <div class="invalid-feedback">
+                    El correo electrónico no tiene el formato adecuado.
+                </div>
+            </div>
+        </div>
+
+        <!-- Birth date field -->
+        <label class="txt1" for="birthdate">Fecha de nacimiento <span class="asterisk">*</span></label>
+        <input class="form-control" id="birthdate" name="birthdate" required type="text" value="{{ user.birthDate }}">
+        <div class="invalid-feedback">
+            La fecha de nacimiento es obligatoria y debe introducirse en formato dd/mm/yyyy.
+        </div>
+
+
+        <h3 class="h3">Información de competición</h3>
+        <!-- Nickname field -->
+        <label class="txt1" for="nick">Apodo <span class="asterisk">*</span></label>
+        <input class="form-control" id="nick" name="nick" required type="text" value="{{ user.nickname }}">
+        <div class="invalid-feedback">
+            El campo no puede estar vacío.
+        </div>
+
+        <!-- Profile image -->
+        <div class="row">
+            <div class="width40"><label class="txt1" for="image">Imagen de perfil</label></div>
+            <div class="width60">
+                <input class="form-control" id="image" name="image" type="file">
+                <div class="invalid-feedback">
+                    Prueba de nuevo a subir la imagen.
+                </div>
+            </div>
+        </div>
+
+        <!-- Gender radio selection -->
+        <span class="txt1">Género <span class="asterisk">*</span></span>
+        <div class="radioSelection wrap-input100">
+            <div class="form-check">
+                <input checked class="form-check-input" id="gender1" name="gender" required type="radio">
+                <label class="form-check-label" for="gender1">Hombre</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" id="gender2" name="gender" required type="radio">
+                <label class="form-check-label" for="gender2">Mujer</label>
+                <div class="invalid-feedback">
+                    Es obligatorio seleccionar número.
+                </div>
+            </div>
+        </div>
+
+        <!-- Weight -->
+        <label class="txt1" for="weight">Peso <span class="asterisk">*</span></label>
+        <input class="form-control" id="weight" name="weight" pattern="^[1-9][0-9]+$" required type="number"
+               value="{{ user.weight }}">
+        <div class="invalid-feedback">
+            El peso es obligatorio.
+        </div>
+
+        <!-- Gym -->
+        <label class="txt1" for="gym">Gimnasio <span class="asterisk">*</span></label>
+        <input class="form-control" id="gym" name="gym" required type="text" value="{{ user.gym }}">
+        <div class="invalid-feedback">
+            El gimnasio es obligatorio.
+        </div>
+
+        <!-- Belt selector -->
+        <label class="txt1" for="beltSelector">Cinturón <span class="asterisk">*</span></label>
+        <div class="wrap-input100 validate-input" id="">
+            <div class="wrap-input100 validate-input">
+                <select class="form-select" id="beltSelector" name="belt" required>
+                    <option selected>Seleccione el cinturón</option>
+                    <option value="B">Blanco</option>
+                    <option value="BA">Blanco-Amarillo</option>
+                    <option value="A">Amarillo</option>
+                    <option value="AN">Amarillo-Naranja</option>
+                    <option value="Na">Naranja</option>
+                    <option value="NaV">Naranja-Verde</option>
+                    <option selected value="V">Verde</option>
+                    <option value="VA">Verde-Azul</option>
+                    <option value="Az">Azul</option>
+                    <option value="AzM">Azul-Marrón</option>
+                    <option value="M">Marrón</option>
+                    <option value="N">Negro</option>
+                </select>
+                <div id="danField">
+                    <label class="txt1" for="dan">Dan <span class="asterisk">*</span></label>
+                    <input class="form-control" id="dan" max="10" min="1" name="dan"
+                           type="number">
+                    <div class="invalid-feedback">
+                        El dan para cinturón negro debe estar entre 1 y 10.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="invalid-feedback">
+            El cinturón es obligatorio.
+        </div>
+
+        <div class="container-login100-form-btn">
+            <button class="btn btn-corporative" type="submit">Actualizar datos</button>
+        </div>
+    </form>
+</div>
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.es.js"></script>
+
+<!-- Own JS Files -->
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/formControl.js"></script>
+<script src="/assets/js/validationScript.js"></script>
+</body>
+</html>

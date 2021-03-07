@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,5 +25,12 @@ public class UserController {
         List<User> userList = userRepository.findAll();
         model.addAttribute("userList", userList);
         return "/admin/user/list";
+    }
+
+    @GetMapping("/admin/user/edit/{licenseId}")
+    public String editUser(@PathVariable String licenseId, Model model){
+        User user = userRepository.findById(licenseId).orElseThrow();
+        model.addAttribute("user", user);
+        return "/admin/user/edit";
     }
 }
