@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Lista de competidores - Juding</title>
+
+    <!-- Favicons -->
+    <link href="../../assets/img/hero-img.png" rel="icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="../../assets/vendor/font-awesome/css/all.css" rel="stylesheet">
+
+    <!-- Own CSS Files -->
+    <link href="../../assets/css/style.css" rel="stylesheet">
+    <link href="../../assets/css/header.css" rel="stylesheet">
+    <link href="../../assets/css/bootstrapAccomodations.css" rel="stylesheet">
+    <link href="../../assets/css/responsiveTable.css" rel="stylesheet">
+    <link href="../../assets/css/fightsListScreen.css" rel="stylesheet">
+</head>
+<body>
+<header class="header fixed-top" id="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a class="logo d-flex align-items-center" href="../../index.html">
+            <img alt="" src="../../assets/img/hero-img.png">
+            <span>Juding</span>
+        </a>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a class="nav-link scrollto" href="/">Inicio</a></li>
+                <li><a class="nav-link scrollto" href="/ranking">Ranking</a></li>
+                <li><a class="nav-link scrollto" href="/myProfile">Mi perfil</a></li>
+                <li class="dropdown">
+                    <a href="#"><span>Administración</span> <i class="far fa-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="/admin/user/list">Usuarios</a></li>
+                        <li><a href="/admin/competition/list">Competiciones</a></li>
+                        <li class="active"><a href="/admin/posts/list">Noticias</a></li>
+                    </ul>
+                </li>
+                <li><a class="login scrollto" href="../../index.html">Cerrar sesión</a></li>
+            </ul>
+            <i class="far fa-bars mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header>
+<div class="container">
+    <div class="responsiveTable">
+        <div class="rtRow rtHeader">
+            <div class="width10 text-center">ID Lucha</div>
+            <div class="width10 text-center">Nivel en competición</div>
+            <div class="width10 text-center">Estado</div>
+            <div class="width20 text-center">Competidor 1</div>
+            <div class="width20 text-center">Competidor 2</div>
+            <div class="width20 text-center">Acciones</div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">AAA1234567890</div>
+            <div class="width10 text-center">4º de final</div>
+            <div class="width10 text-center">Terminado</div>
+            <div class="width20 text-center">Pepón Mantín Martinez <span class="winner">(Ganador)</span></div>
+            <div class="width20 text-center">Pepo Ruíz Hernandez <span class="losser">(Perdedor)</span></div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Lucha: <strong>AAA1234567890</strong></h5>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Posición en la competición: <strong>4º de final</strong><br>
+                            <strong>Estado: </strong>Terminado<br>
+                            <strong>Participante 1: </strong>Pepón Mantín Martinez <span class="winner">(Ganador)</span><br>
+                            <strong>Participante 2: </strong>Pepo Ruíz Hernandez <span
+                                class="losser">(Perdedor)</span><br>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 1: Peponsito</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepón <strong>Mantín Martinez</strong><br>
+                                        <strong>Licencia:</strong> 9875843201.<br>
+                                        <strong>DNI:</strong> 03698456A.<br>
+                                        <strong>Correo Electrónico:</strong> erpeponsito@gmail.com. <br>
+                                        <strong>Peso:</strong> 65kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 25 Mayo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 2: PepoRexulón</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepo <strong>Ruíz Hernandez</strong><br>
+                                        <strong>Licencia:</strong> 0198432758<br>
+                                        <strong>DNI:</strong> 98403656B.<br>
+                                        <strong>Correo Electrónico:</strong> PepoRexulón@gmail.com. <br>
+                                        <strong>Peso:</strong> 68kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 5 Marzo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">AAA1234567890</div>
+            <div class="width10 text-center">4º de final</div>
+            <div class="width10 text-center">Terminado</div>
+            <div class="width20 text-center">Pepón Mantín Martinez <span class="winner">(Ganador)</span></div>
+            <div class="width20 text-center">Pepo Ruíz Hernandez <span class="losser">(Perdedor)</span></div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Lucha: <strong>AAA1234567890</strong></h5>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Posición en la competición: <strong>4º de final</strong><br>
+                            <strong>Estado: </strong>Terminado<br>
+                            <strong>Participante 1: </strong>Pepón Mantín Martinez <span class="winner">(Ganador)</span><br>
+                            <strong>Participante 2: </strong>Pepo Ruíz Hernandez <span
+                                class="losser">(Perdedor)</span><br>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 1: Peponsito</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepón <strong>Mantín Martinez</strong><br>
+                                        <strong>Licencia:</strong> 9875843201.<br>
+                                        <strong>DNI:</strong> 03698456A.<br>
+                                        <strong>Correo Electrónico:</strong> erpeponsito@gmail.com. <br>
+                                        <strong>Peso:</strong> 65kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 25 Mayo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 2: PepoRexulón</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepo <strong>Ruíz Hernandez</strong><br>
+                                        <strong>Licencia:</strong> 0198432758<br>
+                                        <strong>DNI:</strong> 98403656B.<br>
+                                        <strong>Correo Electrónico:</strong> PepoRexulón@gmail.com. <br>
+                                        <strong>Peso:</strong> 68kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 5 Marzo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">AAA1234567890</div>
+            <div class="width10 text-center">4º de final</div>
+            <div class="width10 text-center">Terminado</div>
+            <div class="width20 text-center">Pepón Mantín Martinez <span class="winner">(Ganador)</span></div>
+            <div class="width20 text-center">Pepo Ruíz Hernandez <span class="losser">(Perdedor)</span></div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Lucha: <strong>AAA1234567890</strong></h5>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Posición en la competición: <strong>4º de final</strong><br>
+                            <strong>Estado: </strong>Terminado<br>
+                            <strong>Participante 1: </strong>Pepón Mantín Martinez <span class="winner">(Ganador)</span><br>
+                            <strong>Participante 2: </strong>Pepo Ruíz Hernandez <span
+                                class="losser">(Perdedor)</span><br>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 1: Peponsito</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepón <strong>Mantín Martinez</strong><br>
+                                        <strong>Licencia:</strong> 9875843201.<br>
+                                        <strong>DNI:</strong> 03698456A.<br>
+                                        <strong>Correo Electrónico:</strong> erpeponsito@gmail.com. <br>
+                                        <strong>Peso:</strong> 65kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 25 Mayo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 2: PepoRexulón</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepo <strong>Ruíz Hernandez</strong><br>
+                                        <strong>Licencia:</strong> 0198432758<br>
+                                        <strong>DNI:</strong> 98403656B.<br>
+                                        <strong>Correo Electrónico:</strong> PepoRexulón@gmail.com. <br>
+                                        <strong>Peso:</strong> 68kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 5 Marzo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">AAA1234567890</div>
+            <div class="width10 text-center">4º de final</div>
+            <div class="width10 text-center">Terminado</div>
+            <div class="width20 text-center">Pepón Mantín Martinez <span class="winner">(Ganador)</span></div>
+            <div class="width20 text-center">Pepo Ruíz Hernandez <span class="losser">(Perdedor)</span></div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Lucha: <strong>AAA1234567890</strong></h5>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Posición en la competición: <strong>4º de final</strong><br>
+                            <strong>Estado: </strong>Terminado<br>
+                            <strong>Participante 1: </strong>Pepón Mantín Martinez <span class="winner">(Ganador)</span><br>
+                            <strong>Participante 2: </strong>Pepo Ruíz Hernandez <span
+                                class="losser">(Perdedor)</span><br>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 1: Peponsito</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepón <strong>Mantín Martinez</strong><br>
+                                        <strong>Licencia:</strong> 9875843201.<br>
+                                        <strong>DNI:</strong> 03698456A.<br>
+                                        <strong>Correo Electrónico:</strong> erpeponsito@gmail.com. <br>
+                                        <strong>Peso:</strong> 65kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 25 Mayo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 2: PepoRexulón</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepo <strong>Ruíz Hernandez</strong><br>
+                                        <strong>Licencia:</strong> 0198432758<br>
+                                        <strong>DNI:</strong> 98403656B.<br>
+                                        <strong>Correo Electrónico:</strong> PepoRexulón@gmail.com. <br>
+                                        <strong>Peso:</strong> 68kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 5 Marzo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">AAA1234567890</div>
+            <div class="width10 text-center">4º de final</div>
+            <div class="width10 text-center">Terminado</div>
+            <div class="width20 text-center">Pepón Mantín Martinez <span class="winner">(Ganador)</span></div>
+            <div class="width20 text-center">Pepo Ruíz Hernandez <span class="losser">(Perdedor)</span></div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Lucha: <strong>AAA1234567890</strong></h5>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Posición en la competición: <strong>4º de final</strong><br>
+                            <strong>Estado: </strong>Terminado<br>
+                            <strong>Participante 1: </strong>Pepón Mantín Martinez <span class="winner">(Ganador)</span><br>
+                            <strong>Participante 2: </strong>Pepo Ruíz Hernandez <span
+                                class="losser">(Perdedor)</span><br>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 1: Peponsito</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepón <strong>Mantín Martinez</strong><br>
+                                        <strong>Licencia:</strong> 9875843201.<br>
+                                        <strong>DNI:</strong> 03698456A.<br>
+                                        <strong>Correo Electrónico:</strong> erpeponsito@gmail.com. <br>
+                                        <strong>Peso:</strong> 65kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 25 Mayo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 2: PepoRexulón</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepo <strong>Ruíz Hernandez</strong><br>
+                                        <strong>Licencia:</strong> 0198432758<br>
+                                        <strong>DNI:</strong> 98403656B.<br>
+                                        <strong>Correo Electrónico:</strong> PepoRexulón@gmail.com. <br>
+                                        <strong>Peso:</strong> 68kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 5 Marzo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">AAA1234567890</div>
+            <div class="width10 text-center">4º de final</div>
+            <div class="width10 text-center">Terminado</div>
+            <div class="width20 text-center">Pepón Mantín Martinez <span class="winner">(Ganador)</span></div>
+            <div class="width20 text-center">Pepo Ruíz Hernandez <span class="losser">(Perdedor)</span></div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Lucha: <strong>AAA1234567890</strong></h5>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Posición en la competición: <strong>4º de final</strong><br>
+                            <strong>Estado: </strong>Terminado<br>
+                            <strong>Participante 1: </strong>Pepón Mantín Martinez <span class="winner">(Ganador)</span><br>
+                            <strong>Participante 2: </strong>Pepo Ruíz Hernandez <span
+                                class="losser">(Perdedor)</span><br>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 1: Peponsito</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepón <strong>Mantín Martinez</strong><br>
+                                        <strong>Licencia:</strong> 9875843201.<br>
+                                        <strong>DNI:</strong> 03698456A.<br>
+                                        <strong>Correo Electrónico:</strong> erpeponsito@gmail.com. <br>
+                                        <strong>Peso:</strong> 65kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 25 Mayo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 2: PepoRexulón</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepo <strong>Ruíz Hernandez</strong><br>
+                                        <strong>Licencia:</strong> 0198432758<br>
+                                        <strong>DNI:</strong> 98403656B.<br>
+                                        <strong>Correo Electrónico:</strong> PepoRexulón@gmail.com. <br>
+                                        <strong>Peso:</strong> 68kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 5 Marzo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">AAA1234567890</div>
+            <div class="width10 text-center">4º de final</div>
+            <div class="width10 text-center">Terminado</div>
+            <div class="width20 text-center">Pepón Mantín Martinez <span class="winner">(Ganador)</span></div>
+            <div class="width20 text-center">Pepo Ruíz Hernandez <span class="losser">(Perdedor)</span></div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Lucha: <strong>AAA1234567890</strong></h5>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Posición en la competición: <strong>4º de final</strong><br>
+                            <strong>Estado: </strong>Terminado<br>
+                            <strong>Participante 1: </strong>Pepón Mantín Martinez <span class="winner">(Ganador)</span><br>
+                            <strong>Participante 2: </strong>Pepo Ruíz Hernandez <span
+                                class="losser">(Perdedor)</span><br>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 1: Peponsito</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepón <strong>Mantín Martinez</strong><br>
+                                        <strong>Licencia:</strong> 9875843201.<br>
+                                        <strong>DNI:</strong> 03698456A.<br>
+                                        <strong>Correo Electrónico:</strong> erpeponsito@gmail.com. <br>
+                                        <strong>Peso:</strong> 65kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 25 Mayo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 2: PepoRexulón</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepo <strong>Ruíz Hernandez</strong><br>
+                                        <strong>Licencia:</strong> 0198432758<br>
+                                        <strong>DNI:</strong> 98403656B.<br>
+                                        <strong>Correo Electrónico:</strong> PepoRexulón@gmail.com. <br>
+                                        <strong>Peso:</strong> 68kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 5 Marzo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">AAA1234567890</div>
+            <div class="width10 text-center">4º de final</div>
+            <div class="width10 text-center">Terminado</div>
+            <div class="width20 text-center">Pepón Mantín Martinez <span class="winner">(Ganador)</span></div>
+            <div class="width20 text-center">Pepo Ruíz Hernandez <span class="losser">(Perdedor)</span></div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Lucha: <strong>AAA1234567890</strong></h5>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Posición en la competición: <strong>4º de final</strong><br>
+                            <strong>Estado: </strong>Terminado<br>
+                            <strong>Participante 1: </strong>Pepón Mantín Martinez <span class="winner">(Ganador)</span><br>
+                            <strong>Participante 2: </strong>Pepo Ruíz Hernandez <span
+                                class="losser">(Perdedor)</span><br>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 1: Peponsito</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepón <strong>Mantín Martinez</strong><br>
+                                        <strong>Licencia:</strong> 9875843201.<br>
+                                        <strong>DNI:</strong> 03698456A.<br>
+                                        <strong>Correo Electrónico:</strong> erpeponsito@gmail.com. <br>
+                                        <strong>Peso:</strong> 65kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 25 Mayo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 2: PepoRexulón</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepo <strong>Ruíz Hernandez</strong><br>
+                                        <strong>Licencia:</strong> 0198432758<br>
+                                        <strong>DNI:</strong> 98403656B.<br>
+                                        <strong>Correo Electrónico:</strong> PepoRexulón@gmail.com. <br>
+                                        <strong>Peso:</strong> 68kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 5 Marzo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">AAA1234567890</div>
+            <div class="width10 text-center">4º de final</div>
+            <div class="width10 text-center">Terminado</div>
+            <div class="width20 text-center">Pepón Mantín Martinez <span class="winner">(Ganador)</span></div>
+            <div class="width20 text-center">Pepo Ruíz Hernandez <span class="losser">(Perdedor)</span></div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Lucha: <strong>AAA1234567890</strong></h5>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Posición en la competición: <strong>4º de final</strong><br>
+                            <strong>Estado: </strong>Terminado<br>
+                            <strong>Participante 1: </strong>Pepón Mantín Martinez <span class="winner">(Ganador)</span><br>
+                            <strong>Participante 2: </strong>Pepo Ruíz Hernandez <span
+                                class="losser">(Perdedor)</span><br>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 1: Peponsito</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepón <strong>Mantín Martinez</strong><br>
+                                        <strong>Licencia:</strong> 9875843201.<br>
+                                        <strong>DNI:</strong> 03698456A.<br>
+                                        <strong>Correo Electrónico:</strong> erpeponsito@gmail.com. <br>
+                                        <strong>Peso:</strong> 65kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 25 Mayo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 2: PepoRexulón</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepo <strong>Ruíz Hernandez</strong><br>
+                                        <strong>Licencia:</strong> 0198432758<br>
+                                        <strong>DNI:</strong> 98403656B.<br>
+                                        <strong>Correo Electrónico:</strong> PepoRexulón@gmail.com. <br>
+                                        <strong>Peso:</strong> 68kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 5 Marzo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">AAA1234567890</div>
+            <div class="width10 text-center">4º de final</div>
+            <div class="width10 text-center">Terminado</div>
+            <div class="width20 text-center">Pepón Mantín Martinez <span class="winner">(Ganador)</span></div>
+            <div class="width20 text-center">Pepo Ruíz Hernandez <span class="losser">(Perdedor)</span></div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Lucha: <strong>AAA1234567890</strong></h5>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Posición en la competición: <strong>4º de final</strong><br>
+                            <strong>Estado: </strong>Terminado<br>
+                            <strong>Participante 1: </strong>Pepón Mantín Martinez <span class="winner">(Ganador)</span><br>
+                            <strong>Participante 2: </strong>Pepo Ruíz Hernandez <span
+                                class="losser">(Perdedor)</span><br>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 1: Peponsito</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepón <strong>Mantín Martinez</strong><br>
+                                        <strong>Licencia:</strong> 9875843201.<br>
+                                        <strong>DNI:</strong> 03698456A.<br>
+                                        <strong>Correo Electrónico:</strong> erpeponsito@gmail.com. <br>
+                                        <strong>Peso:</strong> 65kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 25 Mayo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 2: PepoRexulón</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepo <strong>Ruíz Hernandez</strong><br>
+                                        <strong>Licencia:</strong> 0198432758<br>
+                                        <strong>DNI:</strong> 98403656B.<br>
+                                        <strong>Correo Electrónico:</strong> PepoRexulón@gmail.com. <br>
+                                        <strong>Peso:</strong> 68kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 5 Marzo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rtRow">
+            <div class="width10 text-center">AAA1234567890</div>
+            <div class="width10 text-center">4º de final</div>
+            <div class="width10 text-center">Terminado</div>
+            <div class="width20 text-center">Pepón Mantín Martinez <span class="winner">(Ganador)</span></div>
+            <div class="width20 text-center">Pepo Ruíz Hernandez <span class="losser">(Perdedor)</span></div>
+            <div class="width20 text-center ">
+                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn">
+                    <i class="fas fa-trash-alt opctionIcons delete"></i>
+                </button>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Lucha: <strong>AAA1234567890</strong></h5>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            Posición en la competición: <strong>4º de final</strong><br>
+                            <strong>Estado: </strong>Terminado<br>
+                            <strong>Participante 1: </strong>Pepón Mantín Martinez <span class="winner">(Ganador)</span><br>
+                            <strong>Participante 2: </strong>Pepo Ruíz Hernandez <span
+                                class="losser">(Perdedor)</span><br>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 1: Peponsito</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepón <strong>Mantín Martinez</strong><br>
+                                        <strong>Licencia:</strong> 9875843201.<br>
+                                        <strong>DNI:</strong> 03698456A.<br>
+                                        <strong>Correo Electrónico:</strong> erpeponsito@gmail.com. <br>
+                                        <strong>Peso:</strong> 65kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 25 Mayo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="avatar" class="avatar"
+                                     src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h5 class="card-title">Competidor 2: PepoRexulón</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-user-ninja fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-text text-start">
+                                        Pepo <strong>Ruíz Hernandez</strong><br>
+                                        <strong>Licencia:</strong> 0198432758<br>
+                                        <strong>DNI:</strong> 98403656B.<br>
+                                        <strong>Correo Electrónico:</strong> PepoRexulón@gmail.com. <br>
+                                        <strong>Peso:</strong> 68kg. <br>
+                                        <strong>Gym:</strong> Vallecas. <br>
+                                        <strong>Fecha de nacimiento:</strong> 5 Marzo de 1998<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal for posts info -->
+<div class="modal fade" id="modalProfile" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalOpenedTitle"></h5>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="card mb-3">
+                            <div class="row g-0" id="modalOpenedBody"></div>
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Vendor JS Files -->
+<script src="../../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../../assets/vendor/aos/aos.js"></script>
+
+<!-- Own JS Files -->
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/competitorsList.js"></script>
+</body>
+</html>
