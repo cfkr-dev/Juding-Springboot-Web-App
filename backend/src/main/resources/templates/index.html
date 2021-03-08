@@ -311,21 +311,17 @@
                     <form action="" id="contact-form" class="contact-form" method="post">
                         <div class="row gy-4">
                             <div class="col-md-6">
-                                <input class="form-control" name="name" id="contact-form-name" placeholder="Tu nombre"
-                                       required type="text">
+                                <input class="form-control" name="name" placeholder="Tu nombre" required type="text">
                             </div>
                             <div class="col-md-6 ">
-                                <input class="form-control" name="email" id="contact-form-email" placeholder="Tu Email"
-                                       required type="email">
+                                <input class="form-control" name="email" placeholder="Tu Email" required type="email">
                             </div>
                             <div class="col-md-12">
-                                <input class="form-control" name="subject" id="contact-form-subject"
-                                       placeholder="Asunto" required type="text">
+                                <input class="form-control" name="subject" placeholder="Asunto" required type="text">
                             </div>
                             <div class="col-md-12">
-                                <textarea class="form-control" name="message" id="contact-form-message"
-                                          placeholder="Mensaje" required
-                                          rows="6"></textarea>
+                                <textarea class="form-control" name="message" placeholder="Mensaje" required rows="6">
+                                </textarea>
                             </div>
                             <div class="col-md-12 text-center">
                                 <div class="loading">Cargando</div>
@@ -612,30 +608,5 @@
 <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>
-<script>
-    $("#contact-form").on("submit", function (evt) {
-        evt.preventDefault();
-        $.ajax({
-            data: {
-                "name": $("#contact-form-name").val(),
-                "email": $("#contact-form-email").val(),
-                "subject": $("#contact-form-subject").val(),
-                "message": $("#contact-form-message").val()
-            },
-            url: '/index-email',
-            method: 'post',
-            beforeSend: (ans) => {
-                $(this).prepend('<i class="fas fa-circle-notch fa-spin" id="loading"></i>')
-            },
-            success: (ans) => {
-                $("#loading").remove();
-                if (ans)
-                    $(this).prepend('<div class="alert alert-success">Correo enviado correctamente.</div>');
-                else
-                    $(this).prepend('<div class="alert alert-danger">No se pudo enviar. Intentelo de nuevo.</div>');
-            }
-        })
-    })
-</script>
 </body>
 </html>
