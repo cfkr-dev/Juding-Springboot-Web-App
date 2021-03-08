@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Edición de competición - Juding</title>
+
+    <!-- Favicons -->
+    <link href="/assets/img/hero-img.png" rel="icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet">
+    <link href="/assets/vendor/font-awesome/css/all.css" rel="stylesheet">
+
+    <!-- Own CSS Files -->
+    <link href="/assets/css/header.css" rel="stylesheet">
+    <link href="/assets/css/bootstrapAccomodations.css" rel="stylesheet">
+    <link href="/assets/css/loginAndRegistration.css" rel="stylesheet">
+</head>
+<body>
+<header class="header fixed-top" id="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a class="logo d-flex align-items-center" href="">
+            <img alt="" src="/assets/img/hero-img.png">
+            <span>Juding</span>
+        </a>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a class="nav-link scrollto" href="/">Inicio</a></li>
+                <li><a class="nav-link scrollto" href="/ranking">Ranking</a></li>
+                <li><a class="nav-link scrollto" href="/myProfile">Mi perfil</a></li>
+                <li class="dropdown">
+                    <a href="#"><span>Administración</span> <i class="far fa-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="/admin/user/list">Usuarios</a></li>
+                        <li><a href="/admin/competition/list">Competiciones</a></li>
+                        <li class="active"><a href="/admin/posts/list">Noticias</a></li>
+                    </ul>
+                </li>
+                <li><a class="login scrollto" href="/index.html">Cerrar sesión</a></li>
+            </ul>
+            <i class="far fa-bars mobile-nav-toggle"></i>
+        </nav>
+    </div>
+</header>
+<div class="container pb-4">
+    <form action="editCompetition.html" class="needs-validation flex-sb flex-w" method="post" novalidate>
+        <h2 class="h2">Formulario competición</h2>
+
+        <h3 class="h3">Información de la competición</h3>
+
+        <!-- Competition ID -->
+        <label class="txt1" for="CompetitionId">Número de identificación de la competición <span
+                class="asterisk">*</span></label>
+        <input class="form-control" id="CompetitionId" name="CompetitionId" pattern="[0-9]{10}$" required type="text"
+               value="1234567890">
+        <div class="invalid-feedback">
+            La identificación de la competición no se ajusta al formato requerido (10 dígitos).
+        </div>
+
+        <!-- Competition name -->
+        <label class="txt1" for="CompetitionName">Nombre de la competición <span class="asterisk">*</span></label>
+        <input class="form-control" id="CompetitionName" name="CompetitionName" required type="text"
+               value="CTO. ESPAÑA JUNIOR DE JUDO MASCULINO Y FEMENINO 2021">
+        <div class="invalid-feedback">
+            El campo no puede estar vacío.
+        </div>
+
+        <!-- Competition additional info -->
+        <label class="txt1" for="CompetitionInfo">Información sobre la competición <span
+                class="asterisk">*</span></label>
+        <input class="form-control" id="CompetitionInfo" name="CompetitionInfo" required type="text"
+               value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae nisl varius, lobortis ligula nec, venenatis ligula. Sed porta sapien lacinia mattis cursus. Mauris velit ante, venenatis maximus maximus nec, sodales a leo. Proin in auctor erat. Aliquam sed lorem pretium, ullamcorper urna non, laoreet justo. In ornare porttitor magna. Maecenas laoreet ante eget erat mattis, eget accumsan turpis auctor. Nunc malesuada viverra vehicula
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae nisl varius, lobortis ligula nec, venenatis ligula. Sed porta sapien lacinia mattis cursus. Mauris velit ante, venenatis maximus maximus nec, sodales a leo. Proin in auctor erat. Aliquam sed lorem pretium, ullamcorper urna non, laoreet justo. In ornare porttitor magna. Maecenas laoreet ante eget erat mattis, eget accumsan turpis auctor. Nunc malesuada viverra vehicula">
+        <div class="invalid-feedback">
+            El campo no puede estar vacío.
+        </div>
+
+        <!-- Max weight and min wight fields -->
+        <div class="row">
+            <div class="col-lg-6">
+                <label class="txt1" for="minWeight">Peso mínimo <span class="asterisk">*</span></label>
+                <input class="form-control" id="minWeight" name="minWeight" required type="text" pattern="[0-9]{0,3}$"
+                       value="45">
+                <div class="invalid-feedback">
+                    El peso no se ajusta al formato requerido (mínimo 1 dígito y máximo 3 dígitos).
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="txt1" for="maxWeight">Peso máximo <span class="asterisk">*</span></label>
+                <input class="form-control" id="maxWeight" name="maxWeight" required type="text" pattern="[0-9]{0,3}$"
+                       value="45">
+                <div class="invalid-feedback">
+                    El peso no se ajusta al formato requerido (mínimo 1 dígito y máximo 3 dígitos).
+                </div>
+            </div>
+        </div>
+
+        <!-- LicenseId of the referee -->
+        <label class="txt1" for="licenseId">Número de licencia del árbitro encargado de la competición<span
+                class="asterisk">*</span></label>
+        <input class="form-control" id="licenseId" name="licenseId" pattern="JU-[0-9]{10}$" required type="text"
+               value="JU-1234567890">
+        <div class="invalid-feedback">
+            La licencia no se ajusta al formato JU-(10 dígitos).
+        </div>
+
+        <!-- Referee confirmation -->
+        <label class="txt1" for="refereeStatus">Asistencia del árbitro<span class="asterisk">*</span></label>
+        <input class="form-control" id="refereeStatus" name="refereeStatus" required type="text"
+               value="Confirmada">
+        <div class="invalid-feedback">
+            El campo no puede estar vacío.
+        </div>
+
+        <!-- Start date and end date of a competition fields -->
+        <div class="row mb-4">
+            <div class="col-lg-6">
+                <label class="txt1" for="startDate">Fecha de inicio de la competición <span class="asterisk">*</span></label>
+                <input class="form-control" id="startDate" name="startDate" required type="text" value="18/05/2020">
+                <div class="invalid-feedback">
+                    La fecha del inicio de la competición es obligatoria y debe introducirse en formato dd/mm/yyyy.
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="txt1" for="endDate">Fecha del final de la competición <span class="asterisk">*</span></label>
+                <input class="form-control" id="endDate" name="endDate" required type="text" value="18/05/2021">
+                <div class="invalid-feedback">
+                    La fecha del final de la competición es obligatoria y debe introducirse en formato dd/mm/yyyy.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-login100-form-btn">
+            <button class="btn btn-corporative" type="submit">Actualizar datos</button>
+        </div>
+    </form>
+</div>
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.es.js"></script>
+
+<!-- Own JS Files -->
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/formControl.js"></script>
+<script src="/assets/js/validationScript.js"></script>
+</body>
+</html>
