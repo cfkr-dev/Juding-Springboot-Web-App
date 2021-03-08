@@ -66,40 +66,7 @@
                 <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
                     <i class="fas fa-info-circle"></i>
                 </button>
-                <a href="editCompetition.html">
-                    <button class="btn">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                </a>
-                <button class="btn">
-                    <i class="fas fa-trash-alt opctionIcons delete"></i>
-                </button>
-            </div>
-            <div class="viewMore" style="display: none">
-                    <div class="card-body">
-                        <h5 class="card-title">{{shortName}}</h5>
-                    </div>
-                    <div class="card-text text-start m-2">
-                        <strong>Identificador de la competicion:</strong> {{idCompetition}}<br>
-                        <strong>Árbitro encargado:</strong> {{referee}}<br>
-                        <strong>Asistencia del árbitro:</strong> {{refereeStatus}}<br>
-                        <strong>Peso mínimo:</strong> {{minWeight}}kg<br>
-                        <strong>Peso máximo:</strong> {{maxWeight}}kg <br>
-                        <strong>Fecha de inicio</strong> {{startDate}} <br>
-                        <strong>Fecha del final:</strong> {{endDate}} <br>
-                    </div>
-            </div>
-        </div>
-        <div class="rtRow">
-            <div class="width10 text-center">1234567890</div>
-            <div class="width10 text-center">JU-1234567890</div>
-            <div class="width10 text-center">18/05/2020</div>
-            <div class="width10 text-center">18/05/2021</div>
-            <div class="width20 text-center ">
-                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
-                    <i class="fas fa-info-circle"></i>
-                </button>
-                <a href="editCompetition.html">
+                <a href="/admin/competition/edit/{{idCompetition}}">
                     <button class="btn">
                         <i class="fas fa-edit"></i>
                     </button>
@@ -110,23 +77,23 @@
             </div>
             <div class="viewMore" style="display: none">
                 <div class="card-body">
-                    <h5 class="card-title">CTO. ESPAÑA JUNIOR DE JUDO MASCULINO Y FEMENINO 2021</h5>
+                    <h5 class="card-title">{{shortName}}</h5>
                 </div>
                 <div class="card-text text-start m-2">
-                    <strong>Identificador de la competicion:</strong> 1234567890<br>
-                    <strong>Árbitro encargado:</strong> JU-1234567890<br>
-                    <strong>Asistencia del árbitro:</strong> confirmada<br>
-                    <strong>Peso mínimo:</strong> 45kg<br>
-                    <strong>Peso máximo:</strong> 50kg <br>
-                    <strong>Fecha de inicio</strong> 18/05/2020 <br>
-                    <strong>Fecha del final:</strong> 18/05/2021 <br>
+                    <strong>Identificador de la competicion:</strong> {{idCompetition}}<br>
+                    <strong>Árbitro encargado:</strong> {{referee}}<br>
+                    <strong>Asistencia del árbitro:</strong> {{refereeStatus}}<br>
+                    <strong>Peso mínimo:</strong> {{minWeight}}kg<br>
+                    <strong>Peso máximo:</strong> {{maxWeight}}kg <br>
+                    <strong>Fecha de inicio</strong> {{startDate}} <br>
+                    <strong>Fecha del final:</strong> {{endDate}} <br>
                 </div>
             </div>
         </div>
+        {{/competitionList}}
+
     </div>
-
 </div>
-
 <!-- Modal for posts info -->
 <div class="modal fade" id="modalProfile" tabindex="-1">
     <div class="modal-dialog modal-xl">
