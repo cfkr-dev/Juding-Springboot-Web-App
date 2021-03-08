@@ -8,7 +8,7 @@ public class Competition {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idComptition;
+    private int idCompetition;
 
     @Column(nullable = false)
     private String shortName;
@@ -40,7 +40,7 @@ public class Competition {
     }
 
     public Competition(int idComptition, String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, String referee, int refereeStatus) {
-        this.idComptition = idComptition;
+        this.idCompetition = idCompetition;
         this.shortName = shortName;
         this.additionalInfo = additionalInfo;
         this.minWeight = minWeight;
@@ -51,12 +51,12 @@ public class Competition {
         this.refereeStatus = refereeStatus;
     }
 
-    public int getIdComptition() {
-        return idComptition;
+    public int getIdCompetition() {
+        return idCompetition;
     }
 
-    public void setIdComptition(int idComptition) {
-        this.idComptition = idComptition;
+    public void setIdCompetition(int idCompetition) {
+        this.idCompetition = idCompetition;
     }
 
     public String getShortName() {
