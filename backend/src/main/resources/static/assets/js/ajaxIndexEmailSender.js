@@ -10,14 +10,15 @@ $("#contact-form").on("submit", function (evt) {
         url: '/index-email',
         method: 'post',
         beforeSend: (ans) => {
-            $(this).prepend('<i class="fas fa-circle-notch fa-spin" id="loading"></i>')
+            $("#loadedAJAXItem").remove();
+            $(this).prepend('<div class="alert alert-info" id="loadingAJAXItem"><i class="fas fa-circle-notch fa-spin"></i> Enviando...</div>');
         },
         success: (ans) => {
-            $("#loading").remove();
+            $("#loadingAJAXItem").remove();
             if (ans)
-                $(this).prepend('<div class="alert alert-success">Correo enviado correctamente.</div>');
+                $(this).prepend('<div class="alert alert-success" id="loadedAJAXItem">Correo enviado correctamente.</div>');
             else
-                $(this).prepend('<div class="alert alert-danger">No se pudo enviar. Intentelo de nuevo.</div>');
+                $(this).prepend('<div class="alert alert-danger" id="loadedAJAXItem">No se pudo enviar. Intentelo de nuevo.</div>');
         }
     })
 })
