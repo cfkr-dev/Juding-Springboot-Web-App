@@ -1,5 +1,7 @@
 package es.dawgroup2.juding.users;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
@@ -25,6 +27,7 @@ public class User implements Serializable {
     private char gender;
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date birthDate;
 
     @Column(nullable = false)
