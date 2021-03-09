@@ -50,7 +50,15 @@
 <div class="container">
     <div class="responsiveTable">
         <div class="rtRow rtHeader">
-            <div class="width10 text-center">Id de la competición</div>
+            <div class="width85"></div>
+            <div class="width15 text-center">
+                <a href="/admin/competition/newCompetition">
+                    <button class="btn btn-corporative"><i class="fa fa-plus-circle"></i> Nueva noticia</button>
+                </a>
+            </div>
+        </div>
+        <div class="rtRow rtHeader">
+            <div class="width10 text-center">Nombre de la competición</div>
             <div class="width10 text-center">Árbrito encargado</div>
             <div class="width10 text-center">Fecha de inicio</div>
             <div class="width10 text-center">Fecha del final</div>
@@ -58,7 +66,7 @@
         </div>
         {{ #competitionList}}
         <div class="rtRow">
-            <div class="width10 text-center">{{ idCompetition}}</div>
+            <div class="width10 text-center">{{ shortName}}</div>
             <div class="width10 text-center">{{ referee }}</div>
             <div class="width10 text-center">{{ startDate}}</div>
             <div class="width10 text-center">{{ endDate}}</div>
