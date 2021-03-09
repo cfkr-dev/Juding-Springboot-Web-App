@@ -46,14 +46,16 @@
     </div>
 </header>
 <div class="container pb-4">
-    <form action="editCompetition.html" class="needs-validation flex-sb flex-w" method="post" novalidate>
+    <form action="/admin/competition/edit" class="needs-validation flex-sb flex-w" method="post"
+          novalidate>
         <h2 class="h2">Formulario competición</h2>
 
         <h3 class="h3">Información de la competición</h3>
+        {{#competition}}
         <!-- Competition ID -->
         <label class="txt1" for="CompetitionId">Número de identificación de la competición <span
                 class="asterisk">*</span></label>
-        <input class="form-control" id="CompetitionId" name="CompetitionId" pattern="[0-9]{10}$" required type="text"
+        <input class="form-control" id="CompetitionId" name="idCompetition" pattern="[0-9]{10}$" required type="hidden"
                value="{{competition.idCompetition}}">
         <div class="invalid-feedback">
             La identificación de la competición no se ajusta al formato requerido (10 dígitos).
@@ -61,8 +63,8 @@
 
         <!-- Competition name -->
         <label class="txt1" for="CompetitionName">Nombre de la competición <span class="asterisk">*</span></label>
-        <input class="form-control" id="CompetitionName" name="CompetitionName" required type="text"
-               value="{{competition.shortname}}">
+        <input class="form-control" id="CompetitionName" name="shortName" required type="text"
+               value="{{competition.shortName}}">
         <div class="invalid-feedback">
             El campo no puede estar vacío.
         </div>
@@ -70,7 +72,7 @@
         <!-- Competition additional info -->
         <label class="txt1" for="CompetitionInfo">Información sobre la competición <span
                 class="asterisk">*</span></label>
-        <input class="form-control" id="CompetitionInfo" name="CompetitionInfo" required type="text"
+        <input class="form-control" id="CompetitionInfo" name="additionalInfo" required type="text"
                value="{{competition.additionalInfo}}">
         <div class="invalid-feedback">
             El campo no puede estar vacío.
@@ -99,7 +101,7 @@
         <!-- LicenseId of the referee -->
         <label class="txt1" for="licenseId">Número de licencia del árbitro encargado de la competición<span
                 class="asterisk">*</span></label>
-        <input class="form-control" id="licenseId" name="licenseId" pattern="JU-[0-9]{10}$" required type="text"
+        <input class="form-control" id="licenseId" name="referee" pattern="JU-[0-9]{10}$" required type="text"
                value="{{competition.referee}}">
         <div class="invalid-feedback">
             La licencia no se ajusta al formato JU-(10 dígitos).
@@ -116,15 +118,19 @@
         <!-- Start date and end date of a competition fields -->
         <div class="row mb-4">
             <div class="col-lg-6">
-                <label class="txt1" for="startDate">Fecha de inicio de la competición <span class="asterisk">*</span></label>
-                <input class="form-control" id="startDate" name="startDate" required type="text" value="{{competition.startDate}}">
+                <label class="txt1" for="startDate">Fecha de inicio de la competición <span
+                        class="asterisk">*</span></label>
+                <input class="form-control" id="startDate" name="startDate" required type="text"
+                       value="{{competition.startDate}}">
                 <div class="invalid-feedback">
                     La fecha del inicio de la competición es obligatoria y debe introducirse en formato dd/mm/yyyy.
                 </div>
             </div>
             <div class="col-lg-6">
-                <label class="txt1" for="endDate">Fecha del final de la competición <span class="asterisk">*</span></label>
-                <input class="form-control" id="endDate" name="endDate" required type="text" value="{{competition.endDate}}">
+                <label class="txt1" for="endDate">Fecha del final de la competición <span
+                        class="asterisk">*</span></label>
+                <input class="form-control" id="endDate" name="endDate" required type="text"
+                       value="{{competition.endDate}}">
                 <div class="invalid-feedback">
                     La fecha del final de la competición es obligatoria y debe introducirse en formato dd/mm/yyyy.
                 </div>
@@ -132,8 +138,9 @@
         </div>
 
         <div class="container-login100-form-btn">
-            <button class="btn btn-corporative" type="submit">Actualizar datos</button>
+            <button class="btn btn-corporative" type="submit" value="Save">Actualizar datos</button>
         </div>
+        {{/competition}}
     </form>
 </div>
 <!-- Vendor JS Files -->
