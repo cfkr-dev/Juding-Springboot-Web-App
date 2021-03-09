@@ -1,4 +1,4 @@
-package es.dawgroup2.juding.index;
+package es.dawgroup2.juding.indexEmail;
 
 public class IndexEmail {
 
