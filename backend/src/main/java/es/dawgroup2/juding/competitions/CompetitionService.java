@@ -28,7 +28,8 @@ public class CompetitionService {
         competitionRepository.findById(competition.getIdCompetition()).orElseThrow();
         competitionRepository.save(competition);
     }
-    public void add(Competition competition){
+
+    public void add(Competition competition) {
         competitionRepository.save(competition);
     }
 }

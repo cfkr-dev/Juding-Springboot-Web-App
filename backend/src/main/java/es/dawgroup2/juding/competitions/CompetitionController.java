@@ -49,7 +49,7 @@ public class CompetitionController {
         competitionService.add(competition);
         return "/admin/competition/list";
     }
-    /*@PutMapping("admin/competition/edit/{idCompetition}")
+    @PutMapping("admin/competition/edit/{idCompetition}")
     public String updatingCompetitionInfo(@RequestParam String idCompetition, @RequestParam String shortName, @RequestParam String additionalInfo, @RequestParam int minWeight, @RequestParam int maxWeight, @RequestParam Timestamp startDate, @RequestParam Timestamp endDate, @RequestParam String referee, @RequestParam int refereeStatus) {
         Competition competition = competitionService.findById(idCompetition);
         competition.setIdCompetition(Integer.parseInt(idCompetition));
@@ -62,14 +62,14 @@ public class CompetitionController {
         competition.setStartDate(startDate);
         competition.setEndDate(endDate);
         competitionService.updatingInfoCompetition(competition);
-        return "/admin/competition/edit";
+        return "redirect:/admin/competition/list";
 
-    }*/
+    }
 
-    @PostMapping("/admin/competition/edit/{idCompetition}")
+    /*@PutMapping("/admin/competition/edit/{idCompetition}")
     public String updatingCompetitionInfo(Model model,@RequestParam Competition competition){
         competitionService.updatingInfoCompetition(competition);
-        return "/admin/competition/list";
-    }
+        return "redirect:/admin/competition/list";
+    }*/
 
 }
