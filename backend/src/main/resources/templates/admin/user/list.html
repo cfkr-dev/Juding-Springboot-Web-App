@@ -37,7 +37,12 @@
                 <li class="dropdown">
                     <a href="#"><span>Administración</span> <i class="far fa-chevron-down"></i></a>
                     <ul>
-                        <li><a href="/admin/user/list">Usuarios</a></li>
+                        <li class="dropdown">
+                            <a href="#"><span>Usuarios</span> <i class="far fa-chevron-right"></i></a>
+                            <ul>
+                                <li><a href="/admin/user/list/competitors">Competidores</a></li>
+                                <li><a href="/admin/user/list/referees">Árbitros</a></li>
+                            </ul>
                         <li><a href="/admin/competition/list">Competiciones</a></li>
                         <li><a href="/admin/posts/list">Noticias</a></li>
                     </ul>
@@ -49,12 +54,76 @@
     </div>
 </header>
 <div class="container pb-3">
-
-    <h1 class="h1">Lista de usuarios</h1>
+    <h2 class="h2">Usuarios</h2>
+    {{ #competitors }}
+    <h3 class="h3">Competidores</h3>
+    {{ /competitors }}
+    {{ ^competitors }}
+    <h3 class="h3">Solicitudes de federación de nuevos árbitros</h3>
+    {{ #pendingApplications }}
+    <div class="responsiveTable mb-3">
+        <div class="rtRow rtHeader">
+            <div class="width10 text-center">Licencia</div>
+            <div class="width10 text-center">Nick</div>
+            <div class="width10 text-center">Nombre</div>
+            <div class="width20 text-center">Apellidos</div>
+            <div class="width20 text-center">Correo Electrónico</div>
+            <div class="width20 text-center">Acciones</div>
+        </div>
+        {{ #pendingList }}
+        <div class="rtRow">
+            <div class="width10 text-center">{{ licenseId }}</div>
+            <div class="width10 text-center">{{ nickname }}</div>
+            <div class="width10 text-center">{{ name }}</div>
+            <div class="width20 text-center">{{ surname }}</div>
+            <div class="width20 text-center">{{ email }}</div>
+            <div class="width20 text-center">
+                <button class="btn btn-outline-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-check"></i>
+                </button>
+                <a href="/admin/user/edit/{{ licenseId }}" class="btn btn-outline-corporative">
+                    <i class="fas fa-times"></i>
+                </a>
+            </div>
+            <div class="viewMore" style="display: none">
+                <div class="col-md-4">
+                    <img alt="avatar" class="avatar"
+                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">{{ nickname }}</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-user-ninja fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            {{ name }} <strong>{{ surname }}</strong><br>
+                            <strong>Licencia:</strong> {{ licenseId }}.<br>
+                            <strong>DNI:</strong> {{ dni }}.<br>
+                            <strong>Correo Electrónico:</strong> {{ email }}. <br>
+                            <strong>Peso:</strong> {{ weight }}kg. <br>
+                            <strong>Gimnasio:</strong> {{ gym }}. <br>
+                            <strong>Género:</strong> {{ gender }}. <br>
+                            <strong>Fecha de nacimiento:</strong> {{ birthDate }}<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ /pendingList }}
+    </div>
+    {{ /pendingApplications }}{{ ^pendingApplications }}
+    <div class="alert alert-info mb-2">No hay nuevas solicitudes pendientes de revisión.</div>
+    {{ /pendingApplications }}
+    <h3 class="h3">Árbitros</h3>
+    {{ /competitors }}
     <div class="responsiveTable">
         <div class="rtRow rtHeader">
-            <div class="width5 text-center">Rol</div>
-            <div class="width10 text-center">Licencia</div>
+            <div class="width15 text-center">Licencia</div>
             <div class="width10 text-center">Nick</div>
             <div class="width10 text-center">Nombre</div>
             <div class="width20 text-center">Apellidos</div>
@@ -63,8 +132,7 @@
         </div>
         {{ #userList }}
         <div class="rtRow">
-            <div class="width5 text-center"><i class="fas fa-user-ninja"></i></div>
-            <div class="width10 text-center">{{ licenseId }}</div>
+            <div class="width15 text-center">{{ licenseId }}</div>
             <div class="width10 text-center">{{ nickname }}</div>
             <div class="width10 text-center">{{ name }}</div>
             <div class="width20 text-center">{{ surname }}</div>
@@ -101,8 +169,9 @@
                             <strong>DNI:</strong> {{ dni }}.<br>
                             <strong>Correo Electrónico:</strong> {{ email }}. <br>
                             <strong>Peso:</strong> {{ weight }}kg. <br>
-                            <strong>Gym:</strong> {{ gym }}. <br>
-                            <strong>Fecha de nacimiento:</strong> {{ formatBirthDate }}<br>
+                            <strong>Gimnasio:</strong> {{ gym }}. <br>
+                            <strong>Género:</strong> {{ gender }}. <br>
+                            <strong>Fecha de nacimiento:</strong> {{ birthDate }}<br>
                         </div>
                     </div>
                 </div>

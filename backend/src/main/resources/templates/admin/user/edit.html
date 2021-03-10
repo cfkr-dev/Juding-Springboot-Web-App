@@ -36,7 +36,7 @@
     </div>
 </header>
 <div class="container pb-4">
-    <form action="editCompetitor.html" class="needs-validation flex-sb flex-w" method="post" novalidate>
+    <form action="/admin/user/edit/save" class="needs-validation flex-sb flex-w" method="post" novalidate>
         <h2 class="h2">Formulario competidor</h2>
         <h3 class="h3">Información personal</h3>
 
@@ -125,11 +125,11 @@
         <span class="txt1">Género <span class="asterisk">*</span></span>
         <div class="radioSelection wrap-input100">
             <div class="form-check">
-                <input checked class="form-check-input" id="gender1" name="gender" required type="radio">
+                <input checked class="form-check-input" id="gender1" name="gender" required type="radio" value="H">
                 <label class="form-check-label" for="gender1">Hombre</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" id="gender2" name="gender" required type="radio">
+                <input class="form-check-input" id="gender2" name="gender" required type="radio" value="M">
                 <label class="form-check-label" for="gender2">Mujer</label>
                 <div class="invalid-feedback">
                     Es obligatorio seleccionar número.

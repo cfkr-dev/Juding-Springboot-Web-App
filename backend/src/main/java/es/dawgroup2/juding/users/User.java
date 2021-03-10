@@ -55,9 +55,9 @@ public class User implements Serializable {
     private String securityAnswer;
 
     @Column(nullable = false)
-    private int role;
+    private Integer role;
 
-    private int refereeRange;
+    private Integer refereeRange;
 
     protected User() {
     }
@@ -79,6 +79,7 @@ public class User implements Serializable {
         this.securityQuestion = securityQuestion;
         this.securityAnswer = securityAnswer;
         this.role = role;
+        this.refereeRange = null;
     }
 
     public String getLicenseId() {
@@ -201,19 +202,20 @@ public class User implements Serializable {
         this.securityAnswer = securityAnswer;
     }
 
-    public int getRole() {
+    public Integer getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(Integer role) {
         this.role = role;
     }
 
-    public int getRefereeRange() {
+    public Integer getRefereeRange() {
         return refereeRange;
     }
 
-    public void setRefereeRange(int refereeRange) {
+    public User setRefereeRange(Integer refereeRange) {
         this.refereeRange = refereeRange;
+        return this;
     }
 }
