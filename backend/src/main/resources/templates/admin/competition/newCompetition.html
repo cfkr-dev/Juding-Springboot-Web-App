@@ -51,15 +51,14 @@
         <h2 class="h2">Formulario competición</h2>
 
         <h3 class="h3">Información de la competición</h3>
-        {{#competition}}
         <!-- Competition ID -->
-        <label class="txt1" for="idCompetition" style="display:none">Número de identificación de la competición <span
+        <!--<label class="txt1" for="idCompetition" style="display:none">Número de identificación de la competición <span
                 class="asterisk">*</span></label>
         <input class="form-control" id="idCompetition" name="idCompetition" pattern="[0-9]{10}$" required type="hidden"
         >
         <div class="invalid-feedback">
             La identificación de la competición no se ajusta al formato requerido (10 dígitos).
-        </div>
+        </div>-->
 
         <!-- Competition name -->
         <label class="txt1" for="shortName">Nombre de la competición <span class="asterisk">*</span></label>
@@ -140,7 +139,6 @@
         <div class="container-login100-form-btn">
             <button class="btn btn-corporative" type="submit">Crear competición</button>
         </div>
-        {{/competition}}
     </form>
 </div>
 <!-- Vendor JS Files -->

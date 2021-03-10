@@ -51,20 +51,15 @@ public class CompetitionController {
     public String showCompetitionToDelete(Model model, @PathVariable String idCompetition) {
         Competition competition = competitionService.findById(idCompetition);
         model.addAttribute("competition", competition);
-        return "/admin/competition/{idCompetition}";
+        competitionService.deleteById(idCompetition);
+        return "redirect:/admin/competition/list";
     }
 
-    @DeleteMapping("/admin/competition/deleteCompetition/{idCompetition}")
-    public String deleteCompetition(@PathVariable String idCompetition) {
-        Competition competition = competitionService.findById(idCompetition);
-        competitionService.deleteById(idCompetition);
-        return "/admin/competition/list";
-    }
     @GetMapping("/admin/competition/newCompetition")
-    public String showFormNewCompetition(@PathVariable String idCompetition, Model model) {
-        Competition competition = competitionService.findById(idCompetition);
-        model.addAttribute("competition", competition);
-        return "redirect:/admin/competition/list";
+    public String newCompetition(Model model){
+        Competition competition= null;
+        model.addAttribute("competition",competition);
+        return "/admin/competition/newCompetition";
     }
 
     @PostMapping("/admin/competition/newCompetition")
