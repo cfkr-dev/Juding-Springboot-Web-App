@@ -57,8 +57,6 @@ public class CompetitionController {
 
     @GetMapping("/admin/competition/newCompetition")
     public String newCompetition(Model model){
-        Competition competition= null;
-        model.addAttribute("competition",competition);
         return "/admin/competition/newCompetition";
     }
 
