@@ -19,6 +19,10 @@ public class CompetitionController {
     @GetMapping("/admin/competition/list")
     public String competitionList(Model model) {
         List<Competition> competitionList = competitionService.findAll();
+        for (Competition competition: competitionList){
+            String state= competition.translatingDates(competition.getStartDate(),competition.getEndDate());
+            model.addAttribute("state", state);
+        }
         model.addAttribute("competitionList", competitionList);
         return "/admin/competition/list";
     }
@@ -64,6 +68,15 @@ public class CompetitionController {
     public String addACompetition(Competition competition) {
         competitionService.add(competition);
         return "redirect:/admin/competition/list";
+    }
+
+    @GetMapping("/competition/detail/{idCompetition}")
+    public String showCompetition(Model model, @PathVariable String idCompetition){
+        Competition competition= competitionService.findById(idCompetition);
+        String state= competition.translatingDates(competition.getStartDate(),competition.getEndDate());
+        model.addAttribute("state", state);
+        model.addAttribute("competition", competition);
+        return "/competition/detail";
     }
 
 
