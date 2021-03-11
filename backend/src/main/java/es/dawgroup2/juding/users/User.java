@@ -133,6 +133,8 @@ public class User implements Serializable {
         return gender;
     }
 
+    public boolean isMale() { return gender == 'M'; }
+
     public User setGender(char gender) {
         this.gender = gender;
         return this;
@@ -222,6 +224,8 @@ public class User implements Serializable {
     public Integer getRole() {
         return role;
     }
+
+    public boolean isCompetitor(){ return role == 1; }
 
     public User setRole(Integer role) {
         this.role = role;
