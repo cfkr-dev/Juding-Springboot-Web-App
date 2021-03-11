@@ -65,8 +65,12 @@
                                     {{ user.name }} <strong>{{ user.surname }}</strong><br>
                                     <strong>Licencia:</strong> {{ user.licenseId }}.<br>
                                     <strong>DNI:</strong> {{ user.dni }}.<br>
+                                    {{ #isCompetitor }}
                                     <strong>Gimnasio:</strong> {{ user.gym }}.<br>
                                     <strong>Peso:</strong> {{ user.weight }} kg.
+                                    {{ /isCompetitor }}{{ ^isCompetitor }}
+                                    <strong>Rango:</strong> {{ user.getLiteralRefereeRange }}.
+                                    {{ /isCompetitor }}
                                 </div>
                             </div>
                         </div>
@@ -77,15 +81,16 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-6 text-center">
-            <h4 class="h4">Gráfico de medallas</h4>
+
+            <h4 class="h4">{{ #isCompetitor }}Gráfico de medallas{{ /isCompetitor }}{{ ^isCompetitor }}Gráfico de asistencia{{ /isCompetitor }}</h4>
             <div>
-                <canvas id="medalChart"></canvas>
+                <canvas id="chart1"></canvas>
             </div>
         </div>
         <div class="col-12 col-md-6 text-center">
-            <h4 class="h4">Evolución anual</h4>
+            <h4 class="h4">{{ #isCompetitor }}Evolución anual{{ /isCompetitor }}{{ ^isCompetitor }}Gráfico de convocatorias{{ /isCompetitor }}</h4>
             <div>
-                <canvas id="rankingChart"></canvas>
+                <canvas id="chart2"></canvas>
             </div>
         </div>
     </div>
@@ -211,7 +216,6 @@
             </div>
         </div>
     </div>
-
 </div>
 <!-- /.container -->
 
@@ -222,6 +226,7 @@
 
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>
-<script src="/assets/js/competitorCharts.js"></script>
+<!-- todo using here mustache -->
+<script src="/assets/js/{{ #isCompetitor }}competitor{{ /isCompetitor }}{{ ^isCompetitor }}referee{{ /isCompetitor }}Charts.js"></script>
 </body>
 </html>

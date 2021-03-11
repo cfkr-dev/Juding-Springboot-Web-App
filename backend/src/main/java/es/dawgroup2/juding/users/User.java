@@ -236,6 +236,17 @@ public class User implements Serializable {
         return refereeRange;
     }
 
+    public String getLiteralRefereeRange() {
+        if (role == 2 && refereeRange != null){
+            switch (refereeRange){
+                case 1: return "Árbitro estándar";
+                case 2: return "Árbitro de competición";
+                case 3: return "Árbitro auxiliar";
+            }
+        }
+        return null;
+    }
+
     public User setRefereeRange(Integer refereeRange) {
         this.refereeRange = refereeRange;
         return this;

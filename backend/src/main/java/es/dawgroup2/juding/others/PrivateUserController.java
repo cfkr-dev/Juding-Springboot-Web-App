@@ -19,27 +19,31 @@ public class PrivateUserController {
     UserService userService;
 
     @GetMapping("/myHome")
-    public String myHome(Model model, HttpServletResponse response){
-        User currentUser = userService.getUserOrNull(licenseId);
-        if (currentUser == null) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        } else {
-            model.addAttribute("user", currentUser);
-        }
-        return "myHome";
-    }
-
-    @GetMapping("/myProfile")
-    public String myProfile(Model model, HttpServletResponse response){
+    public String myHome(Model model, HttpServletResponse response) {
         User currentUser = userService.getUserOrNull(licenseId);
         if (currentUser == null) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         } else {
             model.addAttribute("user", currentUser)
-                 .addAttribute("isCompetitor", currentUser.isCompetitor())
-                 .addAttribute("isMale", currentUser.isMale())
-                 .addAttribute("beltValue", currentUser.getBelt().getLongName());
+                    .addAttribute("isCompetitor", currentUser.isCompetitor())
+                    .addAttribute("stringRange", currentUser.getRefereeRange());
+        }
+        return "myHome";
+    }
+
+    @GetMapping("/myProfile")
+    public String myProfile(Model model, HttpServletResponse response) {
+        User currentUser = userService.getUserOrNull(licenseId);
+        if (currentUser == null) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        } else {
+            model.addAttribute("user", currentUser)
+                    .addAttribute("isCompetitor", currentUser.isCompetitor())
+                    .addAttribute("isMale", currentUser.isMale())
+                    .addAttribute("beltValue", currentUser.getBelt().getLongName());
         }
         return "myProfile";
     }
+
+
 }
