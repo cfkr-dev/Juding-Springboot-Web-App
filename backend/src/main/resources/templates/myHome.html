@@ -18,6 +18,7 @@
     <link href="/assets/css/header.css" rel="stylesheet">
     <link href="/assets/css/profiles.css" rel="stylesheet">
     <link href="/assets/css/responsiveTable.css" rel="stylesheet">
+    <link href="/assets/css/beltAssignations.css" rel="stylesheet">
 </head>
 <body>
 <!-- Navigation -->
@@ -57,7 +58,7 @@
                                         <h5 class="card-title">{{ user.nickname }}</h5>
                                     </div>
                                     <div class="col-2">
-                                        <i class="fas fa-user-ninja fa-2x" style="color: green;"></i>
+                                        <i class="fas fa-user-ninja fa-2x beltStyle {{ user.belt }}"></i>
                                     </div>
                                 </div>
                                 <div class="card-text text-start">
