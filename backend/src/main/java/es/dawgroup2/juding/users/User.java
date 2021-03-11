@@ -1,10 +1,16 @@
 package es.dawgroup2.juding.users;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import es.dawgroup2.juding.belts.Belt;
+import org.hibernate.engine.jdbc.BlobProxy;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.core.io.Resource;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.io.Serializable;
+import java.sql.Blob;
 import java.sql.Date;
 
 @Entity
@@ -44,6 +50,10 @@ public class User implements Serializable {
     @Column(nullable = false, length = 3)
     private Belt belt;
 
+    @Lob
+    @JsonIgnore
+    private Blob profileImage;
+
     @Column(nullable = false)
     private String nickname;
 
@@ -64,7 +74,7 @@ public class User implements Serializable {
     protected User() {
     }
 
-    public User(String licenseId, String name, String surname, String email, int phone, char gender, Date birthDate, String dni, String gym, int weight, Belt belt, String nickname, String password, String securityQuestion, String securityAnswer, int role) {
+    public User(String licenseId, String name, String surname, String email, int phone, char gender, Date birthDate, String dni, String gym, int weight, Belt belt, String profileImage, String nickname, String password, String securityQuestion, String securityAnswer, Integer role) throws IOException {
         this.licenseId = licenseId;
         this.name = name;
         this.surname = surname;
@@ -76,165 +86,159 @@ public class User implements Serializable {
         this.gym = gym;
         this.weight = weight;
         this.belt = belt;
+        this.setProfileImage(profileImage);
         this.nickname = nickname;
         this.password = password;
         this.securityQuestion = securityQuestion;
         this.securityAnswer = securityAnswer;
         this.role = role;
-        this.refereeRange = null;
     }
 
     public String getLicenseId() {
         return licenseId;
     }
 
-    public User setLicenseId(String licenseId) {
-        this.licenseId = licenseId;
-        return this;
-    }
-
     public String getName() {
         return name;
     }
 
-    public User setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public User setSurname(String surname) {
+    public void setSurname(String surname) {
         this.surname = surname;
-        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public User setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
-        return this;
     }
 
     public int getPhone() {
         return phone;
     }
 
-    public User setPhone(int phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
-        return this;
     }
 
     public char getGender() {
         return gender;
     }
 
-    public boolean isMale() { return gender == 'M'; }
-
-    public User setGender(char gender) {
+    public void setGender(char gender) {
         this.gender = gender;
-        return this;
     }
 
     public Date getBirthDate() {
         return birthDate;
     }
 
-    public User setBirthDate(Date birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
-        return this;
     }
 
     public String getDni() {
         return dni;
     }
 
-    public User setDni(String dni) {
+    public void setDni(String dni) {
         this.dni = dni;
-        return this;
     }
 
     public String getGym() {
         return gym;
     }
 
-    public User setGym(String gym) {
+    public void setGym(String gym) {
         this.gym = gym;
-        return this;
     }
 
     public int getWeight() {
         return weight;
     }
 
-    public User setWeight(int weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
-        return this;
     }
 
     public Belt getBelt() {
         return belt;
     }
 
-    public User setBelt(Belt belt) {
+    public void setBelt(Belt belt) {
         this.belt = belt;
-        return this;
+    }
+
+    public Blob getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String path) throws IOException {
+        Resource image = new ClassPathResource(path);
+        profileImage = BlobProxy.generateProxy(image.getInputStream(), image.contentLength());
     }
 
     public String getNickname() {
         return nickname;
     }
 
-    public User setNickname(String nickname) {
+    public void setNickname(String nickname) {
         this.nickname = nickname;
-        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public User setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
-        return this;
     }
 
     public String getSecurityQuestion() {
         return securityQuestion;
     }
 
-    public User setSecurityQuestion(String securityQuestion) {
+    public void setSecurityQuestion(String securityQuestion) {
         this.securityQuestion = securityQuestion;
-        return this;
     }
 
     public String getSecurityAnswer() {
         return securityAnswer;
     }
 
-    public User setSecurityAnswer(String securityAnswer) {
+    public void setSecurityAnswer(String securityAnswer) {
         this.securityAnswer = securityAnswer;
-        return this;
     }
 
     public Integer getRole() {
         return role;
     }
 
-    public boolean isCompetitor(){ return role == 1; }
-
-    public User setRole(Integer role) {
+    public void setRole(Integer role) {
         this.role = role;
-        return this;
     }
 
     public Integer getRefereeRange() {
         return refereeRange;
     }
+
+    public User setRefereeRange(Integer refereeRange) {
+        this.refereeRange = refereeRange;
+        return this;
+    }
+
+    public boolean isMale() { return gender == 'M'; }
+
+    public boolean isCompetitor(){ return role == 1; }
 
     public String getLiteralRefereeRange() {
         if (role == 2 && refereeRange != null){
@@ -245,10 +249,5 @@ public class User implements Serializable {
             }
         }
         return null;
-    }
-
-    public User setRefereeRange(Integer refereeRange) {
-        this.refereeRange = refereeRange;
-        return this;
     }
 }

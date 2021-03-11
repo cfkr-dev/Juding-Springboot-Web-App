@@ -3,11 +3,18 @@ package es.dawgroup2.juding.others;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import java.util.Optional;
 
 @Controller
 public class PrivateUserController {
@@ -29,6 +36,18 @@ public class PrivateUserController {
                     .addAttribute("stringRange", currentUser.getRefereeRange());
         }
         return "myHome";
+    }
+
+    @GetMapping("/profileImage/{licenseId}")
+    public ResponseEntity<Object> downloadProfileImage(@PathVariable String licenseId) throws SQLException {
+        User user = userService.getUserOrNull(licenseId);
+        if (user != null && user.getProfileImage() != null) {
+            Resource file = new InputStreamResource(user.getProfileImage().getBinaryStream());
+            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+                    .contentLength(user.getProfileImage().length()).body(file);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/myProfile")
