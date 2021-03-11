@@ -64,56 +64,36 @@
     {{ #pendingApplications }}
     <div class="responsiveTable mb-3">
         <div class="rtRow rtHeader">
-            <div class="width10 text-center">Licencia</div>
-            <div class="width10 text-center">Nick</div>
+            <div class="width10 text-center">Rol</div>
+            <div class="width15 text-center">Licencia</div>
+            <div class="width15 text-center">Nick</div>
             <div class="width10 text-center">Nombre</div>
-            <div class="width20 text-center">Apellidos</div>
+            <div class="width15 text-center">Apellidos</div>
             <div class="width20 text-center">Correo Electrónico</div>
-            <div class="width20 text-center">Acciones</div>
+            <div class="width15 text-center">Acciones</div>
         </div>
         {{ #pendingList }}
         <div class="rtRow">
-            <div class="width10 text-center">{{ licenseId }}</div>
-            <div class="width10 text-center">{{ nickname }}</div>
+            <div class="width10 text-center">
+                <i class="fas fa-user-tie beltStyle {{ belt }}"></i> ({{ belt.name }})
+            </div>
+            <div class="width15 text-center">{{ licenseId }}</div>
+            <div class="width15 text-center">{{ nickname }}</div>
             <div class="width10 text-center">{{ name }}</div>
-            <div class="width20 text-center">{{ surname }}</div>
+            <div class="width15 text-center">{{ surname }}</div>
             <div class="width20 text-center">{{ email }}</div>
-            <div class="width20 text-center">
+            <div class="width15 text-center">
                 <button class="btn btn-outline-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
-                    <i class="fas fa-check"></i>
+                    <i class="fas fa-info-circle"></i>
                 </button>
-                <a href="/admin/user/edit/{{ licenseId }}" class="btn btn-outline-corporative">
+                <a class="btn btn-outline-success">
+                    <i class="fas fa-check"></i>
+                </a>
+                <a href="#" class="btn btn-outline-danger">
                     <i class="fas fa-times"></i>
                 </a>
             </div>
-            <div class="viewMore" style="display: none">
-                <div class="col-md-4">
-                    <img alt="avatar" class="avatar"
-                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-10">
-                                <h5 class="card-title">{{ nickname }}</h5>
-                            </div>
-                            <div class="col-2">
-                                <i class="fas fa-user-ninja fa-2x"></i>
-                            </div>
-                        </div>
-                        <div class="card-text text-start">
-                            {{ name }} <strong>{{ surname }}</strong><br>
-                            <strong>Licencia:</strong> {{ licenseId }}.<br>
-                            <strong>DNI:</strong> {{ dni }}.<br>
-                            <strong>Correo Electrónico:</strong> {{ email }}. <br>
-                            <strong>Peso:</strong> {{ weight }}kg. <br>
-                            <strong>Gimnasio:</strong> {{ gym }}. <br>
-                            <strong>Género:</strong> {{ gender }}. <br>
-                            <strong>Fecha de nacimiento:</strong> {{ birthDate }}<br>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {{> admin/user/list.moreInformation }}
         </div>
         {{ /pendingList }}
     </div>
@@ -126,21 +106,22 @@
         <div class="rtRow rtHeader">
             <div class="width10 text-center">Rol</div>
             <div class="width15 text-center">Licencia</div>
-            <div class="width10 text-center">Nick</div>
+            <div class="width15 text-center">Nick</div>
             <div class="width10 text-center">Nombre</div>
-            <div class="width20 text-center">Apellidos</div>
+            <div class="width15 text-center">Apellidos</div>
             <div class="width20 text-center">Correo Electrónico</div>
             <div class="width15 text-center">Acciones</div>
         </div>
         {{ #userList }}
         <div class="rtRow">
             <div class="width10 text-center">
-                <i class="fas beltStyle {{ belt }} {{ #competitors }}fa-user-ninja{{ /competitors }}{{ ^competitors }}fa-user-tie{{ /competitors }}"></i> ({{ belt.name }})
+                <i class="fas beltStyle {{ belt }} {{ #competitors }}fa-user-ninja{{ /competitors }}{{ ^competitors }}fa-user-tie{{ /competitors }}"></i>
+                ({{ belt.name }})
             </div>
             <div class="width15 text-center">{{ licenseId }}</div>
-            <div class="width10 text-center">{{ nickname }}</div>
+            <div class="width15 text-center">{{ nickname }}</div>
             <div class="width10 text-center">{{ name }}</div>
-            <div class="width20 text-center">{{ surname }}</div>
+            <div class="width15 text-center">{{ surname }}</div>
             <div class="width20 text-center">{{ email }}</div>
             <div class="width15 text-center">
                 <button class="btn btn-outline-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
@@ -153,34 +134,7 @@
                     <i class="fas fa-trash-alt delete"></i>
                 </button>
             </div>
-            <div class="viewMore" style="display: none">
-                <div class="col-md-4">
-                    <img alt="avatar" class="avatar"
-                         src="https://pickaface.net/gallery/avatar/20140911_184056_617_demo.png">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-10">
-                                <h5 class="card-title">{{ nickname }}</h5>
-                            </div>
-                            <div class="col-2">
-                                <i class="fas fa-2x beltStyle {{ belt }} {{ #competitors }}fa-user-ninja{{ /competitors }}{{ ^competitors }}fa-user-tie{{ /competitors }}"></i>
-                            </div>
-                        </div>
-                        <div class="card-text text-start">
-                            {{ name }} <strong>{{ surname }}</strong><br>
-                            <strong>Licencia:</strong> {{ licenseId }}.<br>
-                            <strong>DNI:</strong> {{ dni }}.<br>
-                            <strong>Correo Electrónico:</strong> {{ email }}. <br>
-                            <strong>Peso:</strong> {{ weight }}kg. <br>
-                            <strong>Gimnasio:</strong> {{ gym }}. <br>
-                            <strong>Género:</strong> {{ gender }}. <br>
-                            <strong>Fecha de nacimiento:</strong> {{ birthDate }}<br>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {{> admin/user/list.moreInformation }}
         </div>
         {{ /userList }}
     </div>
