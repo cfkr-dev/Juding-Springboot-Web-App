@@ -29,10 +29,10 @@
         </a>
         <nav class="navbar" id="navbar">
             <ul>
-                <li><a class="nav-link scrollto" href="index.html">Inicio</a></li>
-                <li><a class="nav-link scrollto" href="ranking.html">Ranking</a></li>
-                <li><a class="nav-link scrollto active" href="viewProfile.html">Mi perfil</a></li>
-                <li><a class="login scrollto" href="/index.html">Cerrar sesión</a></li>
+                <li><a class="nav-link scrollto" href="/myHome">Inicio</a></li>
+                <li><a class="nav-link scrollto" href="/ranking">Ranking</a></li>
+                <li><a class="nav-link scrollto active" href="/myProfile">Mi perfil</a></li>
+                <li><a class="login scrollto" href="/logout">Cerrar sesión</a></li>
             </ul>
             <i class="far fa-bars mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
@@ -42,7 +42,7 @@
     <span class="profileModificationsTitle">
         Modifica tus datos
     </span>
-    <form action="editProfile.html" class="needs-validation flex-sb flex-w" method="post" novalidate>
+    <form action="/myProfile/edit" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
         <input type="hidden" name="licenseId" value="{{ user.licenseId }}">
         <div class="px-2">
             <h3 class="h3">Información para competición</h3>
@@ -52,27 +52,8 @@
                     <div class="width60">
                         <div class="beltSelector">
                             <select class="form-select" id="beltSelector" name="beltSelector" required>
-                                <option>Selecciona tu cinturón</option>
-                                <option value="B">Blanco</option>
-                                <option value="BA">Blanco-Amarillo</option>
-                                <option value="A">Amarillo</option>
-                                <option value="AN">Amarillo-Naranja</option>
-                                <option value="Na">Naranja</option>
-                                <option value="NaV">Naranja-Verde</option>
-                                <option selected value="V">Verde</option>
-                                <option value="VA">Verde-Azul</option>
-                                <option value="Az">Azul</option>
-                                <option value="AzM">Azul-Marrón</option>
-                                <option value="M">Marrón</option>
-                                <option value="N">Negro</option>
+                                {{{ beltSelector }}}
                             </select>
-                            <div id="danField">
-                                <label for="dan">Dan</label>
-                                <input class="form-control" id="dan" max="10" min="1" name="dan" required type="number">
-                            </div>
-                            <div class="invalid-feedback">
-                                Es obligatorio seleccionar un cinturón.
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -124,7 +105,8 @@
                 <div class="rtRow">
                     <div class="width40"><label for="nick">Apodo</label></div>
                     <div class="width60">
-                        <input class="form-control" id="nick" name="nick" required type="text" value="{{ user.nickname }}">
+                        <input class="form-control" id="nick" name="nick" required type="text"
+                               value="{{ user.nickname }}">
                         <div class="invalid-feedback">
                             El apodo no puede estar vacío.
                         </div>
