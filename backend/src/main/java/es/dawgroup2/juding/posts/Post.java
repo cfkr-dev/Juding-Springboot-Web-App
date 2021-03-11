@@ -1,7 +1,6 @@
-package posts;
+package es.dawgroup2.juding.posts;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.sql.Blob;
@@ -36,7 +35,7 @@ public class Post {
 
     @Lob
     @JsonIgnore
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Blob imageFile;
 
     @Column(nullable = false)

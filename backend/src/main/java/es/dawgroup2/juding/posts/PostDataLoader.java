@@ -1,4 +1,4 @@
-package posts;
+package es.dawgroup2.juding.posts;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
