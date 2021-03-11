@@ -124,6 +124,7 @@
     {{ /competitors }}
     <div class="responsiveTable">
         <div class="rtRow rtHeader">
+            <div class="width10 text-center">Rol</div>
             <div class="width15 text-center">Licencia</div>
             <div class="width10 text-center">Nick</div>
             <div class="width10 text-center">Nombre</div>
@@ -133,12 +134,9 @@
         </div>
         {{ #userList }}
         <div class="rtRow">
-            {{ #competitors }}
-            <i class="fas fa-user-ninja beltStyle {{ belt }}"></i>
-            {{ /competitors }}
-            {{ ^competitors }}
-
-            {{ /competitors }}
+            <div class="width10 text-center">
+                <i class="fas beltStyle {{ belt }} {{ #competitors }}fa-user-ninja{{ /competitors }}{{ ^competitors }}fa-user-tie{{ /competitors }}"></i> ({{ belt.name }})
+            </div>
             <div class="width15 text-center">{{ licenseId }}</div>
             <div class="width10 text-center">{{ nickname }}</div>
             <div class="width10 text-center">{{ name }}</div>
@@ -167,7 +165,7 @@
                                 <h5 class="card-title">{{ nickname }}</h5>
                             </div>
                             <div class="col-2">
-                                <i class="fas fa-user-ninja fa-2x"></i>
+                                <i class="fas fa-2x beltStyle {{ belt }} {{ #competitors }}fa-user-ninja{{ /competitors }}{{ ^competitors }}fa-user-tie{{ /competitors }}"></i>
                             </div>
                         </div>
                         <div class="card-text text-start">

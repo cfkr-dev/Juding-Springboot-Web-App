@@ -1,19 +1,20 @@
 .beltStyle.B {
-    border: 1px solid black;
+    color: white;
+    text-shadow: 0 0 2px black;
 }
 
 .beltStyle.BAm {
-    border: 1px solid black;
-    color: #FDD835;
+    color: black;
+    text-shadow: 0 0 2px #F9A825;
 }
 
 .beltStyle.Am {
-    color: #FDD835;
+    color: #F9A825;
 }
 
 .beltStyle.AmN {
-    border: 1px solid #EF6C00;
-    color: #FDD835;
+    color: #F9A825;
+    text-shadow: 0 0 2px #EF6C00;
 }
 
 .beltStyle.N {
@@ -21,8 +22,8 @@
 }
 
 .beltStyle.NV {
-    border: 1px solid #EF6C00;
-    color: #7CB342;
+    color: #EF6C00;
+    text-shadow: 0 0 2px #7CB342;
 }
 
 .beltStyle.V {
@@ -30,8 +31,8 @@
 }
 
 .beltStyle.VAz {
-    border: 1px solid #1976D2;
     color: #7CB342;
+    text-shadow: 0 0 2px #1976D2;
 }
 
 .beltStyle.Az {
@@ -39,8 +40,8 @@
 }
 
 .beltStyle.AzM {
-    border: 1px solid #6D4C41;
     color: #1976D2;
+    text-shadow: 0 0 2px #6D4C41;
 }
 
 .beltStyle.M {
@@ -76,16 +77,16 @@
 }
 
 .beltStyle.N8 {
-    border: 1px solid black;
+    text-shadow: 0 0 2px black;
     color: #90A4AE;
 }
 
 .beltStyle.N9 {
-    border: 1px solid black;
+    text-shadow: 0 0 2px black;
     color: #B0BEC5;
 }
 
 .beltStyle.N10 {
-    border: 1px solid black;
+    text-shadow: 0 0 2px black;
     color: #CFD8DC;
 }
