@@ -98,133 +98,148 @@ public class User implements Serializable {
         return licenseId;
     }
 
+    public User setLicenseId(String licenseId) {
+        this.licenseId = licenseId;
+        return this;
+    }
+
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public User setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
+    public User setSurname(String surname) {
         this.surname = surname;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public User setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public int getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public User setPhone(int phone) {
         this.phone = phone;
+        return this;
     }
 
     public char getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public User setGender(char gender) {
         this.gender = gender;
+        return this;
     }
 
     public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public User setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+        return this;
     }
 
     public String getDni() {
         return dni;
     }
 
-    public void setDni(String dni) {
+    public User setDni(String dni) {
         this.dni = dni;
+        return this;
     }
 
     public String getGym() {
         return gym;
     }
 
-    public void setGym(String gym) {
+    public User setGym(String gym) {
         this.gym = gym;
+        return this;
     }
 
     public int getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public User setWeight(int weight) {
         this.weight = weight;
+        return this;
     }
 
     public Belt getBelt() {
         return belt;
     }
 
-    public void setBelt(Belt belt) {
+    public User setBelt(Belt belt) {
         this.belt = belt;
+        return this;
     }
 
     public Blob getProfileImage() {
         return profileImage;
     }
 
-    public void setProfileImage(String path) throws IOException {
-        Resource image = new ClassPathResource(path);
-        profileImage = BlobProxy.generateProxy(image.getInputStream(), image.contentLength());
-    }
-
     public String getNickname() {
         return nickname;
     }
 
-    public void setNickname(String nickname) {
+    public User setNickname(String nickname) {
         this.nickname = nickname;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public User setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public String getSecurityQuestion() {
         return securityQuestion;
     }
 
-    public void setSecurityQuestion(String securityQuestion) {
+    public User setSecurityQuestion(String securityQuestion) {
         this.securityQuestion = securityQuestion;
+        return this;
     }
 
     public String getSecurityAnswer() {
         return securityAnswer;
     }
 
-    public void setSecurityAnswer(String securityAnswer) {
+    public User setSecurityAnswer(String securityAnswer) {
         this.securityAnswer = securityAnswer;
+        return this;
     }
 
     public Integer getRole() {
         return role;
     }
 
-    public void setRole(Integer role) {
+    public User setRole(Integer role) {
         this.role = role;
+        return this;
     }
 
     public Integer getRefereeRange() {
@@ -233,6 +248,18 @@ public class User implements Serializable {
 
     public User setRefereeRange(Integer refereeRange) {
         this.refereeRange = refereeRange;
+        return this;
+    }
+
+    // CUSTOM METHODS
+
+    public void setProfileImage(String path) throws IOException {
+        Resource image = new ClassPathResource(path);
+        profileImage = BlobProxy.generateProxy(image.getInputStream(), image.contentLength());
+    }
+
+    public User setProfileImage(Blob profileImage) {
+        this.profileImage = profileImage;
         return this;
     }
 
