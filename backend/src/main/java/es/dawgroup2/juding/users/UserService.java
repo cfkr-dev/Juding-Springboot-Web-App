@@ -36,4 +36,8 @@ public class UserService {
         Optional<User> opt = userRepository.findById(licenseId);
         return opt.orElse(null);
     }
+
+    public User save(User user){
+        return userRepository.save(user);
+    }
 }
