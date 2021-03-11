@@ -1,0 +1,91 @@
+.beltStyle.B {
+    border: 1px solid black;
+}
+
+.beltStyle.BAm {
+    border: 1px solid black;
+    color: #FDD835;
+}
+
+.beltStyle.Am {
+    color: #FDD835;
+}
+
+.beltStyle.AmN {
+    border: 1px solid #EF6C00;
+    color: #FDD835;
+}
+
+.beltStyle.N {
+    color: #EF6C00;
+}
+
+.beltStyle.NV {
+    border: 1px solid #EF6C00;
+    color: #7CB342;
+}
+
+.beltStyle.V {
+    color: #7CB342;
+}
+
+.beltStyle.VAz {
+    border: 1px solid #1976D2;
+    color: #7CB342;
+}
+
+.beltStyle.Az {
+    color: #1976D2;
+}
+
+.beltStyle.AzM {
+    border: 1px solid #6D4C41;
+    color: #1976D2;
+}
+
+.beltStyle.M {
+    color: #6D4C41;
+}
+
+.beltStyle.N1 {
+    color: #212121;
+}
+
+.beltStyle.N2 {
+    color: #263238;
+}
+
+.beltStyle.N3 {
+    color: #37474F;
+}
+
+.beltStyle.N4 {
+    color: #455A64;
+}
+
+.beltStyle.N5 {
+    color: #546E7A;
+}
+
+.beltStyle.N6 {
+    color: #607D8B;
+}
+
+.beltStyle.N7 {
+    color: #78909C;
+}
+
+.beltStyle.N8 {
+    border: 1px solid black;
+    color: #90A4AE;
+}
+
+.beltStyle.N9 {
+    border: 1px solid black;
+    color: #B0BEC5;
+}
+
+.beltStyle.N10 {
+    border: 1px solid black;
+    color: #CFD8DC;
+}
