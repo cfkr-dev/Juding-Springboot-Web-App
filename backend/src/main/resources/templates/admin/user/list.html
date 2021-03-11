@@ -21,6 +21,7 @@
     <link href="/assets/css/bootstrapAccomodations.css" rel="stylesheet">
     <link href="/assets/css/responsiveTable.css" rel="stylesheet">
     <link href="/assets/css/adminScreen.css" rel="stylesheet">
+    <link href="/assets/css/beltAssignations.css" rel="stylesheet">
 </head>
 <body>
 <header class="header fixed-top" id="header">
@@ -132,6 +133,12 @@
         </div>
         {{ #userList }}
         <div class="rtRow">
+            {{ #competitors }}
+            <i class="fas fa-user-ninja beltStyle {{ belt }}"></i>
+            {{ /competitors }}
+            {{ ^competitors }}
+
+            {{ /competitors }}
             <div class="width15 text-center">{{ licenseId }}</div>
             <div class="width10 text-center">{{ nickname }}</div>
             <div class="width10 text-center">{{ name }}</div>

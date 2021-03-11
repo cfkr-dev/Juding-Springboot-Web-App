@@ -1,5 +1,6 @@
 package es.dawgroup2.juding.users;
 
+import es.dawgroup2.juding.belts.Belt;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -39,8 +40,9 @@ public class User implements Serializable {
     @Column(nullable = false)
     private int weight;
 
-    @Column(nullable = false)
-    private String belt;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 3)
+    private Belt belt;
 
     @Column(nullable = false)
     private String nickname;
@@ -62,7 +64,7 @@ public class User implements Serializable {
     protected User() {
     }
 
-    public User(String licenseId, String name, String surname, String email, int phone, char gender, Date birthDate, String dni, String gym, int weight, String belt, String nickname, String password, String securityQuestion, String securityAnswer, int role) {
+    public User(String licenseId, String name, String surname, String email, int phone, char gender, Date birthDate, String dni, String gym, int weight, Belt belt, String nickname, String password, String securityQuestion, String securityAnswer, int role) {
         this.licenseId = licenseId;
         this.name = name;
         this.surname = surname;
@@ -86,128 +88,144 @@ public class User implements Serializable {
         return licenseId;
     }
 
-    public void setLicenseId(String licenseId) {
+    public User setLicenseId(String licenseId) {
         this.licenseId = licenseId;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public User setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
+    public User setSurname(String surname) {
         this.surname = surname;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public User setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public int getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public User setPhone(int phone) {
         this.phone = phone;
+        return this;
     }
 
     public char getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public User setGender(char gender) {
         this.gender = gender;
+        return this;
     }
 
     public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public User setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+        return this;
     }
 
     public String getDni() {
         return dni;
     }
 
-    public void setDni(String dni) {
+    public User setDni(String dni) {
         this.dni = dni;
+        return this;
     }
 
     public String getGym() {
         return gym;
     }
 
-    public void setGym(String gym) {
+    public User setGym(String gym) {
         this.gym = gym;
+        return this;
     }
 
     public int getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public User setWeight(int weight) {
         this.weight = weight;
+        return this;
     }
 
-    public String getBelt() {
+    public Belt getBelt() {
         return belt;
     }
 
-    public void setBelt(String belt) {
+    public User setBelt(Belt belt) {
         this.belt = belt;
+        return this;
     }
 
     public String getNickname() {
         return nickname;
     }
 
-    public void setNickname(String nickname) {
+    public User setNickname(String nickname) {
         this.nickname = nickname;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public User setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public String getSecurityQuestion() {
         return securityQuestion;
     }
 
-    public void setSecurityQuestion(String securityQuestion) {
+    public User setSecurityQuestion(String securityQuestion) {
         this.securityQuestion = securityQuestion;
+        return this;
     }
 
     public String getSecurityAnswer() {
         return securityAnswer;
     }
 
-    public void setSecurityAnswer(String securityAnswer) {
+    public User setSecurityAnswer(String securityAnswer) {
         this.securityAnswer = securityAnswer;
+        return this;
     }
 
     public Integer getRole() {
         return role;
     }
 
-    public void setRole(Integer role) {
+    public User setRole(Integer role) {
         this.role = role;
+        return this;
     }
 
     public Integer getRefereeRange() {
