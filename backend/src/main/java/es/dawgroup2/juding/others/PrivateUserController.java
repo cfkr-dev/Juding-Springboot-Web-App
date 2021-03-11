@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
-import java.util.Optional;
 
 @Controller
 public class PrivateUserController {
@@ -61,8 +60,19 @@ public class PrivateUserController {
                     .addAttribute("isMale", currentUser.isMale())
                     .addAttribute("beltValue", currentUser.getBelt().getLongName());
         }
-        return "myProfile";
+        return "/myProfile/index";
     }
 
+    @GetMapping("/myProfile/edit")
+    public String editProfile(Model model, HttpServletResponse response) {
+        User currentUser = userService.getUserOrNull(licenseId);
+        if (currentUser == null) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        } else {
+            model.addAttribute("user", currentUser)
+                    .addAttribute("isCompetitor", currentUser.isCompetitor());
+        }
+        return "/myProfile/edit";
+    }
 
 }
