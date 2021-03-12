@@ -59,7 +59,7 @@
         <div class="rtRow rtHeader">
             <div class="width85"></div>
             <div class="width15 text-center">
-                <button class="btn btn-corporative"><i class="fa fa-plus-circle"></i> Nueva noticia</button>
+                <a href="/admin/post/createNew" class="btn btn-corporative"><i class="fa fa-plus-circle"></i> Nueva noticia</a>
             </div>
         </div>
         {{#postList}}
@@ -69,18 +69,32 @@
             <div class="width10 text-center">{{timestamp}}</div>
             <div class="width20 text-center">{{author}}</div>
             <div class="width15 text-center">
-                <button class="btn btn-outline-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                <a href="/admin/post/list/{{idPost}}" class="btn btn-outline-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
                     <i class="fas fa-info"></i>
-                </button>
-                <a href="#" class="btn btn-outline-corporative">
+                </a>
+                <a href="/admin/post/edit/{{idPost}}" class="btn btn-outline-corporative">
                     <i class="fas fa-pencil"></i>
                 </a>
-                <button class="btn btn-corporative">
+                <a href="/admin/post/delete/{{idPost}}" class="btn btn-corporative">
                     <i class="fas fa-trash-alt delete"></i>
-                </button>
+                </a>
             </div>
             <div class="viewMore" style="display: none">
-
+                <div class="card-body">
+                    <div class="col-lg-12 news">
+                        <h2 class="competitionTitle">{{title}}</h2>
+                        <div class="imageInTheMiddle">
+                            <img alt="" class="imageNews" src="/image/{{idPost}}">
+                        </div>
+                        <div class="responsiveTable">
+                            <div class="rtRow modificationResponsibleTable">
+                                <div class="width3 text-center modificationResponsibleChild">Autor: {{author}}</div>
+                                <div class="width3 text-center modificationResponsibleChild">Fecha de publicación: {{timestamp}}</div>
+                            </div>
+                        </div>
+                        <div class="body">{{body}}</div>
+                    </div>
+                </div>
             </div>
         </div>
         {{/postList}}
@@ -118,6 +132,6 @@
 
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>
-<script src="/assets/js/competitorsList.js"></script>
+<script src="/assets/js/postsList.js"></script>
 </body>
 </html>
