@@ -46,31 +46,28 @@
     </div>
 </header>
 <div class="container pb-4">
-    <form action="editCompetitor.html" class="needs-validation flex-sb flex-w" method="post" novalidate>
-        <h2 class="h2">Edición de noticia</h2>
+    <h2 class="h2">Edición de noticia</h2>
+    <form action="/admin/post/edit/modify" class="needs-validation flex-sb flex-w" method="post" enctype="multipart/form-data" novalidate>
+
+        <input type="hidden" name="id" value="{{post.idPost}}">
 
         <!-- Title -->
         <label class="txt1" for="title">Título <span class="asterisk">*</span></label>
-        <input class="form-control" id="title" name="title" pattern="[0-9]{10}$" required type="text"
+        <input class="form-control" id="title" name="title" required type="text"
                value="{{post.title}}">
         <div class="invalid-feedback">
-            El título no puede estar vacío.
+            Este campo no puede estar vacio.
         </div>
 
-        <!-- Title -->
-        <label class="txt1" for="image">Imagen<span class="asterisk">*</span></label>
-        <img src="/admin/post/edit/image/{{post.idPost}}">
-        <input class="form-control" id="image" name="image" required type="file">
-        <div class="invalid-feedback">
-            El título no puede estar vacío.
-        </div>
+        <!-- Image -->
+
+        <label class="txt1" for="image">Imagen</label>
+        <img src="/image/{{post.idPost}}">
+        <input class="form-control" id="image" name="image" type="file">
 
         <!-- Body -->
         <label class="txt1" for="body">Cuerpo <span class="asterisk">*</span></label>
         <textarea cols="30" id="body" name="body" rows="20">{{post.body}}</textarea>
-        <div class="invalid-feedback">
-            Esta contraseña no se acoge al formato solicitado.
-        </div>
         <div class="container-login100-form-btn mt-2">
             <button class="btn btn-corporative" type="submit">Actualizar datos</button>
         </div>
