@@ -1,8 +1,15 @@
 package es.dawgroup2.juding.competitions;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.engine.jdbc.BlobProxy;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.annotation.Resource;
 import javax.persistence.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -40,9 +47,11 @@ public class Competition {
     @Column(nullable = false)
     private int refereeStatus;
 
-    protected Competition() {
 
-    }
+    @Lob
+    @JsonIgnore
+    private Blob imageFile;
+
 
     public Competition(String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, String referee, int refereeStatus) {
         this.shortName = shortName;
@@ -53,29 +62,58 @@ public class Competition {
         this.endDate = endDate;
         this.referee = referee;
         this.refereeStatus = refereeStatus;
+
+    }
+
+    protected Competition() {
+
     }
 
 
+    /**
+     * getter
+     * @return id of the competition
+     */
     public int getIdCompetition() {
         return idCompetition;
     }
 
+    /**
+     * setter
+     * @param idCompetition
+     */
     public void setIdCompetition(int idCompetition) {
         this.idCompetition = idCompetition;
     }
 
+    /**
+     *
+     * @return short name of the competition
+     */
     public String getShortName() {
         return shortName;
     }
 
+    /**
+     * setter
+     * @param shortName
+     */
     public void setShortName(String shortName) {
         this.shortName = shortName;
     }
 
+    /**
+     *
+     * @return the additional info of a competition
+     */
     public String getAdditionalInfo() {
         return additionalInfo;
     }
 
+    /**
+     * setter
+     * @param additionalInfo
+     */
     public void setAdditionalInfo(String additionalInfo) {
         this.additionalInfo = additionalInfo;
     }
@@ -126,6 +164,15 @@ public class Competition {
 
     public void setRefereeStatus(int refereeStatus) {
         this.refereeStatus = refereeStatus;
+    }
+
+
+    public Blob getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(Blob imageFile) throws IOException {
+        this.imageFile= imageFile;
     }
 
     public String translatingDates(Timestamp startDate, Timestamp endDate) {
