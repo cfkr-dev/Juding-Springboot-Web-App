@@ -72,6 +72,7 @@ public class Competition {
 
     /**
      * getter
+     *
      * @return id of the competition
      */
     public int getIdCompetition() {
@@ -80,6 +81,7 @@ public class Competition {
 
     /**
      * setter
+     *
      * @param idCompetition
      */
     public void setIdCompetition(int idCompetition) {
@@ -87,7 +89,6 @@ public class Competition {
     }
 
     /**
-     *
      * @return short name of the competition
      */
     public String getShortName() {
@@ -96,6 +97,7 @@ public class Competition {
 
     /**
      * setter
+     *
      * @param shortName
      */
     public void setShortName(String shortName) {
@@ -103,7 +105,6 @@ public class Competition {
     }
 
     /**
-     *
      * @return the additional info of a competition
      */
     public String getAdditionalInfo() {
@@ -112,6 +113,7 @@ public class Competition {
 
     /**
      * setter
+     *
      * @param additionalInfo
      */
     public void setAdditionalInfo(String additionalInfo) {
@@ -172,20 +174,44 @@ public class Competition {
     }
 
     public void setImageFile(Blob imageFile) throws IOException {
-        this.imageFile= imageFile;
+        this.imageFile = imageFile;
     }
 
     public String translatingDates(Timestamp startDate, Timestamp endDate) {
         LocalDateTime localDateTime = LocalDateTime.now();
         Timestamp actualDate = Timestamp.valueOf(localDateTime);
         int state = actualDate.compareTo(startDate);
-        int state2 =actualDate.compareTo(endDate);
-        if (state >= 0){
+        int state2 = actualDate.compareTo(endDate);
+        if (state >= 0) {
             if (state2 < 0) {
                 return "Comenzada";
-            }
-            else return "Finalizada";
-        }else return "Por comenzar";
+            } else return "Finalizada";
+        } else return "Por comenzar";
+    }
+
+    public String translatingRefereeStatus(int refereeStatus) {
+        switch (refereeStatus) {
+            case 0:
+                return "Sin confirmar";
+            case 1:
+                return "Confirmada";
+            case 2:
+                return "Rechazada";
+            default:
+                return "Error";
+        }
+    }
+    public int encodeRefereeStatus(String refereeStatus){
+        switch (refereeStatus){
+            case "Sin confirmar":
+                return 0;
+            case "Confirmada":
+                return 1;
+            case "Rechazada":
+                return 2;
+            default:
+                return 3;
+        }
     }
 
 }

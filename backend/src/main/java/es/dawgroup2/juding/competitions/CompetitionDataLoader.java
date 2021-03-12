@@ -14,6 +14,8 @@ public class CompetitionDataLoader {
     @PostConstruct
     public void competitionLoader(){
         competitionRepository.save(new Competition("Copa Platano","nah",45,50, new Timestamp(953596800),new Timestamp(953596800),"JU-1234567890",1));
-        competitionRepository.save(new Competition("Campeonato Champiñon", "nah", 45, 50, new Timestamp(953596800), new Timestamp(953596800), "JU-1234567890", 1));
+        competitionRepository.save(new Competition("Campeonato Champiñon", "nah", 45, 50, new Timestamp(953596800), new Timestamp(953596800), "JU-1234567890", 0));
+        competitionRepository.save(new Competition("Campeonato Placeholder", "Buenos dias", 80, 100, new Timestamp(953596800), new Timestamp(953596800), "JU-1234567870", 2));
+
     }
 }

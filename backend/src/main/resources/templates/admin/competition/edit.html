@@ -109,10 +109,10 @@
 
         <!-- Referee confirmation -->
         <label class="txt1" for="refereeStatus">Asistencia del árbitro<span class="asterisk">*</span></label>
-        <input class="form-control" id="refereeStatus" name="refereeStatus" required type="text"
-               value="{{competition.refereeStatus}}">
+        <input class="form-control" id="refereeStatus" name="refereeStatus" required type="text" pattern="Confirmada|Sin confirmar|Rechazada"
+               value="{{status}}">
         <div class="invalid-feedback">
-            El campo no puede estar vacío.
+            Opciones disponibles: "Confirmada" o "Sin confirmar" o "Rechazada".
         </div>
 
         <!-- Competition image -->

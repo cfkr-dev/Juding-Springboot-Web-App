@@ -28,10 +28,6 @@ public class CompetitionController {
     @GetMapping("/admin/competition/list")
     public String competitionList(Model model) {
         List<Competition> competitionList = competitionService.findAll();
-        for (Competition competition : competitionList) {
-            String state = competition.translatingDates(competition.getStartDate(), competition.getEndDate());
-            model.addAttribute("state", state);
-        }
         model.addAttribute("competitionList", competitionList);
         return "/admin/competition/list";
     }
@@ -39,12 +35,14 @@ public class CompetitionController {
     @GetMapping("/admin/competition/edit/{idCompetition}")
     public String editCompetition(@PathVariable String idCompetition, Model model) {
         Competition competition = competitionService.findById(idCompetition);
+        String status = competition.translatingRefereeStatus(competition.getRefereeStatus());
+        model.addAttribute("status",status);
         model.addAttribute("competition", competition);
         return "/admin/competition/edit";
     }
 
     @PostMapping("/admin/competition/edit")
-    public String updatingCompetitionInfo(@RequestParam String idCompetition, @RequestParam String shortName, @RequestParam String additionalInfo, @RequestParam int minWeight, @RequestParam int maxWeight, @RequestParam Timestamp startDate, @RequestParam Timestamp endDate, @RequestParam String referee, @RequestParam int refereeStatus, MultipartFile imageFile) throws IOException, SQLException {
+    public String updatingCompetitionInfo(@RequestParam String idCompetition, @RequestParam String shortName, @RequestParam String additionalInfo, @RequestParam int minWeight, @RequestParam int maxWeight, @RequestParam Timestamp startDate, @RequestParam Timestamp endDate, @RequestParam String referee, @RequestParam String refereeStatus, MultipartFile imageFile) throws IOException, SQLException {
         Competition competition = competitionService.findById(idCompetition);
         if (!imageFile.isEmpty()) {
             competition.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
@@ -52,14 +50,14 @@ public class CompetitionController {
             if (competition.getImageFile() != null)
                 competition.setImageFile(BlobProxy.generateProxy(competition.getImageFile().getBinaryStream(), competition.getImageFile().length()));
         }
-
+        int status= competition.encodeRefereeStatus(refereeStatus);
         competition.setIdCompetition(Integer.parseInt(idCompetition));
         competition.setShortName(shortName);
         competition.setAdditionalInfo(additionalInfo);
         competition.setMinWeight(minWeight);
         competition.setMaxWeight(maxWeight);
         competition.setReferee(referee);
-        competition.setRefereeStatus(refereeStatus);
+        competition.setRefereeStatus(status);
         competition.setStartDate(startDate);
         competition.setEndDate(endDate);
         competitionService.updatingInfoCompetition(competition);
@@ -81,10 +79,12 @@ public class CompetitionController {
     }
 
     @PostMapping("/admin/competition/newCompetition")
-    public String addACompetition(Competition competition, @RequestParam MultipartFile imageFile) throws IOException {
+    public String addACompetition(Competition competition,@RequestParam String status, @RequestParam MultipartFile imageFile) throws IOException {
         if (!imageFile.isEmpty()) {
             competition.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
         }
+        int refereeStatus= competition.encodeRefereeStatus(status);
+        competition.setRefereeStatus(refereeStatus);
         competitionService.add(competition);
         return "redirect:/admin/competition/list";
     }
