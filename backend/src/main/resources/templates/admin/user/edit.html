@@ -154,31 +154,11 @@
 
         <!-- Belt selector -->
         <label class="txt1" for="beltSelector">Cinturón <span class="asterisk">*</span></label>
-        <div class="wrap-input100 validate-input" id="">
+        <div class="wrap-input100 validate-input">
             <div class="wrap-input100 validate-input">
                 <select class="form-select" id="beltSelector" name="belt" required>
-                    <option selected>Seleccione el cinturón</option>
-                    <option value="B">Blanco</option>
-                    <option value="BA">Blanco-Amarillo</option>
-                    <option value="A">Amarillo</option>
-                    <option value="AN">Amarillo-Naranja</option>
-                    <option value="Na">Naranja</option>
-                    <option value="NaV">Naranja-Verde</option>
-                    <option selected value="V">Verde</option>
-                    <option value="VA">Verde-Azul</option>
-                    <option value="Az">Azul</option>
-                    <option value="AzM">Azul-Marrón</option>
-                    <option value="M">Marrón</option>
-                    <option value="N">Negro</option>
+                    {{{ beltSelector }}}
                 </select>
-                <div id="danField">
-                    <label class="txt1" for="dan">Dan <span class="asterisk">*</span></label>
-                    <input class="form-control" id="dan" max="10" min="1" name="dan"
-                           type="number">
-                    <div class="invalid-feedback">
-                        El dan para cinturón negro debe estar entre 1 y 10.
-                    </div>
-                </div>
             </div>
         </div>
         <div class="invalid-feedback">

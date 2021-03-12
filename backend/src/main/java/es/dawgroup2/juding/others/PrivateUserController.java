@@ -3,6 +3,8 @@ package es.dawgroup2.juding.others;
 import es.dawgroup2.juding.belts.BeltService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
+import es.dawgroup2.juding.users.refereeRange.RefereeRange;
+import es.dawgroup2.juding.users.refereeRange.RefereeRangeService;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -33,6 +35,9 @@ public class PrivateUserController {
 
     @Autowired
     BeltService beltService;
+
+    @Autowired
+    RefereeRangeService refereeRangeService;
 
     @GetMapping("/myHome")
     public String myHome(Model model, HttpServletResponse response) {
@@ -81,7 +86,10 @@ public class PrivateUserController {
         } else {
             model.addAttribute("user", currentUser)
                     .addAttribute("isCompetitor", currentUser.isCompetitor())
-                    .addAttribute("beltSelector", beltService.getSelectField(currentUser.getBelt().name()));
+                    .addAttribute("beltSelector", beltService.getSelectField(currentUser.getBelt()));
+            if (currentUser.getRole() == 2) {
+                model.addAttribute("refereeRangeSelector", refereeRangeService.generateActiveRangesSelect(currentUser.getRefereeRange(), true));
+            }
         }
         return "/myProfile/edit";
     }
@@ -91,7 +99,7 @@ public class PrivateUserController {
                               @RequestParam String beltSelector,
                               @RequestParam(required = false) String gym,
                               @RequestParam(required = false) Integer weight,
-                              @RequestParam(required = false) Integer refereeRange,
+                              @RequestParam(required = false) RefereeRange refereeRange,
                               @RequestParam String nick,
                               @RequestParam int phone,
                               @RequestParam String email,
