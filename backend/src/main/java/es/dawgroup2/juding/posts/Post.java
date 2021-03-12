@@ -30,7 +30,7 @@ public class Post {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length=2*1024*1024)
     private String body;
 
     @Lob
