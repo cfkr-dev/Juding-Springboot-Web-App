@@ -255,9 +255,10 @@ public class User implements Serializable {
 
     // CUSTOM METHODS
 
-    public void setProfileImage(String path) throws IOException {
+    public User setProfileImage(String path) throws IOException {
         Resource image = new ClassPathResource(path);
         profileImage = BlobProxy.generateProxy(image.getInputStream(), image.contentLength());
+        return this;
     }
 
     public User setProfileImage(Blob profileImage) {
