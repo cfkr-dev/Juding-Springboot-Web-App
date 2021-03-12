@@ -2,6 +2,7 @@ package es.dawgroup2.juding.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import es.dawgroup2.juding.belts.Belt;
+import es.dawgroup2.juding.users.gender.Gender;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -30,8 +31,9 @@ public class User implements Serializable {
 
     private int phone;
 
-    @Column(nullable = false)
-    private char gender;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 1)
+    private Gender gender;
 
     @Column(nullable = false)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -74,7 +76,7 @@ public class User implements Serializable {
     protected User() {
     }
 
-    public User(String licenseId, String name, String surname, String email, int phone, char gender, Date birthDate, String dni, String gym, int weight, Belt belt, String profileImage, String nickname, String password, String securityQuestion, String securityAnswer, Integer role) throws IOException {
+    public User(String licenseId, String name, String surname, String email, int phone, Gender gender, Date birthDate, String dni, String gym, int weight, Belt belt, String profileImage, String nickname, String password, String securityQuestion, String securityAnswer, Integer role) throws IOException {
         this.licenseId = licenseId;
         this.name = name;
         this.surname = surname;
@@ -139,11 +141,11 @@ public class User implements Serializable {
         return this;
     }
 
-    public char getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public User setGender(char gender) {
+    public User setGender(Gender gender) {
         this.gender = gender;
         return this;
     }
@@ -263,7 +265,7 @@ public class User implements Serializable {
         return this;
     }
 
-    public boolean isMale() { return gender == 'M'; }
+    public boolean isMale() { return gender.name().equals("H"); }
 
     public boolean isCompetitor(){ return role == 1; }
 
