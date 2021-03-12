@@ -12,15 +12,7 @@ public class BeltService {
         return null;
     }
 
-    public String getSelectField() {
-        StringBuilder sb = new StringBuilder();
-        for (Belt b : Belt.values()) {
-            sb.append("<option value=\"").append(b.name()).append("\">").append(b.getLongName()).append("</option>");
-        }
-        return sb.toString();
-    }
-
-    public String getSelectFieldWithCurrentValue(String id) {
+    public String getSelectField(String id) {
         StringBuilder sb = new StringBuilder();
         for (Belt b : Belt.values()) {
             sb.append("<option ");

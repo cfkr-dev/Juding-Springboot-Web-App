@@ -26,7 +26,7 @@ import java.sql.SQLException;
 public class PrivateUserController {
 
     // TODO CHANGE THIS WHEN SESSION IS CONTROLLED
-    String licenseId = "1234567890";
+    String licenseId = "JU-1234567893";
 
     @Autowired
     UserService userService;
@@ -81,7 +81,7 @@ public class PrivateUserController {
         } else {
             model.addAttribute("user", currentUser)
                     .addAttribute("isCompetitor", currentUser.isCompetitor())
-                    .addAttribute("beltSelector", beltService.getSelectFieldWithCurrentValue(currentUser.getBelt().name()));
+                    .addAttribute("beltSelector", beltService.getSelectField(currentUser.getBelt().name()));
         }
         return "/myProfile/edit";
     }
