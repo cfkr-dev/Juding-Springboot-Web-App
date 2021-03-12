@@ -3,6 +3,7 @@ package es.dawgroup2.juding.users;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import es.dawgroup2.juding.belts.Belt;
 import es.dawgroup2.juding.users.gender.Gender;
+import es.dawgroup2.juding.users.refereeRange.RefereeRange;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -71,7 +72,8 @@ public class User implements Serializable {
     @Column(nullable = false)
     private Integer role;
 
-    private Integer refereeRange;
+    @Enumerated(EnumType.STRING)
+    private RefereeRange refereeRange;
 
     protected User() {
     }
@@ -244,11 +246,11 @@ public class User implements Serializable {
         return this;
     }
 
-    public Integer getRefereeRange() {
+    public RefereeRange getRefereeRange() {
         return refereeRange;
     }
 
-    public User setRefereeRange(Integer refereeRange) {
+    public User setRefereeRange(RefereeRange refereeRange) {
         this.refereeRange = refereeRange;
         return this;
     }
@@ -269,15 +271,4 @@ public class User implements Serializable {
     public boolean isMale() { return gender.name().equals("H"); }
 
     public boolean isCompetitor(){ return role == 1; }
-
-    public String getLiteralRefereeRange() {
-        if (role == 2 && refereeRange != null){
-            switch (refereeRange){
-                case 1: return "Árbitro estándar";
-                case 2: return "Árbitro de competición";
-                case 3: return "Árbitro auxiliar";
-            }
-        }
-        return null;
-    }
 }
