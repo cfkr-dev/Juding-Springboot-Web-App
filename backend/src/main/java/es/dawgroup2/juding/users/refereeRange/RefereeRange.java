@@ -1,10 +1,10 @@
 package es.dawgroup2.juding.users.refereeRange;
 
 public enum RefereeRange {
-    SOLIC("Solicitante", false),
-    ESTAN("Árbitro estándar", true),
-    COMPT("Árbitro de competición", true),
-    AUXIL("Árbitro auxiliar", true);
+    S("Solicitante", false),
+    E("Árbitro estándar", true),
+    C("Árbitro de competición", true),
+    A("Árbitro auxiliar", true);
 
     private final String description;
     private final boolean isActiveReferee;
