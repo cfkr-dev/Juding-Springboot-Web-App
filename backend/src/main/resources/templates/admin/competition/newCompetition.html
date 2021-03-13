@@ -47,18 +47,11 @@
 </header>
 <div class="container pb-4">
     <form action="/admin/competition/newCompetition" class="needs-validation flex-sb flex-w" method="post"
+          enctype="multipart/form-data"
           novalidate>
         <h2 class="h2">Formulario competición</h2>
 
         <h3 class="h3">Información de la competición</h3>
-        <!-- Competition ID -->
-        <!--<label class="txt1" for="idCompetition" style="display:none">Número de identificación de la competición <span
-                class="asterisk">*</span></label>
-        <input class="form-control" id="idCompetition" name="idCompetition" pattern="[0-9]{10}$" required type="hidden"
-        >
-        <div class="invalid-feedback">
-            La identificación de la competición no se ajusta al formato requerido (10 dígitos).
-        </div>-->
 
         <!-- Competition name -->
         <label class="txt1" for="shortName">Nombre de la competición <span class="asterisk">*</span></label>
@@ -71,8 +64,8 @@
         <!-- Competition additional info -->
         <label class="txt1" for="additionalInfo">Información sobre la competición <span
                 class="asterisk">*</span></label>
-        <input class="form-control" id="additionalInfo" name="additionalInfo" required type="text"
-        >
+        <textarea cols="30" id="additionalInfo" name="additionalInfo" required rows="20"
+        ></textarea>
         <div class="invalid-feedback">
             El campo no puede estar vacío.
         </div>
@@ -108,21 +101,18 @@
 
         <!-- Referee confirmation -->
         <label class="txt1" for="refereeStatus">Asistencia del árbitro<span class="asterisk">*</span></label>
-        <input class="form-control" id="refereeStatus" name="status" required type="text" pattern="Confirmada|Sin confirmar|Rechazada"
+        <input class="form-control" id="refereeStatus" name="status" required type="text"
+               pattern="Confirmada|Sin confirmar|Rechazada"
         >
         <div class="invalid-feedback">
             Opciones disponibles: "Confirmada" o "Sin confirmar" o "Rechazada".
         </div>
 
         <!-- Competition image -->
-        <div class="row">
-            <div class="width40"><label class="txt1" for="imageFile">Imagen de competición</label></div>
-            <div class="width60">
-                <input class="form-control" id="imageFile" name="imageFile" type="file">
-                <div class="invalid-feedback">
-                    Prueba de nuevo a subir la imagen.
-                </div>
-            </div>
+        <label class="txt1" for="imageFile">Imagen de competición</label>
+        <input class="form-control" id="imageFile" name="imageFile" type="file">
+        <div class="invalid-feedback">
+            Prueba de nuevo a subir la imagen.
         </div>
 
         <!-- Start date and end date of a competition fields -->
@@ -158,10 +148,23 @@
 <script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 <script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.es.js"></script>
+<script src="/assets/vendor/tinymce/js/tinymce/tinymce.min.js"></script>
+
 
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/formControl.js"></script>
 <script src="/assets/js/validationScript.js"></script>
+<script>
+    $(function () {
+        tinymce.init({
+            selector: 'textarea#additionalInfo',
+            language: 'es',
+            plugins: ['fullscreen', 'lists', 'link', 'table'],
+            toolbar: 'undo redo | styleselect | bold italic underline fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist | link unlink | table | fullscreen'
+        });
+    })
+</script>
+
 </body>
 </html>

@@ -47,6 +47,7 @@
 </header>
 <div class="container pb-4">
     <form action="/admin/competition/edit" class="needs-validation flex-sb flex-w" method="post"
+          enctype="multipart/form-data"
           novalidate>
         <h2 class="h2">Formulario competición</h2>
 
@@ -72,8 +73,8 @@
         <!-- Competition additional info -->
         <label class="txt1" for="additionalInfo">Información sobre la competición <span
                 class="asterisk">*</span></label>
-        <input class="form-control" id="additionalInfo" name="additionalInfo" required type="text"
-               value="{{competition.additionalInfo}}">
+        <textarea cols="30" id="additionalInfo" name="additionalInfo" required rows="20"
+        >{{competition.additionalInfo}}</textarea>
         <div class="invalid-feedback">
             El campo no puede estar vacío.
         </div>
@@ -109,8 +110,9 @@
 
         <!-- Referee confirmation -->
         <label class="txt1" for="refereeStatus">Asistencia del árbitro<span class="asterisk">*</span></label>
-        <input class="form-control" id="refereeStatus" name="refereeStatus" required type="text" pattern="Confirmada|Sin confirmar|Rechazada"
-               value="{{status}}">
+        <input class="form-control" id="refereeStatus" name="refereeStatus" required type="text"
+               pattern="Confirmada|Sin confirmar|Rechazada"
+               value="{{attendance}}">
         <div class="invalid-feedback">
             Opciones disponibles: "Confirmada" o "Sin confirmar" o "Rechazada".
         </div>
@@ -160,10 +162,21 @@
 <script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 <script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.es.js"></script>
+<script src="/assets/vendor/tinymce/js/tinymce/tinymce.min.js"></script>
 
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/formControl.js"></script>
 <script src="/assets/js/validationScript.js"></script>
+<script>
+    $(function () {
+        tinymce.init({
+            selector: 'textarea#additionalInfo',
+            language: 'es',
+            plugins: ['fullscreen', 'lists', 'link', 'table'],
+            toolbar: 'undo redo | styleselect | bold italic underline fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist | link unlink | table | fullscreen'
+        });
+    })
+</script>
 </body>
 </html>
