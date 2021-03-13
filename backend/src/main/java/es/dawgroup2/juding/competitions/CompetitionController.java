@@ -1,5 +1,7 @@
 package es.dawgroup2.juding.competitions;
 
+import es.dawgroup2.juding.attendances.Attendance;
+import es.dawgroup2.juding.attendances.AttendanceService;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -11,12 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.mail.Multipart;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class CompetitionController {
@@ -25,6 +25,14 @@ public class CompetitionController {
     @Autowired
     CompetitionService competitionService;
 
+    @Autowired
+    AttendanceService attendanceService;
+
+    /**
+     *
+     * @param model model of the view
+     * @return the view of the competition list
+     */
     @GetMapping("/admin/competition/list")
     public String competitionList(Model model) {
         List<Competition> competitionList = competitionService.findAll();
@@ -32,63 +40,36 @@ public class CompetitionController {
         return "/admin/competition/list";
     }
 
+    /**
+     *
+     * @param idCompetition id of the competition
+     * @param model model of the view
+     * @return view of the competition to edit
+     */
     @GetMapping("/admin/competition/edit/{idCompetition}")
     public String editCompetition(@PathVariable String idCompetition, Model model) {
         Competition competition = competitionService.findById(idCompetition);
-        String status = competition.translatingRefereeStatus(competition.getRefereeStatus());
-        model.addAttribute("status",status);
-        model.addAttribute("competition", competition);
+        model.addAttribute("competition", competition)
+                .addAttribute("attendance", attendanceService.getAttendanceToString(competition.getRefereeStatus()));
         return "/admin/competition/edit";
     }
 
-    @PostMapping("/admin/competition/edit")
-    public String updatingCompetitionInfo(@RequestParam String idCompetition, @RequestParam String shortName, @RequestParam String additionalInfo, @RequestParam int minWeight, @RequestParam int maxWeight, @RequestParam Timestamp startDate, @RequestParam Timestamp endDate, @RequestParam String referee, @RequestParam String refereeStatus, MultipartFile imageFile) throws IOException, SQLException {
-        Competition competition = competitionService.findById(idCompetition);
-        if (!imageFile.isEmpty()) {
-            competition.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
-        } else {
-            if (competition.getImageFile() != null)
-                competition.setImageFile(BlobProxy.generateProxy(competition.getImageFile().getBinaryStream(), competition.getImageFile().length()));
-        }
-        int status= competition.encodeRefereeStatus(refereeStatus);
-        competition.setIdCompetition(Integer.parseInt(idCompetition));
-        competition.setShortName(shortName);
-        competition.setAdditionalInfo(additionalInfo);
-        competition.setMinWeight(minWeight);
-        competition.setMaxWeight(maxWeight);
-        competition.setReferee(referee);
-        competition.setRefereeStatus(status);
-        competition.setStartDate(startDate);
-        competition.setEndDate(endDate);
-        competitionService.updatingInfoCompetition(competition);
-        return "redirect:/admin/competition/list";
-
-    }
-
-    @GetMapping("/admin/competition/deleteCompetition/{idCompetition}")
-    public String showCompetitionToDelete(Model model, @PathVariable String idCompetition) {
-        Competition competition = competitionService.findById(idCompetition);
-        model.addAttribute("competition", competition);
-        competitionService.deleteById(idCompetition);
-        return "redirect:/admin/competition/list";
-    }
-
+    /**
+     *
+     * @param model model of the view
+     * @return view of the competition to add
+     */
     @GetMapping("/admin/competition/newCompetition")
     public String newCompetition(Model model) {
         return "/admin/competition/newCompetition";
     }
 
-    @PostMapping("/admin/competition/newCompetition")
-    public String addACompetition(Competition competition,@RequestParam String status, @RequestParam MultipartFile imageFile) throws IOException {
-        if (!imageFile.isEmpty()) {
-            competition.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
-        }
-        int refereeStatus= competition.encodeRefereeStatus(status);
-        competition.setRefereeStatus(refereeStatus);
-        competitionService.add(competition);
-        return "redirect:/admin/competition/list";
-    }
-
+    /**
+     *
+     * @param model model of the view
+     * @param idCompetition id of the competition
+     * @return view of the competition screen
+     */
     @GetMapping("/competition/detail/{idCompetition}")
     public String showCompetition(Model model, @PathVariable String idCompetition) {
         Competition competition = competitionService.findById(idCompetition);
@@ -98,26 +79,102 @@ public class CompetitionController {
         return "/competition/detail";
     }
 
+    /**
+     *
+     * @param idCompetition id of the competition
+     * @return the image of the competition
+     * @throws SQLException
+     */
     @GetMapping("/image/{idCompetition}")
     public ResponseEntity<Object> downloadImage(@PathVariable String idCompetition) throws SQLException {
         Competition competition = competitionService.findById(idCompetition);
         if (competition.getImageFile() != null) {
-
             Resource file = new InputStreamResource(competition.getImageFile().getBinaryStream());
-
             return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
                     .contentLength(competition.getImageFile().length()).body(file);
-
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
+    /**
+     * Generates a new competition
+     * @param competition Id of the competition
+     * @param status A String of that show the status of the referee attendance
+     * @param imageFile Image of the competition
+     * @return A view of the competition list and a new competition
+     * @throws IOException
+     */
+    @PostMapping("/admin/competition/newCompetition")
+    public String addACompetition(Competition competition,
+                                  @RequestParam String status,
+                                  MultipartFile imageFile) throws IOException {
+        if (!imageFile.isEmpty()) {
+            competition.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+        }
+        competition.setRefereeStatus(attendanceService.findAttendanceById(status));
+        competitionService.add(competition);
+        return "redirect:/admin/competition/list";
+    }
 
-    /*@PostMapping("/admin/competition/edit")
-    public String updatingCompetitionInfo(Competition competition){
+    /**
+     * Form to edit a competition
+     * @param idCompetition Id of a competition
+     * @param shortName The name of a competitiom
+     * @param additionalInfo Information of a competition
+     * @param minWeight The minimum weight allowed in a competition
+     * @param maxWeight The maximum weight allowed in a competition
+     * @param startDate The start date of a competition
+     * @param endDate The end date of a competition
+     * @param referee The license of the referee in charge of the competition
+     * @param refereeStatus A String of that show the status of the referee attendance
+     * @param imageFile Image that represent the competition
+     * @return The competition edited
+     * @throws IOException
+     * @throws SQLException
+     */
+    @PostMapping("/admin/competition/edit")
+    public String updatingCompetitionInfo(@RequestParam String idCompetition,
+                                          @RequestParam String shortName,
+                                          @RequestParam String additionalInfo,
+                                          @RequestParam int minWeight,
+                                          @RequestParam int maxWeight,
+                                          @RequestParam Timestamp startDate,
+                                          @RequestParam Timestamp endDate,
+                                          @RequestParam String referee,
+                                          @RequestParam String refereeStatus,
+                                          MultipartFile imageFile) throws IOException, SQLException {
+        Competition competition = competitionService.findById(idCompetition);
+        if (imageFile != null) {
+            if (!imageFile.isEmpty()) {
+                competition.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+            }
+        }
+        competition.setShortName(shortName)
+                .setAdditionalInfo(additionalInfo)
+                .setMinWeight(minWeight)
+                .setMaxWeight(maxWeight)
+                .setReferee(referee)
+                .setRefereeStatus(attendanceService.findAttendanceById(refereeStatus))
+                .setStartDate(startDate)
+                .setEndDate(endDate);
         competitionService.updatingInfoCompetition(competition);
         return "redirect:/admin/competition/list";
-    }*/
+
+    }
+
+    /**
+     * This method deletes the competition selected
+     * @param model model of the view
+     * @param idCompetition id of the competition
+     * @return view of the competition list
+     */
+    @GetMapping("/admin/competition/deleteCompetition/{idCompetition}")
+    public String showCompetitionToDelete(Model model, @PathVariable String idCompetition) {
+        Competition competition = competitionService.findById(idCompetition);
+        model.addAttribute("competition", competition);
+        competitionService.deleteById(idCompetition);
+        return "redirect:/admin/competition/list";
+    }
 
 }

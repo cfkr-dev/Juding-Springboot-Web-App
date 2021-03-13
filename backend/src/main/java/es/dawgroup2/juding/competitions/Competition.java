@@ -1,22 +1,17 @@
 package es.dawgroup2.juding.competitions;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.engine.jdbc.BlobProxy;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.format.annotation.DateTimeFormat;
+import es.dawgroup2.juding.attendances.Attendance;
 
-import javax.annotation.Resource;
 import javax.persistence.*;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.Serializable;
 import java.sql.Blob;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Entity
-public class Competition {
+public class Competition implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,7 +20,7 @@ public class Competition {
     @Column(nullable = false)
     private String shortName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 2*1024*1024)
     private String additionalInfo;
 
     @Column(nullable = false)
@@ -44,16 +39,27 @@ public class Competition {
     @Column(nullable = false)
     private String referee;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private int refereeStatus;
+    private Attendance refereeStatus;
 
 
     @Lob
     @JsonIgnore
     private Blob imageFile;
 
-
-    public Competition(String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, String referee, int refereeStatus) {
+    /**
+     * Constructor of a competition
+     * @param shortName
+     * @param additionalInfo
+     * @param minWeight
+     * @param maxWeight
+     * @param startDate
+     * @param endDate
+     * @param referee
+     * @param refereeStatus
+     */
+    public Competition(String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, String referee, Attendance refereeStatus) {
         this.shortName = shortName;
         this.additionalInfo = additionalInfo;
         this.minWeight = minWeight;
@@ -70,111 +76,94 @@ public class Competition {
     }
 
 
-    /**
-     * getter
-     *
-     * @return id of the competition
-     */
     public int getIdCompetition() {
         return idCompetition;
     }
 
-    /**
-     * setter
-     *
-     * @param idCompetition
-     */
-    public void setIdCompetition(int idCompetition) {
+    public Competition setIdCompetition(int idCompetition) {
         this.idCompetition = idCompetition;
+        return this;
     }
 
-    /**
-     * @return short name of the competition
-     */
     public String getShortName() {
         return shortName;
     }
 
-    /**
-     * setter
-     *
-     * @param shortName
-     */
-    public void setShortName(String shortName) {
+    public Competition setShortName(String shortName) {
         this.shortName = shortName;
+        return this;
     }
 
-    /**
-     * @return the additional info of a competition
-     */
     public String getAdditionalInfo() {
         return additionalInfo;
     }
 
-    /**
-     * setter
-     *
-     * @param additionalInfo
-     */
-    public void setAdditionalInfo(String additionalInfo) {
+    public Competition setAdditionalInfo(String additionalInfo) {
         this.additionalInfo = additionalInfo;
+        return this;
     }
 
     public int getMinWeight() {
         return minWeight;
     }
 
-    public void setMinWeight(int minWeight) {
+    public Competition setMinWeight(int minWeight) {
         this.minWeight = minWeight;
+        return this;
     }
 
     public int getMaxWeight() {
         return maxWeight;
     }
 
-    public void setMaxWeight(int maxWeight) {
+    public Competition setMaxWeight(int maxWeight) {
         this.maxWeight = maxWeight;
+        return this;
     }
 
     public Timestamp getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Timestamp startDate) {
+    public Competition setStartDate(Timestamp startDate) {
         this.startDate = startDate;
+        return this;
     }
 
     public Timestamp getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Timestamp endDate) {
+    public Competition setEndDate(Timestamp endDate) {
         this.endDate = endDate;
+        return this;
     }
 
     public String getReferee() {
         return referee;
     }
 
-    public void setReferee(String referee) {
+    public Competition setReferee(String referee) {
         this.referee = referee;
+        return this;
     }
 
-    public int getRefereeStatus() {
+    public Attendance getRefereeStatus() {
         return refereeStatus;
     }
 
-    public void setRefereeStatus(int refereeStatus) {
+    public Competition setRefereeStatus(Attendance refereeStatus) {
         this.refereeStatus = refereeStatus;
+        return this;
     }
-
 
     public Blob getImageFile() {
         return imageFile;
     }
 
-    public void setImageFile(Blob imageFile) throws IOException {
+    public Competition setImageFile(Blob imageFile) {
         this.imageFile = imageFile;
+        return this;
     }
 
     public String translatingDates(Timestamp startDate, Timestamp endDate) {
@@ -187,31 +176,6 @@ public class Competition {
                 return "Comenzada";
             } else return "Finalizada";
         } else return "Por comenzar";
-    }
-
-    public String translatingRefereeStatus(int refereeStatus) {
-        switch (refereeStatus) {
-            case 0:
-                return "Sin confirmar";
-            case 1:
-                return "Confirmada";
-            case 2:
-                return "Rechazada";
-            default:
-                return "Error";
-        }
-    }
-    public int encodeRefereeStatus(String refereeStatus){
-        switch (refereeStatus){
-            case "Sin confirmar":
-                return 0;
-            case "Confirmada":
-                return 1;
-            case "Rechazada":
-                return 2;
-            default:
-                return 3;
-        }
     }
 
 }
