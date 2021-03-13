@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import es.dawgroup2.juding.belts.Belt;
 import es.dawgroup2.juding.users.gender.Gender;
 import es.dawgroup2.juding.users.refereeRange.RefereeRange;
+import es.dawgroup2.juding.users.roles.Role;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(indexes = {@Index(columnList = "dni, nickname", unique = true)})
@@ -69,16 +71,18 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String securityAnswer;
 
-    @Column(nullable = false)
-    private Integer role;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Column(nullable = false, length = 1)
+    private List<Role> roles;
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 1)
     private RefereeRange refereeRange;
 
     protected User() {
     }
 
-    public User(String licenseId, String name, String surname, String email, int phone, Gender gender, Date birthDate, String dni, String gym, int weight, Belt belt, String profileImage, String nickname, String password, String securityQuestion, String securityAnswer, Integer role) throws IOException {
+    public User(String licenseId, String name, String surname, String email, int phone, Gender gender, Date birthDate, String dni, String gym, int weight, Belt belt, String profileImage, String nickname, String password, String securityQuestion, String securityAnswer, List<Role> roles) throws IOException {
         this.licenseId = licenseId;
         this.name = name;
         this.surname = surname;
@@ -95,7 +99,7 @@ public class User implements Serializable {
         this.password = password;
         this.securityQuestion = securityQuestion;
         this.securityAnswer = securityAnswer;
-        this.role = role;
+        this.roles = roles;
     }
 
     public String getLicenseId() {
@@ -237,12 +241,12 @@ public class User implements Serializable {
         return this;
     }
 
-    public Integer getRole() {
-        return role;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public User setRole(Integer role) {
-        this.role = role;
+    public User setRoles(List<Role> roles) {
+        this.roles = roles;
         return this;
     }
 
@@ -270,5 +274,7 @@ public class User implements Serializable {
 
     public boolean isMale() { return gender.name().equals("H"); }
 
-    public boolean isCompetitor(){ return role == 1; }
+    public boolean isRole(Role role){
+        return (roles.contains(role));
+    }
 }

@@ -1,5 +1,7 @@
 package es.dawgroup2.juding.users;
 
+import es.dawgroup2.juding.users.refereeRange.RefereeRange;
+import es.dawgroup2.juding.users.roles.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -7,15 +9,15 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, String> {
 
-    List<User> findByRole(int role);
+    List<User> findByRolesContaining(Role role);
 
-    List<User> findByRoleAndRefereeRangeGreaterThanEqual(int role, int refereeRange);
+    List<User> findByRolesContainingAndRefereeRangeGreaterThanEqual(Role role, RefereeRange refereeRange);
 
-    List<User> findByRoleAndRefereeRange(int role, int refereeRange);
+    List<User> findByRolesContainingAndRefereeRange(Role role, RefereeRange refereeRange);
 
     Optional<User> findByNickname(String nickname);
 
     List<User> findByWeightBetween(int min, int max);
 
-    int countUsersByRoleAndRefereeRange(int role, int refereeRange);
+    int countUsersByRolesAndRefereeRange(Role role, RefereeRange refereeRange);
 }

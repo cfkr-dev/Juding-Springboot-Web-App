@@ -2,6 +2,7 @@ package es.dawgroup2.juding.users;
 
 import es.dawgroup2.juding.belts.BeltService;
 import es.dawgroup2.juding.users.refereeRange.RefereeRangeService;
+import es.dawgroup2.juding.users.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +52,7 @@ public class UserController {
     public String editUser(@PathVariable String licenseId, Model model) {
         User user = userRepository.findById(licenseId).orElseThrow();
         model.addAttribute("user", user).addAttribute("beltSelector", beltService.getSelectField(user.getBelt()));
-        if (user.getRole() == 2){
+        if (user.isRole(Role.R)){
             model.addAttribute("refereeRangeSelector", refereeRangeService.generateActiveRangesSelect(user.getRefereeRange(), true));
         }
         return "/admin/user/edit";
@@ -59,9 +60,6 @@ public class UserController {
 
     @PostMapping("/admin/user/edit/save")
     public String savingUser(User user) {
-        if (user.getRole() == null) {
-            user.setRole(userRepository.findById(user.getLicenseId()).orElseThrow().getRole());
-        }
         userRepository.save(user);
         return "redirect:/admin/user/list/";
     }
