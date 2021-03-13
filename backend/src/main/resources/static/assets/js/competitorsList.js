@@ -4,5 +4,5 @@ $("#modalProfile").on("show.bs.modal", function (evt) {
 });
 
 $("#modalDelete").on("show.bs.modal", function(evt){
-    $("#modalDeleteLink").attr("action", "/admin/user/delete/" + $(evt.relatedTarget).data("id"));
+    $("#modalDeleteLink").attr("href", "/admin/user/delete/" + $(evt.relatedTarget).data("id"));
 });

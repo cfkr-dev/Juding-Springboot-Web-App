@@ -65,9 +65,8 @@ public class UserController {
 
     /*
      * DELETES
-     * DELETES
      */
-    @PostMapping("/admin/user/delete/{licenseId}")
+    @GetMapping("/admin/user/delete/{licenseId}")
     public String deleteUser(@PathVariable String licenseId) {
         List<Role> rolesOfUser = userService.getUserRolesOrNull(licenseId);
         userService.delete(userService.getUserOrNull(licenseId));
