@@ -40,7 +40,20 @@ public class UserService {
         return opt.orElse(null);
     }
 
+    public List<Role> getUserRolesOrNull(String licenseId){
+        User user = getUserOrNull(licenseId);
+        if (user != null)
+            return user.getRoles();
+        else
+            return null;
+    }
+
     public User save(User user){
         return userRepository.save(user);
+    }
+
+    public void delete(User user){
+        if (user != null)
+            userRepository.delete(user);
     }
 }

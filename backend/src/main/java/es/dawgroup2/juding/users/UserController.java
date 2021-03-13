@@ -52,7 +52,7 @@ public class UserController {
     public String editUser(@PathVariable String licenseId, Model model) {
         User user = userRepository.findById(licenseId).orElseThrow();
         model.addAttribute("user", user).addAttribute("beltSelector", beltService.getSelectField(user.getBelt()));
-        if (user.isRole(Role.R)){
+        if (user.isRole(Role.R)) {
             model.addAttribute("refereeRangeSelector", refereeRangeService.generateActiveRangesSelect(user.getRefereeRange(), true));
         }
         return "/admin/user/edit";
@@ -62,5 +62,15 @@ public class UserController {
     public String savingUser(User user) {
         userRepository.save(user);
         return "redirect:/admin/user/list/";
+    }
+
+    @PostMapping("/admin/user/delete/{licenseId}")
+    public String deleteUser(@PathVariable String licenseId) {
+        List<Role> rolesOfUser = userService.getUserRolesOrNull(licenseId);
+        userService.delete(userService.getUserOrNull(licenseId));
+        if (rolesOfUser.contains(Role.C))
+            return "redirect:/admin/user/list/competitors";
+        else
+            return "redirect:/admin/user/list/referees";
     }
 }

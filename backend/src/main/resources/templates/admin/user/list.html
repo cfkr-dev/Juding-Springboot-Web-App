@@ -130,7 +130,8 @@
                 <a href="/admin/user/edit/{{ licenseId }}" class="btn btn-outline-corporative">
                     <i class="fas fa-pencil"></i>
                 </a>
-                <button class="btn btn-corporative">
+                <button class="btn btn-corporative" data-bs-target="#modalDelete" data-bs-toggle="modal"
+                        data-id="{{ licenseId }}">
                     <i class="fas fa-trash-alt delete"></i>
                 </button>
             </div>
@@ -158,6 +159,33 @@
                     </div>
                     <div class="col-2"></div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for confirmating deleting of item in list -->
+<div class="modal fade" id="modalDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmación</h5>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info"><strong>Advertencia:</strong> Solo se garantiza el correcto borrado de un
+                    usuario en caso de que este no haya participado en ninguna competición.
+                </div>
+                ¿Seguro de que desea continuar?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times-circle"></i> Cancelar
+                </button>
+                <form action="" method="post" id="modalDeleteLink">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i> Eliminar
+                    </button>
+                </form>
             </div>
         </div>
     </div>
