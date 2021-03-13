@@ -13,9 +13,22 @@ public class PostDataLoader {
     private PostRepository postRepository;
 
     @PostConstruct
+    /**
+     * This method loads default data on database.
+     */
     public void postLoader(){
-        Post p1 = new Post("1234567890", "El Semao", "adsfadsgeargreqg", null, new Timestamp(953596800));
-        Post p2 = new Post("1278345690", "Gloria Serra", "fbhwerbghrbhv", null, new Timestamp(953596800));
+        Post p1 = new Post("1234567890",
+                "El Semao",
+                "adsfadsgeargreqg",
+                null,
+                new Timestamp(953596800));
+
+        Post p2 = new Post("1278345690",
+                "Gloria Serra",
+                "fbhwerbghrbhv",
+                null,
+                new Timestamp(953596800));
+
         postRepository.save(p1);
         postRepository.save(p2);
     }

@@ -30,12 +30,11 @@ public class Post {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, length=2*1024*1024)
+    @Column(nullable = false, columnDefinition = "LONGTEXT")
     private String body;
 
     @Lob
     @JsonIgnore
-    @Column(nullable = true)
     private Blob imageFile;
 
     @Column(nullable = false)
@@ -65,27 +64,33 @@ public class Post {
         return timestamp;
     }
 
-    public void setIdPost(int idPost) {
+    public Post setIdPost(int idPost) {
         this.idPost = idPost;
+        return this;
     }
 
-    public void setAuthor(String author) {
+    public Post setAuthor(String author) {
         this.author = author;
+        return this;
     }
 
-    public void setTitle(String title) {
+    public Post setTitle(String title) {
         this.title = title;
+        return this;
     }
 
-    public void setBody(String body) {
+    public Post setBody(String body) {
         this.body = body;
+        return this;
     }
 
-    public void setImageFile(Blob imageFile) {
+    public Post setImageFile(Blob imageFile) {
         this.imageFile = imageFile;
+        return this;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public Post setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+        return this;
     }
 }
