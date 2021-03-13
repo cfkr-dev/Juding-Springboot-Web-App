@@ -99,20 +99,34 @@ public class CompetitionController {
 
     /**
      * Generates a new competition
-     * @param competition Id of the competition
+     * @param shortName The short name of the competition
+     * @param additionalInfo Info about the competition
+     * @param minWeight The minimum weight allowed in a competition
+     * @param maxWeight The maximum weight allowed in a competition
+     * @param startDate The start date of a competition
+     * @param endDate The end date of a competition
+     * @param referee referee The license of the referee in charge of the competition
      * @param status A String of that show the status of the referee attendance
-     * @param imageFile Image of the competition
-     * @return A view of the competition list and a new competition
+     * @param imageFile Image that represent the competition
+     * @return The new competition
      * @throws IOException
      */
     @PostMapping("/admin/competition/newCompetition")
-    public String addACompetition(Competition competition,
+    public String addACompetition(@RequestParam String shortName,
+                                  @RequestParam String additionalInfo,
+                                  @RequestParam int minWeight,
+                                  @RequestParam int maxWeight,
+                                  @RequestParam Timestamp startDate,
+                                  @RequestParam Timestamp endDate,
+                                  @RequestParam String referee,
                                   @RequestParam String status,
                                   MultipartFile imageFile) throws IOException {
-        if (!imageFile.isEmpty()) {
-            competition.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+        Competition competition=new Competition(shortName, additionalInfo, minWeight, maxWeight, startDate, endDate, referee, attendanceService.findAttendanceById(status));
+        if (imageFile != null) {
+            if (!imageFile.isEmpty()) {
+                competition.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+            }
         }
-        competition.setRefereeStatus(attendanceService.findAttendanceById(status));
         competitionService.add(competition);
         return "redirect:/admin/competition/list";
     }

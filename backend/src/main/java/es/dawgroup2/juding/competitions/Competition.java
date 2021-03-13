@@ -75,7 +75,6 @@ public class Competition implements Serializable {
 
     }
 
-
     public int getIdCompetition() {
         return idCompetition;
     }
