@@ -11,7 +11,7 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     List<User> findByRolesContaining(Role role);
 
-    List<User> findByRolesContainingAndRefereeRangeGreaterThanEqual(Role role, RefereeRange refereeRange);
+    List<User> findByRolesContainingAndRefereeRangeNot(Role role, RefereeRange refereeRange);
 
     List<User> findByRolesContainingAndRefereeRange(Role role, RefereeRange refereeRange);
 

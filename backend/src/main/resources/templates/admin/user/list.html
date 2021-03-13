@@ -98,10 +98,15 @@
         {{ /pendingList }}
     </div>
     {{ /pendingApplications }}{{ ^pendingApplications }}
-    <div class="alert alert-info mb-2">No hay nuevas solicitudes pendientes de revisión.</div>
+    <div class="alert alert-corporative mb-2">No hay nuevas solicitudes pendientes de revisión.</div>
     {{ /pendingApplications }}
     <h3 class="h3">Árbitros</h3>
     {{ /competitors }}
+    {{ #userList.isEmpty }}
+    <div class="alert alert-corporative">
+        No hay usuarios registrados de este rol.
+    </div>
+    {{ /userList.isEmpty }}{{ ^userList.isEmpty }}
     <div class="responsiveTable">
         <div class="rtRow rtHeader">
             <div class="width10 text-center">Rol</div>
@@ -139,6 +144,7 @@
         </div>
         {{ /userList }}
     </div>
+    {{ /userList.isEmpty }}
 </div>
 
 <!-- Modal for profiles info (dynamically filled with info when opening thanks to JS) -->

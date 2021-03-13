@@ -24,7 +24,7 @@ public class UserService {
     }
 
     public List<User> getActiveReferees(){
-        return userRepository.findByRolesContainingAndRefereeRangeGreaterThanEqual(Role.R, RefereeRange.E);
+        return userRepository.findByRolesContainingAndRefereeRangeNot(Role.R, RefereeRange.S);
     }
 
     public List<User> getRefereeApplications(){

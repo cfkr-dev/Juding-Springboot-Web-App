@@ -16,9 +16,6 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
     UserService userService;
 
     @Autowired
@@ -27,17 +24,14 @@ public class UserController {
     @Autowired
     RefereeRangeService refereeRangeService;
 
-    String licenseId = "1234567890";
-
     /*
-     * ADMIN PAGES - LIST AND EDITION OF USERS
+     * VIEWS
      */
-    @GetMapping("/admin/user/list/{role}")
-    public String userList(@PathVariable String role, Model model) {
-        if (role.equals("competitors")) {
+    @GetMapping("/admin/user/list/{stringRole}")
+    public String userList(@PathVariable String stringRole, Model model) {
+        if (stringRole.equals("competitors")) {
             model.addAttribute("userList", userService.getCompetitors()).addAttribute("competitors", true);
-        } else if (role.equals("referees")) {
-            // Detect if there are pending applications
+        } else if (stringRole.equals("referees")) {
             if (userService.refereePendingApplications() > 0) {
                 model.addAttribute("pendingApplications", true).addAttribute("pendingList", userService.getRefereeApplications());
             } else {
@@ -50,7 +44,7 @@ public class UserController {
 
     @GetMapping("/admin/user/edit/{licenseId}")
     public String editUser(@PathVariable String licenseId, Model model) {
-        User user = userRepository.findById(licenseId).orElseThrow();
+        User user = userService.getUserOrNull(licenseId);
         model.addAttribute("user", user).addAttribute("beltSelector", beltService.getSelectField(user.getBelt()));
         if (user.isRole(Role.R)) {
             model.addAttribute("refereeRangeSelector", refereeRangeService.generateActiveRangesSelect(user.getRefereeRange(), true));
@@ -58,12 +52,21 @@ public class UserController {
         return "/admin/user/edit";
     }
 
+
+    /*
+     * SAVES
+     */
     @PostMapping("/admin/user/edit/save")
     public String savingUser(User user) {
-        userRepository.save(user);
+        userService.save(user);
         return "redirect:/admin/user/list/";
     }
 
+
+    /*
+     * DELETES
+     * DELETES
+     */
     @PostMapping("/admin/user/delete/{licenseId}")
     public String deleteUser(@PathVariable String licenseId) {
         List<Role> rolesOfUser = userService.getUserRolesOrNull(licenseId);
