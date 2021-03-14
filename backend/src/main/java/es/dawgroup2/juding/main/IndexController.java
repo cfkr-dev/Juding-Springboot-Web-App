@@ -4,7 +4,6 @@ import es.dawgroup2.juding.belts.BeltService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import es.dawgroup2.juding.users.gender.GenderService;
-import es.dawgroup2.juding.users.refereeRange.RefereeRange;
 import es.dawgroup2.juding.users.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.users.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.mail.Multipart;
-import java.io.IOException;
-import java.sql.Date;
+
 import java.util.List;
 
 @Controller
@@ -38,6 +35,9 @@ public class IndexController {
 
     @Autowired
     ImageService imageService;
+
+    @Autowired
+    DateService dateService;
 
     @GetMapping("/")
     public String index() {
@@ -72,14 +72,18 @@ public class IndexController {
                                    MultipartFile image,
                                    @RequestParam String gym,
                                    @RequestParam int weight,
-                                   @RequestParam String belt) throws IOException {
+                                   @RequestParam String belt) {
         User newUser = new User();
-        newUser.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone(phone)
-                .setGender(genderService.findGenderById(gender)).setBirthDate(new Date(953596800) /* todo birthDate */)
-                .setDni(dni).setGym(gym).setWeight(weight).setBelt(beltService.findBeltById(belt))
-                .setProfileImage(imageService.uploadProfileImage(image)).setNickname(nickname)
-                .setPassword(password).setSecurityQuestion(securityQuestion).setSecurityAnswer(securityAnswer)
-                .setRoles(List.of(Role.C));
+        try {
+            newUser.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone(phone)
+                    .setGender(genderService.findGenderById(gender)).setBirthDate(dateService.stringToDate(birthDate))
+                    .setDni(dni).setGym(gym).setWeight(weight).setBelt(beltService.findBeltById(belt))
+                    .setProfileImage(imageService.uploadProfileImage(image)).setNickname(nickname)
+                    .setPassword(password).setSecurityQuestion(securityQuestion).setSecurityAnswer(securityAnswer)
+                    .setRoles(List.of(Role.C));
+        } catch (Exception e) {
+            return "redirect:/error/500";
+        }
         userService.save(newUser);
         return "redirect:/login";
     }

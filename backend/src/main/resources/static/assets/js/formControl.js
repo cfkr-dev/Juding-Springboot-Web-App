@@ -19,8 +19,8 @@ $(document).ready(function () {
     /**
      * Function for showing datepicker in registration pages
      */
-    if ($("#birthdate").length) {
-        $("#birthdate").datepicker({
+    if ($("#birthDate").length) {
+        $("#birthDate").datepicker({
             clearBtn: true,
             format: "dd/mm/yyyy",
             language: "es",
