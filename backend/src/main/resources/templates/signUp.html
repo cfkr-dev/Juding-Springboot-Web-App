@@ -100,9 +100,11 @@
         <h3 class="h3 mt-2">Información de autenticación</h3>
         <!-- License ID -->
         <label class="txt1" for="licenseId">Número de licencia <span class="asterisk">*</span></label>
-        <input class="form-control" id="licenseId" name="licenseId" pattern="[0-9]{10}$" required type="text">
+        <input class="form-control" id="licenseId" name="licenseId" type="text"
+               pattern="{{ #isCompetitor }}[0-9]{10}${{ /isCompetitor }}{{ ^isCompetitor }}JU-[0-9]{10}${{ /isCompetitor }}">
         <div class="invalid-feedback">
-            La licencia no se ajusta al formato requerido (10 dígitos).
+            La licencia no se ajusta al formato requerido (10 dígitos {{ ^isCompetitor }}precedidos de JU-{{
+            /isCompetitor }}).
         </div>
 
         <!-- Nickname field -->
