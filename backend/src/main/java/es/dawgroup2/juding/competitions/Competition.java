@@ -2,9 +2,13 @@ package es.dawgroup2.juding.competitions;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import es.dawgroup2.juding.attendances.Attendance;
+import org.hibernate.engine.jdbc.BlobProxy;
+import org.springframework.core.io.ClassPathResource;
 
+import javax.annotation.Resource;
 import javax.persistence.*;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Timestamp;
@@ -20,7 +24,7 @@ public class Competition implements Serializable {
     @Column(nullable = false)
     private String shortName;
 
-    @Column(nullable = false, length = 2*1024*1024)
+    @Column(nullable = false, length = 2 * 1024 * 1024)
     private String additionalInfo;
 
     @Column(nullable = false)
@@ -50,6 +54,7 @@ public class Competition implements Serializable {
 
     /**
      * Constructor of a competition
+     *
      * @param shortName
      * @param additionalInfo
      * @param minWeight
@@ -58,8 +63,9 @@ public class Competition implements Serializable {
      * @param endDate
      * @param referee
      * @param refereeStatus
+     * @param imageFile
      */
-    public Competition(String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, String referee, Attendance refereeStatus) {
+    public Competition(String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, String referee, Attendance refereeStatus, String imageFile) throws IOException {
         this.shortName = shortName;
         this.additionalInfo = additionalInfo;
         this.minWeight = minWeight;
@@ -68,6 +74,7 @@ public class Competition implements Serializable {
         this.endDate = endDate;
         this.referee = referee;
         this.refereeStatus = refereeStatus;
+        this.setImageFile(imageFile);
 
     }
 
@@ -162,6 +169,13 @@ public class Competition implements Serializable {
 
     public Competition setImageFile(Blob imageFile) {
         this.imageFile = imageFile;
+        return this;
+    }
+
+    public Competition setImageFile(String path) throws IOException{
+        InputStream inputStream= new ClassPathResource(path).getInputStream();
+        long length= new ClassPathResource(path).contentLength();
+        imageFile= BlobProxy.generateProxy(inputStream,length);
         return this;
     }
 
