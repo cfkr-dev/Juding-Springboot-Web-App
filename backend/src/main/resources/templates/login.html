@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Iniciar sesión - Juding</title>
+
+    <!-- Favicons -->
+    <link href="../assets/img/hero-img.png" rel="icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/vendor/font-awesome/css/all.css" rel="stylesheet">
+
+    <!-- Own CSS Files -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/bootstrapAccomodations.css" rel="stylesheet">
+    <link href="../assets/css/loginAndRegistration.css" rel="stylesheet">
+</head>
+<body>
+<!-- ======= Header ======= -->
+<header class="header fixed-top" id="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a class="logo d-flex align-items-center" href="../index.html">
+            <img alt="" src="../assets/img/hero-img.png">
+            <span>Juding</span>
+        </a>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" href="#">Inicio de sesión</a>
+                <li><a class="login scrollto" href="../index.html">Volver al inicio</a></li>
+            </ul>
+            <i class="far fa-bars mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+
+<div class="container-login100">
+    <div class="wrap-login100">
+        <form class="needs-validation flex-sb flex-w" novalidate>
+            <span class="login100-form-title">Iniciar sesión</span>
+            <label class="txt1" for="nick">Apodo <span class="asterisk">*</span></label>
+            <input class="form-control form-control-lg" id="nick" name="nick" required type="text">
+            <div class="invalid-feedback">
+                Es obligatorio introducir el apodo para continuar.
+            </div>
+            <label class="txt1" for="password">Contraseña <span class="asterisk">*</span></label>
+            <div class="input-group">
+                <input class="form-control form-control-lg" id="password" name="password" required type="password">
+                <span class="input-group-text" id="showPassword"><i class="far fa-eye-slash"></i></span>
+                <div class="invalid-feedback">
+                    Es obligatorio introducir la contraseña para continuar.
+                </div>
+            </div>
+            <div id="beforeLogin">
+                <a class="txt3" href="#">¿Olvidaste tu contraseña?</a>
+            </div>
+            <div class="container-login100-form-btn">
+                <button class="btn btn-corporative">Iniciar sesión</button>
+            </div>
+        </form>
+        <div id="newAccount">
+            <div class="row text-center">
+                <div class="alert alert-corporative">¿Nuevo en Juding? <strong>¡Regístrate!</strong></div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-6 d-flex justify-content-center flex-column">
+                    <i class="fas fa-user-ninja bigIcon"></i>
+                    <div>Competidor</div>
+                    <a href="competitor/signUp.html">
+                        <button class="btn btn-corporative">Registro</button>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <i class="fas fa-user-tie bigIcon"></i>
+                    <div>Árbitro</div>
+                    <a href="referee/application.html">
+                        <button class="btn btn-corporative">Solicitud</button>
+                    </a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vendor JS Files -->
+<script src="../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../assets/vendor/aos/aos.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<!-- Own JS Files -->
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/formControl.js"></script>
+<script src="../assets/js/validationScript.js"></script>
+</body>
+</html>
