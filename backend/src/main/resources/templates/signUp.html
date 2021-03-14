@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Registro de competidor - Juding</title>
+    <title>Registro - Juding</title>
 
     <!-- Favicons -->
     <link href="/assets/img/hero-img.png" rel="icon">
@@ -36,8 +36,9 @@
     </div>
 </header>
 <div class="container pb-4">
-    <form action="/signUp/competitor" class="needs-validation" method="post" novalidate enctype="multipart/form-data">
-        <h2 class="h2">Registro de competidores</h2>
+    <form action="{{ action }}" class="needs-validation" method="post" novalidate enctype="multipart/form-data">
+        <h2 class="h2">{{ #isCompetitor }}Registro de competidores{{ /isCompetitor }}{{ ^isCompetitor }}Solicitud de
+            federación de árbitros {{ /isCompetitor }}</h2>
         <h3 class="h3">Información personal</h3>
 
         <!-- Name and Surname fields -->
@@ -144,13 +145,30 @@
         </div>
 
         <h3 class="h3">Información para competición</h3>
-        <!-- Profile image -->
-        <label class="txt1" for="image">Imagen de perfil <span class="asterisk">*</span></label>
-        <input class="form-control" id="image" name="image" type="file" required accept=".jpg, .jpeg">
-        <div class="invalid-feedback">
-            Es obligatorio introducir una fotografía en formato JPG.
+
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Profile image -->
+                <label class="txt1" for="image">Imagen de perfil <span class="asterisk">*</span></label>
+                <input class="form-control" id="image" name="image" type="file" required accept=".jpg, .jpeg">
+                <div class="invalid-feedback">
+                    Es obligatorio introducir una fotografía en formato JPG.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- Belt selector -->
+                <label class="txt1" for="belt">Cinturón <span class="asterisk">*</span></label>
+                <select name="belt" id="belt" class="form-select" required>
+                    <option selected disabled>Seleccione un cinturón...</option>
+                    {{{ beltSelector }}}
+                </select>
+                <div class="invalid-feedback">
+                    El cinturón es obligatorio.
+                </div>
+            </div>
         </div>
 
+        {{ #isCompetitor }}
         <div class="row">
             <div class="col-md-6">
                 <!-- Gym -->
@@ -169,16 +187,8 @@
                 </div>
             </div>
         </div>
+        {{ /isCompetitor }}
 
-        <!-- Belt selector -->
-        <label class="txt1" for="belt">Cinturón <span class="asterisk">*</span></label>
-        <select name="belt" id="belt" class="form-select" required>
-            <option selected disabled>Seleccione un cinturón...</option>
-            {{{ beltSelector }}}
-        </select>
-        <div class="invalid-feedback">
-            El cinturón es obligatorio.
-        </div>
         <div class="container-login100-form-btn mt-3">
             <button class="btn btn-corporative" type="submit">Registrarse</button>
         </div>

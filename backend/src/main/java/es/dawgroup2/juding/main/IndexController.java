@@ -4,6 +4,7 @@ import es.dawgroup2.juding.belts.BeltService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import es.dawgroup2.juding.users.gender.GenderService;
+import es.dawgroup2.juding.users.refereeRange.RefereeRange;
 import es.dawgroup2.juding.users.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.users.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,12 @@ public class IndexController {
     public String signUp(@PathVariable String role, Model model) {
         model.addAttribute("genderSelection", genderService.getRadioField(null))
                 .addAttribute("beltSelector", beltService.getSelectField(null));
-        return "/signUp/" + role;
+        if (role.equals("competitor"))
+            model.addAttribute("isCompetitor", true).addAttribute("action", "/signUp/competitor");
+        else if (role.equals("referee"))
+            model.addAttribute("isCompetitor", false).addAttribute("action", "/signUp/referee");
+        else return "/error/404";
+        return "/signUp";
     }
 
     @PostMapping("/signUp/competitor")
@@ -66,13 +72,13 @@ public class IndexController {
                                    @RequestParam String dni,
                                    @RequestParam String licenseId,
                                    @RequestParam String nickname,
+                                   @RequestParam String password,
                                    @RequestParam String securityQuestion,
                                    @RequestParam String securityAnswer,
-                                   @RequestParam String password,
                                    MultipartFile image,
+                                   @RequestParam String belt,
                                    @RequestParam String gym,
-                                   @RequestParam int weight,
-                                   @RequestParam String belt) {
+                                   @RequestParam int weight) {
         User newUser = new User();
         try {
             newUser.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone(phone)
@@ -81,6 +87,36 @@ public class IndexController {
                     .setProfileImage(imageService.uploadProfileImage(image)).setNickname(nickname)
                     .setPassword(password).setSecurityQuestion(securityQuestion).setSecurityAnswer(securityAnswer)
                     .setRoles(List.of(Role.C));
+        } catch (Exception e) {
+            return "redirect:/error/500";
+        }
+        userService.save(newUser);
+        return "redirect:/login";
+    }
+
+    @PostMapping("/signUp/referee")
+    public String signUpReferee(@RequestParam String name,
+                                   @RequestParam String surname,
+                                   @RequestParam String gender,
+                                   @RequestParam int phone,
+                                   @RequestParam String email,
+                                   @RequestParam String birthDate,
+                                   @RequestParam String dni,
+                                   @RequestParam String licenseId,
+                                   @RequestParam String nickname,
+                                   @RequestParam String password,
+                                   @RequestParam String securityQuestion,
+                                   @RequestParam String securityAnswer,
+                                   MultipartFile image,
+                                   @RequestParam String belt) {
+        User newUser = new User();
+        try {
+            newUser.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone(phone)
+                    .setGender(genderService.findGenderById(gender)).setBirthDate(dateService.stringToDate(birthDate))
+                    .setDni(dni).setBelt(beltService.findBeltById(belt)).setRefereeRange(RefereeRange.S)
+                    .setProfileImage(imageService.uploadProfileImage(image)).setNickname(nickname)
+                    .setPassword(password).setSecurityQuestion(securityQuestion).setSecurityAnswer(securityAnswer)
+                    .setRoles(List.of(Role.R));
         } catch (Exception e) {
             return "redirect:/error/500";
         }
