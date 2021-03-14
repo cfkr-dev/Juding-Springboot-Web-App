@@ -1,4 +1,4 @@
-package es.dawgroup2.juding.index;
+package es.dawgroup2.juding.main;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
