@@ -1,0 +1,27 @@
+<div class="viewMore" style="display: none">
+    <div class="col-12 col-lg-4 text-center px-3">
+        <img alt="avatar" class="avatar" src="/profileImage/{{ licenseId }}">
+    </div>
+    <div class="col-12 col-lg-8">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-10">
+                    <h5 class="card-title">{{ nickname }}</h5>
+                </div>
+                <div class="col-2">
+                    <i class="fas fa-2x beltStyle {{ belt }} {{ #competitors }}fa-user-ninja{{ /competitors }}{{ ^competitors }}fa-user-tie{{ /competitors }}"></i>
+                </div>
+            </div>
+            <div class="card-text text-start">
+                {{ name }} <strong>{{ surname }}</strong><br>
+                <strong>Licencia:</strong> {{ licenseId }}.<br>
+                <strong>DNI:</strong> {{ dni }}.<br>
+                <strong>Correo Electrónico:</strong> {{ email }}. <br>
+                <strong>Peso:</strong> {{ weight }}kg. <br>
+                <strong>Gimnasio:</strong> {{ gym }}. <br>
+                <strong>Género:</strong> {{ gender.getDescription }}. <br>
+                <strong>Fecha de nacimiento:</strong> {{ birthDate }}.<br>
+            </div>
+        </div>
+    </div>
+</div>

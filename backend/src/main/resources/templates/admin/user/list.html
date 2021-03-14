@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Lista de competidores - Juding</title>
+
+    <!-- Favicons -->
+    <link href="/assets/img/hero-img.png" rel="icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/vendor/font-awesome/css/all.css" rel="stylesheet">
+
+    <!-- Own CSS Files -->
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="/assets/css/header.css" rel="stylesheet">
+    <link href="/assets/css/profiles.css" rel="stylesheet">
+    <link href="/assets/css/bootstrapAccomodations.css" rel="stylesheet">
+    <link href="/assets/css/responsiveTable.css" rel="stylesheet">
+    <link href="/assets/css/adminScreen.css" rel="stylesheet">
+    <link href="/assets/css/beltAssignations.css" rel="stylesheet">
+</head>
+<body>
+<header class="header fixed-top" id="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a class="logo d-flex align-items-center" href="index.html">
+            <img alt="" src="/assets/img/hero-img.png">
+            <span>Juding</span>
+        </a>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a class="nav-link scrollto" href="/">Inicio</a></li>
+                <li><a class="nav-link scrollto" href="/ranking">Ranking</a></li>
+                <li><a class="nav-link scrollto" href="/myProfile">Mi perfil</a></li>
+                <li class="dropdown">
+                    <a href="#"><span>Administración</span> <i class="far fa-chevron-down"></i></a>
+                    <ul>
+                        <li class="dropdown">
+                            <a href="#"><span>Usuarios</span> <i class="far fa-chevron-right"></i></a>
+                            <ul>
+                                <li><a href="/admin/user/list/competitors">Competidores</a></li>
+                                <li><a href="/admin/user/list/referees">Árbitros</a></li>
+                            </ul>
+                        <li><a href="/admin/competition/list">Competiciones</a></li>
+                        <li><a href="/admin/posts/list">Noticias</a></li>
+                    </ul>
+                </li>
+                <li><a class="login scrollto" href="../../index.html">Cerrar sesión</a></li>
+            </ul>
+            <i class="far fa-bars mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header>
+<div class="container pb-3">
+    <h2 class="h2">Usuarios</h2>
+    {{ #competitors }}
+    <h3 class="h3">Competidores</h3>
+    {{ /competitors }}
+    {{ ^competitors }}
+    <h3 class="h3">Solicitudes de federación de nuevos árbitros</h3>
+    {{ #pendingApplications }}
+    <div class="responsiveTable mb-3">
+        <div class="rtRow rtHeader">
+            <div class="width10 text-center">Rol</div>
+            <div class="width15 text-center">Licencia</div>
+            <div class="width15 text-center">Nick</div>
+            <div class="width10 text-center">Nombre</div>
+            <div class="width15 text-center">Apellidos</div>
+            <div class="width20 text-center">Correo Electrónico</div>
+            <div class="width15 text-center">Acciones</div>
+        </div>
+        {{ #pendingList }}
+        <div class="rtRow">
+            <div class="width10 text-center">
+                <i class="fas fa-user-tie beltStyle {{ belt }}"></i> ({{ belt.name }})
+            </div>
+            <div class="width15 text-center">{{ licenseId }}</div>
+            <div class="width15 text-center">{{ nickname }}</div>
+            <div class="width10 text-center">{{ name }}</div>
+            <div class="width15 text-center">{{ surname }}</div>
+            <div class="width20 text-center">{{ email }}</div>
+            <div class="width15 text-center">
+                <button class="btn btn-outline-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <a href="/admin/user/admitReferee/{{ licenseId }}" class="btn btn-outline-success">
+                    <i class="fas fa-check"></i>
+                </a>
+                <a href="/admin/user/delete/{{ licenseId }}" class="btn btn-outline-danger">
+                    <i class="fas fa-times"></i>
+                </a>
+            </div>
+            {{> admin/user/list.moreInformation }}
+        </div>
+        {{ /pendingList }}
+    </div>
+    {{ /pendingApplications }}{{ ^pendingApplications }}
+    <div class="alert alert-corporative mb-2">No hay nuevas solicitudes pendientes de revisión.</div>
+    {{ /pendingApplications }}
+    <h3 class="h3">Árbitros</h3>
+    {{ /competitors }}
+    {{ #userList.isEmpty }}
+    <div class="alert alert-corporative">
+        No hay usuarios registrados de este rol.
+    </div>
+    {{ /userList.isEmpty }}{{ ^userList.isEmpty }}
+    <div class="responsiveTable">
+        <div class="rtRow rtHeader">
+            <div class="width10 text-center">Rol</div>
+            <div class="width15 text-center">Licencia</div>
+            <div class="width15 text-center">Nick</div>
+            <div class="width10 text-center">Nombre</div>
+            <div class="width15 text-center">Apellidos</div>
+            <div class="width20 text-center">Correo Electrónico</div>
+            <div class="width15 text-center">Acciones</div>
+        </div>
+        {{ #userList }}
+        <div class="rtRow">
+            <div class="width10 text-center">
+                <i class="fas beltStyle {{ belt }} {{ #competitors }}fa-user-ninja{{ /competitors }}{{ ^competitors }}fa-user-tie{{ /competitors }}"></i>
+                ({{ belt.name }})
+            </div>
+            <div class="width15 text-center">{{ licenseId }}</div>
+            <div class="width15 text-center">{{ nickname }}</div>
+            <div class="width10 text-center">{{ name }}</div>
+            <div class="width15 text-center">{{ surname }}</div>
+            <div class="width20 text-center">{{ email }}</div>
+            <div class="width15 text-center">
+                <button class="btn btn-outline-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <a href="/admin/user/edit/{{ licenseId }}" class="btn btn-outline-corporative">
+                    <i class="fas fa-pencil"></i>
+                </a>
+                <button class="btn btn-corporative" data-bs-target="#modalDelete" data-bs-toggle="modal"
+                        data-id="{{ licenseId }}">
+                    <i class="fas fa-trash-alt delete"></i>
+                </button>
+            </div>
+            {{> admin/user/list.moreInformation }}
+        </div>
+        {{ /userList }}
+    </div>
+    {{ /userList.isEmpty }}
+</div>
+
+<!-- Modal for profiles info (dynamically filled with info when opening thanks to JS) -->
+<div class="modal fade" id="modalProfile" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalOpenedTitle"></h5>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="card mb-3">
+                            <div class="row g-0" id="modalOpenedBody"></div>
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for confirmating deleting of item in list -->
+<div class="modal fade" id="modalDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmación</h5>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info"><strong>Advertencia:</strong> Solo se garantiza el correcto borrado de un
+                    usuario en caso de que este no haya participado en ninguna competición.
+                </div>
+                ¿Seguro de que desea continuar?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times-circle"></i> Cancelar
+                </button>
+                <a href="" id="modalDeleteLink">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i> Eliminar
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+
+<!-- Own JS Files -->
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/competitorsList.js"></script>
+</body>
+</html>

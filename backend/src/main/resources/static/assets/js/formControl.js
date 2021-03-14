@@ -28,14 +28,4 @@ $(document).ready(function () {
             weekStart: 1
         });
     }
-
-    /**
-     * Function for showing dan selector when it's necessary
-     */
-    if ($("#beltSelector").length) {
-        $("#beltSelector").change(function () {
-            $(this).siblings("#danField").css("display", $(this).val() === "N" ? "inherit" : "none");
-            console.log($(this).val());
-        });
-    }
 });
