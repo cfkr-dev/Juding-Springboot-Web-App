@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Entity
@@ -259,6 +260,12 @@ public class User implements Serializable {
         return this;
     }
 
+    // CUSTOM METHODS
+    public String getFormattedBirthDate(){
+        SimpleDateFormat simpDate = new SimpleDateFormat("dd/MM/yyyy");
+        return simpDate.format(birthDate);
+    }
+    
     /**
      * Setting a profile image from its path
      * @param path Path of the profile image.
