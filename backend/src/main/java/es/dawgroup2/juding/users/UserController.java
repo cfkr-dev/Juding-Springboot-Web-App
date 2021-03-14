@@ -1,9 +1,11 @@
 package es.dawgroup2.juding.users;
 
 import es.dawgroup2.juding.belts.BeltService;
+import es.dawgroup2.juding.users.gender.GenderService;
 import es.dawgroup2.juding.users.refereeRange.RefereeRange;
 import es.dawgroup2.juding.users.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.users.roles.Role;
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +16,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -27,6 +32,9 @@ public class UserController {
 
     @Autowired
     BeltService beltService;
+
+    @Autowired
+    GenderService genderService;
 
     @Autowired
     RefereeRangeService refereeRangeService;
@@ -55,7 +63,10 @@ public class UserController {
     @GetMapping("/admin/user/edit/{licenseId}")
     public String editUser(@PathVariable String licenseId, Model model) {
         User user = userService.getUserOrNull(licenseId);
-        model.addAttribute("user", user).addAttribute("beltSelector", beltService.getSelectField(user.getBelt()));
+        model.addAttribute("user", user)
+                .addAttribute("beltSelector", beltService.getSelectField(user.getBelt()))
+                .addAttribute("genderRadioInput", genderService.getRadioField(user.getGender()))
+                .addAttribute("isCompetitor", user.isRole(Role.C));
         if (user.isRole(Role.R)) {
             model.addAttribute("refereeRangeSelector", refereeRangeService.generateActiveRangesSelect(user.getRefereeRange(), true));
         }
@@ -67,9 +78,42 @@ public class UserController {
      * SAVES
      */
     @PostMapping("/admin/user/edit/save")
-    public String savingUser(User user) {
-        userService.save(user);
-        return "redirect:/admin/user/list/";
+    public String savingUser(@RequestParam String licenseId,
+                             @RequestParam String name,
+                             @RequestParam String surname,
+                             @RequestParam String dni,
+                             @RequestParam int phone,
+                             @RequestParam String email,
+                             @RequestParam String birthdate,
+                             @RequestParam String nickname,
+                             MultipartFile profileImage,
+                             @RequestParam String gender,
+                             @RequestParam int weight,
+                             @RequestParam String gym,
+                             @RequestParam String belt,
+                             @RequestParam(required = false) String refereeRange) throws IOException {
+        User currentUser = userService.getUserOrNull(licenseId);
+        currentUser.setName(name)
+                .setSurname(surname)
+                .setDni(dni)
+                .setPhone(phone)
+                .setEmail(email)
+                .setNickname(nickname)
+                .setGender(genderService.findGenderById(gender))
+                .setWeight(weight)
+                .setGym(gym)
+                .setBelt(beltService.findBeltById(belt));
+        if (refereeRange != null)
+            if (!refereeRange.isEmpty())
+                currentUser.setRefereeRange(refereeRangeService.findRefereeRangeById(refereeRange));
+        if (profileImage != null)
+            if (!profileImage.isEmpty())
+                currentUser.setProfileImage(BlobProxy.generateProxy(profileImage.getInputStream(), profileImage.getSize()));
+        userService.save(currentUser);
+        if (currentUser.isRole(Role.C))
+            return "redirect:/admin/user/list/competitors";
+        else
+            return "redirect:/admin/user/list/referees";
     }
 
     @GetMapping("/admin/user/admitReferee/{licenseId}")
