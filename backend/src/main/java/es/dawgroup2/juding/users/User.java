@@ -259,21 +259,39 @@ public class User implements Serializable {
         return this;
     }
 
-    // CUSTOM METHODS
-
+    /**
+     * Setting a profile image from its path
+     * @param path Path of the profile image.
+     * @return Same object (user).
+     * @throws IOException Input-output exception.
+     */
     public User setProfileImage(String path) throws IOException {
         Resource image = new ClassPathResource(path);
         profileImage = BlobProxy.generateProxy(image.getInputStream(), image.contentLength());
         return this;
     }
 
+    /**
+     * Setting a profile image having a Blob object.
+     * @param profileImage Profile image in Blob object.
+     * @return Same object (user).
+     */
     public User setProfileImage(Blob profileImage) {
         this.profileImage = profileImage;
         return this;
     }
 
-    public boolean isMale() { return gender.name().equals("H"); }
+    /**
+     * Returns true if the current user is male or false if it is female.
+     * @return Gender boolean.
+     */
+    public boolean isMale() { return gender == Gender.H; }
 
+    /**
+     * Returns true if the current user includes the role specified.
+     * @param role Role searched.
+     * @return True if one of the user's roles match with included one.
+     */
     public boolean isRole(Role role){
         return (roles.contains(role));
     }

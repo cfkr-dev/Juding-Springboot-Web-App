@@ -19,6 +19,10 @@ public class UserDataLoader {
     @Autowired
     UserRepository userRepository;
 
+    /**
+     * Generating user sample data and introducing it into database.
+     * @throws IOException Exception for input-output that can be caused by image uploads.
+     */
     @PostConstruct
     public void userLoader() throws IOException {
         // Passwords and security answers should be encrypted (Spring Security stuff is not introduced in this moment).

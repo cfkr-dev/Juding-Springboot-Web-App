@@ -26,7 +26,6 @@ import java.util.List;
 
 @Controller
 public class UserController {
-
     @Autowired
     UserService userService;
 
@@ -42,8 +41,12 @@ public class UserController {
     @Autowired
     private JavaMailSender emailSender;
 
-    /*
-     * VIEWS
+    /**
+     * Retrieves a view with a list of users (both competitors and referees) according to their role.
+     * Besides, when referees are listed, it is included a list of pending applications.
+     * @param stringRole Role of listed users (given by URL).
+     * @param model Model.
+     * @return Dynamic view with a list of users.
      */
     @GetMapping("/admin/user/list/{stringRole}")
     public String userList(@PathVariable String stringRole, Model model) {
@@ -62,6 +65,12 @@ public class UserController {
         return "/admin/user/list";
     }
 
+    /**
+     * Returns a view with a form for editing user information (with common values and also fields for specific-role information).
+     * @param licenseId License ID (PK) of edited user.
+     * @param model Model.
+     * @return Dynamic view with form.
+     */
     @GetMapping("/admin/user/edit/{licenseId}")
     public String editUser(@PathVariable String licenseId, Model model) {
         User user = userService.getUserOrNull(licenseId);
@@ -76,8 +85,25 @@ public class UserController {
     }
 
 
-    /*
-     * SAVES
+    /**
+     * This method receives information from {@link #editUser(String, Model) editUser} generated view and save them into database.
+     * Different information types are properly processed before sending them to the repository.
+     * @param licenseId License ID (PK)
+     * @param name Name
+     * @param surname Surname
+     * @param dni DNI
+     * @param phone Phone
+     * @param email Email
+     * @param birthdate Birth date
+     * @param nickname Nick name
+     * @param profileImage Profile image
+     * @param gender Gender
+     * @param weight Weight
+     * @param gym Gym
+     * @param belt Belt
+     * @param refereeRange Referee range (if it's a referee)
+     * @return Redirection to control panel.
+     * @throws IOException Exception caused by input-output troubles when processing profile image (if included).
      */
     @PostMapping("/admin/user/edit/save")
     public String savingUser(@RequestParam String licenseId,
@@ -118,6 +144,12 @@ public class UserController {
             return "redirect:/admin/user/list/referees";
     }
 
+    /**
+     * Method used when a referee application is trammited and accepted. It sends an e-mail to the applicant and changes
+     * its range.
+     * @param licenseId License ID (PK).
+     * @return Redirection to list of users (see {@link #userList(String, Model) userList}).
+     */
     @GetMapping("/admin/user/admitReferee/{licenseId}")
     public String admitReferee(@PathVariable String licenseId) {
         User user = userService.getUserOrNull(licenseId);
@@ -147,8 +179,10 @@ public class UserController {
     }
 
 
-    /*
-     * DELETES
+    /**
+     * Deletes a user from the repository attending to the license ID given in the URL.
+     * @param licenseId License ID (PK).
+     * @return Redirection to list of users (see {@link #userList(String, Model) userList}).
      */
     @GetMapping("/admin/user/delete/{licenseId}")
     public String deleteUser(@PathVariable String licenseId) {
