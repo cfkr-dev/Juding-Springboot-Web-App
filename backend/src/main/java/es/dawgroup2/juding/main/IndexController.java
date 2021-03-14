@@ -3,6 +3,7 @@ package es.dawgroup2.juding.main;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class IndexController {
@@ -15,5 +16,10 @@ public class IndexController {
     @GetMapping("/login")
     public String login(){
         return "login";
+    }
+
+    @GetMapping("/signUp/{role}")
+    public String signUp(@PathVariable String role){
+        return "/signUp/" + role;
     }
 }
