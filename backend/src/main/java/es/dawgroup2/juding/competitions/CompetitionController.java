@@ -121,7 +121,15 @@ public class CompetitionController {
                                   @RequestParam String referee,
                                   @RequestParam String status,
                                   MultipartFile imageFile) throws IOException {
-        Competition competition=new Competition(shortName, additionalInfo, minWeight, maxWeight, startDate, endDate, referee, attendanceService.findAttendanceById(status));
+        Competition competition=new Competition();
+        competition.setShortName(shortName)
+                .setAdditionalInfo(additionalInfo)
+                .setMinWeight(minWeight)
+                .setMaxWeight(maxWeight)
+                .setStartDate(startDate)
+                .setEndDate(endDate)
+                .setReferee(referee)
+                .setRefereeStatus(attendanceService.findAttendanceById(status));
         if (imageFile != null) {
             if (!imageFile.isEmpty()) {
                 competition.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
