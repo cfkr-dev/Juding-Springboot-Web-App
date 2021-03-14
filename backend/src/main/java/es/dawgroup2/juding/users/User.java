@@ -79,7 +79,7 @@ public class User implements Serializable {
     @Column(length = 1)
     private RefereeRange refereeRange;
 
-    protected User() {
+    public User() {
     }
 
     public User(String licenseId, String name, String surname, String email, int phone, Gender gender, Date birthDate, String dni, String gym, int weight, Belt belt, String profileImage, String nickname, String password, String securityQuestion, String securityAnswer, List<Role> roles) throws IOException {
