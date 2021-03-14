@@ -5,10 +5,7 @@ import es.dawgroup2.juding.belts.Belt;
 import es.dawgroup2.juding.users.gender.Gender;
 import es.dawgroup2.juding.users.refereeRange.RefereeRange;
 import es.dawgroup2.juding.users.roles.Role;
-import org.hibernate.engine.jdbc.BlobProxy;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.core.io.Resource;
 
 import javax.persistence.*;
 import java.io.IOException;
@@ -24,20 +21,22 @@ public class User implements Serializable {
     @Id
     private String licenseId;
 
+    // PERSONAL INFORMATION
+
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
     private String surname;
 
-    @Column(nullable = false)
-    private String email;
-
-    private int phone;
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 1)
     private Gender gender;
+
+    private int phone;
+
+    @Column(nullable = false)
+    private String email;
 
     @Column(nullable = false)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -45,20 +44,6 @@ public class User implements Serializable {
 
     @Column(nullable = false)
     private String dni;
-
-    @Column(nullable = false)
-    private String gym;
-
-    @Column(nullable = false)
-    private int weight;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 3)
-    private Belt belt;
-
-    @Lob
-    @JsonIgnore
-    private Blob profileImage;
 
     @Column(nullable = false)
     private String nickname;
@@ -72,34 +57,47 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String securityAnswer;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Column(nullable = false, length = 1)
-    private List<Role> roles;
+    @Lob
+    @JsonIgnore
+    private Blob profileImage;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 3)
+    private Belt belt;
+
+    private String gym;
+
+    private int weight;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 1)
     private RefereeRange refereeRange;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Column(nullable = false, length = 1)
+    private List<Role> roles;
+
     public User() {
     }
 
-    public User(String licenseId, String name, String surname, String email, int phone, Gender gender, Date birthDate, String dni, String gym, int weight, Belt belt, String profileImage, String nickname, String password, String securityQuestion, String securityAnswer, List<Role> roles) throws IOException {
+    public User(String licenseId, String name, String surname, Gender gender, int phone, String email, Date birthDate, String dni, String nickname, String password, String securityQuestion, String securityAnswer, Blob profileImage, Belt belt, String gym, int weight, RefereeRange refereeRange, List<Role> roles) {
         this.licenseId = licenseId;
         this.name = name;
         this.surname = surname;
-        this.email = email;
-        this.phone = phone;
         this.gender = gender;
+        this.phone = phone;
+        this.email = email;
         this.birthDate = birthDate;
         this.dni = dni;
-        this.gym = gym;
-        this.weight = weight;
-        this.belt = belt;
-        this.setProfileImage(profileImage);
         this.nickname = nickname;
         this.password = password;
         this.securityQuestion = securityQuestion;
         this.securityAnswer = securityAnswer;
+        this.profileImage = profileImage;
+        this.belt = belt;
+        this.gym = gym;
+        this.weight = weight;
+        this.refereeRange = refereeRange;
         this.roles = roles;
     }
 
@@ -130,12 +128,12 @@ public class User implements Serializable {
         return this;
     }
 
-    public String getEmail() {
-        return email;
+    public Gender getGender() {
+        return gender;
     }
 
-    public User setEmail(String email) {
-        this.email = email;
+    public User setGender(Gender gender) {
+        this.gender = gender;
         return this;
     }
 
@@ -148,12 +146,12 @@ public class User implements Serializable {
         return this;
     }
 
-    public Gender getGender() {
-        return gender;
+    public String getEmail() {
+        return email;
     }
 
-    public User setGender(Gender gender) {
-        this.gender = gender;
+    public User setEmail(String email) {
+        this.email = email;
         return this;
     }
 
@@ -173,37 +171,6 @@ public class User implements Serializable {
     public User setDni(String dni) {
         this.dni = dni;
         return this;
-    }
-
-    public String getGym() {
-        return gym;
-    }
-
-    public User setGym(String gym) {
-        this.gym = gym;
-        return this;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public User setWeight(int weight) {
-        this.weight = weight;
-        return this;
-    }
-
-    public Belt getBelt() {
-        return belt;
-    }
-
-    public User setBelt(Belt belt) {
-        this.belt = belt;
-        return this;
-    }
-
-    public Blob getProfileImage() {
-        return profileImage;
     }
 
     public String getNickname() {
@@ -242,12 +209,39 @@ public class User implements Serializable {
         return this;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public Blob getProfileImage() {
+        return profileImage;
     }
 
-    public User setRoles(List<Role> roles) {
-        this.roles = roles;
+    public User setProfileImage(Blob profileImage) {
+        this.profileImage = profileImage;
+        return this;
+    }
+
+    public Belt getBelt() {
+        return belt;
+    }
+
+    public User setBelt(Belt belt) {
+        this.belt = belt;
+        return this;
+    }
+
+    public String getGym() {
+        return gym;
+    }
+
+    public User setGym(String gym) {
+        this.gym = gym;
+        return this;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public User setWeight(int weight) {
+        this.weight = weight;
         return this;
     }
 
@@ -260,46 +254,40 @@ public class User implements Serializable {
         return this;
     }
 
-    // CUSTOM METHODS
-    public String getFormattedBirthDate(){
-        SimpleDateFormat simpDate = new SimpleDateFormat("dd/MM/yyyy");
-        return simpDate.format(birthDate);
+    public List<Role> getRoles() {
+        return roles;
     }
-    
-    /**
-     * Setting a profile image from its path
-     * @param path Path of the profile image.
-     * @return Same object (user).
-     * @throws IOException Input-output exception.
-     */
-    public User setProfileImage(String path) throws IOException {
-        Resource image = new ClassPathResource(path);
-        profileImage = BlobProxy.generateProxy(image.getInputStream(), image.contentLength());
+
+    public User setRoles(List<Role> roles) {
+        this.roles = roles;
         return this;
     }
 
     /**
-     * Setting a profile image having a Blob object.
-     * @param profileImage Profile image in Blob object.
-     * @return Same object (user).
+     * Gets the birth date of the user and returns it in a user-friendly format.
+     * @return Birth date in user-friendly format.
      */
-    public User setProfileImage(Blob profileImage) {
-        this.profileImage = profileImage;
-        return this;
+    public String getFormattedBirthDate() {
+        SimpleDateFormat simpDate = new SimpleDateFormat("dd/MM/yyyy");
+        return simpDate.format(birthDate);
     }
 
     /**
      * Returns true if the current user is male or false if it is female.
+     *
      * @return Gender boolean.
      */
-    public boolean isMale() { return gender == Gender.H; }
+    public boolean isMale() {
+        return gender == Gender.H;
+    }
 
     /**
      * Returns true if the current user includes the role specified.
+     *
      * @param role Role searched.
      * @return True if one of the user's roles match with included one.
      */
-    public boolean isRole(Role role){
+    public boolean isRole(Role role) {
         return (roles.contains(role));
     }
 }
