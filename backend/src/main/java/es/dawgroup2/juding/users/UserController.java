@@ -56,6 +56,8 @@ public class UserController {
                 model.addAttribute("pendingApplications", false);
             }
             model.addAttribute("userList", userService.getActiveReferees()).addAttribute("competitors", false);
+        } else {
+            return "redirect:/error/404";
         }
         return "/admin/user/list";
     }

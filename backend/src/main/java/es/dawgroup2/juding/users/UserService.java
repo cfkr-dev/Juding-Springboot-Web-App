@@ -1,10 +1,8 @@
 package es.dawgroup2.juding.users;
 
-import es.dawgroup2.juding.belts.Belt;
 import es.dawgroup2.juding.users.refereeRange.RefereeRange;
 import es.dawgroup2.juding.users.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

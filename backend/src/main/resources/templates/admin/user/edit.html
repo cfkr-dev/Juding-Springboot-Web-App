@@ -48,7 +48,7 @@
         <!-- License ID -->
         <label class="txt1" for="licenseId">Número de licencia <span class="asterisk">*</span></label>
         <input class="form-control" id="licenseId" name="licenseId" pattern="(JU-)?[0-9]{10}$" required type="text"
-               value="{{ user.licenseId }}">
+               value="{{ user.licenseId }}" readonly>
         <div class="invalid-feedback">
             La licencia no se ajusta al formato requerido (10 dígitos).
         </div>
