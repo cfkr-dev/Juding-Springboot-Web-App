@@ -19,7 +19,7 @@
     <link href="/assets/css/header.css" rel="stylesheet">
     <link href="/assets/css/bootstrapAccomodations.css" rel="stylesheet">
     <link href="/assets/css/responsiveTable.css" rel="stylesheet">
-    <link href="/assets/css/competitorsListScreen.css" rel="stylesheet">
+    <link href="/assets/css/adminScreen.css" rel="stylesheet">
 </head>
 <body>
 <header class="header fixed-top" id="header">
@@ -76,18 +76,15 @@
             <div class="width10 text-center">{{ startDate}}</div>
             <div class="width10 text-center">{{ endDate}}</div>
             <div class="width20 text-center ">
-                <button class="btn " data-bs-target="#modalProfile" data-bs-toggle="modal">
+
+                <button class="btn btn-outline-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
                     <i class="fas fa-info-circle"></i>
                 </button>
-                <a href="/admin/competition/edit/{{idCompetition}}">
-                    <button class="btn">
-                        <i class="fas fa-edit"></i>
-                    </button>
+                <a href="/admin/competition/edit/{{idCompetition}}" class="btn btn-outline-corporative">
+                    <i class="fas fa-pencil"></i>
                 </a>
-                <a href="/admin/competition/deleteCompetition/{{idCompetition}}">
-                    <button class="btn">
-                        <i class="fas fa-trash-alt opctionIcons delete"></i>
-                    </button>
+                <a class="btn btn-corporative" href="/admin/competition/deleteCompetition/{{idCompetition}}">
+                    <i class="fas fa-trash-alt delete"></i>
                 </a>
             </div>
             <div class="viewMore" style="display: none">
