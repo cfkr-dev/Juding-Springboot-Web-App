@@ -2,7 +2,7 @@ package es.dawgroup2.juding.users;
 
 import es.dawgroup2.juding.belts.Belt;
 import es.dawgroup2.juding.main.DateService;
-import es.dawgroup2.juding.main.ImageService;
+import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.users.gender.Gender;
 import es.dawgroup2.juding.users.refereeRange.RefereeRange;
 import es.dawgroup2.juding.users.roles.Role;
@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.*;
-import java.sql.Blob;
-import java.sql.Date;
 import java.text.ParseException;
 import java.util.List;
 

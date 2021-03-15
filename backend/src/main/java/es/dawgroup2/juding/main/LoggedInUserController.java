@@ -1,6 +1,7 @@
 package es.dawgroup2.juding.main;
 
 import es.dawgroup2.juding.belts.BeltService;
+import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import es.dawgroup2.juding.users.refereeRange.RefereeRange;
