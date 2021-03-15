@@ -38,6 +38,14 @@ public class PostService {
     }
 
     /**
+     * Returns the list with all posts ordering them by descendant timestamp.
+     * @return a list with all post instances in the specific order.
+     */
+    public List<Post> findAllDesc() {
+        return postRepository.findAllByOrderByTimestampDesc();
+    }
+
+    /**
      * This method search a post given by id and replaces it with a new post
      * @param Post Current post instance
      */

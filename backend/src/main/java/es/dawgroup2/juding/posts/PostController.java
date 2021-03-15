@@ -51,8 +51,7 @@ public class PostController {
      */
     @GetMapping("/admin/post/list")
     public String postList(Model model) {
-        List<Post> postList = postService.findAll();
-        model.addAttribute("postList", postList);
+        model.addAttribute("postList", postService.findAllDesc());
         return "/admin/post/list";
     }
 

@@ -52,40 +52,46 @@
         </nav>
     </div>
 </header>
-<div class="container">
+<div class="container pb-3">
+    <div class="row pt-3">
+        <div class="col-md-10">
+            <h2 class="h2">Competiciones</h2>
+        </div>
+        <div class="col-md-2">
+            <a href="/admin/competition/newCompetition">
+                <button class="btn btn-corporative"><i class="fa fa-plus-circle"></i> Nueva competición</button>
+            </a>
+        </div>
+    </div>
     <div class="responsiveTable">
         <div class="rtRow rtHeader">
-            <div class="width85"></div>
-            <div class="width15 text-center">
-                <a href="/admin/competition/newCompetition">
-                    <button class="btn btn-corporative"><i class="fa fa-plus-circle"></i> Nueva noticia</button>
-                </a>
-            </div>
-        </div>
-        <div class="rtRow rtHeader">
-            <div class="width10 text-center">Nombre de la competición</div>
-            <div class="width10 text-center">Árbrito encargado</div>
-            <div class="width10 text-center">Fecha de inicio</div>
-            <div class="width10 text-center">Fecha del final</div>
+            <div class="width5 text-center">Id.</div>
+            <div class="width25 text-center">Nombre de la competición</div>
+            <div class="width20 text-center">Árbrito encargado</div>
+            <div class="width10 text-center">Inicio</div>
+            <div class="width10 text-center">Fin</div>
+            <div class="width10 text-center">Rango de pesos</div>
             <div class="width20 text-center">Acciones</div>
         </div>
         {{ #competitionList}}
         <div class="rtRow">
-            <div class="width10 text-center">{{ shortName}}</div>
-            <div class="width10 text-center">{{ referee}}</div>
+            <div class="width5 text-center">{{ idCompetition}}</div>
+            <div class="width25 text-center">{{ shortName}}</div>
+            <div class="width20 text-center">{{ referee}}</div>
             <div class="width10 text-center">{{ startDate}}</div>
             <div class="width10 text-center">{{ endDate}}</div>
-            <div class="width20 text-center ">
-
+            <div class="width10 text-center">{{ minWeight}} - {{ maxWeight}}</div>
+            <div class="width20 text-center">
                 <button class="btn btn-outline-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
                     <i class="fas fa-info-circle"></i>
                 </button>
                 <a href="/admin/competition/edit/{{idCompetition}}" class="btn btn-outline-corporative">
                     <i class="fas fa-pencil"></i>
                 </a>
-                <a class="btn btn-corporative" href="/admin/competition/deleteCompetition/{{idCompetition}}">
+                <button class="btn btn-corporative" data-bs-target="#modalDelete" data-bs-toggle="modal"
+                        data-id="{{ idCompetition }}" data-type="competition">
                     <i class="fas fa-trash-alt delete"></i>
-                </a>
+                </button>
             </div>
             <div class="viewMore" style="display: none">
                 <div class="card-body">
@@ -131,6 +137,33 @@
     </div>
 </div>
 
+<!-- Modal for confirmating deleting of item in list -->
+<div class="modal fade" id="modalDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmación</h5>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info"><strong>Advertencia:</strong> Solo se garantiza el correcto borrado de una
+                    competición en caso de que no haya comenzado o no se haya inscrito ningún participante.
+                </div>
+                ¿Seguro de que desea continuar?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times-circle"></i> Cancelar
+                </button>
+                <a href="" id="modalDeleteLink">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i> Eliminar
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Vendor JS Files -->
 <script src="/assets/vendor/jquery/jquery.min.js"></script>
 <script src="/assets/vendor/bootstrap/js/bootstrap.js"></script>
@@ -138,6 +171,6 @@
 
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>
-<script src="/assets/js/competitorsList.js"></script>
+<script src="/assets/js/adminScreens.js"></script>
 </body>
 </html>

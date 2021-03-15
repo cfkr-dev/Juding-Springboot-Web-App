@@ -53,8 +53,7 @@ public class IndexController {
      */
     @GetMapping("/")
     public String index(Model model) {
-        List<Post> postList = postService.findAll();
-        model.addAttribute("postList", postList);
+        model.addAttribute("postList", postService.findAllDesc());
         return "/index";
     }
 

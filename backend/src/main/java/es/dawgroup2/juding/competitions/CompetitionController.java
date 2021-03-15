@@ -173,7 +173,7 @@ public class CompetitionController {
      * @param idCompetition id of the competition
      * @return view of the competition list
      */
-    @GetMapping("/admin/competition/deleteCompetition/{idCompetition}")
+    @GetMapping("/admin/competition/delete/{idCompetition}")
     public String showCompetitionToDelete(Model model, @PathVariable String idCompetition) {
         Competition competition = competitionService.findById(idCompetition);
         model.addAttribute("competition", competition);

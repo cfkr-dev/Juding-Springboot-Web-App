@@ -323,7 +323,8 @@
                                        placeholder="Asunto" required type="text">
                             </div>
                             <div class="col-md-12">
-                                <textarea class="form-control" name="message" id="contact-form-message" placeholder="Mensaje" required rows="6"></textarea>
+                                <textarea class="form-control" name="message" id="contact-form-message"
+                                          placeholder="Mensaje" required rows="6"></textarea>
                             </div>
                             <div class="col-md-12 text-center">
                                 <div class="loading">Cargando</div>
@@ -389,15 +390,18 @@
             <div class="row">
                 {{#postList}}
                 <div class="col-lg-4">
-                    <div class="post-box">
-                        <div class="post-img"><img alt="" class="img-fluid" src="/image/post/{{idPost}}"></div>
-                        <span class="post-date">{{timestamp}}</span>
-                        <h3 class="post-title">{{title}}</h3>
-                        <div class="readmore stretched-link mt-auto" data-bs-target="#modalPost" data-bs-toggle="modal">
-                            <span>Leer más</span><i class="far fa-long-arrow-right"></i>
+                    <a href="/news/{{ idPost }}">
+                        <div class="post-box">
+                            <div class="post-img"><img alt="" class="img-fluid" src="/image/post/{{idPost}}"></div>
+                            <span class="post-date">{{timestamp}}</span>
+                            <h3 class="post-title">{{title}}</h3>
+                            <div class="readmore stretched-link mt-auto" data-bs-target="#modalPost"
+                                 data-bs-toggle="modal">
+                                <span>Leer más</span><i class="far fa-long-arrow-right"></i>
+                            </div>
+                            <div class="post-info">{{body}}</div>
                         </div>
-                        <div class="post-info">{{body}}</div>
-                    </div>
+                    </a>
                 </div>
                 {{/postList}}
             </div>
@@ -447,19 +451,6 @@
 <a class="back-to-top d-flex align-items-center justify-content-center" href="#">
     <i class="far fa-chevron-up"></i>
 </a>
-
-<!-- Modal for posts info -->
-<div class="modal fade" id="modalPost" tabindex="-1">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalOpenedTitle"></h5>
-                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-            </div>
-            <div class="modal-body" id="modalOpenedBody"></div>
-        </div>
-    </div>
-</div>
 
 <!-- Vendor JS Files -->
 <script src="/assets/vendor/jquery/jquery.min.js"></script>
