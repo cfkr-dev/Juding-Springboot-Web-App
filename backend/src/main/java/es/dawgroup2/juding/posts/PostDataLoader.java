@@ -1,5 +1,7 @@
 package es.dawgroup2.juding.posts;
 
+import es.dawgroup2.juding.users.User;
+import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,13 +19,13 @@ public class PostDataLoader {
      * This method loads default data on database.
      */
     public void postLoader(){
-        Post p1 = new Post("1234567890",
+        Post p1 = new Post(null,
                 "El Semao",
                 "adsfadsgeargreqg",
                 null,
                 new Timestamp(953596800));
 
-        Post p2 = new Post("1278345690",
+        Post p2 = new Post(null,
                 "Gloria Serra",
                 "fbhwerbghrbhv",
                 null,

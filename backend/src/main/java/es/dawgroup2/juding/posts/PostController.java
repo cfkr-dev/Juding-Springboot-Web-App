@@ -1,5 +1,6 @@
 package es.dawgroup2.juding.posts;
 
+import es.dawgroup2.juding.users.UserService;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -23,6 +24,8 @@ public class PostController {
     @Autowired
     PostService postService;
 
+    @Autowired
+    UserService userService;
 
     /**
      * This method inflates the individual post (shown by Id) visualization view.
@@ -95,7 +98,8 @@ public class PostController {
                              @RequestParam MultipartFile image,
                              @RequestParam String body) throws IOException, SQLException {
         Post post = new Post();
-        post.setAuthor("1234567890")
+        // TODO we should change this when we control the session
+        post.setAuthor(userService.getUserOrNull("1234567890"))
                 .setTitle(title)
                 .setBody(body)
                 .setTimestamp(new Timestamp(System.currentTimeMillis()));

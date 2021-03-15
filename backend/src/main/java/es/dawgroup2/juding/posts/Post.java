@@ -1,6 +1,7 @@
 package es.dawgroup2.juding.posts;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import es.dawgroup2.juding.users.User;
 
 import javax.persistence.*;
 import java.sql.Blob;
@@ -9,9 +10,10 @@ import java.sql.Timestamp;
 @Entity
 public class Post {
 
-    protected Post(){}
+    protected Post() {
+    }
 
-    public Post(String author, String title, String body, Blob imageFile, Timestamp timestamp) {
+    public Post(User author, String title, String body, Blob imageFile, Timestamp timestamp) {
         super();
         this.author = author;
         this.title = title;
@@ -24,8 +26,8 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idPost;
 
-    @Column(nullable = false)
-    private String author;
+    @ManyToOne
+    private User author;
 
     @Column(nullable = false)
     private String title;
@@ -44,7 +46,7 @@ public class Post {
         return idPost;
     }
 
-    public String getAuthor() {
+    public User getAuthor() {
         return author;
     }
 
@@ -69,7 +71,7 @@ public class Post {
         return this;
     }
 
-    public Post setAuthor(String author) {
+    public Post setAuthor(User author) {
         this.author = author;
         return this;
     }
