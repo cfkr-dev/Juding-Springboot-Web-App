@@ -134,3 +134,29 @@ The application consists of the following screens:
 The following diagram shows how different users can navigate through the different pages of the application according to
 their role.
 ![](documentation_imgs/stage1/navigationDiagram.png)
+
+___
+
+## Stage 2: backend
+
+### Top 5 Commits & Files
+
+| Name | Top 5 Commits | Top 5 Files |
+| - | - | - |
+| Ismael | <ul><li>[Commit1Description](Commit1Link)</li><li>[Commit2Description](Commit2Link)</li><li>[Commit3Description](Commit3Link)</li><li>[Commit4Description](Commit4Link)</li><li>[Commit5Description](Commit5Link)</li></ul> | <ul><li>[File1Description](File1Link)</li><li>[File2Description](File2Link)</li><li>[File3Description](File3Link)</li><li>[File4Description](File4Link)</li><li>[File5Description](File5Link)</li></ul> |
+| Diego | <ul><li>[Commit1Description](Commit1Link)</li><li>[Commit2Description](Commit2Link)</li><li>[Commit3Description](Commit3Link)</li><li>[Commit4Description](Commit4Link)</li><li>[Commit5Description](Commit5Link)</li></ul> | <ul><li>[File1Description](File1Link)</li><li>[File2Description](File2Link)</li><li>[File3Description](File3Link)</li><li>[File4Description](File4Link)</li><li>[File5Description](File5Link)</li></ul> |
+| Alberto | <ul><li>[Commit1Description](Commit1Link)</li><li>[Commit2Description](Commit2Link)</li><li>[Commit3Description](Commit3Link)</li><li>[Commit4Description](Commit4Link)</li><li>[Commit5Description](Commit5Link)</li></ul> | <ul><li>[File1Description](File1Link)</li><li>[File2Description](File2Link)</li><li>[File3Description](File3Link)</li><li>[File4Description](File4Link)</li><li>[File5Description](File5Link)</li></ul> |
+| José Luis | <ul><li>[Commit1Description](Commit1Link)</li><li>[Commit2Description](Commit2Link)</li><li>[Commit3Description](Commit3Link)</li><li>[Commit4Description](Commit4Link)</li><li>[Commit5Description](Commit5Link)</li></ul> | <ul><li>[File1Description](File1Link)</li><li>[File2Description](File2Link)</li><li>[File3Description](File3Link)</li><li>[File4Description](File4Link)</li><li>[File5Description](File5Link)</li></ul> |
+
+### Navigation Diagram Updates
+(Screenshots are included in Stage 1 section).
+New navigation diagram:
+
+### Entity-Relationship Diagram
+Entity-Relationship Diagram
+
+### Classes and templates diagram
+Classes and templates diagram
+
+### Guide: getting started with Juding
+Guide: getting started with Juding.
