@@ -323,9 +323,7 @@
                                        placeholder="Asunto" required type="text">
                             </div>
                             <div class="col-md-12">
-                                <textarea class="form-control" name="message" id="contact-form-message"
-                                          placeholder="Mensaje" required
-                                          rows="6"></textarea>
+                                <textarea class="form-control" name="message" id="contact-form-message" placeholder="Mensaje" required rows="6"></textarea>
                             </div>
                             <div class="col-md-12 text-center">
                                 <div class="loading">Cargando</div>
@@ -389,161 +387,19 @@
                 <p>Ponte al día leyendo todas las publicaciones desde nuestra web</p>
             </header>
             <div class="row">
+                {{#postList}}
                 <div class="col-lg-4">
                     <div class="post-box">
-                        <div class="post-img"><img alt="" class="img-fluid" src="/assets/img/blog/blog-1.jpg"></div>
-                        <span class="post-date">15/02/2021</span>
-                        <h3 class="post-title">I JORNADA CLUB PANDY</h3>
+                        <div class="post-img"><img alt="" class="img-fluid" src="/image/{{idPost}}"></div>
+                        <span class="post-date">{{timestamp}}</span>
+                        <h3 class="post-title">{{title}}</h3>
                         <div class="readmore stretched-link mt-auto" data-bs-target="#modalPost" data-bs-toggle="modal">
                             <span>Leer más</span><i class="far fa-long-arrow-right"></i>
                         </div>
-                        <div class="post-info">
-                            <p>El pasado sábado 13 de febrero, se celebró en las Instalaciones del CETD Villaviciosa de
-                                Odón la I Jornada de Judo en Familia del Club Pandy bajo el lema “Respeto”. Pasamos un
-                                día
-                                muy divertido realizando actividades lúdicas de padres e hijos dirigidas por el Maestro
-                                José
-                                Miguel Urrea y con la colaboración de David y Javier Ramírez. Queremos hacer un especial
-                                agradecimiento a la Direccion General de Deportes de la Comunidad de Madrid, por
-                                impulsar la
-                                práctica deportiva de manera segura y facilitarnos el poder realizar actividades como la
-                                de
-                                este fin de semana. ¡¡¡¡GRACIAS!!!!!!!</p>
-                            <p>Y por supuesto, un inmenso agradecimiento a los profesores, padres, deportistas que
-                                habéis
-                                participado y que habéis cumplido todos los requisitos, formularios, orden,
-                                horario…Haciendo
-                                de esta Jornada, un día muy especial ¡¡¡¡GRACIAS!!!!!
-                                Además iniciamos el primer sorteo con el Club Pandy, en el que participan todos los
-                                niños
-                                asistentes, fue retransmitido en directo en Instagram y queremos publicarlo aquí también
-                                y
-                                recordaros que la entrega de los premios será en la próxima Jornada de Judo en Familia
-                                programada para el día 6 de marzo.</p>
-                            <p>¡Enhorabuena a los ganadores! ¡¡¡¡Y os esperamos en la siguiente Jornada del Club Pandy
-                                Judo
-                                en Familia!!!!</p>
-                            <p>Resolucion del sorteo:</p>
-                            <ol>
-                                <li>Premio Tablet numero -143</li>
-                                <li>Premio Gorra oficial JJ Del Mediterraneo cedida por Javier y David Ramirez - 14</li>
-                                <li>Premio Gorra oficial JJ Del Mediterraneo cedida por Javier y David Ramirez - 48</li>
-                                <li>Precio Pandidoka Peluche -2</li>
-                                <li>Premio Pandidoka Peluche -185</li>
-                                <li>Premio Pandidoka Peluche -177</li>
-                                <li>Premio Pandidoka Peluche -42</li>
-                                <li>Premio Pandidoka Peluche -187</li>
-                            </ol>
-                        </div>
+                        <div class="post-info">{{body}}</div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="post-box">
-                        <div class="post-img"><img alt="" class="img-fluid" src="/assets/img/blog/blog-2.jpg"></div>
-                        <span class="post-date">11/02/2021</span>
-                        <h3 class="post-title">INFORMACIÓN IMPORTANTE CLUB PANDY</h3>
-                        <div class="readmore stretched-link mt-auto" data-bs-target="#modalPost" data-bs-toggle="modal">
-                            <span>Leer más</span><i class="far fa-long-arrow-right"></i>
-                        </div>
-                        <div class="post-info">
-                            <ul>
-                                <li>Por favor, los profesores pasarán con sus alumnos en judogi.</li>
-                                <li>Apostamos por una jornada participativa en la que vuestros deportistas y padres
-                                    sentirán vuestra presencia cercana.
-                                </li>
-                                <li>Os adjuntamos distribución de tatami para que los acompañantes sepan donde
-                                    situarse.
-                                </li>
-                                <li>Recordad que sólo se permiten acompañantes de unidad familiar.</li>
-                                <li>Es importante que traigáis rellenos los anexos para facilitar la entrada. Recordad
-                                    que todos los participantes y acompañantes entregarán en la puerta los ANEXOS
-                                    PARTICIPACIÓN ACTIVIDADES FMJYDA.
-                                </li>
-                                <li>Por favor, llegad 15 minutos antes de la hora de comienzo. El uso de mascarilla es
-                                    obligatorio.
-                                </li>
-                                <li>Y…lo más importante de todo…llegad con la ilusión de pasar una jornada divertida en
-                                    la que disfrutaremos de JUDO EN FAMILIA y además la temática: RESPETO nos ayudará a
-                                    todos a recordar uno de los principios más importantes del JUDO y de la VIDA…
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="post-box">
-                        <div class="post-img"><img alt="" class="img-fluid" src="/assets/img/blog/blog-3.jpg"></div>
-                        <span class="post-date">10/02/2021</span>
-                        <h3 class="post-title">Raúl Camacho nominado para los Juegos Olímpicos</h3>
-                        <div class="readmore stretched-link mt-auto" data-bs-target="#modalPost" data-bs-toggle="modal">
-                            <span>Leer más</span><i class="far fa-long-arrow-right"></i>
-                        </div>
-                        <div class="post-info" style="display: none;">
-                            <div class="text-center"><img src="/assets/img/blog/blog-3.jpg"></div>
-                            <p>Desde la Federación Madrileña de Judo y D.A. estamos muy orgullosos de publicar esta
-                                noticia.</p>
-                            <p>Nuestro árbitro Internacional, Raúl Camacho, ha sido nominado oficialmente para
-                                participar en los próximos Juegos Olímpicos.</p>
-                            <p>¡¡¡ENHORABUENA!!!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="post-box">
-                        <div class="post-img"><img alt="" class="img-fluid" src="/assets/img/blog/blog-3.jpg"></div>
-                        <span class="post-date">10/02/2021</span>
-                        <h3 class="post-title">Raúl Camacho nominado para los Juegos Olímpicos</h3>
-                        <div class="readmore stretched-link mt-auto" data-bs-target="#modalPost" data-bs-toggle="modal">
-                            <span>Leer más</span><i class="far fa-long-arrow-right"></i>
-                        </div>
-                        <div class="post-info" style="display: none;">
-                            <div class="text-center"><img src="/assets/img/blog/blog-3.jpg"></div>
-                            <p>Desde la Federación Madrileña de Judo y D.A. estamos muy orgullosos de publicar esta
-                                noticia.</p>
-                            <p>Nuestro árbitro Internacional, Raúl Camacho, ha sido nominado oficialmente para
-                                participar en los próximos Juegos Olímpicos.</p>
-                            <p>¡¡¡ENHORABUENA!!!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="post-box">
-                        <div class="post-img"><img alt="" class="img-fluid" src="/assets/img/blog/blog-3.jpg"></div>
-                        <span class="post-date">10/02/2021</span>
-                        <h3 class="post-title">Raúl Camacho nominado para los Juegos Olímpicos</h3>
-                        <div class="readmore stretched-link mt-auto" data-bs-target="#modalPost" data-bs-toggle="modal">
-                            <span>Leer más</span><i class="far fa-long-arrow-right"></i>
-                        </div>
-                        <div class="post-info" style="display: none;">
-                            <div class="text-center"><img src="/assets/img/blog/blog-3.jpg"></div>
-                            <p>Desde la Federación Madrileña de Judo y D.A. estamos muy orgullosos de publicar esta
-                                noticia.</p>
-                            <p>Nuestro árbitro Internacional, Raúl Camacho, ha sido nominado oficialmente para
-                                participar en los próximos Juegos Olímpicos.</p>
-                            <p>¡¡¡ENHORABUENA!!!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="post-box">
-                        <div class="post-img"><img alt="" class="img-fluid" src="/assets/img/blog/blog-3.jpg"></div>
-                        <span class="post-date">10/02/2021</span>
-                        <h3 class="post-title">Raúl Camacho nominado para los Juegos Olímpicos</h3>
-                        <div class="readmore stretched-link mt-auto" data-bs-target="#modalPost" data-bs-toggle="modal">
-                            <span>Leer más</span><i class="far fa-long-arrow-right"></i>
-                        </div>
-                        <div class="post-info" style="display: none;">
-                            <div class="text-center"><img src="/assets/img/blog/blog-3.jpg"></div>
-                            <p>Desde la Federación Madrileña de Judo y D.A. estamos muy orgullosos de publicar esta
-                                noticia.</p>
-                            <p>Nuestro árbitro Internacional, Raúl Camacho, ha sido nominado oficialmente para
-                                participar en los próximos Juegos Olímpicos.</p>
-                            <p>¡¡¡ENHORABUENA!!!</p>
-                        </div>
-                    </div>
-                </div>
+                {{/postList}}
             </div>
         </div>
     </section>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>New - Juding</title>
+
+    <!-- Favicons -->
+    <link href="/assets/img/hero-img.png" rel="icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/vendor/font-awesome/css/all.css" rel="stylesheet">
+
+    <!-- Own CSS Files -->
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="/assets/css/header.css" rel="stylesheet">
+    <link href="/assets/css/responsiveTable.css" rel="stylesheet">
+    <link href="/assets/css/news.css" rel="stylesheet">
+
+</head>
+<body>
+<header class="header fixed-top" id="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a class="logo d-flex align-items-center" href="index.html">
+            <img alt="" src="/assets/img/hero-img.png">
+            <span>Juding</span>
+        </a>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a class="nav-link scrollto" href="#">Términos y condiciones de uso</a></li>
+                <li><a class="nav-link scrollto active" href="#">Noticias</a></li>
+                <li><a class="login scrollto" href="index.html">Atrás</a></li>
+            </ul>
+            <i class="far fa-bars mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 news">
+            <h2 class="competitionTitle">{{post.title}}</h2>
+            <div class="imageInTheMiddle">
+                <img alt="" class="imageNews" src="/image/{{post.idPost}}">
+            </div>
+            <div class="responsiveTable">
+                <div class="rtRow modificationResponsibleTable">
+                    <div class="width3 text-center modificationResponsibleChild">Autor: {{post.author}}</div>
+                    <div class="width3 text-center modificationResponsibleChild">Fecha de publicación: {{post.timestamp}}</div>
+                </div>
+            </div>
+            <div>{{{post.body}}}</div>
+        </div>
+        <div class="col-lg-4">
+            <div class="sidebar">
+                <div class="sidebarTitle">Otras noticias</div>
+                {{#postList}}
+                <div class="post-item clearfix mb-3">
+                    <img alt="" class="img-fluid newsImage" src="/image/{{idPost}}">
+                    <h4 class="newsTitle"><a href="/news/{{idPost}}">{{title}}</a></h4>
+                    <span class="post-date newsDate">{{timestamp}}</span>
+                </div>
+                {{/postList}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+
+<!-- Own JS Files -->
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

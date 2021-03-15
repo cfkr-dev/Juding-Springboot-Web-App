@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Edición de noticia - Juding</title>
+
+    <!-- Favicons -->
+    <link href="/assets/img/hero-img.png" rel="icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet">
+    <link href="/assets/vendor/font-awesome/css/all.css" rel="stylesheet">
+
+    <!-- Own CSS Files -->
+    <link href="/assets/css/header.css" rel="stylesheet">
+    <link href="/assets/css/bootstrapAccomodations.css" rel="stylesheet">
+    <link href="/assets/css/loginAndRegistration.css" rel="stylesheet">
+    <link href="/assets/css/post.css" rel="stylesheet">
+</head>
+<body>
+<header class="header fixed-top" id="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a class="logo d-flex align-items-center" href="">
+            <img alt="" src="/assets/img/hero-img.png">
+            <span>Juding</span>
+        </a>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a class="nav-link scrollto" href="/">Inicio</a></li>
+                <li><a class="nav-link scrollto" href="/ranking">Ranking</a></li>
+                <li><a class="nav-link scrollto" href="/myProfile">Mi perfil</a></li>
+                <li class="dropdown">
+                    <a href="#"><span>Administración</span> <i class="far fa-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="/admin/user/list">Usuarios</a></li>
+                        <li><a href="/admin/competition/list">Competiciones</a></li>
+                        <li class="active"><a href="/admin/posts/list">Noticias</a></li>
+                    </ul>
+                </li>
+                <li><a class="login scrollto" href="/index.html">Cerrar sesión</a></li>
+            </ul>
+            <i class="far fa-bars mobile-nav-toggle"></i>
+        </nav>
+    </div>
+</header>
+<div class="container pb-4">
+    <h2 class="h2">Edición de noticia</h2>
+    <form action="/admin/post/edit/modify" class="needs-validation flex-sb flex-w" method="post" enctype="multipart/form-data" novalidate>
+
+        <input type="hidden" name="id" value="{{post.idPost}}">
+
+        <!-- Title -->
+        <label class="txt1" for="title">Título <span class="asterisk">*</span></label>
+        <input class="form-control" id="title" name="title" required type="text"
+               value="{{post.title}}">
+        <div class="invalid-feedback">
+            Este campo no puede estar vacio.
+        </div>
+
+        <!-- Image -->
+
+        <label class="txt1" for="image">Imagen</label>
+        <img class="imageInTheMiddle" src="/image/{{post.idPost}}">
+        <input class="form-control" id="image" name="image" type="file">
+
+        <!-- Body -->
+        <label class="txt1" for="body">Cuerpo <span class="asterisk">*</span></label>
+        <textarea cols="30" id="body" name="body" rows="20">{{post.body}}</textarea>
+        <div class="container-login100-form-btn mt-2">
+            <button class="btn btn-corporative" type="submit">Actualizar datos</button>
+        </div>
+        <div class="passwrequirements">Se registrarán automáticamente la fecha actual y el autor de la noticia.</div>
+    </form>
+</div>
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.es.js"></script>
+<script src="/assets/vendor/tinymce/js/tinymce/tinymce.min.js"></script>
+
+<!-- Own JS Files -->
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/formControl.js"></script>
+<script src="/assets/js/validationScript.js"></script>
+<script>
+    $(function () {
+        tinymce.init({
+            selector: 'textarea#body',
+            language: 'es',
+            plugins: ['fullscreen', 'lists', 'link', 'table'],
+            toolbar: 'undo redo | styleselect | bold italic underline fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist | link unlink | table | fullscreen'
+        });
+    })
+</script>
+</body>
+</html>
