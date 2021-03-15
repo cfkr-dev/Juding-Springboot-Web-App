@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Competición - Juding</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- Favicons -->
+    <link href="/assets/img/hero-img.png" rel="icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/font-awesome/css/all.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Own CSS Files -->
+    <link href="/assets/css/header.css" rel="stylesheet">
+    <link href="/assets/css/responsiveTable.css" rel="stylesheet">
+    <link href="/assets/css/competitionScreen.css" rel="stylesheet">
+</head>
+<body>
+<header class="header fixed-top" id="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a class="logo d-flex align-items-center" href="#">
+            <img alt="" src="/assets/img/hero-img.png">
+            <span>Juding</span>
+        </a>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a class="nav-link scrollto" href="#">Inicio</a></li>
+                <li><a class="nav-link scrollto" href="/competitor/ranking.html">Ranking</a></li>
+                <li><a class="nav-link scrollto" href="#">Mi perfil</a></li>
+                <li><a class="login scrollto" href="/index.html">Cerrar sesión</a></li>
+            </ul>
+            <i class="far fa-bars mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header>
+<div class="container">
+    <div class="competition">
+        <h2 class="competitionTitle">{{competition.shortName}}</h2>
+        <h3 class="competitionSub">Información general</h3>
+        <div class="competitionText">{{{competition.additionalInfo}}}
+        </div>
+        <!--Responsive image-->
+        <div class="imageInTheMiddle">
+            <img class="imageCompetition"
+                 src="/image/{{competition.idCompetition}}">
+        </div>
+        <!--Tecnichal information of the competition-->
+        <div class="responsiveTable">
+            <div class="rtRow rtHeader">
+                <div class="width15 text-center">Estado</div>
+                <div class="width20 text-center">Fecha de inicio</div>
+                <div class="width20 text-center">Fecha de finalización</div>
+                <div class="width20 text-center">Árbitro</div>
+                <div class="width15 text-center">Número de competidores</div>
+            </div>
+            <div class="rtRow">
+                <div class="width15 text-center">
+                    <div class="badge bg-secondary">{{state}}</div>
+                </div>
+                <div class="width20 text-center">{{competition.startDate}}</div>
+                <div class="width20 text-center">{{competition.endDate}}</div>
+                <div class="width20 text-center">
+                    <div>{{competition.referee}}</div>
+                </div>
+                <div class="width15 text-center">16</div>
+            </div>
+        </div>
+        <h3 class="competitionSub">Árbol de competición</h3>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headerCompetitionTree">
+                    <button aria-controls="competitionTree" aria-expanded="true" class="accordion-button collapsed"
+                            data-bs-target="#competitionTree" data-bs-toggle="collapse" type="button">
+                        Desplegar árbol
+                    </button>
+                </h2>
+                <div aria-labelledby="headerCompetitionTree" class="accordion-collapse collapse"
+                     data-bs-parent="#accordionExample"
+                     id="competitionTree">
+                    <div class="accordion-body">
+                        <div id="wrapper"><span class="label winner">Ganador</span>
+                            <div class="branch lv1">
+                                <div class="entry"><span class="label">Semifinalista 1</span>
+                                    <div class="branch lv2">
+                                        <div class="entry"><span class="label">Cuartos de final 1</span>
+                                            <div class="branch lv3">
+                                                <div class="entry"><span class="label">Octavos de final 1</span>
+                                                    <div class="branch lv4">
+                                                        <div class="entry"><span
+                                                                class="label">Dieciseisavos de final 1</span></div>
+                                                        <div class="entry"><span
+                                                                class="label">Dieciseisavos de final 2</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="entry"><span class="label">Octavos de final 2</span>
+                                                    <div class="branch lv4">
+                                                        <div class="entry"><span
+                                                                class="label">Dieciseisavos de final 3</span></div>
+                                                        <div class="entry"><span
+                                                                class="label">Dieciseisavos de final 4</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="entry"><span class="label">Cuartos de final 2</span>
+                                            <div class="branch lv3">
+                                                <div class="entry"><span class="label">Octavos de final 3</span>
+                                                    <div class="branch lv4">
+                                                        <div class="entry"><span
+                                                                class="label">Dieciseisavos de final 5</span></div>
+                                                        <div class="entry"><span
+                                                                class="label">Dieciseisavos de final 6</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="entry"><span class="label">Octavos de final 4</span>
+                                                    <div class="branch lv4">
+                                                        <div class="entry"><span
+                                                                class="label">Dieciseisavos de final 7</span></div>
+                                                        <div class="entry"><span
+                                                                class="label">Dieciseisavos de final 8</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="entry"><span class="label">Semifinalista 2</span>
+                                    <div class="branch lv2">
+                                        <div class="entry"><span class="label">Cuartos de final 3</span>
+                                            <div class="branch lv3">
+                                                <div class="entry"><span class="label">Octavos de final 5</span>
+                                                    <div class="branch lv4">
+                                                        <div class="entry"><span
+                                                                class="label">Dieciseisavos de final 9</span></div>
+                                                        <div class="entry"><span
+                                                                class="label">Dieciseisavos de final 10</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="entry"><span class="label">Octavos de final 6</span>
+                                                    <div class="branch lv4">
+                                                        <div class="entry"><span
+                                                                class="label">Dieciseisavos de final 11</span>
+                                                        </div>
+                                                        <div class="entry"><span
+                                                                class="label">Dieciseisavos de final 12</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="entry"><span class="label">Cuartos de final 4</span>
+                                            <div class="branch lv3">
+                                                <div class="entry"><span class="label">Octavos de final 7</span>
+                                                    <div class="branch lv4">
+                                                        <div class="entry"><span
+                                                                class="label">Dieciseisavos de final 13</span>
+                                                        </div>
+                                                        <div class="entry"><span
+                                                                class="label">Dieciseisavos de final 14</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="entry"><span class="label">Octavos de final 8</span>
+                                                    <div class="branch lv4">
+                                                        <div class="entry"><span
+                                                                class="label">Dieciseisavos de final 14</span>
+                                                        </div>
+                                                        <div class="entry"><span
+                                                                class="label">Dieciseisavos de final 16</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3 class="competitionSub">Resultados</h3>
+        <!--Competition results-->
+        <div class="responsiveTable">
+            <div class="rtRow rtHeader">
+                <div class="width15 text-center">Posición</div>
+                <div class="width20 text-center">Nombre</div>
+                <div class="width15 text-center">Peso</div>
+                <div class="width15 text-center">Género</div>
+                <div class="width20 text-center">Cinturón</div>
+                <div class="width15 text-center">Medalla</div>
+            </div>
+            <div class="rtRow">
+                <div class="width15 text-center">1ª</div>
+                <div class="width20 text-center">Joaquín</div>
+                <div class="width15 text-center">50Kg</div>
+                <div class="width15 text-center">Masc.</div>
+                <div class="width20 text-center">
+                    <i class="fas fa-user-ninja" style="color: green;"></i>
+                </div>
+                <div class="width15 text-center">
+                    <i class="fas fa-medal goldMedal"></i>
+                </div>
+            </div>
+            <div class="rtRow">
+                <div class="width15 text-center">2ª</div>
+                <div class="width20 text-center">Marcos</div>
+                <div class="width15 text-center">53Kg</div>
+                <div class="width15 text-center">Masc.</div>
+                <div class="width20 text-center">
+                    <i class="fas fa-user-ninja" style="color: green;"></i>
+                </div>
+                <div class="width15 text-center">
+                    <i class="fas fa-medal silverMedal"></i>
+                </div>
+            </div>
+            <div class="rtRow mb-5">
+                <div class="width15 text-center">3ª</div>
+                <div class="width20 text-center">Martín</div>
+                <div class="width15 text-center">55Kg</div>
+                <div class="width15 text-center">Masc.</div>
+                <div class="width20 text-center">
+                    <i class="fas fa-user-ninja" style="color: green;"></i>
+                </div>
+                <div class="width15 text-center">
+                    <i class="fas fa-medal bronzeMedal"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+
+<!-- Own JS Files -->
+<script src="/assets/js/main.js"></script>
+</body>
+</html>
