@@ -1,6 +1,8 @@
 package es.dawgroup2.juding.users;
 
 import es.dawgroup2.juding.belts.BeltService;
+import es.dawgroup2.juding.main.DateService;
+import es.dawgroup2.juding.main.ImageService;
 import es.dawgroup2.juding.users.gender.GenderService;
 import es.dawgroup2.juding.users.refereeRange.RefereeRange;
 import es.dawgroup2.juding.users.refereeRange.RefereeRangeService;
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 @Controller
@@ -39,13 +42,20 @@ public class UserController {
     RefereeRangeService refereeRangeService;
 
     @Autowired
+    DateService dateService;
+
+    @Autowired
+    ImageService imageService;
+
+    @Autowired
     private JavaMailSender emailSender;
 
     /**
      * Retrieves a view with a list of users (both competitors and referees) according to their role.
      * Besides, when referees are listed, it is included a list of pending applications.
+     *
      * @param stringRole Role of listed users (given by URL).
-     * @param model Model.
+     * @param model      Model.
      * @return Dynamic view with a list of users.
      */
     @GetMapping("/admin/user/list/{stringRole}")
@@ -67,8 +77,9 @@ public class UserController {
 
     /**
      * Returns a view with a form for editing user information (with common values and also fields for specific-role information).
+     *
      * @param licenseId License ID (PK) of edited user.
-     * @param model Model.
+     * @param model     Model.
      * @return Dynamic view with form.
      */
     @GetMapping("/admin/user/edit/{licenseId}")
@@ -76,7 +87,7 @@ public class UserController {
         User user = userService.getUserOrNull(licenseId);
         model.addAttribute("user", user)
                 .addAttribute("beltSelector", beltService.getSelectField(user.getBelt()))
-                .addAttribute("genderRadioInput", genderService.getRadioField(user.getGender()))
+                .addAttribute("genderSelection", genderService.getRadioField(user.getGender()))
                 .addAttribute("isCompetitor", user.isRole(Role.C));
         if (user.isRole(Role.R)) {
             model.addAttribute("refereeRangeSelector", refereeRangeService.generateActiveRangesSelect(user.getRefereeRange(), true));
@@ -84,42 +95,41 @@ public class UserController {
         return "/admin/user/edit";
     }
 
-
     /**
      * This method receives information from {@link #editUser(String, Model) editUser} generated view and save them into database.
-     * Different information types are properly processed before sending them to the repository.
-     * @param licenseId License ID (PK)
-     * @param name Name
-     * @param surname Surname
-     * @param dni DNI
-     * @param phone Phone
-     * @param email Email
-     * @param birthdate Birth date
-     * @param nickname Nick name
-     * @param profileImage Profile image
-     * @param gender Gender
-     * @param weight Weight
-     * @param gym Gym
-     * @param belt Belt
+     * Different information types are properly processed before sending them to the repository
+     *
+     * @param name         Name
+     * @param surname      Surname
+     * @param gender       Gender
+     * @param phone        Phone
+     * @param email        Email
+     * @param birthdate    Birth date
+     * @param dni          DNI
+     * @param licenseId    License ID (PK)
+     * @param nickname     Nick name
+     * @param belt         Belt
+     * @param gym          Gym
+     * @param weight       Weight
      * @param refereeRange Referee range (if it's a referee)
      * @return Redirection to control panel.
-     * @throws IOException Exception caused by input-output troubles when processing profile image (if included).
+     * @throws ParseException
      */
     @PostMapping("/admin/user/edit/save")
-    public String savingUser(@RequestParam String licenseId,
-                             @RequestParam String name,
+    public String savingUser(@RequestParam String name,
                              @RequestParam String surname,
-                             @RequestParam String dni,
+                             @RequestParam String gender,
                              @RequestParam int phone,
                              @RequestParam String email,
                              @RequestParam String birthdate,
+                             @RequestParam String dni,
+                             @RequestParam String licenseId,
                              @RequestParam String nickname,
-                             MultipartFile profileImage,
-                             @RequestParam String gender,
-                             @RequestParam int weight,
-                             @RequestParam String gym,
                              @RequestParam String belt,
-                             @RequestParam(required = false) String refereeRange) throws IOException {
+                             @RequestParam String gym,
+                             @RequestParam int weight,
+                             @RequestParam(required = false) String refereeRange
+    ) throws ParseException {
         User currentUser = userService.getUserOrNull(licenseId);
         currentUser.setName(name)
                 .setSurname(surname)
@@ -127,6 +137,7 @@ public class UserController {
                 .setPhone(phone)
                 .setEmail(email)
                 .setNickname(nickname)
+                .setBirthDate(dateService.stringToDate(birthdate))
                 .setGender(genderService.findGenderById(gender))
                 .setWeight(weight)
                 .setGym(gym)
@@ -134,9 +145,6 @@ public class UserController {
         if (refereeRange != null)
             if (!refereeRange.isEmpty())
                 currentUser.setRefereeRange(refereeRangeService.findRefereeRangeById(refereeRange));
-        if (profileImage != null)
-            if (!profileImage.isEmpty())
-                currentUser.setProfileImage(BlobProxy.generateProxy(profileImage.getInputStream(), profileImage.getSize()));
         userService.save(currentUser);
         if (currentUser.isRole(Role.C))
             return "redirect:/admin/user/list/competitors";
@@ -147,6 +155,7 @@ public class UserController {
     /**
      * Method used when a referee application is trammited and accepted. It sends an e-mail to the applicant and changes
      * its range.
+     *
      * @param licenseId License ID (PK).
      * @return Redirection to list of users (see {@link #userList(String, Model) userList}).
      */
@@ -181,6 +190,7 @@ public class UserController {
 
     /**
      * Deletes a user from the repository attending to the license ID given in the URL.
+     *
      * @param licenseId License ID (PK).
      * @return Redirection to list of users (see {@link #userList(String, Model) userList}).
      */

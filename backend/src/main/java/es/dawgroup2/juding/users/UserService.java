@@ -57,6 +57,15 @@ public class UserService {
     }
 
     /**
+     * Checks if user exists (true if exists, false if not).
+     * @param licenseId License ID that has to be checked
+     * @return True if user exists (false otherwise).
+     */
+    public boolean userExists(String licenseId){
+        return getUserOrNull(licenseId) != null;
+    }
+
+    /**
      * Return the list of roles of a user attending to its license ID.
      * @param licenseId License ID (PK).
      * @return List of roles (null if it does not exist).
