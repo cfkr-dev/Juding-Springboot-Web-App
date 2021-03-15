@@ -1,4 +1,4 @@
-package es.dawgroup2.juding.others;
+package es.dawgroup2.juding.main;
 
 import es.dawgroup2.juding.belts.BeltService;
 import es.dawgroup2.juding.users.User;
@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @Controller
-public class PrivateUserController {
+public class LoggedInUserController {
 
     // TODO CHANGE THIS WHEN SESSION IS CONTROLLED
     String licenseId = "JU-1234567893";
@@ -38,8 +38,21 @@ public class PrivateUserController {
     BeltService beltService;
 
     @Autowired
+    DateService dateService;
+
+    @Autowired
+    ImageService imageService;
+
+    @Autowired
     RefereeRangeService refereeRangeService;
 
+    /**
+     * Dynamic view of homepage of logged in users.
+     *
+     * @param model    Model.
+     * @param response HTTP Servlet Response.
+     * @return Dynamic view of homepage of logged in users.
+     */
     @GetMapping("/myHome")
     public String myHome(Model model, HttpServletResponse response) {
         User currentUser = userService.getUserOrNull(licenseId);
@@ -53,6 +66,13 @@ public class PrivateUserController {
         return "myHome";
     }
 
+    /**
+     * Helper for downloading profile image associated with a user.
+     *
+     * @param licenseId License ID of the user.
+     * @return Profile photo of user.
+     * @throws SQLException SQL Exception.
+     */
     @GetMapping("/profileImage/{licenseId}")
     public ResponseEntity<Object> downloadProfileImage(@PathVariable String licenseId) throws SQLException {
         User user = userService.getUserOrNull(licenseId);
@@ -65,11 +85,16 @@ public class PrivateUserController {
         }
     }
 
+    /**
+     * Dynamic view of profile screen, with some data about logged user.
+     * @param model Model.
+     * @return Dynamic view of profile screen.
+     */
     @GetMapping("/myProfile")
-    public String myProfile(Model model, HttpServletResponse response) {
+    public String myProfile(Model model) {
         User currentUser = userService.getUserOrNull(licenseId);
         if (currentUser == null) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return "/error/403";
         } else {
             model.addAttribute("user", currentUser)
                     .addAttribute("isCompetitor", currentUser.isRole(Role.C))
@@ -79,11 +104,16 @@ public class PrivateUserController {
         return "/myProfile/index";
     }
 
+    /**
+     * Dynamic view of edit profile screen.
+     * @param model Model.
+     * @return Dynamic view of edit profile screen.
+     */
     @GetMapping("/myProfile/edit")
-    public String editProfile(Model model, HttpServletResponse response) {
+    public String editProfile(Model model) {
         User currentUser = userService.getUserOrNull(licenseId);
         if (currentUser == null) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return "/error/403";
         } else {
             model.addAttribute("user", currentUser)
                     .addAttribute("isCompetitor", currentUser.isRole(Role.C))
@@ -95,6 +125,21 @@ public class PrivateUserController {
         return "/myProfile/edit";
     }
 
+    /**
+     * Method for saving edited values of user when {@link #editProfile(Model) editProfile} form is filled and sent.
+     * @param model Model.
+     * @param licenseId License ID (PK).
+     * @param beltSelector Belt.
+     * @param gym Gym.
+     * @param weight Weight
+     * @param refereeRange Referee range (in case it's a referee)
+     * @param nick Nickname.
+     * @param phone Phone.
+     * @param email Email.
+     * @param image Profile image.
+     * @return Profile page if successful.
+     * @throws IOException Input-output exception.
+     */
     @PostMapping("/myProfile/edit")
     public String editingUser(Model model, @RequestParam String licenseId,
                               @RequestParam String beltSelector,
@@ -116,7 +161,7 @@ public class PrivateUserController {
         }
         // Changing image
         if (!image.isEmpty()) {
-            user.setProfileImage(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
+            user.setProfileImage(imageService.uploadProfileImage(image));
         }
         userService.save(user);
         return "redirect:/myProfile";
