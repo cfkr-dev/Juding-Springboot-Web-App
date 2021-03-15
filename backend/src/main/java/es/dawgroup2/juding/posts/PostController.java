@@ -24,20 +24,6 @@ public class PostController {
     PostService postService;
 
 
-    /*INFLATE VIEWS*/
-
-    /**
-     * This method inflates the post box list in index main page.
-     * @param model Post data model.
-     * @return index main page view.
-     */
-    @GetMapping("/")
-    public String indexPosts(Model model) {
-        List<Post> postList = postService.findAll();
-        model.addAttribute("postList", postList);
-        return "/index";
-    }
-
     /**
      * This method inflates the individual post (shown by Id) visualization view.
      * A list with other post is also shown.
@@ -88,28 +74,6 @@ public class PostController {
     @GetMapping("/admin/post/createNew")
     public String newPost(Model model) {
         return "/admin/post/createNew";
-    }
-
-    /**
-     * This method downloads an individual post image and shows it on a view.
-     * @param id Current post id.
-     * @return The image to show.
-     * @throws SQLException In case of the image is not found on database.
-     */
-    @GetMapping("/image/{id}")
-    public ResponseEntity<Object> downloadImage(@PathVariable String id)
-            throws SQLException {
-        Post post = postService.findById(id);
-        if (post.getImageFile() != null) {
-            Resource file = new InputStreamResource(
-                    post.getImageFile().getBinaryStream());
-            return ResponseEntity.ok()
-                    .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-                    .contentLength(post.getImageFile().length())
-                    .body(file);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
     }
 
 

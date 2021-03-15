@@ -6,24 +6,16 @@ import es.dawgroup2.juding.users.UserService;
 import es.dawgroup2.juding.users.refereeRange.RefereeRange;
 import es.dawgroup2.juding.users.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.users.roles.Role;
-import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.mail.Multipart;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @Controller
 public class LoggedInUserController {
@@ -64,25 +56,6 @@ public class LoggedInUserController {
                     .addAttribute("stringRange", currentUser.getRefereeRange());
         }
         return "myHome";
-    }
-
-    /**
-     * Helper for downloading profile image associated with a user.
-     *
-     * @param licenseId License ID of the user.
-     * @return Profile photo of user.
-     * @throws SQLException SQL Exception.
-     */
-    @GetMapping("/profileImage/{licenseId}")
-    public ResponseEntity<Object> downloadProfileImage(@PathVariable String licenseId) throws SQLException {
-        User user = userService.getUserOrNull(licenseId);
-        if (user != null && user.getProfileImage() != null) {
-            Resource file = new InputStreamResource(user.getProfileImage().getBinaryStream());
-            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-                    .contentLength(user.getProfileImage().length()).body(file);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     /**
@@ -161,7 +134,7 @@ public class LoggedInUserController {
         }
         // Changing image
         if (!image.isEmpty()) {
-            user.setProfileImage(imageService.uploadProfileImage(image));
+            user.setImageFile(imageService.uploadProfileImage(image));
         }
         userService.save(user);
         return "redirect:/myProfile";

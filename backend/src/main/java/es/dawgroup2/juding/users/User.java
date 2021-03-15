@@ -8,7 +8,6 @@ import es.dawgroup2.juding.users.roles.Role;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Date;
@@ -59,7 +58,7 @@ public class User implements Serializable {
 
     @Lob
     @JsonIgnore
-    private Blob profileImage;
+    private Blob imageFile;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 3)
@@ -80,7 +79,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String licenseId, String name, String surname, Gender gender, int phone, String email, Date birthDate, String dni, String nickname, String password, String securityQuestion, String securityAnswer, Blob profileImage, Belt belt, String gym, int weight, RefereeRange refereeRange, List<Role> roles) {
+    public User(String licenseId, String name, String surname, Gender gender, int phone, String email, Date birthDate, String dni, String nickname, String password, String securityQuestion, String securityAnswer, Blob imageFile, Belt belt, String gym, int weight, RefereeRange refereeRange, List<Role> roles) {
         this.licenseId = licenseId;
         this.name = name;
         this.surname = surname;
@@ -93,7 +92,7 @@ public class User implements Serializable {
         this.password = password;
         this.securityQuestion = securityQuestion;
         this.securityAnswer = securityAnswer;
-        this.profileImage = profileImage;
+        this.imageFile = imageFile;
         this.belt = belt;
         this.gym = gym;
         this.weight = weight;
@@ -209,12 +208,12 @@ public class User implements Serializable {
         return this;
     }
 
-    public Blob getProfileImage() {
-        return profileImage;
+    public Blob getImageFile() {
+        return imageFile;
     }
 
-    public User setProfileImage(Blob profileImage) {
-        this.profileImage = profileImage;
+    public User setImageFile(Blob profileImage) {
+        this.imageFile = profileImage;
         return this;
     }
 

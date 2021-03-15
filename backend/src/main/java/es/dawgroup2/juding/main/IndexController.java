@@ -1,6 +1,8 @@
 package es.dawgroup2.juding.main;
 
 import es.dawgroup2.juding.belts.BeltService;
+import es.dawgroup2.juding.posts.Post;
+import es.dawgroup2.juding.posts.PostService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import es.dawgroup2.juding.users.gender.GenderService;
@@ -26,6 +28,9 @@ public class IndexController {
     UserService userService;
 
     @Autowired
+    PostService postService;
+
+    @Autowired
     GenderService genderService;
 
     @Autowired
@@ -40,9 +45,16 @@ public class IndexController {
     @Autowired
     DateService dateService;
 
+    /**
+     * This method inflates the post box list in index main page.
+     * @param model Post data model.
+     * @return index main page view.
+     */
     @GetMapping("/")
-    public String index() {
-        return "index";
+    public String index(Model model) {
+        List<Post> postList = postService.findAll();
+        model.addAttribute("postList", postList);
+        return "/index";
     }
 
     @GetMapping("/login")
@@ -84,7 +96,7 @@ public class IndexController {
             newUser.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone(phone)
                     .setGender(genderService.findGenderById(gender)).setBirthDate(dateService.stringToDate(birthDate))
                     .setDni(dni).setGym(gym).setWeight(weight).setBelt(beltService.findBeltById(belt))
-                    .setProfileImage(imageService.uploadProfileImage(image)).setNickname(nickname)
+                    .setImageFile(imageService.uploadProfileImage(image)).setNickname(nickname)
                     .setPassword(password).setSecurityQuestion(securityQuestion).setSecurityAnswer(securityAnswer)
                     .setRoles(List.of(Role.C));
         } catch (Exception e) {
@@ -114,7 +126,7 @@ public class IndexController {
             newUser.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone(phone)
                     .setGender(genderService.findGenderById(gender)).setBirthDate(dateService.stringToDate(birthDate))
                     .setDni(dni).setBelt(beltService.findBeltById(belt)).setRefereeRange(RefereeRange.S)
-                    .setProfileImage(imageService.uploadProfileImage(image)).setNickname(nickname)
+                    .setImageFile(imageService.uploadProfileImage(image)).setNickname(nickname)
                     .setPassword(password).setSecurityQuestion(securityQuestion).setSecurityAnswer(securityAnswer)
                     .setRoles(List.of(Role.R));
         } catch (Exception e) {

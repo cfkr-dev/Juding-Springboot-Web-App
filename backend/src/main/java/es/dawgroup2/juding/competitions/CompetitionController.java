@@ -80,24 +80,6 @@ public class CompetitionController {
     }
 
     /**
-     *
-     * @param idCompetition id of the competition
-     * @return the image of the competition
-     * @throws SQLException
-     */
-    @GetMapping("/image/{idCompetition}")
-    public ResponseEntity<Object> downloadImage(@PathVariable String idCompetition) throws SQLException {
-        Competition competition = competitionService.findById(idCompetition);
-        if (competition.getImageFile() != null) {
-            Resource file = new InputStreamResource(competition.getImageFile().getBinaryStream());
-            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-                    .contentLength(competition.getImageFile().length()).body(file);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    /**
      * Generates a new competition
      * @param shortName The short name of the competition
      * @param additionalInfo Info about the competition
