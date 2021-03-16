@@ -66,16 +66,16 @@
     <div class="responsiveTable">
         <div class="rtRow rtHeader">
             <div class="width5 text-center">Id.</div>
-            <div class="width45 text-center">Título</div>
-            <div class="width10 text-center">Fecha</div>
+            <div class="width40 text-center">Título</div>
+            <div class="width15 text-center">Fecha</div>
             <div class="width25 text-center">Autor</div>
             <div class="width15 text-center">Acciones</div>
         </div>
         {{#postList}}
         <div class="rtRow">
             <div class="width5 text-center">{{idPost}}</div>
-            <div class="width45">{{title}}</div>
-            <div class="width10 text-center">{{timestamp}}</div>
+            <div class="width40">{{title}}</div>
+            <div class="width15 text-center">{{getFormattedEditionTimestamp}}</div>
             <div class="width25 text-center">{{author.getName}}</div>
             <div class="width15 text-center">
 

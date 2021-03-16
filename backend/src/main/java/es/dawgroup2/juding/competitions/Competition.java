@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Blob;
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 @Entity
@@ -189,6 +191,24 @@ public class Competition implements Serializable {
                 return "Comenzada";
             } else return "Finalizada";
         } else return "Por comenzar";
+    }
+
+    /**
+     * Gets the start date of the competition and returns it in a user-friendly format.
+     * @return Start date in user-friendly format.
+     */
+    public String getFormattedStartDate() {
+        SimpleDateFormat simpDate = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return simpDate.format(startDate);
+    }
+
+    /**
+     * Gets the end date of the competition and returns it in a user-friendly format.
+     * @return End date in user-friendly format.
+     */
+    public String getFormattedEndDate() {
+        SimpleDateFormat simpDate = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return simpDate.format(endDate);
     }
 
 }

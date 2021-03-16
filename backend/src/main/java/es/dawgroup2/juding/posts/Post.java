@@ -6,6 +6,7 @@ import es.dawgroup2.juding.users.User;
 import javax.persistence.*;
 import java.sql.Blob;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 @Entity
 public class Post {
@@ -94,5 +95,14 @@ public class Post {
     public Post setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
         return this;
+    }
+
+    /**
+     * Gets the date of the last edition and returns it in a user-friendly format.
+     * @return Last edition timestamp in user-friendly format.
+     */
+    public String getFormattedEditionTimestamp() {
+        SimpleDateFormat simpDate = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return simpDate.format(timestamp);
     }
 }

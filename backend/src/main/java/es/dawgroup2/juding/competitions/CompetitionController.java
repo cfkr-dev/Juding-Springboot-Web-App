@@ -1,21 +1,19 @@
 package es.dawgroup2.juding.competitions;
 
-import es.dawgroup2.juding.attendances.Attendance;
 import es.dawgroup2.juding.attendances.AttendanceService;
+import es.dawgroup2.juding.main.DateService;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.List;
 
 @Controller
@@ -27,6 +25,9 @@ public class CompetitionController {
 
     @Autowired
     AttendanceService attendanceService;
+
+    @Autowired
+    DateService dateService;
 
     /**
      *
@@ -98,18 +99,18 @@ public class CompetitionController {
                                   @RequestParam String additionalInfo,
                                   @RequestParam int minWeight,
                                   @RequestParam int maxWeight,
-                                  @RequestParam Timestamp startDate,
-                                  @RequestParam Timestamp endDate,
+                                  @RequestParam String startDate,
+                                  @RequestParam String endDate,
                                   @RequestParam String referee,
                                   @RequestParam String status,
-                                  MultipartFile imageFile) throws IOException {
+                                  MultipartFile imageFile) throws IOException, ParseException {
         Competition competition=new Competition();
         competition.setShortName(shortName)
                 .setAdditionalInfo(additionalInfo)
                 .setMinWeight(minWeight)
                 .setMaxWeight(maxWeight)
-                .setStartDate(startDate)
-                .setEndDate(endDate)
+                .setStartDate(dateService.stringToTimestamp(startDate))
+                .setEndDate(dateService.stringToTimestamp(endDate))
                 .setReferee(referee)
                 .setRefereeStatus(attendanceService.findAttendanceById(status));
         if (imageFile != null) {
@@ -143,11 +144,11 @@ public class CompetitionController {
                                           @RequestParam String additionalInfo,
                                           @RequestParam int minWeight,
                                           @RequestParam int maxWeight,
-                                          @RequestParam Timestamp startDate,
-                                          @RequestParam Timestamp endDate,
+                                          @RequestParam String startDate,
+                                          @RequestParam String endDate,
                                           @RequestParam String referee,
                                           @RequestParam String refereeStatus,
-                                          MultipartFile imageFile) throws IOException, SQLException {
+                                          MultipartFile imageFile) throws IOException, ParseException {
         Competition competition = competitionService.findById(idCompetition);
         if (imageFile != null) {
             if (!imageFile.isEmpty()) {
@@ -160,8 +161,8 @@ public class CompetitionController {
                 .setMaxWeight(maxWeight)
                 .setReferee(referee)
                 .setRefereeStatus(attendanceService.findAttendanceById(refereeStatus))
-                .setStartDate(startDate)
-                .setEndDate(endDate);
+                .setStartDate(dateService.stringToTimestamp(startDate))
+                .setEndDate(dateService.stringToTimestamp(endDate));
         competitionService.updatingInfoCompetition(competition);
         return "redirect:/admin/competition/list";
 

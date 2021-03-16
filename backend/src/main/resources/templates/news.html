@@ -45,8 +45,8 @@
             </div>
             <div class="responsiveTable">
                 <div class="rtRow modificationResponsibleTable">
-                    <div class="width3 text-center modificationResponsibleChild">Autor: {{post.author}}</div>
-                    <div class="width3 text-center modificationResponsibleChild">Fecha de publicación: {{post.timestamp}}</div>
+                    <div class="width3 text-center modificationResponsibleChild">Autor: {{post.author.getName}} {{post.author.getSurname}}</div>
+                    <div class="width3 text-center modificationResponsibleChild">Fecha de publicación: {{post.getFormattedEditionTimestamp}}</div>
                 </div>
             </div>
             <div>{{{post.body}}}</div>

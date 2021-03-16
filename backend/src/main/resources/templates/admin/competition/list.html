@@ -68,8 +68,7 @@
             <div class="width5 text-center">Id.</div>
             <div class="width25 text-center">Nombre de la competición</div>
             <div class="width20 text-center">Árbrito encargado</div>
-            <div class="width10 text-center">Inicio</div>
-            <div class="width10 text-center">Fin</div>
+            <div class="width20 text-center">Inicio y final</div>
             <div class="width10 text-center">Rango de pesos</div>
             <div class="width20 text-center">Acciones</div>
         </div>
@@ -78,9 +77,8 @@
             <div class="width5 text-center">{{ idCompetition}}</div>
             <div class="width25 text-center">{{ shortName}}</div>
             <div class="width20 text-center">{{ referee}}</div>
-            <div class="width10 text-center">{{ startDate}}</div>
-            <div class="width10 text-center">{{ endDate}}</div>
-            <div class="width10 text-center">{{ minWeight}} - {{ maxWeight}}</div>
+            <div class="width20 text-center">{{ getFormattedStartDate}}<br>{{ getFormattedEndDate}}</div>
+            <div class="width10 text-center">{{ minWeight}}kg a {{ maxWeight}}kg</div>
             <div class="width20 text-center">
                 <button class="btn btn-outline-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
                     <i class="fas fa-info-circle"></i>
@@ -100,11 +98,10 @@
                 <div class="card-text text-start m-2">
                     <strong>Árbitro encargado:</strong> {{referee}}<br>
                     <strong>Asistencia del árbitro:</strong> {{refereeStatus}}<br>
-                    <!--<strong>Estado de la competitión:</strong><br>-->
                     <strong>Peso mínimo:</strong> {{minWeight}}kg<br>
                     <strong>Peso máximo:</strong> {{maxWeight}}kg <br>
-                    <strong>Fecha de inicio</strong> {{startDate}} <br>
-                    <strong>Fecha del final:</strong> {{endDate}} <br>
+                    <strong>Fecha de inicio</strong> {{getFormattedStartDate}} <br>
+                    <strong>Fecha del final:</strong> {{getFormattedEndDate}} <br>
                 </div>
             </div>
         </div>
