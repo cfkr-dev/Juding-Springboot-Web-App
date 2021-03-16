@@ -15,6 +15,7 @@ import java.sql.Blob;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -57,19 +58,7 @@ public class Competition implements Serializable {
     @OneToMany(mappedBy = "idFight")
     private List<Fight> fights;
 
-    /**
-     * Constructor of a competition
-     *
-     * @param shortName
-     * @param additionalInfo
-     * @param minWeight
-     * @param maxWeight
-     * @param startDate
-     * @param endDate
-     * @param referee
-     * @param refereeStatus
-     * @param imageFile
-     */
+
     public Competition(String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, User referee, Attendance refereeStatus, String imageFile) throws IOException {
         this.shortName = shortName;
         this.additionalInfo = additionalInfo;
@@ -80,7 +69,6 @@ public class Competition implements Serializable {
         this.referee = referee;
         this.refereeStatus = refereeStatus;
         this.setImageFile(imageFile);
-
     }
 
     protected Competition() {
@@ -177,10 +165,19 @@ public class Competition implements Serializable {
         return this;
     }
 
-    public Competition setImageFile(String path) throws IOException{
-        InputStream inputStream= new ClassPathResource(path).getInputStream();
-        long length= new ClassPathResource(path).contentLength();
-        imageFile= BlobProxy.generateProxy(inputStream,length);
+    public Competition setImageFile(String path) throws IOException {
+        InputStream inputStream = new ClassPathResource(path).getInputStream();
+        long length = new ClassPathResource(path).contentLength();
+        imageFile = BlobProxy.generateProxy(inputStream, length);
+        return this;
+    }
+
+    public List<Fight> getFights() {
+        return fights;
+    }
+
+    public Competition setFights(List<Fight> fights) {
+        this.fights = fights;
         return this;
     }
 
@@ -199,6 +196,7 @@ public class Competition implements Serializable {
 
     /**
      * Gets the start date of the competition and returns it in a user-friendly format.
+     *
      * @return Start date in user-friendly format.
      */
     public String getFormattedStartDate() {
@@ -208,6 +206,7 @@ public class Competition implements Serializable {
 
     /**
      * Gets the end date of the competition and returns it in a user-friendly format.
+     *
      * @return End date in user-friendly format.
      */
     public String getFormattedEndDate() {

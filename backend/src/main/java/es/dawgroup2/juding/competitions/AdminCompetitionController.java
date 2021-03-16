@@ -41,7 +41,6 @@ public class AdminCompetitionController {
     FightService fightService;
 
     /**
-     *
      * @param model model of the view
      * @return the view of the competition list
      */
@@ -53,9 +52,8 @@ public class AdminCompetitionController {
     }
 
     /**
-     *
      * @param idCompetition id of the competition
-     * @param model model of the view
+     * @param model         model of the view
      * @return view of the competition to edit
      */
     @GetMapping("/admin/competition/edit/{idCompetition}")
@@ -67,7 +65,6 @@ public class AdminCompetitionController {
     }
 
     /**
-     *
      * @param model model of the view
      * @return view of the competition to add
      */
@@ -78,15 +75,16 @@ public class AdminCompetitionController {
 
     /**
      * Generates a new competition
-     * @param shortName The short name of the competition
+     *
+     * @param shortName      The short name of the competition
      * @param additionalInfo Info about the competition
-     * @param minWeight The minimum weight allowed in a competition
-     * @param maxWeight The maximum weight allowed in a competition
-     * @param startDate The start date of a competition
-     * @param endDate The end date of a competition
-     * @param referee referee The license of the referee in charge of the competition
-     * @param status A String of that show the status of the referee attendance
-     * @param imageFile Image that represent the competition
+     * @param minWeight      The minimum weight allowed in a competition
+     * @param maxWeight      The maximum weight allowed in a competition
+     * @param startDate      The start date of a competition
+     * @param endDate        The end date of a competition
+     * @param referee        referee The license of the referee in charge of the competition
+     * @param status         A String of that show the status of the referee attendance
+     * @param imageFile      Image that represent the competition
      * @return The new competition
      * @throws IOException
      */
@@ -100,7 +98,7 @@ public class AdminCompetitionController {
                                   @RequestParam String referee,
                                   @RequestParam String status,
                                   MultipartFile imageFile) throws IOException, ParseException {
-        Competition competition=new Competition();
+        Competition competition = new Competition();
         competition.setShortName(shortName)
                 .setAdditionalInfo(additionalInfo)
                 .setMinWeight(minWeight)
@@ -114,54 +112,23 @@ public class AdminCompetitionController {
                 competition.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
             }
         }
-        competitionService.add(competition);
-        List<Fight> fights= new ArrayList<>();
-        // Generar combate final
-        Fight finalFight = new Fight(competition, 0, null, null, null, false, null, null);
-        fightService.save(finalFight);
-        List<Fight> semifinal = new ArrayList<>();
-        for (int i = 0; i <= 1; i++)
-            semifinal.add(new Fight(competition, 1, null, null, finalFight, false, null, null));
-        fightService.saveAll(semifinal);
-        List<Fight> cuartos = new ArrayList<>();
-        for (int i = 0; i <= 3; i++)
-            cuartos.add(new Fight(competition, 2, null, null, semifinal.get(i / 2), false, null, null));
-        fightService.saveAll(cuartos);
-        List<Fight> octavos = new ArrayList<>();
-        for (int i = 0; i <= 7; i++)
-            octavos.add(new Fight(competition, 3, null, null, cuartos.get(i / 2), false, null, null));
-        fightService.saveAll(octavos);
 
-        int cont=0;
-        finalFight.setUpFight(semifinal.get(0)).setDownFight(semifinal.get(1));
-        for (int i = 0; i <= 1; i++){
-                semifinal.get(i).setUpFight(cuartos.get(cont)).setDownFight(cuartos.get(cont + 1));
-                cont=cont+2;
-        }
-        cont=0;
-        for (int i = 0; i <= 3; i++){
-            cuartos.get(i).setUpFight(octavos.get(cont)).setDownFight(octavos.get(cont + 1));
-            cont=cont+2;
-        }
-        fightService.save(finalFight);
-        fightService.saveAll(semifinal);
-        fightService.saveAll(cuartos);
-        fightService.saveAll(octavos);
         return "redirect:/admin/competition/list";
     }
 
     /**
      * Form to edit a competition
-     * @param idCompetition Id of a competition
-     * @param shortName The name of a competitiom
+     *
+     * @param idCompetition  Id of a competition
+     * @param shortName      The name of a competitiom
      * @param additionalInfo Information of a competition
-     * @param minWeight The minimum weight allowed in a competition
-     * @param maxWeight The maximum weight allowed in a competition
-     * @param startDate The start date of a competition
-     * @param endDate The end date of a competition
-     * @param referee The license of the referee in charge of the competition
-     * @param refereeStatus A String of that show the status of the referee attendance
-     * @param imageFile Image that represent the competition
+     * @param minWeight      The minimum weight allowed in a competition
+     * @param maxWeight      The maximum weight allowed in a competition
+     * @param startDate      The start date of a competition
+     * @param endDate        The end date of a competition
+     * @param referee        The license of the referee in charge of the competition
+     * @param refereeStatus  A String of that show the status of the referee attendance
+     * @param imageFile      Image that represent the competition
      * @return The competition edited
      * @throws IOException
      * @throws SQLException
@@ -198,7 +165,8 @@ public class AdminCompetitionController {
 
     /**
      * This method deletes the competition selected
-     * @param model model of the view
+     *
+     * @param model         model of the view
      * @param idCompetition id of the competition
      * @return view of the competition list
      */
