@@ -98,7 +98,7 @@ public class UserController {
      * @param gender       Gender
      * @param phone        Phone
      * @param email        Email
-     * @param birthdate    Birth date
+     * @param birthDate    Birth date
      * @param dni          DNI
      * @param licenseId    License ID (PK)
      * @param nickname     Nick name
@@ -115,7 +115,7 @@ public class UserController {
                              @RequestParam String gender,
                              @RequestParam int phone,
                              @RequestParam String email,
-                             @RequestParam String birthdate,
+                             @RequestParam String birthDate,
                              @RequestParam String dni,
                              @RequestParam String licenseId,
                              @RequestParam String nickname,
@@ -131,7 +131,7 @@ public class UserController {
                 .setPhone(phone)
                 .setEmail(email)
                 .setNickname(nickname)
-                .setBirthDate(dateService.stringToDate(birthdate))
+                .setBirthDate(dateService.stringToDate(birthDate))
                 .setGender(genderService.findGenderById(gender))
                 .setWeight(weight)
                 .setGym(gym)

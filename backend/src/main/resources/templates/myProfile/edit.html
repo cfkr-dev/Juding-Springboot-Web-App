@@ -42,8 +42,8 @@
     <span class="profileModificationsTitle">
         Modifica tus datos
     </span>
-    <form action="/myProfile/edit" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
-        <input type="hidden" name="licenseId" value="{{ user.licenseId }}">
+    <form action="/myProfile/edit" class="needs-validation juding-form" method="post" enctype="multipart/form-data" novalidate>
+        <input type="hidden" name="licenseId" id="licenceId" value="{{ user.licenseId }}">
         <div class="px-2">
             <h3 class="h3">Información para competición</h3>
             <div class="responsiveTable">
@@ -100,9 +100,9 @@
             <h3 class="h3">Mi información personal</h3>
             <div class="responsiveTable">
                 <div class="rtRow">
-                    <div class="width40"><label for="nick">Apodo</label></div>
+                    <div class="width40"><label for="nickname">Apodo</label></div>
                     <div class="width60">
-                        <input class="form-control" id="nick" name="nick" required type="text"
+                        <input class="form-control" id="nickname" name="nickname" required type="text"
                                value="{{ user.nickname }}">
                         <div class="invalid-feedback">
                             El apodo no puede estar vacío.

@@ -107,7 +107,7 @@ public class LoggedInUserController {
      * @param gym Gym.
      * @param weight Weight
      * @param refereeRange Referee range (in case it's a referee)
-     * @param nick Nickname.
+     * @param nickname nicknamename.
      * @param phone Phone.
      * @param email Email.
      * @param image Profile image.
@@ -120,13 +120,13 @@ public class LoggedInUserController {
                               @RequestParam(required = false) String gym,
                               @RequestParam(required = false) Integer weight,
                               @RequestParam(required = false) RefereeRange refereeRange,
-                              @RequestParam String nick,
+                              @RequestParam String nickname,
                               @RequestParam int phone,
                               @RequestParam String email,
                               MultipartFile image) throws IOException {
         User user = userService.getUserOrNull(licenseId);
         // Common fields
-        user.setBelt(beltService.findBeltById(beltSelector)).setNickname(nick).setPhone(phone).setEmail(email);
+        user.setBelt(beltService.findBeltById(beltSelector)).setNickname(nickname).setPhone(phone).setEmail(email);
         // Role-based fields
         if (user.isRole(Role.C)) {
             user.setGym(gym).setWeight(weight);

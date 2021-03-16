@@ -46,7 +46,7 @@
     </div>
 </header>
 <div class="container pb-4">
-    <form action="/admin/competition/edit" class="needs-validation flex-sb flex-w" method="post"
+    <form action="/admin/competition/edit" class="needs-validation flex-sb flex-w juding-form" method="post"
           enctype="multipart/form-data"
           novalidate>
         <h2 class="h2">Formulario competición</h2>
@@ -81,7 +81,7 @@
 
         <!-- Max weight and min wight fields -->
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 minWeight">
                 <label class="txt1" for="minWeight">Peso mínimo <span class="asterisk">*</span></label>
                 <input class="form-control" id="minWeight" name="minWeight" required type="text" pattern="[0-9]{0,3}$"
                        value="{{competition.minWeight}}">
@@ -130,7 +130,7 @@
 
         <!-- Start date and end date of a competition fields -->
         <div class="row mb-4">
-            <div class="col-lg-6">
+            <div class="col-lg-6 startDate">
                 <label class="txt1" for="startDate">Fecha de inicio de la competición <span
                         class="asterisk">*</span></label>
                 <input class="form-control" id="startDate" name="startDate" required type="text"
