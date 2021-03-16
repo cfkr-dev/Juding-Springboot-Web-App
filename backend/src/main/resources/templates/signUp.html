@@ -92,7 +92,7 @@
         <!-- DNI -->
         <label class="txt1" for="dni">DNI <span class="asterisk">*</span></label>
         <input class="form-control" id="dni" name="dni" pattern="^([0-9]{8}|[XYZ][0-9]{7})[A-Z]{1}$" required
-               type="text">
+               type="text" data-role="{{#isCompetitor}}Competitor{{/isCompetitor}}{{^isCompetitor}}Referee{{/isCompetitor}}">
         <div class="invalid-feedback">
             El DNI no sigue el formato requerido (ejemplo: 12345678Z).
         </div>
@@ -101,7 +101,7 @@
         <!-- License ID -->
         <label class="txt1" for="licenseId">Número de licencia <span class="asterisk">*</span></label>
         <input class="form-control" id="licenseId" name="licenseId" type="text"
-               pattern="{{ #isCompetitor }}[0-9]{10}${{ /isCompetitor }}{{ ^isCompetitor }}JU-[0-9]{10}${{ /isCompetitor }}">
+               pattern="{{ #isCompetitor }}[0-9]{10}${{ /isCompetitor }}{{ ^isCompetitor }}JU-[0-9]{10}${{ /isCompetitor }}" required>
         <div class="invalid-feedback">
             La licencia no se ajusta al formato requerido (10 dígitos {{ ^isCompetitor }}precedidos de JU-{{
             /isCompetitor }}).
@@ -161,7 +161,7 @@
                 <!-- Belt selector -->
                 <label class="txt1" for="belt">Cinturón <span class="asterisk">*</span></label>
                 <select name="belt" id="belt" class="form-select" required>
-                    <option selected disabled>Seleccione un cinturón...</option>
+                    <option selected disabled value="">Seleccione un cinturón...</option>
                     {{{ beltSelector }}}
                 </select>
                 <div class="invalid-feedback">
@@ -198,7 +198,7 @@
 </div>
 
 <!-- Vendor JS Files -->
-<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/jquery/jquery.js"></script>
 <script src="/assets/vendor/aos/aos.js"></script>
 <script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
