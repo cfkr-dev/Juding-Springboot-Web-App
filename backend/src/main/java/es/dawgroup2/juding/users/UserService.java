@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Spliterators;
 
 @Component
 public class UserService {
@@ -63,6 +64,33 @@ public class UserService {
      */
     public boolean userExists(String licenseId){
         return getUserOrNull(licenseId) != null;
+    }
+
+    /**
+     * Checks if user exists by a given nickname on database.
+     * @param nickname Nickname that has to be checked
+     * @return {@code True} if exists, {@code False} otherwise.
+     */
+    public boolean userExistsByNickname(String nickname){
+        Optional<User> userByNickname = userRepository.findByNickname(nickname);
+        return userByNickname.isPresent();
+    }
+
+    /**
+     * Checks if user can sign up by DNI.
+     * @param dni DNI
+     * @param role Current sign up form role
+     * @return {@code True} if sign up is possible, {@code False} otherwise.
+     */
+    public boolean checkSignUpValidityByDni(String dni, Role role){
+        List<User> userByDni = userRepository.findByDni(dni);
+        if (userByDni.size() == 0){
+            return true;
+        } else if (userByDni.size() == 1){
+            return (!userByDni.get(0).getRoles().contains(role));
+        } else{
+            return false;
+        }
     }
 
     /**
