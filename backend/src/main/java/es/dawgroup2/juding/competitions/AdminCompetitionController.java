@@ -1,6 +1,8 @@
 package es.dawgroup2.juding.competitions;
 
 import es.dawgroup2.juding.auxTypes.attendances.AttendanceService;
+import es.dawgroup2.juding.fight.Fight;
+import es.dawgroup2.juding.fight.FightService;
 import es.dawgroup2.juding.main.DateService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
@@ -17,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -33,6 +36,9 @@ public class AdminCompetitionController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    FightService fightService;
 
     /**
      *
@@ -109,6 +115,38 @@ public class AdminCompetitionController {
             }
         }
         competitionService.add(competition);
+        List<Fight> fights= new ArrayList<>();
+        // Generar combate final
+        Fight finalFight = new Fight(competition, 0, null, null, null, false, null, null);
+        fightService.save(finalFight);
+        List<Fight> semifinal = new ArrayList<>();
+        for (int i = 0; i <= 1; i++)
+            semifinal.add(new Fight(competition, 1, null, null, finalFight, false, null, null));
+        fightService.saveAll(semifinal);
+        List<Fight> cuartos = new ArrayList<>();
+        for (int i = 0; i <= 3; i++)
+            cuartos.add(new Fight(competition, 2, null, null, semifinal.get(i / 2), false, null, null));
+        fightService.saveAll(cuartos);
+        List<Fight> octavos = new ArrayList<>();
+        for (int i = 0; i <= 7; i++)
+            octavos.add(new Fight(competition, 3, null, null, cuartos.get(i / 2), false, null, null));
+        fightService.saveAll(octavos);
+
+        int cont=0;
+        finalFight.setUpFight(semifinal.get(0)).setDownFight(semifinal.get(1));
+        for (int i = 0; i <= 1; i++){
+                semifinal.get(i).setUpFight(cuartos.get(cont)).setDownFight(cuartos.get(cont + 1));
+                cont=cont+2;
+        }
+        cont=0;
+        for (int i = 0; i <= 3; i++){
+            cuartos.get(i).setUpFight(octavos.get(cont)).setDownFight(octavos.get(cont + 1));
+            cont=cont+2;
+        }
+        fightService.save(finalFight);
+        fightService.saveAll(semifinal);
+        fightService.saveAll(cuartos);
+        fightService.saveAll(octavos);
         return "redirect:/admin/competition/list";
     }
 
@@ -167,6 +205,9 @@ public class AdminCompetitionController {
     @GetMapping("/admin/competition/delete/{idCompetition}")
     public String showCompetitionToDelete(Model model, @PathVariable String idCompetition) {
         Competition competition = competitionService.findById(idCompetition);
+        //List<Fight> fights= fightService.findByIdCompetition(idCompetition);
+        //competition.setFights(null);
+        //fightService.deleteAll(fights);
         model.addAttribute("competition", competition);
         competitionService.deleteById(idCompetition);
         return "redirect:/admin/competition/list";

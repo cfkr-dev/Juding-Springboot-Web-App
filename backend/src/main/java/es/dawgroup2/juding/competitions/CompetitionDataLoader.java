@@ -16,9 +16,9 @@ public class CompetitionDataLoader {
 
     @PostConstruct
     public void competitionLoader() throws IOException {
-        competitionRepository.save(new Competition("Copa Platano","nah",45,50, new Timestamp(953596800),new Timestamp(953596800),null, Attendance.C,"/static/ey.jpg"));
-        competitionRepository.save(new Competition("Campeonato Champiñon", "nah", 45, 50, new Timestamp(953596800), new Timestamp(953596800), null, Attendance.N,"/static/ey.jpg"));
-        competitionRepository.save(new Competition("Campeonato Placeholder", "Buenos dias", 80, 100, new Timestamp(953596800), new Timestamp(953596800), null, Attendance.R,"/static/ey.jpg"));
+        //competitionRepository.save(new Competition("Copa Platano","nah",45,50, new Timestamp(953596800),new Timestamp(953596800),null, Attendance.C,"/static/ey.jpg"));
+        //competitionRepository.save(new Competition("Campeonato Champiñon", "nah", 45, 50, new Timestamp(953596800), new Timestamp(953596800), null, Attendance.N,"/static/ey.jpg"));
+        //competitionRepository.save(new Competition("Campeonato Placeholder", "Buenos dias", 80, 100, new Timestamp(953596800), new Timestamp(953596800), null, Attendance.R,"/static/ey.jpg"));
 
     }
 }

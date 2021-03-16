@@ -1,18 +1,17 @@
 package es.dawgroup2.juding.fight;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import es.dawgroup2.juding.competitions.Competition;
+
+import javax.persistence.*;
 
 @Entity
 public class Fight {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idFight;
 
-    //foreign key
-    @Column(nullable = false)
-    private int idCompetition;
+    @ManyToOne
+    private Competition idCompetition;
 
     @Column(nullable = false)
     private int levelInTree;
@@ -29,16 +28,11 @@ public class Fight {
     @Column(nullable = false)
     private boolean isFinished;
 
-    //foreign key
-    @Column(nullable = false)
     private String winner;
 
-    //foreign key
-    @Column(nullable = false)
     private String loser;
 
-    public Fight(int idFight, int idCompetition, int levelInTree, Fight upFight, Fight downFight, Fight parentFight, boolean isFinished, String winner, String loser) {
-        this.idFight = idFight;
+    public Fight(Competition idCompetition, int levelInTree, Fight upFight, Fight downFight, Fight parentFight, boolean isFinished, String winner, String loser) {
         this.idCompetition = idCompetition;
         this.levelInTree = levelInTree;
         this.upFight = upFight;
@@ -49,11 +43,14 @@ public class Fight {
         this.loser = loser;
     }
 
+    protected Fight() {
+    }
+
     public int getIdFight() {
         return idFight;
     }
 
-    public int getIdCompetition() {
+    public Competition getIdCompetition() {
         return idCompetition;
     }
 
@@ -90,7 +87,7 @@ public class Fight {
         return this;
     }
 
-    public Fight setIdCompetition(int idCompetition) {
+    public Fight setIdCompetition(Competition idCompetition) {
         this.idCompetition = idCompetition;
         return this;
     }

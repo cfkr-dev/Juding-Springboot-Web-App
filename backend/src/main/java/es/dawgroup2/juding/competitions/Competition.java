@@ -2,6 +2,7 @@ package es.dawgroup2.juding.competitions;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import es.dawgroup2.juding.auxTypes.attendances.Attendance;
+import es.dawgroup2.juding.fight.Fight;
 import es.dawgroup2.juding.users.User;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.ClassPathResource;
@@ -14,6 +15,7 @@ import java.sql.Blob;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Competition implements Serializable {
@@ -51,6 +53,9 @@ public class Competition implements Serializable {
     @Lob
     @JsonIgnore
     private Blob imageFile;
+
+    @OneToMany(mappedBy = "idFight")
+    private List<Fight> fights;
 
     /**
      * Constructor of a competition
@@ -190,6 +195,7 @@ public class Competition implements Serializable {
             } else return "Finalizada";
         } else return "Por comenzar";
     }
+
 
     /**
      * Gets the start date of the competition and returns it in a user-friendly format.
