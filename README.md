@@ -92,78 +92,78 @@ following criteria.
 The application consists of the following screens:
 
 * A-01: Homepage.
-  ![](documentation_imgs/stage1/screenshots/A-01.png)
+  ![](documentation_imgs/stage2/screenshots/A-01.png)
 * A-02: News view.
-  ![](documentation_imgs/stage1/screenshots/A-02.png)
+  ![](documentation_imgs/stage2/screenshots/A-02.png)
 * A-03: Terms and conditions of use.
-  ![](documentation_imgs/stage1/screenshots/A-03.png)
+  ![](documentation_imgs/stage2/screenshots/A-03.png)
 * A-04: Cookies policy.
-  ![](documentation_imgs/stage1/screenshots/A-04.png)
+  ![](documentation_imgs/stage2/screenshots/A-04.png)
 * A-05: Login.
-  ![](documentation_imgs/stage1/screenshots/A-05.png)
+  ![](documentation_imgs/stage2/screenshots/A-05.png)
 * A-06: Competitors' registration.
-  ![](documentation_imgs/stage1/screenshots/A-06.png)
+  ![](documentation_imgs/stage2/screenshots/A-06.png)
 * A-07: Referee registration.
-  ![](documentation_imgs/stage1/screenshots/A-07.png)
+  ![](documentation_imgs/stage2/screenshots/A-07.png)
 * CRAD-01: License validation. First step to change a user's password.
-  ![](documentation_imgs/stage1/screenshots/CR-01.png)
+  ![](documentation_imgs/stage2/screenshots/CR-01.png)
 * CRAD-02: Security question. Second step to change a user's password.
-  ![](documentation_imgs/stage1/screenshots/CR-02.png)
+  ![](documentation_imgs/stage2/screenshots/CR-02.png)
 * CRAD-03: Password change. Third and last step to change a user's password.
-  ![](documentation_imgs/stage1/screenshots/CR-03.png)
+  ![](documentation_imgs/stage2/screenshots/CR-03.png)
 * CRAD-04: Competition information. This screen reflects the details of a competition as well as the draw for the
   competition, the results and the venue.
-  ![](documentation_imgs/stage1/screenshots/CR-04.png)
+  ![](documentation_imgs/stage2/screenshots/CR-04.png)
 * CRAD-05: Ranking of competitors.
-  ![](documentation_imgs/stage1/screenshots/CR-05.png)
+  ![](documentation_imgs/stage2/screenshots/CR-05.png)
 * C-01: Competitors' homepage. On this page you can see some details of their profile, their statistics and the
   competitions they can enter or have already entered.
-  ![](documentation_imgs/stage1/screenshots/C-01.png)
+  ![](documentation_imgs/stage2/screenshots/C-01.png)
 * C-02: Competitor profile.
-  ![](documentation_imgs/stage1/screenshots/C-02.png)
+  ![](documentation_imgs/stage2/screenshots/C-02.png)
 * C-03: Profile edition screen. Competitors can change some of the aspects of their own profile here.
-  ![](documentation_imgs/stage1/screenshots/C-03.png)
+  ![](documentation_imgs/stage2/screenshots/C-03.png)
 * R-01: Referees' homepage. On this page, referees can see some details of their profile, their statistics and the
   competitions they can enter or have already entered.
-  ![](documentation_imgs/stage1/screenshots/R-01.png)
+  ![](documentation_imgs/stage2/screenshots/R-01.png)
 * R-02: Referee profile.
-  ![](documentation_imgs/stage1/screenshots/R-02.png)
+  ![](documentation_imgs/stage2/screenshots/R-02.png)
 * R-03: Profile edition screen. Referees can change some of the aspects of their own profile here.
-  ![](documentation_imgs/stage1/screenshots/R-03.png)
+  ![](documentation_imgs/stage2/screenshots/R-03.png)
 * R-04: Fight control panel. The referee can manage from here by recording the scores and controlling the fight times.
-  ![](documentation_imgs/stage1/screenshots/R-04.png)
+  ![](documentation_imgs/stage2/screenshots/R-04.png)
 * AD-01: List of competitors.
-  ![](documentation_imgs/stage1/screenshots/AD-01.png)
+  ![](documentation_imgs/stage2/screenshots/AD-01.png)
 * AD-02: User profile in competitor list.
-  ![](documentation_imgs/stage1/screenshots/AD-02.png)
+  ![](documentation_imgs/stage2/screenshots/AD-02.png)
 * AD-03: User editing in competitor list.
-  ![](documentation_imgs/stage1/screenshots/AD-03.png)
+  ![](documentation_imgs/stage2/screenshots/AD-03.png)
 * AD-04: Applications and list of referees.
-  ![](documentation_imgs/stage1/screenshots/AD-04.png)
+  ![](documentation_imgs/stage2/screenshots/AD-04.png)
 * AD-05: User profile in referee list.
-  ![](documentation_imgs/stage1/screenshots/AD-05.png)
+  ![](documentation_imgs/stage2/screenshots/AD-05.png)
 * AD-06: User editing in referee list.
-  ![](documentation_imgs/stage1/screenshots/AD-06.png)
+  ![](documentation_imgs/stage2/screenshots/AD-06.png)
 * AD-07: List of competitions.
-  ![](documentation_imgs/stage1/screenshots/AD-07.png)
+  ![](documentation_imgs/stage2/screenshots/AD-07.png)
 * AD-08: New competition form.
-  ![](documentation_imgs/stage1/screenshots/AD-08.png)
+  ![](documentation_imgs/stage2/screenshots/AD-08.png)
 * AD-09: List of news.
-  ![](documentation_imgs/stage1/screenshots/AD-09.png)
+  ![](documentation_imgs/stage2/screenshots/AD-09.png)
 * AD-10: New news form.
-  ![](documentation_imgs/stage1/screenshots/AD-10.png)
+  ![](documentation_imgs/stage2/screenshots/AD-10.png)
 * E-1: 403 error.
-  ![](documentation_imgs/stage1/screenshots/E-01.png)
+  ![](documentation_imgs/stage2/screenshots/E-01.png)
 * E-2: 404 error.
-  ![](documentation_imgs/stage1/screenshots/E-02.png)
+  ![](documentation_imgs/stage2/screenshots/E-02.png)
 * E-3: 500 error.
-  ![](documentation_imgs/stage1/screenshots/E-03.png)
+  ![](documentation_imgs/stage2/screenshots/E-03.png)
 
 ### Navigation diagram
 
 The following diagram shows how different users can navigate through the different pages of the application according to
 their role.
-![](documentation_imgs/stage1/navigationDiagram.png)
+![](documentation_imgs/stage2/navigationDiagram.png)
 
 ___
 
