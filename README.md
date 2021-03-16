@@ -81,9 +81,11 @@ The different screens that make up this web application have been coded with a l
 following criteria.
 
 * A-XX: Screens that can be viewed by all types of users (registered and unregistered).
-* CR-XX: Screens that can be seen by competitors and referees.
+* CRAD-XX: Screens that can be seen by competitors, referees and administrator.
 * C-XX: Screens that competitors can see.
 * R-XX: Screens that referees can see.
+* AD-XX: Screens that administrator can see.
+* E-XX: Screens of errors.
 
 ### Screens
 
@@ -91,26 +93,28 @@ The application consists of the following screens:
 
 * A-01: Homepage.
   ![](documentation_imgs/stage1/screenshots/A-01.png)
-* A-02: Terms and conditions of use.
+* A-02: News view.
   ![](documentation_imgs/stage1/screenshots/A-02.png)
-* A-03: Cookies policy.
+* A-03: Terms and conditions of use.
   ![](documentation_imgs/stage1/screenshots/A-03.png)
-* A-04: Login.
+* A-04: Cookies policy.
   ![](documentation_imgs/stage1/screenshots/A-04.png)
-* A-05: Competitors' registration.
+* A-05: Login.
   ![](documentation_imgs/stage1/screenshots/A-05.png)
-* A-06: Referee registration.
+* A-06: Competitors' registration.
   ![](documentation_imgs/stage1/screenshots/A-06.png)
-* CR-01: License validation. First step to change a user's password.
+* A-07: Referee registration.
+  ![](documentation_imgs/stage1/screenshots/A-07.png)
+* CRAD-01: License validation. First step to change a user's password.
   ![](documentation_imgs/stage1/screenshots/CR-01.png)
-* CR-02: Security question. Second step to change a user's password.
+* CRAD-02: Security question. Second step to change a user's password.
   ![](documentation_imgs/stage1/screenshots/CR-02.png)
-* CR-03: Password change. Third and last step to change a user's password.
+* CRAD-03: Password change. Third and last step to change a user's password.
   ![](documentation_imgs/stage1/screenshots/CR-03.png)
-* CR-04: Competition information. This screen reflects the details of a competition as well as the draw for the
+* CRAD-04: Competition information. This screen reflects the details of a competition as well as the draw for the
   competition, the results and the venue.
   ![](documentation_imgs/stage1/screenshots/CR-04.png)
-* CR-05: Ranking of competitors.
+* CRAD-05: Ranking of competitors.
   ![](documentation_imgs/stage1/screenshots/CR-05.png)
 * C-01: Competitors' homepage. On this page you can see some details of their profile, their statistics and the
   competitions they can enter or have already entered.
@@ -128,6 +132,32 @@ The application consists of the following screens:
   ![](documentation_imgs/stage1/screenshots/R-03.png)
 * R-04: Fight control panel. The referee can manage from here by recording the scores and controlling the fight times.
   ![](documentation_imgs/stage1/screenshots/R-04.png)
+* AD-01: List of competitors.
+  ![](documentation_imgs/stage1/screenshots/AD-01.png)
+* AD-02: User profile in competitor list.
+  ![](documentation_imgs/stage1/screenshots/AD-02.png)
+* AD-03: User editing in competitor list.
+  ![](documentation_imgs/stage1/screenshots/AD-03.png)
+* AD-04: Applications and list of referees.
+  ![](documentation_imgs/stage1/screenshots/AD-04.png)
+* AD-05: User profile in referee list.
+  ![](documentation_imgs/stage1/screenshots/AD-05.png)
+* AD-06: User editing in referee list.
+  ![](documentation_imgs/stage1/screenshots/AD-06.png)
+* AD-07: List of competitions.
+  ![](documentation_imgs/stage1/screenshots/AD-07.png)
+* AD-08: New competition form.
+  ![](documentation_imgs/stage1/screenshots/AD-08.png)
+* AD-09: List of news.
+  ![](documentation_imgs/stage1/screenshots/AD-09.png)
+* AD-10: New news form.
+  ![](documentation_imgs/stage1/screenshots/AD-10.png)
+* E-1: 403 error.
+  ![](documentation_imgs/stage1/screenshots/E-01.png)
+* E-2: 404 error.
+  ![](documentation_imgs/stage1/screenshots/E-02.png)
+* E-3: 500 error.
+  ![](documentation_imgs/stage1/screenshots/E-03.png)
 
 ### Navigation diagram
 
