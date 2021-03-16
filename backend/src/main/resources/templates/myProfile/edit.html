@@ -42,7 +42,7 @@
     <span class="profileModificationsTitle">
         Modifica tus datos
     </span>
-    <form action="/myProfile/edit" class="needs-validation juding-form" method="post" enctype="multipart/form-data" novalidate>
+    <form action="/myProfile/edit" class="needs-validation flex-sb flex-w juding-form" method="post" enctype="multipart/form-data" novalidate>
         <input type="hidden" name="licenseId" id="licenceId" value="{{ user.licenseId }}">
         <div class="px-2">
             <h3 class="h3">Información para competición</h3>
@@ -132,9 +132,9 @@
                 <div class="rtRow">
                     <div class="width40"><label for="image">Imagen de perfil</label></div>
                     <div class="width60">
-                        <input class="form-control" id="image" name="image" type="file">
+                        <input class="form-control" id="image" name="image" type="file" accept="image/jpeg">
                         <div class="invalid-feedback">
-                            Prueba de nuevo a subir la imagen.
+                            Prueba de nuevo a subir la imagen en formato ".jpg".
                         </div>
                     </div>
                 </div>

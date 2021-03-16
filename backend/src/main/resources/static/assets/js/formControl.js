@@ -30,16 +30,6 @@ if ($("#showPassword").length) {
 }
 
 
-/*
- * CONTROLLING SUBMISSION WITH FORBIDDEN VALUES
- */
-
-let forbiddenLicenseId;
-let forbiddenDni;
-let forbiddenNickname;
-let forbiddenMaxWeight;
-let forbiddenEndDate;
-
 $("#licenseId").on("blur", function () {
     if ($("#licenseId")[0].checkValidity()) {
         $.ajax({
