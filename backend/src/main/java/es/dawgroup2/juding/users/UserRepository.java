@@ -15,6 +15,8 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     List<User> findByRolesContainingAndRefereeRange(Role role, RefereeRange refereeRange);
 
+    List<User> findByDni(String dni);
+
     Optional<User> findByNickname(String nickname);
 
     List<User> findByWeightBetween(int min, int max);
