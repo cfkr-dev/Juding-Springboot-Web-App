@@ -1,12 +1,11 @@
 package es.dawgroup2.juding.competitions;
 
-import es.dawgroup2.juding.attendances.Attendance;
+import es.dawgroup2.juding.auxTypes.attendances.Attendance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Component

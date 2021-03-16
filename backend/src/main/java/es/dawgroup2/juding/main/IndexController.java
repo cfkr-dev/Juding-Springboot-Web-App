@@ -1,14 +1,14 @@
 package es.dawgroup2.juding.main;
 
-import es.dawgroup2.juding.belts.BeltService;
+import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.posts.PostService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
-import es.dawgroup2.juding.users.gender.GenderService;
-import es.dawgroup2.juding.users.refereeRange.RefereeRange;
-import es.dawgroup2.juding.users.refereeRange.RefereeRangeService;
-import es.dawgroup2.juding.users.roles.Role;
+import es.dawgroup2.juding.auxTypes.gender.GenderService;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
+import es.dawgroup2.juding.auxTypes.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -2,14 +2,23 @@ package es.dawgroup2.juding.competitions;
 
 import es.dawgroup2.juding.auxTypes.attendances.AttendanceService;
 import es.dawgroup2.juding.main.DateService;
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.List;
 
 @Controller
-public class CompetitionController {
-
+public class AdminCompetitionController {
 
     @Autowired
     CompetitionService competitionService;
@@ -54,21 +63,6 @@ public class CompetitionController {
     @GetMapping("/admin/competition/newCompetition")
     public String newCompetition(Model model) {
         return "/admin/competition/newCompetition";
-    }
-
-    /**
-     *
-     * @param model model of the view
-     * @param idCompetition id of the competition
-     * @return view of the competition screen
-     */
-    @GetMapping("/competition/detail/{idCompetition}")
-    public String showCompetition(Model model, @PathVariable String idCompetition) {
-        Competition competition = competitionService.findById(idCompetition);
-        String state = competition.translatingDates(competition.getStartDate(), competition.getEndDate());
-        model.addAttribute("state", state);
-        model.addAttribute("competition", competition);
-        return "/competition/detail";
     }
 
     /**

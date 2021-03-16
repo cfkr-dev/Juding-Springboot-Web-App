@@ -1,4 +1,4 @@
-package es.dawgroup2.juding.belts;
+package es.dawgroup2.juding.auxTypes.belts;
 
 import org.springframework.stereotype.Component;
 

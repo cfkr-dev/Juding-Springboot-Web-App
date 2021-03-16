@@ -1,10 +1,10 @@
 package es.dawgroup2.juding.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import es.dawgroup2.juding.belts.Belt;
-import es.dawgroup2.juding.users.gender.Gender;
-import es.dawgroup2.juding.users.refereeRange.RefereeRange;
-import es.dawgroup2.juding.users.roles.Role;
+import es.dawgroup2.juding.auxTypes.belts.Belt;
+import es.dawgroup2.juding.auxTypes.gender.Gender;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
+import es.dawgroup2.juding.auxTypes.roles.Role;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;

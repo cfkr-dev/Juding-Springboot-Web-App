@@ -1,4 +1,4 @@
-package es.dawgroup2.juding.users.roles;
+package es.dawgroup2.juding.auxTypes.roles;
 
 public enum Role {
     C("Competitor"),

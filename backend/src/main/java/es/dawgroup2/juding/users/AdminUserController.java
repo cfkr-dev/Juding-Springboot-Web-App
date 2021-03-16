@@ -1,12 +1,12 @@
 package es.dawgroup2.juding.users;
 
-import es.dawgroup2.juding.belts.BeltService;
+import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.main.DateService;
 import es.dawgroup2.juding.main.image.ImageService;
-import es.dawgroup2.juding.users.gender.GenderService;
-import es.dawgroup2.juding.users.refereeRange.RefereeRange;
-import es.dawgroup2.juding.users.refereeRange.RefereeRangeService;
-import es.dawgroup2.juding.users.roles.Role;
+import es.dawgroup2.juding.auxTypes.gender.GenderService;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
+import es.dawgroup2.juding.auxTypes.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -22,7 +22,7 @@ import java.text.ParseException;
 import java.util.List;
 
 @Controller
-public class UserController {
+public class AdminUserController {
     @Autowired
     UserService userService;
 

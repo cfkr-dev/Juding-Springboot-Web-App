@@ -1,17 +1,15 @@
 package es.dawgroup2.juding.competitions;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import es.dawgroup2.juding.attendances.Attendance;
+import es.dawgroup2.juding.auxTypes.attendances.Attendance;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.ClassPathResource;
 
-import javax.annotation.Resource;
 import javax.persistence.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Blob;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;

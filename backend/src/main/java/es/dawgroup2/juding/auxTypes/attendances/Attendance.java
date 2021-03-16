@@ -1,4 +1,4 @@
-package es.dawgroup2.juding.attendances;
+package es.dawgroup2.juding.auxTypes.attendances;
 
 public enum Attendance {
     C("Confirmada"),

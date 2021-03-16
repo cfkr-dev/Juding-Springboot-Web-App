@@ -27,22 +27,7 @@ public class PostController {
     @Autowired
     UserService userService;
 
-    /**
-     * This method inflates the individual post (shown by Id) visualization view.
-     * A list with other post is also shown.
-     * @param model Post data model.
-     * @param id Current post id.
-     * @return Individual post visualization view (news).
-     */
-    @GetMapping("/news/{id}")
-    public String NewsPost(Model model, @PathVariable String id) {
-        Post post = postService.findById(id);
-        List<Post> postList = postService.findAll();
-        postList.remove(post);
-        model.addAttribute("post", post);
-        model.addAttribute("postList", postList);
-        return "/news";
-    }
+
 
     /**
      * This method inflates the all post list view.
