@@ -76,7 +76,7 @@
         <div class="rtRow">
             <div class="width5 text-center">{{ idCompetition}}</div>
             <div class="width25 text-center">{{ shortName}}</div>
-            <div class="width20 text-center">{{ referee}}</div>
+            <div class="width20 text-center">{{ referee.getName}} {{ referee.getSurname}}</div>
             <div class="width20 text-center">{{ getFormattedStartDate}}<br>{{ getFormattedEndDate}}</div>
             <div class="width10 text-center">{{ minWeight}}kg a {{ maxWeight}}kg</div>
             <div class="width20 text-center">
@@ -96,7 +96,7 @@
                     <h5 class="card-title">{{shortName}}</h5>
                 </div>
                 <div class="card-text text-start m-2">
-                    <strong>Árbitro encargado:</strong> {{referee}}<br>
+                    <strong>Árbitro encargado:</strong> {{referee.getName}} {{referee.getSurname}}<br>
                     <strong>Asistencia del árbitro:</strong> {{refereeStatus}}<br>
                     <strong>Peso mínimo:</strong> {{minWeight}}kg<br>
                     <strong>Peso máximo:</strong> {{maxWeight}}kg <br>

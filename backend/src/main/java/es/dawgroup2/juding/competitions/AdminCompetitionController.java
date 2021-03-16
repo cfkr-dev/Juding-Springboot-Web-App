@@ -2,6 +2,8 @@ package es.dawgroup2.juding.competitions;
 
 import es.dawgroup2.juding.auxTypes.attendances.AttendanceService;
 import es.dawgroup2.juding.main.DateService;
+import es.dawgroup2.juding.users.User;
+import es.dawgroup2.juding.users.UserService;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,9 @@ public class AdminCompetitionController {
 
     @Autowired
     DateService dateService;
+
+    @Autowired
+    UserService userService;
 
     /**
      *
@@ -96,7 +101,7 @@ public class AdminCompetitionController {
                 .setMaxWeight(maxWeight)
                 .setStartDate(dateService.stringToTimestamp(startDate))
                 .setEndDate(dateService.stringToTimestamp(endDate))
-                .setReferee(referee)
+                .setReferee(userService.getUserOrNull(referee))
                 .setRefereeStatus(attendanceService.findAttendanceById(status));
         if (imageFile != null) {
             if (!imageFile.isEmpty()) {
@@ -144,7 +149,7 @@ public class AdminCompetitionController {
                 .setAdditionalInfo(additionalInfo)
                 .setMinWeight(minWeight)
                 .setMaxWeight(maxWeight)
-                .setReferee(referee)
+                .setReferee(userService.getUserOrNull(referee))
                 .setRefereeStatus(attendanceService.findAttendanceById(refereeStatus))
                 .setStartDate(dateService.stringToTimestamp(startDate))
                 .setEndDate(dateService.stringToTimestamp(endDate));

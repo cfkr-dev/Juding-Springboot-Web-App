@@ -102,7 +102,7 @@
         <label class="txt1" for="referee">Número de licencia del árbitro encargado de la competición<span
                 class="asterisk">*</span></label>
         <input class="form-control" id="referee" name="referee" pattern="JU-[0-9]{10}$" required type="text"
-               value="{{competition.referee}}">
+               value="{{competition.referee.getLicenseId}}">
         <div class="invalid-feedback">
             La licencia no se ajusta al formato JU-(10 dígitos).
         </div>

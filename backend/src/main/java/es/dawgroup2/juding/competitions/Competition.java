@@ -2,6 +2,7 @@ package es.dawgroup2.juding.competitions;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import es.dawgroup2.juding.auxTypes.attendances.Attendance;
+import es.dawgroup2.juding.users.User;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.ClassPathResource;
 
@@ -39,9 +40,8 @@ public class Competition implements Serializable {
     @Column(nullable = false)
     private Timestamp endDate;
 
-    //Clave foránea
-    @Column(nullable = false)
-    private String referee;
+    @ManyToOne
+    private User referee;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -65,7 +65,7 @@ public class Competition implements Serializable {
      * @param refereeStatus
      * @param imageFile
      */
-    public Competition(String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, String referee, Attendance refereeStatus, String imageFile) throws IOException {
+    public Competition(String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, User referee, Attendance refereeStatus, String imageFile) throws IOException {
         this.shortName = shortName;
         this.additionalInfo = additionalInfo;
         this.minWeight = minWeight;
@@ -145,11 +145,11 @@ public class Competition implements Serializable {
         return this;
     }
 
-    public String getReferee() {
+    public User getReferee() {
         return referee;
     }
 
-    public Competition setReferee(String referee) {
+    public Competition setReferee(User referee) {
         this.referee = referee;
         return this;
     }
