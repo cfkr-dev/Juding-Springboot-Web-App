@@ -2,8 +2,12 @@ package es.dawgroup2.juding.posts;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import es.dawgroup2.juding.users.User;
+import org.hibernate.engine.jdbc.BlobProxy;
+import org.springframework.core.io.ClassPathResource;
 
 import javax.persistence.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -14,12 +18,12 @@ public class Post {
     protected Post() {
     }
 
-    public Post(User author, String title, String body, Blob imageFile, Timestamp timestamp) {
+    public Post(User author, String title, String body, String path, Timestamp timestamp) throws IOException {
         super();
         this.author = author;
         this.title = title;
         this.body = body;
-        this.imageFile = imageFile;
+        this.setImageFile(path);
         this.timestamp = timestamp;
     }
 
@@ -89,6 +93,12 @@ public class Post {
 
     public Post setImageFile(Blob imageFile) {
         this.imageFile = imageFile;
+        return this;
+    }
+
+    public Post setImageFile(String path) throws IOException {
+        ClassPathResource cpr = new ClassPathResource(path);
+        imageFile = BlobProxy.generateProxy(cpr.getInputStream(), cpr.contentLength());
         return this;
     }
 

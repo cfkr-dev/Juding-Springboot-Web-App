@@ -22,7 +22,7 @@ import java.io.IOException;
 public class LoggedInUserController {
 
     // TODO CHANGE THIS WHEN SESSION IS CONTROLLED
-    String licenseId = "JU-1234567893";
+    String licenseId = "JU-9876543214";
 
     @Autowired
     UserService userService;
@@ -53,7 +53,7 @@ public class LoggedInUserController {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         } else {
             model.addAttribute("user", currentUser)
-                    .addAttribute("isCompetitor", currentUser.isRole(Role.R))
+                    .addAttribute("isCompetitor", currentUser.isRole(Role.C))
                     .addAttribute("stringRange", currentUser.getRefereeRange());
         }
         return "myHome";
@@ -91,7 +91,7 @@ public class LoggedInUserController {
         } else {
             model.addAttribute("user", currentUser)
                     .addAttribute("isCompetitor", currentUser.isRole(Role.C))
-                    .addAttribute("beltSelector", beltService.getSelectField(currentUser.getBelt()));
+                    .addAttribute("beltSelector", beltService.getSelectField(currentUser.getBelt(), currentUser.isRole(Role.R)));
             if (currentUser.isRole(Role.R)) {
                 model.addAttribute("refereeRangeSelector", refereeRangeService.generateActiveRangesSelect(currentUser.getRefereeRange(), true));
             }

@@ -117,9 +117,9 @@ public class CompetitionService {
 
             // STEP 4: Persisting all fights and competitions with their updates.
             fightService.saveAll(fights);
-            // competitionRepository.save(competition) does not work ("unable to merge BLOB data" exception).
-            Optional<Competition> comp = competitionRepository.findById(competition.getIdCompetition());
-            return comp.map(value -> competitionRepository.save(value.setFights(fights))).orElse(null);
+            return competitionRepository.save(competition); // does not work ("unable to merge BLOB data" exception).
+//            Optional<Competition> comp = competitionRepository.findById(competition.getIdCompetition());
+//            return comp.map(value -> competitionRepository.save(value.setFights(fights))).orElse(null);
         } else
             return competitionRepository.save(competition);
     }

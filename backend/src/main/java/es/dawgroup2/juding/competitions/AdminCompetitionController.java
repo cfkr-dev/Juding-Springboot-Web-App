@@ -1,12 +1,9 @@
 package es.dawgroup2.juding.competitions;
 
 import es.dawgroup2.juding.auxTypes.attendances.AttendanceService;
-import es.dawgroup2.juding.fight.Fight;
 import es.dawgroup2.juding.fight.FightService;
 import es.dawgroup2.juding.main.DateService;
-import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
-import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -84,7 +79,6 @@ public class AdminCompetitionController {
      * @param endDate        The end date of a competition
      * @param referee        referee The license of the referee in charge of the competition
      * @param status         A String of that show the status of the referee attendance
-     * @param imageFile      Image that represent the competition
      * @return The new competition
      * @throws IOException
      */
@@ -96,8 +90,7 @@ public class AdminCompetitionController {
                                   @RequestParam String startDate,
                                   @RequestParam String endDate,
                                   @RequestParam String referee,
-                                  @RequestParam String status,
-                                  MultipartFile imageFile) throws IOException, ParseException {
+                                  @RequestParam String status) throws ParseException {
         Competition competition = new Competition();
         competition.setShortName(shortName)
                 .setAdditionalInfo(additionalInfo)
@@ -107,11 +100,6 @@ public class AdminCompetitionController {
                 .setEndDate(dateService.stringToTimestamp(endDate))
                 .setReferee(userService.getUserOrNull(referee))
                 .setRefereeStatus(attendanceService.findAttendanceById(status));
-        if (imageFile != null) {
-            if (!imageFile.isEmpty()) {
-                competition.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
-            }
-        }
 
         return "redirect:/admin/competition/list";
     }
@@ -128,7 +116,6 @@ public class AdminCompetitionController {
      * @param endDate        The end date of a competition
      * @param referee        The license of the referee in charge of the competition
      * @param refereeStatus  A String of that show the status of the referee attendance
-     * @param imageFile      Image that represent the competition
      * @return The competition edited
      * @throws IOException
      * @throws SQLException
@@ -142,14 +129,8 @@ public class AdminCompetitionController {
                                           @RequestParam String startDate,
                                           @RequestParam String endDate,
                                           @RequestParam String referee,
-                                          @RequestParam String refereeStatus,
-                                          MultipartFile imageFile) throws IOException, ParseException {
+                                          @RequestParam String refereeStatus) throws ParseException {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
-        if (imageFile != null) {
-            if (!imageFile.isEmpty()) {
-                competition.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
-            }
-        }
         competition.setShortName(shortName)
                 .setAdditionalInfo(additionalInfo)
                 .setMinWeight(minWeight)

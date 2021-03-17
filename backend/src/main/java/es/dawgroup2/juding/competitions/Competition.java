@@ -50,16 +50,11 @@ public class Competition implements Serializable {
     @Column(nullable = false)
     private Attendance refereeStatus;
 
-
-    @Lob
-    @JsonIgnore
-    private Blob imageFile;
-
-    @OneToMany(mappedBy = "idFight")
+    @OneToMany(mappedBy = "idFight", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Fight> fights;
 
 
-    public Competition(String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, User referee, Attendance refereeStatus, String imageFile) throws IOException {
+    public Competition(String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, User referee, Attendance refereeStatus) {
         this.shortName = shortName;
         this.additionalInfo = additionalInfo;
         this.minWeight = minWeight;
@@ -68,7 +63,6 @@ public class Competition implements Serializable {
         this.endDate = endDate;
         this.referee = referee;
         this.refereeStatus = refereeStatus;
-        this.setImageFile(imageFile);
     }
 
     protected Competition() {
@@ -153,22 +147,6 @@ public class Competition implements Serializable {
 
     public Competition setRefereeStatus(Attendance refereeStatus) {
         this.refereeStatus = refereeStatus;
-        return this;
-    }
-
-    public Blob getImageFile() {
-        return imageFile;
-    }
-
-    public Competition setImageFile(Blob imageFile) {
-        this.imageFile = imageFile;
-        return this;
-    }
-
-    public Competition setImageFile(String path) throws IOException {
-        InputStream inputStream = new ClassPathResource(path).getInputStream();
-        long length = new ClassPathResource(path).contentLength();
-        imageFile = BlobProxy.generateProxy(inputStream, length);
         return this;
     }
 

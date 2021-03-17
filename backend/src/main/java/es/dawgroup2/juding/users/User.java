@@ -66,7 +66,7 @@ public class User implements Serializable {
 
     private String gym;
 
-    private int weight;
+    private Integer weight;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 1)
@@ -79,7 +79,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String licenseId, String name, String surname, Gender gender, int phone, String email, Date birthDate, String dni, String nickname, String password, String securityQuestion, String securityAnswer, Blob imageFile, Belt belt, String gym, int weight, RefereeRange refereeRange, Set<Role> roles) {
+    public User(String licenseId, String name, String surname, Gender gender, int phone, String email, Date birthDate, String dni, String nickname, String password, String securityQuestion, String securityAnswer, Blob imageFile, Belt belt, String gym, Integer weight, RefereeRange refereeRange, Set<Role> roles) {
         this.licenseId = licenseId;
         this.name = name;
         this.surname = surname;
@@ -235,11 +235,11 @@ public class User implements Serializable {
         return this;
     }
 
-    public int getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public User setWeight(int weight) {
+    public User setWeight(Integer weight) {
         this.weight = weight;
         return this;
     }
