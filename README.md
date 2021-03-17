@@ -181,6 +181,7 @@ ___
 ### Navigation Diagram Updates
 (Screenshots are included in Stage 1 section).
 New navigation diagram:
+![](documentation_imgs/stage2/navigationDiagram2.png)
 
 ### Entity-Relationship Diagram
 Entity-Relationship Diagram
