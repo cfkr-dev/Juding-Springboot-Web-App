@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -52,16 +53,16 @@ public class IndexController {
      * @return index main page view.
      */
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, HttpServletRequest request) {
         List<Post> postList = postService.findAll();
         model.addAttribute("postList", postList);
         return "/index";
     }
 
-    @GetMapping("/login")
+    /*@GetMapping("/login")
     public String login() {
         return "login";
-    }
+    }*/
 
     @GetMapping("/signUp/{role}")
     public String signUp(@PathVariable String role, Model model) {

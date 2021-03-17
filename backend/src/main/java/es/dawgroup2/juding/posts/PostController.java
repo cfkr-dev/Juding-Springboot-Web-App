@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -93,9 +95,10 @@ public class PostController {
     @PostMapping("/admin/post/createNew")
     public String addNewPost(@RequestParam String title,
                              @RequestParam MultipartFile image,
-                             @RequestParam String body) throws IOException, SQLException {
+                             @RequestParam String body,
+                             HttpServletRequest request) throws IOException, SQLException {
         Post post = new Post();
-        post.setAuthor("1234567890")
+        post.setAuthor(request.getUserPrincipal().getName())
                 .setTitle(title)
                 .setBody(body)
                 .setTimestamp(new Timestamp(System.currentTimeMillis()));

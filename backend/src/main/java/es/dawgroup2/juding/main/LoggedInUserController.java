@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 @Controller
 public class LoggedInUserController {
@@ -42,16 +44,15 @@ public class LoggedInUserController {
     /**
      * Dynamic view of homepage of logged in users.
      *
-     * @param model    Model.
-     * @param response HTTP Servlet Response.
+     * @param model   Model.
+     * @param request HTTP Servlet Request.
      * @return Dynamic view of homepage of logged in users.
      */
     @GetMapping("/myHome")
-    public String myHome(Model model, HttpServletResponse response) {
-        User currentUser = userService.getUserOrNull(licenseId);
-        if (currentUser == null) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        } else {
+    public String myHome(Model model, HttpServletRequest request) {
+        String nickName = request.getUserPrincipal().getName();
+        User currentUser = userService.findByNickname(nickName);
+        if (currentUser != null) {
             model.addAttribute("user", currentUser)
                     .addAttribute("isCompetitor", currentUser.isRole(Role.R))
                     .addAttribute("stringRange", currentUser.getRefereeRange());
@@ -61,6 +62,7 @@ public class LoggedInUserController {
 
     /**
      * Dynamic view of profile screen, with some data about logged user.
+     *
      * @param model Model.
      * @return Dynamic view of profile screen.
      */
@@ -80,6 +82,7 @@ public class LoggedInUserController {
 
     /**
      * Dynamic view of edit profile screen.
+     *
      * @param model Model.
      * @return Dynamic view of edit profile screen.
      */
@@ -101,16 +104,17 @@ public class LoggedInUserController {
 
     /**
      * Method for saving edited values of user when {@link #editProfile(Model) editProfile} form is filled and sent.
-     * @param model Model.
-     * @param licenseId License ID (PK).
+     *
+     * @param model        Model.
+     * @param licenseId    License ID (PK).
      * @param beltSelector Belt.
-     * @param gym Gym.
-     * @param weight Weight
+     * @param gym          Gym.
+     * @param weight       Weight
      * @param refereeRange Referee range (in case it's a referee)
-     * @param nick Nickname.
-     * @param phone Phone.
-     * @param email Email.
-     * @param image Profile image.
+     * @param nick         Nickname.
+     * @param phone        Phone.
+     * @param email        Email.
+     * @param image        Profile image.
      * @return Profile page if successful.
      * @throws IOException Input-output exception.
      */
