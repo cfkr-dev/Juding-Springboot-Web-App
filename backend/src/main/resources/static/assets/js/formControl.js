@@ -34,11 +34,11 @@ if ($("#showPassword").length) {
  * CONTROLLING SUBMISSION WITH FORBIDDEN VALUES
  */
 
-let forbiddenLicenseId;
-let forbiddenDni;
-let forbiddenNickname;
-let forbiddenMaxWeight;
-let forbiddenEndDate;
+let forbiddenLicenseId = false;
+let forbiddenDni = false;
+let forbiddenNickname = false;
+let forbiddenMaxWeight = false;
+let forbiddenEndDate = false;
 
 $("#licenseId").on("blur", function () {
     if ($("#licenseId")[0].checkValidity()) {
@@ -135,8 +135,14 @@ $("#endDate").on("blur", function (){
     }
 })
 
-$(".juding-form").on("submit", function(evt){
+$(".juding-form-user").on("submit", function(evt){
     evt.preventDefault();
-    if (forbiddenDni || forbiddenNickname || forbiddenLicenseId || forbiddenMaxWeight || forbiddenEndDate)
+    if (forbiddenDni || forbiddenNickname || forbiddenLicenseId)
+        $(this).off("submit");
+});
+
+$(".juding-form-competition").on("submit", function(evt){
+    evt.preventDefault();
+    if (forbiddenMaxWeight || forbiddenEndDate)
         $(this).off("submit");
 });
