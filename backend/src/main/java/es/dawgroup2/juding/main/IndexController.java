@@ -79,7 +79,7 @@ public class IndexController {
     public String signUpCompetitor(@RequestParam String name,
                                    @RequestParam String surname,
                                    @RequestParam String gender,
-                                   @RequestParam int phone,
+                                   @RequestParam String phone,
                                    @RequestParam String email,
                                    @RequestParam String birthDate,
                                    @RequestParam String dni,
@@ -94,7 +94,7 @@ public class IndexController {
                                    @RequestParam int weight) {
         User newUser = new User();
         try {
-            newUser.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone(phone)
+            newUser.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone(Integer.parseInt(phone))
                     .setGender(genderService.findGenderById(gender)).setBirthDate(dateService.stringToDate(birthDate))
                     .setDni(dni).setGym(gym).setWeight(weight).setBelt(beltService.findBeltById(belt))
                     .setImageFile(imageService.uploadProfileImage(image)).setNickname(nickname)
@@ -111,7 +111,7 @@ public class IndexController {
     public String signUpReferee(@RequestParam String name,
                                    @RequestParam String surname,
                                    @RequestParam String gender,
-                                   @RequestParam int phone,
+                                   @RequestParam String phone,
                                    @RequestParam String email,
                                    @RequestParam String birthDate,
                                    @RequestParam String dni,
@@ -124,7 +124,7 @@ public class IndexController {
                                    @RequestParam String belt) {
         User newUser = new User();
         try {
-            newUser.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone(phone)
+            newUser.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone(Integer.parseInt(phone))
                     .setGender(genderService.findGenderById(gender)).setBirthDate(dateService.stringToDate(birthDate))
                     .setDni(dni).setBelt(beltService.findBeltById(belt)).setRefereeRange(RefereeRange.S)
                     .setImageFile(imageService.uploadProfileImage(image)).setNickname(nickname)
