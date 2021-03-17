@@ -17,9 +17,13 @@
                 <strong>Licencia:</strong> {{ licenseId }}.<br>
                 <strong>DNI:</strong> {{ dni }}.<br>
                 <strong>Correo Electrónico:</strong> {{ email }}. <br>
-                <strong>Peso:</strong> {{ weight }}kg. <br>
-                <strong>Gimnasio:</strong> {{ gym }}. <br>
                 <strong>Género:</strong> {{ gender.getDescription }}. <br>
+                {{ #competitors }}
+                <strong>Gimnasio:</strong> {{ gym }}. <br>
+                <strong>Peso:</strong> {{ weight }}kg. <br>
+                {{ /competitors }}{{ ^competitors }}
+                <strong>Rango:</strong> {{ refereeRange.getDescription }}. <br>
+                {{ /competitors }}
                 <strong>Fecha de nacimiento:</strong> {{ getFormattedBirthDate }}.<br>
             </div>
         </div>

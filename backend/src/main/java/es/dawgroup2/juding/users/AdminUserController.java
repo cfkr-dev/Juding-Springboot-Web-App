@@ -80,7 +80,7 @@ public class AdminUserController {
     public String editUser(@PathVariable String licenseId, Model model) {
         User user = userService.getUserOrNull(licenseId);
         model.addAttribute("user", user)
-                .addAttribute("beltSelector", beltService.getSelectField(user.getBelt()))
+                .addAttribute("beltSelector", beltService.getSelectField(user.getBelt(), false))
                 .addAttribute("genderSelection", genderService.getRadioField(user.getGender()))
                 .addAttribute("isCompetitor", user.isRole(Role.C));
         if (user.isRole(Role.R)) {
@@ -120,8 +120,8 @@ public class AdminUserController {
                              @RequestParam String licenseId,
                              @RequestParam String nickname,
                              @RequestParam String belt,
-                             @RequestParam String gym,
-                             @RequestParam int weight,
+                             @RequestParam(required = false) String gym,
+                             @RequestParam(required = false) Integer weight,
                              @RequestParam(required = false) String refereeRange
     ) throws ParseException {
         User currentUser = userService.getUserOrNull(licenseId);

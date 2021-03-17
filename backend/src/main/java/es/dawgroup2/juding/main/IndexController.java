@@ -64,7 +64,7 @@ public class IndexController {
     @GetMapping("/signUp/{role}")
     public String signUp(@PathVariable String role, Model model) {
         model.addAttribute("genderSelection", genderService.getRadioField(null))
-                .addAttribute("beltSelector", beltService.getSelectField(null));
+                .addAttribute("beltSelector", beltService.getSelectField(null, false));
         if (role.equals("competitor"))
             model.addAttribute("isCompetitor", true).addAttribute("action", "/signUp/competitor");
         else if (role.equals("referee"))
