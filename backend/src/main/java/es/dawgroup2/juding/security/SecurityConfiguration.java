@@ -14,18 +14,40 @@ import org.springframework.context.annotation.Configuration;
 import java.security.SecureRandom;
 
 @Configuration
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     RepositoryUserDetailsService userDetailsService;
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
+
         return new BCryptPasswordEncoder(10, new SecureRandom());
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().antMatchers("/").permitAll();
+        http.authorizeRequests().antMatchers("/index").permitAll();
+        http.authorizeRequests().antMatchers("/login").permitAll();
+        http.authorizeRequests().antMatchers("/myHome").permitAll();
+
+
+        http.formLogin().loginPage("/login");
+        http.formLogin().usernameParameter("nickname");
+        http.formLogin().passwordParameter("password");
+        http.formLogin().defaultSuccessUrl("/myHome");
+        http.formLogin().failureUrl("/login/{error}");
+
+        http.logout().logoutUrl("/logout");
+        http.logout().logoutSuccessUrl("/");
+
+        http.csrf().disable();
+    }
+
 
 }
