@@ -2,9 +2,11 @@ package es.dawgroup2.juding.competitions;
 
 import es.dawgroup2.juding.fight.Fight;
 import es.dawgroup2.juding.fight.FightService;
+import es.dawgroup2.juding.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,8 +35,9 @@ public class CompetitionService {
      * @param idCompetition Id of the competition
      * @return A competition
      */
-    public Competition findById(String idCompetition) {
-        return competitionRepository.findById(Integer.parseInt(idCompetition)).orElseThrow();
+    public Competition findById(int idCompetition) {
+        Optional<Competition> comp = competitionRepository.findById(idCompetition);
+        return comp.orElse(null);
     }
 
     /**
@@ -62,7 +65,7 @@ public class CompetitionService {
      *
      * @param competition The created/updated competition
      */
-    public void add(Competition competition) {
+    public Competition add(Competition competition) {
         if (!competitionRepository.existsById(competition.getIdCompetition())) {
             competitionRepository.save(competition);
             List<Fight> fights = new ArrayList<>();
@@ -116,8 +119,35 @@ public class CompetitionService {
             fightService.saveAll(fights);
             // competitionRepository.save(competition) does not work ("unable to merge BLOB data" exception).
             Optional<Competition> comp = competitionRepository.findById(competition.getIdCompetition());
-            comp.ifPresent(c -> competitionRepository.save(c.setFights(fights)));
+            return comp.map(value -> competitionRepository.save(value.setFights(fights))).orElse(null);
         } else
-            competitionRepository.save(competition);
+            return competitionRepository.save(competition);
+    }
+
+    /**
+     * A competitor joins a competition
+     *
+     * @param competition Competition to be joined
+     * @param user        Competitor joining
+     */
+    public boolean joinCompetition(Competition competition, User user) {
+        // Competition must have not started
+        if (new Timestamp(System.currentTimeMillis()).compareTo(competition.getStartDate()) < 0) {
+            // It is known that getFights() saves a tree ADT into an array like:
+            // 0 -> final fight, 1-2 -> semifinals, 3-6 -> quarterfinals, 7-14 -> 8th-finals
+            List<Fight> fights = competition.getFights();
+            for (int i = 7; i <= 14; i++) {
+                if (fights.get(i).getWinner() == null) {
+                    // Save and go
+                    fights.get(i).setWinner(user);
+                    return true;
+                }
+                if (fights.get(i).getLoser() == null){
+                    fights.get(i).setLoser(user);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

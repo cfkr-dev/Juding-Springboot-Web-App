@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(indexes = {@Index(columnList = "dni, nickname", unique = true)})
@@ -72,14 +72,14 @@ public class User implements Serializable {
     @Column(length = 1)
     private RefereeRange refereeRange;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection()
     @Column(nullable = false, length = 1)
-    private List<Role> roles;
+    private Set<Role> roles;
 
     public User() {
     }
 
-    public User(String licenseId, String name, String surname, Gender gender, int phone, String email, Date birthDate, String dni, String nickname, String password, String securityQuestion, String securityAnswer, Blob imageFile, Belt belt, String gym, int weight, RefereeRange refereeRange, List<Role> roles) {
+    public User(String licenseId, String name, String surname, Gender gender, int phone, String email, Date birthDate, String dni, String nickname, String password, String securityQuestion, String securityAnswer, Blob imageFile, Belt belt, String gym, int weight, RefereeRange refereeRange, Set<Role> roles) {
         this.licenseId = licenseId;
         this.name = name;
         this.surname = surname;
@@ -253,11 +253,11 @@ public class User implements Serializable {
         return this;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public User setRoles(List<Role> roles) {
+    public User setRoles(Set<Role> roles) {
         this.roles = roles;
         return this;
     }

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.internet.MimeMessage;
 import java.text.ParseException;
-import java.util.List;
+import java.util.Set;
 
 @Controller
 public class AdminUserController {
@@ -190,7 +190,7 @@ public class AdminUserController {
      */
     @GetMapping("/admin/user/delete/{licenseId}")
     public String deleteUser(@PathVariable String licenseId) {
-        List<Role> rolesOfUser = userService.getUserRolesOrNull(licenseId);
+        Set rolesOfUser = userService.getUserRolesOrNull(licenseId);
         userService.delete(userService.getUserOrNull(licenseId));
         if (rolesOfUser.contains(Role.C))
             return "redirect:/admin/user/list/competitors";

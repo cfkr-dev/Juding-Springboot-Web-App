@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import java.util.List;
+import java.util.Set;
 
 @Controller
 public class IndexController {
@@ -97,7 +97,7 @@ public class IndexController {
                     .setDni(dni).setGym(gym).setWeight(weight).setBelt(beltService.findBeltById(belt))
                     .setImageFile(imageService.uploadProfileImage(image)).setNickname(nickname)
                     .setPassword(password).setSecurityQuestion(securityQuestion).setSecurityAnswer(securityAnswer)
-                    .setRoles(List.of(Role.C));
+                    .setRoles(Set.of(Role.C));
         } catch (Exception e) {
             return "redirect:/error/500";
         }
@@ -127,7 +127,7 @@ public class IndexController {
                     .setDni(dni).setBelt(beltService.findBeltById(belt)).setRefereeRange(RefereeRange.S)
                     .setImageFile(imageService.uploadProfileImage(image)).setNickname(nickname)
                     .setPassword(password).setSecurityQuestion(securityQuestion).setSecurityAnswer(securityAnswer)
-                    .setRoles(List.of(Role.R));
+                    .setRoles(Set.of(Role.R));
         } catch (Exception e) {
             return "redirect:/error/500";
         }

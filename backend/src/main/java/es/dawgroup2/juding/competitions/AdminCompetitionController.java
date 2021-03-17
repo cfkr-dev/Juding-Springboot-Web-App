@@ -58,7 +58,7 @@ public class AdminCompetitionController {
      */
     @GetMapping("/admin/competition/edit/{idCompetition}")
     public String editCompetition(@PathVariable String idCompetition, Model model) {
-        Competition competition = competitionService.findById(idCompetition);
+        Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         model.addAttribute("competition", competition)
                 .addAttribute("attendance", attendanceService.getAttendanceToString(competition.getRefereeStatus()));
         return "/admin/competition/edit";
@@ -144,7 +144,7 @@ public class AdminCompetitionController {
                                           @RequestParam String referee,
                                           @RequestParam String refereeStatus,
                                           MultipartFile imageFile) throws IOException, ParseException {
-        Competition competition = competitionService.findById(idCompetition);
+        Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         if (imageFile != null) {
             if (!imageFile.isEmpty()) {
                 competition.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
@@ -172,7 +172,7 @@ public class AdminCompetitionController {
      */
     @GetMapping("/admin/competition/delete/{idCompetition}")
     public String showCompetitionToDelete(Model model, @PathVariable String idCompetition) {
-        Competition competition = competitionService.findById(idCompetition);
+        Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         //List<Fight> fights= fightService.findByIdCompetition(idCompetition);
         //competition.setFights(null);
         //fightService.deleteAll(fights);

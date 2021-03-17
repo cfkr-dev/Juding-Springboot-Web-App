@@ -1,6 +1,7 @@
 package es.dawgroup2.juding.fight;
 
 import es.dawgroup2.juding.competitions.Competition;
+import es.dawgroup2.juding.users.User;
 
 import javax.persistence.*;
 
@@ -28,11 +29,13 @@ public class Fight {
     @Column(nullable = false)
     private boolean isFinished;
 
-    private String winner;
+    @OneToOne
+    private User winner;
 
-    private String loser;
+    @OneToOne
+    private User loser;
 
-    public Fight(Competition idCompetition, int levelInTree, Fight upFight, Fight downFight, Fight parentFight, boolean isFinished, String winner, String loser) {
+    public Fight(Competition idCompetition, int levelInTree, Fight upFight, Fight downFight, Fight parentFight, boolean isFinished, User winner, User loser) {
         this.idCompetition = idCompetition;
         this.levelInTree = levelInTree;
         this.upFight = upFight;
@@ -74,11 +77,11 @@ public class Fight {
         return isFinished;
     }
 
-    public String getWinner() {
+    public User getWinner() {
         return winner;
     }
 
-    public String getLoser() {
+    public User getLoser() {
         return loser;
     }
 
@@ -117,12 +120,12 @@ public class Fight {
         return this;
     }
 
-    public Fight setWinner(String winner) {
+    public Fight setWinner(User winner) {
         this.winner = winner;
         return this;
     }
 
-    public Fight setLoser(String loser) {
+    public Fight setLoser(User loser) {
         this.loser = loser;
         return this;
     }
