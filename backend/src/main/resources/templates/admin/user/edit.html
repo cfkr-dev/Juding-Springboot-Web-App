@@ -40,8 +40,11 @@
     </div>
 </header>
 <div class="container pb-4">
-    <form action="/admin/user/edit/save" class="needs-validation flex-sb flex-w juding-form" method="post" novalidate
+    <form action="/admin/user/edit/save" class="needs-validation flex-sb flex-w juding-form-user" method="post" novalidate
           enctype="multipart/form-data">
+
+        <input type="hidden" name="_csrf" value="{{token}}"/>
+
         <h2 class="h2">Edición de usuarios</h2>
         <h3 class="h3">Información personal</h3>
 

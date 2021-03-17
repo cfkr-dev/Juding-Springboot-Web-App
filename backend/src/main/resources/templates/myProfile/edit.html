@@ -42,7 +42,10 @@
     <span class="profileModificationsTitle">
         Modifica tus datos
     </span>
-    <form action="/myProfile/edit" class="needs-validation flex-sb flex-w juding-form" method="post" enctype="multipart/form-data" novalidate>
+    <form action="/myProfile/edit" class="needs-validation flex-sb flex-w juding-form-user" method="post" enctype="multipart/form-data" novalidate>
+
+        <input type="hidden" name="_csrf" value="{{token}}"/>
+
         <input type="hidden" name="licenseId" id="licenceId" value="{{ user.licenseId }}">
         <div class="px-2">
             <h3 class="h3">Información para competición</h3>

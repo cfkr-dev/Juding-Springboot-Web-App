@@ -36,7 +36,10 @@
     </div>
 </header>
 <div class="container pb-4">
-    <form action="{{ action }}" class="needs-validation flex-sb flex-w juding-form" method="post" novalidate enctype="multipart/form-data">
+    <form action="{{ action }}" class="needs-validation flex-sb flex-w juding-form-user" method="post" novalidate enctype="multipart/form-data">
+
+        <input type="hidden" name="_csrf" value="{{token}}"/>
+
         <h2 class="h2">{{ #isCompetitor }}Registro de competidores{{ /isCompetitor }}{{ ^isCompetitor }}Solicitud de
             federación de árbitros {{ /isCompetitor }}</h2>
         <h3 class="h3">Información personal</h3>

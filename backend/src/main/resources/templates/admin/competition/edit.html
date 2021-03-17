@@ -46,9 +46,12 @@
     </div>
 </header>
 <div class="container pb-4">
-    <form action="/admin/competition/edit" class="needs-validation flex-sb flex-w juding-form" method="post"
+    <form action="/admin/competition/edit" class="needs-validation flex-sb flex-w juding-form-competition" method="post"
           enctype="multipart/form-data"
           novalidate>
+
+        <input type="hidden" name="_csrf" value="{{token}}"/>
+
         <h2 class="h2">Formulario competición</h2>
 
         <h3 class="h3">Información de la competición</h3>
