@@ -72,7 +72,7 @@ public class User implements Serializable {
     @Column(length = 1)
     private RefereeRange refereeRange;
 
-    @ElementCollection()
+    @ElementCollection(fetch = FetchType.EAGER)
     @Column(nullable = false, length = 1)
     private Set<Role> roles;
 

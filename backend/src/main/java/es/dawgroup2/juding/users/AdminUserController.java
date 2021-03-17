@@ -190,7 +190,7 @@ public class AdminUserController {
      */
     @GetMapping("/admin/user/delete/{licenseId}")
     public String deleteUser(@PathVariable String licenseId) {
-        Set rolesOfUser = userService.getUserRolesOrNull(licenseId);
+        Set<Role> rolesOfUser = userService.getUserRolesOrNull(licenseId);
         userService.delete(userService.getUserOrNull(licenseId));
         if (rolesOfUser.contains(Role.C))
             return "redirect:/admin/user/list/competitors";

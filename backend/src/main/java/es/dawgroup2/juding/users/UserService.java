@@ -71,7 +71,7 @@ public class UserService {
      * @param licenseId License ID (PK).
      * @return List of roles (null if it does not exist).
      */
-    public Set getUserRolesOrNull(String licenseId){
+    public Set<Role> getUserRolesOrNull(String licenseId){
         User user = getUserOrNull(licenseId);
         if (user != null)
             return user.getRoles();
