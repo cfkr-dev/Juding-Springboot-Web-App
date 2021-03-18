@@ -1,11 +1,14 @@
 package es.dawgroup2.juding.competitions;
 
 import es.dawgroup2.juding.auxTypes.attendances.AttendanceService;
+import es.dawgroup2.juding.fight.Fight;
 import es.dawgroup2.juding.main.DateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class CompetitionController {
