@@ -95,4 +95,7 @@ public class UserService {
         if (user != null)
             userRepository.delete(user);
     }
+    public User findByNickname(String nickname){
+        return userRepository.findByNickname(nickname).orElseThrow();
+    }
 }

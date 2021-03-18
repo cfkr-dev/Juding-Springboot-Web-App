@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -23,7 +25,6 @@ public class PostController {
     @Autowired
     PostService postService;
 
-
     /**
      * This method inflates the individual post (shown by Id) visualization view.
      * A list with other post is also shown.
@@ -32,7 +33,7 @@ public class PostController {
      * @return Individual post visualization view (news).
      */
     @GetMapping("/news/{id}")
-    public String NewsPost(Model model, @PathVariable String id) {
+    public String newsPost(Model model, @PathVariable String id) {
         Post post = postService.findById(id);
         List<Post> postList = postService.findAll();
         postList.remove(post);
@@ -68,11 +69,10 @@ public class PostController {
 
     /**
      * This method inflates the post creation view.
-     * @param model Post data model.
      * @return Post creation view.
      */
     @GetMapping("/admin/post/createNew")
-    public String newPost(Model model) {
+    public String newPost() {
         return "/admin/post/createNew";
     }
 
@@ -93,9 +93,10 @@ public class PostController {
     @PostMapping("/admin/post/createNew")
     public String addNewPost(@RequestParam String title,
                              @RequestParam MultipartFile image,
-                             @RequestParam String body) throws IOException, SQLException {
+                             @RequestParam String body,
+                             HttpServletRequest request) throws IOException, SQLException {
         Post post = new Post();
-        post.setAuthor("1234567890")
+        post.setAuthor(request.getUserPrincipal().getName())
                 .setTitle(title)
                 .setBody(body)
                 .setTimestamp(new Timestamp(System.currentTimeMillis()));
@@ -133,10 +134,10 @@ public class PostController {
         if (!image.isEmpty()) {
             post.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
         } else {
-            Post dbpost = postService.findById(id);
-            if (dbpost.getImageFile() != null) {
-                post.setImageFile(BlobProxy.generateProxy(dbpost.getImageFile().getBinaryStream(),
-                        dbpost.getImageFile().length()));
+            Post dbPost = postService.findById(id);
+            if (dbPost.getImageFile() != null) {
+                post.setImageFile(BlobProxy.generateProxy(dbPost.getImageFile().getBinaryStream(),
+                        dbPost.getImageFile().length()));
             }
         }
         postService.updatingInfoPost(post);

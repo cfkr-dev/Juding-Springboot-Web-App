@@ -15,15 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.Principal;
+import java.util.Optional;
 
 @Controller
 public class LoggedInUserController {
-
-    // TODO CHANGE THIS WHEN SESSION IS CONTROLLED
-    String licenseId = "JU-1234567893";
-
     @Autowired
     UserService userService;
 
@@ -42,31 +41,29 @@ public class LoggedInUserController {
     /**
      * Dynamic view of homepage of logged in users.
      *
-     * @param model    Model.
-     * @param response HTTP Servlet Response.
+     * @param model   Model.
+     * @param request HTTP Servlet Request.
      * @return Dynamic view of homepage of logged in users.
      */
     @GetMapping("/myHome")
-    public String myHome(Model model, HttpServletResponse response) {
-        User currentUser = userService.getUserOrNull(licenseId);
-        if (currentUser == null) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        } else {
+    public String myHome(Model model, HttpServletRequest request) {
+        User currentUser = userService.findByNickname(request.getUserPrincipal().getName());
+        if (currentUser != null) {
             model.addAttribute("user", currentUser)
-                    .addAttribute("isCompetitor", currentUser.isRole(Role.R))
-                    .addAttribute("stringRange", currentUser.getRefereeRange());
+                    .addAttribute("isCompetitor", currentUser.isRole(Role.C));
         }
         return "myHome";
     }
 
     /**
      * Dynamic view of profile screen, with some data about logged user.
+     *
      * @param model Model.
      * @return Dynamic view of profile screen.
      */
     @GetMapping("/myProfile")
-    public String myProfile(Model model) {
-        User currentUser = userService.getUserOrNull(licenseId);
+    public String myProfile(Model model, HttpServletRequest request) {
+        User currentUser = userService.findByNickname(request.getUserPrincipal().getName());
         if (currentUser == null) {
             return "/error/403";
         } else {
@@ -80,12 +77,13 @@ public class LoggedInUserController {
 
     /**
      * Dynamic view of edit profile screen.
+     *
      * @param model Model.
      * @return Dynamic view of edit profile screen.
      */
     @GetMapping("/myProfile/edit")
-    public String editProfile(Model model) {
-        User currentUser = userService.getUserOrNull(licenseId);
+    public String editProfile(Model model, HttpServletRequest request) {
+        User currentUser = userService.findByNickname(request.getUserPrincipal().getName());
         if (currentUser == null) {
             return "/error/403";
         } else {
@@ -101,21 +99,22 @@ public class LoggedInUserController {
 
     /**
      * Method for saving edited values of user when {@link #editProfile(Model) editProfile} form is filled and sent.
-     * @param model Model.
-     * @param licenseId License ID (PK).
+     *
+     * @param model        Model.
+     * @param licenseId    License ID (PK).
      * @param beltSelector Belt.
-     * @param gym Gym.
-     * @param weight Weight
+     * @param gym          Gym.
+     * @param weight       Weight
      * @param refereeRange Referee range (in case it's a referee)
-     * @param nick Nickname.
-     * @param phone Phone.
-     * @param email Email.
-     * @param image Profile image.
+     * @param nick         Nickname.
+     * @param phone        Phone.
+     * @param email        Email.
+     * @param image        Profile image.
      * @return Profile page if successful.
      * @throws IOException Input-output exception.
      */
     @PostMapping("/myProfile/edit")
-    public String editingUser(Model model, @RequestParam String licenseId,
+    public String editingUser(@RequestParam String licenseId,
                               @RequestParam String beltSelector,
                               @RequestParam(required = false) String gym,
                               @RequestParam(required = false) Integer weight,

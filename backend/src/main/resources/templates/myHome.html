@@ -68,7 +68,7 @@
                                     <strong>Gimnasio:</strong> {{ user.gym }}.<br>
                                     <strong>Peso:</strong> {{ user.weight }} kg.
                                     {{ /isCompetitor }}{{ ^isCompetitor }}
-                                    <strong>Rango:</strong> {{ user.getLiteralRefereeRange }}.
+                                    <strong>Rango:</strong> {{ user.getRefereeRange.getDescription }}.
                                     {{ /isCompetitor }}
                                 </div>
                             </div>
