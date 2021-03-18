@@ -17,7 +17,6 @@ $.ajax({
         let tags = [];
         let acc = 0;
         let it = 0;
-        debugger;
         for (let item of ans) {
             switch (item) {
                 case 1:
