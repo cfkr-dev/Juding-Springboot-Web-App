@@ -165,8 +165,13 @@ public class CompetitionService {
                     f.setFinished(true).setWinner(winner).setLoser(loser);
                     // If it is last-level fight, it's time to save first, second and thirds medals.
                     if (f.getLevelInTree() == 0) {
-                        // todo hay que hacerlo
-                        System.out.println("Hola");
+                        // Winner of this fight is gold medal
+                        winner.addPoints(3);
+                        // Loser of this fight is silver medal
+                        loser.addPoints(2);
+                        // Other participants of semifinals are bronze medals
+                        competition.getFights().get(1).getLoser().addPoints(1);
+                        competition.getFights().get(2).getLoser().addPoints(1);
                     } else {
                         // Now, it is necessary to find next level fight which
                         for (Fight f2 : competition.getFights()) {

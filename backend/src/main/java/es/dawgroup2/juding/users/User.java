@@ -8,10 +8,11 @@ import es.dawgroup2.juding.auxTypes.roles.Role;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -74,6 +75,9 @@ public class User {
     @Column(nullable = false, length = 1)
     private Set<Role> roles;
 
+    @ElementCollection(fetch = FetchType.LAZY)
+    private List<Integer> competitorMedals;
+
     public User() {
     }
 
@@ -96,6 +100,9 @@ public class User {
         this.weight = weight;
         this.refereeRange = refereeRange;
         this.roles = roles;
+        if (roles.contains(Role.C)) {
+            this.competitorMedals = new ArrayList<>();
+        }
     }
 
     public String getLicenseId() {
@@ -258,6 +265,18 @@ public class User {
     public User setRoles(Set<Role> roles) {
         this.roles = roles;
         return this;
+    }
+
+    public List<Integer> getCompetitorMedals(){
+        return this.competitorMedals;
+    }
+
+    /**
+     * Adds a new medal for this user
+     * @param points Medal (gold = 3, silver = 2, bronze = 1)
+     */
+    public void addPoints(int points){
+        this.competitorMedals.add(points);
     }
 
     /**
