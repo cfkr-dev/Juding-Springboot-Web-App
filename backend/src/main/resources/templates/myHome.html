@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="card-text text-start">
                                     {{ user.name }} <strong>{{ user.surname }}</strong><br>
-                                    <strong>Licencia:</strong> {{ user.licenseId }}.<br>
+                                    <strong>Licencia:</strong> <span id="licenseId">{{ user.licenseId }}</span>.<br>
                                     <strong>DNI:</strong> {{ user.dni }}.<br>
                                     {{ #isCompetitor }}
                                     <strong>Gimnasio:</strong> {{ user.gym }}.<br>
