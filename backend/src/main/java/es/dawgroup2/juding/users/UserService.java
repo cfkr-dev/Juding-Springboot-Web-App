@@ -58,6 +58,15 @@ public class UserService {
     }
 
     /**
+     * Find a user by his nickname
+     * @param nickname Nickname
+     * @return User (null otherwise)
+     */
+    public User findByNickname(String nickname){
+        return userRepository.findByNickname(nickname).orElse(null);
+    }
+
+    /**
      * Checks if user exists (true if exists, false if not).
      * @param licenseId License ID that has to be checked
      * @return True if user exists (false otherwise).
@@ -104,8 +113,5 @@ public class UserService {
     public void delete(User user){
         if (user != null)
             userRepository.delete(user);
-    }
-    public User findByNickname(String nickname){
-        return userRepository.findByNickname(nickname).orElseThrow();
     }
 }

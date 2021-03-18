@@ -1,8 +1,8 @@
 package es.dawgroup2.juding.security;
 
+import es.dawgroup2.juding.auxTypes.roles.Role;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserRepository;
-import es.dawgroup2.juding.users.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

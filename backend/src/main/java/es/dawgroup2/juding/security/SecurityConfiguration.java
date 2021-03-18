@@ -1,7 +1,6 @@
 package es.dawgroup2.juding.security;
 
-
-import es.dawgroup2.juding.users.roles.Role;
+import es.dawgroup2.juding.auxTypes.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

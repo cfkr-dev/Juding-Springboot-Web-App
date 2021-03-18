@@ -14,6 +14,7 @@ import es.dawgroup2.juding.posts.PostService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -45,6 +46,9 @@ public class DataLoader {
     @Autowired
     PostService postService;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @PostConstruct
     public void dataLoader() throws IOException, ParseException {
         // STEP 1. Creating new competitors
@@ -60,7 +64,7 @@ public class DataLoader {
                     dateService.stringToDate(i + "/03/2000"),
                     (1234567 + i) + "Z",
                     "competidor" + i,
-                    "competidor" + i,
+                    passwordEncoder.encode("competidor" + i),
                     "Competidor?",
                     "Competidor",
                     imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
@@ -84,7 +88,7 @@ public class DataLoader {
                     dateService.stringToDate(i + "/6/2000"),
                     "9453123" + i + "S",
                     "arbitro" + i,
-                    "arbitro" + i,
+                    passwordEncoder.encode("arbitro" + i),
                     "Arbitro?",
                     "Arbitro",
                     imageService.uploadProfileImage("/static/sampleImages/1234567891.jpg"),
@@ -104,7 +108,7 @@ public class DataLoader {
                 dateService.stringToDate("5/4/1980"),
                 "94531234S",
                 "admin",
-                "admin",
+                passwordEncoder.encode("admin"),
                 "admin?",
                 "admin",
                 imageService.uploadProfileImage("/static/sampleImages/1234567892.jpg"),

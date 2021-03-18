@@ -3,21 +3,15 @@ package es.dawgroup2.juding.posts;
 import es.dawgroup2.juding.users.UserService;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -28,23 +22,6 @@ public class PostController {
 
     @Autowired
     UserService userService;
-
-    /**
-     * This method inflates the individual post (shown by Id) visualization view.
-     * A list with other post is also shown.
-     * @param model Post data model.
-     * @param id Current post id.
-     * @return Individual post visualization view (news).
-     */
-    @GetMapping("/news/{id}")
-    public String newsPost(Model model, @PathVariable String id) {
-        Post post = postService.findById(id);
-        List<Post> postList = postService.findAll();
-        postList.remove(post);
-        model.addAttribute("post", post);
-        model.addAttribute("postList", postList);
-        return "/news";
-    }
 
     /**
      * This method inflates the all post list view.
@@ -99,7 +76,7 @@ public class PostController {
                              @RequestParam String body,
                              HttpServletRequest request) throws IOException, SQLException {
         Post post = new Post();
-        post.setAuthor(request.getUserPrincipal().getName())
+        post.setAuthor(userService.findByNickname(request.getUserPrincipal().getName()))
                 .setTitle(title)
                 .setBody(body)
                 .setTimestamp(new Timestamp(System.currentTimeMillis()));
