@@ -3,6 +3,7 @@ package es.dawgroup2.juding.competitions;
 import es.dawgroup2.juding.fight.Fight;
 import es.dawgroup2.juding.fight.FightService;
 import es.dawgroup2.juding.users.User;
+import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ public class CompetitionService {
 
     @Autowired
     FightService fightService;
+
+    @Autowired
+    UserService userService;
 
     /**
      * Deletes a competition by its id
@@ -167,11 +171,30 @@ public class CompetitionService {
                     if (f.getLevelInTree() == 0) {
                         // Winner of this fight is gold medal
                         winner.addPoints(3);
+                        userService.save(winner);
                         // Loser of this fight is silver medal
                         loser.addPoints(2);
+                        userService.save(loser);
                         // Other participants of semifinals are bronze medals
-                        competition.getFights().get(1).getLoser().addPoints(1);
-                        competition.getFights().get(2).getLoser().addPoints(1);
+                        User third1 = competition.getFights().get(1).getLoser();
+                        third1.addPoints(1);
+                        userService.save(third1);
+                        User third2 = competition.getFights().get(2).getLoser();
+                        third2.addPoints(1);
+                        userService.save(third2);
+                        // The other ones are getting 0 points
+                        for (Fight f2 : competition.getFights()) {
+                            if (f2.getLevelInTree() == 3) {
+                                if (f2.getLoser() != winner && f2.getLoser() != loser && f2.getLoser() != third1 && f2.getLoser() != third2) {
+                                    f2.getLoser().addPoints(0);
+                                    userService.save(f2.getLoser());
+                                }
+                                if (f2.getWinner() != winner && f2.getWinner() != loser && f2.getWinner() != third1 && f2.getWinner() != third2) {
+                                    f2.getWinner().addPoints(0);
+                                    userService.save(f2.getWinner());
+                                }
+                            }
+                        }
                     } else {
                         // Now, it is necessary to find next level fight which
                         for (Fight f2 : competition.getFights()) {
