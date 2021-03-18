@@ -130,6 +130,18 @@ public class DataLoader {
         );
         competitionService.add(trial1);
         competitions.add(trial1);
+        Competition trial2 = new Competition(
+                "Competición de pruebas 2",
+                "Datos adicionales 2",
+                10,
+                160,
+                dateService.stringToTimestamp("25/03/2021 12:00"),
+                dateService.stringToTimestamp("27/03/2021 19:00"),
+                referees.get(0),
+                Attendance.N
+        );
+        competitionService.add(trial2);
+        competitions.add(trial2);
 
         // 3. Joining competitors into competition
         for (int i = 0; i < 16; i++) {
@@ -157,6 +169,18 @@ public class DataLoader {
         // Finals
         competitionService.fightFinished(competitions.get(0), competitors.get(2), competitors.get(13));
         competitionService.add(competitions.get(0));
+
+        // Competition 2
+        competitionService.joinCompetition(competitions.get(1), competitors.get(0));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(1));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(2));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(3));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(4));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(5));
+        competitionService.fightFinished(competitions.get(1), competitors.get(1), competitors.get(0));
+        competitionService.fightFinished(competitions.get(1), competitors.get(3), competitors.get(2));
+        competitionService.fightFinished(competitions.get(1), competitors.get(1), competitors.get(3));
+        competitionService.add(competitions.get(1));
 
         // 4. Post creation and saving
         List<Post> posts = new ArrayList<>();

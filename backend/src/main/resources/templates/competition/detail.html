@@ -37,160 +37,358 @@
     </div>
 </header>
 <div class="container">
-    < class="competition">
-    <h2 class="competitionTitle">{{competition.shortName}}</h2>
-    <h3 class="competitionSub">Información general</h3>
-    <div class="competitionText">{{{competition.additionalInfo}}}
-    </div>
-    <!-- Technical information of the competition -->
-    <div class="responsiveTable">
-        <div class="rtRow rtHeader">
-            <div class="width15 text-center">Estado</div>
-            <div class="width20 text-center">Fecha de inicio</div>
-            <div class="width20 text-center">Fecha de finalización</div>
-            <div class="width20 text-center">Árbitro</div>
-            <div class="width15 text-center">Número de competidores</div>
+    <div class="competition">
+        <h2 class="competitionTitle">{{ competition.shortName }}</h2>
+        <h3 class="competitionSub">Información general</h3>
+        <div class="competitionText">{{{ competition.additionalInfo }}}
         </div>
-        <div class="rtRow">
-            <div class="width15 text-center">
-                <div class="badge bg-secondary">{{state}}</div>
+        <!-- Technical information of the competition -->
+        <div class="responsiveTable">
+            <div class="rtRow rtHeader">
+                <div class="width15 text-center">Estado</div>
+                <div class="width20 text-center">Fecha de inicio</div>
+                <div class="width20 text-center">Fecha de finalización</div>
+                <div class="width20 text-center">Árbitro</div>
+                <div class="width15 text-center">Número de competidores</div>
             </div>
-            <div class="width20 text-center">{{competition.startDate}}</div>
-            <div class="width20 text-center">{{competition.endDate}}</div>
-            <div class="width20 text-center">
-                <div>{{competition.referee.getName}} {{competition.referee.getSurname}}</div>
+            <div class="rtRow">
+                <div class="width15 text-center">
+                    <div class="badge bg-secondary">{{ state }}</div>
+                </div>
+                <div class="width20 text-center">{{ competition.getFormattedStartDate }}</div>
+                <div class="width20 text-center">{{ competition.getFormattedEndDate }}</div>
+                <div class="width20 text-center">
+                    <div>{{ competition.referee.getName }} {{ competition.referee.getSurname }}</div>
+                </div>
+                <div class="width15 text-center">16</div>
             </div>
-            <div class="width15 text-center">16</div>
         </div>
-    </div>
-    <h3 class="competitionSub">Árbol de competición</h3>
-    <div id="wrapper"><span class="label winner">{{ fight0.winner.getNickname }}</span>
-        <div class="branch lv1">
-            <div class="entry"><span class="label">{{ fight1.winner.getNickname }}</span>
-                <div class="branch lv2">
-                    <div class="entry"><span class="label">{{ fight3.winner.getNickname }}</span>
-                        <div class="branch lv3">
-                            <div class="entry"><span class="label">{{ fight7.winner.getNickname }}</span>
-                                <div class="branch lv4">
-                                    <div class="entry"><span class="label">{{ fight7.winner.getNickname }}</span></div>
-                                    <div class="entry"><span class="label">{{ fight7.loser.getNickname }}</span></div>
+        <h3 class="competitionSub">Árbol de competición</h3>
+        <div id="wrapper">
+            {{ #fight0.isFinished }}
+            <span class="label winner">{{ fight0.winner.getNickname }}</span>
+            {{ /fight0.isFinished }}{{ ^fight0.isFinished }}
+            <span class="label">Pendiente</span>
+            {{ /fight0.isFinished }}
+            <div class="branch lv1">
+                <div class="entry">
+                    {{ #fight1.isFinished }}{{ #fight1.winner }}
+                    <span class="label {{ #fight0.isFinished }}finished{{ /fight0.isFinished }}{{ ^fight0.isFinished }}notFinished{{ /fight0.isFinished }}">{{ fight1.winner.getNickname }}</span>
+                    {{ /fight1.winner }}{{ ^fight1.winner }}
+                    <span class="label notFinished">{{ fight1.winner.getNickname }}</span>
+                    {{ /fight1.winner }}{{ /fight1.isFinished }}{{ ^fight1.isFinished }}
+                    <span class="label">Pendiente</span>
+                    {{ /fight1.isFinished }}
+                    <div class="branch lv2">
+                        <div class="entry">
+                            {{ #fight3.isFinished }}{{ #fight3.winner }}
+                            <span class="label {{ #fight1.isFinished }}finished{{ /fight1.isFinished }}{{ ^fight1.isFinished }}notFinished{{ /fight1.isFinished }}">{{ fight3.winner.getNickname }}</span>
+                            {{ /fight3.winner }}{{ ^fight3.winner }}
+                            <span class="label notFinished">{{ fight3.winner.getNickname }}</span>
+                            {{ /fight3.winner }}{{ /fight3.isFinished }}{{ ^fight3.isFinished }}
+                            <span class="label">Pendiente</span>
+                            {{ /fight3.isFinished }}
+                            <div class="branch lv3">
+                                <div class="entry">
+                                    {{ #fight7.isFinished }}{{ #fight7.winner }}
+                                    <span class="label {{ #fight3.isFinished }}finished{{ /fight3.isFinished }}{{ ^fight3.isFinished }}notFinished{{ /fight3.isFinished }}">{{ fight7.winner.getNickname }}</span>
+                                    {{ /fight7.winner }}{{ ^fight7.winner }}
+                                    <span class="label notFinished">{{ fight7.winner.getNickname }}</span>
+                                    {{ /fight7.winner }}{{ /fight7.isFinished }}{{ ^fight7.isFinished }}
+                                    <span class="label">Pendiente</span>
+                                    {{ /fight7.isFinished }}
+                                    <div class="branch lv4">
+                                        <div class="entry">
+                                            {{ #fight7.winner }}
+                                            <span class="label {{ #fight7.isFinished }}finished{{ /fight7.isFinished }}{{ ^fight7.isFinished }}notFinished{{ /fight7.isFinished }}">{{ fight7.winner.getNickname }}</span>
+                                            {{ /fight7.winner }}{{ ^fight7.winner }}
+                                            <span class="label">Pendiente</span>
+                                            {{ /fight7.winner }}
+                                        </div>
+                                        <div class="entry">
+                                            {{ #fight7.loser }}
+                                            <span class="label {{ #fight7.isFinished }}finished{{ /fight7.isFinished }}{{ ^fight7.isFinished }}notFinished{{ /fight7.isFinished }}">{{ fight7.loser.getNickname }}</span>
+                                            {{ /fight7.loser }}{{ ^fight7.loser }}
+                                            <span class="label">Pendiente</span>
+                                            {{ /fight7.loser }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="entry">
+                                    {{ #fight8.isFinished }}{{ #fight8.winner }}
+                                    <span class="label {{ #fight3.isFinished }}finished{{ /fight3.isFinished }}{{ ^fight3.isFinished }}notFinished{{ /fight3.isFinished }}">{{ fight8.winner.getNickname }}</span>
+                                    {{ /fight8.winner }}{{ ^fight8.winner }}
+                                    <span class="label notFinished">{{ fight8.winner.getNickname }}</span>
+                                    {{ /fight8.winner }}{{ /fight8.isFinished }}{{ ^fight8.isFinished }}
+                                    <span class="label">Pendiente</span>
+                                    {{ /fight8.isFinished }}
+                                    <div class="branch lv4">
+                                        <div class="entry">
+                                            {{ #fight8.winner }}
+                                            <span class="label {{ #fight8.isFinished }}finished{{ /fight8.isFinished }}{{ ^fight8.isFinished }}notFinished{{ /fight8.isFinished }}">{{ fight8.winner.getNickname }}</span>
+                                            {{ /fight8.winner }}{{ ^fight8.winner }}
+                                            <span class="label">Pendiente</span>
+                                            {{ /fight8.winner }}
+                                        </div>
+                                        <div class="entry">
+                                            {{ #fight8.loser }}
+                                            <span class="label {{ #fight8.isFinished }}finished{{ /fight8.isFinished }}{{ ^fight8.isFinished }}notFinished{{ /fight8.isFinished }}">{{ fight8.loser.getNickname }}</span>
+                                            {{ /fight8.loser }}{{ ^fight8.loser }}
+                                            <span class="label">Pendiente</span>
+                                            {{ /fight8.loser }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="entry"><span class="label">{{ fight8.winner.getNickname }}</span>
-                                <div class="branch lv4">
-                                    <div class="entry"><span class="label">{{ fight8.winner.getNickname }}</span></div>
-                                    <div class="entry"><span class="label">{{ fight8.loser.getNickname }}</span></div>
+                        </div>
+                        <div class="entry">
+                            {{ #fight4.isFinished }}{{ #fight4.winner }}
+                            <span class="label {{ #fight1.isFinished }}finished{{ /fight1.isFinished }}{{ ^fight1.isFinished }}notFinished{{ /fight1.isFinished }}">{{ fight4.winner.getNickname }}</span>
+                            {{ /fight4.winner }}{{ ^fight4.winner }}
+                            <span class="label notFinished">{{ fight4.winner.getNickname }}</span>
+                            {{ /fight4.winner }}{{ /fight4.isFinished }}{{ ^fight4.isFinished }}
+                            <span class="label">Pendiente</span>
+                            {{ /fight4.isFinished }}
+                            <div class="branch lv3">
+                                <div class="entry">
+                                    {{ #fight9.isFinished }}{{ #fight9.winner }}
+                                    <span class="label {{ #fight4.isFinished }}finished{{ /fight4.isFinished }}{{ ^fight4.isFinished }}notFinished{{ /fight4.isFinished }}">{{ fight9.winner.getNickname }}</span>
+                                    {{ /fight9.winner }}{{ ^fight9.winner }}
+                                    <span class="label notFinished">{{ fight9.winner.getNickname }}</span>
+                                    {{ /fight9.winner }}{{ /fight9.isFinished }}{{ ^fight9.isFinished }}
+                                    <span class="label">Pendiente</span>
+                                    {{ /fight9.isFinished }}
+                                    <div class="branch lv4">
+                                        <div class="entry">
+                                            {{ #fight9.winner }}
+                                            <span class="label {{ #fight9.isFinished }}finished{{ /fight9.isFinished }}{{ ^fight9.isFinished }}notFinished{{ /fight9.isFinished }}">{{ fight9.winner.getNickname }}</span>
+                                            {{ /fight9.winner }}{{ ^fight9.winner }}
+                                            <span class="label">Pendiente</span>
+                                            {{ /fight9.winner }}
+                                        </div>
+                                        <div class="entry">
+                                            {{ #fight9.loser }}
+                                            <span class="label {{ #fight9.isFinished }}finished{{ /fight9.isFinished }}{{ ^fight9.isFinished }}notFinished{{ /fight9.isFinished }}">{{ fight9.loser.getNickname }}</span>
+                                            {{ /fight9.loser }}{{ ^fight9.loser }}
+                                            <span class="label">Pendiente</span>
+                                            {{ /fight9.loser }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="entry">
+                                    {{ #fight10.isFinished }}{{ #fight10.winner }}
+                                    <span class="label {{ #fight4.isFinished }}finished{{ /fight4.isFinished }}{{ ^fight4.isFinished }}notFinished{{ /fight4.isFinished }}">{{ fight10.winner.getNickname }}</span>
+                                    {{ /fight10.winner }}{{ ^fight10.winner }}
+                                    <span class="label notFinished">{{ fight10.winner.getNickname }}</span>
+                                    {{ /fight10.winner }}{{ /fight10.isFinished }}{{ ^fight10.isFinished }}
+                                    <span class="label">Pendiente</span>
+                                    {{ /fight10.isFinished }}
+                                    <div class="branch lv4">
+                                        <div class="entry">
+                                            {{ #fight10.winner }}
+                                            <span class="label {{ #fight10.isFinished }}finished{{ /fight10.isFinished }}{{ ^fight10.isFinished }}notFinished{{ /fight10.isFinished }}">{{ fight10.winner.getNickname }}</span>
+                                            {{ /fight10.winner }}{{ ^fight10.winner }}
+                                            <span class="label">Pendiente</span>
+                                            {{ /fight10.winner }}
+                                        </div>
+                                        <div class="entry">
+                                            {{ #fight10.loser }}
+                                            <span class="label {{ #fight10.isFinished }}finished{{ /fight10.isFinished }}{{ ^fight10.isFinished }}notFinished{{ /fight10.isFinished }}">{{ fight10.loser.getNickname }}</span>
+                                            {{ /fight10.loser }}{{ ^fight10.loser }}
+                                            <span class="label">Pendiente</span>
+                                            {{ /fight10.loser }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="entry"><span class="label">{{ fight4.winner.getNickname }}</span>
-                        <div class="branch lv3">
-                            <div class="entry"><span class="label">{{ fight9.winner.getNickname }}</span>
-                                <div class="branch lv4">
-                                    <div class="entry"><span class="label">{{ fight9.winner.getNickname }}</span></div>
-                                    <div class="entry"><span class="label">{{ fight9.loser.getNickname }}</span></div>
+                </div>
+                <div class="entry">
+                    {{ #fight2.isFinished }}{{ #fight2.winner }}
+                    <span class="label {{ #fight0.isFinished }}finished{{ /fight0.isFinished }}{{ ^fight0.isFinished }}notFinished{{ /fight0.isFinished }}">{{ fight2.winner.getNickname }}</span>
+                    {{ /fight2.winner }}{{ ^fight2.winner }}
+                    <span class="label notFinished">{{ fight2.winner.getNickname }}</span>
+                    {{ /fight2.winner }}{{ /fight2.isFinished }}{{ ^fight2.isFinished }}
+                    <span class="label">Pendiente</span>
+                    {{ /fight2.isFinished }}
+                    <div class="branch lv2">
+                        <div class="entry">
+                            {{ #fight5.isFinished }}{{ #fight5.winner }}
+                            <span class="label {{ #fight2.isFinished }}finished{{ /fight2.isFinished }}{{ ^fight2.isFinished }}notFinished{{ /fight2.isFinished }}">{{ fight5.winner.getNickname }}</span>
+                            {{ /fight5.winner }}{{ ^fight5.winner }}
+                            <span class="label notFinished">{{ fight5.winner.getNickname }}</span>
+                            {{ /fight5.winner }}{{ /fight5.isFinished }}{{ ^fight5.isFinished }}
+                            <span class="label">Pendiente</span>
+                            {{ /fight5.isFinished }}
+                            <div class="branch lv3">
+                                <div class="entry">
+                                    {{ #fight11.isFinished }}{{ #fight11.winner }}
+                                    <span class="label {{ #fight5.isFinished }}finished{{ /fight5.isFinished }}{{ ^fight5.isFinished }}notFinished{{ /fight5.isFinished }}">{{ fight11.winner.getNickname }}</span>
+                                    {{ /fight11.winner }}{{ ^fight11.winner }}
+                                    <span class="label notFinished">{{ fight11.winner.getNickname }}</span>
+                                    {{ /fight11.winner }}{{ /fight11.isFinished }}{{ ^fight11.isFinished }}
+                                    <span class="label">Pendiente</span>
+                                    {{ /fight11.isFinished }}
+                                    <div class="branch lv4">
+                                        <div class="entry">
+                                            {{ #fight11.winner }}
+                                            <span class="label {{ #fight11.isFinished }}finished{{ /fight11.isFinished }}{{ ^fight11.isFinished }}notFinished{{ /fight11.isFinished }}">{{ fight11.winner.getNickname }}</span>
+                                            {{ /fight11.winner }}{{ ^fight11.winner }}
+                                            <span class="label">Pendiente</span>
+                                            {{ /fight11.winner }}
+                                        </div>
+                                        <div class="entry">
+                                            {{ #fight11.loser }}
+                                            <span class="label {{ #fight11.isFinished }}finished{{ /fight11.isFinished }}{{ ^fight11.isFinished }}notFinished{{ /fight11.isFinished }}">{{ fight11.loser.getNickname }}</span>
+                                            {{ /fight11.loser }}{{ ^fight11.loser }}
+                                            <span class="label">Pendiente</span>
+                                            {{ /fight11.loser }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="entry">
+                                    {{ #fight12.isFinished }}{{ #fight12.winner }}
+                                    <span class="label {{ #fight5.isFinished }}finished{{ /fight5.isFinished }}{{ ^fight5.isFinished }}notFinished{{ /fight5.isFinished }}">{{ fight12.winner.getNickname }}</span>
+                                    {{ /fight12.winner }}{{ ^fight12.winner }}
+                                    <span class="label notFinished">{{ fight12.winner.getNickname }}</span>
+                                    {{ /fight12.winner }}{{ /fight12.isFinished }}{{ ^fight12.isFinished }}
+                                    <span class="label">Pendiente</span>
+                                    {{ /fight12.isFinished }}
+                                    <div class="branch lv4">
+                                        <div class="entry">
+                                            {{ #fight12.winner }}
+                                            <span class="label {{ #fight12.isFinished }}finished{{ /fight12.isFinished }}{{ ^fight12.isFinished }}notFinished{{ /fight12.isFinished }}">{{ fight12.winner.getNickname }}</span>
+                                            {{ /fight12.winner }}{{ ^fight12.winner }}
+                                            <span class="label">Pendiente</span>
+                                            {{ /fight12.winner }}
+                                        </div>
+                                        <div class="entry">
+                                            {{ #fight12.loser }}
+                                            <span class="label {{ #fight12.isFinished }}finished{{ /fight12.isFinished }}{{ ^fight12.isFinished }}notFinished{{ /fight12.isFinished }}">{{ fight12.loser.getNickname }}</span>
+                                            {{ /fight12.loser }}{{ ^fight12.loser }}
+                                            <span class="label">Pendiente</span>
+                                            {{ /fight12.loser }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="entry"><span class="label">{{ fight10.winner.getNickname }}</span>
-                                <div class="branch lv4">
-                                    <div class="entry"><span class="label">{{ fight10.winner.getNickname }}</span></div>
-                                    <div class="entry"><span class="label">{{ fight10.loser.getNickname }}</span></div>
+                        </div>
+                        <div class="entry">
+                            {{ #fight6.isFinished }}{{ #fight6.winner }}
+                            <span class="label {{ #fight2.isFinished }}finished{{ /fight2.isFinished }}{{ ^fight2.isFinished }}notFinished{{ /fight2.isFinished }}">{{ fight6.winner.getNickname }}</span>
+                            {{ /fight6.winner }}{{ ^fight6.winner }}
+                            <span class="label notFinished">{{ fight6.winner.getNickname }}</span>
+                            {{ /fight6.winner }}{{ /fight6.isFinished }}{{ ^fight6.isFinished }}
+                            <span class="label">Pendiente</span>
+                            {{ /fight6.isFinished }}
+                            <div class="branch lv3">
+                                <div class="entry">
+                                    {{ #fight13.isFinished }}{{ #fight13.winner }}
+                                    <span class="label {{ #fight6.isFinished }}finished{{ /fight6.isFinished }}{{ ^fight6.isFinished }}notFinished{{ /fight6.isFinished }}">{{ fight13.winner.getNickname }}</span>
+                                    {{ /fight13.winner }}{{ ^fight13.winner }}
+                                    <span class="label notFinished">{{ fight13.winner.getNickname }}</span>
+                                    {{ /fight13.winner }}{{ /fight13.isFinished }}{{ ^fight13.isFinished }}
+                                    <span class="label">Pendiente</span>
+                                    {{ /fight13.isFinished }}
+                                    <div class="branch lv4">
+                                        <div class="entry">
+                                            {{ #fight13.winner }}
+                                            <span class="label {{ #fight13.isFinished }}finished{{ /fight13.isFinished }}{{ ^fight13.isFinished }}notFinished{{ /fight13.isFinished }}">{{ fight13.winner.getNickname }}</span>
+                                            {{ /fight13.winner }}{{ ^fight13.winner }}
+                                            <span class="label">Pendiente</span>
+                                            {{ /fight13.winner }}
+                                        </div>
+                                        <div class="entry">
+                                            {{ #fight13.loser }}
+                                            <span class="label {{ #fight13.isFinished }}finished{{ /fight13.isFinished }}{{ ^fight13.isFinished }}notFinished{{ /fight13.isFinished }}">{{ fight13.loser.getNickname }}</span>
+                                            {{ /fight13.loser }}{{ ^fight13.loser }}
+                                            <span class="label">Pendiente</span>
+                                            {{ /fight13.loser }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="entry">
+                                    {{ #fight14.isFinished }}{{ #fight14.winner }}
+                                    <span class="label {{ #fight6.isFinished }}finished{{ /fight6.isFinished }}{{ ^fight6.isFinished }}notFinished{{ /fight6.isFinished }}">{{ fight14.winner.getNickname }}</span>
+                                    {{ /fight14.winner }}{{ ^fight14.winner }}
+                                    <span class="label notFinished">{{ fight14.winner.getNickname }}</span>
+                                    {{ /fight14.winner }}{{ /fight14.isFinished }}{{ ^fight14.isFinished }}
+                                    <span class="label">Pendiente</span>
+                                    {{ /fight14.isFinished }}
+                                    <div class="branch lv4">
+                                        <div class="entry">
+                                            {{ #fight14.winner }}
+                                            <span class="label {{ #fight14.isFinished }}finished{{ /fight14.isFinished }}{{ ^fight14.isFinished }}notFinished{{ /fight14.isFinished }}">{{ fight14.winner.getNickname }}</span>
+                                            {{ /fight14.winner }}{{ ^fight14.winner }}
+                                            <span class="label">Pendiente</span>
+                                            {{ /fight14.winner }}
+                                        </div>
+                                        <div class="entry">
+                                            {{ #fight14.loser }}
+                                            <span class="label {{ #fight14.isFinished }}finished{{ /fight14.isFinished }}{{ ^fight14.isFinished }}notFinished{{ /fight14.isFinished }}">{{ fight14.loser.getNickname }}</span>
+                                            {{ /fight14.loser }}{{ ^fight14.loser }}
+                                            <span class="label">Pendiente</span>
+                                            {{ /fight14.loser }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="entry"><span class="label">{{ fight2.winner.getNickname }}</span>
-                <div class="branch lv2">
-                    <div class="entry"><span class="label">{{ fight5.winner.getNickname }}</span>
-                        <div class="branch lv3">
-                            <div class="entry"><span class="label">{{ fight11.winner.getNickname }}</span>
-                                <div class="branch lv4">
-                                    <div class="entry"><span class="label">{{ fight11.winner.getNickname }}</span></div>
-                                    <div class="entry"><span class="label">{{ fight11.loser.getNickname }}</span></div>
-                                </div>
-                            </div>
-                            <div class="entry"><span class="label">{{ fight12.winner.getNickname }}</span>
-                                <div class="branch lv4">
-                                    <div class="entry"><span class="label">{{ fight12.winner.getNickname }}</span></div>
-                                    <div class="entry"><span class="label">{{ fight12.loser.getNickname }}</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="entry"><span class="label">{{ fight6.winner.getNickname }}</span>
-                        <div class="branch lv3">
-                            <div class="entry"><span class="label">{{ fight13.winner.getNickname }}</span>
-                                <div class="branch lv4">
-                                    <div class="entry"><span class="label">{{ fight13.winner.getNickname }}</span></div>
-                                    <div class="entry"><span class="label">{{ fight13.loser.getNickname }}</span></div>
-                                </div>
-                            </div>
-                            <div class="entry"><span class="label">{{ fight14.winner.getNickname }}</span>
-                                <div class="branch lv4">
-                                    <div class="entry"><span class="label">{{ fight14.winner.getNickname }}</span></div>
-                                    <div class="entry"><span class="label">{{ fight14.loser.getNickname }}</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        </div>
+        <h3 class="competitionSub">Resultados</h3>
+        <!--Competition results-->
+        <div class="responsiveTable">
+            <div class="rtRow rtHeader">
+                <div class="width15 text-center">Posición</div>
+                <div class="width20 text-center">Nombre</div>
+                <div class="width15 text-center">Peso</div>
+                <div class="width15 text-center">Género</div>
+                <div class="width20 text-center">Cinturón</div>
+                <div class="width15 text-center">Medalla</div>
+            </div>
+            <div class="rtRow">
+                <div class="width15 text-center">1ª</div>
+                <div class="width20 text-center">Joaquín</div>
+                <div class="width15 text-center">50Kg</div>
+                <div class="width15 text-center">Masc.</div>
+                <div class="width20 text-center">
+                    <i class="fas fa-user-ninja" style="color: green;"></i>
+                </div>
+                <div class="width15 text-center">
+                    <i class="fas fa-medal goldMedal"></i>
+                </div>
+            </div>
+            <div class="rtRow">
+                <div class="width15 text-center">2ª</div>
+                <div class="width20 text-center">Marcos</div>
+                <div class="width15 text-center">53Kg</div>
+                <div class="width15 text-center">Masc.</div>
+                <div class="width20 text-center">
+                    <i class="fas fa-user-ninja" style="color: green;"></i>
+                </div>
+                <div class="width15 text-center">
+                    <i class="fas fa-medal silverMedal"></i>
+                </div>
+            </div>
+            <div class="rtRow mb-5">
+                <div class="width15 text-center">3ª</div>
+                <div class="width20 text-center">Martín</div>
+                <div class="width15 text-center">55Kg</div>
+                <div class="width15 text-center">Masc.</div>
+                <div class="width20 text-center">
+                    <i class="fas fa-user-ninja" style="color: green;"></i>
+                </div>
+                <div class="width15 text-center">
+                    <i class="fas fa-medal bronzeMedal"></i>
                 </div>
             </div>
         </div>
     </div>
-    <h3 class="competitionSub">Resultados</h3>
-    <!--Competition results-->
-    <div class="responsiveTable">
-        <div class="rtRow rtHeader">
-            <div class="width15 text-center">Posición</div>
-            <div class="width20 text-center">Nombre</div>
-            <div class="width15 text-center">Peso</div>
-            <div class="width15 text-center">Género</div>
-            <div class="width20 text-center">Cinturón</div>
-            <div class="width15 text-center">Medalla</div>
-        </div>
-        <div class="rtRow">
-            <div class="width15 text-center">1ª</div>
-            <div class="width20 text-center">Joaquín</div>
-            <div class="width15 text-center">50Kg</div>
-            <div class="width15 text-center">Masc.</div>
-            <div class="width20 text-center">
-                <i class="fas fa-user-ninja" style="color: green;"></i>
-            </div>
-            <div class="width15 text-center">
-                <i class="fas fa-medal goldMedal"></i>
-            </div>
-        </div>
-        <div class="rtRow">
-            <div class="width15 text-center">2ª</div>
-            <div class="width20 text-center">Marcos</div>
-            <div class="width15 text-center">53Kg</div>
-            <div class="width15 text-center">Masc.</div>
-            <div class="width20 text-center">
-                <i class="fas fa-user-ninja" style="color: green;"></i>
-            </div>
-            <div class="width15 text-center">
-                <i class="fas fa-medal silverMedal"></i>
-            </div>
-        </div>
-        <div class="rtRow mb-5">
-            <div class="width15 text-center">3ª</div>
-            <div class="width20 text-center">Martín</div>
-            <div class="width15 text-center">55Kg</div>
-            <div class="width15 text-center">Masc.</div>
-            <div class="width20 text-center">
-                <i class="fas fa-user-ninja" style="color: green;"></i>
-            </div>
-            <div class="width15 text-center">
-                <i class="fas fa-medal bronzeMedal"></i>
-            </div>
-        </div>
-    </div>
 </div>
-</div>
-
 
 <!-- Vendor JS Files -->
 <script src="/assets/vendor/jquery/jquery.min.js"></script>

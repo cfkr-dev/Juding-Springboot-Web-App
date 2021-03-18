@@ -143,7 +143,7 @@ public class CompetitionService {
                     fights.get(i).setWinner(user);
                     return true;
                 }
-                if (fights.get(i).getLoser() == null){
+                if (fights.get(i).getLoser() == null) {
                     fights.get(i).setLoser(user);
                     return true;
                 }
@@ -155,31 +155,30 @@ public class CompetitionService {
     /**
      * A referee registers winner and loser of a fight
      */
-    public void fightFinished(Competition competition, User winner, User loser){
+    public void fightFinished(Competition competition, User winner, User loser) {
         // 1. Looking for the fight that contains both winner and loser
-        for (Fight f : competition.getFights()){
+        for (Fight f : competition.getFights()) {
             // Only looking at not-completed fights
             if (!f.isFinished()) {
-                if ((f.getLoser() == loser && f.getWinner() == winner) || (f.getWinner() == loser && f.getLoser() == winner)){
+                if ((f.getLoser() == loser && f.getWinner() == winner) || (f.getWinner() == loser && f.getLoser() == winner)) {
                     // Setting new values
                     f.setFinished(true).setWinner(winner).setLoser(loser);
                     // If it is last-level fight, it's time to save first, second and thirds medals.
-                    if (f.getLevelInTree() == 0){
+                    if (f.getLevelInTree() == 0) {
+                        // todo hay que hacerlo
                         System.out.println("Hola");
                     } else {
                         // Now, it is necessary to find next level fight which
-                        for (Fight f2 : competition.getFights()){
-                            if (f2.getLevelInTree() == f.getLevelInTree() - 1){
-                                if (f2.getUpFight() == f || f2.getDownFight() == f){
+                        for (Fight f2 : competition.getFights()) {
+                            if (f2.getLevelInTree() == f.getLevelInTree() - 1) {
+                                if (f2.getUpFight() == f || f2.getDownFight() == f) {
                                     if (f2.getLoser() == null) f2.setLoser(winner);
                                     else f2.setWinner(winner);
-                                    break;
+                                    return;
                                 }
                             }
-                       }
+                        }
                     }
-                    competitionRepository.save(competition);
-                    return;
                 }
             }
         }
