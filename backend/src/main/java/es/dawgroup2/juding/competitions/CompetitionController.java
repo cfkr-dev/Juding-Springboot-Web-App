@@ -20,8 +20,6 @@ import java.util.List;
 
 @Controller
 public class CompetitionController {
-
-
     @Autowired
     CompetitionService competitionService;
 

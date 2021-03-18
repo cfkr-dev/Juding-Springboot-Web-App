@@ -18,14 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller
 public class LoggedInUserController {
-
-    // TODO CHANGE THIS WHEN SESSION IS CONTROLLED
-    String licenseId = "JU-1234567893";
-
     @Autowired
     UserService userService;
 
@@ -50,12 +47,10 @@ public class LoggedInUserController {
      */
     @GetMapping("/myHome")
     public String myHome(Model model, HttpServletRequest request) {
-        String nickName = request.getUserPrincipal().getName();
-        User currentUser = userService.findByNickname(nickName);
+        User currentUser = userService.findByNickname(request.getUserPrincipal().getName());
         if (currentUser != null) {
             model.addAttribute("user", currentUser)
-                    .addAttribute("isCompetitor", currentUser.isRole(Role.R))
-                    .addAttribute("stringRange", currentUser.getRefereeRange());
+                    .addAttribute("isCompetitor", currentUser.isRole(Role.C));
         }
         return "myHome";
     }
@@ -67,8 +62,8 @@ public class LoggedInUserController {
      * @return Dynamic view of profile screen.
      */
     @GetMapping("/myProfile")
-    public String myProfile(Model model) {
-        User currentUser = userService.getUserOrNull(licenseId);
+    public String myProfile(Model model, HttpServletRequest request) {
+        User currentUser = userService.findByNickname(request.getUserPrincipal().getName());
         if (currentUser == null) {
             return "/error/403";
         } else {
@@ -87,8 +82,8 @@ public class LoggedInUserController {
      * @return Dynamic view of edit profile screen.
      */
     @GetMapping("/myProfile/edit")
-    public String editProfile(Model model) {
-        User currentUser = userService.getUserOrNull(licenseId);
+    public String editProfile(Model model, HttpServletRequest request) {
+        User currentUser = userService.findByNickname(request.getUserPrincipal().getName());
         if (currentUser == null) {
             return "/error/403";
         } else {
@@ -119,7 +114,7 @@ public class LoggedInUserController {
      * @throws IOException Input-output exception.
      */
     @PostMapping("/myProfile/edit")
-    public String editingUser(Model model, @RequestParam String licenseId,
+    public String editingUser(@RequestParam String licenseId,
                               @RequestParam String beltSelector,
                               @RequestParam(required = false) String gym,
                               @RequestParam(required = false) Integer weight,

@@ -25,7 +25,6 @@ public class PostController {
     @Autowired
     PostService postService;
 
-
     /**
      * This method inflates the individual post (shown by Id) visualization view.
      * A list with other post is also shown.
@@ -34,7 +33,7 @@ public class PostController {
      * @return Individual post visualization view (news).
      */
     @GetMapping("/news/{id}")
-    public String NewsPost(Model model, @PathVariable String id) {
+    public String newsPost(Model model, @PathVariable String id) {
         Post post = postService.findById(id);
         List<Post> postList = postService.findAll();
         postList.remove(post);
@@ -70,11 +69,10 @@ public class PostController {
 
     /**
      * This method inflates the post creation view.
-     * @param model Post data model.
      * @return Post creation view.
      */
     @GetMapping("/admin/post/createNew")
-    public String newPost(Model model) {
+    public String newPost() {
         return "/admin/post/createNew";
     }
 
@@ -136,10 +134,10 @@ public class PostController {
         if (!image.isEmpty()) {
             post.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
         } else {
-            Post dbpost = postService.findById(id);
-            if (dbpost.getImageFile() != null) {
-                post.setImageFile(BlobProxy.generateProxy(dbpost.getImageFile().getBinaryStream(),
-                        dbpost.getImageFile().length()));
+            Post dbPost = postService.findById(id);
+            if (dbPost.getImageFile() != null) {
+                post.setImageFile(BlobProxy.generateProxy(dbPost.getImageFile().getBinaryStream(),
+                        dbPost.getImageFile().length()));
             }
         }
         postService.updatingInfoPost(post);
