@@ -54,21 +54,3 @@ new Chart(ctx, {
         }
     }
 });
-
-/**
- * Referee Donut Chart
- */
-let ctx2 = document.getElementById("assistanceChart").getContext("2d")
-new Chart(ctx2, {
-    type: 'doughnut',
-    data: {
-        labels: ['Asistencias', 'Ausencias'],
-        datasets: [{
-            data: [5, 2],
-            backgroundColor: [
-                "rgb(25, 255, 61)",
-                "rgb(255, 69, 8)",
-            ]
-        }]
-    }
-});

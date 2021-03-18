@@ -1,12 +1,12 @@
 package es.dawgroup2.juding.users;
 
-import es.dawgroup2.juding.belts.BeltService;
+import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.main.DateService;
 import es.dawgroup2.juding.main.image.ImageService;
-import es.dawgroup2.juding.users.gender.GenderService;
-import es.dawgroup2.juding.users.refereeRange.RefereeRange;
-import es.dawgroup2.juding.users.refereeRange.RefereeRangeService;
-import es.dawgroup2.juding.users.roles.Role;
+import es.dawgroup2.juding.auxTypes.gender.GenderService;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
+import es.dawgroup2.juding.auxTypes.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.internet.MimeMessage;
 import java.text.ParseException;
-import java.util.List;
+import java.util.Set;
 
 @Controller
-public class UserController {
+public class AdminUserController {
     @Autowired
     UserService userService;
 
@@ -80,7 +80,7 @@ public class UserController {
     public String editUser(@PathVariable String licenseId, Model model) {
         User user = userService.getUserOrNull(licenseId);
         model.addAttribute("user", user)
-                .addAttribute("beltSelector", beltService.getSelectField(user.getBelt()))
+                .addAttribute("beltSelector", beltService.getSelectField(user.getBelt(), false))
                 .addAttribute("genderSelection", genderService.getRadioField(user.getGender()))
                 .addAttribute("isCompetitor", user.isRole(Role.C));
         if (user.isRole(Role.R)) {
@@ -98,7 +98,7 @@ public class UserController {
      * @param gender       Gender
      * @param phone        Phone
      * @param email        Email
-     * @param birthdate    Birth date
+     * @param birthDate    Birth date
      * @param dni          DNI
      * @param licenseId    License ID (PK)
      * @param nickname     Nick name
@@ -115,13 +115,13 @@ public class UserController {
                              @RequestParam String gender,
                              @RequestParam int phone,
                              @RequestParam String email,
-                             @RequestParam String birthdate,
+                             @RequestParam String birthDate,
                              @RequestParam String dni,
                              @RequestParam String licenseId,
                              @RequestParam String nickname,
                              @RequestParam String belt,
-                             @RequestParam String gym,
-                             @RequestParam int weight,
+                             @RequestParam(required = false) String gym,
+                             @RequestParam(required = false) Integer weight,
                              @RequestParam(required = false) String refereeRange
     ) throws ParseException {
         User currentUser = userService.getUserOrNull(licenseId);
@@ -131,7 +131,7 @@ public class UserController {
                 .setPhone(phone)
                 .setEmail(email)
                 .setNickname(nickname)
-                .setBirthDate(dateService.stringToDate(birthdate))
+                .setBirthDate(dateService.stringToDate(birthDate))
                 .setGender(genderService.findGenderById(gender))
                 .setWeight(weight)
                 .setGym(gym)
@@ -190,7 +190,7 @@ public class UserController {
      */
     @GetMapping("/admin/user/delete/{licenseId}")
     public String deleteUser(@PathVariable String licenseId) {
-        List<Role> rolesOfUser = userService.getUserRolesOrNull(licenseId);
+        Set<Role> rolesOfUser = userService.getUserRolesOrNull(licenseId);
         userService.delete(userService.getUserOrNull(licenseId));
         if (rolesOfUser.contains(Role.C))
             return "redirect:/admin/user/list/competitors";

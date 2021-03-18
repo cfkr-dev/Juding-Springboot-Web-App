@@ -1,6 +1,5 @@
-package es.dawgroup2.juding.users.refereeRange;
+package es.dawgroup2.juding.auxTypes.refereeRange;
 
-import es.dawgroup2.juding.users.gender.Gender;
 import org.springframework.stereotype.Component;
 
 @Component

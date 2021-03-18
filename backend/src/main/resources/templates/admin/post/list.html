@@ -53,61 +53,49 @@
     </div>
 </header>
 <div class="container pb-3">
+    <div class="row pt-3">
+        <div class="col-md-10">
+            <h2 class="h2">Noticias</h2>
+        </div>
+        <div class="col-md-2">
+            <a href="/admin/post/createNew" class="btn btn-corporative">
+                <i class="fa fa-plus-circle"></i> Nueva noticia
+            </a>
+        </div>
+    </div>
     <div class="responsiveTable">
         <div class="rtRow rtHeader">
             <div class="width5 text-center">Id.</div>
-            <div class="width50 text-center">Título</div>
-            <div class="width10 text-center">Fecha</div>
-            <div class="width20 text-center">Autor</div>
+            <div class="width40 text-center">Título</div>
+            <div class="width15 text-center">Fecha</div>
+            <div class="width25 text-center">Autor</div>
             <div class="width15 text-center">Acciones</div>
-        </div>
-        <div class="rtRow rtHeader">
-            <div class="width85"></div>
-            <div class="width15 text-center">
-                <a href="/admin/post/createNew" class="btn btn-corporative"><i class="fa fa-plus-circle"></i> Nueva noticia</a>
-            </div>
         </div>
         {{#postList}}
         <div class="rtRow">
             <div class="width5 text-center">{{idPost}}</div>
-            <div class="width50">{{title}}</div>
-            <div class="width10 text-center">{{timestamp}}</div>
-            <div class="width20 text-center">{{author}}</div>
+            <div class="width40">{{title}}</div>
+            <div class="width15 text-center">{{getFormattedEditionTimestamp}}</div>
+            <div class="width25 text-center">{{author.getName}}</div>
             <div class="width15 text-center">
 
-                <a class="btn btn-outline-corporative" href="/admin/post/list/{{idPost}}">
-                    <i class="fas fa-info-circle"></i>
+                <a class="btn btn-outline-corporative" href="/news/{{idPost}}" target="_blank">
+                    <i class="fas fa-external-link-alt"></i>
                 </a>
                 <a href="/admin/post/edit/{{idPost}}" class="btn btn-outline-corporative">
                     <i class="fas fa-pencil"></i>
                 </a>
-                <a class="btn btn-corporative" href="/admin/post/delete/{{idPost}}">
+                <button class="btn btn-corporative" data-bs-target="#modalDelete" data-bs-toggle="modal"
+                        data-id="{{ idPost }}" data-type="post">
                     <i class="fas fa-trash-alt delete"></i>
-                </a>
-            </div>
-            <div class="viewMore" style="display: none">
-                <div class="card-body">
-                    <div class="col-lg-12 news">
-                        <h2 class="competitionTitle">{{title}}</h2>
-                        <div class="imageInTheMiddle">
-                            <img alt="" class="imageNews" src="/image/post/{{idPost}}">
-                        </div>
-                        <div class="responsiveTable">
-                            <div class="rtRow modificationResponsibleTable">
-                                <div class="width3 text-center modificationResponsibleChild">Autor: {{author}}</div>
-                                <div class="width3 text-center modificationResponsibleChild">Fecha de publicación: {{timestamp}}</div>
-                            </div>
-                        </div>
-                        <div class="body">{{{body}}}</div>
-                    </div>
-                </div>
+                </button>
             </div>
         </div>
         {{/postList}}
     </div>
 </div>
 
-<!-- Modal for es.dawgroup2.juding.posts info -->
+<!-- Modal for posts info -->
 <div class="modal fade" id="modalProfile" tabindex="-1">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -130,6 +118,29 @@
     </div>
 </div>
 
+<!-- Modal for confirmating deleting of item in list -->
+<div class="modal fade" id="modalDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmación</h5>
+            </div>
+            <div class="modal-body">
+                ¿Seguro de que desea continuar?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times-circle"></i> Cancelar
+                </button>
+                <a href="" id="modalDeleteLink">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i> Eliminar
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Vendor JS Files -->
 <script src="/assets/vendor/jquery/jquery.min.js"></script>
@@ -138,6 +149,6 @@
 
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>
-<script src="/assets/js/postsList.js"></script>
+<script src="/assets/js/adminScreens.js"></script>
 </body>
 </html>

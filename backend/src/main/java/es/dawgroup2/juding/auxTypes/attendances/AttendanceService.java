@@ -1,4 +1,4 @@
-package es.dawgroup2.juding.attendances;
+package es.dawgroup2.juding.auxTypes.attendances;
 
 import org.springframework.stereotype.Component;
 

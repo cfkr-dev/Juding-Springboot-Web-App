@@ -47,8 +47,7 @@
 </header>
 <div class="container pb-4">
     <form action="/admin/competition/edit" class="needs-validation flex-sb flex-w" method="post"
-          enctype="multipart/form-data"
-          novalidate>
+          enctype="multipart/form-data"  novalidate>
         <h2 class="h2">Formulario competición</h2>
 
         <h3 class="h3">Información de la competición</h3>
@@ -103,7 +102,7 @@
         <label class="txt1" for="referee">Número de licencia del árbitro encargado de la competición<span
                 class="asterisk">*</span></label>
         <input class="form-control" id="referee" name="referee" pattern="JU-[0-9]{10}$" required type="text"
-               value="{{competition.referee}}">
+               value="{{competition.referee.getLicenseId}}">
         <div class="invalid-feedback">
             La licencia no se ajusta al formato JU-(10 dígitos).
         </div>
@@ -134,18 +133,20 @@
                 <label class="txt1" for="startDate">Fecha de inicio de la competición <span
                         class="asterisk">*</span></label>
                 <input class="form-control" id="startDate" name="startDate" required type="text"
-                       value="{{competition.startDate}}">
+                       value="{{competition.getFormattedStartDate}}"
+                       pattern="[0-9][0-9]/(0[1-9]|1[0-2]|2[0-9]{3} [0-2][0-9]:[0-5][0-9]">
                 <div class="invalid-feedback">
-                    La fecha del inicio de la competición es obligatoria y debe introducirse en formato dd/mm/yyyy.
+                    La fecha del inicio de la competición es obligatoria y debe introducirse en formato dd/mm/yyyy
+                    HH:mm.
                 </div>
             </div>
             <div class="col-lg-6">
                 <label class="txt1" for="endDate">Fecha del final de la competición <span
                         class="asterisk">*</span></label>
                 <input class="form-control" id="endDate" name="endDate" required type="text"
-                       value="{{competition.endDate}}">
+                       value="{{competition.getFormattedEndDate}}">
                 <div class="invalid-feedback">
-                    La fecha del final de la competición es obligatoria y debe introducirse en formato dd/mm/yyyy.
+                    La fecha del final de la competición es obligatoria y debe introducirse en formato dd/mm/yyyy HH:mm.
                 </div>
             </div>
         </div>
@@ -166,17 +167,8 @@
 
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>
+<script src="/assets/js/adminScreens.js"></script>
 <script src="/assets/js/formControl.js"></script>
 <script src="/assets/js/validationScript.js"></script>
-<script>
-    $(function () {
-        tinymce.init({
-            selector: 'textarea#additionalInfo',
-            language: 'es',
-            plugins: ['fullscreen', 'lists', 'link', 'table'],
-            toolbar: 'undo redo | styleselect | bold italic underline fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist | link unlink | table | fullscreen'
-        });
-    })
-</script>
 </body>
 </html>

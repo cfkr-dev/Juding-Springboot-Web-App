@@ -1,12 +1,13 @@
 package es.dawgroup2.juding.users;
 
-import es.dawgroup2.juding.users.refereeRange.RefereeRange;
-import es.dawgroup2.juding.users.roles.Role;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
+import es.dawgroup2.juding.auxTypes.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Component
 public class UserService {
@@ -70,7 +71,7 @@ public class UserService {
      * @param licenseId License ID (PK).
      * @return List of roles (null if it does not exist).
      */
-    public List<Role> getUserRolesOrNull(String licenseId){
+    public Set<Role> getUserRolesOrNull(String licenseId){
         User user = getUserOrNull(licenseId);
         if (user != null)
             return user.getRoles();
@@ -85,6 +86,15 @@ public class UserService {
      */
     public User save(User user){
         return userRepository.save(user);
+    }
+
+    /**
+     * Saving many users into repository.
+     * @param users List of users.
+     * @return User iterable with saved items.
+     */
+    public List<User> saveAll(List<User> users){
+        return userRepository.saveAll(users);
     }
 
     /**

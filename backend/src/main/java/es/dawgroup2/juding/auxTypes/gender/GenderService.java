@@ -1,4 +1,4 @@
-package es.dawgroup2.juding.users.gender;
+package es.dawgroup2.juding.auxTypes.gender;
 
 import org.springframework.stereotype.Component;
 

@@ -1,24 +1,21 @@
 package es.dawgroup2.juding.main;
 
-import es.dawgroup2.juding.belts.BeltService;
+import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.main.image.ImageService;
-import es.dawgroup2.juding.posts.Post;
 import es.dawgroup2.juding.posts.PostService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
-import es.dawgroup2.juding.users.gender.GenderService;
-import es.dawgroup2.juding.users.refereeRange.RefereeRange;
-import es.dawgroup2.juding.users.refereeRange.RefereeRangeService;
-import es.dawgroup2.juding.users.roles.Role;
+import es.dawgroup2.juding.auxTypes.gender.GenderService;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
+import es.dawgroup2.juding.auxTypes.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import java.util.Set;
 
 @Controller
 public class IndexController {
@@ -51,8 +48,7 @@ public class IndexController {
      */
     @GetMapping("/")
     public String index(Model model) {
-        List<Post> postList = postService.findAll();
-        model.addAttribute("postList", postList);
+        model.addAttribute("postList", postService.findAllDesc());
         return "/index";
     }
 
@@ -70,7 +66,7 @@ public class IndexController {
     @GetMapping("/signUp/{role}")
     public String signUp(@PathVariable String role, Model model) {
         model.addAttribute("genderSelection", genderService.getRadioField(null))
-                .addAttribute("beltSelector", beltService.getSelectField(null));
+                .addAttribute("beltSelector", beltService.getSelectField(null, false));
         if (role.equals("competitor"))
             model.addAttribute("isCompetitor", true).addAttribute("action", "/signUp/competitor");
         else if (role.equals("referee"))
@@ -92,7 +88,7 @@ public class IndexController {
                                    @RequestParam String password,
                                    @RequestParam String securityQuestion,
                                    @RequestParam String securityAnswer,
-                                   MultipartFile image,
+                                   @RequestParam MultipartFile image,
                                    @RequestParam String belt,
                                    @RequestParam String gym,
                                    @RequestParam int weight) {
@@ -103,7 +99,7 @@ public class IndexController {
                     .setDni(dni).setGym(gym).setWeight(weight).setBelt(beltService.findBeltById(belt))
                     .setImageFile(imageService.uploadProfileImage(image)).setNickname(nickname)
                     .setPassword(password).setSecurityQuestion(securityQuestion).setSecurityAnswer(securityAnswer)
-                    .setRoles(List.of(Role.C));
+                    .setRoles(Set.of(Role.C));
         } catch (Exception e) {
             return "redirect:/error/500";
         }
@@ -133,7 +129,7 @@ public class IndexController {
                     .setDni(dni).setBelt(beltService.findBeltById(belt)).setRefereeRange(RefereeRange.S)
                     .setImageFile(imageService.uploadProfileImage(image)).setNickname(nickname)
                     .setPassword(password).setSecurityQuestion(securityQuestion).setSecurityAnswer(securityAnswer)
-                    .setRoles(List.of(Role.R));
+                    .setRoles(Set.of(Role.R));
         } catch (Exception e) {
             return "redirect:/error/500";
         }

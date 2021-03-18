@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Lista de competidores - Juding</title>
+    <title>Lista de {{ #competitors }}competidores{{ /competitors }}{{ ^competitors }}árbitros{{ /competitors }} - Juding</title>
 
     <!-- Favicons -->
     <link href="/assets/img/hero-img.png" rel="icon">
@@ -136,7 +136,7 @@
                     <i class="fas fa-pencil"></i>
                 </a>
                 <button class="btn btn-corporative" data-bs-target="#modalDelete" data-bs-toggle="modal"
-                        data-id="{{ licenseId }}">
+                        data-id="{{ licenseId }}" data-type="user">
                     <i class="fas fa-trash-alt delete"></i>
                 </button>
             </div>
@@ -179,7 +179,8 @@
             </div>
             <div class="modal-body">
                 <div class="alert alert-info"><strong>Advertencia:</strong> Solo se garantiza el correcto borrado de un
-                    usuario en caso de que este no haya participado en ninguna competición.
+                    usuario en caso de que no haya participado en ninguna competición o no sea autor de ninguna
+                    publicación.
                 </div>
                 ¿Seguro de que desea continuar?
             </div>
@@ -204,6 +205,6 @@
 
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>
-<script src="/assets/js/competitorsList.js"></script>
+<script src="/assets/js/adminScreens.js"></script>
 </body>
 </html>

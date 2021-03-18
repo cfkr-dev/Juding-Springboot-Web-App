@@ -1,4 +1,4 @@
-package es.dawgroup2.juding.users.refereeRange;
+package es.dawgroup2.juding.auxTypes.refereeRange;
 
 public enum RefereeRange {
     S("Solicitante", false),

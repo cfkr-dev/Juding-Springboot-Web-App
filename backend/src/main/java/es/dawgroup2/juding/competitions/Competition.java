@@ -1,18 +1,22 @@
 package es.dawgroup2.juding.competitions;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import es.dawgroup2.juding.attendances.Attendance;
+import es.dawgroup2.juding.auxTypes.attendances.Attendance;
+import es.dawgroup2.juding.fight.Fight;
+import es.dawgroup2.juding.users.User;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.ClassPathResource;
 
-import javax.annotation.Resource;
 import javax.persistence.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Competition implements Serializable {
@@ -39,33 +43,18 @@ public class Competition implements Serializable {
     @Column(nullable = false)
     private Timestamp endDate;
 
-    //Clave foránea
-    @Column(nullable = false)
-    private String referee;
+    @ManyToOne
+    private User referee;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Attendance refereeStatus;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Fight> fights;
 
-    @Lob
-    @JsonIgnore
-    private Blob imageFile;
 
-    /**
-     * Constructor of a competition
-     *
-     * @param shortName
-     * @param additionalInfo
-     * @param minWeight
-     * @param maxWeight
-     * @param startDate
-     * @param endDate
-     * @param referee
-     * @param refereeStatus
-     * @param imageFile
-     */
-    public Competition(String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, String referee, Attendance refereeStatus, String imageFile) throws IOException {
+    public Competition(String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, User referee, Attendance refereeStatus) {
         this.shortName = shortName;
         this.additionalInfo = additionalInfo;
         this.minWeight = minWeight;
@@ -74,8 +63,6 @@ public class Competition implements Serializable {
         this.endDate = endDate;
         this.referee = referee;
         this.refereeStatus = refereeStatus;
-        this.setImageFile(imageFile);
-
     }
 
     protected Competition() {
@@ -145,11 +132,11 @@ public class Competition implements Serializable {
         return this;
     }
 
-    public String getReferee() {
+    public User getReferee() {
         return referee;
     }
 
-    public Competition setReferee(String referee) {
+    public Competition setReferee(User referee) {
         this.referee = referee;
         return this;
     }
@@ -163,19 +150,12 @@ public class Competition implements Serializable {
         return this;
     }
 
-    public Blob getImageFile() {
-        return imageFile;
+    public List<Fight> getFights() {
+        return fights;
     }
 
-    public Competition setImageFile(Blob imageFile) {
-        this.imageFile = imageFile;
-        return this;
-    }
-
-    public Competition setImageFile(String path) throws IOException{
-        InputStream inputStream= new ClassPathResource(path).getInputStream();
-        long length= new ClassPathResource(path).contentLength();
-        imageFile= BlobProxy.generateProxy(inputStream,length);
+    public Competition setFights(List<Fight> fights) {
+        this.fights = fights;
         return this;
     }
 
@@ -189,6 +169,27 @@ public class Competition implements Serializable {
                 return "Comenzada";
             } else return "Finalizada";
         } else return "Por comenzar";
+    }
+
+
+    /**
+     * Gets the start date of the competition and returns it in a user-friendly format.
+     *
+     * @return Start date in user-friendly format.
+     */
+    public String getFormattedStartDate() {
+        SimpleDateFormat simpDate = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return simpDate.format(startDate);
+    }
+
+    /**
+     * Gets the end date of the competition and returns it in a user-friendly format.
+     *
+     * @return End date in user-friendly format.
+     */
+    public String getFormattedEndDate() {
+        SimpleDateFormat simpDate = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return simpDate.format(endDate);
     }
 
 }

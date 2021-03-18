@@ -1,5 +1,6 @@
 package es.dawgroup2.juding.posts;
 
+import es.dawgroup2.juding.users.UserService;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -25,6 +26,9 @@ public class PostController {
     @Autowired
     PostService postService;
 
+    @Autowired
+    UserService userService;
+
     /**
      * This method inflates the individual post (shown by Id) visualization view.
      * A list with other post is also shown.
@@ -49,8 +53,7 @@ public class PostController {
      */
     @GetMapping("/admin/post/list")
     public String postList(Model model) {
-        List<Post> postList = postService.findAll();
-        model.addAttribute("postList", postList);
+        model.addAttribute("postList", postService.findAllDesc());
         return "/admin/post/list";
     }
 

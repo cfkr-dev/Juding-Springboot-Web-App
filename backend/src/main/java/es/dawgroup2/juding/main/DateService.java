@@ -3,6 +3,7 @@ package es.dawgroup2.juding.main;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,5 +19,13 @@ public class DateService {
         java.util.Date date = format.parse(dateString);
 
         return new Date(date.getTime());
+    }
+    public Timestamp stringToTimestamp(String dateString) throws ParseException {
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm", new Locale("es"));
+        format.setTimeZone(TimeZone.getTimeZone("Europe/Madrid"));
+
+        java.util.Date date = format.parse(dateString);
+
+        return new Timestamp(date.getTime());
     }
 }

@@ -1,18 +1,18 @@
 package es.dawgroup2.juding.fight;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import es.dawgroup2.juding.competitions.Competition;
+import es.dawgroup2.juding.users.User;
+
+import javax.persistence.*;
 
 @Entity
 public class Fight {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idFight;
 
-    //foreign key
-    @Column(nullable = false)
-    private int idCompetition;
+    @ManyToOne
+    private Competition competition;
 
     @Column(nullable = false)
     private int levelInTree;
@@ -29,17 +29,14 @@ public class Fight {
     @Column(nullable = false)
     private boolean isFinished;
 
-    //foreign key
-    @Column(nullable = false)
-    private String winner;
+    @OneToOne
+    private User winner;
 
-    //foreign key
-    @Column(nullable = false)
-    private String loser;
+    @OneToOne
+    private User loser;
 
-    public Fight(int idFight, int idCompetition, int levelInTree, Fight upFight, Fight downFight, Fight parentFight, boolean isFinished, String winner, String loser) {
-        this.idFight = idFight;
-        this.idCompetition = idCompetition;
+    public Fight(Competition competition, int levelInTree, Fight upFight, Fight downFight, Fight parentFight, boolean isFinished, User winner, User loser) {
+        this.competition = competition;
         this.levelInTree = levelInTree;
         this.upFight = upFight;
         this.downFight = downFight;
@@ -49,12 +46,15 @@ public class Fight {
         this.loser = loser;
     }
 
+    protected Fight() {
+    }
+
     public int getIdFight() {
         return idFight;
     }
 
-    public int getIdCompetition() {
-        return idCompetition;
+    public Competition getCompetition() {
+        return competition;
     }
 
     public int getLevelInTree() {
@@ -77,11 +77,11 @@ public class Fight {
         return isFinished;
     }
 
-    public String getWinner() {
+    public User getWinner() {
         return winner;
     }
 
-    public String getLoser() {
+    public User getLoser() {
         return loser;
     }
 
@@ -90,8 +90,8 @@ public class Fight {
         return this;
     }
 
-    public Fight setIdCompetition(int idCompetition) {
-        this.idCompetition = idCompetition;
+    public Fight setCompetition(Competition idCompetition) {
+        this.competition = idCompetition;
         return this;
     }
 
@@ -120,12 +120,12 @@ public class Fight {
         return this;
     }
 
-    public Fight setWinner(String winner) {
+    public Fight setWinner(User winner) {
         this.winner = winner;
         return this;
     }
 
-    public Fight setLoser(String loser) {
+    public Fight setLoser(User loser) {
         this.loser = loser;
         return this;
     }

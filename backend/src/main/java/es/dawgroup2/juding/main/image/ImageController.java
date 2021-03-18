@@ -20,7 +20,7 @@ import java.sql.SQLException;
 
 @Controller
 public class ImageController {
-    
+
     @Autowired
     UserService userService;
 
@@ -45,13 +45,7 @@ public class ImageController {
             User user = userService.getUserOrNull(id);
             if (user != null)
                 return getObjectResponseEntity(user.getImageFile());
-        } else if (item.equals("competition")) {
-            // Here id = competitionId
-            Competition competition = competitionService.findById(id);
-            if (competition != null)
-                return getObjectResponseEntity(competition.getImageFile());
         } else if (item.equals("post")) {
-            // Here id = postId
             Post post = postService.findById(id);
             if (post != null)
                 return getObjectResponseEntity(post.getImageFile());

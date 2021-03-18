@@ -38,20 +38,38 @@ public class PostService {
     }
 
     /**
-     * This method search a post given by id and replaces it with a new post
-     * @param Post Current post instance
+     * Returns the list with all posts ordering them by descendant timestamp.
+     * @return a list with all post instances in the specific order.
      */
-    public void updatingInfoPost(Post Post) {
-        postRepository.findById(Post.getIdPost()).orElseThrow();
-        postRepository.save(Post);
+    public List<Post> findAllDesc() {
+        return postRepository.findAllByOrderByTimestampDesc();
+    }
+
+    /**
+     * This method search a post given by id and replaces it with a new post
+     * @param post Current post instance
+     */
+    public void updatingInfoPost(Post post) {
+        postRepository.findById(post.getIdPost()).orElseThrow();
+        postRepository.save(post);
     }
 
     /**
      * This method saves a new post on database.
-     * @param Post New post instance to add.
+     * @param post New post instance to add.
+     * @return Post saved.
      */
-    public void add(Post Post) {
-        postRepository.save(Post);
+    public Post add(Post post) {
+        return postRepository.save(post);
+    }
+
+    /**
+     * This method saves new posts on database.
+     * @param post New posts instances to add.
+     * @return List of saved posts.
+     */
+    public List<Post> addAll(List<Post> post) {
+        return postRepository.saveAll(post);
     }
 }
 

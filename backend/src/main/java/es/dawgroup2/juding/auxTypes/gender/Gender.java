@@ -1,4 +1,4 @@
-package es.dawgroup2.juding.users.gender;
+package es.dawgroup2.juding.auxTypes.gender;
 
 public enum Gender {
     H("Hombre"),

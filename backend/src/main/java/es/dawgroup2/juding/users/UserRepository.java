@@ -1,7 +1,7 @@
 package es.dawgroup2.juding.users;
 
-import es.dawgroup2.juding.users.refereeRange.RefereeRange;
-import es.dawgroup2.juding.users.roles.Role;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
+import es.dawgroup2.juding.auxTypes.roles.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

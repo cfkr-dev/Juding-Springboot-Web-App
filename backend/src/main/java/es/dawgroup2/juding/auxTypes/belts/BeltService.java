@@ -1,4 +1,4 @@
-package es.dawgroup2.juding.belts;
+package es.dawgroup2.juding.auxTypes.belts;
 
 import org.springframework.stereotype.Component;
 
@@ -12,12 +12,14 @@ public class BeltService {
         return null;
     }
 
-    public String getSelectField(Belt id) {
+    public String getSelectField(Belt id, boolean onlyBlack) {
         StringBuilder sb = new StringBuilder();
         for (Belt b : Belt.values()) {
-            sb.append("<option ");
-            if (b.equals(id)) sb.append(" selected ");
-            sb.append("value=\"").append(b.name()).append("\">").append(b.getLongName()).append("</option>\n");
+            if (!onlyBlack || b.isBlack()) {
+                sb.append("<option ");
+                if (b.equals(id)) sb.append(" selected ");
+                sb.append("value=\"").append(b.name()).append("\">").append(b.getLongName()).append("</option>\n");
+            }
         }
         return sb.toString();
     }

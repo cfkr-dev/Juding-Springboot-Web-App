@@ -1,22 +1,29 @@
 package es.dawgroup2.juding.posts;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import es.dawgroup2.juding.users.User;
+import org.hibernate.engine.jdbc.BlobProxy;
+import org.springframework.core.io.ClassPathResource;
 
 import javax.persistence.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 @Entity
 public class Post {
 
-    protected Post(){}
+    protected Post() {
+    }
 
-    public Post(String author, String title, String body, Blob imageFile, Timestamp timestamp) {
+    public Post(User author, String title, String body, String path, Timestamp timestamp) throws IOException {
         super();
         this.author = author;
         this.title = title;
         this.body = body;
-        this.imageFile = imageFile;
+        this.setImageFile(path);
         this.timestamp = timestamp;
     }
 
@@ -24,8 +31,8 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idPost;
 
-    @Column(nullable = false)
-    private String author;
+    @ManyToOne
+    private User author;
 
     @Column(nullable = false)
     private String title;
@@ -44,7 +51,7 @@ public class Post {
         return idPost;
     }
 
-    public String getAuthor() {
+    public User getAuthor() {
         return author;
     }
 
@@ -69,7 +76,7 @@ public class Post {
         return this;
     }
 
-    public Post setAuthor(String author) {
+    public Post setAuthor(User author) {
         this.author = author;
         return this;
     }
@@ -89,8 +96,23 @@ public class Post {
         return this;
     }
 
+    public Post setImageFile(String path) throws IOException {
+        ClassPathResource cpr = new ClassPathResource(path);
+        imageFile = BlobProxy.generateProxy(cpr.getInputStream(), cpr.contentLength());
+        return this;
+    }
+
     public Post setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
         return this;
+    }
+
+    /**
+     * Gets the date of the last edition and returns it in a user-friendly format.
+     * @return Last edition timestamp in user-friendly format.
+     */
+    public String getFormattedEditionTimestamp() {
+        SimpleDateFormat simpDate = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return simpDate.format(timestamp);
     }
 }

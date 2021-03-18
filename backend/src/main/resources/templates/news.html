@@ -29,9 +29,8 @@
         </a>
         <nav class="navbar" id="navbar">
             <ul>
-                <li><a class="nav-link scrollto" href="#">Términos y condiciones de uso</a></li>
-                <li><a class="nav-link scrollto active" href="#">Noticias</a></li>
-                <li><a class="login scrollto" href="index.html">Atrás</a></li>
+                <li><a class="nav-link scrollto active" href="#">Noticia</a></li>
+                <li><a class="login scrollto" href="/#posts">Atrás</a></li>
             </ul>
             <i class="far fa-bars mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
@@ -46,8 +45,8 @@
             </div>
             <div class="responsiveTable">
                 <div class="rtRow modificationResponsibleTable">
-                    <div class="width3 text-center modificationResponsibleChild">Autor: {{post.author}}</div>
-                    <div class="width3 text-center modificationResponsibleChild">Fecha de publicación: {{post.timestamp}}</div>
+                    <div class="width3 text-center modificationResponsibleChild">Autor: {{post.author.getName}} {{post.author.getSurname}}</div>
+                    <div class="width3 text-center modificationResponsibleChild">Fecha de publicación: {{post.getFormattedEditionTimestamp}}</div>
                 </div>
             </div>
             <div>{{{post.body}}}</div>
