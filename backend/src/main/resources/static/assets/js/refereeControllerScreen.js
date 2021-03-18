@@ -17,6 +17,7 @@ $(function () {
     // [1]: HTML UI element for showing number of points
     // [2]: Penalties of player X during fight (max 3)
     // [3]: HTML UI element for showing number of penalties
+    // [4]: Nickname associated when selecting fight
     let player1 = [0, $("#points1"), 0, $("#penalties1")];
     let player2 = [0, $("#points2"), 0, $("#penalties2")];
 
@@ -64,7 +65,6 @@ $(function () {
     // bigStopwatchInterv: saves the interval of big stopwatch when it's set (to be able to clearInterval() later)
     let bigStopwatchInterv;
 
-
     /*
      * STOPWATCH INITIALIZATION
      *
@@ -79,6 +79,10 @@ $(function () {
             keyG.prop("disabled", false);
             // Disabling select list
             $(this).blur().attr("disabled", "");
+            // Getting current fighters
+            let selector = $("#fight option[value=" + $("#fight").val() + "]");
+            player1.push(selector.data("nick1"));
+            player2.push(selector.data("nick2"));
         }
     });
 
@@ -102,9 +106,10 @@ $(function () {
         keySpace1.removeAttr("disabled");
         keySpace2.removeAttr("disabled");
         endBtn.removeAttr("disabled");
-        console.log("Button should be disabled");
         keyG.blur();
         keyG.prop("disabled", true);
+        $("#nick1").text(player1[4]);
+        $("#nick2").text(player2[4]);
         screenFullFunc = true;
     }
 
@@ -374,18 +379,25 @@ $(function () {
         smallStopwatchTurnOff();
 
         // Package JSON Array
-        let endInfoJSONArray;
-        if (player1[0] === 10 || player2[2] === 3) {
-            endInfoJSONArray = {"winner": 1, "loser": 2};
-            alert("Finished.");
-        } else if (player2[0] === 10 || player1[2] === 3) {
-            endInfoJSONArray = {"winner": 2, "loser": 1};
-            alert("Finished.");
+        if (player1[0] === 10 || player1[2] === 3 || player2[0] === 10 || player2[2] === 3) {
+            $.ajax({
+                data: {
+                    "winner": (player1[0] === 10 || player2[2] === 3) ? player1[4] : player2[4],
+                    "loser": (player1[0] === 10 || player2[2] === 3) ? player2[4] : player1[4],
+                    "fightId": $("#fight").val()
+                },
+                url: window.location.pathname,
+                method: 'post'
+            }).done((ans) => {
+                if (ans) {
+                    alert("Combate finalizado y registrado correctamente. Cierre para continuar.");
+                    window.location.replace(window.location.pathname.slice(0, -8));
+                }
+                else alert("Error fatal: anota los resultados antes de cerrar la página.");
+            });
         } else {
             alert("Ninguno de los competidores cumple las condiciones para ser declarado ganador.");
         }
-
-        // FUTURE: connection with backend
     }
 
 
