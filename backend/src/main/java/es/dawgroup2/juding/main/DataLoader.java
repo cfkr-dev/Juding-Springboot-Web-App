@@ -135,6 +135,28 @@ public class DataLoader {
         for (int i = 0; i < 16; i++) {
             competitionService.joinCompetition(competitions.get(0), competitors.get(i));
         }
+        competitionService.add(competitions.get(0));
+        // 3.2. Simulating a tournament
+        // 8th-finals
+        competitionService.fightFinished(competitions.get(0), competitors.get(1), competitors.get(0));
+        competitionService.fightFinished(competitions.get(0), competitors.get(2), competitors.get(3));
+        competitionService.fightFinished(competitions.get(0), competitors.get(4), competitors.get(5));
+        competitionService.fightFinished(competitions.get(0), competitors.get(7), competitors.get(6));
+        competitionService.fightFinished(competitions.get(0), competitors.get(9), competitors.get(8));
+        competitionService.fightFinished(competitions.get(0), competitors.get(11), competitors.get(10));
+        competitionService.fightFinished(competitions.get(0), competitors.get(13), competitors.get(12));
+        competitionService.fightFinished(competitions.get(0), competitors.get(14), competitors.get(15));
+        // Quarterfinals
+        competitionService.fightFinished(competitions.get(0), competitors.get(2), competitors.get(1));
+        competitionService.fightFinished(competitions.get(0), competitors.get(4), competitors.get(7));
+        competitionService.fightFinished(competitions.get(0), competitors.get(11), competitors.get(9));
+        competitionService.fightFinished(competitions.get(0), competitors.get(13), competitors.get(14));
+        // Semifinals
+        competitionService.fightFinished(competitions.get(0), competitors.get(2), competitors.get(4));
+        competitionService.fightFinished(competitions.get(0), competitors.get(13), competitors.get(11));
+        // Finals
+        competitionService.fightFinished(competitions.get(0), competitors.get(2), competitors.get(13));
+        competitionService.add(competitions.get(0));
 
         // 4. Post creation and saving
         List<Post> posts = new ArrayList<>();
@@ -144,7 +166,7 @@ public class DataLoader {
                         "¡Recordad traer la papeleta ganadora!\n" +
                         "<a href=\"https://fmjudo.es/attachments/article/4801/Cto%20katas%20infantiles-3.pdf\">CUADRO DE CATEGORÍAS Y KATAS</a></p>\n" +
                         "<a href=\"https://www.youtube.com/watch?v=LhVvmFDLMo0\">VÍDEO EXPLICATIVO GRUPO 7</a></p>\n" +
-                        "<a href=\"https://www.youtube.com/watch?v=VpLdKj5KvuM\">VÍDEO EXPLICATIVO GRUPO 6></a></p>\n" +
+                        "<a href=\"https://www.youtube.com/watch?v=VpLdKj5KvuM\">VÍDEO EXPLICATIVO GRUPO 6</a></p>\n" +
                         "<a href=\"https://youtu.be/uvqxiXiA9eM\">Seiryoku-Zenyo-Kokumin-Taiiku</a>\n" +
                         "Además, adjuntamos este documento informativo que complementa a la Circular Nº 27 sobre el próximo curso de Katas del Club Pandy.</p>\n" +
                         "<a href=\"https://fmjudo.es//attachments/article/4188/27%20Reuni%C3%B3n%20Profesores%20y%20Curso%20de%20Kata%20Club%20Pandy%20marzo.pdf\">Circular Nº 27 - 4ª Jornada - ACTIVIDADES DE KATA “CLUB PANDY”</a>\n",

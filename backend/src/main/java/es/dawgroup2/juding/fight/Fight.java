@@ -12,7 +12,7 @@ public class Fight {
     private int idFight;
 
     @ManyToOne
-    private Competition idCompetition;
+    private Competition competition;
 
     @Column(nullable = false)
     private int levelInTree;
@@ -35,8 +35,8 @@ public class Fight {
     @OneToOne
     private User loser;
 
-    public Fight(Competition idCompetition, int levelInTree, Fight upFight, Fight downFight, Fight parentFight, boolean isFinished, User winner, User loser) {
-        this.idCompetition = idCompetition;
+    public Fight(Competition competition, int levelInTree, Fight upFight, Fight downFight, Fight parentFight, boolean isFinished, User winner, User loser) {
+        this.competition = competition;
         this.levelInTree = levelInTree;
         this.upFight = upFight;
         this.downFight = downFight;
@@ -53,8 +53,8 @@ public class Fight {
         return idFight;
     }
 
-    public Competition getIdCompetition() {
-        return idCompetition;
+    public Competition getCompetition() {
+        return competition;
     }
 
     public int getLevelInTree() {
@@ -90,8 +90,8 @@ public class Fight {
         return this;
     }
 
-    public Fight setIdCompetition(Competition idCompetition) {
-        this.idCompetition = idCompetition;
+    public Fight setCompetition(Competition idCompetition) {
+        this.competition = idCompetition;
         return this;
     }
 

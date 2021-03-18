@@ -86,7 +86,7 @@ public class IndexController {
                                    @RequestParam String password,
                                    @RequestParam String securityQuestion,
                                    @RequestParam String securityAnswer,
-                                   MultipartFile image,
+                                   @RequestParam MultipartFile image,
                                    @RequestParam String belt,
                                    @RequestParam String gym,
                                    @RequestParam int weight) {

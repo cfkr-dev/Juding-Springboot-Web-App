@@ -1,5 +1,6 @@
 package es.dawgroup2.juding.fight;
 
+import es.dawgroup2.juding.competitions.Competition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -61,11 +62,11 @@ public class FightService {
     /**
      * Finds all the fights belonging to the same Competition
      *
-     * @param idCompetition Id of the competition
+     * @param competition Competition
      * @return List of fights
      */
-    public List<Fight> findByIdCompetition(String idCompetition) {
-        return fightRepository.findByIdCompetition(idCompetition);
+    public List<Fight> findByIdCompetition(Competition competition) {
+        return fightRepository.findByCompetition(competition);
     }
 
     public void deleteAll(List<Fight> fights) {

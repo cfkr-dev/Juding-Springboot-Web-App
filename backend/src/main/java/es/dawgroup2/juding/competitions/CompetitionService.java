@@ -111,6 +111,7 @@ public class CompetitionService {
             j = 0;
             for (int i = 0; i <= 1; i++) {
                 semifinals.get(i).setUpFight(quarterfinals.get(j)).setDownFight(quarterfinals.get(j + 1));
+                j = j + 2;
             }
             // 3.3. Final introducing semifinals pointers
             finalFight.setUpFight(semifinals.get(0)).setDownFight(semifinals.get(1));
@@ -149,5 +150,38 @@ public class CompetitionService {
             }
         }
         return false;
+    }
+
+    /**
+     * A referee registers winner and loser of a fight
+     */
+    public void fightFinished(Competition competition, User winner, User loser){
+        // 1. Looking for the fight that contains both winner and loser
+        for (Fight f : competition.getFights()){
+            // Only looking at not-completed fights
+            if (!f.isFinished()) {
+                if ((f.getLoser() == loser && f.getWinner() == winner) || (f.getWinner() == loser && f.getLoser() == winner)){
+                    // Setting new values
+                    f.setFinished(true).setWinner(winner).setLoser(loser);
+                    // If it is last-level fight, it's time to save first, second and thirds medals.
+                    if (f.getLevelInTree() == 0){
+                        System.out.println("Hola");
+                    } else {
+                        // Now, it is necessary to find next level fight which
+                        for (Fight f2 : competition.getFights()){
+                            if (f2.getLevelInTree() == f.getLevelInTree() - 1){
+                                if (f2.getUpFight() == f || f2.getDownFight() == f){
+                                    if (f2.getLoser() == null) f2.setLoser(winner);
+                                    else f2.setWinner(winner);
+                                    break;
+                                }
+                            }
+                       }
+                    }
+                    competitionRepository.save(competition);
+                    return;
+                }
+            }
+        }
     }
 }

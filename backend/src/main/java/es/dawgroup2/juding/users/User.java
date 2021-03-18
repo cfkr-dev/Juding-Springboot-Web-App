@@ -16,11 +16,9 @@ import java.util.Set;
 
 @Entity
 @Table(indexes = {@Index(columnList = "dni, nickname", unique = true)})
-public class User implements Serializable {
+public class User {
     @Id
     private String licenseId;
-
-    // PERSONAL INFORMATION
 
     @Column(nullable = false)
     private String name;

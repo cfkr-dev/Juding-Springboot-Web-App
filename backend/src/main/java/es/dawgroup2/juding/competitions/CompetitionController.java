@@ -29,8 +29,10 @@ public class CompetitionController {
     public String showCompetition(Model model, @PathVariable String idCompetition) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         String state = competition.translatingDates(competition.getStartDate(), competition.getEndDate());
-        model.addAttribute("state", state);
-        model.addAttribute("competition", competition);
+        model.addAttribute("state", state)
+                .addAttribute("competition", competition);
+        for (int i = 0; i < competition.getFights().size(); i++)
+            model.addAttribute("fight" + i, competition.getFights().get(i));
         return "/competition/detail";
     }
 

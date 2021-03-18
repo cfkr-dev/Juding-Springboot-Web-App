@@ -50,7 +50,7 @@ public class Competition implements Serializable {
     @Column(nullable = false)
     private Attendance refereeStatus;
 
-    @OneToMany(mappedBy = "idFight", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Fight> fights;
 
 
