@@ -52,15 +52,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // Resources (assets and templates)
         http.authorizeRequests().antMatchers("/static/**").permitAll();
 
-//        http.authorizeRequests().antMatchers("/loginerror").permitAll();
-//        http.authorizeRequests().antMatchers("/logout").permitAll();
-
         // Private pages
-        // LoggedInUserControlller
+        // LoggedInUserController
         http.authorizeRequests().antMatchers("/myHome").hasAnyRole(Role.C.name(), Role.R.name());
         http.authorizeRequests().antMatchers("/myProfile").hasAnyRole(Role.C.name(), Role.R.name());
         http.authorizeRequests().antMatchers("/myProfile/edit").hasAnyRole(Role.C.name(), Role.R.name());
 
+        // ChartController
+        http.authorizeRequests().antMatchers("/myProfile/edit").hasAnyRole(Role.C.name(), Role.R.name());
+        
         // PostController
         http.authorizeRequests().antMatchers("/admin/post/createNew").hasRole(Role.A.name());
         http.authorizeRequests().antMatchers("/admin/post/delete").hasRole(Role.A.name());
@@ -76,12 +76,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/admin/user/list/*").hasRole(Role.A.name());
 
         // PasswordRecoveryController
-        http.authorizeRequests().antMatchers("/passwordRecovery/1").hasAnyRole(Role.C.name(), Role.R.name(), Role.A.name());
-        http.authorizeRequests().antMatchers("/passwordRecovery/1/*").hasAnyRole(Role.C.name(), Role.R.name(), Role.A.name());
-        http.authorizeRequests().antMatchers("/passwordRecovery/2").hasAnyRole(Role.C.name(), Role.R.name(), Role.A.name());
-        http.authorizeRequests().antMatchers("/passwordRecovery/2/*").hasAnyRole(Role.C.name(), Role.R.name(), Role.A.name());
-        http.authorizeRequests().antMatchers("/passwordRecovery/3").hasAnyRole(Role.C.name(), Role.R.name(), Role.A.name());
-        http.authorizeRequests().antMatchers("/passwordRecovery/3/*").hasAnyRole(Role.C.name(), Role.R.name(), Role.A.name());
+        http.authorizeRequests().antMatchers("/passwordRecovery/1").hasAnyRole(Role.C.name(), Role.R.name());
+        http.authorizeRequests().antMatchers("/passwordRecovery/1/*").hasAnyRole(Role.C.name(), Role.R.name());
+        http.authorizeRequests().antMatchers("/passwordRecovery/2").hasAnyRole(Role.C.name(), Role.R.name());
+        http.authorizeRequests().antMatchers("/passwordRecovery/2/*").hasAnyRole(Role.C.name(), Role.R.name());
+        http.authorizeRequests().antMatchers("/passwordRecovery/3").hasAnyRole(Role.C.name(), Role.R.name());
+        http.authorizeRequests().antMatchers("/passwordRecovery/3/*").hasAnyRole(Role.C.name(), Role.R.name());
 
         // FightController
         http.authorizeRequests().antMatchers("/admin/fight/list").hasRole(Role.A.name());
@@ -92,14 +92,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/admin/competition/edit/*").hasRole(Role.A.name());
         http.authorizeRequests().antMatchers("/admin/competition/list").hasRole(Role.A.name());
         http.authorizeRequests().antMatchers("/admin/competition/newCompetition").hasRole(Role.A.name());
-        http.authorizeRequests().antMatchers("/competition/detail/*").hasAnyRole(Role.C.name(), Role.R.name(), Role.A.name());
+        http.authorizeRequests().antMatchers("/competition/*").hasAnyRole(Role.C.name(), Role.R.name());
+        http.authorizeRequests().antMatchers("/competition/*/control").hasAnyRole(Role.R.name());
 
         // Login and logout
         http.formLogin().loginPage("/login");
         http.formLogin().usernameParameter("nickname");
         http.formLogin().passwordParameter("password");
         http.formLogin().defaultSuccessUrl("/myHome");
-        http.formLogin().failureUrl("/login/{error}");
+        http.formLogin().failureUrl("/login/error");
 
         http.logout().logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/");
