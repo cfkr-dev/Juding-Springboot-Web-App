@@ -37,8 +37,8 @@
 </header>
 <div class="container pb-4">
     <form class="needs-validation" action="/passwordRecovery/2" method="post" novalidate>
+        <input type="hidden" name="_csrf" value="{{ token }}">
         <h2 class="h2">Pregunta de seguridad</h2>
-
         {{ #error }}
         <div class="alert alert-error">
             La respuesta de seguridad <strong>no coincide</strong>.

@@ -51,6 +51,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/error/404").permitAll();
         http.authorizeRequests().antMatchers("/error/500").permitAll();
 
+        // PasswordRecoveryController
+        http.authorizeRequests().antMatchers("/passwordRecovery/1").permitAll();
+        http.authorizeRequests().antMatchers("/passwordRecovery/1/*").permitAll();
+        http.authorizeRequests().antMatchers("/passwordRecovery/2").permitAll();
+        http.authorizeRequests().antMatchers("/passwordRecovery/2/*").permitAll();
+        http.authorizeRequests().antMatchers("/passwordRecovery/3").permitAll();
+        http.authorizeRequests().antMatchers("/passwordRecovery/3/*").permitAll();
+
         // Resources (assets and templates)
         http.authorizeRequests().antMatchers("/static/**").permitAll();
 
@@ -77,14 +85,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/admin/user/edit/save").hasRole(Role.A.name());
         http.authorizeRequests().antMatchers("/admin/user/edit/*").hasRole(Role.A.name());
         http.authorizeRequests().antMatchers("/admin/user/list/*").hasRole(Role.A.name());
-
-        // PasswordRecoveryController
-        http.authorizeRequests().antMatchers("/passwordRecovery/1").hasAnyRole(Role.C.name(), Role.R.name());
-        http.authorizeRequests().antMatchers("/passwordRecovery/1/*").hasAnyRole(Role.C.name(), Role.R.name());
-        http.authorizeRequests().antMatchers("/passwordRecovery/2").hasAnyRole(Role.C.name(), Role.R.name());
-        http.authorizeRequests().antMatchers("/passwordRecovery/2/*").hasAnyRole(Role.C.name(), Role.R.name());
-        http.authorizeRequests().antMatchers("/passwordRecovery/3").hasAnyRole(Role.C.name(), Role.R.name());
-        http.authorizeRequests().antMatchers("/passwordRecovery/3/*").hasAnyRole(Role.C.name(), Role.R.name());
 
         // FightController
         http.authorizeRequests().antMatchers("/admin/fight/list").hasRole(Role.A.name());

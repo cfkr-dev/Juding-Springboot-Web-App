@@ -36,7 +36,7 @@
 <div class="container pb-4">
     <form class="login100-form validate-form needs-validation" method="post" action="/passwordRecovery/1" novalidate>
         <h2 class="h2">Validación de licencia</h2>
-
+        <input type="hidden" name="_csrf" value="{{ token }}">
         {{ #isError }}
         <div class="alert alert-danger">
             <strong>Advertencia:</strong> El valor introducido no está registrado en la base de datos.
