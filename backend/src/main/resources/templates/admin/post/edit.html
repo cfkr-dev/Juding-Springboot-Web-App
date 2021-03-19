@@ -50,6 +50,8 @@
     <h2 class="h2">Edición de noticia</h2>
     <form action="/admin/post/edit/modify" class="needs-validation flex-sb flex-w" method="post" enctype="multipart/form-data" novalidate>
 
+        <input type="hidden" name="_csrf" value="{{token}}"/>
+
         <input type="hidden" name="id" value="{{post.idPost}}">
 
         <!-- Title -->

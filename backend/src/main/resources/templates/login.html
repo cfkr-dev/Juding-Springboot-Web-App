@@ -43,7 +43,8 @@
             Credenciales incorrectas.
         </div>
         {{/error}}
-        <form class="needs-validation flex-sb flex-w" action="/login" method="post">
+        <form class="needs-validation flex-sb flex-w" action="/login" method="post" novalidate>
+            <input type="hidden" name="_csrf" value="{{token}}"/>
             <span class="login100-form-title">Iniciar sesión</span>
             <label class="txt1" for="nickname">Apodo <span class="asterisk">*</span></label>
             <input class="form-control form-control-lg" id="nickname" name="nickname" required type="text">

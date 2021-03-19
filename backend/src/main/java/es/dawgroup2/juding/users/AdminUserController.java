@@ -113,7 +113,7 @@ public class AdminUserController {
     public String savingUser(@RequestParam String name,
                              @RequestParam String surname,
                              @RequestParam String gender,
-                             @RequestParam int phone,
+                             @RequestParam String phone,
                              @RequestParam String email,
                              @RequestParam String birthDate,
                              @RequestParam String dni,
@@ -128,7 +128,7 @@ public class AdminUserController {
         currentUser.setName(name)
                 .setSurname(surname)
                 .setDni(dni)
-                .setPhone(phone)
+                .setPhone(Integer.parseInt(phone))
                 .setEmail(email)
                 .setNickname(nickname)
                 .setBirthDate(dateService.stringToDate(birthDate))

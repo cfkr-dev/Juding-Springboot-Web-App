@@ -97,35 +97,20 @@ public class LoggedInUserController {
         return "/myProfile/edit";
     }
 
-    /**
-     * Method for saving edited values of user when {@link #editProfile(Model) editProfile} form is filled and sent.
-     *
-     * @param model        Model.
-     * @param licenseId    License ID (PK).
-     * @param beltSelector Belt.
-     * @param gym          Gym.
-     * @param weight       Weight
-     * @param refereeRange Referee range (in case it's a referee)
-     * @param nick         Nickname.
-     * @param phone        Phone.
-     * @param email        Email.
-     * @param image        Profile image.
-     * @return Profile page if successful.
-     * @throws IOException Input-output exception.
-     */
+    // Method for saving edited values of user when {@link #editProfile(Model) editProfile} form is filled and sent.
     @PostMapping("/myProfile/edit")
     public String editingUser(@RequestParam String licenseId,
                               @RequestParam String beltSelector,
                               @RequestParam(required = false) String gym,
                               @RequestParam(required = false) Integer weight,
                               @RequestParam(required = false) RefereeRange refereeRange,
-                              @RequestParam String nick,
+                              @RequestParam String nickname,
                               @RequestParam int phone,
                               @RequestParam String email,
                               MultipartFile image) throws IOException {
         User user = userService.getUserOrNull(licenseId);
         // Common fields
-        user.setBelt(beltService.findBeltById(beltSelector)).setNickname(nick).setPhone(phone).setEmail(email);
+        user.setBelt(beltService.findBeltById(beltSelector)).setNickname(nickname).setPhone(phone).setEmail(email);
         // Role-based fields
         if (user.isRole(Role.C)) {
             user.setGym(gym).setWeight(weight);

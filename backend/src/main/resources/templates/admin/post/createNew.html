@@ -49,6 +49,8 @@
     <h2 class="h2">Creacción de una nueva noticia</h2>
     <form action="/admin/post/createNew" class="needs-validation flex-sb flex-w" method="post" enctype="multipart/form-data" novalidate>
 
+        <input type="hidden" name="_csrf" value="{{token}}"/>
+
         <!-- Title -->
         <label class="txt1" for="title">Título <span class="asterisk">*</span></label>
         <input class="form-control" id="title" name="title" required type="text">

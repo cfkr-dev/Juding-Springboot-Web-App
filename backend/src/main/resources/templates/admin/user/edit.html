@@ -42,8 +42,11 @@
     </div>
 </header>
 <div class="container pb-4">
-    <form action="/admin/user/edit/save" class="needs-validation" method="post" novalidate
+    <form action="/admin/user/edit/save" class="needs-validation flex-sb flex-w juding-form-user" method="post" novalidate
           enctype="multipart/form-data">
+
+        <input type="hidden" name="_csrf" value="{{token}}"/>
+
         <h2 class="h2">Edición de usuarios</h2>
         <h3 class="h3">Información personal</h3>
 
@@ -100,7 +103,7 @@
         <!-- DNI -->
         <label class="txt1" for="dni">DNI <span class="asterisk">*</span></label>
         <input class="form-control" id="dni" name="dni" pattern="^([0-9]{8}|[XYZ][0-9]{7})[A-Z]{1}$" required
-               type="text" value="{{ user.dni }}">
+               type="text" data-role="{{#isCompetitor}}Competitor{{/isCompetitor}}{{^isCompetitor}}Referee{{/isCompetitor}}" value="{{ user.dni }}">
         <div class="invalid-feedback">
             El DNI no sigue el formato requerido (ejemplo: 12345678Z).
         </div>
