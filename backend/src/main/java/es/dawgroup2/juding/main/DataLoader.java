@@ -1063,10 +1063,250 @@ public class DataLoader {
 
 
         // 3. Joining competitors into competition
-        for (int i = 0; i < 16; i++) {
+        /*for (int i = 0; i < 16; i++) {
             competitionService.joinCompetition(competitions.get(0), competitors.get(i));
-        }
+        }*/
+        //TRIAL1
+        competitionService.joinCompetition(competitions.get(0),competitors.get(12));
+        competitionService.joinCompetition(competitions.get(0),competitors.get(20));
+        competitionService.joinCompetition(competitions.get(0),competitors.get(9));
+        competitionService.joinCompetition(competitions.get(0),competitors.get(14));
+        competitionService.joinCompetition(competitions.get(0),competitors.get(27));
+        competitionService.joinCompetition(competitions.get(0),competitors.get(22));
+        competitionService.joinCompetition(competitions.get(0),competitors.get(10));
+        competitionService.joinCompetition(competitions.get(0),competitors.get(16));
+        competitionService.joinCompetition(competitions.get(0),competitors.get(1));
+        competitionService.joinCompetition(competitions.get(0),competitors.get(18));
+        competitionService.joinCompetition(competitions.get(0),competitors.get(21));
+        competitionService.joinCompetition(competitions.get(0),competitors.get(3));
+        competitionService.joinCompetition(competitions.get(0),competitors.get(23));
+        competitionService.joinCompetition(competitions.get(0),competitors.get(31));
+        competitionService.joinCompetition(competitions.get(0),competitors.get(28));
+        competitionService.joinCompetition(competitions.get(0),competitors.get(0));
+
         competitionService.add(competitions.get(0));
+
+        //TRIAL2
+        competitionService.joinCompetition(competitions.get(1),competitors.get(11));
+        competitionService.joinCompetition(competitions.get(1),competitors.get(7));
+        competitionService.joinCompetition(competitions.get(1),competitors.get(19));
+        competitionService.joinCompetition(competitions.get(1),competitors.get(25));
+        competitionService.joinCompetition(competitions.get(1),competitors.get(26));
+        competitionService.joinCompetition(competitions.get(1),competitors.get(5));
+        competitionService.joinCompetition(competitions.get(1),competitors.get(29));
+        competitionService.joinCompetition(competitions.get(1),competitors.get(15));
+        competitionService.joinCompetition(competitions.get(1),competitors.get(6));
+        competitionService.joinCompetition(competitions.get(1),competitors.get(13));
+        competitionService.joinCompetition(competitions.get(1),competitors.get(24));
+        competitionService.joinCompetition(competitions.get(1),competitors.get(2));
+        competitionService.joinCompetition(competitions.get(1),competitors.get(4));
+        competitionService.joinCompetition(competitions.get(1),competitors.get(17));
+        competitionService.joinCompetition(competitions.get(1),competitors.get(8));
+        competitionService.joinCompetition(competitions.get(1),competitors.get(30));
+
+        competitionService.add(competitions.get(1));
+
+        //TRIAL3
+        competitionService.joinCompetition(competitions.get(2),competitors.get(10));
+        competitionService.joinCompetition(competitions.get(2),competitors.get(16));
+        competitionService.joinCompetition(competitions.get(2),competitors.get(22));
+        competitionService.joinCompetition(competitions.get(2),competitors.get(20));
+        competitionService.joinCompetition(competitions.get(2),competitors.get(12));
+        competitionService.joinCompetition(competitions.get(2),competitors.get(14));
+        competitionService.joinCompetition(competitions.get(2),competitors.get(27));
+        competitionService.joinCompetition(competitions.get(2),competitors.get(9));
+        competitionService.joinCompetition(competitions.get(2),competitors.get(31));
+        competitionService.joinCompetition(competitions.get(2),competitors.get(28));
+        competitionService.joinCompetition(competitions.get(2),competitors.get(18));
+        competitionService.joinCompetition(competitions.get(2),competitors.get(1));
+        competitionService.joinCompetition(competitions.get(2),competitors.get(0));
+        competitionService.joinCompetition(competitions.get(2),competitors.get(3));
+        competitionService.joinCompetition(competitions.get(2),competitors.get(21));
+        competitionService.joinCompetition(competitions.get(2),competitors.get(23));
+
+        competitionService.add(competitions.get(2));
+
+        //TRIAL4
+        competitionService.joinCompetition(competitions.get(3),competitors.get(26));
+        competitionService.joinCompetition(competitions.get(3),competitors.get(19));
+        competitionService.joinCompetition(competitions.get(3),competitors.get(7));
+        competitionService.joinCompetition(competitions.get(3),competitors.get(4));
+        competitionService.joinCompetition(competitions.get(3),competitors.get(13));
+        competitionService.joinCompetition(competitions.get(3),competitors.get(25));
+        competitionService.joinCompetition(competitions.get(3),competitors.get(5));
+        competitionService.joinCompetition(competitions.get(3),competitors.get(11));
+        competitionService.joinCompetition(competitions.get(3),competitors.get(30));
+        competitionService.joinCompetition(competitions.get(3),competitors.get(8));
+        competitionService.joinCompetition(competitions.get(3),competitors.get(24));
+        competitionService.joinCompetition(competitions.get(3),competitors.get(15));
+        competitionService.joinCompetition(competitions.get(3),competitors.get(2));
+        competitionService.joinCompetition(competitions.get(3),competitors.get(29));
+        competitionService.joinCompetition(competitions.get(3),competitors.get(16));
+        competitionService.joinCompetition(competitions.get(3),competitors.get(17));
+
+        competitionService.add(competitions.get(3));
+
+        //TRIAL5
+        competitionService.joinCompetition(competitions.get(4),competitors.get(14));
+        competitionService.joinCompetition(competitions.get(4),competitors.get(18));
+        competitionService.joinCompetition(competitions.get(4),competitors.get(3));
+        competitionService.joinCompetition(competitions.get(4),competitors.get(10));
+        competitionService.joinCompetition(competitions.get(4),competitors.get(16));
+        competitionService.joinCompetition(competitions.get(4),competitors.get(12));
+        competitionService.joinCompetition(competitions.get(4),competitors.get(23));
+        competitionService.joinCompetition(competitions.get(4),competitors.get(28));
+        competitionService.joinCompetition(competitions.get(4),competitors.get(1));
+        competitionService.joinCompetition(competitions.get(4),competitors.get(31));
+        competitionService.joinCompetition(competitions.get(4),competitors.get(20));
+        competitionService.joinCompetition(competitions.get(4),competitors.get(22));
+        competitionService.joinCompetition(competitions.get(4),competitors.get(27));
+        competitionService.joinCompetition(competitions.get(4),competitors.get(21));
+        competitionService.joinCompetition(competitions.get(4),competitors.get(0));
+        competitionService.joinCompetition(competitions.get(4),competitors.get(9));
+
+        competitionService.add(competitions.get(4));
+
+        //TRIAL6
+        competitionService.joinCompetition(competitions.get(5),competitors.get(11));
+        competitionService.joinCompetition(competitions.get(5),competitors.get(17));
+        competitionService.joinCompetition(competitions.get(5),competitors.get(6));
+        competitionService.joinCompetition(competitions.get(5),competitors.get(24));
+        competitionService.joinCompetition(competitions.get(5),competitors.get(29));
+        competitionService.joinCompetition(competitions.get(5),competitors.get(19));
+        competitionService.joinCompetition(competitions.get(5),competitors.get(30));
+        competitionService.joinCompetition(competitions.get(5),competitors.get(15));
+        competitionService.joinCompetition(competitions.get(5),competitors.get(8));
+        competitionService.joinCompetition(competitions.get(5),competitors.get(13));
+        competitionService.joinCompetition(competitions.get(5),competitors.get(25));
+        competitionService.joinCompetition(competitions.get(5),competitors.get(26));
+        competitionService.joinCompetition(competitions.get(5),competitors.get(4));
+        competitionService.joinCompetition(competitions.get(5),competitors.get(7));
+        competitionService.joinCompetition(competitions.get(5),competitors.get(2));
+        competitionService.joinCompetition(competitions.get(5),competitors.get(5));
+
+        competitionService.add(competitions.get(5));
+
+        //TRIAL7
+        competitionService.joinCompetition(competitions.get(6),competitors.get(10));
+        competitionService.joinCompetition(competitions.get(6),competitors.get(27));
+        competitionService.joinCompetition(competitions.get(6),competitors.get(31));
+        competitionService.joinCompetition(competitions.get(6),competitors.get(28));
+        competitionService.joinCompetition(competitions.get(6),competitors.get(20));
+        competitionService.joinCompetition(competitions.get(6),competitors.get(16));
+        competitionService.joinCompetition(competitions.get(6),competitors.get(14));
+        competitionService.joinCompetition(competitions.get(6),competitors.get(23));
+        competitionService.joinCompetition(competitions.get(6),competitors.get(18));
+        competitionService.joinCompetition(competitions.get(6),competitors.get(3));
+        competitionService.joinCompetition(competitions.get(6),competitors.get(22));
+        competitionService.joinCompetition(competitions.get(6),competitors.get(12));
+        competitionService.joinCompetition(competitions.get(6),competitors.get(1));
+        competitionService.joinCompetition(competitions.get(6),competitors.get(20));
+        competitionService.joinCompetition(competitions.get(6),competitors.get(0));
+        competitionService.joinCompetition(competitions.get(6),competitors.get(9));
+
+        competitionService.add(competitions.get(6));
+
+        //TRIAL8
+        competitionService.joinCompetition(competitions.get(7),competitors.get(13));
+        competitionService.joinCompetition(competitions.get(7),competitors.get(19));
+        competitionService.joinCompetition(competitions.get(7),competitors.get(6));
+        competitionService.joinCompetition(competitions.get(7),competitors.get(8));
+        competitionService.joinCompetition(competitions.get(7),competitors.get(24));
+        competitionService.joinCompetition(competitions.get(7),competitors.get(17));
+        competitionService.joinCompetition(competitions.get(7),competitors.get(29));
+        competitionService.joinCompetition(competitions.get(7),competitors.get(15));
+        competitionService.joinCompetition(competitions.get(7),competitors.get(25));
+        competitionService.joinCompetition(competitions.get(7),competitors.get(11));
+        competitionService.joinCompetition(competitions.get(7),competitors.get(5));
+        competitionService.joinCompetition(competitions.get(7),competitors.get(26));
+        competitionService.joinCompetition(competitions.get(7),competitors.get(30));
+        competitionService.joinCompetition(competitions.get(7),competitors.get(7));
+        competitionService.joinCompetition(competitions.get(7),competitors.get(2));
+        competitionService.joinCompetition(competitions.get(7),competitors.get(4));
+
+        competitionService.add(competitions.get(7));
+
+        //TRIAL9
+        competitionService.joinCompetition(competitions.get(8),competitors.get(14));
+        competitionService.joinCompetition(competitions.get(8),competitors.get(21));
+        competitionService.joinCompetition(competitions.get(8),competitors.get(18));
+        competitionService.joinCompetition(competitions.get(8),competitors.get(10));
+        competitionService.joinCompetition(competitions.get(8),competitors.get(9));
+        competitionService.joinCompetition(competitions.get(8),competitors.get(23));
+        competitionService.joinCompetition(competitions.get(8),competitors.get(12));
+        competitionService.joinCompetition(competitions.get(8),competitors.get(16));
+        competitionService.joinCompetition(competitions.get(8),competitors.get(3));
+        competitionService.joinCompetition(competitions.get(8),competitors.get(20));
+        competitionService.joinCompetition(competitions.get(8),competitors.get(0));
+        competitionService.joinCompetition(competitions.get(8),competitors.get(22));
+        competitionService.joinCompetition(competitions.get(8),competitors.get(1));
+        competitionService.joinCompetition(competitions.get(8),competitors.get(31));
+        competitionService.joinCompetition(competitions.get(8),competitors.get(27));
+        competitionService.joinCompetition(competitions.get(8),competitors.get(28));
+
+        competitionService.add(competitions.get(8));
+
+        //TRIAL10
+        competitionService.joinCompetition(competitions.get(9),competitors.get(7));
+        competitionService.joinCompetition(competitions.get(9),competitors.get(5));
+        competitionService.joinCompetition(competitions.get(9),competitors.get(13));
+        competitionService.joinCompetition(competitions.get(9),competitors.get(17));
+        competitionService.joinCompetition(competitions.get(9),competitors.get(24));
+        competitionService.joinCompetition(competitions.get(9),competitors.get(19));
+        competitionService.joinCompetition(competitions.get(9),competitors.get(26));
+        competitionService.joinCompetition(competitions.get(9),competitors.get(30));
+        competitionService.joinCompetition(competitions.get(9),competitors.get(11));
+        competitionService.joinCompetition(competitions.get(9),competitors.get(15));
+        competitionService.joinCompetition(competitions.get(9),competitors.get(25));
+        competitionService.joinCompetition(competitions.get(9),competitors.get(4));
+        competitionService.joinCompetition(competitions.get(9),competitors.get(2));
+        competitionService.joinCompetition(competitions.get(9),competitors.get(6));
+        competitionService.joinCompetition(competitions.get(9),competitors.get(8));
+        competitionService.joinCompetition(competitions.get(9),competitors.get(29));
+
+        competitionService.add(competitions.get(9));
+
+        //TRIAL11
+        competitionService.joinCompetition(competitions.get(10),competitors.get(20));
+        competitionService.joinCompetition(competitions.get(10),competitors.get(27));
+        competitionService.joinCompetition(competitions.get(10),competitors.get(31));
+        competitionService.joinCompetition(competitions.get(10),competitors.get(16));
+        competitionService.joinCompetition(competitions.get(10),competitors.get(14));
+        competitionService.joinCompetition(competitions.get(10),competitors.get(21));
+        competitionService.joinCompetition(competitions.get(10),competitors.get(12));
+        competitionService.joinCompetition(competitions.get(10),competitors.get(18));
+        competitionService.joinCompetition(competitions.get(10),competitors.get(1));
+        competitionService.joinCompetition(competitions.get(10),competitors.get(10));
+        competitionService.joinCompetition(competitions.get(10),competitors.get(9));
+        competitionService.joinCompetition(competitions.get(10),competitors.get(22));
+        competitionService.joinCompetition(competitions.get(10),competitors.get(28));
+        competitionService.joinCompetition(competitions.get(10),competitors.get(23));
+        competitionService.joinCompetition(competitions.get(10),competitors.get(0));
+        //DEMO ADDICTION
+        //competitionService.joinCompetition(competitions.get(10),competitors.get(3));
+
+        competitionService.add(competitions.get(10));
+
+        //TRIAL12
+        competitionService.joinCompetition(competitions.get(11),competitors.get(15));
+        competitionService.joinCompetition(competitions.get(11),competitors.get(25));
+        competitionService.joinCompetition(competitions.get(11),competitors.get(29));
+        competitionService.joinCompetition(competitions.get(11),competitors.get(11));
+        competitionService.joinCompetition(competitions.get(11),competitors.get(24));
+        competitionService.joinCompetition(competitions.get(11),competitors.get(17));
+        competitionService.joinCompetition(competitions.get(11),competitors.get(5));
+        competitionService.joinCompetition(competitions.get(11),competitors.get(7));
+        competitionService.joinCompetition(competitions.get(11),competitors.get(2));
+        competitionService.joinCompetition(competitions.get(11),competitors.get(6));
+        competitionService.joinCompetition(competitions.get(11),competitors.get(13));
+        competitionService.joinCompetition(competitions.get(11),competitors.get(26));
+        competitionService.joinCompetition(competitions.get(11),competitors.get(8));
+        competitionService.joinCompetition(competitions.get(11),competitors.get(30));
+        competitionService.joinCompetition(competitions.get(11),competitors.get(19));
+        //DEMO ADDICTION
+        //competitionService.joinCompetition(competitions.get(11),competitors.get(4));
+
+        competitionService.add(competitions.get(11));
         // 3.2. Simulating tournaments
             //TRIAL1
             // 8th-finals
@@ -1257,62 +1497,18 @@ public class DataLoader {
 
             competitionService.add(competitions.get(8));
 
-        //TRIAL10
-        // 8th-finals
-        competitionService.fightFinished(competitions.get(9), competitors.get(7), competitors.get(5));
-        competitionService.fightFinished(competitions.get(9), competitors.get(17), competitors.get(13));
-        competitionService.fightFinished(competitions.get(9), competitors.get(19), competitors.get(24));
-        competitionService.fightFinished(competitions.get(9), competitors.get(30), competitors.get(26));
-        competitionService.fightFinished(competitions.get(9), competitors.get(11), competitors.get(15));
-        competitionService.fightFinished(competitions.get(9), competitors.get(4), competitors.get(25));
-        competitionService.fightFinished(competitions.get(9), competitors.get(6), competitors.get(2));
-        competitionService.fightFinished(competitions.get(9), competitors.get(29), competitors.get(8));
+            //TRIAL10
+            // 8th-finals
+            competitionService.fightFinished(competitions.get(9), competitors.get(7), competitors.get(5));
+            competitionService.fightFinished(competitions.get(9), competitors.get(17), competitors.get(13));
+            competitionService.fightFinished(competitions.get(9), competitors.get(19), competitors.get(24));
+            competitionService.fightFinished(competitions.get(9), competitors.get(30), competitors.get(26));
+            competitionService.fightFinished(competitions.get(9), competitors.get(11), competitors.get(15));
+            competitionService.fightFinished(competitions.get(9), competitors.get(4), competitors.get(25));
+            competitionService.fightFinished(competitions.get(9), competitors.get(6), competitors.get(2));
+            competitionService.fightFinished(competitions.get(9), competitors.get(29), competitors.get(8));
 
-        competitionService.add(competitions.get(9));
-
-        //TRIAL11
-        // 8th-finals
-        competitionService.joinCompetition(competitions.get(10),competitors.get(20));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(27));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(31));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(16));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(14));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(21));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(12));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(18));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(1));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(10));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(9));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(22));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(28));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(23));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(0));
-        //DEMO ADDICTION
-        //competitionService.joinCompetition(competitions.get(10),competitors.get(3));
-
-        competitionService.add(competitions.get(10));
-
-        //TRIAL12
-        // 8th-finals
-        competitionService.joinCompetition(competitions.get(11),competitors.get(15));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(25));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(29));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(11));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(24));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(17));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(5));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(7));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(2));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(6));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(13));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(26));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(8));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(30));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(19));
-        //DEMO ADDICTION
-        //competitionService.joinCompetition(competitions.get(11),competitors.get(4));
-
-        competitionService.add(competitions.get(11));
+            competitionService.add(competitions.get(9));
 
         // 4. Post creation and saving
         List<Post> posts = new ArrayList<>();
