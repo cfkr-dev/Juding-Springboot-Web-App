@@ -33,6 +33,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // IndexController
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/login").permitAll();
+        http.authorizeRequests().antMatchers("/termsAndConditionsOfUse").permitAll();
+        http.authorizeRequests().antMatchers("/cookiePolicy").permitAll();
         http.authorizeRequests().antMatchers("/signUp/*").permitAll();
 
         // IndexEmailController
@@ -59,7 +61,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/myProfile/edit").hasAnyRole(Role.C.name(), Role.R.name());
 
         // ChartController
-        http.authorizeRequests().antMatchers("/myProfile/edit").hasAnyRole(Role.C.name(), Role.R.name());
+        http.authorizeRequests().antMatchers("/myCharts").hasAnyRole(Role.C.name(), Role.R.name());
         
         // PostController
         http.authorizeRequests().antMatchers("/admin/post/createNew").hasRole(Role.A.name());
@@ -104,9 +106,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.logout().logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/");
-
-        // CSRF
-        // TODO Alberto's branch
-        http.csrf().disable();
     }
 }

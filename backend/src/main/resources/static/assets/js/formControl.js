@@ -39,21 +39,24 @@ let forbiddenDni = false;
 let forbiddenNickname = false;
 let forbiddenMaxWeight = false;
 let forbiddenEndDate = false;
+let somethingChanged = true;
 
 $("#licenseId").on("blur", function () {
     if ($("#licenseId")[0].checkValidity()) {
         $.ajax({
             data: {"licenseId": $("#licenseId").val()},
             url: "/formCheck/signUp/licenseId",
-            method: 'post'
+            method: 'get'
         }).done(function (ans) {
             $("#licenseIdBanner").remove();
             if (ans) {
-                $("#licenseId").after('<div class="alert alert-success mt-1" id="licenseIdBanner">Este número de licencia no está registrado</div>');
+                $("#licenseId").after('<div class="alert alert-success mt-1" id="licenseIdBanner">Este número de licencia se puede utilizar</div>');
                 forbiddenLicenseId = false;
+                somethingChanged = false;
             } else {
-                $("#licenseId").after('<div class="alert alert-danger mt-1" id="licenseIdBanner">Este número de licencia ya está en uso</div>');
+                $("#licenseId").after('<div class="alert alert-danger mt-1" id="licenseIdBanner">Este número de licencia no se puede utilizar</div>');
                 forbiddenLicenseId = true;
+                somethingChanged = false;
             }
         });
     } else {
@@ -66,15 +69,17 @@ $("#nickname").on("blur", function () {
         $.ajax({
             data: {"nickname": $("#nickname").val()},
             url: "/formCheck/signUp/nickname",
-            method: 'post'
+            method: 'get'
         }).done(function (ans) {
             $("#nicknameBanner").remove();
             if (ans) {
-                $("#nickname").after('<div class="alert alert-success mt-1" id="nicknameBanner">Este apodo no está registrado</div>');
+                $("#nickname").after('<div class="alert alert-success mt-1" id="nicknameBanner">Este apodo se puede utilizar</div>');
                 forbiddenNickname = false;
+                somethingChanged = false;
             } else {
-                $("#nickname").after('<div class="alert alert-danger mt-1" id="nicknameBanner">Este apodo ya está en uso</div>');
+                $("#nickname").after('<div class="alert alert-danger mt-1" id="nicknameBanner">Este apodo no se puede utilizar</div>');
                 forbiddenNickname = true;
+                somethingChanged = false;
             }
         });
     } else {
@@ -90,15 +95,17 @@ $("#dni").on("blur", function () {
                 "role": $("#dni").data("role")
             },
             url: "/formCheck/signUp/dni",
-            method: 'post'
+            method: 'get'
         }).done(function (ans) {
             $("#dniBanner").remove();
             if (ans) {
-                $("#dni").after('<div class="alert alert-success mt-1" id="dniBanner">Este DNI no está registrado para este rol</div>');
+                $("#dni").after('<div class="alert alert-success mt-1" id="dniBanner">Este DNI se puede utilizar para este rol</div>');
                 forbiddenDni = false;
+                somethingChanged = false;
             } else {
-                $("#dni").after('<div class="alert alert-danger mt-1" id="dniBanner">Este DNI ya está en uso para este rol</div>');
+                $("#dni").after('<div class="alert alert-danger mt-1" id="dniBanner">Este DNI no se puede utilizar para este rol</div>');
                 forbiddenDni = true;
+                somethingChanged = false;
             }
         });
     } else {
@@ -113,8 +120,10 @@ $("#maxWeight").on("blur", function (){
         if ($("#maxWeight").val() <= $("#maxWeight").parent().siblings(".minWeight").children("#minWeight").val()) {
             $("#maxWeight").after('<div class="alert alert-danger mt-1" id="maxWeightBanner">No se puede introducir un peso máximo menor que el peso mínimo</div>');
             forbiddenMaxWeight = true;
+            somethingChanged = false;
         } else {
             forbiddenMaxWeight = false;
+            somethingChanged = false;
         }
     } else{
         $("#maxWeightBanner").remove();
@@ -127,8 +136,10 @@ $("#endDate").on("blur", function (){
         if ($("#endDate").val() <= $("#endDate").parent().siblings(".startDate").children("#startDate").val()) {
             $("#endDate").after('<div class="alert alert-danger mt-1" id="endDateBanner">No se puede introducir una fecha de fin anterior a la fecha de inicio</div>');
             forbiddenEndDate = true;
+            somethingChanged = false;
         } else {
             forbiddenEndDate = false;
+            somethingChanged = false;
         }
     } else{
         $("#endDateBanner").remove();
@@ -137,12 +148,12 @@ $("#endDate").on("blur", function (){
 
 $(".juding-form-user").on("submit", function(evt){
     evt.preventDefault();
-    if (forbiddenDni || forbiddenNickname || forbiddenLicenseId)
+    if (somethingChanged || forbiddenDni || forbiddenNickname || forbiddenLicenseId)
         $(this).off("submit");
 });
 
 $(".juding-form-competition").on("submit", function(evt){
     evt.preventDefault();
-    if (forbiddenMaxWeight || forbiddenEndDate)
+    if (somethingChanged || forbiddenMaxWeight || forbiddenEndDate)
         $(this).off("submit");
 });

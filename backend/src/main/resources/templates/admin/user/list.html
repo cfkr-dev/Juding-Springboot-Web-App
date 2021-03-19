@@ -48,7 +48,12 @@
                         <li><a href="/admin/post/list">Noticias</a></li>
                     </ul>
                 </li>
-                <li><a class="login scrollto" href="/logout">Cerrar sesión</a></li>
+                <li>
+                    <form action="/logout" method="post">
+                        <input type="hidden" name="_csrf" value="{{ token }}">
+                        <button class="login scrollto">Cerrar sesión</button>
+                    </form>
+                </li>
             </ul>
             <i class="far fa-bars mobile-nav-toggle"></i>
         </nav><!-- .navbar -->

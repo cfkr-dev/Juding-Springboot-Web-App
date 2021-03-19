@@ -11,14 +11,15 @@
 
     <!-- Vendor CSS Files -->
     <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
     <link href="/assets/vendor/font-awesome/css/all.css" rel="stylesheet">
 
     <!-- Own CSS Files -->
+    <link href="/assets/css/style.css" rel="stylesheet">
     <link href="/assets/css/header.css" rel="stylesheet">
     <link href="/assets/css/bootstrapAccomodations.css" rel="stylesheet">
-    <link href="/assets/css/loginAndRegistration.css" rel="stylesheet">
-    <link href="/assets/css/profiles.css" rel="stylesheet">
     <link href="/assets/css/responsiveTable.css" rel="stylesheet">
+    <link href="/assets/css/profiles.css" rel="stylesheet">
 </head>
 <body>
 <header class="header fixed-top" id="header">
@@ -32,7 +33,12 @@
                 <li><a class="nav-link scrollto" href="/myHome">Inicio</a></li>
                 <li><a class="nav-link scrollto" href="/ranking">Ranking</a></li>
                 <li><a class="nav-link scrollto active" href="/myProfile">Mi perfil</a></li>
-                <li><a class="login scrollto" href="/logout">Cerrar sesión</a></li>
+                <li>
+                    <form action="/logout" method="post">
+                        <input type="hidden" name="_csrf" value="{{ token }}">
+                        <button class="login scrollto">Cerrar sesión</button>
+                    </form>
+                </li>
             </ul>
             <i class="far fa-bars mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
@@ -43,11 +49,9 @@
         Modifica tus datos
     </span>
     <form action="/myProfile/edit" class="needs-validation flex-sb flex-w juding-form-user" method="post" enctype="multipart/form-data" novalidate>
-
         <input type="hidden" name="_csrf" value="{{token}}"/>
-
         <input type="hidden" name="licenseId" id="licenceId" value="{{ user.licenseId }}">
-        <div class="px-2">
+        <div class="px-2"
             <h3 class="h3">Información para competición</h3>
             <div class="responsiveTable">
                 <div class="rtRow">

@@ -6,7 +6,7 @@ let ctx2 = document.getElementById("chart2").getContext("2d");
 $.ajax({
     data: {"licenseId": $("#licenseId").text()},
     url: "/myCharts",
-    method: 'post'
+    method: 'get'
 }).done((ans) => {
     if (ans != null) {
         let bronzes = 0;

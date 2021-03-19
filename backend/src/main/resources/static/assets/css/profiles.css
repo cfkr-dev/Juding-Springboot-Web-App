@@ -11,15 +11,16 @@ body > .container {
 
 .avatar {
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
+    width: 90%;
+    height: auto;
     padding: 0;
 }
 
-.avatar > img {
+.bigAvatar {
     border-radius: 50%;
-    max-width: 200px;
-    max-height: 200px;
+    width: 20%;
+    height: auto;
+    padding: 0;
 }
 
 .nombre {

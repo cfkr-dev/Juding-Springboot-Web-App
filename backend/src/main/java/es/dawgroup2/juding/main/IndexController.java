@@ -52,12 +52,22 @@ public class IndexController {
         return "/index";
     }
 
+    @GetMapping("/termsAndConditionsOfUse")
+    public String termsAndConditionsOfUse(){
+        return "/termsAndConditionsOfUse";
+    }
+
+    @GetMapping("/cookiePolicy")
+    public String cookiePolicy(){
+        return "/cookiePolicy";
+    }
+
     @RequestMapping("/login")
     public String login() {
         return "/login";
     }
 
-    @GetMapping("login/{error}")
+    @GetMapping("/login/{error}")
     public String loginError(@PathVariable(required = false) String error, Model model) {
         model.addAttribute("error",(error!=null));
         return "/login";
