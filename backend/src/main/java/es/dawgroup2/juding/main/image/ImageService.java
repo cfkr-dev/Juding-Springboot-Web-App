@@ -25,21 +25,24 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.URLConnection;
+import java.nio.file.Files;
 import java.sql.Blob;
 import java.sql.SQLException;
 
 @Component
 public class ImageService {
     public Blob uploadProfileImage(MultipartFile mpf) throws IOException {
-        return uploadProfileImageWithBufferedImage(ImageIO.read(mpf.getInputStream()));
+        return uploadProfileImageWithBufferedImage(ImageIO.read(mpf.getInputStream()), mpf.getContentType());
     }
 
     public Blob uploadProfileImage(String path) throws IOException {
         Resource res = new ClassPathResource(path);
-        return uploadProfileImageWithBufferedImage(ImageIO.read(res.getInputStream()));
+        String mime = URLConnection.guessContentTypeFromName(path);
+        return uploadProfileImageWithBufferedImage(ImageIO.read(res.getInputStream()), mime);
     }
 
-    public Blob uploadProfileImageWithBufferedImage(BufferedImage bi) throws IOException {
+    public Blob uploadProfileImageWithBufferedImage(BufferedImage bi, String mime) throws IOException {
         int height = bi.getHeight();
         int width = bi.getWidth();
 
@@ -56,7 +59,7 @@ public class ImageService {
                     squareSize
             );
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(croppedImage, "jpg", baos);
+            ImageIO.write(croppedImage, (mime.equals("image/png") ? "png" : "jpg"), baos);
 
             return BlobProxy.generateProxy(baos.toByteArray());
         }

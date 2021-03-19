@@ -44,20 +44,20 @@ public class ImageController {
             // Here id = licenseId of user
             User user = userService.getUserOrNull(id);
             if (user != null)
-                return getObjectResponseEntity(user.getImageFile());
+                return getObjectResponseEntity(user.getImageFile(), user.getMimeProfileImage());
         } else if (item.equals("post")) {
             Post post = postService.findById(id);
             if (post != null)
-                return getObjectResponseEntity(post.getImageFile());
+                return getObjectResponseEntity(post.getImageFile(), post.getMimeProfileImage());
         }
         return ResponseEntity.notFound().build();
 
     }
 
-    private ResponseEntity<Object> getObjectResponseEntity(Blob imageFile) throws SQLException {
+    private ResponseEntity<Object> getObjectResponseEntity(Blob imageFile, String mimeProfileImage) throws SQLException {
         if (imageFile != null) {
             Resource file = new InputStreamResource(imageFile.getBinaryStream());
-            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, mimeProfileImage)
                     .contentLength(imageFile.length()).body(file);
         } else {
             return ResponseEntity.notFound().build();
