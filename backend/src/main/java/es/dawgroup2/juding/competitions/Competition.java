@@ -20,7 +20,7 @@ public class Competition implements Serializable {
     @Column(nullable = false)
     private String shortName;
 
-    @Column(nullable = false, columnDefinition = "LONGTEXT"D)
+    @Column(nullable = false, columnDefinition = "LONGTEXT")
     private String additionalInfo;
 
     @Column(nullable = false)
