@@ -26,6 +26,9 @@ import java.util.Optional;
 @Controller
 public class LoggedInUserController {
     @Autowired
+    HeaderInflater headerInflater;
+
+    @Autowired
     UserService userService;
 
     @Autowired
@@ -51,8 +54,9 @@ public class LoggedInUserController {
     public String myHome(Model model, HttpServletRequest request) {
         User currentUser = userService.findByNickname(request.getUserPrincipal().getName());
         if (currentUser != null) {
-            model.addAttribute("user", currentUser)
-                .addAttribute("isCompetitor", currentUser.isRole(Role.C));
+            model.addAttribute("header", headerInflater.getHeader("Inicio", request, "bootstrap/css/bootstrap.min.css", "font-awesome/css/all.css", "style", "header", "profiles", "responsiveTable", "beltAssignations"))
+                    .addAttribute("user", currentUser)
+                    .addAttribute("isCompetitor", currentUser.isRole(Role.C));
         }
         return "myHome";
     }
@@ -69,7 +73,8 @@ public class LoggedInUserController {
         if (currentUser == null) {
             return "/error/403";
         } else {
-            model.addAttribute("user", currentUser)
+            model.addAttribute("header", headerInflater.getHeader("Mi perfil", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "profiles"))
+                    .addAttribute("user", currentUser)
                     .addAttribute("isCompetitor", currentUser.isRole(Role.C))
                     .addAttribute("isMale", currentUser.isMale())
                     .addAttribute("beltValue", currentUser.getBelt().getLongName());
@@ -87,9 +92,10 @@ public class LoggedInUserController {
     public String editProfile(Model model, HttpServletRequest request) {
         User currentUser = userService.findByNickname(request.getUserPrincipal().getName());
         if (currentUser == null) {
-            return "/error/403";
+            return "redirect:/error/403";
         } else {
-            model.addAttribute("user", currentUser)
+            model.addAttribute("header", headerInflater.getHeader("Editar perfil", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "profiles"))
+                    .addAttribute("user", currentUser)
                     .addAttribute("isCompetitor", currentUser.isRole(Role.C))
                     .addAttribute("beltSelector", beltService.getSelectField(currentUser.getBelt(), currentUser.isRole(Role.R)));
             if (currentUser.isRole(Role.R)) {
@@ -128,9 +134,10 @@ public class LoggedInUserController {
     }
 
     @GetMapping("/ranking")
-    public String getRanking(Model model){
+    public String getRanking(HttpServletRequest request, Model model) {
         List<?> rankingList = userService.getRanking();
-        model.addAttribute("list", rankingList);
+        model.addAttribute("header", headerInflater.getHeader("Ranking", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "profiles", "beltAssignations"))
+                .addAttribute("list", rankingList);
         return "/ranking";
     }
 }

@@ -2,15 +2,20 @@ package es.dawgroup2.juding.competitions;
 
 import es.dawgroup2.juding.fight.Fight;
 import es.dawgroup2.juding.main.DateService;
+import es.dawgroup2.juding.main.HeaderInflater;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
 public class CompetitionController {
+    @Autowired
+    HeaderInflater headerInflater;
+
     @Autowired
     CompetitionService competitionService;
 
@@ -23,10 +28,11 @@ public class CompetitionController {
      * @return view of the competition screen
      */
     @GetMapping("/competition/{idCompetition}")
-    public String showCompetition(Model model, @PathVariable String idCompetition) {
+    public String showCompetition(@PathVariable String idCompetition, HttpServletRequest request, Model model) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         String state = competition.translatingDates(competition.getStartDate(), competition.getEndDate());
-        model.addAttribute("state", state)
+        model.addAttribute("header", headerInflater.getHeader("Competición", request, "font-awesome/css/all.css", "bootstrap/css/bootstrap.min.css", "header", "responsiveTable", "competitionScreen"))
+                .addAttribute("state", state)
                 .addAttribute("competition", competition);
         for (int i = 0; i < competition.getFights().size(); i++)
             model.addAttribute("fight" + i, competition.getFights().get(i));

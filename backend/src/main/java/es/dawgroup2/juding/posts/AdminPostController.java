@@ -1,5 +1,6 @@
 package es.dawgroup2.juding.posts;
 
+import es.dawgroup2.juding.main.HeaderInflater;
 import es.dawgroup2.juding.users.UserService;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,9 @@ import java.util.List;
 
 @Controller
 public class AdminPostController {
-
+@Autowired
+    HeaderInflater headerInflater;
+    
     @Autowired
     PostService postService;
 
@@ -29,8 +32,9 @@ public class AdminPostController {
      * @return All post view.
      */
     @GetMapping("/admin/post/list")
-    public String postList(Model model) {
-        model.addAttribute("postList", postService.findAllDesc());
+    public String postList(HttpServletRequest request, Model model) {
+        model.addAttribute("header", headerInflater.getHeader("Lista de noticias", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "adminScreen"))
+                .addAttribute("postList", postService.findAllDesc());
         return "/admin/post/list";
     }
 
@@ -41,9 +45,10 @@ public class AdminPostController {
      * @return Individual post edit section view.
      */
     @GetMapping("/admin/post/edit/{id}")
-    public String postEdit(Model model, @PathVariable String id) {
+    public String postEdit(@PathVariable String id, HttpServletRequest request, Model model) {
         Post post = postService.findById(id);
-        model.addAttribute("post", post);
+        model.addAttribute("header", headerInflater.getHeader("Edición de noticia", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "header.css", "bootstrapAccomodations", "loginAndRegistration", "post"))
+                .addAttribute("post", post);
         return "/admin/post/edit";
     }
 
@@ -52,7 +57,8 @@ public class AdminPostController {
      * @return Post creation view.
      */
     @GetMapping("/admin/post/createNew")
-    public String newPost() {
+    public String newPost(HttpServletRequest request, Model model) {
+        model.addAttribute("header", headerInflater.getHeader("Nueva noticia", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "header", "bootstrapAccomodations", "loginAndRegistration"));
         return "/admin/post/createNew";
     }
 

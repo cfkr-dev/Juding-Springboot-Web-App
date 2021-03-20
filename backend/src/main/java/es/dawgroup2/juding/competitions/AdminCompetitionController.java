@@ -2,6 +2,7 @@ package es.dawgroup2.juding.competitions;
 
 import es.dawgroup2.juding.fight.FightService;
 import es.dawgroup2.juding.main.DateService;
+import es.dawgroup2.juding.main.HeaderInflater;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -18,6 +20,8 @@ import java.util.List;
 
 @Controller
 public class AdminCompetitionController {
+    @Autowired
+    HeaderInflater headerInflater;
 
     @Autowired
     CompetitionService competitionService;
@@ -36,9 +40,10 @@ public class AdminCompetitionController {
      * @return the view of the competition list
      */
     @GetMapping("/admin/competition/list")
-    public String competitionList(Model model) {
+    public String competitionList(HttpServletRequest request, Model model) {
         List<Competition> competitionList = competitionService.findAll();
-        model.addAttribute("competitionList", competitionList);
+        model.addAttribute("competitionList", competitionList)
+                .addAttribute("header", headerInflater.getHeader("Lista de competiciones", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "adminScreen"));
         return "/admin/competition/list";
     }
 
@@ -48,9 +53,10 @@ public class AdminCompetitionController {
      * @return view of the competition to edit
      */
     @GetMapping("/admin/competition/edit/{idCompetition}")
-    public String editCompetition(@PathVariable String idCompetition, Model model) {
+    public String editCompetition(@PathVariable String idCompetition, HttpServletRequest request, Model model) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         model.addAttribute("competition", competition)
+                .addAttribute("header", headerInflater.getHeader("Edición de competición", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "header", "bootstrapAccomodations", "loginAndRegistration"))
                 .addAttribute("refereeList", userService.getActiveRefereesList(competition.getReferee().getLicenseId()));
         return "/admin/competition/edit";
     }
@@ -60,8 +66,9 @@ public class AdminCompetitionController {
      * @return view of the competition to add
      */
     @GetMapping("/admin/competition/newCompetition")
-    public String newCompetition(Model model) {
-        model.addAttribute("refereeList", userService.getActiveRefereesList());
+    public String newCompetition(HttpServletRequest request, Model model) {
+        model.addAttribute("header", headerInflater.getHeader("Nueva competición", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "header", "bootstrapAccomodation", "loginAndRegistration"))
+                .addAttribute("refereeList", userService.getActiveRefereesList());
         return "/admin/competition/newCompetition";
     }
 

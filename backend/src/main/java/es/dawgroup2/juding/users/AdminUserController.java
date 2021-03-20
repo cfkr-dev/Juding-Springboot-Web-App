@@ -2,6 +2,7 @@ package es.dawgroup2.juding.users;
 
 import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.main.DateService;
+import es.dawgroup2.juding.main.HeaderInflater;
 import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.auxTypes.gender.GenderService;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
@@ -18,11 +19,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.util.Set;
 
 @Controller
 public class AdminUserController {
+    @Autowired
+    HeaderInflater headerInflater;
+
     @Autowired
     UserService userService;
 
@@ -53,7 +58,8 @@ public class AdminUserController {
      * @return Dynamic view with a list of users.
      */
     @GetMapping("/admin/user/list/{stringRole}")
-    public String userList(@PathVariable String stringRole, Model model) {
+    public String userList(@PathVariable String stringRole, HttpServletRequest request, Model model) {
+        model.addAttribute("header", headerInflater.getHeader("Lista de usuarios", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "profiles", "bootstrapAccomodations", "responsiveTable", "adminScreen", "beltAssignations"));
         if (stringRole.equals("competitors")) {
             model.addAttribute("userList", userService.getCompetitors()).addAttribute("competitors", true);
         } else if (stringRole.equals("referees")) {
@@ -77,9 +83,10 @@ public class AdminUserController {
      * @return Dynamic view with form.
      */
     @GetMapping("/admin/user/edit/{licenseId}")
-    public String editUser(@PathVariable String licenseId, Model model) {
+    public String editUser(@PathVariable String licenseId, HttpServletRequest request, Model model) {
         User user = userService.getUserOrNull(licenseId);
-        model.addAttribute("user", user)
+        model.addAttribute("header", headerInflater.getHeader("Editar usuario", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "header", "bootstrapAccomodations", "loginAndRegistration"))
+                .addAttribute("user", user)
                 .addAttribute("beltSelector", beltService.getSelectField(user.getBelt(), false))
                 .addAttribute("genderSelection", genderService.getRadioField(user.getGender()))
                 .addAttribute("isCompetitor", user.isRole(Role.C));
@@ -90,7 +97,7 @@ public class AdminUserController {
     }
 
     /**
-     * This method receives information from {@link #editUser(String, Model) editUser} generated view and save them into database.
+     * This method receives information from {@link #editUser(String, HttpServletRequest, Model) editUser} generated view and save them into database.
      * Different information types are properly processed before sending them to the repository
      *
      * @param name         Name
@@ -107,7 +114,6 @@ public class AdminUserController {
      * @param weight       Weight
      * @param refereeRange Referee range (if it's a referee)
      * @return Redirection to control panel.
-     * @throws ParseException
      */
     @PostMapping("/admin/user/edit/save")
     public String savingUser(@RequestParam String name,
@@ -151,7 +157,7 @@ public class AdminUserController {
      * its range.
      *
      * @param licenseId License ID (PK).
-     * @return Redirection to list of users (see {@link #userList(String, Model) userList}).
+     * @return Redirection to list of users (see {@link #userList(String, HttpServletRequest, Model) userList}).
      */
     @GetMapping("/admin/user/admitReferee/{licenseId}")
     public String admitReferee(@PathVariable String licenseId) {
@@ -186,7 +192,7 @@ public class AdminUserController {
      * Deletes a user from the repository attending to the license ID given in the URL.
      *
      * @param licenseId License ID (PK).
-     * @return Redirection to list of users (see {@link #userList(String, Model) userList}).
+     * @return Redirection to list of users (see {@link #userList(String, HttpServletRequest, Model) userList}).
      */
     @GetMapping("/admin/user/delete/{licenseId}")
     public String deleteUser(@PathVariable String licenseId) {

@@ -21,7 +21,7 @@ public class HeaderInflater {
                     "beltAssignations",
                     "bootstrapAccomodations",
                     "competitionController",
-                    "competitionScreeen",
+                    "competitionScreen",
                     "header",
                     "juridicTexts",
                     "loginAndRegistration",
