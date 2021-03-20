@@ -1323,7 +1323,7 @@ public class DataLoader {
             competitionService.fightFinished(competitions.get(1), competitors.get(7), competitors.get(25));
             competitionService.fightFinished(competitions.get(1), competitors.get(5), competitors.get(15));
             competitionService.fightFinished(competitions.get(1), competitors.get(24), competitors.get(13));
-            competitionService.fightFinished(competitions.get(1), competitors.get(4), competitors.get(24));
+            competitionService.fightFinished(competitions.get(1), competitors.get(4), competitors.get(8));
             // Semifinals
             competitionService.fightFinished(competitions.get(1), competitors.get(5), competitors.get(7));
             competitionService.fightFinished(competitions.get(1), competitors.get(4), competitors.get(24));
@@ -1433,7 +1433,7 @@ public class DataLoader {
             competitionService.fightFinished(competitions.get(6), competitors.get(28), competitors.get(27));
             competitionService.fightFinished(competitions.get(6), competitors.get(14), competitors.get(16));
             competitionService.fightFinished(competitions.get(6), competitors.get(12), competitors.get(18));
-            competitionService.fightFinished(competitions.get(6), competitors.get(9), competitors.get(12));
+            competitionService.fightFinished(competitions.get(6), competitors.get(9), competitors.get(1));
             // Semifinals
             competitionService.fightFinished(competitions.get(6), competitors.get(14), competitors.get(28));
             competitionService.fightFinished(competitions.get(6), competitors.get(9), competitors.get(12));
@@ -1444,7 +1444,7 @@ public class DataLoader {
             //TRIAL8
             // 8th-finals
             competitionService.fightFinished(competitions.get(7), competitors.get(19), competitors.get(13));
-            competitionService.fightFinished(competitions.get(7), competitors.get(0), competitors.get(6));
+            competitionService.fightFinished(competitions.get(7), competitors.get(8), competitors.get(6));
             competitionService.fightFinished(competitions.get(7), competitors.get(17), competitors.get(24));
             competitionService.fightFinished(competitions.get(7), competitors.get(15), competitors.get(29));
             competitionService.fightFinished(competitions.get(7), competitors.get(11), competitors.get(25));
