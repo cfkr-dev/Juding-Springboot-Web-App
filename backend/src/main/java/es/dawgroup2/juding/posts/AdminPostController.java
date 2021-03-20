@@ -68,7 +68,7 @@ public class AdminPostController {
     @GetMapping("/admin/post/edit/{id}")
     public String postEdit(@PathVariable String id, HttpServletRequest request, Model model) {
         Post post = postService.findById(id);
-        model.addAttribute("header", headerInflater.getHeader("Edición de noticia", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "header.css", "bootstrapAccomodations", "loginAndRegistration", "post"))
+        model.addAttribute("header", headerInflater.getHeader("Edición de noticia", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "post"))
                 .addAttribute("post", post);
         return "/admin/post/edit";
     }
@@ -80,7 +80,7 @@ public class AdminPostController {
      */
     @GetMapping("/admin/post/createNew")
     public String newPost(HttpServletRequest request, Model model) {
-        model.addAttribute("header", headerInflater.getHeader("Nueva noticia", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "header", "bootstrapAccomodations", "loginAndRegistration"));
+        model.addAttribute("header", headerInflater.getHeader("Nueva noticia", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "header", "bootstrapAccomodations"));
         return "/admin/post/createNew";
     }
 
