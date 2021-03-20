@@ -10,7 +10,12 @@
             </a>
         </div>
     </div>
-    <div class="responsiveTable">
+    {{ #empty }}
+    <div class="alert alert-corporative">
+        No hay competiciones registradas.
+    </div>
+    {{ /empty }}{{ ^empty }}
+    <div class="responsiveTable" id="table">
         <div class="rtRow rtHeader">
             <div class="width5 text-center">Id.</div>
             <div class="width40 text-center">Título</div>
@@ -18,18 +23,17 @@
             <div class="width25 text-center">Autor</div>
             <div class="width15 text-center">Acciones</div>
         </div>
-        {{#postList}}
+        {{ #postPage }}
         <div class="rtRow">
-            <div class="width5 text-center">{{idPost}}</div>
-            <div class="width40">{{title}}</div>
-            <div class="width15 text-center">{{getFormattedEditionTimestamp}}</div>
-            <div class="width25 text-center">{{author.getName}}</div>
+            <div class="width5 text-center">{{ idPost }}</div>
+            <div class="width40">{{ title }}</div>
+            <div class="width15 text-center">{{ getFormattedEditionTimestamp }}</div>
+            <div class="width25 text-center">{{ author.getName }}</div>
             <div class="width15 text-center">
-
-                <a class="btn btn-outline-corporative" href="/news/{{idPost}}" target="_blank">
+                <a class="btn btn-outline-corporative" href="/news/{{ idPost }}" target="_blank">
                     <i class="fas fa-external-link-alt"></i>
                 </a>
-                <a href="/admin/post/edit/{{idPost}}" class="btn btn-outline-corporative">
+                <a href="/admin/post/edit/{{ idPost }}" class="btn btn-outline-corporative">
                     <i class="fas fa-pencil"></i>
                 </a>
                 <button class="btn btn-corporative" data-bs-target="#modalDelete" data-bs-toggle="modal"
@@ -38,7 +42,16 @@
                 </button>
             </div>
         </div>
-        {{/postList}}
+        {{ /postPage }}
+        {{ /empty }}
+    </div>
+    <div class="width100 pt-2 text-center">
+        {{ #morePages }}
+        <button data-role="post" id="loadNextPage" class="btn btn-corporative" data-numpage="1"
+                data-totalpages="{{ totalPages }}">
+            <i></i> Cargar más noticias
+        </button>
+        {{ /morePages }}
     </div>
 </div>
 
@@ -93,6 +106,7 @@
 <script src="/assets/vendor/jquery/jquery.min.js"></script>
 <script src="/assets/vendor/bootstrap/js/bootstrap.js"></script>
 <script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/tinymce/js/tinymce/tinymce.min.js"></script>
 
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>

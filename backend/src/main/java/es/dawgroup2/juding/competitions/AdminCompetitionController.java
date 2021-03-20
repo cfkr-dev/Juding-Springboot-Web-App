@@ -3,8 +3,10 @@ package es.dawgroup2.juding.competitions;
 import es.dawgroup2.juding.fight.FightService;
 import es.dawgroup2.juding.main.DateService;
 import es.dawgroup2.juding.main.HeaderInflater;
+import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,15 +38,31 @@ public class AdminCompetitionController {
     FightService fightService;
 
     /**
+     * Returns a list with all the competitions in the application.
      * @param model model of the view
      * @return the view of the competition list
      */
     @GetMapping("/admin/competition/list")
     public String competitionList(HttpServletRequest request, Model model) {
-        List<Competition> competitionList = competitionService.findAll();
-        model.addAttribute("competitionList", competitionList)
-                .addAttribute("header", headerInflater.getHeader("Lista de competiciones", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "adminScreen"));
+        Page<Competition> compFirstPage = competitionService.getCompetitionsInPages(0);
+        model.addAttribute("header", headerInflater.getHeader("Lista de competiciones", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "adminScreen"));
+                .addAttribute("competitionPage", compFirstPage.getContent())
+                .addAttribute("empty", compFirstPage.getTotalElements() == 0)
+                .addAttribute("morePages", compFirstPage.hasNext())
         return "/admin/competition/list";
+    }
+
+    /**
+     * Returns a inflated page of competitions created in the application.
+     * @param page Number of page requested.
+     * @param model Model.
+     * @return Inflated page.
+     */
+    @GetMapping("/admin/competition/list/{page}")
+    public String getCompetitionPage(@PathVariable String page, Model model) {
+        Page<Competition> competitionPage = competitionService.getCompetitionsInPages(Integer.parseInt(page));
+        model.addAttribute("competitionPage", competitionPage.getContent());
+        return "/admin/competition/inflatedListCompetition";
     }
 
     /**

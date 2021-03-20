@@ -22,6 +22,7 @@
     <!-- Own CSS Files -->
     <link href="/assets/css/style.css" rel="stylesheet">
     <link href="/assets/css/header.css" rel="stylesheet">
+    <link href="/assets/css/bootstrapAccomodations.css" rel="stylesheet">
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -380,7 +381,7 @@
         </div>
     </section><!-- End Location Section -->
 
-    <!-- ======= Recent Blog Posts Section ======= -->
+    <!-- ======= Posts Section ======= -->
     <section class="posts" id="posts">
         <div class="container" data-aos="fade-up">
             <header class="section-header">
@@ -388,22 +389,36 @@
                 <p>Ponte al día leyendo todas las publicaciones desde nuestra web</p>
             </header>
             <div class="row">
-                {{#postList}}
-                <div class="col-lg-4">
-                    <a href="/news/{{ idPost }}">
-                        <div class="post-box">
-                            <div class="post-img"><img alt="" class="img-fluid" src="/image/post/{{idPost}}"></div>
-                            <span class="post-date">{{timestamp}}</span>
-                            <h3 class="post-title">{{title}}</h3>
-                            <div class="readmore stretched-link mt-auto" data-bs-target="#modalPost"
-                                 data-bs-toggle="modal">
-                                <span>Leer más</span><i class="far fa-long-arrow-right"></i>
+                {{ #empty }}
+                <div class="alert alert-corporative">No hay noticias registradas en la aplicación.</div>
+                {{ /empty }}{{ ^empty }}
+                <div class="row">
+                    {{ #postPage }}
+                    <div class="col-lg-4">
+                        <a href="/news/{{ idPost }}">
+                            <div class="post-box">
+                                <div class="post-img">
+                                    <img alt="" class="img-fluid" src="/image/post/{{ idPost }}">
+                                </div>
+                                <span class="post-date">{{ getFormattedEditionTimestamp }}</span>
+                                <h3 class="post-title">{{ title }}</h3>
+                                <div class="readmore stretched-link mt-auto" data-bs-target="#modalPost"
+                                     data-bs-toggle="modal">
+                                    <span>Leer más</span><i class="far fa-long-arrow-right"></i>
+                                </div>
+                                <div class="post-info">{{ body }}</div>
                             </div>
-                            <div class="post-info">{{body}}</div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
+                    {{ /postPage }}
                 </div>
-                {{/postList}}
+                {{ #morePages }}
+                <button id="loadNextPage" class="btn btn-corporative" data-numpage="1"
+                        data-totalpages="{{ totalPages }}">
+                    <i></i> Cargar más noticias
+                </button>
+                {{ /morePages }}
+                {{ /empty }}
             </div>
         </div>
     </section>
@@ -460,5 +475,6 @@
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/ajaxIndexEmailSender.js"></script>
+<script src="/assets/js/newsPaginationIndex.js"></script>
 </body>
 </html>

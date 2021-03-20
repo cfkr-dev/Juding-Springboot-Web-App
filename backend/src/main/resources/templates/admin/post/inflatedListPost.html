@@ -1,0 +1,20 @@
+{{ #postPage }}
+<div class="rtRow">
+    <div class="width5 text-center">{{ idPost }}</div>
+    <div class="width40">{{ title }}</div>
+    <div class="width15 text-center">{{ getFormattedEditionTimestamp }}</div>
+    <div class="width25 text-center">{{ author.getName }}</div>
+    <div class="width15 text-center">
+        <a class="btn btn-outline-corporative" href="/news/{{ idPost }}" target="_blank">
+            <i class="fas fa-external-link-alt"></i>
+        </a>
+        <a href="/admin/post/edit/{{ idPost }}" class="btn btn-outline-corporative">
+            <i class="fas fa-pencil"></i>
+        </a>
+        <button class="btn btn-corporative" data-bs-target="#modalDelete" data-bs-toggle="modal"
+                data-id="{{ idPost }}" data-type="post">
+            <i class="fas fa-trash-alt delete"></i>
+        </button>
+    </div>
+</div>
+{{ /postPage }}

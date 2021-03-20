@@ -10,7 +10,12 @@
             </a>
         </div>
     </div>
-    <div class="responsiveTable">
+    {{ #empty }}
+    <div class="alert alert-corporative">
+        No hay competiciones registradas.
+    </div>
+    {{ /empty }}{{ ^empty }}
+    <div class="responsiveTable" id="table">
         <div class="rtRow rtHeader">
             <div class="width5 text-center">Id.</div>
             <div class="width25 text-center">Nombre de la competición</div>
@@ -19,7 +24,7 @@
             <div class="width10 text-center">Rango de pesos</div>
             <div class="width20 text-center">Acciones</div>
         </div>
-        {{ #competitionList}}
+        {{ #competitionPage }}
         <div class="rtRow">
             <div class="width5 text-center">{{ idCompetition}}</div>
             <div class="width25 text-center">{{ shortName}}</div>
@@ -51,10 +56,16 @@
                 </div>
             </div>
         </div>
-        {{/competitionList}}
-        {{^competitionList}}
-        <div class="text-center mt-2 mb-2"> No hay ninguna competitición actualmente</div>
-        {{/competitionList}}
+        {{ /competitionPage }}
+        {{ /empty }}
+    </div>
+    <div class="width100 pt-2 text-center">
+        {{ #morePages }}
+        <button data-role="competition" id="loadNextPage" class="btn btn-corporative" data-numpage="1"
+                data-totalpages="{{ totalPages }}">
+            <i></i> Cargar más competiciones
+        </button>
+        {{ /morePages }}
     </div>
 </div>
 <!-- Modal for posts info -->
@@ -111,6 +122,7 @@
 <script src="/assets/vendor/jquery/jquery.min.js"></script>
 <script src="/assets/vendor/bootstrap/js/bootstrap.js"></script>
 <script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/tinymce/js/tinymce/tinymce.min.js"></script>
 
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>

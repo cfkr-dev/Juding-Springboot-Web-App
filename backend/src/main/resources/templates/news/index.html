@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>New - Juding</title>
+    <title>Noticia - Juding</title>
 
     <!-- Favicons -->
     <link href="/assets/img/hero-img.png" rel="icon">
@@ -23,7 +23,7 @@
 <body>
 <header class="header fixed-top" id="header">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-        <a class="logo d-flex align-items-center" href="index.html">
+        <a class="logo d-flex align-items-center" href="../index.html">
             <img alt="" src="/assets/img/hero-img.png">
             <span>Juding</span>
         </a>
@@ -36,31 +36,31 @@
         </nav><!-- .navbar -->
     </div>
 </header>
-<div class="container pb-4">
+<div class="container">
     <div class="row">
-        <div class="col-lg-8 news">
-            <h2 class="competitionTitle">{{post.title}}</h2>
+        <div class="col-lg-8 news pb-3">
+            <h2 class="competitionTitle">{{ bigPost.title }}</h2>
             <div class="imageInTheMiddle">
-                <img alt="" class="imageNews pb-2" src="/image/post/{{post.idPost}}">
+                <img alt="" class="imageNews pb-2" src="/image/post/{{ bigPost.idPost }}">
             </div>
             <div class="responsiveTable">
                 <div class="rtRow modificationResponsibleTable">
-                    <div class="width3 text-center modificationResponsibleChild">Autor: {{post.author.getName}} {{post.author.getSurname}}</div>
-                    <div class="width3 text-center modificationResponsibleChild">Fecha de publicación: {{post.getFormattedEditionTimestamp}}</div>
+                    <div class="width3 text-center modificationResponsibleChild">Autor: {{ bigPost.author.getName }} {{ bigPost.author.getSurname }}</div>
+                    <div class="width3 text-center modificationResponsibleChild">Fecha de publicación: {{ bigPost.getFormattedEditionTimestamp }}</div>
                 </div>
             </div>
-            <div>{{{post.body}}}</div>
+            <div>{{{ bigPost.body }}}</div>
         </div>
         <div class="col-lg-4">
             <div class="sidebar">
-                <div class="sidebarTitle">Otras noticias</div>
-                {{#postList}}
+                <div class="sidebarTitle">Noticias recientes</div>
+                {{ #recentPosts }}
                 <div class="post-item clearfix mb-3">
-                    <img alt="" class="img-fluid newsImage" src="/image/{{idPost}}">
-                    <h4 class="newsTitle"><a href="/news/{{idPost}}">{{title}}</a></h4>
-                    <span class="post-date newsDate">{{timestamp}}</span>
+                    <img alt="" class="img-fluid newsImage" src="/image/post/{{ idPost }}">
+                    <h4 class="newsTitle"><a href="/news/{{ idPost }}">{{ title }}</a></h4>
+                    <span class="post-date newsDate">{{ getFormattedEditionTimestamp }}</span>
                 </div>
-                {{/postList}}
+                {{ /recentPosts }}
             </div>
         </div>
     </div>
