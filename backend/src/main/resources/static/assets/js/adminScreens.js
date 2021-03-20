@@ -9,10 +9,15 @@ $("#modalDelete").on("show.bs.modal", function (evt) {
 });
 
 $(function(){
-    tinymce.init({
-        selector: 'textarea',
-        language: 'es',
-        plugins: ['fullscreen', 'lists', 'link', 'table'],
-        toolbar: 'undo redo | styleselect | bold italic underline fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist | link unlink | table | fullscreen'
-    });
+    if ($("textarea").length) {
+        tinymce.init({
+            selector: 'textarea',
+            language: 'es',
+            plugins: ['fullscreen', 'lists', 'link', 'table'],
+            toolbar: 'undo redo | styleselect | bold italic underline fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist | link unlink | table | fullscreen'
+        });
+    }
+    if ($("select").length){
+        $("select").chosen();
+    }
 })

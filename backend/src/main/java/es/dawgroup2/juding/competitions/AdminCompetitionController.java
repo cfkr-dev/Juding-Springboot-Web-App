@@ -1,6 +1,5 @@
 package es.dawgroup2.juding.competitions;
 
-import es.dawgroup2.juding.auxTypes.attendances.AttendanceService;
 import es.dawgroup2.juding.fight.FightService;
 import es.dawgroup2.juding.main.DateService;
 import es.dawgroup2.juding.users.UserService;
@@ -22,9 +21,6 @@ public class AdminCompetitionController {
 
     @Autowired
     CompetitionService competitionService;
-
-    @Autowired
-    AttendanceService attendanceService;
 
     @Autowired
     DateService dateService;
@@ -55,7 +51,7 @@ public class AdminCompetitionController {
     public String editCompetition(@PathVariable String idCompetition, Model model) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         model.addAttribute("competition", competition)
-                .addAttribute("attendance", attendanceService.getAttendanceToString(competition.getRefereeStatus()));
+                .addAttribute("refereeList", userService.getActiveRefereesList(competition.getReferee().getLicenseId()));
         return "/admin/competition/edit";
     }
 
@@ -65,6 +61,7 @@ public class AdminCompetitionController {
      */
     @GetMapping("/admin/competition/newCompetition")
     public String newCompetition(Model model) {
+        model.addAttribute("refereeList", userService.getActiveRefereesList());
         return "/admin/competition/newCompetition";
     }
 
@@ -78,7 +75,6 @@ public class AdminCompetitionController {
      * @param startDate      The start date of a competition
      * @param endDate        The end date of a competition
      * @param referee        referee The license of the referee in charge of the competition
-     * @param status         A String of that show the status of the referee attendance
      * @return The new competition
      * @throws IOException
      */
@@ -89,8 +85,7 @@ public class AdminCompetitionController {
                                   @RequestParam int maxWeight,
                                   @RequestParam String startDate,
                                   @RequestParam String endDate,
-                                  @RequestParam String referee,
-                                  @RequestParam String status) throws ParseException {
+                                  @RequestParam String referee) throws ParseException {
         Competition competition = new Competition();
         competition.setShortName(shortName)
                 .setAdditionalInfo(additionalInfo)
@@ -98,8 +93,7 @@ public class AdminCompetitionController {
                 .setMaxWeight(maxWeight)
                 .setStartDate(dateService.stringToTimestamp(startDate))
                 .setEndDate(dateService.stringToTimestamp(endDate))
-                .setReferee(userService.getUserOrNull(referee))
-                .setRefereeStatus(attendanceService.findAttendanceById(status));
+                .setReferee(userService.getUserOrNull(referee));
 
         return "redirect:/admin/competition/list";
     }
@@ -115,7 +109,6 @@ public class AdminCompetitionController {
      * @param startDate      The start date of a competition
      * @param endDate        The end date of a competition
      * @param referee        The license of the referee in charge of the competition
-     * @param refereeStatus  A String of that show the status of the referee attendance
      * @return The competition edited
      * @throws IOException
      * @throws SQLException
@@ -128,15 +121,13 @@ public class AdminCompetitionController {
                                           @RequestParam int maxWeight,
                                           @RequestParam String startDate,
                                           @RequestParam String endDate,
-                                          @RequestParam String referee,
-                                          @RequestParam String refereeStatus) throws ParseException {
+                                          @RequestParam String referee) throws ParseException {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         competition.setShortName(shortName)
                 .setAdditionalInfo(additionalInfo)
                 .setMinWeight(minWeight)
                 .setMaxWeight(maxWeight)
                 .setReferee(userService.getUserOrNull(referee))
-                .setRefereeStatus(attendanceService.findAttendanceById(refereeStatus))
                 .setStartDate(dateService.stringToTimestamp(startDate))
                 .setEndDate(dateService.stringToTimestamp(endDate));
         competitionService.updatingInfoCompetition(competition);
@@ -154,9 +145,6 @@ public class AdminCompetitionController {
     @GetMapping("/admin/competition/delete/{idCompetition}")
     public String showCompetitionToDelete(Model model, @PathVariable String idCompetition) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
-        //List<Fight> fights= fightService.findByIdCompetition(idCompetition);
-        //competition.setFights(null);
-        //fightService.deleteAll(fights);
         model.addAttribute("competition", competition);
         competitionService.deleteById(idCompetition);
         return "redirect:/admin/competition/list";
