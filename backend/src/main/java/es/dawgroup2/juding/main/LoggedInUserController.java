@@ -127,41 +127,10 @@ public class LoggedInUserController {
         return "redirect:/myProfile";
     }
 
-    private class UserAux implements Comparable<UserAux>{
-        private final User user;
-        private final int value;
-
-        public UserAux(User user, int value) {
-            this.user = user;
-            this.value = value;
-        }
-
-        public User getUser() {
-            return user;
-        }
-
-        public int getValue() {
-            return value;
-        }
-
-        @Override
-        public int compareTo(UserAux o) {
-            return Integer.compare(o.getValue(), this.getValue());
-        }
-    }
-
     @GetMapping("/ranking")
     public String getRanking(Model model){
-        List<User> allUsers = userService.getCompetitors();
-        List<UserAux> aux = new ArrayList<>();
-        for (User u : allUsers){
-            int total = 0;
-            for (int i : u.getCompetitorMedals())
-                total += i;
-            aux.add(new UserAux(u, total));
-        }
-        aux.sort(UserAux::compareTo);
-        model.addAttribute("list", aux);
+        List<?> rankingList = userService.getRanking();
+        model.addAttribute("list", rankingList);
         return "/ranking";
     }
 }
