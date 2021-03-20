@@ -3,6 +3,9 @@ package es.dawgroup2.juding.users;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
 import es.dawgroup2.juding.auxTypes.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -24,11 +27,29 @@ public class UserService {
     }
 
     /**
+     * Returns a page of competitors (each page contains 10 elements).
+     * @param num Number of page
+     * @return Page
+     */
+    public Page<User> getCompetitorsInPages(int num){
+        return userRepository.findByRolesContaining(Role.C, PageRequest.of(num, 10));
+    }
+
+    /**
      * Retrieves the list of active referees registered in the app.
      * @return List of active referees.
      */
     public List<User> getActiveReferees(){
         return userRepository.findByRolesContainingAndRefereeRangeNot(Role.R, RefereeRange.S);
+    }
+
+    /**
+     * Returns a page of referees (each page contains 10 elements).
+     * @param num Number of page
+     * @return Page
+     */
+    public Page<User> getActiveRefereesInPages(int num){
+        return userRepository.findByRolesContainingAndRefereeRangeNot(Role.R, RefereeRange.S, PageRequest.of(num, 10));
     }
 
     /**

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Lista de {{ #competitors }}competidores{{ /competitors }}{{ ^competitors }}árbitros{{ /competitors }} - Juding</title>
+    <title>Lista de {{ #competitors }}competidores{{ /competitors }}{{ ^competitors }}árbitros{{ /competitors }} -
+        Juding</title>
 
     <!-- Favicons -->
     <link href="/assets/img/hero-img.png" rel="icon">
@@ -107,12 +108,12 @@
     {{ /pendingApplications }}
     <h3 class="h3">Árbitros</h3>
     {{ /competitors }}
-    {{ #userList.isEmpty }}
+    {{ #empty }}
     <div class="alert alert-corporative">
         No hay usuarios registrados de este rol.
     </div>
-    {{ /userList.isEmpty }}{{ ^userList.isEmpty }}
-    <div class="responsiveTable">
+    {{ /empty }}{{ ^empty }}
+    <div class="responsiveTable" id="table">
         <div class="rtRow rtHeader">
             <div class="width10 text-center">Rol</div>
             <div class="width15 text-center">Licencia</div>
@@ -122,7 +123,7 @@
             <div class="width20 text-center">Correo Electrónico</div>
             <div class="width15 text-center">Acciones</div>
         </div>
-        {{ #userList }}
+        {{ #userPage }}
         <div class="rtRow">
             <div class="width10 text-center">
                 <i class="fas beltStyle {{ belt }} {{ #competitors }}fa-user-ninja{{ /competitors }}{{ ^competitors }}fa-user-tie{{ /competitors }}"></i>
@@ -145,12 +146,53 @@
                     <i class="fas fa-trash-alt delete"></i>
                 </button>
             </div>
-            {{> admin/user/list.moreInformation }}
+            <div class="viewMore" style="display: none">
+                <div class="col-12 col-lg-4 text-center px-3">
+                    <img alt="avatar" class="avatar" src="/image/user/{{ licenseId }}">
+                </div>
+                <div class="col-12 col-lg-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">{{ nickname }}</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-2x beltStyle {{ belt }} {{ #competitors }}fa-user-ninja{{ /competitors }}{{ ^competitors }}fa-user-tie{{ /competitors }}"></i>
+                            </div>
+                        </div>
+                        <div class="card-text text-start">
+                            {{ name }} <strong>{{ surname }}</strong><br>
+                            <strong>Licencia:</strong> {{ licenseId }}.<br>
+                            <strong>DNI:</strong> {{ dni }}.<br>
+                            <strong>Correo Electrónico:</strong> {{ email }}.<br>
+                            <strong>Género:</strong> {{ gender.getDescription }}.<br>
+                            <strong>Fecha de nacimiento:</strong> {{ getFormattedBirthDate }}.<br>
+                            {{ #competitors }}
+                            <strong>Gimnasio:</strong> {{ gym }}.<br>
+                            <strong>Peso:</strong> {{ weight }}kg.
+                            {{ /competitors }}{{ ^competitors }}
+                            <strong>Rango:</strong> {{ refereeRange.getDescription }}.
+                            {{ /competitors }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        {{ /userList }}
+        {{ /userPage }}
     </div>
-    {{ /userList.isEmpty }}
+    <div class="pt-2 text-center">
+        {{ #morePages }}
+        <button data-role="{{ #competitors }}competitors{{ /competitors }}{{ ^competitors }}referees{{ /competitors }}"
+                id="loadNextPage" class="btn btn-corporative" data-numpage="1" data-totalpages="{{ totalPages }}">
+            <i></i> Cargar más usuarios
+        </button>
+        {{ /morePages }}{{ ^morePages }}
+        <button class="btn btn-outline-corporative" disabled>No hay más ítems</button>
+        {{ /morePages }}
+    </div>
+    {{ /empty }}
 </div>
+
 
 <!-- Modal for profiles info (dynamically filled with info when opening thanks to JS) -->
 <div class="modal fade" id="modalProfile" tabindex="-1">
@@ -207,6 +249,7 @@
 <script src="/assets/vendor/jquery/jquery.min.js"></script>
 <script src="/assets/vendor/bootstrap/js/bootstrap.js"></script>
 <script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/tinymce/js/tinymce/tinymce.min.js"></script>
 
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>

@@ -1,10 +1,13 @@
 package es.dawgroup2.juding.competitions;
 
+import es.dawgroup2.juding.auxTypes.roles.Role;
 import es.dawgroup2.juding.fight.Fight;
 import es.dawgroup2.juding.fight.FightService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -51,6 +54,15 @@ public class CompetitionService {
      */
     public List<Competition> findAll() {
         return competitionRepository.findAll();
+    }
+
+    /**
+     * Returns a page of competitions (each page contains 10 elements).
+     * @param num Number of page
+     * @return Page
+     */
+    public Page<Competition> getCompetitionsInPages(int num){
+        return competitionRepository.findAll(PageRequest.of(num, 10));
     }
 
     /**

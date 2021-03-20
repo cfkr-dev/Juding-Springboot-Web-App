@@ -8,6 +8,7 @@ import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.auxTypes.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -55,18 +56,49 @@ public class AdminUserController {
     @GetMapping("/admin/user/list/{stringRole}")
     public String userList(@PathVariable String stringRole, Model model) {
         if (stringRole.equals("competitors")) {
-            model.addAttribute("userList", userService.getCompetitors()).addAttribute("competitors", true);
+            Page<User> firstPage = userService.getCompetitorsInPages(0);
+            model.addAttribute("competitors", true)
+                    .addAttribute("empty", firstPage.getTotalElements() == 0)
+                    .addAttribute("userPage", firstPage.getContent())
+                    .addAttribute("morePages", firstPage.hasNext())
+                    .addAttribute("totalPages", firstPage.getTotalPages());
         } else if (stringRole.equals("referees")) {
             if (userService.refereePendingApplications() > 0) {
                 model.addAttribute("pendingApplications", true).addAttribute("pendingList", userService.getRefereeApplications());
             } else {
                 model.addAttribute("pendingApplications", false);
             }
-            model.addAttribute("userList", userService.getActiveReferees()).addAttribute("competitors", false);
+            Page<User> firstPage = userService.getActiveRefereesInPages(0);
+            model.addAttribute("competitors", false)
+                    .addAttribute("userPage", firstPage.getContent())
+                    .addAttribute("morePages", firstPage.hasNext())
+                    .addAttribute("totalPages", firstPage.getTotalPages());
         } else {
             return "redirect:/error/404";
         }
         return "/admin/user/list";
+    }
+
+    /**
+     * Returns a inflated page of users (even competitors or referees).
+     * @param stringRole Role of user in string format.
+     * @param page Number of page requested.
+     * @param model Model.
+     * @return Inflated page.
+     */
+    @GetMapping("/admin/{stringRole}/list/{page}")
+    public String getUserPage(@PathVariable String stringRole, @PathVariable String page, Model model) {
+        if (stringRole.equals("competitors")) {
+            Page<User> userPage = userService.getCompetitorsInPages(Integer.parseInt(page));
+            model.addAttribute("competitors", true)
+                    .addAttribute("userPage", userPage.getContent());
+            return "/admin/user/inflatedListCompetitor";
+        } else {
+            Page<User> userPage = userService.getActiveRefereesInPages(Integer.parseInt(page));
+            model.addAttribute("competitors", false)
+                    .addAttribute("userPage", userPage.getContent());
+            return "/admin/user/inflatedListReferee";
+        }
     }
 
     /**

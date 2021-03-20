@@ -1,9 +1,10 @@
 package es.dawgroup2.juding.posts;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,12 +38,23 @@ public class PostService {
         return postRepository.findAll();
     }
 
+
     /**
      * Returns the list with all posts ordering them by descendant timestamp.
      * @return a list with all post instances in the specific order.
      */
     public List<Post> findAllDesc() {
         return postRepository.findAllByOrderByTimestampDesc();
+    }
+
+    /**
+     * Returns a page of posts ordering them by descendant timestamp.
+     * @param num Number of page
+     * @param items Number of items per page
+     * @return A page of posts
+     */
+    public Page<Post> getPostsInPages(int num, int items){
+        return postRepository.findAllByOrderByTimestampDesc(PageRequest.of(num, items));
     }
 
     /**

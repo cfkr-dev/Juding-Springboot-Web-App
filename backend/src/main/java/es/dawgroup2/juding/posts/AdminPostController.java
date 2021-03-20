@@ -1,8 +1,10 @@
 package es.dawgroup2.juding.posts;
 
+import es.dawgroup2.juding.competitions.Competition;
 import es.dawgroup2.juding.users.UserService;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.List;
 
 @Controller
 public class AdminPostController {
@@ -30,8 +31,25 @@ public class AdminPostController {
      */
     @GetMapping("/admin/post/list")
     public String postList(Model model) {
-        model.addAttribute("postList", postService.findAllDesc());
+        Page<Post> postFirstPage = postService.getPostsInPages(0, 10);
+        model.addAttribute("postPage", postFirstPage.getContent())
+                .addAttribute("empty", postFirstPage.getTotalElements() == 0)
+                .addAttribute("morePages", postFirstPage.hasNext())
+                .addAttribute("totalPages", postFirstPage.getTotalPages());
         return "/admin/post/list";
+    }
+
+    /**
+     * Returns a inflated page of registered posts.
+     * @param page Number of page requested.
+     * @param model Model.
+     * @return Inflated page.
+     */
+    @GetMapping("/admin/post/list/{page}")
+    public String getPostPage(@PathVariable String page, Model model) {
+        Page<Post> postPage = postService.getPostsInPages(Integer.parseInt(page), 10);
+        model.addAttribute("postPage", postPage.getContent());
+        return "/admin/post/inflatedListPost";
     }
 
     /**
