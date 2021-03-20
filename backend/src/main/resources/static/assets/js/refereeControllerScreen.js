@@ -386,7 +386,7 @@ $(function () {
                     "loser": (player1[0] === 10 || player2[2] === 3) ? player2[4] : player1[4],
                     "fightId": $("#fight").val()
                 },
-                url: window.location.pathname,
+                url: window.location.pathname + "/saveResult",
                 method: 'get'
             }).done((ans) => {
                 if (ans) {
