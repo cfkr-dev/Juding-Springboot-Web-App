@@ -1,45 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>Ranking - Juding</title>
-
-    <!-- Favicons -->
-    <link href="/assets/img/hero-img.png" rel="icon">
-
-    <!-- Vendor CSS Files -->
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/assets/vendor/font-awesome/css/all.css" rel="stylesheet">
-
-    <!-- Own CSS Files -->
-    <link href="/assets/css/style.css" rel="stylesheet">
-    <link href="/assets/css/header.css" rel="stylesheet">
-    <link href="/assets/css/bootstrapAccomodations.css" rel="stylesheet">
-    <link href="/assets/css/responsiveTable.css" rel="stylesheet">
-    <link href="/assets/css/profiles.css" rel="stylesheet">
-    <link href="/assets/css/beltAssignations.css" rel="stylesheet">
-</head>
-<body>
-<header class="header fixed-top" id="header">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-        <a class="logo d-flex align-items-center" href="index.html">
-            <img alt="" src="/assets/img/hero-img.png">
-            <span>Juding</span>
-        </a>
-        <nav class="navbar" id="navbar">
-            <ul>
-                <li><a class="nav-link scrollto" href="index.html">Inicio</a></li>
-                <li><a class="nav-link scrollto active" href="#">Ranking</a></li>
-                <li><a class="nav-link scrollto" href="viewProfile.html">Mi perfil</a></li>
-                <li><a class="login scrollto" href="/index.html">Cerrar sesión</a></li>
-            </ul>
-            <i class="far fa-bars mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
-    </div>
-</header>
+{{{ header }}}
 <div class="container">
     <h1 class="h1">Ranking</h1>
     <div class="responsiveTable">
@@ -54,12 +13,12 @@
         {{ #list }}
         <div class="rtRow">
             <div class="width5 text-center">{{ -index }}</div>
-            <div class="width30 nameModal">{{ 4 }} {{ 5 }}</div>
+            <div class="width30 nameModal">{{ user.getNickname }}</div>
             <div class="width20 text-center">
-                <i class="fas fa-user-ninja beltStyle {{ 7 }}"></i>
+                <i class="fas fa-user-ninja beltStyle {{ user.belt }}" title="{{ user.belt.getLongName }}"></i>
             </div>
-            <div class="width15 text-center">{{ 2 }}</div>
-            <div class="width15 text-center">{{ 1 }}</div>
+            <div class="width15 text-center">{{ user.getCompetitorMedals.size }}</div>
+            <div class="width15 text-center">{{ value }}</div>
             <div class="width5 text-center">
                 <button class="btn btn-sm btn-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
                     <i class="fas fa-plus-circle"></i>
@@ -67,22 +26,22 @@
             </div>
             <div class="viewMore" style="display: none">
                 <div class="col-md-4">
-                    <img alt="avatar" class="avatar" src="/image/user/{{ 3 }}">
+                    <img alt="avatar" class="avatar" src="/image/user/{{ user.getLicenseId }}">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-10">
-                                <h5 class="card-title">{{ 0 }}</h5>
+                                <h5 class="card-title">{{ user.getNickname }}</h5>
                             </div>
                             <div class="col-2">
-                                <i class="fas fa-2x fa-user-ninja beltStyle {{ 7 }}"></i>
+                                <i class="fas fa-2x fa-user-ninja beltStyle {{ user.belt }}" title="{{ user.belt.getLongName }}"></i>
                             </div>
                         </div>
                         <div class="card-text text-start">
-                            {{ 4 }} <strong>{{ 5 }}</strong><br>
-                            <strong>Licencia:</strong> {{ 3 }}.<br>
-                            <strong>DNI:</strong> {{ 6 }}.<br>
+                            {{ user.getName }} <strong>{{ user.getSurname }}</strong><br>
+                            <strong>Licencia:</strong> {{ user.getLicenseId }}.<br>
+                            <strong>DNI:</strong> {{ user.getDni }}.<br>
                         </div>
                     </div>
                 </div>
