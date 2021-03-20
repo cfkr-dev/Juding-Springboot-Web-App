@@ -1,6 +1,5 @@
 package es.dawgroup2.juding.main;
 
-import es.dawgroup2.juding.auxTypes.attendances.Attendance;
 import es.dawgroup2.juding.auxTypes.belts.Belt;
 import es.dawgroup2.juding.auxTypes.gender.Gender;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
@@ -129,8 +128,7 @@ public class DataLoader {
                 160,
                 dateService.stringToTimestamp("20/03/2021 12:00"),
                 dateService.stringToTimestamp("22/03/2021 19:00"),
-                referees.get(0),
-                Attendance.N
+                referees.get(0)
         );
         competitionService.add(trial1);
         competitions.add(trial1);
@@ -141,8 +139,7 @@ public class DataLoader {
                 160,
                 dateService.stringToTimestamp("25/03/2021 12:00"),
                 dateService.stringToTimestamp("27/03/2021 19:00"),
-                referees.get(0),
-                Attendance.N
+                referees.get(0)
         );
         competitionService.add(trial2);
         competitions.add(trial2);

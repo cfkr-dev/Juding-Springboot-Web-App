@@ -83,21 +83,22 @@
             </div>
         </div>
     </div>
+    {{ #isCompetitor }}
     <div class="row">
         <div class="col-12 col-md-6 text-center">
-
-            <h4 class="h4">{{ #isCompetitor }}Gráfico de medallas{{ /isCompetitor }}{{ ^isCompetitor }}Gráfico de asistencia{{ /isCompetitor }}</h4>
+            <h4 class="h4">Gráfico de medallas</h4>
             <div>
                 <canvas id="chart1"></canvas>
             </div>
         </div>
         <div class="col-12 col-md-6 text-center">
-            <h4 class="h4">{{ #isCompetitor }}Evolución anual{{ /isCompetitor }}{{ ^isCompetitor }}Gráfico de convocatorias{{ /isCompetitor }}</h4>
+            <h4 class="h4">Evolución anual</h4>
             <div>
                 <canvas id="chart2"></canvas>
             </div>
         </div>
     </div>
+    {{ ^isCompetitor }}
     <div class="row mx-3 my-3">
         <div class="alert alert-info">
             <div class="row">
@@ -230,6 +231,6 @@
 
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>
-<script src="/assets/js/{{ #isCompetitor }}competitor{{ /isCompetitor }}{{ ^isCompetitor }}referee{{ /isCompetitor }}Charts.js"></script>
+{{ #isCompetitor }}<script src="/assets/js/competitorCharts.js"></script>{{ /isCompetitor }}
 </body>
 </html>

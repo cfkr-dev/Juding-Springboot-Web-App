@@ -1,21 +1,13 @@
 package es.dawgroup2.juding.competitions;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import es.dawgroup2.juding.auxTypes.attendances.Attendance;
 import es.dawgroup2.juding.fight.Fight;
 import es.dawgroup2.juding.users.User;
-import org.hibernate.engine.jdbc.BlobProxy;
-import org.springframework.core.io.ClassPathResource;
 
 import javax.persistence.*;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.sql.Blob;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -46,15 +38,11 @@ public class Competition implements Serializable {
     @ManyToOne
     private User referee;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Attendance refereeStatus;
-
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Fight> fights;
 
 
-    public Competition(String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, User referee, Attendance refereeStatus) {
+    public Competition(String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, User referee) {
         this.shortName = shortName;
         this.additionalInfo = additionalInfo;
         this.minWeight = minWeight;
@@ -62,7 +50,6 @@ public class Competition implements Serializable {
         this.startDate = startDate;
         this.endDate = endDate;
         this.referee = referee;
-        this.refereeStatus = refereeStatus;
     }
 
     protected Competition() {
@@ -138,15 +125,6 @@ public class Competition implements Serializable {
 
     public Competition setReferee(User referee) {
         this.referee = referee;
-        return this;
-    }
-
-    public Attendance getRefereeStatus() {
-        return refereeStatus;
-    }
-
-    public Competition setRefereeStatus(Attendance refereeStatus) {
-        this.refereeStatus = refereeStatus;
         return this;
     }
 

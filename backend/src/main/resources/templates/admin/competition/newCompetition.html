@@ -101,26 +101,11 @@
         <!-- LicenseId of the referee -->
         <label class="txt1" for="referee">Número de licencia del árbitro encargado de la competición<span
                 class="asterisk">*</span></label>
-        <input class="form-control" id="referee" name="referee" pattern="JU-[0-9]{10}$" required type="text"
-        >
+        <select name="referee" id="referee">
+            {{{ refereeList }}}
+        </select>
         <div class="invalid-feedback">
             La licencia no se ajusta al formato JU-(10 dígitos).
-        </div>
-
-        <!-- Referee confirmation -->
-        <label class="txt1" for="refereeStatus">Asistencia del árbitro<span class="asterisk">*</span></label>
-        <input class="form-control" id="refereeStatus" name="status" required type="text"
-               pattern="Confirmada|Sin confirmar|Rechazada"
-        >
-        <div class="invalid-feedback">
-            Opciones disponibles: "Confirmada" o "Sin confirmar" o "Rechazada".
-        </div>
-
-        <!-- Competition image -->
-        <label class="txt1" for="imageFile">Imagen de competición</label>
-        <input class="form-control" id="imageFile" name="imageFile" type="file" accept="image/jpeg">
-        <div class="invalid-feedback">
-            Prueba de nuevo a subir la imagen en formato ".jpg".
         </div>
 
         <!-- Start date and end date of a competition fields -->

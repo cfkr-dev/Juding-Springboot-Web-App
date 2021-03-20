@@ -1,6 +1,5 @@
 package es.dawgroup2.juding.competitions;
 
-import es.dawgroup2.juding.auxTypes.attendances.AttendanceService;
 import es.dawgroup2.juding.fight.Fight;
 import es.dawgroup2.juding.main.DateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +11,8 @@ import java.util.List;
 
 @Controller
 public class CompetitionController {
-
     @Autowired
     CompetitionService competitionService;
-
-    @Autowired
-    AttendanceService attendanceService;
 
     @Autowired
     DateService dateService;

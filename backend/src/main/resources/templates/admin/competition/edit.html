@@ -13,6 +13,7 @@
     <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet">
     <link href="/assets/vendor/font-awesome/css/all.css" rel="stylesheet">
+    <link href="/assets/vendor/chosen/component-chosen.css" rel="stylesheet">
 
     <!-- Own CSS Files -->
     <link href="/assets/css/header.css" rel="stylesheet">
@@ -71,10 +72,9 @@
         </div>
 
         <!-- Competition additional info -->
-        <label class="txt1" for="additionalInfo">Información sobre la competición <span
-                class="asterisk">*</span></label>
-        <textarea cols="30" id="additionalInfo" name="additionalInfo" required rows="20"
-        >{{competition.additionalInfo}}</textarea>
+        <label class="txt1" for="additionalInfo">Información sobre la competición
+            <span class="asterisk">*</span></label>
+        <textarea id="additionalInfo" name="additionalInfo" required rows="20">{{competition.additionalInfo}}</textarea>
         <div class="invalid-feedback">
             El campo no puede estar vacío.
         </div>
@@ -100,32 +100,13 @@
         </div>
 
         <!-- LicenseId of the referee -->
-        <label class="txt1" for="referee">Número de licencia del árbitro encargado de la competición<span
-                class="asterisk">*</span></label>
-        <input class="form-control" id="referee" name="referee" pattern="JU-[0-9]{10}$" required type="text"
-               value="{{competition.referee.getLicenseId}}">
+        <label class="txt1" for="referee">Número de licencia del árbitro encargado de la competición
+            <span class="asterisk">*</span></label>
+        <select name="referee" id="referee" class="form-select" required>
+            {{{ refereeList }}}
+        </select>
         <div class="invalid-feedback">
             La licencia no se ajusta al formato JU-(10 dígitos).
-        </div>
-
-        <!-- Referee confirmation -->
-        <label class="txt1" for="refereeStatus">Asistencia del árbitro<span class="asterisk">*</span></label>
-        <input class="form-control" id="refereeStatus" name="refereeStatus" required type="text"
-               pattern="Confirmada|Sin confirmar|Rechazada"
-               value="{{attendance}}">
-        <div class="invalid-feedback">
-            Opciones disponibles: "Confirmada" o "Sin confirmar" o "Rechazada".
-        </div>
-
-        <!-- Competition image -->
-        <div class="row">
-            <div class="width40"><label class="txt1" for="imageFile">Imagen de perfil</label></div>
-            <div class="width60">
-                <input class="form-control" id="imageFile" name="imageFile" type="file" accept="image/jpeg">
-                <div class="invalid-feedback">
-                    Prueba de nuevo a subir la imagen en formato ".jpg".
-                </div>
-            </div>
         </div>
 
         <!-- Start date and end date of a competition fields -->
@@ -135,7 +116,7 @@
                         class="asterisk">*</span></label>
                 <input class="form-control" id="startDate" name="startDate" required type="text"
                        value="{{competition.getFormattedStartDate}}"
-                       pattern="[0-9][0-9]/(0[1-9]|1[0-2]|2[0-9]{3} [0-2][0-9]:[0-5][0-9]">
+                       pattern="([0-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/2[0-9]{3} [0-2][0-9]:[0-5][0-9]">
                 <div class="invalid-feedback">
                     La fecha del inicio de la competición es obligatoria y debe introducirse en formato dd/mm/yyyy
                     HH:mm.
@@ -165,6 +146,7 @@
 <script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 <script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.es.js"></script>
 <script src="/assets/vendor/tinymce/js/tinymce/tinymce.min.js"></script>
+<script src="/assets/vendor/chosen/chosen.jquery.js"></script>
 
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>
