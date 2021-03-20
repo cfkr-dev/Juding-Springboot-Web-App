@@ -229,13 +229,13 @@ public class DataLoader {
                     "Israel Villanueva",
                     Gender.M,
                     910000008,
-                    "j.tocas@gmail.com",
+                    "d.israel@gmail.com",
                     dateService.stringToDate("29/11/1999"),
                     "0000000008A",
-                    "Jebas",
-                    passwordEncoder.encode("Jebas"),
-                    "¿Cómo tienes el pelo?",
-                    "Muy largo",
+                    "Debi",
+                    passwordEncoder.encode("Debi"),
+                    "¿Dónde estudias?",
+                    "Universodad",
                     imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
                     Belt.values()[0],
                     "Katan",
@@ -435,17 +435,17 @@ public class DataLoader {
 
             competitors.add(new User(
                     "0000000018",
-                    "Caridad",
-                    "Arias Pradas",
+                    "Carlos",
+                    "Horcajada Romo",
                     Gender.M,
                     910000018,
-                    "a.arias@gmail.com",
+                    "c.horcajada@gmail.com",
                     dateService.stringToDate("23/06/1975"),
                     "0000000018A",
-                    "Cary",
-                    passwordEncoder.encode("Cary"),
-                    "¿Qué estudias?",
-                    "Ingeniería del software",
+                    "Carlitos",
+                    passwordEncoder.encode("Carlitos"),
+                    "¿Hiciste la mili?",
+                    "Sí",
                     imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
                     Belt.values()[7],
                     "Ciedrum",
@@ -498,40 +498,19 @@ public class DataLoader {
 
             competitors.add(new User(
                     "0000000021",
-                    "Antonio",
-                    "González Pardo",
+                    "Alfredo",
+                    "Mendez Hernández",
                     Gender.H,
                     910000021,
-                    "ag.pardo@gmail.com",
+                    "a.mendez@gmail.com",
                     dateService.stringToDate("23/06/1975"),
                     "0000000021A",
-                    "AgPardo",
-                    passwordEncoder.encode("AgPardo"),
+                    "Alfred",
+                    passwordEncoder.encode("Alfred"),
                     "¿Qué asignatura te gusta?",
                     "Seguridad Informática",
                     imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
                     Belt.values()[13],
-                    "Elarion",
-                    77,
-                    null,
-                    Set.of(Role.C))
-            );
-
-            competitors.add(new User(
-                    "0000000022",
-                    "Alessandro",
-                    "Nuzzi Herrero",
-                    Gender.H,
-                    910000022,
-                    "s.nuzzi@gmail.com",
-                    dateService.stringToDate("15/02/2001"),
-                    "0000000022A",
-                    "Sandrito",
-                    passwordEncoder.encode("Sandrito"),
-                    "¿Qué asignatura te gusta?",
-                    "Estadística",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[12],
                     "Elarion",
                     77,
                     null,
@@ -910,8 +889,8 @@ public class DataLoader {
                 "Está competición es una celebración debido al nacimiento de la aplicación web Juding por lo que está abierta a todas las edades y es mixta.",
                 70,
                 80,
-                dateService.stringToTimestamp("20/03/2021 12:00"),
-                dateService.stringToTimestamp("22/03/2021 19:00"),
+                dateService.stringToTimestamp("19/03/2021 12:00"),
+                dateService.stringToTimestamp("24/03/2021 19:00"),
                 referees.get(0),
                 Attendance.N
         );
@@ -923,8 +902,8 @@ public class DataLoader {
                 "Está competición es una celebración debido al nacimiento de la aplicación web Juding por lo que está abierta a todas las edades y es mixta.",
                 60,
                 70,
-                dateService.stringToTimestamp("25/03/2021 12:00"),
-                dateService.stringToTimestamp("27/03/2021 19:00"),
+                dateService.stringToTimestamp("19/03/2021 12:00"),
+                dateService.stringToTimestamp("24/03/2021 19:00"),
                 referees.get(0),
                 Attendance.N
         );
@@ -936,8 +915,8 @@ public class DataLoader {
                 "Aprovecha esta nueva oportunidad para ganar si no pudiste la anterior vez o para mantenerte en el podium.",
                 70,
                 80,
-                dateService.stringToTimestamp("25/03/2021 12:00"),
-                dateService.stringToTimestamp("27/03/2021 19:00"),
+                dateService.stringToTimestamp("19/03/2021 12:00"),
+                dateService.stringToTimestamp("24/03/2021 19:00"),
                 referees.get(0),
                 Attendance.N
         );
@@ -949,8 +928,8 @@ public class DataLoader {
                 "Aprovecha esta nueva oportunidad para ganar si no pudiste la anterior vez o para mantenerte en el podium.",
                 60,
                 70,
-                dateService.stringToTimestamp("25/03/2021 12:00"),
-                dateService.stringToTimestamp("27/03/2021 19:00"),
+                dateService.stringToTimestamp("19/03/2021 12:00"),
+                dateService.stringToTimestamp("24/03/2021 19:00"),
                 referees.get(0),
                 Attendance.N
         );
@@ -962,8 +941,8 @@ public class DataLoader {
                 "Las inauguraciones ya terminaron y ahora es tu turno de de demostrar los frutos de tu nuevo entrenamiento. Dalo todo en el tatami",
                 70,
                 80,
-                dateService.stringToTimestamp("25/03/2021 12:00"),
-                dateService.stringToTimestamp("27/03/2021 19:00"),
+                dateService.stringToTimestamp("19/03/2021 12:00"),
+                dateService.stringToTimestamp("24/03/2021 19:00"),
                 referees.get(0),
                 Attendance.N
         );
@@ -975,8 +954,8 @@ public class DataLoader {
                 "Las inauguraciones ya terminaron y ahora es tu turno de de demostrar los frutos de tu nuevo entrenamiento. Dalo todo en el tatami",
                 60,
                 70,
-                dateService.stringToTimestamp("25/03/2021 12:00"),
-                dateService.stringToTimestamp("27/03/2021 19:00"),
+                dateService.stringToTimestamp("19/03/2021 12:00"),
+                dateService.stringToTimestamp("24/03/2021 19:00"),
                 referees.get(0),
                 Attendance.N
         );
@@ -988,8 +967,8 @@ public class DataLoader {
                 "Alcanza la cima del ranking de competidores y destaca ante los ojos de los seleccionadores nacionales",
                 70,
                 80,
-                dateService.stringToTimestamp("25/03/2021 12:00"),
-                dateService.stringToTimestamp("27/03/2021 19:00"),
+                dateService.stringToTimestamp("19/03/2021 12:00"),
+                dateService.stringToTimestamp("24/03/2021 19:00"),
                 referees.get(0),
                 Attendance.N
         );
@@ -1001,8 +980,8 @@ public class DataLoader {
                 "Alcanza la cima del ranking de competidores y destaca ante los ojos de los seleccionadores nacionales",
                 60,
                 70,
-                dateService.stringToTimestamp("25/03/2021 12:00"),
-                dateService.stringToTimestamp("27/03/2021 19:00"),
+                dateService.stringToTimestamp("19/03/2021 12:00"),
+                dateService.stringToTimestamp("24/03/2021 19:00"),
                 referees.get(0),
                 Attendance.N
         );
@@ -1014,8 +993,8 @@ public class DataLoader {
                 "Nuestro competidores son los mejores y ya dan mucho espectáculo. Hemos abierto una nueva tienda de regalos y todo lo que saquemos de la venta de productos durante la competición será donado a distintas ong",
                 70,
                 80,
-                dateService.stringToTimestamp("25/03/2021 12:00"),
-                dateService.stringToTimestamp("27/03/2021 19:00"),
+                dateService.stringToTimestamp("19/03/2021 12:00"),
+                dateService.stringToTimestamp("24/03/2021 19:00"),
                 referees.get(0),
                 Attendance.N
         );
@@ -1027,8 +1006,8 @@ public class DataLoader {
                 "Nuestro competidores son los mejores y ya dan mucho espectáculo. Hemos abierto una nueva tienda de regalos y todo lo que saquemos de la venta de productos durante la competición será donado a distintas ong",
                 60,
                 70,
-                dateService.stringToTimestamp("25/03/2021 12:00"),
-                dateService.stringToTimestamp("27/03/2021 19:00"),
+                dateService.stringToTimestamp("19/03/2021 12:00"),
+                dateService.stringToTimestamp("24/03/2021 19:00"),
                 referees.get(0),
                 Attendance.N
         );
@@ -1040,8 +1019,8 @@ public class DataLoader {
                 "Se terminó esta temporada por el momento pero dentro de unos meses empieza la siguiente. Inscríbete ya y entrena duro hasta la fecha.",
                 70,
                 80,
-                dateService.stringToTimestamp("25/03/2021 12:00"),
-                dateService.stringToTimestamp("27/03/2021 19:00"),
+                dateService.stringToTimestamp("19/03/2021 12:00"),
+                dateService.stringToTimestamp("24/03/2021 19:00"),
                 referees.get(0),
                 Attendance.N
         );
@@ -1053,8 +1032,8 @@ public class DataLoader {
                 "Se terminó esta temporada por el momento pero dentro de unos meses empieza la siguiente. Inscríbete ya y entrena duro hasta la fecha.",
                 60,
                 70,
-                dateService.stringToTimestamp("25/04/2021 12:00"),
-                dateService.stringToTimestamp("27/04/2021 19:00"),
+                dateService.stringToTimestamp("19/04/2021 12:00"),
+                dateService.stringToTimestamp("24/04/2021 19:00"),
                 referees.get(0),
                 Attendance.N
         );
@@ -1327,7 +1306,7 @@ public class DataLoader {
             competitionService.fightFinished(competitions.get(0), competitors.get(22), competitors.get(9));
             competitionService.fightFinished(competitions.get(0), competitors.get(3), competitors.get(28));
             // Finals
-            competitionService.fightFinished(competitions.get(0), competitors.get(3), competitors.get(28));
+            competitionService.fightFinished(competitions.get(0), competitors.get(3), competitors.get(22));
             competitionService.add(competitions.get(0));
 
             //TRIAL2
