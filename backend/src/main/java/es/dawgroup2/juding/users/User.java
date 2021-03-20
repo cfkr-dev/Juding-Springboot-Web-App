@@ -31,7 +31,7 @@ public class User {
     @Column(nullable = false, length = 1)
     private Gender gender;
 
-    private int phone;
+    private Integer phone;
 
     @Column(nullable = false)
     private String email;
@@ -58,6 +58,8 @@ public class User {
     @Lob
     @JsonIgnore
     private Blob imageFile;
+
+    private String mimeProfileImage;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 3)
@@ -141,11 +143,11 @@ public class User {
         return this;
     }
 
-    public int getPhone() {
+    public Integer getPhone() {
         return phone;
     }
 
-    public User setPhone(int phone) {
+    public User setPhone(Integer phone) {
         this.phone = phone;
         return this;
     }
@@ -219,6 +221,15 @@ public class User {
 
     public User setImageFile(Blob profileImage) {
         this.imageFile = profileImage;
+        return this;
+    }
+
+    public String getMimeProfileImage() {
+        return mimeProfileImage;
+    }
+
+    public User setMimeProfileImage(String mimeProfileImage) {
+        this.mimeProfileImage = mimeProfileImage;
         return this;
     }
 

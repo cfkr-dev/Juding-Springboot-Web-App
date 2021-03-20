@@ -52,7 +52,7 @@ $("#licenseId").on("blur", function () {
             if (ans) {
                 $("#licenseId").after('<div class="alert alert-success mt-1" id="licenseIdBanner">Este número de licencia se puede utilizar</div>');
                 forbiddenLicenseId = false;
-                somethingChanged = false;
+                somethingChanged = true;
             } else {
                 $("#licenseId").after('<div class="alert alert-danger mt-1" id="licenseIdBanner">Este número de licencia no se puede utilizar</div>');
                 forbiddenLicenseId = true;
@@ -75,7 +75,7 @@ $("#nickname").on("blur", function () {
             if (ans) {
                 $("#nickname").after('<div class="alert alert-success mt-1" id="nicknameBanner">Este apodo se puede utilizar</div>');
                 forbiddenNickname = false;
-                somethingChanged = false;
+                somethingChanged = true;
             } else {
                 $("#nickname").after('<div class="alert alert-danger mt-1" id="nicknameBanner">Este apodo no se puede utilizar</div>');
                 forbiddenNickname = true;
@@ -101,7 +101,7 @@ $("#dni").on("blur", function () {
             if (ans) {
                 $("#dni").after('<div class="alert alert-success mt-1" id="dniBanner">Este DNI se puede utilizar para este rol</div>');
                 forbiddenDni = false;
-                somethingChanged = false;
+                somethingChanged = true;
             } else {
                 $("#dni").after('<div class="alert alert-danger mt-1" id="dniBanner">Este DNI no se puede utilizar para este rol</div>');
                 forbiddenDni = true;
@@ -120,7 +120,7 @@ $("#maxWeight").on("blur", function (){
         if ($("#maxWeight").val() <= $("#maxWeight").parent().siblings(".minWeight").children("#minWeight").val()) {
             $("#maxWeight").after('<div class="alert alert-danger mt-1" id="maxWeightBanner">No se puede introducir un peso máximo menor que el peso mínimo</div>');
             forbiddenMaxWeight = true;
-            somethingChanged = false;
+            somethingChanged = true;
         } else {
             forbiddenMaxWeight = false;
             somethingChanged = false;
@@ -136,7 +136,7 @@ $("#endDate").on("blur", function (){
         if ($("#endDate").val() <= $("#endDate").parent().siblings(".startDate").children("#startDate").val()) {
             $("#endDate").after('<div class="alert alert-danger mt-1" id="endDateBanner">No se puede introducir una fecha de fin anterior a la fecha de inicio</div>');
             forbiddenEndDate = true;
-            somethingChanged = false;
+            somethingChanged = true;
         } else {
             forbiddenEndDate = false;
             somethingChanged = false;

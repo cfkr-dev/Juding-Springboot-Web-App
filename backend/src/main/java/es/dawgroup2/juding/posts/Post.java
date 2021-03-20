@@ -44,6 +44,8 @@ public class Post {
     @JsonIgnore
     private Blob imageFile;
 
+    private String mimeProfileImage;
+
     @Column(nullable = false)
     private Timestamp timestamp;
 
@@ -99,6 +101,15 @@ public class Post {
     public Post setImageFile(String path) throws IOException {
         ClassPathResource cpr = new ClassPathResource(path);
         imageFile = BlobProxy.generateProxy(cpr.getInputStream(), cpr.contentLength());
+        return this;
+    }
+
+    public String getMimeProfileImage() {
+        return mimeProfileImage;
+    }
+
+    public Post setMimeProfileImage(String mimeProfileImage) {
+        this.mimeProfileImage = mimeProfileImage;
         return this;
     }
 

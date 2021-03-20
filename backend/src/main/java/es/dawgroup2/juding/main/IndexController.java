@@ -10,6 +10,7 @@ import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.auxTypes.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,9 @@ public class IndexController {
 
     @Autowired
     DateService dateService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     /**
      * This method inflates the post box list in index main page.
@@ -104,12 +108,12 @@ public class IndexController {
                                    @RequestParam int weight) {
         User newUser = new User();
         try {
-            newUser.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone(Integer.parseInt(phone))
+            newUser.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone((phone.equals("")) ? null : Integer.parseInt(phone))
                     .setGender(genderService.findGenderById(gender)).setBirthDate(dateService.stringToDate(birthDate))
                     .setDni(dni).setGym(gym).setWeight(weight).setBelt(beltService.findBeltById(belt))
-                    .setImageFile(imageService.uploadProfileImage(image)).setNickname(nickname)
-                    .setPassword(password).setSecurityQuestion(securityQuestion).setSecurityAnswer(securityAnswer)
-                    .setRoles(Set.of(Role.C));
+                    .setImageFile(imageService.uploadProfileImage(image)).setMimeProfileImage(image.getContentType())
+                    .setNickname(nickname).setPassword(passwordEncoder.encode(password)).setSecurityQuestion(securityQuestion)
+                    .setSecurityAnswer(securityAnswer).setRoles(Set.of(Role.C));
         } catch (Exception e) {
             return "redirect:/error/500";
         }
@@ -134,12 +138,12 @@ public class IndexController {
                                    @RequestParam String belt) {
         User newUser = new User();
         try {
-            newUser.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone(Integer.parseInt(phone))
+            newUser.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone((phone.equals("")) ? null : Integer.parseInt(phone))
                     .setGender(genderService.findGenderById(gender)).setBirthDate(dateService.stringToDate(birthDate))
                     .setDni(dni).setBelt(beltService.findBeltById(belt)).setRefereeRange(RefereeRange.S)
-                    .setImageFile(imageService.uploadProfileImage(image)).setNickname(nickname)
-                    .setPassword(password).setSecurityQuestion(securityQuestion).setSecurityAnswer(securityAnswer)
-                    .setRoles(Set.of(Role.R));
+                    .setImageFile(imageService.uploadProfileImage(image)).setMimeProfileImage(image.getContentType())
+                    .setNickname(nickname).setPassword(passwordEncoder.encode(password)).setSecurityQuestion(securityQuestion)
+                    .setSecurityAnswer(securityAnswer).setRoles(Set.of(Role.C)).setRoles(Set.of(Role.R));
         } catch (Exception e) {
             return "redirect:/error/500";
         }

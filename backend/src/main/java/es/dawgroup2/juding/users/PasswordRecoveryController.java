@@ -2,6 +2,7 @@ package es.dawgroup2.juding.users;
 
 import org.aspectj.lang.annotation.RequiredTypes;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PasswordRecoveryController {
     @Autowired
     UserService userService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     /**
      * Returns the dynamic view associated with first screen of password recovery process.
@@ -40,7 +44,7 @@ public class PasswordRecoveryController {
         if (userService.userExists(licenseId))
             return "redirect:/passwordRecovery/2/" + licenseId;
         else
-            return "redirect:/passwordRecovery/1/error";
+            return "redirect:/passwordRecovery/1/error?";
     }
 
     /**
@@ -59,7 +63,7 @@ public class PasswordRecoveryController {
                 return "/passwordRecovery/second";
             }
         }
-        return "redirect:/passwordRecovery/1/error";
+        return "redirect:/passwordRecovery/1/error?";
     }
 
     /**
@@ -74,7 +78,7 @@ public class PasswordRecoveryController {
         if (curUser.getSecurityAnswer().equals(securityAnswer)){
             return "redirect:/passwordRecovery/3/" + licenseId;
         } else {
-            return "redirect:/passwordRecovery/1/answerMismatch";
+            return "redirect:/passwordRecovery/1/answerMismatch?";
         }
     }
 
@@ -101,8 +105,8 @@ public class PasswordRecoveryController {
     public String checkThirdScreen(@RequestParam String licenseId, @RequestParam String password, Model model){
         User curUser = userService.getUserOrNull(licenseId);
         if (curUser != null){
-            userService.save(curUser.setPassword(password));
+            userService.save(curUser.setPassword(passwordEncoder.encode(password)));
         }
-        return "redirect:/login";
+        return "redirect:/login?";
     }
 }

@@ -36,7 +36,7 @@
 <div class="container pb-4">
     <form class="needs-validation" method="post" action="/passwordRecovery/3" novalidate>
         <h2 class="h2">Nueva contraseña</h2>
-
+        <input type="hidden" name="_csrf" value="{{ token }}">
         <input type="hidden" name="licenseId" id="licenseId" value="{{ licenseId }}">
 
         <!-- Passwords field -->

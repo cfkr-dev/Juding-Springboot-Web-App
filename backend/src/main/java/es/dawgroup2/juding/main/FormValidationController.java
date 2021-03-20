@@ -17,24 +17,28 @@ public class FormValidationController {
     UserService userService;
 
     @GetMapping("/formCheck/signUp/licenseId")
-    public boolean checkSignUpLicenseId(@RequestParam String licenseId, HttpServletRequest req){
-        User curUser = userService.findByNickname(req.getUserPrincipal().getName());
-        if (curUser.getLicenseId().equals(licenseId))
-            return true;
+    public boolean checkSignUpLicenseId(@RequestParam String licenseId, HttpServletRequest req) {
+        if (req.getUserPrincipal() != null) {
+            User curUser = userService.findByNickname(req.getUserPrincipal().getName());
+            if (curUser.getLicenseId().equals(licenseId))
+                return true;
+        }
         return !userService.userExists(licenseId);
     }
 
     @GetMapping("/formCheck/signUp/nickname")
-    public boolean checkSignUpNickname(@RequestParam String nickname, HttpServletRequest req){
-        if (req.getUserPrincipal().getName().equals(nickname))
-            return true;
+    public boolean checkSignUpNickname(@RequestParam String nickname, HttpServletRequest req) {
+        if (req.getUserPrincipal() != null) {
+            if (req.getUserPrincipal().getName().equals(nickname))
+                return true;
+        }
         return !userService.userExistsByNickname(nickname);
     }
 
     @GetMapping("/formCheck/signUp/dni")
-    public boolean checkSignUpDNI(@RequestParam String dni, @RequestParam String role){
-        for (Role r : Role.values()){
-            if (r.getLongName().equals(role)){
+    public boolean checkSignUpDNI(@RequestParam String dni, @RequestParam String role) {
+        for (Role r : Role.values()) {
+            if (r.getLongName().equals(role)) {
                 return userService.checkSignUpValidityByDni(dni, r);
             }
         }
