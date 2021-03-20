@@ -3,10 +3,7 @@ package es.dawgroup2.juding.competitions;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RefereeControlController {
@@ -17,7 +14,7 @@ public class RefereeControlController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/competition/{idCompetition}/control")
+    @GetMapping("/competition/{idCompetition}/control/saveResult")
     public boolean controlCompetition(@PathVariable String idCompetition,
                                       @RequestParam String winner,
                                       @RequestParam String loser){

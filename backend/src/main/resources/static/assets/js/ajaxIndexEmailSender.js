@@ -8,7 +8,7 @@ $("#contact-form").on("submit", function (evt) {
             "message": $("#contact-form-message").val()
         },
         url: '/index-email',
-        method: 'post',
+        method: 'get',
         beforeSend: (ans) => {
             $("#loadedAJAXItem").remove();
             $(this).prepend('<div class="alert alert-info" id="loadingAJAXItem"><i class="fas fa-circle-notch fa-spin"></i> Enviando...</div>');

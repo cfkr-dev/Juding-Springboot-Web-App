@@ -3,6 +3,7 @@ package es.dawgroup2.juding.main;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ public class IndexEmailController {
     @Autowired
     private JavaMailSender emailSender;
 
-    @PostMapping("/index-email")
+    @GetMapping("/index-email")
     public boolean sendEmail(@RequestParam String name,
                              @RequestParam String email,
                              @RequestParam String subject,

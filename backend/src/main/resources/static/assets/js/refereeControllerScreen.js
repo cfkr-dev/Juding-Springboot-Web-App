@@ -387,7 +387,7 @@ $(function () {
                     "fightId": $("#fight").val()
                 },
                 url: window.location.pathname,
-                method: 'post'
+                method: 'get'
             }).done((ans) => {
                 if (ans) {
                     alert("Combate finalizado y registrado correctamente. Cierre para continuar.");
