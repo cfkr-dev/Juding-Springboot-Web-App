@@ -1,44 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>Editar - Administración - Juding</title>
-
-    <!-- Favicons -->
-    <link href="/assets/img/hero-img.png" rel="icon">
-
-    <!-- Vendor CSS Files -->
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet">
-    <link href="/assets/vendor/font-awesome/css/all.css" rel="stylesheet">
-
-    <!-- Own CSS Files -->
-    <link href="/assets/css/header.css" rel="stylesheet">
-    <link href="/assets/css/bootstrapAccomodations.css" rel="stylesheet">
-    <link href="/assets/css/loginAndRegistration.css" rel="stylesheet">
-</head>
-<body>
-<header class="header fixed-top" id="header">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-        <a class="logo d-flex align-items-center" href="">
-            <img alt="" src="/assets/img/hero-img.png">
-            <span>Juding</span>
-        </a>
-        <nav class="navbar" id="navbar">
-            <ul>
-                <li><a class="nav-link scrollto active" href="#">Edición de usuarios</a></li>
-                {{ #isCompetitor }}
-                <li><a class="login scrollto" href="/admin/user/list/competitors">Volver</a></li>
-                {{ /isCompetitor }}{{ ^isCompetitor }}
-                <li><a class="login scrollto" href="/admin/user/list/referees">Volver</a></li>
-                {{ /isCompetitor }}
-            </ul>
-            <i class="far fa-bars mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
-    </div>
-</header>
+{{{header}}}
 <div class="container pb-4">
     <form action="/admin/user/edit/save" class="needs-validation flex-sb flex-w juding-form-user" method="post" novalidate
           enctype="multipart/form-data">
