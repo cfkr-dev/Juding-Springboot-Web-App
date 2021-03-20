@@ -2,6 +2,7 @@ package es.dawgroup2.juding.main;
 
 import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.main.image.ImageService;
+import es.dawgroup2.juding.posts.Post;
 import es.dawgroup2.juding.posts.PostService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
@@ -10,6 +11,7 @@ import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.auxTypes.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,13 +48,17 @@ public class IndexController {
     PasswordEncoder passwordEncoder;
 
     /**
-     * This method inflates the post box list in index main page.
-     * @param model Post data model.
-     * @return index main page view.
+     * This method inflates the index page with the first 3 news in the posts section of index.
+     * @param model Model.
+     * @return Index page with dynamic news.
      */
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("postList", postService.findAllDesc());
+        Page<Post> postFirstPage = postService.getPostsInPages(0, 3);
+        model.addAttribute("postPage", postFirstPage.getContent())
+                .addAttribute("empty", postFirstPage.getTotalElements() == 0)
+                .addAttribute("morePages", postFirstPage.hasNext())
+                .addAttribute("totalPages", postFirstPage.getTotalPages());
         return "/index";
     }
 

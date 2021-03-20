@@ -30,7 +30,6 @@ $(function () {
      */
     var numPage = 1;
     $("#loadNextPage").on("click", function () {
-        console.log($(this).data("role") + "/" + $(this).data("numpage"));
         $.ajax({
             url: "/admin/" + $(this).data("role") + "/list/" + $(this).data("numpage"),
             method: 'get',
@@ -49,6 +48,5 @@ $(function () {
                 $(this).off("click");
             }
         });
-        return false;
     });
 });

@@ -15,7 +15,8 @@ public class PostService {
 
     /**
      * This service method search on post database the current post given by id and deletes it.
-     * @param id Current post id. 
+     *
+     * @param id Current post id.
      */
     public void deleteById(String id) {
         postRepository.deleteById(Integer.parseInt(id));
@@ -23,24 +24,26 @@ public class PostService {
 
     /**
      * This service method search a post given by id on data base and return an instance of this.
+     *
      * @param id Current post id.
      * @return an instance of the searched post.
      */
     public Post findById(String id) {
-        return postRepository.findById(Integer.parseInt(id)).orElseThrow();
+        return postRepository.findById(Integer.parseInt(id)).orElse(null);
     }
 
     /**
      * This method finds all the post saved on database and return a list with all the database posts instances
+     *
      * @return a list with all post instances.
      */
     public List<Post> findAll() {
         return postRepository.findAll();
     }
 
-
     /**
      * Returns the list with all posts ordering them by descendant timestamp.
+     *
      * @return a list with all post instances in the specific order.
      */
     public List<Post> findAllDesc() {
@@ -48,17 +51,29 @@ public class PostService {
     }
 
     /**
+     * Returns a list with the 5 most recent news. If the news in paramter is included, it gets automatically excluded.
+     *
+     * @param idPost Post to exclude
+     * @return List with posts
+     */
+    public List<Post> findFirst5Desc(String idPost) {
+        return postRepository.findFirst5ByIdPostNotOrderByTimestampDesc(Integer.parseInt(idPost));
+    }
+
+    /**
      * Returns a page of posts ordering them by descendant timestamp.
-     * @param num Number of page
+     *
+     * @param num   Number of page
      * @param items Number of items per page
      * @return A page of posts
      */
-    public Page<Post> getPostsInPages(int num, int items){
+    public Page<Post> getPostsInPages(int num, int items) {
         return postRepository.findAllByOrderByTimestampDesc(PageRequest.of(num, items));
     }
 
     /**
      * This method search a post given by id and replaces it with a new post
+     *
      * @param post Current post instance
      */
     public void updatingInfoPost(Post post) {
@@ -68,6 +83,7 @@ public class PostService {
 
     /**
      * This method saves a new post on database.
+     *
      * @param post New post instance to add.
      * @return Post saved.
      */
@@ -77,6 +93,7 @@ public class PostService {
 
     /**
      * This method saves new posts on database.
+     *
      * @param post New posts instances to add.
      * @return List of saved posts.
      */

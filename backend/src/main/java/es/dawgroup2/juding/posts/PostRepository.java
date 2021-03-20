@@ -9,5 +9,7 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Integer> {
     List<Post> findAllByOrderByTimestampDesc();
 
+    List<Post> findFirst5ByIdPostNotOrderByTimestampDesc(int postId);
+
     Page<Post> findAllByOrderByTimestampDesc(Pageable page);
 }
