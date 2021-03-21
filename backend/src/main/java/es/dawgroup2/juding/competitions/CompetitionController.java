@@ -1,8 +1,10 @@
 package es.dawgroup2.juding.competitions;
 
 import es.dawgroup2.juding.fight.Fight;
+import es.dawgroup2.juding.fight.FightService;
 import es.dawgroup2.juding.main.DateService;
 import es.dawgroup2.juding.main.HeaderInflater;
+import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +19,13 @@ public class CompetitionController {
     HeaderInflater headerInflater;
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     CompetitionService competitionService;
+
+    @Autowired
+    FightService fightService;
 
     @Autowired
     DateService dateService;
@@ -33,10 +41,19 @@ public class CompetitionController {
         String state = competition.translatingDates(competition.getStartDate(), competition.getEndDate());
         model.addAttribute("header", headerInflater.getHeader("Competición", request, "font-awesome/css/all.css", "bootstrap/css/bootstrap.min.css", "header", "responsiveTable", "competitionScreen"))
                 .addAttribute("state", state)
+                .addAttribute("people", fightService.countParticipants(competition))
                 .addAttribute("competition", competition);
         for (int i = 0; i < competition.getFights().size(); i++)
             model.addAttribute("fight" + i, competition.getFights().get(i));
         return "/competition/detail";
+    }
+
+    @GetMapping("/competition/{idCompetition}/join")
+    public String joinCompetition(@PathVariable String idCompetition, HttpServletRequest request, Model model){
+        Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
+        competitionService.joinCompetition(competition, userService.findByNickname(request.getUserPrincipal().getName()));
+        competitionService.add(competition);
+        return "redirect:/competition/" + idCompetition;
     }
 
     @GetMapping("/competition/{idCompetition}/control")

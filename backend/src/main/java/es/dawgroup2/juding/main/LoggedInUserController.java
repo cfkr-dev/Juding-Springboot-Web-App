@@ -1,6 +1,8 @@
 package es.dawgroup2.juding.main;
 
 import es.dawgroup2.juding.auxTypes.belts.BeltService;
+import es.dawgroup2.juding.competitions.Competition;
+import es.dawgroup2.juding.competitions.CompetitionService;
 import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
@@ -32,6 +34,9 @@ public class LoggedInUserController {
     UserService userService;
 
     @Autowired
+    CompetitionService competitionService;
+
+    @Autowired
     BeltService beltService;
 
     @Autowired
@@ -55,6 +60,10 @@ public class LoggedInUserController {
         User currentUser = userService.findByNickname(request.getUserPrincipal().getName());
         if (currentUser != null) {
             model.addAttribute("header", headerInflater.getHeader("Inicio", request, "bootstrap/css/bootstrap.min.css", "font-awesome/css/all.css", "style", "header", "profiles", "responsiveTable", "beltAssignations"))
+                    .addAttribute("myFutureComp", competitionService.getFutureFights(currentUser, true))
+                    .addAttribute("myNotFutureComp", competitionService.getFutureFights(currentUser, false))
+                    .addAttribute("myCurrentComp", competitionService.getCurrentCompetitions(currentUser))
+                    .addAttribute("myPastComp", competitionService.getPastFights(currentUser))
                     .addAttribute("user", currentUser)
                     .addAttribute("isCompetitor", currentUser.isRole(Role.C));
         }
