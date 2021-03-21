@@ -71,7 +71,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         // ChartController
         http.authorizeRequests().antMatchers("/myCharts").hasAnyRole(Role.C.name(), Role.R.name());
-        
+
         // PostController
         http.authorizeRequests().antMatchers("/admin/post/createNew").hasRole(Role.A.name());
         http.authorizeRequests().antMatchers("/admin/post/delete").hasRole(Role.A.name());

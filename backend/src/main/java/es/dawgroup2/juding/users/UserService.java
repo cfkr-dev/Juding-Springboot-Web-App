@@ -5,7 +5,6 @@ import es.dawgroup2.juding.auxTypes.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -88,7 +87,9 @@ public class UserService {
                     .append(u.getName())
                     .append(" ")
                     .append(u.getSurname())
-                    .append("</option>");
+                    .append(" (")
+                    .append(u.getLicenseId())
+                    .append(")</option>");
         }
         return sb.toString();
     }

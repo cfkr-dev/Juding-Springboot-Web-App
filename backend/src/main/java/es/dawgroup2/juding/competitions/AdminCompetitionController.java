@@ -3,7 +3,6 @@ package es.dawgroup2.juding.competitions;
 import es.dawgroup2.juding.fight.FightService;
 import es.dawgroup2.juding.main.DateService;
 import es.dawgroup2.juding.main.HeaderInflater;
-import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.List;
 
 @Controller
 public class AdminCompetitionController {
@@ -39,6 +37,7 @@ public class AdminCompetitionController {
 
     /**
      * Returns a list with all the competitions in the application.
+     *
      * @param model model of the view
      * @return the view of the competition list
      */
@@ -48,13 +47,15 @@ public class AdminCompetitionController {
         model.addAttribute("header", headerInflater.getHeader("Lista de competiciones", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "adminScreen"))
                 .addAttribute("competitionPage", compFirstPage.getContent())
                 .addAttribute("empty", compFirstPage.getTotalElements() == 0)
+                .addAttribute("totalPages", compFirstPage.getTotalPages())
                 .addAttribute("morePages", compFirstPage.hasNext());
         return "/admin/competition/list";
     }
 
     /**
      * Returns a inflated page of competitions created in the application.
-     * @param page Number of page requested.
+     *
+     * @param page  Number of page requested.
      * @param model Model.
      * @return Inflated page.
      */

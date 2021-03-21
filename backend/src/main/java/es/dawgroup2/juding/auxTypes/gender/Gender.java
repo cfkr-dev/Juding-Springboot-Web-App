@@ -10,7 +10,7 @@ public enum Gender {
         this.description = description;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 }

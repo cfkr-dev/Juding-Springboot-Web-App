@@ -53,41 +53,13 @@ public class Fight {
         return idFight;
     }
 
-    public Competition getCompetition() {
-        return competition;
-    }
-
-    public int getLevelInTree() {
-        return levelInTree;
-    }
-
-    public Fight getUpFight() {
-        return upFight;
-    }
-
-    public Fight getDownFight() {
-        return downFight;
-    }
-
-    public Fight getParentFight() {
-        return parentFight;
-    }
-
-    public boolean isFinished() {
-        return isFinished;
-    }
-
-    public User getWinner() {
-        return winner;
-    }
-
-    public User getLoser() {
-        return loser;
-    }
-
     public Fight setIdFight(int idFight) {
         this.idFight = idFight;
         return this;
+    }
+
+    public Competition getCompetition() {
+        return competition;
     }
 
     public Fight setCompetition(Competition idCompetition) {
@@ -95,9 +67,17 @@ public class Fight {
         return this;
     }
 
+    public int getLevelInTree() {
+        return levelInTree;
+    }
+
     public Fight setLevelInTree(int levelInTree) {
         this.levelInTree = levelInTree;
         return this;
+    }
+
+    public Fight getUpFight() {
+        return upFight;
     }
 
     public Fight setUpFight(Fight upFight) {
@@ -105,9 +85,17 @@ public class Fight {
         return this;
     }
 
+    public Fight getDownFight() {
+        return downFight;
+    }
+
     public Fight setDownFight(Fight downFight) {
         this.downFight = downFight;
         return this;
+    }
+
+    public Fight getParentFight() {
+        return parentFight;
     }
 
     public Fight setParentFight(Fight parentFight) {
@@ -115,14 +103,26 @@ public class Fight {
         return this;
     }
 
+    public boolean isFinished() {
+        return isFinished;
+    }
+
     public Fight setFinished(boolean finished) {
         isFinished = finished;
         return this;
     }
 
+    public User getWinner() {
+        return winner;
+    }
+
     public Fight setWinner(User winner) {
         this.winner = winner;
         return this;
+    }
+
+    public User getLoser() {
+        return loser;
     }
 
     public Fight setLoser(User loser) {

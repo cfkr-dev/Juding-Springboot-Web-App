@@ -20,6 +20,7 @@ public class DateService {
 
         return new Date(date.getTime());
     }
+
     public Timestamp stringToTimestamp(String dateString) throws ParseException {
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm", new Locale("es"));
         format.setTimeZone(TimeZone.getTimeZone("Europe/Madrid"));

@@ -13,7 +13,7 @@ $(function () {
     }
 
     if ($("select").length) {
-        $("select").chosen();
+        $("select").chosen({width: "100%"});
     }
 
     /**

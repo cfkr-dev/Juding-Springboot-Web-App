@@ -13,9 +13,6 @@ import java.util.Arrays;
 @Component
 public class HeaderInflater {
 
-    @Autowired
-    UserService userService;
-
     private static final ArrayList<String> OWN_CSS = new ArrayList<>(
             Arrays.asList("adminScreen",
                     "beltAssignations",
@@ -32,6 +29,8 @@ public class HeaderInflater {
                     "securityQuestion",
                     "style")
     );
+    @Autowired
+    UserService userService;
 
     public String getHeader(String title, HttpServletRequest request, String... css) {
         StringBuilder sb = new StringBuilder();

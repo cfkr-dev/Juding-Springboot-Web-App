@@ -83,7 +83,7 @@ public class User {
     public User() {
     }
 
-    public User(String licenseId, String name, String surname, Gender gender, int phone, String email, Date birthDate, String dni, String nickname, String password, String securityQuestion, String securityAnswer, Blob imageFile, Belt belt, String gym, Integer weight, RefereeRange refereeRange, Set<Role> roles) {
+    public User(String licenseId, String name, String surname, Gender gender, int phone, String email, Date birthDate, String dni, String nickname, String password, String securityQuestion, String securityAnswer, Blob imageFile, String mimeProfileImage, Belt belt, String gym, Integer weight, RefereeRange refereeRange, Set<Role> roles) {
         this.licenseId = licenseId;
         this.name = name;
         this.surname = surname;
@@ -97,6 +97,7 @@ public class User {
         this.securityQuestion = securityQuestion;
         this.securityAnswer = securityAnswer;
         this.imageFile = imageFile;
+        this.mimeProfileImage = mimeProfileImage;
         this.belt = belt;
         this.gym = gym;
         this.weight = weight;
@@ -278,20 +279,22 @@ public class User {
         return this;
     }
 
-    public List<Integer> getCompetitorMedals(){
+    public List<Integer> getCompetitorMedals() {
         return this.competitorMedals;
     }
 
     /**
      * Adds a new medal for this user
+     *
      * @param points Medal (gold = 3, silver = 2, bronze = 1)
      */
-    public void addPoints(int points){
+    public void addPoints(int points) {
         this.competitorMedals.add(points);
     }
 
     /**
      * Gets the birth date of the user and returns it in a user-friendly format.
+     *
      * @return Birth date in user-friendly format.
      */
     public String getFormattedBirthDate() {

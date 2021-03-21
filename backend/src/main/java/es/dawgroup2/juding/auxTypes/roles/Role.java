@@ -7,7 +7,7 @@ public enum Role {
 
     private final String longName;
 
-    Role(String longName){
+    Role(String longName) {
         this.longName = longName;
     }
 

@@ -495,4 +495,9 @@ $(function () {
     keySpace1.click(() => bigStopwatchTurnOn());
     keySpace2.click(() => bigStopwatchTurnOff());
     endBtn.click(() => endOfFight());
+
+    $("#return").click(function(){
+        if (confirm("¿Desea abandonar la página? Se perderán los valores actuales."))
+            $(location).attr("href", "/myHome");
+    })
 });

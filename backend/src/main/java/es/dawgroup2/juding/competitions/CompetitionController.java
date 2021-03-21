@@ -8,7 +8,8 @@ import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -39,7 +40,7 @@ public class CompetitionController {
     public String showCompetition(@PathVariable String idCompetition, HttpServletRequest request, Model model) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         String state = competition.translatingDates(competition.getStartDate(), competition.getEndDate());
-        model.addAttribute("header", headerInflater.getHeader("Competición", request, "font-awesome/css/all.css", "bootstrap/css/bootstrap.min.css", "header", "responsiveTable", "competitionScreen","beltAssignations"))
+        model.addAttribute("header", headerInflater.getHeader("Competición", request, "font-awesome/css/all.css", "bootstrap/css/bootstrap.min.css", "header", "responsiveTable", "competitionScreen", "beltAssignations"))
                 .addAttribute("state", state)
                 .addAttribute("people", fightService.countParticipants(competition))
                 .addAttribute("competition", competition);
@@ -49,7 +50,7 @@ public class CompetitionController {
     }
 
     @GetMapping("/competition/{idCompetition}/join")
-    public String joinCompetition(@PathVariable String idCompetition, HttpServletRequest request, Model model){
+    public String joinCompetition(@PathVariable String idCompetition, HttpServletRequest request, Model model) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         competitionService.joinCompetition(competition, userService.findByNickname(request.getUserPrincipal().getName()));
         competitionService.add(competition);

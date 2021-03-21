@@ -10,7 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLData;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +19,11 @@ import java.util.Optional;
 public class CompetitionService {
 
     @Autowired
-    private CompetitionRepository competitionRepository;
-
-    @Autowired
     FightService fightService;
-
     @Autowired
     UserService userService;
+    @Autowired
+    private CompetitionRepository competitionRepository;
 
     /**
      * Deletes a competition by its id
@@ -50,10 +47,11 @@ public class CompetitionService {
 
     /**
      * Get the current competitions for user
+     *
      * @param user User
      * @return List of current competitions
      */
-    public List<Competition> getCurrentCompetitions(User user){
+    public List<Competition> getCurrentCompetitions(User user) {
         if (user.isRole(Role.C)) {
             List<Competition> output = new ArrayList<>();
             int minWeight = (int) Math.floor((double) user.getWeight() / 10) * 10;
@@ -64,7 +62,7 @@ public class CompetitionService {
                     output.add(c);
             }
             return output;
-        } else if (user.isRole(Role.R)){
+        } else if (user.isRole(Role.R)) {
             return competitionRepository.findByStartDateBeforeAndEndDateAfterAndReferee(new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), user);
         }
         return null;
@@ -73,11 +71,11 @@ public class CompetitionService {
     /**
      * Get the future competitions for the specifications of a user
      *
-     * @param user User
+     * @param user    User
      * @param control True if including user competitions, false if including the opposite set.
      * @return List of competitions
      */
-    public List<Competition> getFutureFights(User user, boolean control){
+    public List<Competition> getFutureFights(User user, boolean control) {
         if (user.isRole(Role.C)) {
             int minWeight = (int) Math.floor((double) user.getWeight() / 10) * 10;
             int maxWeight = (user.getWeight() % 10 == 0) ? user.getWeight() + 10 : (int) (Math.ceil((double) user.getWeight() / 10)) * 10;
@@ -87,17 +85,17 @@ public class CompetitionService {
                     output.add(c);
             }
             return output;
-        } else if (user.isRole(Role.R)){
+        } else if (user.isRole(Role.R)) {
             return competitionRepository.findByStartDateAfterAndReferee(new Timestamp(System.currentTimeMillis()), user);
         }
         return null;
     }
 
-    public List<Competition> getPastFights(User user){
-        if (user.isRole(Role.C)){
+    public List<Competition> getPastFights(User user) {
+        if (user.isRole(Role.C)) {
             List<Competition> output = new ArrayList<>();
-            for (Competition c : competitionRepository.findByEndDateBefore(new Timestamp(System.currentTimeMillis()))){
-                if (!fightService.checkParticipation(c, user))
+            for (Competition c : competitionRepository.findByEndDateBefore(new Timestamp(System.currentTimeMillis()))) {
+                if (fightService.checkParticipation(c, user))
                     output.add(c);
             }
             return output;
@@ -108,10 +106,11 @@ public class CompetitionService {
 
     /**
      * Returns a page of competitions (each page contains 10 elements).
+     *
      * @param num Number of page
      * @return Page
      */
-    public Page<Competition> getCompetitionsInPages(int num){
+    public Page<Competition> getCompetitionsInPages(int num) {
         return competitionRepository.findAll(PageRequest.of(num, 10));
     }
 

@@ -1,13 +1,13 @@
 package es.dawgroup2.juding.users;
 
 import es.dawgroup2.juding.auxTypes.belts.BeltService;
-import es.dawgroup2.juding.main.DateService;
-import es.dawgroup2.juding.main.HeaderInflater;
-import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.auxTypes.gender.GenderService;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.auxTypes.roles.Role;
+import es.dawgroup2.juding.main.DateService;
+import es.dawgroup2.juding.main.HeaderInflater;
+import es.dawgroup2.juding.main.image.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -87,9 +87,10 @@ public class AdminUserController {
 
     /**
      * Returns a inflated page of users (even competitors or referees).
+     *
      * @param stringRole Role of user in string format.
-     * @param page Number of page requested.
-     * @param model Model.
+     * @param page       Number of page requested.
+     * @param model      Model.
      * @return Inflated page.
      */
     @GetMapping("/admin/{stringRole}/list/{page}")

@@ -1,14 +1,13 @@
 package es.dawgroup2.juding.main;
 
 import es.dawgroup2.juding.auxTypes.belts.BeltService;
-import es.dawgroup2.juding.competitions.Competition;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
+import es.dawgroup2.juding.auxTypes.roles.Role;
 import es.dawgroup2.juding.competitions.CompetitionService;
 import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
-import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
-import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
-import es.dawgroup2.juding.auxTypes.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,12 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class LoggedInUserController {

@@ -1,6 +1,5 @@
 package es.dawgroup2.juding.main.image;
 
-import es.dawgroup2.juding.competitions.Competition;
 import es.dawgroup2.juding.competitions.CompetitionService;
 import es.dawgroup2.juding.posts.Post;
 import es.dawgroup2.juding.posts.PostService;

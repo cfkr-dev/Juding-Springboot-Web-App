@@ -305,6 +305,7 @@
         <h3 class="competitionSub">Resultados</h3>
         <!--Competition results-->
         <div class="responsiveTable">
+            {{ #fight0.isFinished }}
             <div class="rtRow rtHeader">
                 <div class="width15 text-center">Posición</div>
                 <div class="width20 text-center">Apodo</div>
@@ -367,6 +368,9 @@
                 </div>
             </div>
             {{/fight1.winner}}{{/fight1.isFinished}}
+            {{ /fight0.isFinished }}{{ ^fight0.isFinished }}
+            <div class="alert alert-info">Aún no se puede mostrar el podio.</div>
+            {{ /fight0.isFinished }}
         </div>
     </div>
 </div>

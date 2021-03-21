@@ -16,7 +16,7 @@ public class FormValidationController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/formCheck/signUp/licenseId")
+    @GetMapping("/formCheck/licenseId")
     public boolean checkSignUpLicenseId(@RequestParam String licenseId, HttpServletRequest req) {
         if (req.getUserPrincipal() != null) {
             User curUser = userService.findByNickname(req.getUserPrincipal().getName());
@@ -26,7 +26,7 @@ public class FormValidationController {
         return !userService.userExists(licenseId);
     }
 
-    @GetMapping("/formCheck/signUp/nickname")
+    @GetMapping("/formCheck/nickname")
     public boolean checkSignUpNickname(@RequestParam String nickname, HttpServletRequest req) {
         if (req.getUserPrincipal() != null) {
             if (req.getUserPrincipal().getName().equals(nickname))
@@ -35,7 +35,7 @@ public class FormValidationController {
         return !userService.userExistsByNickname(nickname);
     }
 
-    @GetMapping("/formCheck/signUp/dni")
+    @GetMapping("/formCheck/dni")
     public boolean checkSignUpDNI(@RequestParam String dni, @RequestParam String role) {
         for (Role r : Role.values()) {
             if (r.getLongName().equals(role)) {

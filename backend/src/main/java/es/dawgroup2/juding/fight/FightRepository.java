@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface FightRepository extends JpaRepository<Fight,Integer> {
+public interface FightRepository extends JpaRepository<Fight, Integer> {
     List<Fight> findByCompetition(Competition idCompetition);
 
     @Query("SELECT f FROM Fight f WHERE f.competition = ?1 AND f.levelInTree = 3 AND (f.winner IS NULL OR f.loser IS NULL)")

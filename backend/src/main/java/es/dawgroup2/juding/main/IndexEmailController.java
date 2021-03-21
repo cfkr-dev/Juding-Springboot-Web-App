@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +25,7 @@ public class IndexEmailController {
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
         String htmlMsg = "<h2>Mensaje por formulario web</h2>" +
                 "<ul>" +
-                "   <li>Remitente: " + name+ " (" + email + ").</li>" +
+                "   <li>Remitente: " + name + " (" + email + ").</li>" +
                 "   <li>Asunto: " + subject + ".</li>" +
                 "   <li>Mensaje:</li>" +
                 "</ul>" + message.replaceAll("\r|\n|\r\n", "<br>");

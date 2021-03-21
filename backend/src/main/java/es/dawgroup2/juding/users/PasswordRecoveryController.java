@@ -1,6 +1,5 @@
 package es.dawgroup2.juding.users;
 
-import org.aspectj.lang.annotation.RequiredTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,6 +19,7 @@ public class PasswordRecoveryController {
 
     /**
      * Returns the dynamic view associated with first screen of password recovery process.
+     *
      * @param error Error (optional value).
      * @param model Model.
      * @return Dynamic view of first screen.
@@ -36,6 +36,7 @@ public class PasswordRecoveryController {
 
     /**
      * Checks if user with license ID specified exists in the application and, if it does, it redirects to second step.
+     *
      * @param licenseId License ID.
      * @return Redirection to second screen or to error screen.
      */
@@ -49,8 +50,9 @@ public class PasswordRecoveryController {
 
     /**
      * Returns the dynamic view associated with second screen of password recovery process.
+     *
      * @param incomingValue The incoming value for page (license ID if successful process or error otherwise).
-     * @param model Model.
+     * @param model         Model.
      * @return Dynamic view of second screen.
      */
     @GetMapping(value = {"/passwordRecovery/2/{incomingValue}"})
@@ -68,14 +70,15 @@ public class PasswordRecoveryController {
 
     /**
      * Checks if the answer given by the user to the question is the same that is saved in repository.
-     * @param licenseId License ID of user.
+     *
+     * @param licenseId      License ID of user.
      * @param securityAnswer Security answer given by the user.
      * @return Redirection to third page or to error page in case of error.
      */
     @PostMapping("/passwordRecovery/2")
     public String checkSecondScreen(@RequestParam String licenseId, @RequestParam String securityAnswer) {
         User curUser = userService.getUserOrNull(licenseId);
-        if (curUser.getSecurityAnswer().equals(securityAnswer)){
+        if (curUser.getSecurityAnswer().equals(securityAnswer)) {
             return "redirect:/passwordRecovery/3/" + licenseId;
         } else {
             return "redirect:/passwordRecovery/1/answerMismatch?";
@@ -84,8 +87,9 @@ public class PasswordRecoveryController {
 
     /**
      * Returns the dynamic view associated with third screen of password recovery process.
+     *
      * @param licenseId License ID of user.
-     * @param model Model.
+     * @param model     Model.
      * @return Dynamic view of third screen.
      */
     @GetMapping("/passwordRecovery/3/{licenseId}")
@@ -96,15 +100,16 @@ public class PasswordRecoveryController {
 
     /**
      * Saves new password for user and redirects to login if successful.
+     *
      * @param licenseId License ID of user.
-     * @param password New set password.
-     * @param model Model.
+     * @param password  New set password.
+     * @param model     Model.
      * @return Redirection to login screen.
      */
     @PostMapping("/passwordRecovery/3")
-    public String checkThirdScreen(@RequestParam String licenseId, @RequestParam String password, Model model){
+    public String checkThirdScreen(@RequestParam String licenseId, @RequestParam String password, Model model) {
         User curUser = userService.getUserOrNull(licenseId);
-        if (curUser != null){
+        if (curUser != null) {
             userService.save(curUser.setPassword(passwordEncoder.encode(password)));
         }
         return "redirect:/login?";

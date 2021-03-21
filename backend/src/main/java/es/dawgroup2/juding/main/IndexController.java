@@ -1,15 +1,15 @@
 package es.dawgroup2.juding.main;
 
 import es.dawgroup2.juding.auxTypes.belts.BeltService;
+import es.dawgroup2.juding.auxTypes.gender.GenderService;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
+import es.dawgroup2.juding.auxTypes.roles.Role;
 import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.posts.Post;
 import es.dawgroup2.juding.posts.PostService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
-import es.dawgroup2.juding.auxTypes.gender.GenderService;
-import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
-import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
-import es.dawgroup2.juding.auxTypes.roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -49,6 +49,7 @@ public class IndexController {
 
     /**
      * This method inflates the index page with the first 3 news in the posts section of index.
+     *
      * @param model Model.
      * @return Index page with dynamic news.
      */
@@ -63,12 +64,12 @@ public class IndexController {
     }
 
     @GetMapping("/termsAndConditionsOfUse")
-    public String termsAndConditionsOfUse(){
+    public String termsAndConditionsOfUse() {
         return "/termsAndConditionsOfUse";
     }
 
     @GetMapping("/cookiePolicy")
-    public String cookiePolicy(){
+    public String cookiePolicy() {
         return "/cookiePolicy";
     }
 
@@ -79,7 +80,7 @@ public class IndexController {
 
     @GetMapping("/login/{error}")
     public String loginError(@PathVariable(required = false) String error, Model model) {
-        model.addAttribute("error",(error!=null));
+        model.addAttribute("error", (error != null));
         return "/login";
     }
 
@@ -91,7 +92,7 @@ public class IndexController {
             model.addAttribute("isCompetitor", true).addAttribute("action", "/signUp/competitor");
         else if (role.equals("referee"))
             model.addAttribute("isCompetitor", false).addAttribute("action", "/signUp/referee");
-        else return "/error/404";
+        else return "redirect:/error/404";
         return "/signUp";
     }
 
@@ -129,19 +130,19 @@ public class IndexController {
 
     @PostMapping("/signUp/referee")
     public String signUpReferee(@RequestParam String name,
-                                   @RequestParam String surname,
-                                   @RequestParam String gender,
-                                   @RequestParam String phone,
-                                   @RequestParam String email,
-                                   @RequestParam String birthDate,
-                                   @RequestParam String dni,
-                                   @RequestParam String licenseId,
-                                   @RequestParam String nickname,
-                                   @RequestParam String password,
-                                   @RequestParam String securityQuestion,
-                                   @RequestParam String securityAnswer,
-                                   MultipartFile image,
-                                   @RequestParam String belt) {
+                                @RequestParam String surname,
+                                @RequestParam String gender,
+                                @RequestParam String phone,
+                                @RequestParam String email,
+                                @RequestParam String birthDate,
+                                @RequestParam String dni,
+                                @RequestParam String licenseId,
+                                @RequestParam String nickname,
+                                @RequestParam String password,
+                                @RequestParam String securityQuestion,
+                                @RequestParam String securityAnswer,
+                                MultipartFile image,
+                                @RequestParam String belt) {
         User newUser = new User();
         try {
             newUser.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone((phone.equals("")) ? null : Integer.parseInt(phone))

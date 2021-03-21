@@ -92,6 +92,7 @@
     {{ /myCurrentComp.isEmpty }}
     <div class="px-2 mt-2 pb-3">
         <h3>Competiciones futuras</h3>
+        {{ #isCompetitor }}
         <div class="accordion" id="accordionExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="joinedButton">
@@ -176,6 +177,26 @@
                 </div>
             </div>
         </div>
+        {{ /isCompetitor }}{{ ^isCompetitor }}
+        {{ #myFutureComp }}
+        <div class="col-md-4">
+            <div class="card h-100 mb-2">
+                <div class="card-body">
+                    <h4 class="card-title">{{ shortName }}</h4>
+                    <p class="card-text text-center">
+                        <i class="far fa-calendar"></i> {{ getFormattedStartDate }} - {{
+                        getFormattedEndDate }}
+                        <br>
+                        <i class="fas fa-user-tie"></i> {{ referee.getNickname }} ({{
+                        referee.getLicenseId }}).
+                    </p>
+                </div>
+            </div>
+        </div>
+        {{ /myFutureComp }}{{ ^myFutureComp }}
+        <div class="alert alert-info">No hay competiciones asignadas.</div>
+        {{ /myFutureComp }}
+        {{ /isCompetitor }}
     </div>
 
     <div class="px-2 mt-2 pb-3">

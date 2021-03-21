@@ -9,7 +9,7 @@ public enum RefereeRange {
     private final String description;
     private final boolean isActiveReferee;
 
-    RefereeRange(String description, boolean isActiveReferee){
+    RefereeRange(String description, boolean isActiveReferee) {
         this.description = description;
         this.isActiveReferee = isActiveReferee;
     }
