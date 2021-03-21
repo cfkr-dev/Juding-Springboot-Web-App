@@ -127,7 +127,7 @@ public class DataLoader {
                     dateService.stringToDate("15/04/2000"),
                     "0000000003A",
                     "Ismón",
-                    passwordEncoder.encode("Ismón"),
+                    passwordEncoder.encode("Ismon"),
                     "¿Modo oscuro o modo claro?",
                     "Modo oscuro",
                     imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
@@ -774,6 +774,27 @@ public class DataLoader {
             }*/
 
             referees.add(new User(
+                    "JU-0000000002",
+                    "Padme",
+                    "Amidala",
+                    Gender.M,
+                    910000034,
+                    "juding.noreply@gmail.com",
+                    dateService.stringToDate("7/10/1966"),
+                    "0000034A",
+                    "Pad",
+                    passwordEncoder.encode("Pad"),
+                    "¿Qué buscas?",
+                    "La paz",
+                    imageService.uploadProfileImage("/static/sampleImages/1234567891.jpg"),
+                    Belt.values()[13],
+                    "Gym Olympo",
+                    null,
+                    RefereeRange.values()[0],
+                    Set.of(Role.R))
+            );
+
+            referees.add(new User(
                     "JU-0000000001",
                     "Tar",
                     "Mairon",
@@ -789,27 +810,6 @@ public class DataLoader {
                     imageService.uploadProfileImage("/static/sampleImages/1234567891.jpg"),
                     Belt.values()[16],
                     null,
-                    null,
-                    RefereeRange.values()[0],
-                    Set.of(Role.R))
-            );
-
-            referees.add(new User(
-                    "JU-0000000002",
-                    "Padme",
-                    "Amidala",
-                    Gender.M,
-                    910000034,
-                    "p.amidala@arbitro.com",
-                    dateService.stringToDate("7/10/1966"),
-                    "0000034A",
-                    "Pad",
-                    passwordEncoder.encode("Pad"),
-                    "¿Qué buscas?",
-                    "La paz",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567891.jpg"),
-                    Belt.values()[13],
-                    "Gym Olympo",
                     null,
                     RefereeRange.values()[1],
                     Set.of(Role.R))
