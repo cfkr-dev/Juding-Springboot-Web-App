@@ -51,8 +51,8 @@ public class DataLoader {
     @PostConstruct
     public void dataLoader() throws IOException, ParseException {
         // STEP 1. Creating new users
-            //Competitors
-            List<User> competitors = new ArrayList<>();
+        //Competitors
+        List<User> competitors = new ArrayList<>();
             /*for (int i = 1; i <= 16; i++) {
                 competitors.add(new User(
                         Integer.toString(1234567890 + i),
@@ -75,682 +75,682 @@ public class DataLoader {
                         Set.of(Role.C))
                 );
             }*/
-            competitors.add(new User(
-                    "0000000001",
-                    "Diego",
-                    "Guerrero Carrasco",
-                    Gender.H,
-                    910000001,
-                    "d.carrasco@gmail.com",
-                    dateService.stringToDate("30/10/2000"),
-                    "0000000001A",
-                    "Dieguin",
-                    passwordEncoder.encode("Dieguin"),
-                    "¿Cuál es tu asignatura favorita?",
-                    "DAW",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[10],
-                    "Gym Olympo",
-                    79,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000001",
+                "Diego",
+                "Guerrero Carrasco",
+                Gender.H,
+                910000001,
+                "d.carrasco@gmail.com",
+                dateService.stringToDate("30/10/2000"),
+                "0000000001A",
+                "Dieguin",
+                passwordEncoder.encode("Dieguin"),
+                "¿Cuál es tu asignatura favorita?",
+                "DAW",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[10],
+                "Gym Olympo",
+                79,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000002",
-                    "José Luis",
-                    "Toledano Díaz",
-                    Gender.H,
-                    910000002,
-                    "jl.toledano@gmail.com",
-                    dateService.stringToDate("18/09/2000"),
-                    "0000000002A",
-                    "Joselu",
-                    passwordEncoder.encode("Joselu"),
-                    "¿A quién se le ocurrió el nombre de la aplicación?",
-                    "A mi",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[11],
-                    "Gym Olympo",
-                    77,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000002",
+                "José Luis",
+                "Toledano Díaz",
+                Gender.H,
+                910000002,
+                "jl.toledano@gmail.com",
+                dateService.stringToDate("18/09/2000"),
+                "0000000002A",
+                "Joselu",
+                passwordEncoder.encode("Joselu"),
+                "¿A quién se le ocurrió el nombre de la aplicación?",
+                "A mi",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[11],
+                "Gym Olympo",
+                77,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000003",
-                    "Ismael",
-                    "González Sastre",
-                    Gender.H,
-                    910000003,
-                    "i.gonzalez@gmail.com",
-                    dateService.stringToDate("15/04/2000"),
-                    "0000000003A",
-                    "Ismón",
-                    passwordEncoder.encode("Ismón"),
-                    "¿Modo oscuro o modo claro?",
-                    "Modo oscuro",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[4],
-                    "Gym Olympo",
-                    68,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000003",
+                "Ismael",
+                "González Sastre",
+                Gender.H,
+                910000003,
+                "i.gonzalez@gmail.com",
+                dateService.stringToDate("15/04/2000"),
+                "0000000003A",
+                "Ismón",
+                passwordEncoder.encode("Ismon"),
+                "¿Modo oscuro o modo claro?",
+                "Modo oscuro",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[4],
+                "Gym Olympo",
+                68,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000004",
-                    "Alberto",
-                    "Pérez Pérez",
-                    Gender.H,
-                    910000004,
-                    "a.perez@gmail.com",
-                    dateService.stringToDate("21/03/2000"),
-                    "0000000004A",
-                    "Albertimus",
-                    passwordEncoder.encode("Albertimus"),
-                    "¿Te gusta hacer streaming?",
-                    "Sí por supuesto",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[2],
-                    "Gym Olympo",
-                    71,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000004",
+                "Alberto",
+                "Pérez Pérez",
+                Gender.H,
+                910000004,
+                "a.perez@gmail.com",
+                dateService.stringToDate("21/03/2000"),
+                "0000000004A",
+                "Albertimus",
+                passwordEncoder.encode("Albertimus"),
+                "¿Te gusta hacer streaming?",
+                "Sí por supuesto",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[2],
+                "Gym Olympo",
+                71,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000005",
-                    "Jorge",
-                    "Adame Prudencio",
-                    Gender.H,
-                    910000005,
-                    "a.prudencio@gmail.com",
-                    dateService.stringToDate("23/11/2000"),
-                    "0000000005A",
-                    "Jorgeous",
-                    passwordEncoder.encode("Jorgeous"),
-                    "¿De dónde eres?",
-                    "Parla",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[6],
-                    "Katan",
-                    69,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000005",
+                "Jorge",
+                "Adame Prudencio",
+                Gender.H,
+                910000005,
+                "a.prudencio@gmail.com",
+                dateService.stringToDate("23/11/2000"),
+                "0000000005A",
+                "Jorgeous",
+                passwordEncoder.encode("Jorgeous"),
+                "¿De dónde eres?",
+                "Parla",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[6],
+                "Katan",
+                69,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000006",
-                    "Flavia",
-                    "Vásquez Gutiérrez",
-                    Gender.M,
-                    910000006,
-                    "f.vazquez@gmail.com",
-                    dateService.stringToDate("29/11/2000"),
-                    "0000000006A",
-                    "Flafla",
-                    passwordEncoder.encode("Flafla"),
-                    "¿De dónde eres?",
-                    "Pinto",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[3],
-                    "Katan",
-                    62,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000006",
+                "Flavia",
+                "Vásquez Gutiérrez",
+                Gender.M,
+                910000006,
+                "f.vazquez@gmail.com",
+                dateService.stringToDate("29/11/2000"),
+                "0000000006A",
+                "Flafla",
+                passwordEncoder.encode("Flafla"),
+                "¿De dónde eres?",
+                "Pinto",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[3],
+                "Katan",
+                62,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000007",
-                    "Jesús",
-                    "Tocas Atarama",
-                    Gender.H,
-                    910000007,
-                    "j.tocas@gmail.com",
-                    dateService.stringToDate("29/11/1999"),
-                    "0000000007A",
-                    "Jebas",
-                    passwordEncoder.encode("Jebas"),
-                    "¿Cómo tienes el pelo?",
-                    "Muy largo",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[9],
-                    "Katan",
-                    62,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000007",
+                "Jesús",
+                "Tocas Atarama",
+                Gender.H,
+                910000007,
+                "j.tocas@gmail.com",
+                dateService.stringToDate("29/11/1999"),
+                "0000000007A",
+                "Jebas",
+                passwordEncoder.encode("Jebas"),
+                "¿Cómo tienes el pelo?",
+                "Muy largo",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[9],
+                "Katan",
+                62,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000008",
-                    "Debora",
-                    "Israel Villanueva",
-                    Gender.M,
-                    910000008,
-                    "d.israel@gmail.com",
-                    dateService.stringToDate("29/11/1999"),
-                    "0000000008A",
-                    "Debi",
-                    passwordEncoder.encode("Debi"),
-                    "¿Dónde estudias?",
-                    "Universodad",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[0],
-                    "Katan",
-                    61,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000008",
+                "Debora",
+                "Israel Villanueva",
+                Gender.M,
+                910000008,
+                "d.israel@gmail.com",
+                dateService.stringToDate("29/11/1999"),
+                "0000000008A",
+                "Debi",
+                passwordEncoder.encode("Debi"),
+                "¿Dónde estudias?",
+                "Universodad",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[0],
+                "Katan",
+                61,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000009",
-                    "Andrea",
-                    "Nuzzi Herrero",
-                    Gender.M,
-                    910000009,
-                    "a.nuzzi@gmail.com",
-                    dateService.stringToDate("08/03/2000"),
-                    "0000000009A",
-                    "Andy",
-                    passwordEncoder.encode("Andy"),
-                    "¿Qué deporte practicas?",
-                    "Judo",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[12],
-                    "JudoLeganes",
-                    62,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000009",
+                "Andrea",
+                "Nuzzi Herrero",
+                Gender.M,
+                910000009,
+                "a.nuzzi@gmail.com",
+                dateService.stringToDate("08/03/2000"),
+                "0000000009A",
+                "Andy",
+                passwordEncoder.encode("Andy"),
+                "¿Qué deporte practicas?",
+                "Judo",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[12],
+                "JudoLeganes",
+                62,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000010",
-                    "Antonio",
-                    "Agudo Esperanza",
-                    Gender.H,
-                    910000010,
-                    "a.agudo@gmail.com",
-                    dateService.stringToDate("08/03/2000"),
-                    "0000000010A",
-                    "Agudino",
-                    passwordEncoder.encode("Agudino"),
-                    "¿Juego favorito?",
-                    "League of legends",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[16],
-                    "JudoLeganes",
-                    62,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000010",
+                "Antonio",
+                "Agudo Esperanza",
+                Gender.H,
+                910000010,
+                "a.agudo@gmail.com",
+                dateService.stringToDate("08/03/2000"),
+                "0000000010A",
+                "Agudino",
+                passwordEncoder.encode("Agudino"),
+                "¿Juego favorito?",
+                "League of legends",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[16],
+                "JudoLeganes",
+                62,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000011",
-                    "Marcos",
-                    "Robles Rodríguez",
-                    Gender.H,
-                    910000011,
-                    "m.robles@gmail.com",
-                    dateService.stringToDate("08/03/2000"),
-                    "0000000011A",
-                    "MarcusMaximo",
-                    passwordEncoder.encode("MarcusMaximo"),
-                    "¿Qué es mejor el DOTA o el LOL?",
-                    "DOTA",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[20],
-                    "JudoLeganes",
-                    73,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000011",
+                "Marcos",
+                "Robles Rodríguez",
+                Gender.H,
+                910000011,
+                "m.robles@gmail.com",
+                dateService.stringToDate("08/03/2000"),
+                "0000000011A",
+                "MarcusMaximo",
+                passwordEncoder.encode("MarcusMaximo"),
+                "¿Qué es mejor el DOTA o el LOL?",
+                "DOTA",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[20],
+                "JudoLeganes",
+                73,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000012",
-                    "Miriam",
-                    "De Francisco Alonso",
-                    Gender.M,
-                    910000012,
-                    "m.defrancisco@gmail.com",
-                    dateService.stringToDate("08/03/2000"),
-                    "0000000012A",
-                    "MiriMiri",
-                    passwordEncoder.encode("MiriMiri"),
-                    "¿Estilo de música favorito?",
-                    "K-pop",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[1],
-                    "JudoLeganes",
-                    62,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000012",
+                "Miriam",
+                "De Francisco Alonso",
+                Gender.M,
+                910000012,
+                "m.defrancisco@gmail.com",
+                dateService.stringToDate("08/03/2000"),
+                "0000000012A",
+                "MiriMiri",
+                passwordEncoder.encode("MiriMiri"),
+                "¿Estilo de música favorito?",
+                "K-pop",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[1],
+                "JudoLeganes",
+                62,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000013",
-                    "Adrian",
-                    "Sierra Robles",
-                    Gender.H,
-                    910000013,
-                    "a.sierra@gmail.com",
-                    dateService.stringToDate("08/03/2000"),
-                    "0000000013A",
-                    "AdriSierras",
-                    passwordEncoder.encode("AdriSierras"),
-                    "¿Dónde trabajas?",
-                    "McDonals",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[1],
-                    "VillaJudo",
-                    75,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000013",
+                "Adrian",
+                "Sierra Robles",
+                Gender.H,
+                910000013,
+                "a.sierra@gmail.com",
+                dateService.stringToDate("08/03/2000"),
+                "0000000013A",
+                "AdriSierras",
+                passwordEncoder.encode("AdriSierras"),
+                "¿Dónde trabajas?",
+                "McDonals",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[1],
+                "VillaJudo",
+                75,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000014",
-                    "Iván",
-                    "Toledano Díaz",
-                    Gender.H,
-                    910000014,
-                    "i.toledano@gmail.com",
-                    dateService.stringToDate("22/06/2008"),
-                    "0000000014A",
-                    "Itodi",
-                    passwordEncoder.encode("Itodi"),
-                    "¿Cuál es tu hermano favorito?",
-                    "José Luis",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[19],
-                    "VillaJudo",
-                    61,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000014",
+                "Iván",
+                "Toledano Díaz",
+                Gender.H,
+                910000014,
+                "i.toledano@gmail.com",
+                dateService.stringToDate("22/06/2008"),
+                "0000000014A",
+                "Itodi",
+                passwordEncoder.encode("Itodi"),
+                "¿Cuál es tu hermano favorito?",
+                "José Luis",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[19],
+                "VillaJudo",
+                61,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000015",
-                    "Fernando",
-                    "Sánchez Calvo",
-                    Gender.H,
-                    910000015,
-                    "f.sanchez@gmail.com",
-                    dateService.stringToDate("22/06/2008"),
-                    "0000000015A",
-                    "Ferdinan",
-                    passwordEncoder.encode("Ferdinan"),
-                    "¿Afición favorita?",
-                    "Teatro",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[17],
-                    "VillaJudo",
-                    61,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000015",
+                "Fernando",
+                "Sánchez Calvo",
+                Gender.H,
+                910000015,
+                "f.sanchez@gmail.com",
+                dateService.stringToDate("22/06/2008"),
+                "0000000015A",
+                "Ferdinan",
+                passwordEncoder.encode("Ferdinan"),
+                "¿Afición favorita?",
+                "Teatro",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[17],
+                "VillaJudo",
+                61,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000016",
-                    "Ana",
-                    "Izquierdo Olmos",
-                    Gender.M,
-                    910000016,
-                    "a.izquierdo@gmail.com",
-                    dateService.stringToDate("07/05/2002"),
-                    "0000000016A",
-                    "AnaCuarzo",
-                    passwordEncoder.encode("AnaCuarzo"),
-                    "¿Cuál es tu pueblo?",
-                    "Navarrevisca",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[5],
-                    "VillaJudo",
-                    63,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000016",
+                "Ana",
+                "Izquierdo Olmos",
+                Gender.M,
+                910000016,
+                "a.izquierdo@gmail.com",
+                dateService.stringToDate("07/05/2002"),
+                "0000000016A",
+                "AnaCuarzo",
+                passwordEncoder.encode("AnaCuarzo"),
+                "¿Cuál es tu pueblo?",
+                "Navarrevisca",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[5],
+                "VillaJudo",
+                63,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000017",
-                    "José Luis",
-                    "Toledano Hernández",
-                    Gender.H,
-                    910000017,
-                    "jl.hernandez@gmail.com",
-                    dateService.stringToDate("23/06/1975"),
-                    "0000000017A",
-                    "Jolutoher",
-                    passwordEncoder.encode("Jolutoher"),
-                    "Hobbie",
-                    "Punto de cruz",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[8],
-                    "Ciedrum",
-                    74,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000017",
+                "José Luis",
+                "Toledano Hernández",
+                Gender.H,
+                910000017,
+                "jl.hernandez@gmail.com",
+                dateService.stringToDate("23/06/1975"),
+                "0000000017A",
+                "Jolutoher",
+                passwordEncoder.encode("Jolutoher"),
+                "Hobbie",
+                "Punto de cruz",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[8],
+                "Ciedrum",
+                74,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000018",
-                    "Carlos",
-                    "Horcajada Romo",
-                    Gender.M,
-                    910000018,
-                    "c.horcajada@gmail.com",
-                    dateService.stringToDate("23/06/1975"),
-                    "0000000018A",
-                    "Carlitos",
-                    passwordEncoder.encode("Carlitos"),
-                    "¿Hiciste la mili?",
-                    "Sí",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[7],
-                    "Ciedrum",
-                    67,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000018",
+                "Carlos",
+                "Horcajada Romo",
+                Gender.M,
+                910000018,
+                "c.horcajada@gmail.com",
+                dateService.stringToDate("23/06/1975"),
+                "0000000018A",
+                "Carlitos",
+                passwordEncoder.encode("Carlitos"),
+                "¿Hiciste la mili?",
+                "Sí",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[7],
+                "Ciedrum",
+                67,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000019",
-                    "Allan Robert",
-                    "Cob Bellido",
-                    Gender.H,
-                    910000019,
-                    "a.cob@gmail.com",
-                    dateService.stringToDate("23/06/1975"),
-                    "0000000019A",
-                    "Allanzot",
-                    passwordEncoder.encode("Allanzot"),
-                    "¿Qué idiomas dominas?",
-                    "Inglés y español",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[6],
-                    "Ciedrum",
-                    73,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000019",
+                "Allan Robert",
+                "Cob Bellido",
+                Gender.H,
+                910000019,
+                "a.cob@gmail.com",
+                dateService.stringToDate("23/06/1975"),
+                "0000000019A",
+                "Allanzot",
+                passwordEncoder.encode("Allanzot"),
+                "¿Qué idiomas dominas?",
+                "Inglés y español",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[6],
+                "Ciedrum",
+                73,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000020",
-                    "Enrique",
-                    "Carmona Blázquez",
-                    Gender.H,
-                    910000020,
-                    "e.carmona@gmail.com",
-                    dateService.stringToDate("23/06/1975"),
-                    "0000000020A",
-                    "Enriquitin",
-                    passwordEncoder.encode("Enriquitin"),
-                    "¿Qué deporte practicas?",
-                    "Karate y judo",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[18],
-                    "Ciedrum",
-                    69,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000020",
+                "Enrique",
+                "Carmona Blázquez",
+                Gender.H,
+                910000020,
+                "e.carmona@gmail.com",
+                dateService.stringToDate("23/06/1975"),
+                "0000000020A",
+                "Enriquitin",
+                passwordEncoder.encode("Enriquitin"),
+                "¿Qué deporte practicas?",
+                "Karate y judo",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[18],
+                "Ciedrum",
+                69,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000021",
-                    "Alfredo",
-                    "Mendez Hernández",
-                    Gender.H,
-                    910000021,
-                    "a.mendez@gmail.com",
-                    dateService.stringToDate("23/06/1975"),
-                    "0000000021A",
-                    "Alfred",
-                    passwordEncoder.encode("Alfred"),
-                    "¿Qué asignatura te gusta?",
-                    "Seguridad Informática",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[13],
-                    "Elarion",
-                    77,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000021",
+                "Alfredo",
+                "Mendez Hernández",
+                Gender.H,
+                910000021,
+                "a.mendez@gmail.com",
+                dateService.stringToDate("23/06/1975"),
+                "0000000021A",
+                "Alfred",
+                passwordEncoder.encode("Alfred"),
+                "¿Qué asignatura te gusta?",
+                "Seguridad Informática",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[13],
+                "Elarion",
+                77,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000022",
-                    "Alessandro",
-                    "Nuzzi Herrero",
-                    Gender.H,
-                    910000022,
-                    "s.nuzzi@gmail.com",
-                    dateService.stringToDate("15/02/2001"),
-                    "0000000022A",
-                    "Sandrito",
-                    passwordEncoder.encode("Sandrito"),
-                    "¿Qué asignatura te gusta?",
-                    "Estadística",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[12],
-                    "Elarion",
-                    77,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000022",
+                "Alessandro",
+                "Nuzzi Herrero",
+                Gender.H,
+                910000022,
+                "s.nuzzi@gmail.com",
+                dateService.stringToDate("15/02/2001"),
+                "0000000022A",
+                "Sandrito",
+                passwordEncoder.encode("Sandrito"),
+                "¿Qué asignatura te gusta?",
+                "Estadística",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[12],
+                "Elarion",
+                77,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000023",
-                    "Jesús",
-                    "Mendoza Díaz",
-                    Gender.H,
-                    910000023,
-                    "j.mendoza@gmail.com",
-                    dateService.stringToDate("15/02/1994"),
-                    "0000000023A",
-                    "Chichu",
-                    passwordEncoder.encode("Chichu"),
-                    "¿Dónde vives?",
-                    "Ibros",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[15],
-                    "Elarion",
-                    74,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000023",
+                "Jesús",
+                "Mendoza Díaz",
+                Gender.H,
+                910000023,
+                "j.mendoza@gmail.com",
+                dateService.stringToDate("15/02/1994"),
+                "0000000023A",
+                "Chichu",
+                passwordEncoder.encode("Chichu"),
+                "¿Dónde vives?",
+                "Ibros",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[15],
+                "Elarion",
+                74,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000024",
-                    "Juan",
-                    "Mendoza Díaz",
-                    Gender.H,
-                    910000024,
-                    "j.mendozadiaz@gmail.com",
-                    dateService.stringToDate("15/02/1988"),
-                    "0000000024A",
-                    "ChichuSoldao",
-                    passwordEncoder.encode("ChichuSoldao"),
-                    "¿Dónde trabajas?",
-                    "Ejército",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[16],
-                    "Elarion",
-                    78,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000024",
+                "Juan",
+                "Mendoza Díaz",
+                Gender.H,
+                910000024,
+                "j.mendozadiaz@gmail.com",
+                dateService.stringToDate("15/02/1988"),
+                "0000000024A",
+                "ChichuSoldao",
+                passwordEncoder.encode("ChichuSoldao"),
+                "¿Dónde trabajas?",
+                "Ejército",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[16],
+                "Elarion",
+                78,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000025",
-                    "Carolina",
-                    "Rus Díaz",
-                    Gender.M,
-                    910000025,
-                    "c.rus@gmail.com",
-                    dateService.stringToDate("27/07/1988"),
-                    "0000000025A",
-                    "Carol",
-                    passwordEncoder.encode("Carol"),
-                    "¿Dónde vives?",
-                    "Parla",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[3],
-                    "Budokan",
-                    67,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000025",
+                "Carolina",
+                "Rus Díaz",
+                Gender.M,
+                910000025,
+                "c.rus@gmail.com",
+                dateService.stringToDate("27/07/1988"),
+                "0000000025A",
+                "Carol",
+                passwordEncoder.encode("Carol"),
+                "¿Dónde vives?",
+                "Parla",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[3],
+                "Budokan",
+                67,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000026",
-                    "Sandra",
-                    "Rus Díaz",
-                    Gender.M,
-                    910000026,
-                    "s.rus@gmail.com",
-                    dateService.stringToDate("1/07/1994"),
-                    "0000000026A",
-                    "Sandrem",
-                    passwordEncoder.encode("Sandrem"),
-                    "¿Dónde vives?",
-                    "Parla",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[6],
-                    "Budokan",
-                    62,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000026",
+                "Sandra",
+                "Rus Díaz",
+                Gender.M,
+                910000026,
+                "s.rus@gmail.com",
+                dateService.stringToDate("1/07/1994"),
+                "0000000026A",
+                "Sandrem",
+                passwordEncoder.encode("Sandrem"),
+                "¿Dónde vives?",
+                "Parla",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[6],
+                "Budokan",
+                62,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000027",
-                    "Natividad",
-                    "Díaz Navarro",
-                    Gender.M,
-                    910000027,
-                    "n.diaz@gmail.com",
-                    dateService.stringToDate("1/07/1994"),
-                    "0000000027A",
-                    "Nati",
-                    passwordEncoder.encode("Nati"),
-                    "¿Película favorita?",
-                    "Pretty woman",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[2],
-                    "Budokan",
-                    67,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000027",
+                "Natividad",
+                "Díaz Navarro",
+                Gender.M,
+                910000027,
+                "n.diaz@gmail.com",
+                dateService.stringToDate("1/07/1994"),
+                "0000000027A",
+                "Nati",
+                passwordEncoder.encode("Nati"),
+                "¿Película favorita?",
+                "Pretty woman",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[2],
+                "Budokan",
+                67,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000028",
-                    "Anakin",
-                    "SkyWalker",
-                    Gender.H,
-                    910000028,
-                    "a.skywalker@gmail.com",
-                    dateService.stringToDate("1/07/1997"),
-                    "0000000028A",
-                    "Ani",
-                    passwordEncoder.encode("Ani"),
-                    "¿Película favorita?",
-                    "Star Wars",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[10],
-                    "Budokan",
-                    76,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000028",
+                "Anakin",
+                "SkyWalker",
+                Gender.H,
+                910000028,
+                "a.skywalker@gmail.com",
+                dateService.stringToDate("1/07/1997"),
+                "0000000028A",
+                "Ani",
+                passwordEncoder.encode("Ani"),
+                "¿Película favorita?",
+                "Star Wars",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[10],
+                "Budokan",
+                76,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000029",
-                    "Marcos",
-                    "Rocha Morales",
-                    Gender.H,
-                    910000029,
-                    "m.rocha@gmail.com",
-                    dateService.stringToDate("22/11/2000"),
-                    "0000000029A",
-                    "Marquiños",
-                    passwordEncoder.encode("Marquiños"),
-                    "¿Asignatura favorita?",
-                    "Matemáticas",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[4],
-                    "Katón",
-                    71,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000029",
+                "Marcos",
+                "Rocha Morales",
+                Gender.H,
+                910000029,
+                "m.rocha@gmail.com",
+                dateService.stringToDate("22/11/2000"),
+                "0000000029A",
+                "Marquiños",
+                passwordEncoder.encode("Marquiños"),
+                "¿Asignatura favorita?",
+                "Matemáticas",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[4],
+                "Katón",
+                71,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000030",
-                    "Ana",
-                    "Martínez Jiménez",
-                    Gender.M,
-                    910000030,
-                    "m.rocha@gmail.com",
-                    dateService.stringToDate("21/06/2000"),
-                    "0000000030A",
-                    "AnaBanana",
-                    passwordEncoder.encode("AnaBanana"),
-                    "¿Asignatura favorita?",
-                    "Francés",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[1],
-                    "Katón",
-                    65,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000030",
+                "Ana",
+                "Martínez Jiménez",
+                Gender.M,
+                910000030,
+                "m.rocha@gmail.com",
+                dateService.stringToDate("21/06/2000"),
+                "0000000030A",
+                "AnaBanana",
+                passwordEncoder.encode("AnaBanana"),
+                "¿Asignatura favorita?",
+                "Francés",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[1],
+                "Katón",
+                65,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000031",
-                    "Andrea",
-                    "Iglesias de la Fuente",
-                    Gender.M,
-                    910000031,
-                    "a.iglesias@gmail.com",
-                    dateService.stringToDate("08/11/2000"),
-                    "0000000031A",
-                    "AndreChurches",
-                    passwordEncoder.encode("AndreChurches"),
-                    "¿Que te gusta más?",
-                    "Festejar",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[5],
-                    "Katón",
-                    62,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000031",
+                "Andrea",
+                "Iglesias de la Fuente",
+                Gender.M,
+                910000031,
+                "a.iglesias@gmail.com",
+                dateService.stringToDate("08/11/2000"),
+                "0000000031A",
+                "AndreChurches",
+                passwordEncoder.encode("AndreChurches"),
+                "¿Que te gusta más?",
+                "Festejar",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[5],
+                "Katón",
+                62,
+                null,
+                Set.of(Role.C))
+        );
 
-            competitors.add(new User(
-                    "0000000032",
-                    "Alfonsa",
-                    "Zurdo Domingo",
-                    Gender.M,
-                    910000032,
-                    "a.zurdos@gmail.com",
-                    dateService.stringToDate("21/12/1942"),
-                    "0000000032A",
-                    "Alf",
-                    passwordEncoder.encode("Alf"),
-                    "¿Quién es tu nieta?",
-                    "Andrea",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
-                    Belt.values()[14],
-                    "Katón",
-                    73,
-                    null,
-                    Set.of(Role.C))
-            );
+        competitors.add(new User(
+                "0000000032",
+                "Alfonsa",
+                "Zurdo Domingo",
+                Gender.M,
+                910000032,
+                "a.zurdos@gmail.com",
+                dateService.stringToDate("21/12/1942"),
+                "0000000032A",
+                "Alf",
+                passwordEncoder.encode("Alf"),
+                "¿Quién es tu nieta?",
+                "Andrea",
+                imageService.uploadProfileImage("/static/sampleImages/1234567890.jpg"),
+                Belt.values()[14],
+                "Katón",
+                73,
+                null,
+                Set.of(Role.C))
+        );
 
-            userService.saveAll(competitors);
+        userService.saveAll(competitors);
 
-            //Referees
-            List<User> referees = new ArrayList<>();
+        //Referees
+        List<User> referees = new ArrayList<>();
             /*for (int i = 0; i <= 7; i++) {
                 referees.add(new User(
                         "JU-987654321" + i,
@@ -773,113 +773,113 @@ public class DataLoader {
                         Set.of(Role.R)));
             }*/
 
-            referees.add(new User(
-                    "JU-0000000001",
-                    "Tar",
-                    "Mairon",
-                    Gender.H,
-                    910000033,
-                    "t.mairon@arbitro.com",
-                    dateService.stringToDate("2/6/1950"),
-                    "0000033A",
-                    "Sauron",
-                    passwordEncoder.encode("Sauron"),
-                    "¿Qué quieres?",
-                    "La tierra media",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567891.jpg"),
-                    Belt.values()[16],
-                    null,
-                    null,
-                    RefereeRange.values()[0],
-                    Set.of(Role.R))
-            );
+        referees.add(new User(
+                "JU-0000000002",
+                "Padme",
+                "Amidala",
+                Gender.M,
+                910000034,
+                "juding.noreply@gmail.com",
+                dateService.stringToDate("7/10/1966"),
+                "0000034A",
+                "Pad",
+                passwordEncoder.encode("Pad"),
+                "¿Qué buscas?",
+                "La paz",
+                imageService.uploadProfileImage("/static/sampleImages/1234567891.jpg"),
+                Belt.values()[13],
+                "Gym Olympo",
+                null,
+                RefereeRange.values()[0],
+                Set.of(Role.R))
+        );
 
-            referees.add(new User(
-                    "JU-0000000002",
-                    "Padme",
-                    "Amidala",
-                    Gender.M,
-                    910000034,
-                    "p.amidala@arbitro.com",
-                    dateService.stringToDate("7/10/1966"),
-                    "0000034A",
-                    "Pad",
-                    passwordEncoder.encode("Pad"),
-                    "¿Qué buscas?",
-                    "La paz",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567891.jpg"),
-                    Belt.values()[13],
-                    "Gym Olympo",
-                    null,
-                    RefereeRange.values()[1],
-                    Set.of(Role.R))
-            );
+        referees.add(new User(
+                "JU-0000000001",
+                "Tar",
+                "Mairon",
+                Gender.H,
+                910000033,
+                "t.mairon@arbitro.com",
+                dateService.stringToDate("2/6/1950"),
+                "0000033A",
+                "Sauron",
+                passwordEncoder.encode("Sauron"),
+                "¿Qué quieres?",
+                "La tierra media",
+                imageService.uploadProfileImage("/static/sampleImages/1234567891.jpg"),
+                Belt.values()[16],
+                null,
+                null,
+                RefereeRange.values()[1],
+                Set.of(Role.R))
+        );
 
-            referees.add(new User(
-                    "JU-0000000003",
-                    "Ana Maria",
-                    "Herrero Zurdo",
-                    Gender.M,
-                    910000035,
-                    "am.herrero@arbitro.com",
-                    dateService.stringToDate("21/11/1966"),
-                    "0000035A",
-                    "AnaMary",
-                    passwordEncoder.encode("AnaMary"),
-                    "¿Qué te gusta hacer?",
-                    "Leer",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567891.jpg"),
-                    Belt.values()[11],
-                    null,
-                    null,
-                    RefereeRange.values()[2],
-                    Set.of(Role.R))
-            );
+        referees.add(new User(
+                "JU-0000000003",
+                "Ana Maria",
+                "Herrero Zurdo",
+                Gender.M,
+                910000035,
+                "am.herrero@arbitro.com",
+                dateService.stringToDate("21/11/1966"),
+                "0000035A",
+                "AnaMary",
+                passwordEncoder.encode("AnaMary"),
+                "¿Qué te gusta hacer?",
+                "Leer",
+                imageService.uploadProfileImage("/static/sampleImages/1234567891.jpg"),
+                Belt.values()[11],
+                null,
+                null,
+                RefereeRange.values()[2],
+                Set.of(Role.R))
+        );
 
-            referees.add(new User(
-                    "JU-0000000004",
-                    "Claudio",
-                    "Nuzzi Morales",
-                    Gender.H,
-                    910000036,
-                    "c.nuzzi@arbitro.com",
-                    dateService.stringToDate("07/07/1968"),
-                    "0000036A",
-                    "Clau",
-                    passwordEncoder.encode("Clau"),
-                    "¿Qué te gusta hacer?",
-                    "Cocinar",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567891.jpg"),
-                    Belt.values()[18],
-                    null,
-                    null,
-                    RefereeRange.values()[3],
-                    Set.of(Role.R))
-            );
+        referees.add(new User(
+                "JU-0000000004",
+                "Claudio",
+                "Nuzzi Morales",
+                Gender.H,
+                910000036,
+                "c.nuzzi@arbitro.com",
+                dateService.stringToDate("07/07/1968"),
+                "0000036A",
+                "Clau",
+                passwordEncoder.encode("Clau"),
+                "¿Qué te gusta hacer?",
+                "Cocinar",
+                imageService.uploadProfileImage("/static/sampleImages/1234567891.jpg"),
+                Belt.values()[18],
+                null,
+                null,
+                RefereeRange.values()[3],
+                Set.of(Role.R))
+        );
 
-            //Administrators
-            User admin = new User(
-                    "JU-0000000005",
-                    "Cronos",
-                    "Tempo Limit",
-                    Gender.M,
-                    910000037,
-                    "c.tempo@admin.com",
-                    dateService.stringToDate("15/06/1001"),
-                    "00000037A",
-                    "Cron",
-                    passwordEncoder.encode("Cron"),
-                    "¿Quién es el padre de los dioses?",
-                    "Soy yo",
-                    imageService.uploadProfileImage("/static/sampleImages/1234567892.jpg"),
-                    Belt.values()[20],
-                    "Temple",
-                    null,
-                    RefereeRange.C,
-                    Set.of(Role.R, Role.A));
+        //Administrators
+        User admin = new User(
+                "JU-0000000005",
+                "Cronos",
+                "Tempo Limit",
+                Gender.M,
+                910000037,
+                "c.tempo@admin.com",
+                dateService.stringToDate("15/06/1001"),
+                "00000037A",
+                "Cron",
+                passwordEncoder.encode("Cron"),
+                "¿Quién es el padre de los dioses?",
+                "Soy yo",
+                imageService.uploadProfileImage("/static/sampleImages/1234567892.jpg"),
+                Belt.values()[20],
+                "Temple",
+                null,
+                RefereeRange.C,
+                Set.of(Role.R, Role.A));
 
-            referees.add(admin);
-            userService.saveAll(referees);
+        referees.add(admin);
+        userService.saveAll(referees);
 
         // STEP 2. Saving news competitions
         List<Competition> competitions = new ArrayList<>();
@@ -1033,448 +1033,498 @@ public class DataLoader {
             competitionService.joinCompetition(competitions.get(0), competitors.get(i));
         }*/
         //TRIAL1
-        competitionService.joinCompetition(competitions.get(0),competitors.get(12));
-        competitionService.joinCompetition(competitions.get(0),competitors.get(20));
-        competitionService.joinCompetition(competitions.get(0),competitors.get(9));
-        competitionService.joinCompetition(competitions.get(0),competitors.get(14));
-        competitionService.joinCompetition(competitions.get(0),competitors.get(27));
-        competitionService.joinCompetition(competitions.get(0),competitors.get(22));
-        competitionService.joinCompetition(competitions.get(0),competitors.get(10));
-        competitionService.joinCompetition(competitions.get(0),competitors.get(16));
-        competitionService.joinCompetition(competitions.get(0),competitors.get(1));
-        competitionService.joinCompetition(competitions.get(0),competitors.get(18));
-        competitionService.joinCompetition(competitions.get(0),competitors.get(21));
-        competitionService.joinCompetition(competitions.get(0),competitors.get(3));
-        competitionService.joinCompetition(competitions.get(0),competitors.get(23));
-        competitionService.joinCompetition(competitions.get(0),competitors.get(31));
-        competitionService.joinCompetition(competitions.get(0),competitors.get(28));
-        competitionService.joinCompetition(competitions.get(0),competitors.get(0));
+        competitionService.joinCompetition(competitions.get(0), competitors.get(12));
+        competitionService.joinCompetition(competitions.get(0), competitors.get(20));
+        competitionService.joinCompetition(competitions.get(0), competitors.get(9));
+        competitionService.joinCompetition(competitions.get(0), competitors.get(14));
+        competitionService.joinCompetition(competitions.get(0), competitors.get(27));
+        competitionService.joinCompetition(competitions.get(0), competitors.get(22));
+        competitionService.joinCompetition(competitions.get(0), competitors.get(10));
+        competitionService.joinCompetition(competitions.get(0), competitors.get(16));
+        competitionService.joinCompetition(competitions.get(0), competitors.get(1));
+        competitionService.joinCompetition(competitions.get(0), competitors.get(18));
+        competitionService.joinCompetition(competitions.get(0), competitors.get(21));
+        competitionService.joinCompetition(competitions.get(0), competitors.get(3));
+        competitionService.joinCompetition(competitions.get(0), competitors.get(23));
+        competitionService.joinCompetition(competitions.get(0), competitors.get(31));
+        competitionService.joinCompetition(competitions.get(0), competitors.get(28));
+        competitionService.joinCompetition(competitions.get(0), competitors.get(0));
 
         competitionService.add(competitions.get(0));
 
         //TRIAL2
-        competitionService.joinCompetition(competitions.get(1),competitors.get(11));
-        competitionService.joinCompetition(competitions.get(1),competitors.get(7));
-        competitionService.joinCompetition(competitions.get(1),competitors.get(19));
-        competitionService.joinCompetition(competitions.get(1),competitors.get(25));
-        competitionService.joinCompetition(competitions.get(1),competitors.get(26));
-        competitionService.joinCompetition(competitions.get(1),competitors.get(5));
-        competitionService.joinCompetition(competitions.get(1),competitors.get(29));
-        competitionService.joinCompetition(competitions.get(1),competitors.get(15));
-        competitionService.joinCompetition(competitions.get(1),competitors.get(6));
-        competitionService.joinCompetition(competitions.get(1),competitors.get(13));
-        competitionService.joinCompetition(competitions.get(1),competitors.get(24));
-        competitionService.joinCompetition(competitions.get(1),competitors.get(2));
-        competitionService.joinCompetition(competitions.get(1),competitors.get(4));
-        competitionService.joinCompetition(competitions.get(1),competitors.get(17));
-        competitionService.joinCompetition(competitions.get(1),competitors.get(8));
-        competitionService.joinCompetition(competitions.get(1),competitors.get(30));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(11));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(7));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(19));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(25));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(26));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(5));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(29));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(15));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(6));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(13));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(24));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(2));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(4));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(17));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(8));
+        competitionService.joinCompetition(competitions.get(1), competitors.get(30));
 
         competitionService.add(competitions.get(1));
 
         //TRIAL3
-        competitionService.joinCompetition(competitions.get(2),competitors.get(10));
-        competitionService.joinCompetition(competitions.get(2),competitors.get(16));
-        competitionService.joinCompetition(competitions.get(2),competitors.get(22));
-        competitionService.joinCompetition(competitions.get(2),competitors.get(20));
-        competitionService.joinCompetition(competitions.get(2),competitors.get(12));
-        competitionService.joinCompetition(competitions.get(2),competitors.get(14));
-        competitionService.joinCompetition(competitions.get(2),competitors.get(27));
-        competitionService.joinCompetition(competitions.get(2),competitors.get(9));
-        competitionService.joinCompetition(competitions.get(2),competitors.get(31));
-        competitionService.joinCompetition(competitions.get(2),competitors.get(28));
-        competitionService.joinCompetition(competitions.get(2),competitors.get(18));
-        competitionService.joinCompetition(competitions.get(2),competitors.get(1));
-        competitionService.joinCompetition(competitions.get(2),competitors.get(0));
-        competitionService.joinCompetition(competitions.get(2),competitors.get(3));
-        competitionService.joinCompetition(competitions.get(2),competitors.get(21));
-        competitionService.joinCompetition(competitions.get(2),competitors.get(23));
+        competitionService.joinCompetition(competitions.get(2), competitors.get(10));
+        competitionService.joinCompetition(competitions.get(2), competitors.get(16));
+        competitionService.joinCompetition(competitions.get(2), competitors.get(22));
+        competitionService.joinCompetition(competitions.get(2), competitors.get(20));
+        competitionService.joinCompetition(competitions.get(2), competitors.get(12));
+        competitionService.joinCompetition(competitions.get(2), competitors.get(14));
+        competitionService.joinCompetition(competitions.get(2), competitors.get(27));
+        competitionService.joinCompetition(competitions.get(2), competitors.get(9));
+        competitionService.joinCompetition(competitions.get(2), competitors.get(31));
+        competitionService.joinCompetition(competitions.get(2), competitors.get(28));
+        competitionService.joinCompetition(competitions.get(2), competitors.get(18));
+        competitionService.joinCompetition(competitions.get(2), competitors.get(1));
+        competitionService.joinCompetition(competitions.get(2), competitors.get(0));
+        competitionService.joinCompetition(competitions.get(2), competitors.get(3));
+        competitionService.joinCompetition(competitions.get(2), competitors.get(21));
+        competitionService.joinCompetition(competitions.get(2), competitors.get(23));
 
         competitionService.add(competitions.get(2));
 
         //TRIAL4
-        competitionService.joinCompetition(competitions.get(3),competitors.get(26));
-        competitionService.joinCompetition(competitions.get(3),competitors.get(19));
-        competitionService.joinCompetition(competitions.get(3),competitors.get(7));
-        competitionService.joinCompetition(competitions.get(3),competitors.get(4));
-        competitionService.joinCompetition(competitions.get(3),competitors.get(13));
-        competitionService.joinCompetition(competitions.get(3),competitors.get(25));
-        competitionService.joinCompetition(competitions.get(3),competitors.get(5));
-        competitionService.joinCompetition(competitions.get(3),competitors.get(11));
-        competitionService.joinCompetition(competitions.get(3),competitors.get(30));
-        competitionService.joinCompetition(competitions.get(3),competitors.get(8));
-        competitionService.joinCompetition(competitions.get(3),competitors.get(24));
-        competitionService.joinCompetition(competitions.get(3),competitors.get(15));
-        competitionService.joinCompetition(competitions.get(3),competitors.get(2));
-        competitionService.joinCompetition(competitions.get(3),competitors.get(29));
-        competitionService.joinCompetition(competitions.get(3),competitors.get(16));
-        competitionService.joinCompetition(competitions.get(3),competitors.get(17));
+        competitionService.joinCompetition(competitions.get(3), competitors.get(26));
+        competitionService.joinCompetition(competitions.get(3), competitors.get(19));
+        competitionService.joinCompetition(competitions.get(3), competitors.get(7));
+        competitionService.joinCompetition(competitions.get(3), competitors.get(4));
+        competitionService.joinCompetition(competitions.get(3), competitors.get(13));
+        competitionService.joinCompetition(competitions.get(3), competitors.get(25));
+        competitionService.joinCompetition(competitions.get(3), competitors.get(5));
+        competitionService.joinCompetition(competitions.get(3), competitors.get(11));
+        competitionService.joinCompetition(competitions.get(3), competitors.get(30));
+        competitionService.joinCompetition(competitions.get(3), competitors.get(8));
+        competitionService.joinCompetition(competitions.get(3), competitors.get(24));
+        competitionService.joinCompetition(competitions.get(3), competitors.get(15));
+        competitionService.joinCompetition(competitions.get(3), competitors.get(2));
+        competitionService.joinCompetition(competitions.get(3), competitors.get(29));
+        competitionService.joinCompetition(competitions.get(3), competitors.get(16));
+        competitionService.joinCompetition(competitions.get(3), competitors.get(17));
 
         competitionService.add(competitions.get(3));
 
         //TRIAL5
-        competitionService.joinCompetition(competitions.get(4),competitors.get(14));
-        competitionService.joinCompetition(competitions.get(4),competitors.get(18));
-        competitionService.joinCompetition(competitions.get(4),competitors.get(3));
-        competitionService.joinCompetition(competitions.get(4),competitors.get(10));
-        competitionService.joinCompetition(competitions.get(4),competitors.get(16));
-        competitionService.joinCompetition(competitions.get(4),competitors.get(12));
-        competitionService.joinCompetition(competitions.get(4),competitors.get(23));
-        competitionService.joinCompetition(competitions.get(4),competitors.get(28));
-        competitionService.joinCompetition(competitions.get(4),competitors.get(1));
-        competitionService.joinCompetition(competitions.get(4),competitors.get(31));
-        competitionService.joinCompetition(competitions.get(4),competitors.get(20));
-        competitionService.joinCompetition(competitions.get(4),competitors.get(22));
-        competitionService.joinCompetition(competitions.get(4),competitors.get(27));
-        competitionService.joinCompetition(competitions.get(4),competitors.get(21));
-        competitionService.joinCompetition(competitions.get(4),competitors.get(0));
-        competitionService.joinCompetition(competitions.get(4),competitors.get(9));
+        competitionService.joinCompetition(competitions.get(4), competitors.get(14));
+        competitionService.joinCompetition(competitions.get(4), competitors.get(18));
+        competitionService.joinCompetition(competitions.get(4), competitors.get(3));
+        competitionService.joinCompetition(competitions.get(4), competitors.get(10));
+        competitionService.joinCompetition(competitions.get(4), competitors.get(16));
+        competitionService.joinCompetition(competitions.get(4), competitors.get(12));
+        competitionService.joinCompetition(competitions.get(4), competitors.get(23));
+        competitionService.joinCompetition(competitions.get(4), competitors.get(28));
+        competitionService.joinCompetition(competitions.get(4), competitors.get(1));
+        competitionService.joinCompetition(competitions.get(4), competitors.get(31));
+        competitionService.joinCompetition(competitions.get(4), competitors.get(20));
+        competitionService.joinCompetition(competitions.get(4), competitors.get(22));
+        competitionService.joinCompetition(competitions.get(4), competitors.get(27));
+        competitionService.joinCompetition(competitions.get(4), competitors.get(21));
+        competitionService.joinCompetition(competitions.get(4), competitors.get(0));
+        competitionService.joinCompetition(competitions.get(4), competitors.get(9));
 
         competitionService.add(competitions.get(4));
 
         //TRIAL6
-        competitionService.joinCompetition(competitions.get(5),competitors.get(11));
-        competitionService.joinCompetition(competitions.get(5),competitors.get(17));
-        competitionService.joinCompetition(competitions.get(5),competitors.get(6));
-        competitionService.joinCompetition(competitions.get(5),competitors.get(24));
-        competitionService.joinCompetition(competitions.get(5),competitors.get(29));
-        competitionService.joinCompetition(competitions.get(5),competitors.get(19));
-        competitionService.joinCompetition(competitions.get(5),competitors.get(30));
-        competitionService.joinCompetition(competitions.get(5),competitors.get(15));
-        competitionService.joinCompetition(competitions.get(5),competitors.get(8));
-        competitionService.joinCompetition(competitions.get(5),competitors.get(13));
-        competitionService.joinCompetition(competitions.get(5),competitors.get(25));
-        competitionService.joinCompetition(competitions.get(5),competitors.get(26));
-        competitionService.joinCompetition(competitions.get(5),competitors.get(4));
-        competitionService.joinCompetition(competitions.get(5),competitors.get(7));
-        competitionService.joinCompetition(competitions.get(5),competitors.get(2));
-        competitionService.joinCompetition(competitions.get(5),competitors.get(5));
+        competitionService.joinCompetition(competitions.get(5), competitors.get(11));
+        competitionService.joinCompetition(competitions.get(5), competitors.get(17));
+        competitionService.joinCompetition(competitions.get(5), competitors.get(6));
+        competitionService.joinCompetition(competitions.get(5), competitors.get(24));
+        competitionService.joinCompetition(competitions.get(5), competitors.get(29));
+        competitionService.joinCompetition(competitions.get(5), competitors.get(19));
+        competitionService.joinCompetition(competitions.get(5), competitors.get(30));
+        competitionService.joinCompetition(competitions.get(5), competitors.get(15));
+        competitionService.joinCompetition(competitions.get(5), competitors.get(8));
+        competitionService.joinCompetition(competitions.get(5), competitors.get(13));
+        competitionService.joinCompetition(competitions.get(5), competitors.get(25));
+        competitionService.joinCompetition(competitions.get(5), competitors.get(26));
+        competitionService.joinCompetition(competitions.get(5), competitors.get(4));
+        competitionService.joinCompetition(competitions.get(5), competitors.get(7));
+        competitionService.joinCompetition(competitions.get(5), competitors.get(2));
+        competitionService.joinCompetition(competitions.get(5), competitors.get(5));
 
         competitionService.add(competitions.get(5));
 
         //TRIAL7
-        competitionService.joinCompetition(competitions.get(6),competitors.get(10));
-        competitionService.joinCompetition(competitions.get(6),competitors.get(27));
-        competitionService.joinCompetition(competitions.get(6),competitors.get(31));
-        competitionService.joinCompetition(competitions.get(6),competitors.get(28));
-        competitionService.joinCompetition(competitions.get(6),competitors.get(20));
-        competitionService.joinCompetition(competitions.get(6),competitors.get(16));
-        competitionService.joinCompetition(competitions.get(6),competitors.get(14));
-        competitionService.joinCompetition(competitions.get(6),competitors.get(23));
-        competitionService.joinCompetition(competitions.get(6),competitors.get(18));
-        competitionService.joinCompetition(competitions.get(6),competitors.get(3));
-        competitionService.joinCompetition(competitions.get(6),competitors.get(22));
-        competitionService.joinCompetition(competitions.get(6),competitors.get(12));
-        competitionService.joinCompetition(competitions.get(6),competitors.get(1));
-        competitionService.joinCompetition(competitions.get(6),competitors.get(20));
-        competitionService.joinCompetition(competitions.get(6),competitors.get(0));
-        competitionService.joinCompetition(competitions.get(6),competitors.get(9));
+        competitionService.joinCompetition(competitions.get(6), competitors.get(10));
+        competitionService.joinCompetition(competitions.get(6), competitors.get(27));
+        competitionService.joinCompetition(competitions.get(6), competitors.get(31));
+        competitionService.joinCompetition(competitions.get(6), competitors.get(28));
+        competitionService.joinCompetition(competitions.get(6), competitors.get(20));
+        competitionService.joinCompetition(competitions.get(6), competitors.get(16));
+        competitionService.joinCompetition(competitions.get(6), competitors.get(14));
+        competitionService.joinCompetition(competitions.get(6), competitors.get(23));
+        competitionService.joinCompetition(competitions.get(6), competitors.get(18));
+        competitionService.joinCompetition(competitions.get(6), competitors.get(3));
+        competitionService.joinCompetition(competitions.get(6), competitors.get(22));
+        competitionService.joinCompetition(competitions.get(6), competitors.get(12));
+        competitionService.joinCompetition(competitions.get(6), competitors.get(1));
+        competitionService.joinCompetition(competitions.get(6), competitors.get(20));
+        competitionService.joinCompetition(competitions.get(6), competitors.get(0));
+        competitionService.joinCompetition(competitions.get(6), competitors.get(9));
 
         competitionService.add(competitions.get(6));
 
         //TRIAL8
-        competitionService.joinCompetition(competitions.get(7),competitors.get(13));
-        competitionService.joinCompetition(competitions.get(7),competitors.get(19));
-        competitionService.joinCompetition(competitions.get(7),competitors.get(6));
-        competitionService.joinCompetition(competitions.get(7),competitors.get(8));
-        competitionService.joinCompetition(competitions.get(7),competitors.get(24));
-        competitionService.joinCompetition(competitions.get(7),competitors.get(17));
-        competitionService.joinCompetition(competitions.get(7),competitors.get(29));
-        competitionService.joinCompetition(competitions.get(7),competitors.get(15));
-        competitionService.joinCompetition(competitions.get(7),competitors.get(25));
-        competitionService.joinCompetition(competitions.get(7),competitors.get(11));
-        competitionService.joinCompetition(competitions.get(7),competitors.get(5));
-        competitionService.joinCompetition(competitions.get(7),competitors.get(26));
-        competitionService.joinCompetition(competitions.get(7),competitors.get(30));
-        competitionService.joinCompetition(competitions.get(7),competitors.get(7));
-        competitionService.joinCompetition(competitions.get(7),competitors.get(2));
-        competitionService.joinCompetition(competitions.get(7),competitors.get(4));
+        competitionService.joinCompetition(competitions.get(7), competitors.get(13));
+        competitionService.joinCompetition(competitions.get(7), competitors.get(19));
+        competitionService.joinCompetition(competitions.get(7), competitors.get(6));
+        competitionService.joinCompetition(competitions.get(7), competitors.get(8));
+        competitionService.joinCompetition(competitions.get(7), competitors.get(24));
+        competitionService.joinCompetition(competitions.get(7), competitors.get(17));
+        competitionService.joinCompetition(competitions.get(7), competitors.get(29));
+        competitionService.joinCompetition(competitions.get(7), competitors.get(15));
+        competitionService.joinCompetition(competitions.get(7), competitors.get(25));
+        competitionService.joinCompetition(competitions.get(7), competitors.get(11));
+        competitionService.joinCompetition(competitions.get(7), competitors.get(5));
+        competitionService.joinCompetition(competitions.get(7), competitors.get(26));
+        competitionService.joinCompetition(competitions.get(7), competitors.get(30));
+        competitionService.joinCompetition(competitions.get(7), competitors.get(7));
+        competitionService.joinCompetition(competitions.get(7), competitors.get(2));
+        competitionService.joinCompetition(competitions.get(7), competitors.get(4));
 
         competitionService.add(competitions.get(7));
 
         //TRIAL9
-        competitionService.joinCompetition(competitions.get(8),competitors.get(14));
-        competitionService.joinCompetition(competitions.get(8),competitors.get(21));
-        competitionService.joinCompetition(competitions.get(8),competitors.get(18));
-        competitionService.joinCompetition(competitions.get(8),competitors.get(10));
-        competitionService.joinCompetition(competitions.get(8),competitors.get(9));
-        competitionService.joinCompetition(competitions.get(8),competitors.get(23));
-        competitionService.joinCompetition(competitions.get(8),competitors.get(12));
-        competitionService.joinCompetition(competitions.get(8),competitors.get(16));
-        competitionService.joinCompetition(competitions.get(8),competitors.get(3));
-        competitionService.joinCompetition(competitions.get(8),competitors.get(20));
-        competitionService.joinCompetition(competitions.get(8),competitors.get(0));
-        competitionService.joinCompetition(competitions.get(8),competitors.get(22));
-        competitionService.joinCompetition(competitions.get(8),competitors.get(1));
-        competitionService.joinCompetition(competitions.get(8),competitors.get(31));
-        competitionService.joinCompetition(competitions.get(8),competitors.get(27));
-        competitionService.joinCompetition(competitions.get(8),competitors.get(28));
+        competitionService.joinCompetition(competitions.get(8), competitors.get(14));
+        competitionService.joinCompetition(competitions.get(8), competitors.get(21));
+        competitionService.joinCompetition(competitions.get(8), competitors.get(18));
+        competitionService.joinCompetition(competitions.get(8), competitors.get(10));
+        competitionService.joinCompetition(competitions.get(8), competitors.get(9));
+        competitionService.joinCompetition(competitions.get(8), competitors.get(23));
+        competitionService.joinCompetition(competitions.get(8), competitors.get(12));
+        competitionService.joinCompetition(competitions.get(8), competitors.get(16));
+        competitionService.joinCompetition(competitions.get(8), competitors.get(3));
+        competitionService.joinCompetition(competitions.get(8), competitors.get(20));
+        competitionService.joinCompetition(competitions.get(8), competitors.get(0));
+        competitionService.joinCompetition(competitions.get(8), competitors.get(22));
+        competitionService.joinCompetition(competitions.get(8), competitors.get(1));
+        competitionService.joinCompetition(competitions.get(8), competitors.get(31));
+        competitionService.joinCompetition(competitions.get(8), competitors.get(27));
+        competitionService.joinCompetition(competitions.get(8), competitors.get(28));
 
         competitionService.add(competitions.get(8));
 
         //TRIAL10
-        competitionService.joinCompetition(competitions.get(9),competitors.get(7));
-        competitionService.joinCompetition(competitions.get(9),competitors.get(5));
-        competitionService.joinCompetition(competitions.get(9),competitors.get(13));
-        competitionService.joinCompetition(competitions.get(9),competitors.get(17));
-        competitionService.joinCompetition(competitions.get(9),competitors.get(24));
-        competitionService.joinCompetition(competitions.get(9),competitors.get(19));
-        competitionService.joinCompetition(competitions.get(9),competitors.get(26));
-        competitionService.joinCompetition(competitions.get(9),competitors.get(30));
-        competitionService.joinCompetition(competitions.get(9),competitors.get(11));
-        competitionService.joinCompetition(competitions.get(9),competitors.get(15));
-        competitionService.joinCompetition(competitions.get(9),competitors.get(25));
-        competitionService.joinCompetition(competitions.get(9),competitors.get(4));
-        competitionService.joinCompetition(competitions.get(9),competitors.get(2));
-        competitionService.joinCompetition(competitions.get(9),competitors.get(6));
-        competitionService.joinCompetition(competitions.get(9),competitors.get(8));
-        competitionService.joinCompetition(competitions.get(9),competitors.get(29));
+        competitionService.joinCompetition(competitions.get(9), competitors.get(7));
+        competitionService.joinCompetition(competitions.get(9), competitors.get(5));
+        competitionService.joinCompetition(competitions.get(9), competitors.get(13));
+        competitionService.joinCompetition(competitions.get(9), competitors.get(17));
+        competitionService.joinCompetition(competitions.get(9), competitors.get(24));
+        competitionService.joinCompetition(competitions.get(9), competitors.get(19));
+        competitionService.joinCompetition(competitions.get(9), competitors.get(26));
+        competitionService.joinCompetition(competitions.get(9), competitors.get(30));
+        competitionService.joinCompetition(competitions.get(9), competitors.get(11));
+        competitionService.joinCompetition(competitions.get(9), competitors.get(15));
+        competitionService.joinCompetition(competitions.get(9), competitors.get(25));
+        competitionService.joinCompetition(competitions.get(9), competitors.get(4));
+        competitionService.joinCompetition(competitions.get(9), competitors.get(2));
+        competitionService.joinCompetition(competitions.get(9), competitors.get(6));
+        competitionService.joinCompetition(competitions.get(9), competitors.get(8));
+        competitionService.joinCompetition(competitions.get(9), competitors.get(29));
 
         competitionService.add(competitions.get(9));
 
         //TRIAL11
-        competitionService.joinCompetition(competitions.get(10),competitors.get(20));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(27));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(31));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(16));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(14));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(21));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(12));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(18));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(1));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(10));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(9));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(22));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(28));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(23));
-        competitionService.joinCompetition(competitions.get(10),competitors.get(0));
-        //DEMO ADDICTION
+        competitionService.joinCompetition(competitions.get(10), competitors.get(20));
+        competitionService.joinCompetition(competitions.get(10), competitors.get(27));
+        competitionService.joinCompetition(competitions.get(10), competitors.get(31));
+        competitionService.joinCompetition(competitions.get(10), competitors.get(16));
+        competitionService.joinCompetition(competitions.get(10), competitors.get(14));
+        competitionService.joinCompetition(competitions.get(10), competitors.get(21));
+        competitionService.joinCompetition(competitions.get(10), competitors.get(12));
+        competitionService.joinCompetition(competitions.get(10), competitors.get(18));
+        competitionService.joinCompetition(competitions.get(10), competitors.get(1));
+        competitionService.joinCompetition(competitions.get(10), competitors.get(10));
+        competitionService.joinCompetition(competitions.get(10), competitors.get(9));
+        competitionService.joinCompetition(competitions.get(10), competitors.get(22));
+        competitionService.joinCompetition(competitions.get(10), competitors.get(28));
+        competitionService.joinCompetition(competitions.get(10), competitors.get(23));
+        competitionService.joinCompetition(competitions.get(10), competitors.get(0));
+        //DEMO ADDITION
         //competitionService.joinCompetition(competitions.get(10),competitors.get(3));
 
         competitionService.add(competitions.get(10));
 
         //TRIAL12
-        competitionService.joinCompetition(competitions.get(11),competitors.get(15));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(25));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(29));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(11));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(24));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(17));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(5));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(7));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(2));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(6));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(13));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(26));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(8));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(30));
-        competitionService.joinCompetition(competitions.get(11),competitors.get(19));
-        //DEMO ADDICTION
+        competitionService.joinCompetition(competitions.get(11), competitors.get(15));
+        competitionService.joinCompetition(competitions.get(11), competitors.get(25));
+        competitionService.joinCompetition(competitions.get(11), competitors.get(29));
+        competitionService.joinCompetition(competitions.get(11), competitors.get(11));
+        competitionService.joinCompetition(competitions.get(11), competitors.get(24));
+        competitionService.joinCompetition(competitions.get(11), competitors.get(17));
+        competitionService.joinCompetition(competitions.get(11), competitors.get(5));
+        competitionService.joinCompetition(competitions.get(11), competitors.get(7));
+        competitionService.joinCompetition(competitions.get(11), competitors.get(2));
+        competitionService.joinCompetition(competitions.get(11), competitors.get(6));
+        competitionService.joinCompetition(competitions.get(11), competitors.get(13));
+        competitionService.joinCompetition(competitions.get(11), competitors.get(26));
+        competitionService.joinCompetition(competitions.get(11), competitors.get(8));
+        competitionService.joinCompetition(competitions.get(11), competitors.get(30));
+        competitionService.joinCompetition(competitions.get(11), competitors.get(19));
+        //DEMO ADDITION
         //competitionService.joinCompetition(competitions.get(11),competitors.get(4));
 
         competitionService.add(competitions.get(11));
+
+        // 3.1.Changing dates
+        competitions.get(0).setStartDate(dateService.stringToTimestamp("23/04/2020 12:00"))
+                .setEndDate(dateService.stringToTimestamp("24/04/2020 12:00"));
+        competitionService.add(competitions.get(0));
+
+        competitions.get(1).setStartDate(dateService.stringToTimestamp("23/05/2020 12:00"))
+                .setEndDate(dateService.stringToTimestamp("24/05/2020 12:00"));
+        competitionService.add(competitions.get(1));
+
+        competitions.get(2).setStartDate(dateService.stringToTimestamp("23/06/2020 12:00"))
+                .setEndDate(dateService.stringToTimestamp("24/06/2020 12:00"));
+        competitionService.add(competitions.get(2));
+
+        competitions.get(3).setStartDate(dateService.stringToTimestamp("23/07/2020 12:00"))
+                .setEndDate(dateService.stringToTimestamp("24/07/2020 12:00"));
+        competitionService.add(competitions.get(3));
+
+        competitions.get(4).setStartDate(dateService.stringToTimestamp("23/08/2020 12:00"))
+                .setEndDate(dateService.stringToTimestamp("24/08/2020 12:00"));
+        competitionService.add(competitions.get(4));
+
+        competitions.get(5).setStartDate(dateService.stringToTimestamp("23/04/2020 12:00"))
+                .setEndDate(dateService.stringToTimestamp("24/09/2020 12:00"));
+        competitionService.add(competitions.get(5));
+
+        competitions.get(6).setStartDate(dateService.stringToTimestamp("23/04/2020 12:00"))
+                .setEndDate(dateService.stringToTimestamp("24/09/2020 12:00"));
+        competitionService.add(competitions.get(6));
+
+        competitions.get(7).setStartDate(dateService.stringToTimestamp("23/10/2020 12:00"))
+                .setEndDate(dateService.stringToTimestamp("24/10/2020 12:00"));
+        competitionService.add(competitions.get(7));
+
+        competitions.get(8).setStartDate(dateService.stringToTimestamp("21/03/2021 12:00"))
+                .setEndDate(dateService.stringToTimestamp("24/03/2021 12:00"));
+        competitionService.add(competitions.get(8));
+
+        competitions.get(9).setStartDate(dateService.stringToTimestamp("21/03/2021 12:00"))
+                .setEndDate(dateService.stringToTimestamp("24/03/2021 12:00"));
+        competitionService.add(competitions.get(9));
+
+        competitions.get(10).setStartDate(dateService.stringToTimestamp("07/07/2021 12:00"))
+                .setEndDate(dateService.stringToTimestamp("10/07/2021 12:00"));
+        competitionService.add(competitions.get(10));
+
+        competitions.get(11).setStartDate(dateService.stringToTimestamp("07/07/2021 12:00"))
+                .setEndDate(dateService.stringToTimestamp("10/07/2021 12:00"));
+        competitionService.add(competitions.get(11));
+
         // 3.2. Simulating tournaments
-            //TRIAL1
-            // 8th-finals
-            competitionService.fightFinished(competitions.get(0), competitors.get(20), competitors.get(12));
-            competitionService.fightFinished(competitions.get(0), competitors.get(9), competitors.get(14));
-            competitionService.fightFinished(competitions.get(0), competitors.get(22), competitors.get(27));
-            competitionService.fightFinished(competitions.get(0), competitors.get(10), competitors.get(16));
-            competitionService.fightFinished(competitions.get(0), competitors.get(18), competitors.get(1));
-            competitionService.fightFinished(competitions.get(0), competitors.get(3), competitors.get(21));
-            competitionService.fightFinished(competitions.get(0), competitors.get(31), competitors.get(23));
-            competitionService.fightFinished(competitions.get(0), competitors.get(28), competitors.get(0));
-            // Quarterfinals
-            competitionService.fightFinished(competitions.get(0), competitors.get(9), competitors.get(20));
-            competitionService.fightFinished(competitions.get(0), competitors.get(22), competitors.get(10));
-            competitionService.fightFinished(competitions.get(0), competitors.get(3), competitors.get(18));
-            competitionService.fightFinished(competitions.get(0), competitors.get(28), competitors.get(31));
-            // Semifinals
-            competitionService.fightFinished(competitions.get(0), competitors.get(22), competitors.get(9));
-            competitionService.fightFinished(competitions.get(0), competitors.get(3), competitors.get(28));
-            // Finals
-            competitionService.fightFinished(competitions.get(0), competitors.get(3), competitors.get(22));
-            competitionService.add(competitions.get(0));
+        //TRIAL1
+        // 8th-finals
+        competitionService.fightFinished(competitions.get(0), competitors.get(20), competitors.get(12));
+        competitionService.fightFinished(competitions.get(0), competitors.get(9), competitors.get(14));
+        competitionService.fightFinished(competitions.get(0), competitors.get(22), competitors.get(27));
+        competitionService.fightFinished(competitions.get(0), competitors.get(10), competitors.get(16));
+        competitionService.fightFinished(competitions.get(0), competitors.get(18), competitors.get(1));
+        competitionService.fightFinished(competitions.get(0), competitors.get(3), competitors.get(21));
+        competitionService.fightFinished(competitions.get(0), competitors.get(31), competitors.get(23));
+        competitionService.fightFinished(competitions.get(0), competitors.get(28), competitors.get(0));
+        // Quarterfinals
+        competitionService.fightFinished(competitions.get(0), competitors.get(9), competitors.get(20));
+        competitionService.fightFinished(competitions.get(0), competitors.get(22), competitors.get(10));
+        competitionService.fightFinished(competitions.get(0), competitors.get(3), competitors.get(18));
+        competitionService.fightFinished(competitions.get(0), competitors.get(28), competitors.get(31));
+        // Semifinals
+        competitionService.fightFinished(competitions.get(0), competitors.get(22), competitors.get(9));
+        competitionService.fightFinished(competitions.get(0), competitors.get(3), competitors.get(28));
+        // Finals
+        competitionService.fightFinished(competitions.get(0), competitors.get(3), competitors.get(22));
+        competitionService.add(competitions.get(0));
 
-            //TRIAL2
-            // 8th-finals
-            competitionService.fightFinished(competitions.get(1), competitors.get(7), competitors.get(11));
-            competitionService.fightFinished(competitions.get(1), competitors.get(25), competitors.get(19));
-            competitionService.fightFinished(competitions.get(1), competitors.get(5), competitors.get(26));
-            competitionService.fightFinished(competitions.get(1), competitors.get(15), competitors.get(29));
-            competitionService.fightFinished(competitions.get(1), competitors.get(13), competitors.get(6));
-            competitionService.fightFinished(competitions.get(1), competitors.get(24), competitors.get(2));
-            competitionService.fightFinished(competitions.get(1), competitors.get(4), competitors.get(17));
-            competitionService.fightFinished(competitions.get(1), competitors.get(8), competitors.get(30));
-            // Quarterfinals
-            competitionService.fightFinished(competitions.get(1), competitors.get(7), competitors.get(25));
-            competitionService.fightFinished(competitions.get(1), competitors.get(5), competitors.get(15));
-            competitionService.fightFinished(competitions.get(1), competitors.get(24), competitors.get(13));
-            competitionService.fightFinished(competitions.get(1), competitors.get(4), competitors.get(8));
-            // Semifinals
-            competitionService.fightFinished(competitions.get(1), competitors.get(5), competitors.get(7));
-            competitionService.fightFinished(competitions.get(1), competitors.get(4), competitors.get(24));
-            // Finals
-            competitionService.fightFinished(competitions.get(1), competitors.get(5), competitors.get(4));
-            competitionService.add(competitions.get(1));
+        //TRIAL2
+        // 8th-finals
+        competitionService.fightFinished(competitions.get(1), competitors.get(7), competitors.get(11));
+        competitionService.fightFinished(competitions.get(1), competitors.get(25), competitors.get(19));
+        competitionService.fightFinished(competitions.get(1), competitors.get(5), competitors.get(26));
+        competitionService.fightFinished(competitions.get(1), competitors.get(15), competitors.get(29));
+        competitionService.fightFinished(competitions.get(1), competitors.get(13), competitors.get(6));
+        competitionService.fightFinished(competitions.get(1), competitors.get(24), competitors.get(2));
+        competitionService.fightFinished(competitions.get(1), competitors.get(4), competitors.get(17));
+        competitionService.fightFinished(competitions.get(1), competitors.get(8), competitors.get(30));
+        // Quarterfinals
+        competitionService.fightFinished(competitions.get(1), competitors.get(7), competitors.get(25));
+        competitionService.fightFinished(competitions.get(1), competitors.get(5), competitors.get(15));
+        competitionService.fightFinished(competitions.get(1), competitors.get(24), competitors.get(13));
+        competitionService.fightFinished(competitions.get(1), competitors.get(4), competitors.get(8));
+        // Semifinals
+        competitionService.fightFinished(competitions.get(1), competitors.get(5), competitors.get(7));
+        competitionService.fightFinished(competitions.get(1), competitors.get(4), competitors.get(24));
+        // Finals
+        competitionService.fightFinished(competitions.get(1), competitors.get(5), competitors.get(4));
+        competitionService.add(competitions.get(1));
 
-            //TRIAL3
-            // 8th-finals
-            competitionService.fightFinished(competitions.get(2), competitors.get(10), competitors.get(16));
-            competitionService.fightFinished(competitions.get(2), competitors.get(20), competitors.get(22));
-            competitionService.fightFinished(competitions.get(2), competitors.get(12), competitors.get(14));
-            competitionService.fightFinished(competitions.get(2), competitors.get(9), competitors.get(27));
-            competitionService.fightFinished(competitions.get(2), competitors.get(28), competitors.get(31));
-            competitionService.fightFinished(competitions.get(2), competitors.get(1), competitors.get(18));
-            competitionService.fightFinished(competitions.get(2), competitors.get(3), competitors.get(0));
-            competitionService.fightFinished(competitions.get(2), competitors.get(21), competitors.get(23));
-            // Quarterfinals
-            competitionService.fightFinished(competitions.get(2), competitors.get(20), competitors.get(10));
-            competitionService.fightFinished(competitions.get(2), competitors.get(9), competitors.get(12));
-            competitionService.fightFinished(competitions.get(2), competitors.get(1), competitors.get(28));
-            competitionService.fightFinished(competitions.get(2), competitors.get(3), competitors.get(21));
-            // Semifinals
-            competitionService.fightFinished(competitions.get(2), competitors.get(9), competitors.get(20));
-            competitionService.fightFinished(competitions.get(2), competitors.get(3), competitors.get(1));
-            // Finals
-            competitionService.fightFinished(competitions.get(2), competitors.get(9), competitors.get(3));
-            competitionService.add(competitions.get(2));
+        //TRIAL3
+        // 8th-finals
+        competitionService.fightFinished(competitions.get(2), competitors.get(10), competitors.get(16));
+        competitionService.fightFinished(competitions.get(2), competitors.get(20), competitors.get(22));
+        competitionService.fightFinished(competitions.get(2), competitors.get(12), competitors.get(14));
+        competitionService.fightFinished(competitions.get(2), competitors.get(9), competitors.get(27));
+        competitionService.fightFinished(competitions.get(2), competitors.get(28), competitors.get(31));
+        competitionService.fightFinished(competitions.get(2), competitors.get(1), competitors.get(18));
+        competitionService.fightFinished(competitions.get(2), competitors.get(3), competitors.get(0));
+        competitionService.fightFinished(competitions.get(2), competitors.get(21), competitors.get(23));
+        // Quarterfinals
+        competitionService.fightFinished(competitions.get(2), competitors.get(20), competitors.get(10));
+        competitionService.fightFinished(competitions.get(2), competitors.get(9), competitors.get(12));
+        competitionService.fightFinished(competitions.get(2), competitors.get(1), competitors.get(28));
+        competitionService.fightFinished(competitions.get(2), competitors.get(3), competitors.get(21));
+        // Semifinals
+        competitionService.fightFinished(competitions.get(2), competitors.get(9), competitors.get(20));
+        competitionService.fightFinished(competitions.get(2), competitors.get(3), competitors.get(1));
+        // Finals
+        competitionService.fightFinished(competitions.get(2), competitors.get(9), competitors.get(3));
+        competitionService.add(competitions.get(2));
 
-            //TRIAL4
-            // 8th-finals
-            competitionService.fightFinished(competitions.get(3), competitors.get(19), competitors.get(26));
-            competitionService.fightFinished(competitions.get(3), competitors.get(4), competitors.get(7));
-            competitionService.fightFinished(competitions.get(3), competitors.get(25), competitors.get(13));
-            competitionService.fightFinished(competitions.get(3), competitors.get(11), competitors.get(5));
-            competitionService.fightFinished(competitions.get(3), competitors.get(8), competitors.get(30));
-            competitionService.fightFinished(competitions.get(3), competitors.get(15), competitors.get(24));
-            competitionService.fightFinished(competitions.get(3), competitors.get(2), competitors.get(29));
-            competitionService.fightFinished(competitions.get(3), competitors.get(17), competitors.get(16));
-            // Quarterfinals
-            competitionService.fightFinished(competitions.get(3), competitors.get(4), competitors.get(19));
-            competitionService.fightFinished(competitions.get(3), competitors.get(11), competitors.get(25));
-            competitionService.fightFinished(competitions.get(3), competitors.get(15), competitors.get(8));
-            competitionService.fightFinished(competitions.get(3), competitors.get(2), competitors.get(17));
-            // Semifinals
-            competitionService.fightFinished(competitions.get(3), competitors.get(11), competitors.get(4));
-            competitionService.fightFinished(competitions.get(3), competitors.get(2), competitors.get(15));
-            // Finals
-            competitionService.fightFinished(competitions.get(3), competitors.get(2), competitors.get(11));
-            competitionService.add(competitions.get(3));
+        //TRIAL4
+        // 8th-finals
+        competitionService.fightFinished(competitions.get(3), competitors.get(19), competitors.get(26));
+        competitionService.fightFinished(competitions.get(3), competitors.get(4), competitors.get(7));
+        competitionService.fightFinished(competitions.get(3), competitors.get(25), competitors.get(13));
+        competitionService.fightFinished(competitions.get(3), competitors.get(11), competitors.get(5));
+        competitionService.fightFinished(competitions.get(3), competitors.get(8), competitors.get(30));
+        competitionService.fightFinished(competitions.get(3), competitors.get(15), competitors.get(24));
+        competitionService.fightFinished(competitions.get(3), competitors.get(2), competitors.get(29));
+        competitionService.fightFinished(competitions.get(3), competitors.get(17), competitors.get(16));
+        // Quarterfinals
+        competitionService.fightFinished(competitions.get(3), competitors.get(4), competitors.get(19));
+        competitionService.fightFinished(competitions.get(3), competitors.get(11), competitors.get(25));
+        competitionService.fightFinished(competitions.get(3), competitors.get(15), competitors.get(8));
+        competitionService.fightFinished(competitions.get(3), competitors.get(2), competitors.get(17));
+        // Semifinals
+        competitionService.fightFinished(competitions.get(3), competitors.get(11), competitors.get(4));
+        competitionService.fightFinished(competitions.get(3), competitors.get(2), competitors.get(15));
+        // Finals
+        competitionService.fightFinished(competitions.get(3), competitors.get(2), competitors.get(11));
+        competitionService.add(competitions.get(3));
 
-            //TRIAL5
-            // 8th-finals
-            competitionService.fightFinished(competitions.get(4), competitors.get(14), competitors.get(18));
-            competitionService.fightFinished(competitions.get(4), competitors.get(3), competitors.get(10));
-            competitionService.fightFinished(competitions.get(4), competitors.get(12), competitors.get(16));
-            competitionService.fightFinished(competitions.get(4), competitors.get(28), competitors.get(23));
-            competitionService.fightFinished(competitions.get(4), competitors.get(1), competitors.get(31));
-            competitionService.fightFinished(competitions.get(4), competitors.get(22), competitors.get(20));
-            competitionService.fightFinished(competitions.get(4), competitors.get(21), competitors.get(27));
-            competitionService.fightFinished(competitions.get(4), competitors.get(9), competitors.get(0));
-            // Quarterfinals
-            competitionService.fightFinished(competitions.get(4), competitors.get(3), competitors.get(14));
-            competitionService.fightFinished(competitions.get(4), competitors.get(12), competitors.get(28));
-            competitionService.fightFinished(competitions.get(4), competitors.get(1), competitors.get(22));
-            competitionService.fightFinished(competitions.get(4), competitors.get(9), competitors.get(21));
-            // Semifinals
-            competitionService.fightFinished(competitions.get(4), competitors.get(12), competitors.get(3));
-            competitionService.fightFinished(competitions.get(4), competitors.get(9), competitors.get(1));
-            // Finals
-            competitionService.fightFinished(competitions.get(4), competitors.get(9), competitors.get(12));
-            competitionService.add(competitions.get(4));
+        //TRIAL5
+        // 8th-finals
+        competitionService.fightFinished(competitions.get(4), competitors.get(14), competitors.get(18));
+        competitionService.fightFinished(competitions.get(4), competitors.get(3), competitors.get(10));
+        competitionService.fightFinished(competitions.get(4), competitors.get(12), competitors.get(16));
+        competitionService.fightFinished(competitions.get(4), competitors.get(28), competitors.get(23));
+        competitionService.fightFinished(competitions.get(4), competitors.get(1), competitors.get(31));
+        competitionService.fightFinished(competitions.get(4), competitors.get(22), competitors.get(20));
+        competitionService.fightFinished(competitions.get(4), competitors.get(21), competitors.get(27));
+        competitionService.fightFinished(competitions.get(4), competitors.get(9), competitors.get(0));
+        // Quarterfinals
+        competitionService.fightFinished(competitions.get(4), competitors.get(3), competitors.get(14));
+        competitionService.fightFinished(competitions.get(4), competitors.get(12), competitors.get(28));
+        competitionService.fightFinished(competitions.get(4), competitors.get(1), competitors.get(22));
+        competitionService.fightFinished(competitions.get(4), competitors.get(9), competitors.get(21));
+        // Semifinals
+        competitionService.fightFinished(competitions.get(4), competitors.get(12), competitors.get(3));
+        competitionService.fightFinished(competitions.get(4), competitors.get(9), competitors.get(1));
+        // Finals
+        competitionService.fightFinished(competitions.get(4), competitors.get(9), competitors.get(12));
+        competitionService.add(competitions.get(4));
 
-            //TRIAL6
-            // 8th-finals
-            competitionService.fightFinished(competitions.get(5), competitors.get(11), competitors.get(17));
-            competitionService.fightFinished(competitions.get(5), competitors.get(6), competitors.get(24));
-            competitionService.fightFinished(competitions.get(5), competitors.get(19), competitors.get(29));
-            competitionService.fightFinished(competitions.get(5), competitors.get(15), competitors.get(30));
-            competitionService.fightFinished(competitions.get(5), competitors.get(13), competitors.get(8));
-            competitionService.fightFinished(competitions.get(5), competitors.get(26), competitors.get(25));
-            competitionService.fightFinished(competitions.get(5), competitors.get(4), competitors.get(7));
-            competitionService.fightFinished(competitions.get(5), competitors.get(5), competitors.get(2));
-            // Quarterfinals
-            competitionService.fightFinished(competitions.get(5), competitors.get(6), competitors.get(11));
-            competitionService.fightFinished(competitions.get(5), competitors.get(15), competitors.get(19));
-            competitionService.fightFinished(competitions.get(5), competitors.get(26), competitors.get(13));
-            competitionService.fightFinished(competitions.get(5), competitors.get(4), competitors.get(5));
-            // Semifinals
-            competitionService.fightFinished(competitions.get(5), competitors.get(6), competitors.get(15));
-            competitionService.fightFinished(competitions.get(5), competitors.get(4), competitors.get(26));
-            // Finals
-            competitionService.fightFinished(competitions.get(5), competitors.get(6), competitors.get(4));
-            competitionService.add(competitions.get(5));
+        //TRIAL6
+        // 8th-finals
+        competitionService.fightFinished(competitions.get(5), competitors.get(11), competitors.get(17));
+        competitionService.fightFinished(competitions.get(5), competitors.get(6), competitors.get(24));
+        competitionService.fightFinished(competitions.get(5), competitors.get(19), competitors.get(29));
+        competitionService.fightFinished(competitions.get(5), competitors.get(15), competitors.get(30));
+        competitionService.fightFinished(competitions.get(5), competitors.get(13), competitors.get(8));
+        competitionService.fightFinished(competitions.get(5), competitors.get(26), competitors.get(25));
+        competitionService.fightFinished(competitions.get(5), competitors.get(4), competitors.get(7));
+        competitionService.fightFinished(competitions.get(5), competitors.get(5), competitors.get(2));
+        // Quarterfinals
+        competitionService.fightFinished(competitions.get(5), competitors.get(6), competitors.get(11));
+        competitionService.fightFinished(competitions.get(5), competitors.get(15), competitors.get(19));
+        competitionService.fightFinished(competitions.get(5), competitors.get(26), competitors.get(13));
+        competitionService.fightFinished(competitions.get(5), competitors.get(4), competitors.get(5));
+        // Semifinals
+        competitionService.fightFinished(competitions.get(5), competitors.get(6), competitors.get(15));
+        competitionService.fightFinished(competitions.get(5), competitors.get(4), competitors.get(26));
+        // Finals
+        competitionService.fightFinished(competitions.get(5), competitors.get(6), competitors.get(4));
+        competitionService.add(competitions.get(5));
 
-            //TRIAL7
-            // 8th-finals
-            competitionService.fightFinished(competitions.get(6), competitors.get(27), competitors.get(10));
-            competitionService.fightFinished(competitions.get(6), competitors.get(28), competitors.get(31));
-            competitionService.fightFinished(competitions.get(6), competitors.get(16), competitors.get(20));
-            competitionService.fightFinished(competitions.get(6), competitors.get(14), competitors.get(23));
-            competitionService.fightFinished(competitions.get(6), competitors.get(18), competitors.get(3));
-            competitionService.fightFinished(competitions.get(6), competitors.get(12), competitors.get(22));
-            competitionService.fightFinished(competitions.get(6), competitors.get(1), competitors.get(20));
-            competitionService.fightFinished(competitions.get(6), competitors.get(9), competitors.get(0));
-            // Quarterfinals
-            competitionService.fightFinished(competitions.get(6), competitors.get(28), competitors.get(27));
-            competitionService.fightFinished(competitions.get(6), competitors.get(14), competitors.get(16));
-            competitionService.fightFinished(competitions.get(6), competitors.get(12), competitors.get(18));
-            competitionService.fightFinished(competitions.get(6), competitors.get(9), competitors.get(1));
-            // Semifinals
-            competitionService.fightFinished(competitions.get(6), competitors.get(14), competitors.get(28));
-            competitionService.fightFinished(competitions.get(6), competitors.get(9), competitors.get(12));
-            // Finals
-            competitionService.fightFinished(competitions.get(6), competitors.get(9), competitors.get(14));
-            competitionService.add(competitions.get(6));
+        //TRIAL7
+        // 8th-finals
+        competitionService.fightFinished(competitions.get(6), competitors.get(27), competitors.get(10));
+        competitionService.fightFinished(competitions.get(6), competitors.get(28), competitors.get(31));
+        competitionService.fightFinished(competitions.get(6), competitors.get(16), competitors.get(20));
+        competitionService.fightFinished(competitions.get(6), competitors.get(14), competitors.get(23));
+        competitionService.fightFinished(competitions.get(6), competitors.get(18), competitors.get(3));
+        competitionService.fightFinished(competitions.get(6), competitors.get(12), competitors.get(22));
+        competitionService.fightFinished(competitions.get(6), competitors.get(1), competitors.get(20));
+        competitionService.fightFinished(competitions.get(6), competitors.get(9), competitors.get(0));
+        // Quarterfinals
+        competitionService.fightFinished(competitions.get(6), competitors.get(28), competitors.get(27));
+        competitionService.fightFinished(competitions.get(6), competitors.get(14), competitors.get(16));
+        competitionService.fightFinished(competitions.get(6), competitors.get(12), competitors.get(18));
+        competitionService.fightFinished(competitions.get(6), competitors.get(9), competitors.get(1));
+        // Semifinals
+        competitionService.fightFinished(competitions.get(6), competitors.get(14), competitors.get(28));
+        competitionService.fightFinished(competitions.get(6), competitors.get(9), competitors.get(12));
+        // Finals
+        competitionService.fightFinished(competitions.get(6), competitors.get(9), competitors.get(14));
+        competitionService.add(competitions.get(6));
 
-            //TRIAL8
-            // 8th-finals
-            competitionService.fightFinished(competitions.get(7), competitors.get(19), competitors.get(13));
-            competitionService.fightFinished(competitions.get(7), competitors.get(8), competitors.get(6));
-            competitionService.fightFinished(competitions.get(7), competitors.get(17), competitors.get(24));
-            competitionService.fightFinished(competitions.get(7), competitors.get(15), competitors.get(29));
-            competitionService.fightFinished(competitions.get(7), competitors.get(11), competitors.get(25));
-            competitionService.fightFinished(competitions.get(7), competitors.get(26), competitors.get(5));
-            competitionService.fightFinished(competitions.get(7), competitors.get(7), competitors.get(30));
-            competitionService.fightFinished(competitions.get(7), competitors.get(2), competitors.get(4));
-            // Quarterfinals
-            competitionService.fightFinished(competitions.get(7), competitors.get(8), competitors.get(19));
-            competitionService.fightFinished(competitions.get(7), competitors.get(15), competitors.get(17));
-            competitionService.fightFinished(competitions.get(7), competitors.get(26), competitors.get(11));
-            competitionService.fightFinished(competitions.get(7), competitors.get(2), competitors.get(7));
-            // Semifinals
-            competitionService.fightFinished(competitions.get(7), competitors.get(8), competitors.get(15));
-            competitionService.fightFinished(competitions.get(7), competitors.get(2), competitors.get(26));
-            // Finals
-            competitionService.fightFinished(competitions.get(7), competitors.get(8), competitors.get(2));
-            competitionService.add(competitions.get(7));
+        //TRIAL8
+        // 8th-finals
+        competitionService.fightFinished(competitions.get(7), competitors.get(19), competitors.get(13));
+        competitionService.fightFinished(competitions.get(7), competitors.get(8), competitors.get(6));
+        competitionService.fightFinished(competitions.get(7), competitors.get(17), competitors.get(24));
+        competitionService.fightFinished(competitions.get(7), competitors.get(15), competitors.get(29));
+        competitionService.fightFinished(competitions.get(7), competitors.get(11), competitors.get(25));
+        competitionService.fightFinished(competitions.get(7), competitors.get(26), competitors.get(5));
+        competitionService.fightFinished(competitions.get(7), competitors.get(7), competitors.get(30));
+        competitionService.fightFinished(competitions.get(7), competitors.get(2), competitors.get(4));
+        // Quarterfinals
+        competitionService.fightFinished(competitions.get(7), competitors.get(8), competitors.get(19));
+        competitionService.fightFinished(competitions.get(7), competitors.get(15), competitors.get(17));
+        competitionService.fightFinished(competitions.get(7), competitors.get(26), competitors.get(11));
+        competitionService.fightFinished(competitions.get(7), competitors.get(2), competitors.get(7));
+        // Semifinals
+        competitionService.fightFinished(competitions.get(7), competitors.get(8), competitors.get(15));
+        competitionService.fightFinished(competitions.get(7), competitors.get(2), competitors.get(26));
+        // Finals
+        competitionService.fightFinished(competitions.get(7), competitors.get(8), competitors.get(2));
+        competitionService.add(competitions.get(7));
 
-            //TRIAL9
-            // 8th-finals
-            competitionService.fightFinished(competitions.get(8), competitors.get(21), competitors.get(14));
-            competitionService.fightFinished(competitions.get(8), competitors.get(18), competitors.get(10));
-            competitionService.fightFinished(competitions.get(8), competitors.get(23), competitors.get(9));
-            competitionService.fightFinished(competitions.get(8), competitors.get(12), competitors.get(16));
-            competitionService.fightFinished(competitions.get(8), competitors.get(3), competitors.get(20));
-            competitionService.fightFinished(competitions.get(8), competitors.get(0), competitors.get(22));
-            competitionService.fightFinished(competitions.get(8), competitors.get(31), competitors.get(1));
-            competitionService.fightFinished(competitions.get(8), competitors.get(28), competitors.get(27));
+        //TRIAL9
+        // 8th-finals
+        competitionService.fightFinished(competitions.get(8), competitors.get(21), competitors.get(14));
+        competitionService.fightFinished(competitions.get(8), competitors.get(18), competitors.get(10));
+        competitionService.fightFinished(competitions.get(8), competitors.get(23), competitors.get(9));
+        competitionService.fightFinished(competitions.get(8), competitors.get(12), competitors.get(16));
+        competitionService.fightFinished(competitions.get(8), competitors.get(3), competitors.get(20));
+        competitionService.fightFinished(competitions.get(8), competitors.get(0), competitors.get(22));
+        competitionService.fightFinished(competitions.get(8), competitors.get(31), competitors.get(1));
+        competitionService.fightFinished(competitions.get(8), competitors.get(28), competitors.get(27));
 
-            competitionService.add(competitions.get(8));
+        competitionService.add(competitions.get(8));
 
-            //TRIAL10
-            // 8th-finals
-            competitionService.fightFinished(competitions.get(9), competitors.get(7), competitors.get(5));
-            competitionService.fightFinished(competitions.get(9), competitors.get(17), competitors.get(13));
-            competitionService.fightFinished(competitions.get(9), competitors.get(19), competitors.get(24));
-            competitionService.fightFinished(competitions.get(9), competitors.get(30), competitors.get(26));
-            competitionService.fightFinished(competitions.get(9), competitors.get(11), competitors.get(15));
-            competitionService.fightFinished(competitions.get(9), competitors.get(4), competitors.get(25));
-            competitionService.fightFinished(competitions.get(9), competitors.get(6), competitors.get(2));
-            competitionService.fightFinished(competitions.get(9), competitors.get(29), competitors.get(8));
+        //TRIAL10
+        // 8th-finals
+        competitionService.fightFinished(competitions.get(9), competitors.get(7), competitors.get(5));
+        competitionService.fightFinished(competitions.get(9), competitors.get(17), competitors.get(13));
+        competitionService.fightFinished(competitions.get(9), competitors.get(19), competitors.get(24));
+        competitionService.fightFinished(competitions.get(9), competitors.get(30), competitors.get(26));
+        competitionService.fightFinished(competitions.get(9), competitors.get(11), competitors.get(15));
+        competitionService.fightFinished(competitions.get(9), competitors.get(4), competitors.get(25));
+        competitionService.fightFinished(competitions.get(9), competitors.get(6), competitors.get(2));
+        competitionService.fightFinished(competitions.get(9), competitors.get(29), competitors.get(8));
 
-            competitionService.add(competitions.get(9));
+        competitionService.add(competitions.get(9));
 
         // 4. Post creation and saving
         List<Post> posts = new ArrayList<>();
