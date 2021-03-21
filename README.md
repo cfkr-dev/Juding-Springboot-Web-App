@@ -167,7 +167,7 @@ their role.
 
 ___
 
-## Stage 2: backend
+## Stage 2: functional application(*"backend"*)
 
 ### Top 5 Commits & Files
 
@@ -181,7 +181,7 @@ ___
 ### Navigation Diagram Updates
 (Screenshots are included in Stage 1 section).
 New navigation diagram:
-![](documentation_imgs/stage2/navigationDiagram2.png)
+![Navigation diagram](documentation_imgs/stage2/navigationDiagram2.png)
 
 ### Entity-Relationship Diagram
 Entity-Relationship Diagram
@@ -190,4 +190,33 @@ Entity-Relationship Diagram
 Classes and templates diagram
 
 ### Guide: getting started with Juding
-Guide: getting started with Juding.
+The following steps show how to start the developed web application in a Linux-based operative system.
+
+**Prerrequisites**
+* Java JDK 11 or newer.
+* MySQL Server v8.0 or newer.
+* A browser (Google Chrome or Firefox are perfect ones, but you can also use Safari, Microsoft Edge...).
+
+**Installation in 5 steps**
+
+1. Get the code. You can clone this repository or download the v2.0 release.
+2. Create a user into your MySQL server with the following credentials and permissions:
+  * User: ``judingUser``.
+  * Password: ``judingPassword_DAWG2``.
+
+``CREATE USER IF NOT EXISTS 'judingUser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'judingPassword_DAWG2';``
+
+A example for granting the needed permissions in the database for the user could be:
+
+``GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, FILE, INDEX, ALTER, CREATE TEMPORARY TABLES, CREATE VIEW, EVENT, TRIGGER, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EXECUTE, REFERENCES ON *.* TO 'judingUser'@'localhost';``
+
+3. Create a schema called ``juding`` into your database server. You can do it with a query like:
+
+``CREATE DATABASE juding;``
+
+4. Run the Spring Boot application by typing:
+
+``./mvnm spring-boot:run``
+  * In case you are using Windows, you can substitute ``.mvnm`` by the route of the ``mvnm.cmd`` file in the same folder. It is necessary to configure ``JAVA_HOME`` before using it.
+
+5. It's done! Now, you can open your favourite browser and go to ``https://localhost:8443`` to start using this application!
