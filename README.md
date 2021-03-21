@@ -48,8 +48,7 @@ ___
 
 ### Images
 
-* The application **administrator** will be able to set a big image to represent each competition.
-* Referees and competitors will have an avatar image (they will be able to change and delete it whenever they want).
+* Referees and competitors will have an avatar image (they will be able to change it whenever they want).
   Having a profile image is compulsory to take part in a competition (both for competitors and for referees).
 
 ### Graphics
@@ -61,8 +60,6 @@ There will be shown two different graphics:
 
 ### Complementary technology
 
-* The application will generate assistance justifications in PDF format.
-* The ranking of a competition can be exported as PDF.
 * Users will receive an e-mail verification when signing up in the application.
 * Referees will receive an e-mail verification when their applications are solved (even if are accepted or if are
   rejected).
