@@ -146,14 +146,14 @@ $("#endDate").on("blur", function (){
     }
 })
 
-$(".juding-form-user").on("submit", function(evt){
-    evt.preventDefault();
-    if (somethingChanged || forbiddenDni || forbiddenNickname || forbiddenLicenseId)
-        $(this).off("submit");
-});
-
-$(".juding-form-competition").on("submit", function(evt){
-    evt.preventDefault();
-    if (somethingChanged || forbiddenMaxWeight || forbiddenEndDate)
-        $(this).off("submit");
-});
+// $(".juding-form-user").on("submit", function(evt){
+//     evt.preventDefault();
+//     if (somethingChanged || forbiddenDni || forbiddenNickname || forbiddenLicenseId)
+//         $(this).off("submit");
+// });
+//
+// $(".juding-form-competition").on("submit", function(evt){
+//     evt.preventDefault();
+//     if (somethingChanged || forbiddenMaxWeight || forbiddenEndDate)
+//         $(this).off("submit");
+// });
