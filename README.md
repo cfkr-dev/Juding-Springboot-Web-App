@@ -103,16 +103,16 @@ The application consists of the following screens:
 * A-07: Referee registration.
   ![](documentation_imgs/stage2/screenshots/A-07.png)
 * CRAD-01: License validation. First step to change a user's password.
-  ![](documentation_imgs/stage2/screenshots/CR-01.png)
+  ![](documentation_imgs/stage2/screenshots/CRAD-01.png)
 * CRAD-02: Security question. Second step to change a user's password.
-  ![](documentation_imgs/stage2/screenshots/CR-02.png)
+  ![](documentation_imgs/stage2/screenshots/CRAD-02.png)
 * CRAD-03: Password change. Third and last step to change a user's password.
-  ![](documentation_imgs/stage2/screenshots/CR-03.png)
+  ![](documentation_imgs/stage2/screenshots/CRAD-03.png)
 * CRAD-04: Competition information. This screen reflects the details of a competition as well as the draw for the
   competition, the results and the venue.
-  ![](documentation_imgs/stage2/screenshots/CR-04.png)
+  ![](documentation_imgs/stage2/screenshots/CRAD-04.png)
 * CRAD-05: Ranking of competitors.
-  ![](documentation_imgs/stage2/screenshots/CR-05.png)
+  ![](documentation_imgs/stage2/screenshots/CRAD-05.png)
 * C-01: Competitors' homepage. On this page you can see some details of their profile, their statistics and the
   competitions they can enter or have already entered.
   ![](documentation_imgs/stage2/screenshots/C-01.png)
@@ -135,20 +135,30 @@ The application consists of the following screens:
   ![](documentation_imgs/stage2/screenshots/AD-02.png)
 * AD-03: User editing in competitor list.
   ![](documentation_imgs/stage2/screenshots/AD-03.png)
-* AD-04: Applications and list of referees.
+* AD-04: Confirmation of the elimination of a competitor.
   ![](documentation_imgs/stage2/screenshots/AD-04.png)
-* AD-05: User profile in referee list.
+* AD-05: Applications and list of referees.
   ![](documentation_imgs/stage2/screenshots/AD-05.png)
-* AD-06: User editing in referee list.
+* AD-06: User profile in referee list.
   ![](documentation_imgs/stage2/screenshots/AD-06.png)
-* AD-07: List of competitions.
+* AD-07: User editing in referee list.
   ![](documentation_imgs/stage2/screenshots/AD-07.png)
-* AD-08: New competition form.
+* AD-08: Confirmation of the elimination of a referee.
   ![](documentation_imgs/stage2/screenshots/AD-08.png)
-* AD-09: List of news.
+* AD-09: List of competitions.
   ![](documentation_imgs/stage2/screenshots/AD-09.png)
-* AD-10: New news form.
+* AD-10: Competition editing in competition list.
   ![](documentation_imgs/stage2/screenshots/AD-10.png)
+* AD-11: New competition form.
+  ![](documentation_imgs/stage2/screenshots/AD-11.png)
+* AD-12: List of news.
+  ![](documentation_imgs/stage2/screenshots/AD-12.png)
+* AD-13: New editing in news list.
+  ![](documentation_imgs/stage2/screenshots/AD-13.png)
+* AD-14: Confirmation of the elimination of a new.
+  ![](documentation_imgs/stage2/screenshots/AD-14.png)
+* AD-15: New news form.
+  ![](documentation_imgs/stage2/screenshots/AD-15.png)
 * E-1: 403 error.
   ![](documentation_imgs/stage2/screenshots/E-01.png)
 * E-2: 404 error.
@@ -160,7 +170,7 @@ The application consists of the following screens:
 
 The following diagram shows how different users can navigate through the different pages of the application according to
 their role.
-![](documentation_imgs/stage2/navigationDiagram.png)
+![](documentation_imgs/stage2/navigationDiagram2.png)
 
 ___
 
