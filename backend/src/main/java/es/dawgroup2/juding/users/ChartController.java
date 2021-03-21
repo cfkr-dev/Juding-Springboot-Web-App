@@ -13,6 +13,13 @@ public class ChartController {
     @Autowired
     UserService userService;
 
+    /**
+     * Returns the required information for building competitor charts.
+     * It is requested by an asynchronous request and JavaScript process it into the browser.
+     *
+     * @param licenseId License ID of competitor.
+     * @return Information for charts in a list.
+     */
     @GetMapping("/myCharts")
     public List<Integer> competitorChartInformation(@RequestParam String licenseId) {
         User user = userService.getUserOrNull(licenseId);

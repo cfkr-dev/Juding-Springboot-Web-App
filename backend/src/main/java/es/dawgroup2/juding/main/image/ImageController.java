@@ -47,7 +47,7 @@ public class ImageController {
         } else if (item.equals("post")) {
             Post post = postService.findById(id);
             if (post != null)
-                return getObjectResponseEntity(post.getImageFile(), post.getMimeProfileImage());
+                return getObjectResponseEntity(post.getImageFile(), post.getMimeImage());
         }
         return ResponseEntity.notFound().build();
 

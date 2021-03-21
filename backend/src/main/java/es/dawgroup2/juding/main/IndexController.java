@@ -63,27 +63,56 @@ public class IndexController {
         return "/index";
     }
 
+    /**
+     * Dynamic view of Terms and Conditions of Use page.
+     *
+     * @return Terms and Conditions of Use page.
+     */
     @GetMapping("/termsAndConditionsOfUse")
     public String termsAndConditionsOfUse() {
         return "/termsAndConditionsOfUse";
     }
 
+    /**
+     * Dynamic view of Cookie Policy page.
+     *
+     * @return Cookie Policy view.
+     */
     @GetMapping("/cookiePolicy")
     public String cookiePolicy() {
         return "/cookiePolicy";
     }
 
+    /**
+     * Login page (ready for Spring Security use).
+     *
+     * @return Login page.
+     */
     @RequestMapping("/login")
     public String login() {
         return "/login";
     }
 
+    /**
+     * Page for errors while logging in.
+     *
+     * @param error Error
+     * @param model Model
+     * @return Page for login error.
+     */
     @GetMapping("/login/{error}")
     public String loginError(@PathVariable(required = false) String error, Model model) {
         model.addAttribute("error", (error != null));
         return "/login";
     }
 
+    /**
+     * Dynamic view of sign up page (different by role).
+     *
+     * @param role  Role (via path)
+     * @param model Model
+     * @return Dynamic view of sign up page.
+     */
     @GetMapping("/signUp/{role}")
     public String signUp(@PathVariable String role, Model model) {
         model.addAttribute("genderSelection", genderService.getRadioField(null))
@@ -96,6 +125,27 @@ public class IndexController {
         return "/signUp";
     }
 
+    /**
+     * Saving information of new competitor.
+     *
+     * @param name             Name
+     * @param surname          Surname
+     * @param gender           Gender
+     * @param phone            Phone
+     * @param email            Email
+     * @param birthDate        Birth date
+     * @param dni              DNI
+     * @param licenseId        License ID
+     * @param nickname         Nickname
+     * @param password         Passsword
+     * @param securityQuestion Security Question
+     * @param securityAnswer   Security Answer
+     * @param image            Profile image
+     * @param belt             Belt
+     * @param gym              Gym
+     * @param weight           Weight
+     * @return Redirection to login if successful.
+     */
     @PostMapping("/signUp/competitor")
     public String signUpCompetitor(@RequestParam String name,
                                    @RequestParam String surname,
@@ -128,6 +178,25 @@ public class IndexController {
         return "redirect:/login";
     }
 
+    /**
+     * Saving information of new referee (as a application for being officialy admitted).
+     *
+     * @param name             Name
+     * @param surname          Surname
+     * @param gender           Gender
+     * @param phone            Phone
+     * @param email            Email
+     * @param birthDate        Birth date
+     * @param dni              DNI
+     * @param licenseId        License ID
+     * @param nickname         Nickname
+     * @param password         Password
+     * @param securityQuestion Security question
+     * @param securityAnswer   Security answer
+     * @param image            Profile image
+     * @param belt             Belt
+     * @return Redirection to login if successful (if application was properly submitted).
+     */
     @PostMapping("/signUp/referee")
     public String signUpReferee(@RequestParam String name,
                                 @RequestParam String surname,

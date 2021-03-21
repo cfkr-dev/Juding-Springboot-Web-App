@@ -109,7 +109,21 @@ public class LoggedInUserController {
         return "/myProfile/edit";
     }
 
-    // Method for saving edited values of user when {@link #editProfile(Model) editProfile} form is filled and sent.
+    /**
+     * Saves the edited values from profile edition.
+     *
+     * @param licenseId    License ID
+     * @param beltSelector Belt
+     * @param gym          Gym (if user is competitor)
+     * @param weight       Weight (if user is competitor)
+     * @param refereeRange Range (if user is referee)
+     * @param nickname     Nickname
+     * @param phone        Phone
+     * @param email        Email
+     * @param image        Profile image (if changed, if null is not deleted)
+     * @return Redirection to profile view page if saving was successful
+     * @throws IOException Input-output exception
+     */
     @PostMapping("/myProfile/edit")
     public String editingUser(@RequestParam String licenseId,
                               @RequestParam String beltSelector,
@@ -137,6 +151,13 @@ public class LoggedInUserController {
         return "redirect:/myProfile";
     }
 
+    /**
+     * Dynamic view of ranking.
+     *
+     * @param request HTTP Servlet Request.
+     * @param model   Model.
+     * @return Ranking view.
+     */
     @GetMapping("/ranking")
     public String getRanking(HttpServletRequest request, Model model) {
         List<?> rankingList = userService.getRanking();

@@ -15,17 +15,33 @@ import java.sql.Blob;
 
 @Component
 public class ImageService {
+    /**
+     * Uploads a profile image from a MultipartFile value (catched when sending image via HTTP request form a form).
+     * It crops the image in a squared shape and saves it into the database attending to its MIME type (both JPG and PNG are valid formats).
+     *
+     * @param mpf File as a MultipartFile
+     * @return The BLOB element to be saved in database
+     * @throws IOException Input-output exception
+     */
     public Blob uploadProfileImage(MultipartFile mpf) throws IOException {
         return uploadProfileImageWithBufferedImage(ImageIO.read(mpf.getInputStream()), mpf.getContentType());
     }
 
+    /**
+     * Uploads a profile image which is received via its absolute path.
+     * It crops the image in a squared shape and saves it into the database attending to its MIME type (both JPG and PNG are valid formats).
+     *
+     * @param path File by its absolute path
+     * @return The BLOB element to be saved in database
+     * @throws IOException Input-output exception
+     */
     public Blob uploadProfileImage(String path) throws IOException {
         Resource res = new ClassPathResource(path);
         String mime = URLConnection.guessContentTypeFromName(path);
         return uploadProfileImageWithBufferedImage(ImageIO.read(res.getInputStream()), mime);
     }
 
-    public Blob uploadProfileImageWithBufferedImage(BufferedImage bi, String mime) throws IOException {
+    private Blob uploadProfileImageWithBufferedImage(BufferedImage bi, String mime) throws IOException {
         int height = bi.getHeight();
         int width = bi.getWidth();
 

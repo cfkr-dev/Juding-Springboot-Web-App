@@ -1,5 +1,9 @@
 package es.dawgroup2.juding.auxTypes.belts;
 
+/**
+ * BELT enumeration.
+ * It is used for keeping encapsulated the different judo belts available for users.
+ */
 public enum Belt {
     B("Blanco", false),
     BAm("Blanco-Amarillo", false),

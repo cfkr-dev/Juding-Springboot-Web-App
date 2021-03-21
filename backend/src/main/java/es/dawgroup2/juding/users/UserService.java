@@ -157,7 +157,7 @@ public class UserService {
     /**
      * Retrieves the ranking with its necessary fields and in descendant order
      *
-     * @return
+     * @return Returns ranking in a Object[] list.
      */
     public List<?> getRanking() {
         return userRepository.getRanking();

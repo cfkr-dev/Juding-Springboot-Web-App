@@ -16,6 +16,15 @@ public class IndexEmailController {
     @Autowired
     private JavaMailSender emailSender;
 
+    /**
+     * Sends a email when receiving needed parameters (used via asynchronous request).
+     *
+     * @param name    Name of sender.
+     * @param email   Email of sender.
+     * @param subject Subject of email.
+     * @param message Body of email.
+     * @return True if email was properly sent, false otherwise.
+     */
     @GetMapping("/index-email")
     public boolean sendEmail(@RequestParam String name,
                              @RequestParam String email,

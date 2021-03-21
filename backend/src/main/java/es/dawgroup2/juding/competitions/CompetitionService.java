@@ -91,6 +91,12 @@ public class CompetitionService {
         return null;
     }
 
+    /**
+     * Get the past competitions for the specified user (either competitors or referees)
+     *
+     * @param user User
+     * @return List of past competitions.
+     */
     public List<Competition> getPastFights(User user) {
         if (user.isRole(Role.C)) {
             List<Competition> output = new ArrayList<>();
@@ -191,10 +197,11 @@ public class CompetitionService {
     }
 
     /**
-     * A competitor joins a competition
+     * A competitor joins a competition.
      *
      * @param competition Competition to be joined
      * @param user        Competitor joining
+     * @return True if joining was successful, false if not.
      */
     public boolean joinCompetition(Competition competition, User user) {
         // Competition must have not started
@@ -218,7 +225,13 @@ public class CompetitionService {
     }
 
     /**
-     * A referee registers winner and loser of a fight
+     * This method registers in database the result of a fight given its context competition, the winner and the loser of the fight.
+     * Automatically, winner is inserted into next-level fight.
+     * If the finished fight was the last one, it also adds points for the best 4 users in the fight.
+     *
+     * @param competition ID of the competition.
+     * @param winner Winner of the fight.
+     * @param loser Loser of the fight.
      */
     public void fightFinished(Competition competition, User winner, User loser) {
         // 1. Looking for the fight that contains both winner and loser

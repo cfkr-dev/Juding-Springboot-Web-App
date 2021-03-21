@@ -137,6 +137,13 @@ public class Competition implements Serializable {
         return this;
     }
 
+    /**
+     * Returns the state of the competition in Spanish attending to its start and end dates.
+     *
+     * @param startDate Start date of the competition
+     * @param endDate   End date of the competition
+     * @return String with the information.
+     */
     public String translatingDates(Timestamp startDate, Timestamp endDate) {
         LocalDateTime localDateTime = LocalDateTime.now();
         Timestamp actualDate = Timestamp.valueOf(localDateTime);
@@ -148,7 +155,6 @@ public class Competition implements Serializable {
             } else return "Finalizada";
         } else return "Por comenzar";
     }
-
 
     /**
      * Gets the start date of the competition and returns it in a user-friendly format.

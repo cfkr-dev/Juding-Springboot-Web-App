@@ -1,5 +1,9 @@
 package es.dawgroup2.juding.auxTypes.roles;
 
+/**
+ * ROLE enumeration.
+ * It is used for keeping encapsulated the different existing roles for users.
+ */
 public enum Role {
     C("Competitor"),
     R("Referee"),

@@ -17,6 +17,15 @@ public class RefereeControlController {
     @Autowired
     UserService userService;
 
+    /**
+     * Saves the result of a competition inserted from referee controller (via asynchronous request).
+     * It includes a call to {@link CompetitionController#fightService}, which contains additional documentation.
+     *
+     * @param idCompetition ID of the competition.
+     * @param winner Winner.
+     * @param loser Loser.
+     * @return True if successful, false otherwise.
+     */
     @GetMapping("/competition/{idCompetition}/control/saveResult")
     public boolean controlCompetition(@PathVariable String idCompetition,
                                       @RequestParam String winner,

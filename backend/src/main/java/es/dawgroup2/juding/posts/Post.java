@@ -17,28 +17,35 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idPost;
+
     @ManyToOne
     private User author;
+
     @Column(nullable = false)
     private String title;
+
     @Column(nullable = false, columnDefinition = "LONGTEXT")
     private String body;
+
     @Lob
     @JsonIgnore
     private Blob imageFile;
-    private String mimeProfileImage;
+
+    private String mimeImage;
+
     @Column(nullable = false)
     private Timestamp timestamp;
 
     protected Post() {
     }
 
-    public Post(User author, String title, String body, String path, Timestamp timestamp) throws IOException {
+    public Post(User author, String title, String body, String path, String mimeImage, Timestamp timestamp) throws IOException {
         super();
         this.author = author;
         this.title = title;
         this.body = body;
         this.setImageFile(path);
+        this.mimeImage = mimeImage;
         this.timestamp = timestamp;
     }
 
@@ -102,12 +109,12 @@ public class Post {
         return this;
     }
 
-    public String getMimeProfileImage() {
-        return mimeProfileImage;
+    public String getMimeImage() {
+        return mimeImage;
     }
 
-    public Post setMimeProfileImage(String mimeProfileImage) {
-        this.mimeProfileImage = mimeProfileImage;
+    public Post setMimeImage(String mimeProfileImage) {
+        this.mimeImage = mimeProfileImage;
         return this;
     }
 

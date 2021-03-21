@@ -86,9 +86,6 @@ public class AdminPostController {
         return "/admin/post/createNew";
     }
 
-
-    /*OBJECTS CREATION*/
-
     /**
      * This method creates a new post using the post creation form fields as parameters.
      * Image is optional. If it's not submitted, the previous image will be set.
@@ -113,14 +110,12 @@ public class AdminPostController {
                 .setTimestamp(new Timestamp(System.currentTimeMillis()));
         if (!image.isEmpty()) {
             post.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
-            post.setMimeProfileImage(image.getContentType());
+            post.setMimeImage(image.getContentType());
         }
         postService.add(post);
         return "redirect:/admin/post/list";
     }
 
-
-    /*OBJECTS MODIFICATION*/
 
     /**
      * This method modifies a post (searched by Id) using the post creation form fields as parameters.
@@ -151,15 +146,13 @@ public class AdminPostController {
             if (dbPost.getImageFile() != null) {
                 post.setImageFile(BlobProxy.generateProxy(dbPost.getImageFile().getBinaryStream(),
                         dbPost.getImageFile().length()));
-                post.setMimeProfileImage(image.getContentType());
+                post.setMimeImage(image.getContentType());
             }
         }
         postService.updatingInfoPost(post);
         return "redirect:/admin/post/list";
     }
 
-
-    /*OBJECTS DELETE*/
 
     /**
      * This method deletes a post (search by Id) form database.

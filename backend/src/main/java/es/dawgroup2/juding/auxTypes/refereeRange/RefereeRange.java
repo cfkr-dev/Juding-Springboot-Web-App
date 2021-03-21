@@ -1,5 +1,9 @@
 package es.dawgroup2.juding.auxTypes.refereeRange;
 
+/**
+ * REFEREE RANGE enumeration.
+ * It is used for keeping encapsulated the different ranges available for referees.
+ */
 public enum RefereeRange {
     S("Solicitante", false),
     E("Árbitro estándar", true),

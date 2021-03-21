@@ -13,26 +13,7 @@ public class FightService {
     FightRepository fightRepository;
 
     /**
-     * Finds all the fights
-     *
-     * @return List of the fight
-     */
-    public List<Fight> findAll() {
-        return fightRepository.findAll();
-    }
-
-    /**
-     * Finds the fight by its id
-     *
-     * @param idFight Id of the fight
-     * @return The fight
-     */
-    public Fight findById(int idFight) {
-        return fightRepository.findById(idFight).orElseThrow();
-    }
-
-    /**
-     * Retrieves how many participants are inscribed in a competition
+     * Retrieves how many participants are enrolled in a competition.
      *
      * @param competition Competition
      * @return Number of participants
@@ -77,28 +58,4 @@ public class FightService {
     public List<Fight> saveAll(List<Fight> fights) {
         return fightRepository.saveAll(fights);
     }
-
-    /**
-     * Deletes a fight by its id
-     *
-     * @param idFight Id of the fight
-     */
-    public void deleteById(int idFight) {
-        fightRepository.deleteById(idFight);
-    }
-
-    /**
-     * Finds all the fights belonging to the same Competition
-     *
-     * @param competition Competition
-     * @return List of fights
-     */
-    public List<Fight> findByIdCompetition(Competition competition) {
-        return fightRepository.findByCompetition(competition);
-    }
-
-    public void deleteAll(List<Fight> fights) {
-        fightRepository.deleteAll(fights);
-    }
-
 }

@@ -29,9 +29,18 @@ public class HeaderInflater {
                     "securityQuestion",
                     "style")
     );
+
     @Autowired
     UserService userService;
 
+    /**
+     * Retrieves the common header for all logged-in user pages.
+     *
+     * @param title Title of the page.
+     * @param request HTTP Servlet Request object (for getting the CSRF token).
+     * @param css CSS styles to be applied in page.
+     * @return String with the header ready for templating.
+     */
     public String getHeader(String title, HttpServletRequest request, String... css) {
         StringBuilder sb = new StringBuilder();
         CsrfToken token = (CsrfToken) request.getAttribute("_csrf");

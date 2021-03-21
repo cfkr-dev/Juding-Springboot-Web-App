@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.text.ParseException;
 
 @Controller
@@ -38,8 +37,8 @@ public class AdminCompetitionController {
     /**
      * Returns a list with all the competitions in the application.
      *
-     * @param model model of the view
-     * @return the view of the competition list
+     * @param model Model of the view
+     * @return The view of the competition list
      */
     @GetMapping("/admin/competition/list")
     public String competitionList(HttpServletRequest request, Model model) {
@@ -67,6 +66,8 @@ public class AdminCompetitionController {
     }
 
     /**
+     * Returns the view with a form for editing the specified competition.
+     *
      * @param idCompetition id of the competition
      * @param model         model of the view
      * @return view of the competition to edit
@@ -81,6 +82,8 @@ public class AdminCompetitionController {
     }
 
     /**
+     * Returns the view with a form for creating a new competition.
+     *
      * @param model model of the view
      * @return view of the competition to add
      */
@@ -92,7 +95,7 @@ public class AdminCompetitionController {
     }
 
     /**
-     * Generates a new competition
+     * Generates a new competition with the received information.
      *
      * @param shortName      The short name of the competition
      * @param additionalInfo Info about the competition
@@ -100,12 +103,11 @@ public class AdminCompetitionController {
      * @param maxWeight      The maximum weight allowed in a competition
      * @param startDate      The start date of a competition
      * @param endDate        The end date of a competition
-     * @param referee        referee The license of the referee in charge of the competition
-     * @return The new competition
-     * @throws IOException
+     * @param referee        The license of the referee in charge of the competition
+     * @return Redirection to the list of competitions, where new competition will be listed.
      */
     @PostMapping("/admin/competition/newCompetition")
-    public String addACompetition(@RequestParam String shortName,
+    public String addCompetition(@RequestParam String shortName,
                                   @RequestParam String additionalInfo,
                                   @RequestParam int minWeight,
                                   @RequestParam int maxWeight,
@@ -120,7 +122,6 @@ public class AdminCompetitionController {
                 .setStartDate(dateService.stringToTimestamp(startDate))
                 .setEndDate(dateService.stringToTimestamp(endDate))
                 .setReferee(userService.getUserOrNull(referee));
-
         return "redirect:/admin/competition/list";
     }
 
@@ -136,8 +137,7 @@ public class AdminCompetitionController {
      * @param endDate        The end date of a competition
      * @param referee        The license of the referee in charge of the competition
      * @return The competition edited
-     * @throws IOException
-     * @throws SQLException
+     * @throws ParseException Parsing exception
      */
     @PostMapping("/admin/competition/edit")
     public String updatingCompetitionInfo(@RequestParam String idCompetition,

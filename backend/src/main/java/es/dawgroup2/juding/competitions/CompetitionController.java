@@ -32,9 +32,11 @@ public class CompetitionController {
     DateService dateService;
 
     /**
-     * @param model         model of the view
-     * @param idCompetition id of the competition
-     * @return view of the competition screen
+     * Returns the dynamic view of a competition, including the necessary information for displaying the competition tree and the podium when it's finished.
+     *
+     * @param model         Model of the view
+     * @param idCompetition Id of the competition
+     * @return View of the competition screen
      */
     @GetMapping("/competition/{idCompetition}")
     public String showCompetition(@PathVariable String idCompetition, HttpServletRequest request, Model model) {
@@ -49,6 +51,14 @@ public class CompetitionController {
         return "/competition/detail";
     }
 
+    /**
+     * Receives a future competition and a user and adds the user into the competition if there is enough place.
+     *
+     * @param idCompetition ID of the competition.
+     * @param request HTTP Servlet request (brings the user nickname).
+     * @param model Model.
+     * @return Redirection to competition detail page
+     */
     @GetMapping("/competition/{idCompetition}/join")
     public String joinCompetition(@PathVariable String idCompetition, HttpServletRequest request, Model model) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
@@ -57,6 +67,13 @@ public class CompetitionController {
         return "redirect:/competition/" + idCompetition;
     }
 
+    /**
+     * Returns the frontend-made controller for referring competitions.
+     *
+     * @param model Model.
+     * @param idCompetition ID of the refereed competition.
+     * @return Dynamic view of screen, including all the required elements to proportionate complete functionality.
+     */
     @GetMapping("/competition/{idCompetition}/control")
     public String showControlScreen(Model model, @PathVariable String idCompetition) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
