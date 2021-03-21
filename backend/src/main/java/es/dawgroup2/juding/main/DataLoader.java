@@ -890,7 +890,7 @@ public class DataLoader {
                 80,
                 dateService.stringToTimestamp("23/03/2021 12:00"),
                 dateService.stringToTimestamp("24/03/2021 19:00"),
-                referees.get(0)
+                referees.get(1)
         );
         competitionService.add(trial1);
         competitions.add(trial1);
@@ -902,7 +902,7 @@ public class DataLoader {
                 70,
                 dateService.stringToTimestamp("23/03/2021 12:00"),
                 dateService.stringToTimestamp("24/03/2021 19:00"),
-                referees.get(0)
+                referees.get(3)
         );
         competitionService.add(trial2);
         competitions.add(trial2);
@@ -914,7 +914,7 @@ public class DataLoader {
                 80,
                 dateService.stringToTimestamp("23/03/2021 12:00"),
                 dateService.stringToTimestamp("24/03/2021 19:00"),
-                referees.get(0)
+                referees.get(1)
         );
         competitionService.add(trial3);
         competitions.add(trial3);
@@ -926,7 +926,7 @@ public class DataLoader {
                 70,
                 dateService.stringToTimestamp("23/03/2021 12:00"),
                 dateService.stringToTimestamp("24/03/2021 19:00"),
-                referees.get(0)
+                referees.get(3)
         );
         competitionService.add(trial4);
         competitions.add(trial4);
@@ -938,7 +938,7 @@ public class DataLoader {
                 80,
                 dateService.stringToTimestamp("23/03/2021 12:00"),
                 dateService.stringToTimestamp("24/03/2021 19:00"),
-                referees.get(0)
+                referees.get(1)
         );
         competitionService.add(trial5);
         competitions.add(trial5);
@@ -950,7 +950,7 @@ public class DataLoader {
                 70,
                 dateService.stringToTimestamp("23/03/2021 12:00"),
                 dateService.stringToTimestamp("24/03/2021 19:00"),
-                referees.get(0)
+                referees.get(3)
         );
         competitionService.add(trial6);
         competitions.add(trial6);
@@ -962,7 +962,7 @@ public class DataLoader {
                 80,
                 dateService.stringToTimestamp("23/03/2021 12:00"),
                 dateService.stringToTimestamp("24/03/2021 19:00"),
-                referees.get(0)
+                referees.get(1)
         );
         competitionService.add(trial7);
         competitions.add(trial7);
@@ -974,7 +974,7 @@ public class DataLoader {
                 70,
                 dateService.stringToTimestamp("23/03/2021 12:00"),
                 dateService.stringToTimestamp("24/03/2021 19:00"),
-                referees.get(0)
+                referees.get(3)
         );
         competitionService.add(trial8);
         competitions.add(trial8);
@@ -986,7 +986,7 @@ public class DataLoader {
                 80,
                 dateService.stringToTimestamp("23/03/2021 12:00"),
                 dateService.stringToTimestamp("24/03/2021 19:00"),
-                referees.get(0)
+                referees.get(3)
         );
         competitionService.add(trial9);
         competitions.add(trial9);
@@ -998,7 +998,7 @@ public class DataLoader {
                 70,
                 dateService.stringToTimestamp("23/03/2021 12:00"),
                 dateService.stringToTimestamp("24/03/2021 19:00"),
-                referees.get(0)
+                referees.get(1)
         );
         competitionService.add(trial10);
         competitions.add(trial10);
@@ -1010,7 +1010,7 @@ public class DataLoader {
                 80,
                 dateService.stringToTimestamp("23/03/2021 12:00"),
                 dateService.stringToTimestamp("24/03/2021 19:00"),
-                referees.get(0)
+                referees.get(3)
         );
         competitionService.add(trial11);
         competitions.add(trial11);
@@ -1022,7 +1022,7 @@ public class DataLoader {
                 70,
                 dateService.stringToTimestamp("23/04/2021 12:00"),
                 dateService.stringToTimestamp("24/04/2021 19:00"),
-                referees.get(0)
+                referees.get(1)
         );
         competitionService.add(trial12);
         competitions.add(trial12);

@@ -157,11 +157,13 @@
                                             referee.getLicenseId }}).
                                         </p>
                                     </div>
+                                    {{ #isCompetitor }}
                                     <div class="card-footer text-center">
                                         <a class="btn btn-success" href="/competition/{{ idCompetition }}/join">
                                             Inscribirme
                                         </a>
                                     </div>
+                                    {{ /isCompetitor }}
                                 </div>
                             </div>
                             {{ /myNotFutureComp }}{{ ^myNotFutureComp }}

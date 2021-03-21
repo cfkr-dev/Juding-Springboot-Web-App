@@ -117,7 +117,7 @@ public class AdminUserController {
     @GetMapping("/admin/user/edit/{licenseId}")
     public String editUser(@PathVariable String licenseId, HttpServletRequest request, Model model) {
         User user = userService.getUserOrNull(licenseId);
-        model.addAttribute("header", headerInflater.getHeader("Editar usuario", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "header", "bootstrapAccomodations", "loginAndRegistration"))
+        model.addAttribute("header", headerInflater.getHeader("Editar usuario", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "header", "bootstrapAccomodations"))
                 .addAttribute("user", user)
                 .addAttribute("beltSelector", beltService.getSelectField(user.getBelt(), false))
                 .addAttribute("genderSelection", genderService.getRadioField(user.getGender()))
