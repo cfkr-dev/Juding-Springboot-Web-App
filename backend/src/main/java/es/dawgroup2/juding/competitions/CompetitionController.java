@@ -39,7 +39,7 @@ public class CompetitionController {
     public String showCompetition(@PathVariable String idCompetition, HttpServletRequest request, Model model) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         String state = competition.translatingDates(competition.getStartDate(), competition.getEndDate());
-        model.addAttribute("header", headerInflater.getHeader("Competición", request, "font-awesome/css/all.css", "bootstrap/css/bootstrap.min.css", "header", "responsiveTable", "competitionScreen"))
+        model.addAttribute("header", headerInflater.getHeader("Competición", request, "font-awesome/css/all.css", "bootstrap/css/bootstrap.min.css", "header", "responsiveTable", "competitionScreen","beltAssignations"))
                 .addAttribute("state", state)
                 .addAttribute("people", fightService.countParticipants(competition))
                 .addAttribute("competition", competition);
