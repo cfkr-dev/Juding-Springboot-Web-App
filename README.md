@@ -170,7 +170,7 @@ The application consists of the following screens:
 
 The following diagram shows how different users can navigate through the different pages of the application according to
 their role.
-![](documentation_imgs/stage2/navigationDiagram2.png)
+![](documentation_imgs/stage1/navigationDiagram.png)
 
 ___
 
