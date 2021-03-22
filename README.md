@@ -193,7 +193,7 @@ This release includes a lot of new functionalities and screens. Screenshots have
 ![Entity-Relationship diagram](documentation_imgs/stage2/entityRelationshipDiagram.png)
 
 ### Classes and templates diagram
-![Classes and templates diagram](documentation_imgs/stage2/classesAndTemplatesJudingDiagram.png)
+![Classes and templates diagram](documentation_imgs/stage2/ClassAndTemplatesJudingDiagram.png)
 
 ### Guide: getting started with Juding
 The following steps show how to start the developed web application in a Linux-based operative system.
