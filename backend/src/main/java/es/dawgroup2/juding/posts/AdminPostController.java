@@ -38,7 +38,7 @@ public class AdminPostController {
     @GetMapping("/admin/post/list")
     public String postList(HttpServletRequest request, Model model) {
         Page<Post> postFirstPage = postService.getPostsInPages(0, 10);
-        model.addAttribute("header", headerInflater.getHeader("Lista de noticias", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "adminScreen"))
+        model.addAllAttributes(headerInflater.getHeader("Lista de noticias", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "adminScreen"))
                 .addAttribute("postPage", postFirstPage.getContent())
                 .addAttribute("empty", postFirstPage.getTotalElements() == 0)
                 .addAttribute("morePages", postFirstPage.hasNext())
@@ -70,7 +70,7 @@ public class AdminPostController {
     @GetMapping("/admin/post/edit/{id}")
     public String postEdit(@PathVariable String id, HttpServletRequest request, Model model) {
         Post post = postService.findById(id);
-        model.addAttribute("header", headerInflater.getHeader("Edición de noticia", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "post"))
+        model.addAllAttributes(headerInflater.getHeader("Edición de noticia", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "post"))
                 .addAttribute("post", post);
         return "/admin/post/edit";
     }
@@ -82,7 +82,7 @@ public class AdminPostController {
      */
     @GetMapping("/admin/post/createNew")
     public String newPost(HttpServletRequest request, Model model) {
-        model.addAttribute("header", headerInflater.getHeader("Nueva noticia", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "header", "bootstrapAccomodations"));
+        model.addAllAttributes(headerInflater.getHeader("Nueva noticia", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "header", "bootstrapAccomodations"));
         return "/admin/post/createNew";
     }
 
