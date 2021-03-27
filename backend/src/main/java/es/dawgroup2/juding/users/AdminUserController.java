@@ -167,7 +167,7 @@ public class AdminUserController {
         currentUser.setName(name)
                 .setSurname(surname)
                 .setDni(dni)
-                .setPhone(Integer.parseInt(phone))
+                .setPhone((phone.equals("")) ? null : Integer.parseInt(phone))
                 .setEmail(email)
                 .setNickname(nickname)
                 .setBirthDate(dateService.stringToDate(birthDate))
