@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.security.SecureRandom;
 
 @Configuration
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     RepositoryUserDetailsService userDetailsService;
 
@@ -29,7 +29,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // Public pages
+        /*
+         * PUBLIC PAGES
+         */
         // IndexController
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/login").permitAll();
@@ -52,17 +54,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/error/500").permitAll();
 
         // PasswordRecoveryController
-        http.authorizeRequests().antMatchers("/passwordRecovery/1").permitAll();
-        http.authorizeRequests().antMatchers("/passwordRecovery/1/*").permitAll();
-        http.authorizeRequests().antMatchers("/passwordRecovery/2").permitAll();
-        http.authorizeRequests().antMatchers("/passwordRecovery/2/*").permitAll();
-        http.authorizeRequests().antMatchers("/passwordRecovery/3").permitAll();
-        http.authorizeRequests().antMatchers("/passwordRecovery/3/*").permitAll();
+        http.authorizeRequests().antMatchers("/passwordRecovery/**").permitAll();
 
         // Resources (assets and templates)
         http.authorizeRequests().antMatchers("/static/**").permitAll();
 
-        // Private pages
+        /*
+         * PRIVATE PAGES
+         */
+        // ADMIN CONTROLLERS
+        http.authorizeRequests().antMatchers("/admin/**").hasRole(Role.A.name());
+
         // LoggedInUserController
         http.authorizeRequests().antMatchers("/myHome").hasAnyRole(Role.C.name(), Role.R.name());
         http.authorizeRequests().antMatchers("/myProfile").hasAnyRole(Role.C.name(), Role.R.name());
@@ -72,29 +74,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // ChartController
         http.authorizeRequests().antMatchers("/myCharts").hasAnyRole(Role.C.name(), Role.R.name());
 
-        // PostController
-        http.authorizeRequests().antMatchers("/admin/post/createNew").hasRole(Role.A.name());
-        http.authorizeRequests().antMatchers("/admin/post/delete").hasRole(Role.A.name());
-        http.authorizeRequests().antMatchers("/admin/post/edit/modify").hasRole(Role.A.name());
-        http.authorizeRequests().antMatchers("/admin/post/edit/*").hasRole(Role.A.name());
-        http.authorizeRequests().antMatchers("/admin/post/list").hasRole(Role.A.name());
-
-        // UserController
-        http.authorizeRequests().antMatchers("/admin/user/admitReferee/*").hasRole(Role.A.name());
-        http.authorizeRequests().antMatchers("/admin/user/delete/*").hasRole(Role.A.name());
-        http.authorizeRequests().antMatchers("/admin/user/edit/save").hasRole(Role.A.name());
-        http.authorizeRequests().antMatchers("/admin/user/edit/*").hasRole(Role.A.name());
-        http.authorizeRequests().antMatchers("/admin/user/list/*").hasRole(Role.A.name());
-
-        // FightController
-        http.authorizeRequests().antMatchers("/admin/fight/list").hasRole(Role.A.name());
-
         // CompetitionController
-        http.authorizeRequests().antMatchers("/admin/competition/deleteCompetition/*").hasRole(Role.A.name());
-        http.authorizeRequests().antMatchers("/admin/competition/edit").hasRole(Role.A.name());
-        http.authorizeRequests().antMatchers("/admin/competition/edit/*").hasRole(Role.A.name());
-        http.authorizeRequests().antMatchers("/admin/competition/list").hasRole(Role.A.name());
-        http.authorizeRequests().antMatchers("/admin/competition/newCompetition").hasRole(Role.A.name());
         http.authorizeRequests().antMatchers("/competition/*").hasAnyRole(Role.C.name(), Role.R.name());
         http.authorizeRequests().antMatchers("/competition/*/control").hasAnyRole(Role.R.name());
 
