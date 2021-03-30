@@ -69,6 +69,14 @@ public class CompetitionService {
     }
 
     /**
+     * Get all competitions
+     * @return List of competitions
+     */
+    public List<Competition> getCompetitions(){
+        return competitionRepository.findAll();
+    }
+
+    /**
      * Get the future competitions for the specifications of a user
      *
      * @param user    User
