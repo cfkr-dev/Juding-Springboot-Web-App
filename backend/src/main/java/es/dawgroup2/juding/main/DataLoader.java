@@ -888,8 +888,8 @@ public class DataLoader {
                 "Está competición es una celebración debido al nacimiento de la aplicación web Juding por lo que está abierta a todas las edades y es mixta.",
                 70,
                 80,
-                dateService.stringToTimestamp("23/03/2021 12:00"),
-                dateService.stringToTimestamp("24/03/2021 19:00"),
+                dateService.stringToTimestamp("01/04/2021 12:00"),
+                dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
         competitionService.add(trial1);
@@ -900,8 +900,8 @@ public class DataLoader {
                 "Está competición es una celebración debido al nacimiento de la aplicación web Juding por lo que está abierta a todas las edades y es mixta.",
                 60,
                 70,
-                dateService.stringToTimestamp("23/03/2021 12:00"),
-                dateService.stringToTimestamp("24/03/2021 19:00"),
+                dateService.stringToTimestamp("01/04/2021 12:00"),
+                dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
         competitionService.add(trial2);
@@ -912,8 +912,8 @@ public class DataLoader {
                 "Aprovecha esta nueva oportunidad para ganar si no pudiste la anterior vez o para mantenerte en el podium.",
                 70,
                 80,
-                dateService.stringToTimestamp("23/03/2021 12:00"),
-                dateService.stringToTimestamp("24/03/2021 19:00"),
+                dateService.stringToTimestamp("01/04/2021 12:00"),
+                dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
         competitionService.add(trial3);
@@ -924,8 +924,8 @@ public class DataLoader {
                 "Aprovecha esta nueva oportunidad para ganar si no pudiste la anterior vez o para mantenerte en el podium.",
                 60,
                 70,
-                dateService.stringToTimestamp("23/03/2021 12:00"),
-                dateService.stringToTimestamp("24/03/2021 19:00"),
+                dateService.stringToTimestamp("01/04/2021 12:00"),
+                dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
         competitionService.add(trial4);
@@ -936,8 +936,8 @@ public class DataLoader {
                 "Las inauguraciones ya terminaron y ahora es tu turno de de demostrar los frutos de tu nuevo entrenamiento. Dalo todo en el tatami",
                 70,
                 80,
-                dateService.stringToTimestamp("23/03/2021 12:00"),
-                dateService.stringToTimestamp("24/03/2021 19:00"),
+                dateService.stringToTimestamp("01/04/2021 12:00"),
+                dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
         competitionService.add(trial5);
@@ -948,8 +948,8 @@ public class DataLoader {
                 "Las inauguraciones ya terminaron y ahora es tu turno de de demostrar los frutos de tu nuevo entrenamiento. Dalo todo en el tatami",
                 60,
                 70,
-                dateService.stringToTimestamp("23/03/2021 12:00"),
-                dateService.stringToTimestamp("24/03/2021 19:00"),
+                dateService.stringToTimestamp("01/04/2021 12:00"),
+                dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
         competitionService.add(trial6);
@@ -960,8 +960,8 @@ public class DataLoader {
                 "Alcanza la cima del ranking de competidores y destaca ante los ojos de los seleccionadores nacionales",
                 70,
                 80,
-                dateService.stringToTimestamp("23/03/2021 12:00"),
-                dateService.stringToTimestamp("24/03/2021 19:00"),
+                dateService.stringToTimestamp("01/04/2021 12:00"),
+                dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
         competitionService.add(trial7);
@@ -972,8 +972,8 @@ public class DataLoader {
                 "Alcanza la cima del ranking de competidores y destaca ante los ojos de los seleccionadores nacionales",
                 60,
                 70,
-                dateService.stringToTimestamp("23/03/2021 12:00"),
-                dateService.stringToTimestamp("24/03/2021 19:00"),
+                dateService.stringToTimestamp("01/04/2021 12:00"),
+                dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
         competitionService.add(trial8);
@@ -984,8 +984,8 @@ public class DataLoader {
                 "Nuestro competidores son los mejores y ya dan mucho espectáculo. Hemos abierto una nueva tienda de regalos y todo lo que saquemos de la venta de productos durante la competición será donado a distintas ong",
                 70,
                 80,
-                dateService.stringToTimestamp("23/03/2021 12:00"),
-                dateService.stringToTimestamp("24/03/2021 19:00"),
+                dateService.stringToTimestamp("01/04/2021 12:00"),
+                dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
         competitionService.add(trial9);
@@ -996,8 +996,8 @@ public class DataLoader {
                 "Nuestro competidores son los mejores y ya dan mucho espectáculo. Hemos abierto una nueva tienda de regalos y todo lo que saquemos de la venta de productos durante la competición será donado a distintas ong",
                 60,
                 70,
-                dateService.stringToTimestamp("23/03/2021 12:00"),
-                dateService.stringToTimestamp("24/03/2021 19:00"),
+                dateService.stringToTimestamp("01/04/2021 12:00"),
+                dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
         competitionService.add(trial10);
@@ -1008,8 +1008,8 @@ public class DataLoader {
                 "Se terminó esta temporada por el momento pero dentro de unos meses empieza la siguiente. Inscríbete ya y entrena duro hasta la fecha.",
                 70,
                 80,
-                dateService.stringToTimestamp("23/03/2021 12:00"),
-                dateService.stringToTimestamp("24/03/2021 19:00"),
+                dateService.stringToTimestamp("01/04/2021 12:00"),
+                dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
         competitionService.add(trial11);
@@ -1020,8 +1020,8 @@ public class DataLoader {
                 "Se terminó esta temporada por el momento pero dentro de unos meses empieza la siguiente. Inscríbete ya y entrena duro hasta la fecha.",
                 60,
                 70,
-                dateService.stringToTimestamp("23/04/2021 12:00"),
-                dateService.stringToTimestamp("24/04/2021 19:00"),
+                dateService.stringToTimestamp("01/04/2021 12:00"),
+                dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
         competitionService.add(trial12);
@@ -1307,12 +1307,12 @@ public class DataLoader {
                 .setEndDate(dateService.stringToTimestamp("24/10/2020 12:00"));
         competitionService.add(competitions.get(7));
 
-        competitions.get(8).setStartDate(dateService.stringToTimestamp("21/03/2021 12:00"))
-                .setEndDate(dateService.stringToTimestamp("24/03/2021 12:00"));
+        competitions.get(8).setStartDate(dateService.stringToTimestamp("30/03/2021 12:00"))
+                .setEndDate(dateService.stringToTimestamp("04/05/2021 12:00"));
         competitionService.add(competitions.get(8));
 
-        competitions.get(9).setStartDate(dateService.stringToTimestamp("21/03/2021 12:00"))
-                .setEndDate(dateService.stringToTimestamp("24/03/2021 12:00"));
+        competitions.get(9).setStartDate(dateService.stringToTimestamp("30/03/2021 12:00"))
+                .setEndDate(dateService.stringToTimestamp("04/05/2021 12:00"));
         competitionService.add(competitions.get(9));
 
         competitions.get(10).setStartDate(dateService.stringToTimestamp("07/07/2021 12:00"))
