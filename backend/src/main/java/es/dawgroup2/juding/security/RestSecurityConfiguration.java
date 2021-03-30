@@ -50,6 +50,8 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		// UserController
 		http.authorizeRequests().antMatchers("/api/admin/**").hasRole(Role.A.name());
 
+		// Competition controller
+		http.authorizeRequests().antMatchers("/api/competition/*").hasAnyRole(Role.C.name(), Role.R.name());
 
 
 
