@@ -129,26 +129,19 @@ public class LoggedInUserController {
                               @RequestParam String beltSelector,
                               @RequestParam(required = false) String gym,
                               @RequestParam(required = false) Integer weight,
-                              @RequestParam(required = false) RefereeRange refereeRange,
+                              @RequestParam(required = false) String refereeRange,
                               @RequestParam String nickname,
-                              @RequestParam int phone,
+                              @RequestParam String phone,
                               @RequestParam String email,
-                              MultipartFile image) throws IOException {
-        User user = userService.getUserOrNull(licenseId);
-        // Common fields
-        user.setBelt(beltService.findBeltById(beltSelector)).setNickname(nickname).setPhone(phone).setEmail(email);
-        // Role-based fields
-        if (user.isRole(Role.C)) {
-            user.setGym(gym).setWeight(weight);
-        } else if (user.isRole(Role.R)) {
-            user.setRefereeRange(refereeRange);
-        }
-        // Changing image
-        if (!image.isEmpty()) {
-            user.setImageFile(imageService.uploadProfileImage(image));
-        }
-        userService.save(user);
-        return "redirect:/myProfile";
+                              MultipartFile image,
+                              HttpServletRequest request) throws IOException {
+        User user = null;
+        if (userService.findByNickname(request.getUserPrincipal().getName()).getLicenseId().equals(licenseId))
+            user = userService.save(null, null, null, phone, email, null, null, licenseId, nickname, null, null, null, image, beltSelector, gym, weight, refereeRange);
+        if (user != null)
+            return "redirect:/myProfile";
+        else
+            return "redirect:/error/500";
     }
 
     /**

@@ -9,6 +9,7 @@ import es.dawgroup2.juding.main.image.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.net.URI;
 import java.text.ParseException;
@@ -72,7 +73,7 @@ public class AdminUserAPIController {
                              @RequestParam(required = false) Integer weight,
                              @RequestParam(required = false) String refereeRange
     ) throws ParseException {
-        User user = userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, belt, gym, weight, refereeRange);
+        User user = userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, null, null, null, null, belt, gym, weight, refereeRange);
         return ResponseEntity.created(fromCurrentRequest().path("/api/admin/user/{licenseId}").buildAndExpand(user.getLicenseId()).toUri()).body(user);
     }
 

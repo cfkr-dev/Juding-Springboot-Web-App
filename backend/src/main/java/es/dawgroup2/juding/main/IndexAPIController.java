@@ -2,6 +2,7 @@ package es.dawgroup2.juding.main;
 
 import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.auxTypes.gender.GenderService;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.posts.PostService;
@@ -18,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.text.ParseException;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
@@ -111,8 +114,8 @@ public class IndexAPIController {
                                                  @RequestParam String belt,
                                                  @RequestParam String gym,
                                                  @RequestParam int weight) {
-        User user = userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, password, securityQuestion, securityAnswer, image, belt, gym, weight);
-        return ResponseEntity.created(fromCurrentRequest().path("/api/myInfo").buildAndExpand(user.getLicenseId()).toUri()).body(user);
+        User user = userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, password, securityQuestion, securityAnswer, image, belt, gym, weight, null);
+        return ResponseEntity.created(fromCurrentRequest().path("/api/me/myProfile").buildAndExpand(user.getLicenseId()).toUri()).body(user);
     }
 
     /**
@@ -149,7 +152,7 @@ public class IndexAPIController {
                                               @RequestParam String securityAnswer,
                                               MultipartFile image,
                                               @RequestParam String belt) {
-        User user = userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, password, securityQuestion, securityAnswer, image, belt, null, null);
-        return ResponseEntity.created(fromCurrentRequest().path("/api/myInfo").buildAndExpand(user.getLicenseId()).toUri()).body(user);
+        User user = userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, password, securityQuestion, securityAnswer, image, belt, null, null, RefereeRange.S.name());
+        return ResponseEntity.created(fromCurrentRequest().path("/api/me/myProfile").buildAndExpand(user.getLicenseId()).toUri()).body(user);
     }
 }

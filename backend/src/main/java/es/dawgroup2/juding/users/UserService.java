@@ -282,39 +282,33 @@ public class UserService {
      * @param refereeRange
      * @return User object that was saved.
      */
-    public User save(String name, String surname, String gender, String phone, String email, String birthDate, String dni, String licenseId, String nickname, String belt, String gym, Integer weight, String refereeRange) throws ParseException {
+    public User save(String name, String surname, String gender, String phone, String email, String birthDate, String dni, String licenseId, String nickname, String password, String securityQuestion, String securityAnswer, MultipartFile image, String belt, String gym, Integer weight, String refereeRange) {
         // If user already existed, must be retrieved and changed
         User user = userRepository.findById(licenseId).orElse(new User());
-        user.setLicenseId(licenseId)
-                .setName(name)
-                .setSurname(surname)
-                .setDni(dni)
-                .setPhone(Integer.parseInt(phone))
-                .setEmail(email)
-                .setNickname(nickname)
-                .setBirthDate(dateService.stringToDate(birthDate))
-                .setGender(genderService.findGenderById(gender))
-                .setWeight(weight)
-                .setGym(gym)
-                .setBelt(beltService.findBeltById(belt));
-        if (refereeRange != null)
-            if (!refereeRange.isEmpty())
-                user.setRefereeRange(refereeRangeService.findRefereeRangeById(refereeRange));
-        return userRepository.save(user);
-    }
 
-
-    public User save(String name, String surname, String gender, String phone, String email, String birthDate, String dni, String licenseId, String nickname, String password, String securityQuestion, String securityAnswer, MultipartFile image, String belt, String gym, Integer weight){
-        User user = new User();
+        if (name != null) user.setName(name);
+        if (surname != null) user.setSurname(surname);
+        if (gender != null) user.setGender(genderService.findGenderById(gender));
+        if (email != null) user.setEmail(email);
         try {
-            user.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone((phone.equals("")) ? null : Integer.parseInt(phone))
-                    .setGender(genderService.findGenderById(gender)).setBirthDate(dateService.stringToDate(birthDate))
-                    .setDni(dni).setGym(gym).setWeight(weight).setBelt(beltService.findBeltById(belt))
-                    .setImageFile(imageService.uploadProfileImage(image)).setMimeProfileImage(image.getContentType())
-                    .setNickname(nickname).setPassword(passwordEncoder.encode(password)).setSecurityQuestion(securityQuestion)
-                    .setSecurityAnswer(securityAnswer).setRoles(Set.of(Role.C));
-        } catch (Exception e) {
+            if (phone != null) user.setPhone(Integer.parseInt(phone));
+            if (birthDate != null) user.setBirthDate(dateService.stringToDate(birthDate));
+            if (image != null)
+                if (!image.isEmpty())
+                    user.setImageFile(imageService.uploadProfileImage(image));
+        } catch (Exception e){
             return null;
+        }
+        if (dni != null) user.setDni(dni);
+        if (nickname != null) user.setNickname(nickname);
+        if (password != null) user.setPassword(passwordEncoder.encode(password));
+        if (securityQuestion != null) user.setSecurityQuestion(securityQuestion);
+        if (securityAnswer != null) user.setSecurityAnswer(securityAnswer);
+        if (user.isRole(Role.C)) {
+            if (gym != null) user.setGym(gym);
+            if (weight != null) user.setWeight(weight);
+        } else if (user.isRole(Role.R)) {
+            if (refereeRange != null) user.setRefereeRange(refereeRangeService.findRefereeRangeById(refereeRange));
         }
         return userRepository.save(user);
     }
