@@ -549,7 +549,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \"username\": \"Cron\", \"password\": \"Cron\" }",
+					"raw": "{ \"username\": \"Cron\", \"password\": \"Cron2021\" }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -572,12 +572,12 @@
 			"response": []
 		},
 		{
-			"name": "RoleA-User - Get competitors",
+			"name": "RoleA-User - Get competitors (second page)",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:8443/api/admin/user/competitors",
+					"raw": "https://localhost:8443/api/admin/user/competitors?page=2",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -588,13 +588,19 @@
 						"admin",
 						"user",
 						"competitors"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "RoleA-User - Get referees",
+			"name": "RoleA-User - Get referees (first page)",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -610,6 +616,14 @@
 						"admin",
 						"user",
 						"referees"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1",
+							"description": "By default, retrieves first page.",
+							"disabled": true
+						}
 					]
 				}
 			},
