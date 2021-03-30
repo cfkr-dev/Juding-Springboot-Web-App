@@ -75,10 +75,11 @@ public class PostService {
      * This method search a post given by id and replaces it with a new post
      *
      * @param post Current post instance
+     * @return
      */
-    public void updatingInfoPost(Post post) {
+    public Post updatingInfoPost(Post post) {
         postRepository.findById(post.getIdPost()).orElseThrow();
-        postRepository.save(post);
+        return postRepository.save(post);
     }
 
     /**
