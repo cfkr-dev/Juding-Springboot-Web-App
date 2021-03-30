@@ -7,6 +7,7 @@ import es.dawgroup2.juding.main.DateService;
 import es.dawgroup2.juding.main.HeaderInflater;
 import es.dawgroup2.juding.main.image.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,16 +44,28 @@ public class AdminUserAPIController {
 
 
     @GetMapping("/competitors")
-    public List<User> competitorList() {
-        return userService.getCompetitors();
+    public ResponseEntity<Page<User>> competitorList(@RequestParam(required = false) Integer page) {
+        int defPage = (page == null) ? 1 : page - 1;
+        if (defPage < 0) return ResponseEntity.badRequest().build();
+        Page<User> requiredPage = userService.getCompetitorsInPages(defPage);
+        if (requiredPage.hasContent())
+            return ResponseEntity.ok(requiredPage);
+        else
+            return ResponseEntity.badRequest().build();
     }
 
     @GetMapping("/referees/applications")
     public List<User> applicantList(){ return userService.getRefereeApplications(); }
 
     @GetMapping("/referees")
-    public List<User> refereeList() {
-        return userService.getActiveReferees();
+    public ResponseEntity<Page<User>> refereeList(@RequestParam(required = false) Integer page) {
+        int defPage = (page == null) ? 1 : page - 1;
+        if (defPage < 0) return ResponseEntity.badRequest().build();
+        Page<User> requiredPage = userService.getActiveRefereesInPages(defPage);
+        if (requiredPage.hasContent())
+            return ResponseEntity.ok(requiredPage);
+        else
+            return ResponseEntity.badRequest().build();
     }
 
     @GetMapping("/{licenseId}")
