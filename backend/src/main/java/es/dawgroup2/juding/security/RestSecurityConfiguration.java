@@ -49,11 +49,15 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
         // LoggedInUserAPIController
         http.authorizeRequests().antMatchers("/api/me/*", "/ranking").hasAnyRole(Role.C.name(), Role.R.name());
 
+        // ImageAPIController
+        http.authorizeRequests().antMatchers("/api/image/user/*").hasAnyRole(Role.C.name(), Role.R.name(), Role.A.name());
+
         // IndexAPIController
+        http.authorizeRequests().antMatchers("/api/login", "/api/refresh", "/api/logout").permitAll();
         http.authorizeRequests().antMatchers("/api/signUp/*").permitAll();
 
         // AdminUserAPIController
-        http.authorizeRequests().antMatchers("/api/admin/**").hasRole(Role.A.name());
+        http.authorizeRequests().antMatchers("/api/admin/user/**").hasRole(Role.A.name());
 
 
         // Disable CSRF protection (it is difficult to implement in REST APIs)
