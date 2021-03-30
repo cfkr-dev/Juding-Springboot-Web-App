@@ -330,5 +330,5 @@ public class User {
     }
 
     @JsonProperty("imageFile")
-    public String imageFile(){ return "/api/user/" + getLicenseId() + "/image"; }
+    public String imageFile(){ return "/api/image/user/" + getLicenseId() + "/"; }
 }

@@ -22,10 +22,9 @@ public class ImageAPIController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/{type}/{id}/image")
+    @GetMapping("/image/{type}/{id}")
     public ResponseEntity<Object> getImage(@PathVariable String type, @PathVariable String id) throws IOException, SQLException {
         if (type.equals("user")){
-            // Here id = licenseId of user
             User user = userService.getUserOrNull(id);
             if (user != null)
                 return imageService.getObjectResponseEntity(user.getImageFile(), user.getMimeProfileImage());
