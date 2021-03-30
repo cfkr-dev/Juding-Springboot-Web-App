@@ -1,12 +1,23 @@
 package es.dawgroup2.juding.users;
 
+import es.dawgroup2.juding.auxTypes.belts.BeltService;
+import es.dawgroup2.juding.auxTypes.gender.GenderService;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
+import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.auxTypes.roles.Role;
+import es.dawgroup2.juding.main.DateService;
+import es.dawgroup2.juding.main.image.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.internet.MimeMessage;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -15,7 +26,28 @@ import java.util.Set;
 public class UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
+
+    @Autowired
+    BeltService beltService;
+
+    @Autowired
+    GenderService genderService;
+
+    @Autowired
+    ImageService imageService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    RefereeRangeService refereeRangeService;
+
+    @Autowired
+    DateService dateService;
+
+    @Autowired
+    private JavaMailSender emailSender;
 
     /**
      * Retrieves the list of competitors registered in the app.
@@ -195,6 +227,33 @@ public class UserService {
             return null;
     }
 
+    public User admitReferee(String licenseId) {
+        User user = getUserOrNull(licenseId);
+        if (user == null) return null;
+        save(user.setRefereeRange(RefereeRange.E));
+
+        MimeMessage mimeMessage = emailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
+        String htmlMsg = "Estimado <strong>" + user.getName() + " " + user.getSurname() + "</strong>.<br>" +
+                "<br>" +
+                "Le anunciamos que ha sido <strong>ADMITIDO</strong> como árbitro en la Federación de Judo de la Comunidad de Madrid.<br>" +
+                "Ya puede acceder a la aplicación oficial haciendo uso de las credenciales que proporcionó al registrarse.<br>" +
+                "<br>" +
+                "Reciba un cordial saludo.<br>" +
+                "<br>" +
+                "Federación de Judo de la Comunidad de Madrid.";
+        try {
+            helper.setText(htmlMsg, true); // Use this or above line.
+            helper.setTo(user.getName() + " " + user.getSurname() + " <" + user.getEmail() + ">");
+            helper.setSubject("Solicitud de admisión de árbitros");
+            helper.setFrom("Federación de Judo Comunidad de Madrid <juding.noreply@gmail.com>");
+            emailSender.send(mimeMessage);
+        } catch (Exception e){
+            return null;
+        }
+        return user;
+    }
+
     /**
      * Saving user into repository.
      *
@@ -204,6 +263,62 @@ public class UserService {
     public User save(User user) {
         return userRepository.save(user);
     }
+
+    /**
+     * Creates a user attending to received parameters and then saves it into database.
+     *
+     * @param name
+     * @param surname
+     * @param gender
+     * @param phone
+     * @param email
+     * @param birthDate
+     * @param dni
+     * @param licenseId
+     * @param nickname
+     * @param belt
+     * @param gym
+     * @param weight
+     * @param refereeRange
+     * @return User object that was saved.
+     */
+    public User save(String name, String surname, String gender, String phone, String email, String birthDate, String dni, String licenseId, String nickname, String belt, String gym, Integer weight, String refereeRange) throws ParseException {
+        // If user already existed, must be retrieved and changed
+        User user = userRepository.findById(licenseId).orElse(new User());
+        user.setLicenseId(licenseId)
+                .setName(name)
+                .setSurname(surname)
+                .setDni(dni)
+                .setPhone(Integer.parseInt(phone))
+                .setEmail(email)
+                .setNickname(nickname)
+                .setBirthDate(dateService.stringToDate(birthDate))
+                .setGender(genderService.findGenderById(gender))
+                .setWeight(weight)
+                .setGym(gym)
+                .setBelt(beltService.findBeltById(belt));
+        if (refereeRange != null)
+            if (!refereeRange.isEmpty())
+                user.setRefereeRange(refereeRangeService.findRefereeRangeById(refereeRange));
+        return userRepository.save(user);
+    }
+
+
+    public User save(String name, String surname, String gender, String phone, String email, String birthDate, String dni, String licenseId, String nickname, String password, String securityQuestion, String securityAnswer, MultipartFile image, String belt, String gym, Integer weight){
+        User user = new User();
+        try {
+            user.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone((phone.equals("")) ? null : Integer.parseInt(phone))
+                    .setGender(genderService.findGenderById(gender)).setBirthDate(dateService.stringToDate(birthDate))
+                    .setDni(dni).setGym(gym).setWeight(weight).setBelt(beltService.findBeltById(belt))
+                    .setImageFile(imageService.uploadProfileImage(image)).setMimeProfileImage(image.getContentType())
+                    .setNickname(nickname).setPassword(passwordEncoder.encode(password)).setSecurityQuestion(securityQuestion)
+                    .setSecurityAnswer(securityAnswer).setRoles(Set.of(Role.C));
+        } catch (Exception e) {
+            return null;
+        }
+        return userRepository.save(user);
+    }
+
 
     /**
      * Saving many users into repository.
@@ -218,10 +333,12 @@ public class UserService {
     /**
      * Deleting user from the repository.
      *
-     * @param user User to be deleted from repository.
+     * @param licenseId License ID of user to be deleted from repository.
      */
-    public void delete(User user) {
+    public User delete(String licenseId) {
+        User user = getUserOrNull(licenseId);
         if (user != null)
             userRepository.delete(user);
+        return user;
     }
 }

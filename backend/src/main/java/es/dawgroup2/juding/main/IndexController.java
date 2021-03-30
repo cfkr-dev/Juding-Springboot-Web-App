@@ -163,19 +163,10 @@ public class IndexController {
                                    @RequestParam String belt,
                                    @RequestParam String gym,
                                    @RequestParam int weight) {
-        User newUser = new User();
-        try {
-            newUser.setLicenseId(licenseId).setName(name).setSurname(surname).setEmail(email).setPhone((phone.equals("")) ? null : Integer.parseInt(phone))
-                    .setGender(genderService.findGenderById(gender)).setBirthDate(dateService.stringToDate(birthDate))
-                    .setDni(dni).setGym(gym).setWeight(weight).setBelt(beltService.findBeltById(belt))
-                    .setImageFile(imageService.uploadProfileImage(image)).setMimeProfileImage(image.getContentType())
-                    .setNickname(nickname).setPassword(passwordEncoder.encode(password)).setSecurityQuestion(securityQuestion)
-                    .setSecurityAnswer(securityAnswer).setRoles(Set.of(Role.C));
-        } catch (Exception e) {
+        if (userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, password, securityQuestion, securityAnswer, image, belt, gym, weight) != null)
+            return "redirect:/login";
+        else
             return "redirect:/error/500";
-        }
-        userService.save(newUser);
-        return "redirect:/login";
     }
 
     /**

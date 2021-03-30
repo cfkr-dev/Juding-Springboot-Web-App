@@ -47,7 +47,10 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.antMatcher("/api/**");
 
-		// UserController
+		// IndexAPIController
+		http.authorizeRequests().antMatchers("/api/signUp/*").permitAll();
+
+		// AdminUserAPIController
 		http.authorizeRequests().antMatchers("/api/admin/**").hasRole(Role.A.name());
 
 

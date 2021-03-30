@@ -1,6 +1,8 @@
 package es.dawgroup2.juding.users;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import es.dawgroup2.juding.auxTypes.belts.Belt;
 import es.dawgroup2.juding.auxTypes.gender.Gender;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
@@ -13,6 +15,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -38,6 +41,7 @@ public class User {
 
     @Column(nullable = false)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonIgnore
     private Date birthDate;
 
     @Column(nullable = false)
@@ -47,6 +51,7 @@ public class User {
     private String nickname;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
     @Column(nullable = false)
@@ -59,6 +64,7 @@ public class User {
     @JsonIgnore
     private Blob imageFile;
 
+    @JsonIgnore
     private String mimeProfileImage;
 
     @Enumerated(EnumType.STRING)
@@ -78,7 +84,9 @@ public class User {
     private Set<Role> roles;
 
     @ElementCollection(fetch = FetchType.LAZY)
+    // @JsonIgnore
     private List<Integer> competitorMedals;
+
 
     public User() {
     }
@@ -297,6 +305,7 @@ public class User {
      *
      * @return Birth date in user-friendly format.
      */
+    @JsonProperty("birthdate")
     public String getFormattedBirthDate() {
         SimpleDateFormat simpDate = new SimpleDateFormat("dd/MM/yyyy");
         return simpDate.format(birthDate);
@@ -307,6 +316,7 @@ public class User {
      *
      * @return Gender boolean.
      */
+    @JsonIgnore
     public boolean isMale() {
         return gender == Gender.H;
     }
