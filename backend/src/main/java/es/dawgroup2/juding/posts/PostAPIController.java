@@ -35,7 +35,7 @@ public class PostAPIController {
      * @param id    Current post id.
      * @return Individual post visualization view (news).
      */
-    @GetMapping("/api/news/{id}")
+    @GetMapping("/api/newsPostList/{id}")
     public List<Post> newsPostList(@PathVariable String id) {
         Post bigPost = postService.findById(id);
         List<Post> recentPosts = postService.findFirst5Desc(id);
