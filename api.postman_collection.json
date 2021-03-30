@@ -55,6 +55,211 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "New competition",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "shortname",
+							"value": "Competición de inauguración 1",
+							"type": "text"
+						},
+						{
+							"key": "additionalInfo",
+							"value": "Está competición es una celebración debido al nacimiento de la aplicación web Juding por lo que está abierta a todas las edades y es mixta.",
+							"type": "text"
+						},
+						{
+							"key": "minWeight",
+							"value": "70",
+							"type": "text"
+						},
+						{
+							"key": "maxWeight",
+							"value": "80",
+							"type": "text"
+						},
+						{
+							"key": "referee",
+							"value": "JU-123789456",
+							"type": "text"
+						},
+						{
+							"key": "startDate",
+							"value": "23/03/2021",
+							"type": "text"
+						},
+						{
+							"key": "endDate",
+							"value": "24/03/2021",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/admin/competition/newCompetition",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"admin",
+						"competition",
+						"newCompetition"
+					]
+				}
+			},
+			"reponse": []
+		},
+		{
+			"name": "Get competitions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/api/admin/competition/list",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"admin",
+						"competition",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit competition",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "idCompetition",
+							"value": "0000000001",
+							"type": "text"
+						},
+						{
+							"key": "shortname",
+							"value": "Competición de inauguración 1",
+							"type": "text"
+						},
+						{
+							"key": "additionalInfo",
+							"value": "Está competición es una celebración debido al nacimiento de la aplicación web Juding por lo que está abierta a todas las edades y es mixta.",
+							"type": "text"
+						},
+						{
+							"key": "minWeight",
+							"value": "70",
+							"type": "text"
+						},
+						{
+							"key": "maxWeight",
+							"value": "80",
+							"type": "text"
+						},
+						{
+							"key": "referee",
+							"value": "JU-123789456",
+							"type": "text"
+						},
+						{
+							"key": "startDate",
+							"value": "23/03/2021",
+							"type": "text"
+						},
+						{
+							"key": "endDate",
+							"value": "24/03/2021",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/admin/competition/edit",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"admin",
+						"competition",
+						"edit"
+					]
+				}
+			},
+			"reponse": []
+		},
+		{
+			"name": "Get competitions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/api/competition/0000000001",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"competition",
+						"0000000001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a competition",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/api/admin/competition/delete/0000000001",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"admin",
+						"competition",
+						"delete",
+						"0000000001"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
