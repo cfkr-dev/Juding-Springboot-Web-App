@@ -20,8 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.text.ParseException;
-
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
@@ -76,27 +74,6 @@ public class IndexAPIController {
         return ResponseEntity.ok(new AuthResponse(AuthResponse.Status.SUCCESS, userLoginService.logout(request, response)));
     }
 
-    /**
-     * Saving information of new competitor.
-     *
-     * @param name             Name
-     * @param surname          Surname
-     * @param gender           Gender
-     * @param phone            Phone
-     * @param email            Email
-     * @param birthDate        Birth date
-     * @param dni              DNI
-     * @param licenseId        License ID
-     * @param nickname         Nickname
-     * @param password         Passsword
-     * @param securityQuestion Security Question
-     * @param securityAnswer   Security Answer
-     * @param image            Profile image
-     * @param belt             Belt
-     * @param gym              Gym
-     * @param weight           Weight
-     * @return Redirection to login if successful.
-     */
     @PostMapping("/signUp/competitor")
     public ResponseEntity<User> signUpCompetitor(@RequestParam String name,
                                                  @RequestParam String surname,
@@ -118,25 +95,6 @@ public class IndexAPIController {
         return ResponseEntity.created(fromCurrentRequest().path("/api/me/myProfile").buildAndExpand(user.getLicenseId()).toUri()).body(user);
     }
 
-    /**
-     * Saving information of new referee (as a application for being officialy admitted).
-     *
-     * @param name             Name
-     * @param surname          Surname
-     * @param gender           Gender
-     * @param phone            Phone
-     * @param email            Email
-     * @param birthDate        Birth date
-     * @param dni              DNI
-     * @param licenseId        License ID
-     * @param nickname         Nickname
-     * @param password         Password
-     * @param securityQuestion Security question
-     * @param securityAnswer   Security answer
-     * @param image            Profile image
-     * @param belt             Belt
-     * @return Redirection to login if successful (if application was properly submitted).
-     */
     @PostMapping("/signUp/referee")
     public ResponseEntity<User> signUpReferee(@RequestParam String name,
                                               @RequestParam String surname,
