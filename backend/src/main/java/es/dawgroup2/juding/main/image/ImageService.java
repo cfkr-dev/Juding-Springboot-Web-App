@@ -2,7 +2,10 @@ package es.dawgroup2.juding.main.image;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,6 +15,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URLConnection;
 import java.sql.Blob;
+import java.sql.SQLException;
 
 @Component
 public class ImageService {
@@ -63,5 +67,15 @@ public class ImageService {
             return BlobProxy.generateProxy(baos.toByteArray());
         }
         return null;
+    }
+
+    public ResponseEntity<Object> getObjectResponseEntity(Blob imageFile, String mimeProfileImage) throws SQLException {
+        if (imageFile != null) {
+            Resource file = new InputStreamResource(imageFile.getBinaryStream());
+            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, mimeProfileImage)
+                    .contentLength(imageFile.length()).body(file);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

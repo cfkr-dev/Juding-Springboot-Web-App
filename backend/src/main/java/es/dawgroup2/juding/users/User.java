@@ -15,7 +15,6 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -84,7 +83,6 @@ public class User {
     private Set<Role> roles;
 
     @ElementCollection(fetch = FetchType.LAZY)
-    // @JsonIgnore
     private List<Integer> competitorMedals;
 
 
@@ -330,4 +328,7 @@ public class User {
     public boolean isRole(Role role) {
         return (roles.contains(role));
     }
+
+    @JsonProperty("imageFile")
+    public String imageFile(){ return "/api/user/" + getLicenseId() + "/image"; }
 }
