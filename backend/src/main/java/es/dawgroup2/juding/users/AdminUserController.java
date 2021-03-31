@@ -60,7 +60,7 @@ public class AdminUserController {
      */
     @GetMapping("/admin/user/list/{stringRole}")
     public String userList(@PathVariable String stringRole, HttpServletRequest request, Model model) {
-        model.addAttribute("header", headerInflater.getHeader("Lista de usuarios", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "profiles", "bootstrapAccomodations", "responsiveTable", "adminScreen", "beltAssignations"));
+        model.addAllAttributes(headerInflater.getHeader("Lista de usuarios", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "profiles", "bootstrapAccomodations", "responsiveTable", "adminScreen", "beltAssignations"));
         if (stringRole.equals("competitors")) {
             Page<User> firstPage = userService.getCompetitorsInPages(0);
             model.addAttribute("competitors", true)
@@ -118,7 +118,7 @@ public class AdminUserController {
     @GetMapping("/admin/user/edit/{licenseId}")
     public String editUser(@PathVariable String licenseId, HttpServletRequest request, Model model) {
         User user = userService.getUserOrNull(licenseId);
-        model.addAttribute("header", headerInflater.getHeader("Editar usuario", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "header", "bootstrapAccomodations"))
+        model.addAllAttributes(headerInflater.getHeader("Editar usuario", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "header", "bootstrapAccomodations"))
                 .addAttribute("user", user)
                 .addAttribute("beltSelector", beltService.getSelectField(user.getBelt(), false))
                 .addAttribute("genderSelection", genderService.getRadioField(user.getGender()))
