@@ -43,7 +43,7 @@ public class AdminCompetitionController {
     @GetMapping("/admin/competition/list")
     public String competitionList(HttpServletRequest request, Model model) {
         Page<Competition> compFirstPage = competitionService.getCompetitionsInPages(0);
-        model.addAttribute("header", headerInflater.getHeader("Lista de competiciones", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "adminScreen"))
+        model.addAllAttributes(headerInflater.getHeader("Lista de competiciones", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "adminScreen"))
                 .addAttribute("competitionPage", compFirstPage.getContent())
                 .addAttribute("empty", compFirstPage.getTotalElements() == 0)
                 .addAttribute("totalPages", compFirstPage.getTotalPages())
@@ -76,7 +76,7 @@ public class AdminCompetitionController {
     public String editCompetition(@PathVariable String idCompetition, HttpServletRequest request, Model model) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         model.addAttribute("competition", competition)
-                .addAttribute("header", headerInflater.getHeader("Edición de competición", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "chosen/component-chosen.css", "header", "bootstrapAccomodations"))
+                .addAllAttributes(headerInflater.getHeader("Edición de competición", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "chosen/component-chosen.css", "header", "bootstrapAccomodations"))
                 .addAttribute("refereeList", userService.getActiveRefereesList(competition.getReferee().getLicenseId()));
         return "/admin/competition/edit";
     }
@@ -89,7 +89,7 @@ public class AdminCompetitionController {
      */
     @GetMapping("/admin/competition/newCompetition")
     public String newCompetition(HttpServletRequest request, Model model) {
-        model.addAttribute("header", headerInflater.getHeader("Nueva competición", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "chosen/component-chosen.css", "header", "bootstrapAccomodations"))
+        model.addAllAttributes(headerInflater.getHeader("Nueva competición", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "chosen/component-chosen.css", "header", "bootstrapAccomodations"))
                 .addAttribute("refereeList", userService.getActiveRefereesList());
         return "/admin/competition/newCompetition";
     }

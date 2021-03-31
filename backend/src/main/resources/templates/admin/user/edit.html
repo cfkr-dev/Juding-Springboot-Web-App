@@ -1,4 +1,4 @@
-{{{header}}}
+{{>header}}
 <div class="container pb-4">
     <form action="/admin/user/edit/save" class="needs-validation flex-sb flex-w juding-form-user" method="post" novalidate
           enctype="multipart/form-data">
@@ -35,7 +35,7 @@
                 <!-- Phone field -->
                 <label class="txt1" for="phone">Teléfono</label>
                 <input class="form-control" id="phone" name="phone" pattern="(?=.*\d).{9}" type="text"
-                       value="{{ user.phone }}">
+                       value="{{#user.phone}}{{ user.phone }}{{/user.phone}}">
                 <div class="invalid-feedback">
                     El teléfono debe contener 9 dígitos.
                 </div>
