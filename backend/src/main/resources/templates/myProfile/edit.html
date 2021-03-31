@@ -1,4 +1,4 @@
-{{{ header }}}
+{{ >header }}
 <div class="container">
     <span class="profileModificationsTitle">
         Modifica tus datos
@@ -75,7 +75,7 @@
                     <div class="width40"><label for="phone">Teléfono</label></div>
                     <div class="width60">
                         <input class="form-control" id="phone" name="phone" pattern="(?=.*\d).{9}" type="text"
-                               value="{{ user.phone }}">
+                               value="{{#user.phone}}{{ user.phone }}{{/user.phone}}">
                         <div class="invalid-feedback">
                             El teléfono no verifica el formato requerido.
                         </div>
