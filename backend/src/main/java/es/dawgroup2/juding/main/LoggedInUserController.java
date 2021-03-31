@@ -131,12 +131,13 @@ public class LoggedInUserController {
                               @RequestParam(required = false) Integer weight,
                               @RequestParam(required = false) RefereeRange refereeRange,
                               @RequestParam String nickname,
-                              @RequestParam int phone,
+                              @RequestParam String phone,
                               @RequestParam String email,
                               MultipartFile image) throws IOException {
         User user = userService.getUserOrNull(licenseId);
         // Common fields
-        user.setBelt(beltService.findBeltById(beltSelector)).setNickname(nickname).setPhone(phone).setEmail(email);
+        user.setBelt(beltService.findBeltById(beltSelector)).setNickname(nickname).setEmail(email)
+                .setPhone((phone.equals("")) ? null : Integer.parseInt(phone));
         // Role-based fields
         if (user.isRole(Role.C)) {
             user.setGym(gym).setWeight(weight);
