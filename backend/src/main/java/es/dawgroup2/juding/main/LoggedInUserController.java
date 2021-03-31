@@ -54,7 +54,7 @@ public class LoggedInUserController {
     public String myHome(Model model, HttpServletRequest request) {
         User currentUser = userService.findByNickname(request.getUserPrincipal().getName());
         if (currentUser != null) {
-            model.addAttribute("header", headerInflater.getHeader("Inicio", request, "bootstrap/css/bootstrap.min.css", "font-awesome/css/all.css", "style", "header", "profiles", "responsiveTable", "beltAssignations"))
+            model.addAllAttributes(headerInflater.getHeader("Inicio", request, "bootstrap/css/bootstrap.min.css", "font-awesome/css/all.css", "style", "header", "profiles", "responsiveTable", "beltAssignations"))
                     .addAttribute("myFutureComp", competitionService.getFutureFights(currentUser, true))
                     .addAttribute("myNotFutureComp", competitionService.getFutureFights(currentUser, false))
                     .addAttribute("myCurrentComp", competitionService.getCurrentCompetitions(currentUser))
@@ -77,7 +77,7 @@ public class LoggedInUserController {
         if (currentUser == null) {
             return "/error/403";
         } else {
-            model.addAttribute("header", headerInflater.getHeader("Mi perfil", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "profiles"))
+            model.addAllAttributes(headerInflater.getHeader("Mi perfil", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "profiles"))
                     .addAttribute("user", currentUser)
                     .addAttribute("isCompetitor", currentUser.isRole(Role.C))
                     .addAttribute("isMale", currentUser.isMale())
@@ -98,7 +98,7 @@ public class LoggedInUserController {
         if (currentUser == null) {
             return "redirect:/error/403";
         } else {
-            model.addAttribute("header", headerInflater.getHeader("Editar perfil", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "profiles"))
+            model.addAllAttributes(headerInflater.getHeader("Editar perfil", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "profiles"))
                     .addAttribute("user", currentUser)
                     .addAttribute("isCompetitor", currentUser.isRole(Role.C))
                     .addAttribute("beltSelector", beltService.getSelectField(currentUser.getBelt(), currentUser.isRole(Role.R)));
@@ -154,7 +154,7 @@ public class LoggedInUserController {
     @GetMapping("/ranking")
     public String getRanking(HttpServletRequest request, Model model) {
         List<?> rankingList = userService.getRanking();
-        model.addAttribute("header", headerInflater.getHeader("Ranking", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "profiles", "beltAssignations"))
+        model.addAllAttributes(headerInflater.getHeader("Ranking", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "profiles", "beltAssignations"))
                 .addAttribute("list", rankingList);
         return "/ranking";
     }
