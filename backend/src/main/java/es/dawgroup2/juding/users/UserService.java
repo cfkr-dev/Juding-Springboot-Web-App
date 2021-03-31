@@ -291,7 +291,7 @@ public class UserService {
         if (gender != null) user.setGender(genderService.findGenderById(gender));
         if (email != null) user.setEmail(email);
         try {
-            if (phone != null) user.setPhone(Integer.parseInt(phone));
+            if (phone != null) user.setPhone((phone.equals("")) ? null : Integer.parseInt(phone));
             if (birthDate != null) user.setBirthDate(dateService.stringToDate(birthDate));
             if (image != null)
                 if (!image.isEmpty())
