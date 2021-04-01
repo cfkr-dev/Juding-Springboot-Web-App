@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.internet.MimeMessage;
-import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -248,7 +247,7 @@ public class UserService {
             helper.setSubject("Solicitud de admisión de árbitros");
             helper.setFrom("Federación de Judo Comunidad de Madrid <juding.noreply@gmail.com>");
             emailSender.send(mimeMessage);
-        } catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
         return user;
@@ -294,9 +293,11 @@ public class UserService {
             if (phone != null) user.setPhone((phone.equals("")) ? null : Integer.parseInt(phone));
             if (birthDate != null) user.setBirthDate(dateService.stringToDate(birthDate));
             if (image != null)
-                if (!image.isEmpty())
+                if (!image.isEmpty()) {
                     user.setImageFile(imageService.uploadProfileImage(image));
-        } catch (Exception e){
+                    user.setMimeProfileImage(image.getContentType());
+                }
+        } catch (Exception e) {
             return null;
         }
         if (dni != null) user.setDni(dni);
@@ -313,7 +314,6 @@ public class UserService {
         return userRepository.save(user);
     }
 
-
     /**
      * Saving many users into repository.
      *
@@ -325,14 +325,25 @@ public class UserService {
     }
 
     /**
-     * Deleting user from the repository.
+     * Deleting user from the repository attending to its license ID.
      *
      * @param licenseId License ID of user to be deleted from repository.
+     * @return Deleted user (if existed).
      */
     public User delete(String licenseId) {
-        User user = getUserOrNull(licenseId);
-        if (user != null)
-            userRepository.delete(user);
+        Optional<User> user = userRepository.findById(licenseId);
+        user.ifPresent(value -> userRepository.delete(value));
+        return user.orElse(null);
+    }
+
+    /**
+     * Deleting user from the repository.
+     *
+     * @param user User to be deleted.
+     * @return Deleted user.
+     */
+    public User delete(User user) {
+        userRepository.delete(user);
         return user;
     }
 }

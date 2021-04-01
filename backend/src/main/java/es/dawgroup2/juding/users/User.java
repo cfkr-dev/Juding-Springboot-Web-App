@@ -83,6 +83,7 @@ public class User {
     private Set<Role> roles;
 
     @ElementCollection(fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Integer> competitorMedals;
 
 

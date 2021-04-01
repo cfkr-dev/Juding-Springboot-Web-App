@@ -101,9 +101,10 @@ public class AdminUserAPIController {
 
     @DeleteMapping("/{licenseId}")
     public ResponseEntity<User> deleteUser(@PathVariable String licenseId) {
-        User user = userService.delete(licenseId);
+        User user = userService.getUserOrNull(licenseId);
+        userService.delete(user);
         if (user != null)
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(user);
         else
             return ResponseEntity.notFound().build();
     }
