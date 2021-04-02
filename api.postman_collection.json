@@ -12,7 +12,97 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \"username\": \"Cron\", \"password\": \"Cron\" }",
+					"raw": "{ \"username\": \"Cron\", \"password\": \"Cron2021\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Referee Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\": \"Clau\", \"password\": \"Clau2021\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Competitor Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\": \"Ismón\", \"password\": \"Ismon2021\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Competitor Login Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\": \"Dieguin\", \"password\": \"Dieguin2021\" }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -86,17 +176,17 @@
 						},
 						{
 							"key": "referee",
-							"value": "JU-123789456",
+							"value": "JU-0000000001",
 							"type": "text"
 						},
 						{
 							"key": "startDate",
-							"value": "23/03/2021",
+							"value": "23/03/2021 13:01",
 							"type": "text"
 						},
 						{
 							"key": "endDate",
-							"value": "24/03/2021",
+							"value": "23/03/2021 13:01",
 							"type": "text"
 						}
 					],
@@ -121,7 +211,7 @@
 					]
 				}
 			},
-			"reponse": []
+			"response": []
 		},
 		{
 			"name": "Get competitions",
@@ -129,7 +219,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:8443/api/admin/competition/list",
+					"raw": "https://localhost:8443/api/admin/competition/list?page=1",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -140,6 +230,12 @@
 						"admin",
 						"competition",
 						"list"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
 					]
 				}
 			},
@@ -155,7 +251,7 @@
 					"formdata": [
 						{
 							"key": "idCompetition",
-							"value": "0000000001",
+							"value": "161",
 							"type": "text"
 						},
 						{
@@ -179,18 +275,18 @@
 							"type": "text"
 						},
 						{
-							"key": "referee",
-							"value": "JU-123789456",
-							"type": "text"
-						},
-						{
 							"key": "startDate",
-							"value": "23/03/2021",
+							"value": "01/04/2021 12:00",
 							"type": "text"
 						},
 						{
 							"key": "endDate",
-							"value": "24/03/2021",
+							"value": "01/04/2022 12:00",
+							"type": "text"
+						},
+						{
+							"key": "referee",
+							"value": "JU-0000000004",
 							"type": "text"
 						}
 					],
@@ -215,15 +311,24 @@
 					]
 				}
 			},
-			"reponse": []
+			"response": []
 		},
 		{
-			"name": "Get competitions",
+			"name": "Join a competition",
 			"request": {
-				"method": "GET",
+				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://localhost:8443/api/competition/0000000001",
+					"raw": "https://localhost:8443/api/competition/161/join",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -232,7 +337,61 @@
 					"path": [
 						"api",
 						"competition",
-						"0000000001"
+						"161",
+						"join"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save a result of a competition",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"winner\": \"Ismón\", \"loser\": \"Dieguin\", \"fightId\": \"7\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/competition/161/control/saveResult",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"competition",
+						"161",
+						"control",
+						"saveResult"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a competition",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/api/competition/161",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"competition",
+						"161"
 					]
 				}
 			},
@@ -244,7 +403,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:8443/api/admin/competition/delete/0000000001",
+					"raw": "https://localhost:8443/api/admin/competition/delete/161",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -255,7 +414,7 @@
 						"admin",
 						"competition",
 						"delete",
-						"0000000001"
+						"161"
 					]
 				}
 			},
