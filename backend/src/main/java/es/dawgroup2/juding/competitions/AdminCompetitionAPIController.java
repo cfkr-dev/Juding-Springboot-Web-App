@@ -7,20 +7,17 @@ import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.text.ParseException;
-import java.util.List;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
 @RequestMapping("/api/admin/competition")
 public class AdminCompetitionAPIController {
+
     @Autowired
     HeaderInflater headerInflater;
 
@@ -36,23 +33,20 @@ public class AdminCompetitionAPIController {
     @Autowired
     FightService fightService;
 
-
     @GetMapping("/list")
-    public List<Competition> competitionList() {
-        return competitionService.getCompetitions();
+    public ResponseEntity<Page<Competition>> getCompetitionPage(@RequestParam(required = false) Integer page) {
+        int defPage = (page == null) ? 1 : page;
+        if (defPage<0){
+            return ResponseEntity.badRequest().build();
+        }
+        Page<Competition> competitionPage = competitionService.getCompetitionsInPages(page);
+        if (competitionPage.hasContent()) {
+            return ResponseEntity.ok(competitionPage);
+        }
+        else{
+            return ResponseEntity.badRequest().build();
+        }
     }
-
-    @GetMapping("/list/{page}")
-    public List<Competition> getCompetitionPage(@PathVariable String page) {
-        Page<Competition> competitionPage = competitionService.getCompetitionsInPages(Integer.parseInt(page));
-        return competitionPage.getContent();
-    }
-
-    @GetMapping("/edit/{idCompetition}")
-    public Competition editCompetition(@PathVariable String idCompetition) {
-        return competitionService.findById(Integer.parseInt(idCompetition));
-    }
-
 
     /**
      * Generates a new competition with the received information.
@@ -68,12 +62,12 @@ public class AdminCompetitionAPIController {
      */
     @PostMapping("/newCompetition")
     public ResponseEntity<Competition> addCompetition(@RequestParam String shortName,
-                                         @RequestParam String additionalInfo,
-                                         @RequestParam int minWeight,
-                                         @RequestParam int maxWeight,
-                                         @RequestParam String startDate,
-                                         @RequestParam String endDate,
-                                         @RequestParam String referee) throws ParseException {
+                                                      @RequestParam String additionalInfo,
+                                                      @RequestParam int minWeight,
+                                                      @RequestParam int maxWeight,
+                                                      @RequestParam String startDate,
+                                                      @RequestParam String endDate,
+                                                      @RequestParam String referee) throws ParseException {
         Competition competition = new Competition();
         competition.setShortName(shortName)
                 .setAdditionalInfo(additionalInfo)
@@ -82,7 +76,7 @@ public class AdminCompetitionAPIController {
                 .setStartDate(dateService.stringToTimestamp(startDate))
                 .setEndDate(dateService.stringToTimestamp(endDate))
                 .setReferee(userService.getUserOrNull(referee));
-        URI location= fromCurrentRequest().path("/api/competition").buildAndExpand(competition.getIdCompetition()).toUri();
+        URI location = fromCurrentRequest().path("/api/competition/{idCompetition}").buildAndExpand(competition.getIdCompetition()).toUri();
         return ResponseEntity.created(location).body(competition);
     }
 
@@ -102,13 +96,13 @@ public class AdminCompetitionAPIController {
      */
     @PutMapping("/edit")
     public ResponseEntity<Competition> updatingCompetitionInfo(@RequestParam String idCompetition,
-                                          @RequestParam String shortName,
-                                          @RequestParam String additionalInfo,
-                                          @RequestParam int minWeight,
-                                          @RequestParam int maxWeight,
-                                          @RequestParam String startDate,
-                                          @RequestParam String endDate,
-                                          @RequestParam String referee) throws ParseException {
+                                                               @RequestParam String shortName,
+                                                               @RequestParam String additionalInfo,
+                                                               @RequestParam int minWeight,
+                                                               @RequestParam int maxWeight,
+                                                               @RequestParam String startDate,
+                                                               @RequestParam String endDate,
+                                                               @RequestParam String referee) throws ParseException {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         competition.setShortName(shortName)
                 .setAdditionalInfo(additionalInfo)
@@ -118,23 +112,21 @@ public class AdminCompetitionAPIController {
                 .setStartDate(dateService.stringToTimestamp(startDate))
                 .setEndDate(dateService.stringToTimestamp(endDate));
         competitionService.updatingInfoCompetition(competition);
-        if (competition!= null){
+        if (competition != null) {
             return ResponseEntity.ok(competition);
-        }
-        else {
+        } else {
             return ResponseEntity.badRequest().build();
         }
 
     }
 
-    @DeleteMapping ("/delete/{idCompetition}")
+    @DeleteMapping("/delete/{idCompetition}")
     public ResponseEntity<Competition> showCompetitionToDelete(@PathVariable String idCompetition) {
-        Competition competition= competitionService.findById(Integer.parseInt(idCompetition));
+        Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         competitionService.deleteById(idCompetition);
-        if (competition!= null){
+        if (competition != null) {
             return ResponseEntity.ok(competition);
-        }
-        else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
