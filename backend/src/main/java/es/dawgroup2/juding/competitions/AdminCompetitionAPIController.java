@@ -36,14 +36,13 @@ public class AdminCompetitionAPIController {
     @GetMapping("/list")
     public ResponseEntity<Page<Competition>> getCompetitionPage(@RequestParam(required = false) Integer page) {
         int defPage = (page == null) ? 1 : page;
-        if (defPage<0){
+        if (defPage < 0) {
             return ResponseEntity.badRequest().build();
         }
         Page<Competition> competitionPage = competitionService.getCompetitionsInPages(page);
         if (competitionPage.hasContent()) {
             return ResponseEntity.ok(competitionPage);
-        }
-        else{
+        } else {
             return ResponseEntity.badRequest().build();
         }
     }
@@ -68,14 +67,7 @@ public class AdminCompetitionAPIController {
                                                       @RequestParam String startDate,
                                                       @RequestParam String endDate,
                                                       @RequestParam String referee) throws ParseException {
-        Competition competition = new Competition();
-        competition.setShortName(shortName)
-                .setAdditionalInfo(additionalInfo)
-                .setMinWeight(minWeight)
-                .setMaxWeight(maxWeight)
-                .setStartDate(dateService.stringToTimestamp(startDate))
-                .setEndDate(dateService.stringToTimestamp(endDate))
-                .setReferee(userService.getUserOrNull(referee));
+        Competition competition = competitionService.save(null, shortName, additionalInfo, minWeight, maxWeight, startDate, endDate, referee);
         URI location = fromCurrentRequest().path("/api/competition/{idCompetition}").buildAndExpand(competition.getIdCompetition()).toUri();
         return ResponseEntity.created(location).body(competition);
     }
@@ -103,15 +95,7 @@ public class AdminCompetitionAPIController {
                                                                @RequestParam String startDate,
                                                                @RequestParam String endDate,
                                                                @RequestParam String referee) throws ParseException {
-        Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
-        competition.setShortName(shortName)
-                .setAdditionalInfo(additionalInfo)
-                .setMinWeight(minWeight)
-                .setMaxWeight(maxWeight)
-                .setReferee(userService.getUserOrNull(referee))
-                .setStartDate(dateService.stringToTimestamp(startDate))
-                .setEndDate(dateService.stringToTimestamp(endDate));
-        competitionService.updatingInfoCompetition(competition);
+        Competition competition = competitionService.save(idCompetition, shortName, additionalInfo, minWeight, maxWeight, startDate, endDate, referee);
         if (competition != null) {
             return ResponseEntity.ok(competition);
         } else {

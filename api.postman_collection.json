@@ -36,6 +36,36 @@
 			"response": []
 		},
 		{
+			"name": "Admin Login Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\": \"AnaMary\", \"password\": \"AnaMary2021\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Referee Login",
 			"request": {
 				"method": "POST",
@@ -155,8 +185,8 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "shortname",
-							"value": "Competición de inauguración 1",
+							"key": "shortName",
+							"value": "Copa platano",
 							"type": "text"
 						},
 						{
@@ -166,27 +196,27 @@
 						},
 						{
 							"key": "minWeight",
-							"value": "70",
+							"value": "40",
 							"type": "text"
 						},
 						{
 							"key": "maxWeight",
-							"value": "80",
+							"value": "180",
 							"type": "text"
 						},
 						{
 							"key": "referee",
-							"value": "JU-0000000001",
+							"value": "JU-0000000003",
 							"type": "text"
 						},
 						{
 							"key": "startDate",
-							"value": "23/03/2021 13:01",
+							"value": "23/09/2021 13:01",
 							"type": "text"
 						},
 						{
 							"key": "endDate",
-							"value": "23/03/2021 13:01",
+							"value": "23/03/2026 13:01",
 							"type": "text"
 						}
 					],
@@ -219,7 +249,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:8443/api/admin/competition/list?page=1",
+					"raw": "https://localhost:8443/api/admin/competition/list?page=0",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -234,7 +264,7 @@
 					"query": [
 						{
 							"key": "page",
-							"value": "1"
+							"value": "0"
 						}
 					]
 				}
@@ -255,7 +285,7 @@
 							"type": "text"
 						},
 						{
-							"key": "shortname",
+							"key": "shortName",
 							"value": "Competición de inauguración 1",
 							"type": "text"
 						},
@@ -328,7 +358,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/competition/161/join",
+					"raw": "https://localhost:8443/api/competition/205/join",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -337,7 +367,7 @@
 					"path": [
 						"api",
 						"competition",
-						"161",
+						"205",
 						"join"
 					]
 				}
@@ -350,8 +380,19 @@
 				"method": "PUT",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{ \"winner\": \"Ismón\", \"loser\": \"Dieguin\", \"fightId\": \"7\"}",
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "winner",
+							"value": "Ismón",
+							"type": "text"
+						},
+						{
+							"key": "loser",
+							"value": "Dieguin",
+							"type": "text"
+						}
+					],
 					"options": {
 						"raw": {
 							"language": "json"
@@ -359,7 +400,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/competition/161/control/saveResult",
+					"raw": "https://localhost:8443/api/competition/205/control/saveResult",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -368,7 +409,7 @@
 					"path": [
 						"api",
 						"competition",
-						"161",
+						"205",
 						"control",
 						"saveResult"
 					]

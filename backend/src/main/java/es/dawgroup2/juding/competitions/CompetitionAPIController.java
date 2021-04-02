@@ -7,7 +7,6 @@ import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,17 +38,15 @@ public class CompetitionAPIController {
     @PutMapping("/{idCompetition}/join")
     public ResponseEntity<Competition> joinCompetition(@PathVariable String idCompetition, HttpServletRequest request) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
-        User user= userService.findByNickname(request.getUserPrincipal().getName());
-        if (fightService.checkParticipation(competition,user)){
+        User user = userService.findByNickname(request.getUserPrincipal().getName());
+        if (fightService.checkParticipation(competition, user)) {
             return ResponseEntity.badRequest().build();
-        }
-        else{
-            competitionService.joinCompetition(competition, userService.findByNickname(request.getUserPrincipal().getName()));
-            competitionService.add(competition);
-            if (competition!= null){
+        } else {
+            competitionService.joinCompetition(competition, user);
+            competitionService.save(competition);
+            if (competition != null) {
                 return ResponseEntity.ok(competition);
-            }
-            else {
+            } else {
                 return ResponseEntity.badRequest().build();
             }
         }
