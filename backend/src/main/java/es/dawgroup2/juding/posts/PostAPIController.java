@@ -2,12 +2,13 @@ package es.dawgroup2.juding.posts;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import java.util.List;
-
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class PostAPIController {
@@ -23,8 +24,14 @@ public class PostAPIController {
      * @return Individual post visualization view (news).
      */
     @GetMapping("/api/news/{id}")
-    public Post newsPost(@PathVariable String id) {
-        return postService.findById(id);
+    public ResponseEntity<Post> newsPost(@PathVariable String id) {
+        Post post = postService.findById(id);
+        if (post!= null){
+            return ResponseEntity.ok(post);
+        }
+        else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     /**
@@ -36,11 +43,16 @@ public class PostAPIController {
      * @return Individual post visualization view (news).
      */
     @GetMapping("/api/newsPostList/{id}")
-    public List<Post> newsPostList(@PathVariable String id) {
+    public ResponseEntity<List<Post>> newsPostList(@PathVariable String id) {
         Post bigPost = postService.findById(id);
         List<Post> recentPosts = postService.findFirst5Desc(id);
         recentPosts.remove(bigPost);
-        return recentPosts;
+        if (recentPosts.isEmpty()){
+            return ResponseEntity.ok(recentPosts);
+        }
+        else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     /**
@@ -50,7 +62,13 @@ public class PostAPIController {
      * @return Inflated row of posts.
      */
     @GetMapping("/api/news/page/{page}")
-    public Page<Post> getPage(@PathVariable String page) {
-        return postService.getPostsInPages(Integer.parseInt(page), 3);
+    public ResponseEntity<Page<Post>> getPage(@RequestParam(required = false) Integer page) {
+        int defPage = (page == null) ? 1 : page - 1;
+        if (defPage < 0) return ResponseEntity.badRequest().build();
+        Page<Post> requiredPage = postService.getPostsInPages(defPage, 3);
+        if (requiredPage.hasContent())
+            return ResponseEntity.ok(requiredPage);
+        else
+            return ResponseEntity.badRequest().build();
     }
 }
