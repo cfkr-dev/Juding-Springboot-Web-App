@@ -1,16 +1,17 @@
 package es.dawgroup2.juding.posts;
 
 import es.dawgroup2.juding.users.UserService;
-import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Timestamp;
+
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
 @RequestMapping("/api/admin/post")
@@ -23,26 +24,21 @@ public class AdminPostAPIController {
     UserService userService;
 
     /**
-     * This method inflates the all post list view.
-     *
-     * @param model Post data model.
-     * @return All post view.
-     */
-    @GetMapping("/list")
-    public Page<Post> postList() {
-        return postService.getPostsInPages(0, 10);
-    }
-
-    /**
      * Returns a inflated page of registered posts.
      *
      * @param model Model.
      * @param page  Number of page requested.
      * @return Inflated page.
      */
-    @GetMapping("/list/{page}")
-    public Page<Post> getPostPage(@PathVariable String page) {
-        return postService.getPostsInPages(Integer.parseInt(page), 10);
+    @GetMapping("/list")
+    public ResponseEntity<Page<Post>> getPostPage(@RequestParam(required = false) Integer page) {
+        int defPage = (page == null) ? 1 : page - 1;
+        if (defPage < 0) return ResponseEntity.badRequest().build();
+        Page<Post> requiredPage = postService.getPostsInPages(defPage, 10);
+        if (requiredPage.hasContent())
+            return ResponseEntity.ok(requiredPage);
+        else
+            return ResponseEntity.badRequest().build();
     }
 
     /**
@@ -52,9 +48,13 @@ public class AdminPostAPIController {
      * @param id    Current post id.
      * @return Individual post edit section view.
      */
-    @GetMapping("/edit/{id}")
-    public Post getPostToEdit(@PathVariable String id) {
-        return postService.findById(id);
+    @GetMapping("/{idPost}")
+    public ResponseEntity<Post> getPost(@PathVariable String idPost) {
+        Post post = postService.findById(idPost);
+        if (post != null)
+            return ResponseEntity.ok(post);
+        else
+            return ResponseEntity.badRequest().build();
     }
 
     /**
@@ -69,21 +69,14 @@ public class AdminPostAPIController {
      * @throws IOException  In case of the image file input fails.
      * @throws SQLException In case the previous image is not found on database.
      */
-    @PostMapping("/createNew")
-    public Post addNewPost(@RequestParam String title,
-                           @RequestParam MultipartFile image,
-                           @RequestParam String body,
-                           HttpServletRequest request) throws IOException, SQLException {
+    @PostMapping("/newPost")
+    public ResponseEntity<Post> addNewPost(@RequestParam String title,
+                                           @RequestParam MultipartFile image,
+                                           @RequestParam String body,
+                                           HttpServletRequest request) throws IOException, SQLException {
         Post post = new Post();
-        post.setAuthor(userService.findByNickname(request.getUserPrincipal().getName()))
-                .setTitle(title)
-                .setBody(body)
-                .setTimestamp(new Timestamp(System.currentTimeMillis()));
-        if (!image.isEmpty()) {
-            post.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
-            post.setMimeImage(image.getContentType());
-        }
-        return postService.add(post);
+        Post newPost = postService.save(post, "New", title, image, body, request);
+        return ResponseEntity.created(fromCurrentRequest().path("/api/admin/post/{idPost}").buildAndExpand(newPost.getIdPost()).toUri()).body(newPost);
     }
 
 
@@ -100,26 +93,19 @@ public class AdminPostAPIController {
      * @throws IOException  In case of the image file input fails.
      * @throws SQLException In case the previous image is not found on database.
      */
-    @PostMapping("/edit/modify")
-    public Post updatingPost(@RequestParam String id,
-                             @RequestParam String title,
-                             @RequestParam MultipartFile image,
-                             @RequestParam String body) throws IOException, SQLException {
+    @PutMapping("/edit")
+    public ResponseEntity<Post> updatePost(@RequestParam String id,
+                                             @RequestParam String title,
+                                             @RequestParam MultipartFile image,
+                                             @RequestParam String body) throws IOException, SQLException {
         Post post = postService.findById(id);
-        post.setTitle(title)
-                .setBody(body)
-                .setTimestamp(new Timestamp(System.currentTimeMillis()));
-        if (!image.isEmpty()) {
-            post.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
-        } else {
-            Post dbPost = postService.findById(id);
-            if (dbPost.getImageFile() != null) {
-                post.setImageFile(BlobProxy.generateProxy(dbPost.getImageFile().getBinaryStream(),
-                        dbPost.getImageFile().length()));
-                post.setMimeImage(image.getContentType());
-            }
+        Post updatedPost = postService.save(post, "Update", title, image, body, null);
+        if (post!= null){
+            return ResponseEntity.ok(updatedPost);
         }
-        return postService.updatingInfoPost(post);
+        else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
 
@@ -129,8 +115,15 @@ public class AdminPostAPIController {
      * @param id Current post id.
      * @return Redirects to all post list view.
      */
-    @GetMapping("/delete/{id}")
-    public void deletePost(@PathVariable String id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Post> deletePost(@PathVariable String id) {
+        Post competition = postService.findById(id);
         postService.deleteById(id);
+        if (competition != null){
+            return ResponseEntity.ok(competition);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
