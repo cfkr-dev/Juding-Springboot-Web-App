@@ -9,6 +9,7 @@ import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -125,21 +126,21 @@ public class CompetitionService {
     }
 
     /**
-     *
-     * @param idCompetition
-     * @param shortName
-     * @param additionalInfo
-     * @param minWeight
-     * @param maxWeight
-     * @param startDate
-     * @param endDate
-     * @param referee
-     * @return
+     * If competition did not exist previously creates a new competition, else updates it with the new parameters
+     * @param idCompetition Id of the competition
+     * @param shortName  The short name of the competition
+     * @param additionalInfo Info about the competition
+     * @param minWeight The minimum weight allowed in a competition
+     * @param maxWeight The maximum weight allowed in a competition
+     * @param startDate The start date of a competition
+     * @param endDate The end date of a competition
+     * @param referee The license of the referee in charge of the competition
+     * @return The saved competition
      */
     public Competition save(String idCompetition, String shortName, String additionalInfo, int minWeight, int maxWeight, String startDate, String endDate, String referee) {
         Competition competition;
         try {
-            competition = competitionRepository.findById(Integer.parseInt(idCompetition)).orElse(new Competition());
+            competition= (idCompetition == null) ? new Competition() : competitionRepository.findById(Integer.parseInt(idCompetition)).orElseThrow();
             competition.setShortName(shortName)
                     .setAdditionalInfo(additionalInfo)
                     .setMinWeight(minWeight)
@@ -172,8 +173,8 @@ public class CompetitionService {
     }
 
     /**
-     *
-     * @param competition
+     *  Creates all the necessary fights of a new competition
+     * @param competition A competition
      */
     private void generateNewFights(Competition competition){
         List<Fight> fights = new ArrayList<>();
