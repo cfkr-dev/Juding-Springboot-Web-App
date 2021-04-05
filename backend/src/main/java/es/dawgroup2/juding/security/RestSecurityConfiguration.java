@@ -56,7 +56,6 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/api/competition/*").hasAnyRole(Role.C.name(), Role.R.name());
 
 
-
 		// Disable CSRF protection (it is difficult to implement in REST APIs)
 		http.csrf().disable();
 
