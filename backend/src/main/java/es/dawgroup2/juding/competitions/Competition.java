@@ -1,39 +1,49 @@
 package es.dawgroup2.juding.competitions;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import es.dawgroup2.juding.fight.Fight;
 import es.dawgroup2.juding.users.User;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-public class Competition implements Serializable {
+public class Competition {
+
+    public static class MainAttributes {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(MainAttributes.class)
     private int idCompetition;
 
     @Column(nullable = false)
+    @JsonView(MainAttributes.class)
     private String shortName;
 
     @Column(nullable = false, columnDefinition = "LONGTEXT")
+    @JsonView(MainAttributes.class)
     private String additionalInfo;
 
     @Column(nullable = false)
+    @JsonView(MainAttributes.class)
     private int minWeight;
 
     @Column(nullable = false)
+    @JsonView(MainAttributes.class)
     private int maxWeight;
 
     @Column(nullable = false)
+    @JsonView(MainAttributes.class)
     private Timestamp startDate;
 
     @Column(nullable = false)
+    @JsonView(MainAttributes.class)
     private Timestamp endDate;
 
     @ManyToOne

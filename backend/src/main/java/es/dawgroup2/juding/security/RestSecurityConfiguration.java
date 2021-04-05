@@ -1,6 +1,7 @@
 package es.dawgroup2.juding.security;
 
 import es.dawgroup2.juding.auxTypes.roles.Role;
+import es.dawgroup2.juding.security.jwt.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 
 import es.dawgroup2.juding.security.jwt.JwtRequestFilter;
 
@@ -55,6 +57,18 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/api/competition/{idCompetition}/join").hasAnyRole(Role.C.name());
 		http.authorizeRequests().antMatchers("/api/competition/*").hasAnyRole(Role.C.name(), Role.R.name());
 
+    // LoggedInUserAPIController
+        http.authorizeRequests().antMatchers("/api/me/*", "/ranking").hasAnyRole(Role.C.name(), Role.R.name());
+
+        // ImageAPIController
+        http.authorizeRequests().antMatchers("/api/image/user/*").hasAnyRole(Role.C.name(), Role.R.name(), Role.A.name());
+
+        // IndexAPIController
+        http.authorizeRequests().antMatchers("/api/login", "/api/refresh", "/api/logout").permitAll();
+        http.authorizeRequests().antMatchers("/api/signUp/*").permitAll();
+
+        // AdminUserAPIController
+        http.authorizeRequests().antMatchers("/api/admin/user/**").hasRole(Role.A.name());
 
 		// Disable CSRF protection (it is difficult to implement in REST APIs)
 		http.csrf().disable();

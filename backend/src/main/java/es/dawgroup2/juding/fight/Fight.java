@@ -14,6 +14,7 @@ public class Fight {
 
     @JsonIgnore
     @ManyToOne
+    @JsonIgnore
     private Competition competition;
 
     @Column(nullable = false)

@@ -2,7 +2,6 @@ package es.dawgroup2.juding.users;
 
 import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.auxTypes.gender.GenderService;
-import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.auxTypes.roles.Role;
 import es.dawgroup2.juding.main.DateService;
@@ -10,16 +9,14 @@ import es.dawgroup2.juding.main.HeaderInflater;
 import es.dawgroup2.juding.main.image.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.util.Set;
@@ -46,9 +43,6 @@ public class AdminUserController {
 
     @Autowired
     ImageService imageService;
-
-    @Autowired
-    private JavaMailSender emailSender;
 
     /**
      * Retrieves a view with a list of users (both competitors and referees) according to their role.
@@ -163,23 +157,8 @@ public class AdminUserController {
                              @RequestParam(required = false) Integer weight,
                              @RequestParam(required = false) String refereeRange
     ) throws ParseException {
-        User currentUser = userService.getUserOrNull(licenseId);
-        currentUser.setName(name)
-                .setSurname(surname)
-                .setDni(dni)
-                .setPhone((phone.equals("")) ? null : Integer.parseInt(phone))
-                .setEmail(email)
-                .setNickname(nickname)
-                .setBirthDate(dateService.stringToDate(birthDate))
-                .setGender(genderService.findGenderById(gender))
-                .setWeight(weight)
-                .setGym(gym)
-                .setBelt(beltService.findBeltById(belt));
-        if (refereeRange != null)
-            if (!refereeRange.isEmpty())
-                currentUser.setRefereeRange(refereeRangeService.findRefereeRangeById(refereeRange));
-        userService.save(currentUser);
-        if (currentUser.isRole(Role.C))
+        User user = userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, null, null, null, null, belt, gym, weight, refereeRange);
+        if (user.isRole(Role.C))
             return "redirect:/admin/user/list/competitors";
         else
             return "redirect:/admin/user/list/referees";
@@ -194,30 +173,10 @@ public class AdminUserController {
      */
     @GetMapping("/admin/user/admitReferee/{licenseId}")
     public String admitReferee(@PathVariable String licenseId) {
-        User user = userService.getUserOrNull(licenseId);
-        userService.save(user.setRefereeRange(RefereeRange.E));
-
-        MimeMessage mimeMessage = emailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
-        String htmlMsg = "Estimado <strong>" + user.getName() + " " + user.getSurname() + "</strong>.<br>" +
-                "<br>" +
-                "Le anunciamos que ha sido <strong>ADMITIDO</strong> como árbitro en la Federación de Judo de la Comunidad de Madrid.<br>" +
-                "Ya puede acceder a la aplicación oficial haciendo uso de las credenciales que proporcionó al registrarse.<br>" +
-                "<br>" +
-                "Reciba un cordial saludo.<br>" +
-                "<br>" +
-                "Federación de Judo de la Comunidad de Madrid.";
-        try {
-            helper.setText(htmlMsg, true); // Use this or above line.
-            helper.setTo(user.getName() + " " + user.getSurname() + " <" + user.getEmail() + ">");
-            helper.setSubject("Solicitud de admisión de árbitros");
-            helper.setFrom("Federación de Judo CAM <juding.noreply@gmail.com>");
-            emailSender.send(mimeMessage);
-        } catch (Exception e) {
+        if (userService.admitReferee(licenseId) == null)
             return "redirect:/error/500";
-        }
-
-        return "redirect:/admin/user/list/referees";
+        else
+            return "redirect:/admin/user/list/referees";
     }
 
 
@@ -230,7 +189,7 @@ public class AdminUserController {
     @GetMapping("/admin/user/delete/{licenseId}")
     public String deleteUser(@PathVariable String licenseId) {
         Set<Role> rolesOfUser = userService.getUserRolesOrNull(licenseId);
-        userService.delete(userService.getUserOrNull(licenseId));
+        userService.delete(licenseId);
         if (rolesOfUser.contains(Role.C))
             return "redirect:/admin/user/list/competitors";
         else
