@@ -73,15 +73,6 @@ public class CompetitionService {
     }
 
     /**
-     * Get all competitions
-     *
-     * @return List of competitions
-     */
-    public List<Competition> getCompetitions() {
-        return competitionRepository.findAll();
-    }
-
-    /**
      * Get the future competitions for the specifications of a user
      *
      * @param user    User
@@ -133,10 +124,22 @@ public class CompetitionService {
         return competitionRepository.findAll(PageRequest.of(num, 10));
     }
 
-    public Competition save(String idCompetition, String shortName, String additionalInfo, int minWeight, int maxWeight, String startDate, String endDate, String referee) throws ParseException {
+    /**
+     *
+     * @param idCompetition
+     * @param shortName
+     * @param additionalInfo
+     * @param minWeight
+     * @param maxWeight
+     * @param startDate
+     * @param endDate
+     * @param referee
+     * @return
+     */
+    public Competition save(String idCompetition, String shortName, String additionalInfo, int minWeight, int maxWeight, String startDate, String endDate, String referee) {
         Competition competition;
-        if (idCompetition == null) {
-            competition = new Competition();
+        try {
+            competition = competitionRepository.findById(Integer.parseInt(idCompetition)).orElse(new Competition());
             competition.setShortName(shortName)
                     .setAdditionalInfo(additionalInfo)
                     .setMinWeight(minWeight)
@@ -144,69 +147,12 @@ public class CompetitionService {
                     .setStartDate(dateService.stringToTimestamp(startDate))
                     .setEndDate(dateService.stringToTimestamp(endDate))
                     .setReferee(userService.getUserOrNull(referee));
+        } catch (Exception e){
+            return null;
+        }
+        if (competition.getIdCompetition() == 0) {
             competitionRepository.save(competition);
-            List<Fight> fights = new ArrayList<>();
-
-            // STEP 1: Generating new fights from root to leaves (final fight to 8th-fights)
-            // 1.1. Creating final fight, persisting it and saving it into fights list
-            Fight finalFight = new Fight(competition, 0, null, null, null, false, null, null);
-            fightService.save(finalFight);
-            fights.add(finalFight);
-
-            // 1.2. Creating semifinal fights, relation with finalFight (these ones are children of final), persisting them and saving them into fights list
-            List<Fight> semifinals = new ArrayList<>();
-            for (int i = 0; i <= 1; i++)
-                semifinals.add(new Fight(competition, 1, null, null, finalFight, false, null, null));
-            fightService.saveAll(semifinals);
-            fights.addAll(semifinals);
-
-            // 1.3. Creating quarterfinal fights, relation with their semifinals, persisting them and saving them into fights list
-            List<Fight> quarterfinals = new ArrayList<>();
-            for (int i = 0; i <= 3; i++)
-                quarterfinals.add(new Fight(competition, 2, null, null, semifinals.get(i / 2), false, null, null));
-            fightService.saveAll(quarterfinals);
-            fights.addAll(quarterfinals);
-
-            // 1.4. Creating eigthth-final fights, relation with their quarterfinals, persisting them and saving them into fights list
-            List<Fight> eighthfinals = new ArrayList<>();
-            for (int i = 0; i <= 7; i++)
-                eighthfinals.add(new Fight(competition, 3, null, null, quarterfinals.get(i / 2), false, null, null));
-            fightService.saveAll(eighthfinals);
-            fights.addAll(eighthfinals);
-
-            // STEP 2: Attaching the list of fights into Competition object
-            competition.setFights(fights);
-
-            // STEP 3: Including fights relations from leaves to root (8th-finals to final fight)
-            // 3.1. Quarterfinals introducing 8th-finals pointers for up and down fight
-            int j = 0;
-            for (int i = 0; i <= 3; i++) {
-                quarterfinals.get(i).setUpFight(eighthfinals.get(j)).setDownFight(eighthfinals.get(j + 1));
-                j = j + 2;
-            }
-            // 3.2. Semifinals introducing quarterfinals pointers for up and down fight
-            j = 0;
-            for (int i = 0; i <= 1; i++) {
-                semifinals.get(i).setUpFight(quarterfinals.get(j)).setDownFight(quarterfinals.get(j + 1));
-                j = j + 2;
-            }
-            // 3.3. Final introducing semifinals pointers
-            finalFight.setUpFight(semifinals.get(0)).setDownFight(semifinals.get(1));
-
-            // STEP 4: Persisting all fights and competitions with their updates.
-            fightService.saveAll(fights);
-            // does not work ("unable to merge BLOB data" exception).
-//            Optional<Competition> comp = competitionRepository.findById(competition.getIdCompetition());
-//            return comp.map(value -> competitionRepository.save(value.setFights(fights))).orElse(null);
-        } else {
-            competition = competitionRepository.findById(Integer.parseInt(idCompetition)).orElseThrow();
-            competition.setShortName(shortName)
-                    .setAdditionalInfo(additionalInfo)
-                    .setMinWeight(minWeight)
-                    .setMaxWeight(maxWeight)
-                    .setStartDate(dateService.stringToTimestamp(startDate))
-                    .setEndDate(dateService.stringToTimestamp(endDate))
-                    .setReferee(userService.getUserOrNull(referee));
+            generateNewFights(competition);
         }
         return competitionRepository.save(competition);
     }
@@ -220,61 +166,66 @@ public class CompetitionService {
     public Competition save(Competition competition) {
         if (!competitionRepository.existsById(competition.getIdCompetition())) {
             competitionRepository.save(competition);
-            List<Fight> fights = new ArrayList<>();
+            generateNewFights(competition);
+        }
+        return competitionRepository.save(competition);
+    }
 
-            // STEP 1: Generating new fights from root to leaves (final fight to 8th-fights)
-            // 1.1. Creating final fight, persisting it and saving it into fights list
-            Fight finalFight = new Fight(competition, 0, null, null, null, false, null, null);
-            fightService.save(finalFight);
-            fights.add(finalFight);
+    /**
+     *
+     * @param competition
+     */
+    private void generateNewFights(Competition competition){
+        List<Fight> fights = new ArrayList<>();
 
-            // 1.2. Creating semifinal fights, relation with finalFight (these ones are children of final), persisting them and saving them into fights list
-            List<Fight> semifinals = new ArrayList<>();
-            for (int i = 0; i <= 1; i++)
-                semifinals.add(new Fight(competition, 1, null, null, finalFight, false, null, null));
-            fightService.saveAll(semifinals);
-            fights.addAll(semifinals);
+        // STEP 1: Generating new fights from root to leaves (final fight to 8th-fights)
+        // 1.1. Creating final fight, persisting it and saving it into fights list
+        Fight finalFight = new Fight(competition, 0, null, null, null, false, null, null);
+        fightService.save(finalFight);
+        fights.add(finalFight);
 
-            // 1.3. Creating quarterfinal fights, relation with their semifinals, persisting them and saving them into fights list
-            List<Fight> quarterfinals = new ArrayList<>();
-            for (int i = 0; i <= 3; i++)
-                quarterfinals.add(new Fight(competition, 2, null, null, semifinals.get(i / 2), false, null, null));
-            fightService.saveAll(quarterfinals);
-            fights.addAll(quarterfinals);
+        // 1.2. Creating semifinal fights, relation with finalFight (these ones are children of final), persisting them and saving them into fights list
+        List<Fight> semifinals = new ArrayList<>();
+        for (int i = 0; i <= 1; i++)
+            semifinals.add(new Fight(competition, 1, null, null, finalFight, false, null, null));
+        fightService.saveAll(semifinals);
+        fights.addAll(semifinals);
 
-            // 1.4. Creating eigthth-final fights, relation with their quarterfinals, persisting them and saving them into fights list
-            List<Fight> eighthfinals = new ArrayList<>();
-            for (int i = 0; i <= 7; i++)
-                eighthfinals.add(new Fight(competition, 3, null, null, quarterfinals.get(i / 2), false, null, null));
-            fightService.saveAll(eighthfinals);
-            fights.addAll(eighthfinals);
+        // 1.3. Creating quarterfinal fights, relation with their semifinals, persisting them and saving them into fights list
+        List<Fight> quarterfinals = new ArrayList<>();
+        for (int i = 0; i <= 3; i++)
+            quarterfinals.add(new Fight(competition, 2, null, null, semifinals.get(i / 2), false, null, null));
+        fightService.saveAll(quarterfinals);
+        fights.addAll(quarterfinals);
 
-            // STEP 2: Attaching the list of fights into Competition object
-            competition.setFights(fights);
+        // 1.4. Creating eigthth-final fights, relation with their quarterfinals, persisting them and saving them into fights list
+        List<Fight> eighthfinals = new ArrayList<>();
+        for (int i = 0; i <= 7; i++)
+            eighthfinals.add(new Fight(competition, 3, null, null, quarterfinals.get(i / 2), false, null, null));
+        fightService.saveAll(eighthfinals);
+        fights.addAll(eighthfinals);
 
-            // STEP 3: Including fights relations from leaves to root (8th-finals to final fight)
-            // 3.1. Quarterfinals introducing 8th-finals pointers for up and down fight
-            int j = 0;
-            for (int i = 0; i <= 3; i++) {
-                quarterfinals.get(i).setUpFight(eighthfinals.get(j)).setDownFight(eighthfinals.get(j + 1));
-                j = j + 2;
-            }
-            // 3.2. Semifinals introducing quarterfinals pointers for up and down fight
-            j = 0;
-            for (int i = 0; i <= 1; i++) {
-                semifinals.get(i).setUpFight(quarterfinals.get(j)).setDownFight(quarterfinals.get(j + 1));
-                j = j + 2;
-            }
-            // 3.3. Final introducing semifinals pointers
-            finalFight.setUpFight(semifinals.get(0)).setDownFight(semifinals.get(1));
+        // STEP 2: Attaching the list of fights into Competition object
+        competition.setFights(fights);
 
-            // STEP 4: Persisting all fights and competitions with their updates.
-            fightService.saveAll(fights);
-            return competitionRepository.save(competition); // does not work ("unable to merge BLOB data" exception).
-//            Optional<Competition> comp = competitionRepository.findById(competition.getIdCompetition());
-//            return comp.map(value -> competitionRepository.save(value.setFights(fights))).orElse(null);
-        } else
-            return competitionRepository.save(competition);
+        // STEP 3: Including fights relations from leaves to root (8th-finals to final fight)
+        // 3.1. Quarterfinals introducing 8th-finals pointers for up and down fight
+        int j = 0;
+        for (int i = 0; i <= 3; i++) {
+            quarterfinals.get(i).setUpFight(eighthfinals.get(j)).setDownFight(eighthfinals.get(j + 1));
+            j = j + 2;
+        }
+        // 3.2. Semifinals introducing quarterfinals pointers for up and down fight
+        j = 0;
+        for (int i = 0; i <= 1; i++) {
+            semifinals.get(i).setUpFight(quarterfinals.get(j)).setDownFight(quarterfinals.get(j + 1));
+            j = j + 2;
+        }
+        // 3.3. Final introducing semifinals pointers
+        finalFight.setUpFight(semifinals.get(0)).setDownFight(semifinals.get(1));
+
+        // STEP 4: Persisting all fights and competitions with their updates.
+        fightService.saveAll(fights);
     }
 
     /**
@@ -285,20 +236,22 @@ public class CompetitionService {
      * @return True if joining was successful, false if not.
      */
     public boolean joinCompetition(Competition competition, User user) {
-        // Competition must have not started
-        if (new Timestamp(System.currentTimeMillis()).compareTo(competition.getStartDate()) < 0) {
-            // It is known that getFights() saves a tree ADT into an array like:
-            // 0 -> final fight, 1-2 -> semifinals, 3-6 -> quarterfinals, 7-14 -> 8th-finals
-            List<Fight> fights = competition.getFights();
-            for (int i = 7; i <= 14; i++) {
-                if (fights.get(i).getWinner() == null) {
-                    // Save and go
-                    fights.get(i).setWinner(user);
-                    return true;
-                }
-                if (fights.get(i).getLoser() == null) {
-                    fights.get(i).setLoser(user);
-                    return true;
+        if (competition != null && user != null) {
+            // Competition must have not started
+            if (new Timestamp(System.currentTimeMillis()).compareTo(competition.getStartDate()) < 0) {
+                // It is known that getFights() saves a tree ADT into an array like:
+                // 0 -> final fight, 1-2 -> semifinals, 3-6 -> quarterfinals, 7-14 -> 8th-finals
+                List<Fight> fights = competition.getFights();
+                for (int i = 7; i <= 14; i++) {
+                    if (fights.get(i).getWinner() == null) {
+                        // Save and go
+                        fights.get(i).setWinner(user);
+                        return true;
+                    }
+                    if (fights.get(i).getLoser() == null) {
+                        fights.get(i).setLoser(user);
+                        return true;
+                    }
                 }
             }
         }

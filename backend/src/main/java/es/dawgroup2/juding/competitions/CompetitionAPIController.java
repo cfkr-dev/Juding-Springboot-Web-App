@@ -37,12 +37,7 @@ public class CompetitionAPIController {
     @GetMapping("/{idCompetition}")
     public ResponseEntity<Competition> showCompetition(@PathVariable String idCompetition) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
-        if (competition!=null){
-            return ResponseEntity.ok(competition);
-        }
-        else{
-            ResponseEntity.badRequest().build();
-        }
+        return (competition == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(competition);
     }
 
     /**
@@ -60,11 +55,7 @@ public class CompetitionAPIController {
         } else {
             competitionService.joinCompetition(competition, user);
             competitionService.save(competition);
-            if (competition != null) {
-                return ResponseEntity.ok(competition);
-            } else {
-                return ResponseEntity.badRequest().build();
-            }
+            return (competition == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(competition);
         }
     }
 }

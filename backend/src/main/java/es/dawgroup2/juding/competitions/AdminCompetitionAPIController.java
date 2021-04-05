@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.text.ParseException;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
@@ -35,16 +34,17 @@ public class AdminCompetitionAPIController {
 
     /**
      * Gets a list with the competitions (paginated)
+     *
      * @param page Number of the page
      * @return Response Entity with the competition or bad request
      */
     @GetMapping("/list")
     public ResponseEntity<Page<Competition>> getCompetitionPage(@RequestParam(required = false) Integer page) {
-        int defPage = (page == null) ? 1 : page;
+        int defPage = (page == null) ? 0 : page;
         if (defPage < 0) {
             return ResponseEntity.badRequest().build();
         }
-        Page<Competition> competitionPage = competitionService.getCompetitionsInPages(page);
+        Page<Competition> competitionPage = competitionService.getCompetitionsInPages(defPage);
         if (competitionPage.hasContent()) {
             return ResponseEntity.ok(competitionPage);
         } else {
@@ -54,25 +54,30 @@ public class AdminCompetitionAPIController {
 
     /**
      * Generates a new competition with the received information.
-     * @param shortName The name of a competitiom
+     *
+     * @param shortName      The name of a competitiom
      * @param additionalInfo Information of a competition
-     * @param minWeight The minimum weight allowed in a competition
-     * @param maxWeight The maximum weight allowed in a competition
-     * @param startDate The start date of a competition
-     * @param endDate The end date of a competition
-     * @param referee  The license of the referee in charge of the competition
+     * @param minWeight      The minimum weight allowed in a competition
+     * @param maxWeight      The maximum weight allowed in a competition
+     * @param startDate      The start date of a competition
+     * @param endDate        The end date of a competition
+     * @param referee        The license of the referee in charge of the competition
      * @return Response Entity with the competition or bad request
-     * @throws ParseException Parsing exception
      */
-    @PostMapping("/newCompetition")
+    @PostMapping("/new")
     public ResponseEntity<Competition> addCompetition(@RequestParam String shortName,
                                                       @RequestParam String additionalInfo,
-                                                      @RequestParam int minWeight,
-                                                      @RequestParam int maxWeight,
+                                                      @RequestParam String minWeight,
+                                                      @RequestParam String maxWeight,
                                                       @RequestParam String startDate,
                                                       @RequestParam String endDate,
-                                                      @RequestParam String referee) throws ParseException {
-        Competition competition = competitionService.save(null, shortName, additionalInfo, minWeight, maxWeight, startDate, endDate, referee);
+                                                      @RequestParam String referee) {
+        Competition competition;
+        try {
+            competition = competitionService.save(null, shortName, additionalInfo, Integer.parseInt(minWeight), Integer.parseInt(maxWeight), startDate, endDate, referee);
+        } catch (Exception e){
+            return ResponseEntity.badRequest().build();
+        }
         URI location = fromCurrentRequest().path("/api/competition/{idCompetition}").buildAndExpand(competition.getIdCompetition()).toUri();
         return ResponseEntity.created(location).body(competition);
     }
@@ -89,28 +94,28 @@ public class AdminCompetitionAPIController {
      * @param endDate        The end date of a competition
      * @param referee        The license of the referee in charge of the competition
      * @return Response Entity with the competition or bad request
-     * @throws ParseException Parsing exception
      */
     @PutMapping("/edit")
     public ResponseEntity<Competition> updatingCompetitionInfo(@RequestParam String idCompetition,
                                                                @RequestParam String shortName,
                                                                @RequestParam String additionalInfo,
-                                                               @RequestParam int minWeight,
-                                                               @RequestParam int maxWeight,
+                                                               @RequestParam String minWeight,
+                                                               @RequestParam String maxWeight,
                                                                @RequestParam String startDate,
                                                                @RequestParam String endDate,
-                                                               @RequestParam String referee) throws ParseException {
-        Competition competition = competitionService.save(idCompetition, shortName, additionalInfo, minWeight, maxWeight, startDate, endDate, referee);
-        if (competition != null) {
-            return ResponseEntity.ok(competition);
-        } else {
+                                                               @RequestParam String referee) {
+        Competition competition;
+        try {
+            competition = competitionService.save(idCompetition, shortName, additionalInfo, Integer.parseInt(minWeight), Integer.parseInt(maxWeight), startDate, endDate, referee);
+        } catch (Exception e){
             return ResponseEntity.badRequest().build();
         }
-
+        return (competition == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(competition);
     }
 
     /**
      * Deletes a competition
+     *
      * @param idCompetition Id of the competition
      * @return Response Entity with the competition or bad request
      */
@@ -118,11 +123,6 @@ public class AdminCompetitionAPIController {
     public ResponseEntity<Competition> showCompetitionToDelete(@PathVariable String idCompetition) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         competitionService.deleteById(idCompetition);
-        if (competition != null) {
-            return ResponseEntity.ok(competition);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return (competition == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(competition);
     }
-
 }

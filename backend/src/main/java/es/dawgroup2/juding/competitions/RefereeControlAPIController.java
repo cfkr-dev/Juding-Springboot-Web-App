@@ -4,7 +4,10 @@ import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,13 +22,14 @@ public class RefereeControlAPIController {
 
     /**
      * Saves the result of a competition
+     *
      * @param idCompetition Id of the competition
-     * @param winner Nickname of the winner
-     * @param loser Nickname of the loser
-     * @param request HTTP Servlet Request
+     * @param winner        Nickname of the winner
+     * @param loser         Nickname of the loser
+     * @param request       HTTP Servlet Request
      * @return Response Entity with the competition changed or bad request
      */
-    @PutMapping("/api/competition/{idCompetition}/control/saveResult")
+    @PutMapping("/api/competition/{idCompetition}/control")
     public ResponseEntity<Competition> controlCompetition(@PathVariable String idCompetition,
                                                           @RequestParam String winner,
                                                           @RequestParam String loser,
@@ -41,9 +45,7 @@ public class RefereeControlAPIController {
                 competitionService.save(competition);
                 return ResponseEntity.ok(competition);
             }
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.notFound().build();
     }
 }
