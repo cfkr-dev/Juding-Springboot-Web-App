@@ -16,12 +16,9 @@ public class PostAPIController {
     PostService postService;
 
     /**
-     * This method inflates the individual post (shown by Id) visualization view.
-     * A list with other post is also shown.
-     *
-     * @param model Post data model.
-     * @param id    Current post id.
-     * @return Individual post visualization view (news).
+     *  Gets a simple post to view
+     * @param id post id
+     * @return {@code True} response entity with the single post. {@code False} if bad request
      */
     @GetMapping("/api/news/{id}")
     public ResponseEntity<Post> newsPost(@PathVariable String id) {
@@ -35,12 +32,9 @@ public class PostAPIController {
     }
 
     /**
-     * This method inflates the individual post (shown by Id) visualization view.
-     * A list with other post is also shown.
-     *
-     * @param model Post data model.
-     * @param id    Current post id.
-     * @return Individual post visualization view (news).
+     *  Gets a recent post list
+     * @param id post id that is not in the list
+     * @return {@code True} response entity with the post list. {@code False} if bad request
      */
     @GetMapping("/api/newsPostList/{id}")
     public ResponseEntity<List<Post>> newsPostList(@PathVariable String id) {
@@ -56,10 +50,9 @@ public class PostAPIController {
     }
 
     /**
-     * Returns a inflated row of posts in page format (3 posts per row, in index format).
-     *
-     * @param page  Number of page.
-     * @return Inflated row of posts.
+     *  Gets a list with a post to view (pagination format)
+     * @param page page number
+     * @return {@code True} response entity with the post to view list. {@code False} if bad request
      */
     @GetMapping("/api/news/page/{page}")
     public ResponseEntity<Page<Post>> getPage(@RequestParam(required = false) Integer page) {
