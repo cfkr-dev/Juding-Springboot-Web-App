@@ -1,5 +1,6 @@
 package es.dawgroup2.juding.fight;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import es.dawgroup2.juding.competitions.Competition;
 import es.dawgroup2.juding.users.User;
 
@@ -11,18 +12,22 @@ public class Fight {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idFight;
 
+    @JsonIgnore
     @ManyToOne
     private Competition competition;
 
     @Column(nullable = false)
     private int levelInTree;
 
+    @JsonIgnore
     @OneToOne
     private Fight upFight;
 
+    @JsonIgnore
     @OneToOne
     private Fight downFight;
 
+    @JsonIgnore
     @OneToOne
     private Fight parentFight;
 
