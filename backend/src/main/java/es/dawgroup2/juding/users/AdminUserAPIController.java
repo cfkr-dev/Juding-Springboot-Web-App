@@ -93,19 +93,13 @@ public class AdminUserAPIController {
     @PutMapping("/admitReferee/{licenseId}")
     public ResponseEntity<User> admitReferee(@PathVariable String licenseId) {
         User user = userService.admitReferee(licenseId);
-        if (user != null)
-            return ResponseEntity.ok(user);
-        else
-            return ResponseEntity.badRequest().build();
+        return (user == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(user);
     }
 
     @DeleteMapping("/{licenseId}")
     public ResponseEntity<User> deleteUser(@PathVariable String licenseId) {
         User user = userService.getUserOrNull(licenseId);
         userService.delete(user);
-        if (user != null)
-            return ResponseEntity.ok(user);
-        else
-            return ResponseEntity.notFound().build();
+        return (user == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(user);
     }
 }

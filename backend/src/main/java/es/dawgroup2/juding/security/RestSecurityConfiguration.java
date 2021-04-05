@@ -15,49 +15,46 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
-import es.dawgroup2.juding.security.jwt.JwtRequestFilter;
-
 @Configuration
 @Order(1)
 public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private UserDetailsService userDetailsService;
+    @Autowired
+    private UserDetailsService userDetailsService;
 
-	@Autowired
-	private JwtRequestFilter jwtRequestFilter;
-	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-	
-	
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
 
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
-	}
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-	//Expose AuthenticationManager as a Bean to be used in other services
-	@Bean
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.antMatcher("/api/**");
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		// UserController
-		http.authorizeRequests().antMatchers("/api/admin/**").hasRole(Role.A.name());
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+    }
 
-		// Competition controller
-		http.authorizeRequests().antMatchers("/api/competition/{idCompetition}/control").hasAnyRole(Role.R.name());
-		http.authorizeRequests().antMatchers("/api/competition/{idCompetition}/join").hasAnyRole(Role.C.name());
-		http.authorizeRequests().antMatchers("/api/competition/*").hasAnyRole(Role.C.name(), Role.R.name());
+    //Expose AuthenticationManager as a Bean to be used in other services
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
-    // LoggedInUserAPIController
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.antMatcher("/api/**");
+
+        // UserController
+        http.authorizeRequests().antMatchers("/api/admin/**").hasRole(Role.A.name());
+
+        // Competition controller
+        http.authorizeRequests().antMatchers("/api/competition/{idCompetition}/control").hasAnyRole(Role.R.name());
+        http.authorizeRequests().antMatchers("/api/competition/{idCompetition}/join").hasAnyRole(Role.C.name());
+        http.authorizeRequests().antMatchers("/api/competition/*").hasAnyRole(Role.C.name(), Role.R.name());
+
+        // LoggedInUserAPIController
         http.authorizeRequests().antMatchers("/api/me/*", "/ranking").hasAnyRole(Role.C.name(), Role.R.name());
 
         // ImageAPIController
@@ -70,20 +67,23 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
         // AdminUserAPIController
         http.authorizeRequests().antMatchers("/api/admin/user/**").hasRole(Role.A.name());
 
-		// Disable CSRF protection (it is difficult to implement in REST APIs)
-		http.csrf().disable();
+        // Allow all others
+		http.authorizeRequests().anyRequest().permitAll();
 
-		// Disable Http Basic Authentication
-		http.httpBasic().disable();
-		
-		// Disable Form login Authentication
-		http.formLogin().disable();
+        // Disable CSRF protection (it is difficult to implement in REST APIs)
+        http.csrf().disable();
 
-		// Avoid creating session 
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		
-		// Add JWT Token filter
-		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        // Disable Http Basic Authentication
+        http.httpBasic().disable();
 
-	}
+        // Disable Form login Authentication
+        http.formLogin().disable();
+
+        // Avoid creating session
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        // Add JWT Token filter
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
+    }
 }

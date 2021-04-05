@@ -1,5 +1,9 @@
 package es.dawgroup2.juding.main.image;
 
+import es.dawgroup2.juding.posts.Post;
+import es.dawgroup2.juding.posts.PostService;
+import es.dawgroup2.juding.users.User;
+import es.dawgroup2.juding.users.UserService;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
@@ -7,6 +11,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -77,5 +82,18 @@ public class ImageService {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    public ResponseEntity<Object> downloadImage(@PathVariable String type, @PathVariable String id, UserService userService, ImageService imageService, PostService postService) throws SQLException {
+        if (type.equals("user")) {
+            User user = userService.getUserOrNull(id);
+            if (user != null)
+                return imageService.getObjectResponseEntity(user.getImageFile(), user.getMimeProfileImage());
+        } else if (type.equals("post")) {
+            Post post = postService.findById(id);
+            if (post != null)
+                return imageService.getObjectResponseEntity(post.getImageFile(), post.getMimeImage());
+        }
+        return ResponseEntity.notFound().build();
     }
 }

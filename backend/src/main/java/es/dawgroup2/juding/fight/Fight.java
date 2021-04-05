@@ -12,7 +12,6 @@ public class Fight {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idFight;
 
-    @JsonIgnore
     @ManyToOne
     @JsonIgnore
     private Competition competition;

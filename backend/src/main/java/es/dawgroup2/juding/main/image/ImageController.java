@@ -42,16 +42,6 @@ public class ImageController {
      */
     @GetMapping("/image/{item}/{id}")
     public ResponseEntity<Object> downloadProfileImage(@PathVariable String item, @PathVariable String id) throws SQLException {
-        if (item.equals("user")) {
-            // Here id = licenseId of user
-            User user = userService.getUserOrNull(id);
-            if (user != null)
-                return imageService.getObjectResponseEntity(user.getImageFile(), user.getMimeProfileImage());
-        } else if (item.equals("post")) {
-            Post post = postService.findById(id);
-            if (post != null)
-                return imageService.getObjectResponseEntity(post.getImageFile(), post.getMimeImage());
-        }
-        return ResponseEntity.notFound().build();
+        return imageService.downloadImage(item, id, userService, imageService, postService);
     }
 }

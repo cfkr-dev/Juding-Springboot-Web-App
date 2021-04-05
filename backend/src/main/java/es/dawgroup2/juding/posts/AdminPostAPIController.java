@@ -30,7 +30,7 @@ public class AdminPostAPIController {
     @GetMapping("/list")
     public ResponseEntity<Page<Post>> getPostPage(@RequestParam(required = false) Integer page) {
         int defPage = (page == null) ? 1 : page - 1;
-        if (defPage <= 0) return ResponseEntity.badRequest().build();
+        if (defPage < 0) return ResponseEntity.badRequest().build();
         Page<Post> requiredPage = postService.getPostsInPages(defPage, 10);
         if (requiredPage.hasContent())
             return ResponseEntity.ok(requiredPage);
