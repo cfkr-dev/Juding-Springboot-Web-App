@@ -28,7 +28,6 @@ public class PostController {
         Post bigPost = postService.findById(id);
         if (bigPost != null) {
             List<Post> recentPosts = postService.findFirst5Desc(id);
-            recentPosts.remove(bigPost);
             model.addAttribute("bigPost", bigPost)
                     .addAttribute("recentPosts", recentPosts);
             return "/news/index";

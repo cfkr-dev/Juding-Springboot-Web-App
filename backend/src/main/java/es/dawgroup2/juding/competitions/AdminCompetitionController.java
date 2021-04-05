@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.text.ParseException;
 
 @Controller
@@ -108,20 +107,13 @@ public class AdminCompetitionController {
      */
     @PostMapping("/admin/competition/newCompetition")
     public String addCompetition(@RequestParam String shortName,
-                                  @RequestParam String additionalInfo,
-                                  @RequestParam int minWeight,
-                                  @RequestParam int maxWeight,
-                                  @RequestParam String startDate,
-                                  @RequestParam String endDate,
-                                  @RequestParam String referee) throws ParseException {
-        Competition competition = new Competition();
-        competition.setShortName(shortName)
-                .setAdditionalInfo(additionalInfo)
-                .setMinWeight(minWeight)
-                .setMaxWeight(maxWeight)
-                .setStartDate(dateService.stringToTimestamp(startDate))
-                .setEndDate(dateService.stringToTimestamp(endDate))
-                .setReferee(userService.getUserOrNull(referee));
+                                 @RequestParam String additionalInfo,
+                                 @RequestParam int minWeight,
+                                 @RequestParam int maxWeight,
+                                 @RequestParam String startDate,
+                                 @RequestParam String endDate,
+                                 @RequestParam String referee) throws ParseException {
+        competitionService.save(null, shortName, additionalInfo, minWeight, maxWeight, startDate, endDate, referee);
         return "redirect:/admin/competition/list";
     }
 
@@ -148,15 +140,7 @@ public class AdminCompetitionController {
                                           @RequestParam String startDate,
                                           @RequestParam String endDate,
                                           @RequestParam String referee) throws ParseException {
-        Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
-        competition.setShortName(shortName)
-                .setAdditionalInfo(additionalInfo)
-                .setMinWeight(minWeight)
-                .setMaxWeight(maxWeight)
-                .setReferee(userService.getUserOrNull(referee))
-                .setStartDate(dateService.stringToTimestamp(startDate))
-                .setEndDate(dateService.stringToTimestamp(endDate));
-        competitionService.updatingInfoCompetition(competition);
+        competitionService.save(idCompetition, shortName, additionalInfo, minWeight, maxWeight, startDate, endDate, referee);
         return "redirect:/admin/competition/list";
 
     }

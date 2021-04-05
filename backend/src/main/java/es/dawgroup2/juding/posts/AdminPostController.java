@@ -98,21 +98,12 @@ public class AdminPostController {
      * @throws IOException  In case of the image file input fails.
      * @throws SQLException In case the previous image is not found on database.
      */
-    @PostMapping("/admin/post/createNew")
+    @PostMapping("/admin/post/create")
     public String addNewPost(@RequestParam String title,
                              @RequestParam MultipartFile image,
                              @RequestParam String body,
                              HttpServletRequest request) throws IOException, SQLException {
-        Post post = new Post();
-        post.setAuthor(userService.findByNickname(request.getUserPrincipal().getName()))
-                .setTitle(title)
-                .setBody(body)
-                .setTimestamp(new Timestamp(System.currentTimeMillis()));
-        if (!image.isEmpty()) {
-            post.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
-            post.setMimeImage(image.getContentType());
-        }
-        postService.add(post);
+        postService.save(null, request, title, body, image);
         return "redirect:/admin/post/list";
     }
 
@@ -127,29 +118,14 @@ public class AdminPostController {
      * @param image Post image form field.
      * @param body  Post body form field.
      * @return Redirects to all post list view.
-     * @throws IOException  In case of the image file input fails.
-     * @throws SQLException In case the previous image is not found on database.
      */
-    @PostMapping("/admin/post/edit/modify")
+    @PostMapping("/admin/post/edit")
     public String updatingPost(@RequestParam String id,
                                @RequestParam String title,
                                @RequestParam MultipartFile image,
-                               @RequestParam String body) throws IOException, SQLException {
-        Post post = postService.findById(id);
-        post.setTitle(title)
-                .setBody(body)
-                .setTimestamp(new Timestamp(System.currentTimeMillis()));
-        if (!image.isEmpty()) {
-            post.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
-        } else {
-            Post dbPost = postService.findById(id);
-            if (dbPost.getImageFile() != null) {
-                post.setImageFile(BlobProxy.generateProxy(dbPost.getImageFile().getBinaryStream(),
-                        dbPost.getImageFile().length()));
-                post.setMimeImage(image.getContentType());
-            }
-        }
-        postService.updatingInfoPost(post);
+                               @RequestParam String body,
+                               HttpServletRequest request) {
+        postService.save(id, request, title, body, image);
         return "redirect:/admin/post/list";
     }
 

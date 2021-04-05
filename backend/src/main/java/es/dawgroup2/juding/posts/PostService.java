@@ -1,10 +1,18 @@
 package es.dawgroup2.juding.posts;
 
+import es.dawgroup2.juding.users.User;
+import es.dawgroup2.juding.users.UserService;
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -12,6 +20,9 @@ public class PostService {
 
     @Autowired
     private PostRepository postRepository;
+
+    @Autowired
+    UserService userService;
 
     /**
      * This service method search on post database the current post given by id and deletes it.
@@ -72,22 +83,34 @@ public class PostService {
     }
 
     /**
-     * This method search a post given by id and replaces it with a new post
      *
-     * @param post Current post instance
+     * @param idPost
+     * @param request
+     * @param title
+     * @param body
+     * @param image
+     * @return
      */
-    public void updatingInfoPost(Post post) {
-        postRepository.findById(post.getIdPost()).orElseThrow();
-        postRepository.save(post);
-    }
-
-    /**
-     * This method saves a new post on database.
-     *
-     * @param post New post instance to add.
-     * @return Post saved.
-     */
-    public Post add(Post post) {
+    public Post save(String idPost, HttpServletRequest request, String title, String body, MultipartFile image){
+        Post post;
+        try{
+            post = postRepository.findById(Integer.parseInt(idPost)).orElse(new Post());
+        } catch (Exception e){
+            return null;
+        }
+        post.setAuthor(userService.findByNickname(request.getUserPrincipal().getName()))
+                .setTitle(title)
+                .setBody(body)
+                .setTimestamp(new Timestamp(System.currentTimeMillis()));
+        if (post.getImageFile() != null) {
+            try {
+                post.setImageFile(BlobProxy.generateProxy(post.getImageFile().getBinaryStream(),
+                        post.getImageFile().length()));
+            } catch (Exception e) {
+                return null;
+            }
+            post.setMimeImage(image.getContentType());
+        }
         return postRepository.save(post);
     }
 

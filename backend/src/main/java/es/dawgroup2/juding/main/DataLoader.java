@@ -892,7 +892,7 @@ public class DataLoader {
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
-        competitionService.add(trial1);
+        competitionService.save(trial1);
         competitions.add(trial1);
 
         Competition trial2 = new Competition(
@@ -904,7 +904,7 @@ public class DataLoader {
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
-        competitionService.add(trial2);
+        competitionService.save(trial2);
         competitions.add(trial2);
 
         Competition trial3 = new Competition(
@@ -916,7 +916,7 @@ public class DataLoader {
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
-        competitionService.add(trial3);
+        competitionService.save(trial3);
         competitions.add(trial3);
 
         Competition trial4 = new Competition(
@@ -928,7 +928,7 @@ public class DataLoader {
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
-        competitionService.add(trial4);
+        competitionService.save(trial4);
         competitions.add(trial4);
 
         Competition trial5 = new Competition(
@@ -940,7 +940,7 @@ public class DataLoader {
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
-        competitionService.add(trial5);
+        competitionService.save(trial5);
         competitions.add(trial5);
 
         Competition trial6 = new Competition(
@@ -952,7 +952,7 @@ public class DataLoader {
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
-        competitionService.add(trial6);
+        competitionService.save(trial6);
         competitions.add(trial6);
 
         Competition trial7 = new Competition(
@@ -964,7 +964,7 @@ public class DataLoader {
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
-        competitionService.add(trial7);
+        competitionService.save(trial7);
         competitions.add(trial7);
 
         Competition trial8 = new Competition(
@@ -976,7 +976,7 @@ public class DataLoader {
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
-        competitionService.add(trial8);
+        competitionService.save(trial8);
         competitions.add(trial8);
 
         Competition trial9 = new Competition(
@@ -988,7 +988,7 @@ public class DataLoader {
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
-        competitionService.add(trial9);
+        competitionService.save(trial9);
         competitions.add(trial9);
 
         Competition trial10 = new Competition(
@@ -1000,7 +1000,7 @@ public class DataLoader {
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
-        competitionService.add(trial10);
+        competitionService.save(trial10);
         competitions.add(trial10);
 
         Competition trial11 = new Competition(
@@ -1012,7 +1012,7 @@ public class DataLoader {
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
-        competitionService.add(trial11);
+        competitionService.save(trial11);
         competitions.add(trial11);
 
         Competition trial12 = new Competition(
@@ -1024,7 +1024,7 @@ public class DataLoader {
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
-        competitionService.add(trial12);
+        competitionService.save(trial12);
         competitions.add(trial12);
 
 
@@ -1050,7 +1050,7 @@ public class DataLoader {
         competitionService.joinCompetition(competitions.get(0), competitors.get(28));
         competitionService.joinCompetition(competitions.get(0), competitors.get(0));
 
-        competitionService.add(competitions.get(0));
+        competitionService.save(competitions.get(0));
 
         //TRIAL2
         competitionService.joinCompetition(competitions.get(1), competitors.get(11));
@@ -1070,7 +1070,7 @@ public class DataLoader {
         competitionService.joinCompetition(competitions.get(1), competitors.get(8));
         competitionService.joinCompetition(competitions.get(1), competitors.get(30));
 
-        competitionService.add(competitions.get(1));
+        competitionService.save(competitions.get(1));
 
         //TRIAL3
         competitionService.joinCompetition(competitions.get(2), competitors.get(10));
@@ -1090,7 +1090,7 @@ public class DataLoader {
         competitionService.joinCompetition(competitions.get(2), competitors.get(21));
         competitionService.joinCompetition(competitions.get(2), competitors.get(23));
 
-        competitionService.add(competitions.get(2));
+        competitionService.save(competitions.get(2));
 
         //TRIAL4
         competitionService.joinCompetition(competitions.get(3), competitors.get(26));
@@ -1110,7 +1110,7 @@ public class DataLoader {
         competitionService.joinCompetition(competitions.get(3), competitors.get(16));
         competitionService.joinCompetition(competitions.get(3), competitors.get(17));
 
-        competitionService.add(competitions.get(3));
+        competitionService.save(competitions.get(3));
 
         //TRIAL5
         competitionService.joinCompetition(competitions.get(4), competitors.get(14));
@@ -1130,7 +1130,7 @@ public class DataLoader {
         competitionService.joinCompetition(competitions.get(4), competitors.get(0));
         competitionService.joinCompetition(competitions.get(4), competitors.get(9));
 
-        competitionService.add(competitions.get(4));
+        competitionService.save(competitions.get(4));
 
         //TRIAL6
         competitionService.joinCompetition(competitions.get(5), competitors.get(11));
@@ -1150,7 +1150,7 @@ public class DataLoader {
         competitionService.joinCompetition(competitions.get(5), competitors.get(2));
         competitionService.joinCompetition(competitions.get(5), competitors.get(5));
 
-        competitionService.add(competitions.get(5));
+        competitionService.save(competitions.get(5));
 
         //TRIAL7
         competitionService.joinCompetition(competitions.get(6), competitors.get(10));
@@ -1170,7 +1170,7 @@ public class DataLoader {
         competitionService.joinCompetition(competitions.get(6), competitors.get(0));
         competitionService.joinCompetition(competitions.get(6), competitors.get(9));
 
-        competitionService.add(competitions.get(6));
+        competitionService.save(competitions.get(6));
 
         //TRIAL8
         competitionService.joinCompetition(competitions.get(7), competitors.get(13));
@@ -1190,7 +1190,7 @@ public class DataLoader {
         competitionService.joinCompetition(competitions.get(7), competitors.get(2));
         competitionService.joinCompetition(competitions.get(7), competitors.get(4));
 
-        competitionService.add(competitions.get(7));
+        competitionService.save(competitions.get(7));
 
         //TRIAL9
         competitionService.joinCompetition(competitions.get(8), competitors.get(14));
@@ -1210,7 +1210,7 @@ public class DataLoader {
         competitionService.joinCompetition(competitions.get(8), competitors.get(27));
         competitionService.joinCompetition(competitions.get(8), competitors.get(28));
 
-        competitionService.add(competitions.get(8));
+        competitionService.save(competitions.get(8));
 
         //TRIAL10
         competitionService.joinCompetition(competitions.get(9), competitors.get(7));
@@ -1230,7 +1230,7 @@ public class DataLoader {
         competitionService.joinCompetition(competitions.get(9), competitors.get(8));
         competitionService.joinCompetition(competitions.get(9), competitors.get(29));
 
-        competitionService.add(competitions.get(9));
+        competitionService.save(competitions.get(9));
 
         //TRIAL11
         competitionService.joinCompetition(competitions.get(10), competitors.get(20));
@@ -1251,7 +1251,7 @@ public class DataLoader {
         //DEMO ADDITION
         //competitionService.joinCompetition(competitions.get(10),competitors.get(3));
 
-        competitionService.add(competitions.get(10));
+        competitionService.save(competitions.get(10));
 
         //TRIAL12
         competitionService.joinCompetition(competitions.get(11), competitors.get(15));
@@ -1272,56 +1272,56 @@ public class DataLoader {
         //DEMO ADDITION
         //competitionService.joinCompetition(competitions.get(11),competitors.get(4));
 
-        competitionService.add(competitions.get(11));
+        competitionService.save(competitions.get(11));
 
         // 3.1.Changing dates
         competitions.get(0).setStartDate(dateService.stringToTimestamp("23/04/2020 12:00"))
                 .setEndDate(dateService.stringToTimestamp("24/04/2020 12:00"));
-        competitionService.add(competitions.get(0));
+        competitionService.save(competitions.get(0));
 
         competitions.get(1).setStartDate(dateService.stringToTimestamp("23/05/2020 12:00"))
                 .setEndDate(dateService.stringToTimestamp("24/05/2020 12:00"));
-        competitionService.add(competitions.get(1));
+        competitionService.save(competitions.get(1));
 
         competitions.get(2).setStartDate(dateService.stringToTimestamp("23/06/2020 12:00"))
                 .setEndDate(dateService.stringToTimestamp("24/06/2020 12:00"));
-        competitionService.add(competitions.get(2));
+        competitionService.save(competitions.get(2));
 
         competitions.get(3).setStartDate(dateService.stringToTimestamp("23/07/2020 12:00"))
                 .setEndDate(dateService.stringToTimestamp("24/07/2020 12:00"));
-        competitionService.add(competitions.get(3));
+        competitionService.save(competitions.get(3));
 
         competitions.get(4).setStartDate(dateService.stringToTimestamp("23/08/2020 12:00"))
                 .setEndDate(dateService.stringToTimestamp("24/08/2020 12:00"));
-        competitionService.add(competitions.get(4));
+        competitionService.save(competitions.get(4));
 
         competitions.get(5).setStartDate(dateService.stringToTimestamp("23/04/2020 12:00"))
                 .setEndDate(dateService.stringToTimestamp("24/09/2020 12:00"));
-        competitionService.add(competitions.get(5));
+        competitionService.save(competitions.get(5));
 
         competitions.get(6).setStartDate(dateService.stringToTimestamp("23/04/2020 12:00"))
                 .setEndDate(dateService.stringToTimestamp("24/09/2020 12:00"));
-        competitionService.add(competitions.get(6));
+        competitionService.save(competitions.get(6));
 
         competitions.get(7).setStartDate(dateService.stringToTimestamp("23/10/2020 12:00"))
                 .setEndDate(dateService.stringToTimestamp("24/10/2020 12:00"));
-        competitionService.add(competitions.get(7));
+        competitionService.save(competitions.get(7));
 
         competitions.get(8).setStartDate(dateService.stringToTimestamp("30/03/2021 12:00"))
                 .setEndDate(dateService.stringToTimestamp("04/05/2021 12:00"));
-        competitionService.add(competitions.get(8));
+        competitionService.save(competitions.get(8));
 
         competitions.get(9).setStartDate(dateService.stringToTimestamp("30/03/2021 12:00"))
                 .setEndDate(dateService.stringToTimestamp("04/05/2021 12:00"));
-        competitionService.add(competitions.get(9));
+        competitionService.save(competitions.get(9));
 
         competitions.get(10).setStartDate(dateService.stringToTimestamp("07/07/2021 12:00"))
                 .setEndDate(dateService.stringToTimestamp("10/07/2021 12:00"));
-        competitionService.add(competitions.get(10));
+        competitionService.save(competitions.get(10));
 
         competitions.get(11).setStartDate(dateService.stringToTimestamp("07/07/2021 12:00"))
                 .setEndDate(dateService.stringToTimestamp("10/07/2021 12:00"));
-        competitionService.add(competitions.get(11));
+        competitionService.save(competitions.get(11));
 
         // 3.2. Simulating tournaments
         //TRIAL1
@@ -1344,7 +1344,7 @@ public class DataLoader {
         competitionService.fightFinished(competitions.get(0), competitors.get(3), competitors.get(28));
         // Finals
         competitionService.fightFinished(competitions.get(0), competitors.get(3), competitors.get(22));
-        competitionService.add(competitions.get(0));
+        competitionService.save(competitions.get(0));
 
         //TRIAL2
         // 8th-finals
@@ -1366,7 +1366,7 @@ public class DataLoader {
         competitionService.fightFinished(competitions.get(1), competitors.get(4), competitors.get(24));
         // Finals
         competitionService.fightFinished(competitions.get(1), competitors.get(5), competitors.get(4));
-        competitionService.add(competitions.get(1));
+        competitionService.save(competitions.get(1));
 
         //TRIAL3
         // 8th-finals
@@ -1388,7 +1388,7 @@ public class DataLoader {
         competitionService.fightFinished(competitions.get(2), competitors.get(3), competitors.get(1));
         // Finals
         competitionService.fightFinished(competitions.get(2), competitors.get(9), competitors.get(3));
-        competitionService.add(competitions.get(2));
+        competitionService.save(competitions.get(2));
 
         //TRIAL4
         // 8th-finals
@@ -1410,7 +1410,7 @@ public class DataLoader {
         competitionService.fightFinished(competitions.get(3), competitors.get(2), competitors.get(15));
         // Finals
         competitionService.fightFinished(competitions.get(3), competitors.get(2), competitors.get(11));
-        competitionService.add(competitions.get(3));
+        competitionService.save(competitions.get(3));
 
         //TRIAL5
         // 8th-finals
@@ -1432,7 +1432,7 @@ public class DataLoader {
         competitionService.fightFinished(competitions.get(4), competitors.get(9), competitors.get(1));
         // Finals
         competitionService.fightFinished(competitions.get(4), competitors.get(9), competitors.get(12));
-        competitionService.add(competitions.get(4));
+        competitionService.save(competitions.get(4));
 
         //TRIAL6
         // 8th-finals
@@ -1454,7 +1454,7 @@ public class DataLoader {
         competitionService.fightFinished(competitions.get(5), competitors.get(4), competitors.get(26));
         // Finals
         competitionService.fightFinished(competitions.get(5), competitors.get(6), competitors.get(4));
-        competitionService.add(competitions.get(5));
+        competitionService.save(competitions.get(5));
 
         //TRIAL7
         // 8th-finals
@@ -1476,7 +1476,7 @@ public class DataLoader {
         competitionService.fightFinished(competitions.get(6), competitors.get(9), competitors.get(12));
         // Finals
         competitionService.fightFinished(competitions.get(6), competitors.get(9), competitors.get(14));
-        competitionService.add(competitions.get(6));
+        competitionService.save(competitions.get(6));
 
         //TRIAL8
         // 8th-finals
@@ -1498,7 +1498,7 @@ public class DataLoader {
         competitionService.fightFinished(competitions.get(7), competitors.get(2), competitors.get(26));
         // Finals
         competitionService.fightFinished(competitions.get(7), competitors.get(8), competitors.get(2));
-        competitionService.add(competitions.get(7));
+        competitionService.save(competitions.get(7));
 
         //TRIAL9
         // 8th-finals
@@ -1511,7 +1511,7 @@ public class DataLoader {
         competitionService.fightFinished(competitions.get(8), competitors.get(31), competitors.get(1));
         competitionService.fightFinished(competitions.get(8), competitors.get(28), competitors.get(27));
 
-        competitionService.add(competitions.get(8));
+        competitionService.save(competitions.get(8));
 
         //TRIAL10
         // 8th-finals
@@ -1524,7 +1524,7 @@ public class DataLoader {
         competitionService.fightFinished(competitions.get(9), competitors.get(6), competitors.get(2));
         competitionService.fightFinished(competitions.get(9), competitors.get(29), competitors.get(8));
 
-        competitionService.add(competitions.get(9));
+        competitionService.save(competitions.get(9));
 
         // 4. Post creation and saving
         List<Post> posts = new ArrayList<>();

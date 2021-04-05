@@ -74,6 +74,7 @@ public class IndexAPIController {
         return ResponseEntity.ok(new AuthResponse(AuthResponse.Status.SUCCESS, userLoginService.logout(request, response)));
     }
 
+
     @PostMapping("/signUp/competitor")
     public ResponseEntity<User> signUpCompetitor(@RequestParam String name,
                                                  @RequestParam String surname,

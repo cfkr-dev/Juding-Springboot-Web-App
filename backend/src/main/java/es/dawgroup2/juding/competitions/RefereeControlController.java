@@ -22,8 +22,8 @@ public class RefereeControlController {
      * It includes a call to {@link CompetitionController#fightService}, which contains additional documentation.
      *
      * @param idCompetition ID of the competition.
-     * @param winner Winner.
-     * @param loser Loser.
+     * @param winner        Winner.
+     * @param loser         Loser.
      * @return True if successful, false otherwise.
      */
     @GetMapping("/competition/{idCompetition}/control/saveResult")
@@ -37,7 +37,7 @@ public class RefereeControlController {
             User loserUser = userService.findByNickname(loser);
             // 2. Save result
             competitionService.fightFinished(competition, winnerUser, loserUser);
-            competitionService.add(competition);
+            competitionService.save(competition);
             return true;
         }
         return false;

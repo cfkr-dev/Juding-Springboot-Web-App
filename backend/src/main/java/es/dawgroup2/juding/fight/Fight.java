@@ -12,6 +12,7 @@ public class Fight {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idFight;
 
+    @JsonIgnore
     @ManyToOne
     @JsonIgnore
     private Competition competition;
@@ -19,12 +20,15 @@ public class Fight {
     @Column(nullable = false)
     private int levelInTree;
 
+    @JsonIgnore
     @OneToOne
     private Fight upFight;
 
+    @JsonIgnore
     @OneToOne
     private Fight downFight;
 
+    @JsonIgnore
     @OneToOne
     private Fight parentFight;
 
