@@ -1,5 +1,6 @@
 package es.dawgroup2.juding.competitions;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import es.dawgroup2.juding.fight.Fight;
 import es.dawgroup2.juding.users.User;
 
@@ -38,6 +39,7 @@ public class Competition implements Serializable {
     @ManyToOne
     private User referee;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Fight> fights;
 

@@ -3,6 +3,7 @@ package es.dawgroup2.juding.competitions;
 import es.dawgroup2.juding.auxTypes.roles.Role;
 import es.dawgroup2.juding.fight.Fight;
 import es.dawgroup2.juding.fight.FightService;
+import es.dawgroup2.juding.main.DateService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +24,8 @@ public class CompetitionService {
     FightService fightService;
     @Autowired
     UserService userService;
+    @Autowired
+    DateService dateService;
     @Autowired
     private CompetitionRepository competitionRepository;
 
@@ -66,6 +70,15 @@ public class CompetitionService {
             return competitionRepository.findByStartDateBeforeAndEndDateAfterAndReferee(new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), user);
         }
         return null;
+    }
+
+    /**
+     * Get all competitions
+     *
+     * @return List of competitions
+     */
+    public List<Competition> getCompetitions() {
+        return competitionRepository.findAll();
     }
 
     /**
@@ -120,14 +133,82 @@ public class CompetitionService {
         return competitionRepository.findAll(PageRequest.of(num, 10));
     }
 
-    /**
-     * Updates the parameters of a competition
-     *
-     * @param competition A competition
-     */
-    public void updatingInfoCompetition(Competition competition) {
-        competitionRepository.findById(competition.getIdCompetition()).orElseThrow();
-        competitionRepository.save(competition);
+    public Competition save(String idCompetition, String shortName, String additionalInfo, int minWeight, int maxWeight, String startDate, String endDate, String referee) throws ParseException {
+        Competition competition;
+        if (idCompetition == null) {
+            competition = new Competition();
+            competition.setShortName(shortName)
+                    .setAdditionalInfo(additionalInfo)
+                    .setMinWeight(minWeight)
+                    .setMaxWeight(maxWeight)
+                    .setStartDate(dateService.stringToTimestamp(startDate))
+                    .setEndDate(dateService.stringToTimestamp(endDate))
+                    .setReferee(userService.getUserOrNull(referee));
+            competitionRepository.save(competition);
+            List<Fight> fights = new ArrayList<>();
+
+            // STEP 1: Generating new fights from root to leaves (final fight to 8th-fights)
+            // 1.1. Creating final fight, persisting it and saving it into fights list
+            Fight finalFight = new Fight(competition, 0, null, null, null, false, null, null);
+            fightService.save(finalFight);
+            fights.add(finalFight);
+
+            // 1.2. Creating semifinal fights, relation with finalFight (these ones are children of final), persisting them and saving them into fights list
+            List<Fight> semifinals = new ArrayList<>();
+            for (int i = 0; i <= 1; i++)
+                semifinals.add(new Fight(competition, 1, null, null, finalFight, false, null, null));
+            fightService.saveAll(semifinals);
+            fights.addAll(semifinals);
+
+            // 1.3. Creating quarterfinal fights, relation with their semifinals, persisting them and saving them into fights list
+            List<Fight> quarterfinals = new ArrayList<>();
+            for (int i = 0; i <= 3; i++)
+                quarterfinals.add(new Fight(competition, 2, null, null, semifinals.get(i / 2), false, null, null));
+            fightService.saveAll(quarterfinals);
+            fights.addAll(quarterfinals);
+
+            // 1.4. Creating eigthth-final fights, relation with their quarterfinals, persisting them and saving them into fights list
+            List<Fight> eighthfinals = new ArrayList<>();
+            for (int i = 0; i <= 7; i++)
+                eighthfinals.add(new Fight(competition, 3, null, null, quarterfinals.get(i / 2), false, null, null));
+            fightService.saveAll(eighthfinals);
+            fights.addAll(eighthfinals);
+
+            // STEP 2: Attaching the list of fights into Competition object
+            competition.setFights(fights);
+
+            // STEP 3: Including fights relations from leaves to root (8th-finals to final fight)
+            // 3.1. Quarterfinals introducing 8th-finals pointers for up and down fight
+            int j = 0;
+            for (int i = 0; i <= 3; i++) {
+                quarterfinals.get(i).setUpFight(eighthfinals.get(j)).setDownFight(eighthfinals.get(j + 1));
+                j = j + 2;
+            }
+            // 3.2. Semifinals introducing quarterfinals pointers for up and down fight
+            j = 0;
+            for (int i = 0; i <= 1; i++) {
+                semifinals.get(i).setUpFight(quarterfinals.get(j)).setDownFight(quarterfinals.get(j + 1));
+                j = j + 2;
+            }
+            // 3.3. Final introducing semifinals pointers
+            finalFight.setUpFight(semifinals.get(0)).setDownFight(semifinals.get(1));
+
+            // STEP 4: Persisting all fights and competitions with their updates.
+            fightService.saveAll(fights);
+            // does not work ("unable to merge BLOB data" exception).
+//            Optional<Competition> comp = competitionRepository.findById(competition.getIdCompetition());
+//            return comp.map(value -> competitionRepository.save(value.setFights(fights))).orElse(null);
+        } else {
+            competition = competitionRepository.findById(Integer.parseInt(idCompetition)).orElseThrow();
+            competition.setShortName(shortName)
+                    .setAdditionalInfo(additionalInfo)
+                    .setMinWeight(minWeight)
+                    .setMaxWeight(maxWeight)
+                    .setStartDate(dateService.stringToTimestamp(startDate))
+                    .setEndDate(dateService.stringToTimestamp(endDate))
+                    .setReferee(userService.getUserOrNull(referee));
+        }
+        return competitionRepository.save(competition);
     }
 
     /**
@@ -136,7 +217,7 @@ public class CompetitionService {
      *
      * @param competition The created/updated competition
      */
-    public Competition add(Competition competition) {
+    public Competition save(Competition competition) {
         if (!competitionRepository.existsById(competition.getIdCompetition())) {
             competitionRepository.save(competition);
             List<Fight> fights = new ArrayList<>();
@@ -230,8 +311,8 @@ public class CompetitionService {
      * If the finished fight was the last one, it also adds points for the best 4 users in the fight.
      *
      * @param competition ID of the competition.
-     * @param winner Winner of the fight.
-     * @param loser Loser of the fight.
+     * @param winner      Winner of the fight.
+     * @param loser       Loser of the fight.
      */
     public void fightFinished(Competition competition, User winner, User loser) {
         // 1. Looking for the fight that contains both winner and loser
