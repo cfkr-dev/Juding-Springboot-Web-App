@@ -29,12 +29,28 @@ public class CompetitionAPIController {
     @Autowired
     DateService dateService;
 
+    /**
+     * Gets the competition
+     * @param idCompetition Id of the competition
+     * @return Response Entity with the competition or bad request
+     */
     @GetMapping("/{idCompetition}")
-    public Competition showCompetition(@PathVariable String idCompetition) {
+    public ResponseEntity<Competition> showCompetition(@PathVariable String idCompetition) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
-        return competition;
+        if (competition!=null){
+            return ResponseEntity.ok(competition);
+        }
+        else{
+            ResponseEntity.badRequest().build();
+        }
     }
 
+    /**
+     * Joins a competition
+     * @param idCompetition Id of the competition
+     * @param request HTTP Servlet Request
+     * @return Response Entity with the competition or bad request
+     */
     @PutMapping("/{idCompetition}/join")
     public ResponseEntity<Competition> joinCompetition(@PathVariable String idCompetition, HttpServletRequest request) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));

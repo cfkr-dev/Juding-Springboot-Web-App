@@ -17,6 +17,14 @@ public class RefereeControlAPIController {
     @Autowired
     UserService userService;
 
+    /**
+     * Saves the result of a competition
+     * @param idCompetition Id of the competition
+     * @param winner Nickname of the winner
+     * @param loser Nickname of the loser
+     * @param request HTTP Servlet Request
+     * @return Response Entity with the competition changed or bad request
+     */
     @PutMapping("/api/competition/{idCompetition}/control/saveResult")
     public ResponseEntity<Competition> controlCompetition(@PathVariable String idCompetition,
                                                           @RequestParam String winner,

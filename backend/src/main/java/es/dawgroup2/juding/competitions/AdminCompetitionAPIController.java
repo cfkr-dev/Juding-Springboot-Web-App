@@ -33,6 +33,11 @@ public class AdminCompetitionAPIController {
     @Autowired
     FightService fightService;
 
+    /**
+     * Gets a list with the competitions (paginated)
+     * @param page Number of the page
+     * @return Response Entity with the competition or bad request
+     */
     @GetMapping("/list")
     public ResponseEntity<Page<Competition>> getCompetitionPage(@RequestParam(required = false) Integer page) {
         int defPage = (page == null) ? 1 : page;
@@ -49,15 +54,15 @@ public class AdminCompetitionAPIController {
 
     /**
      * Generates a new competition with the received information.
-     *
-     * @param shortName      The short name of the competition
-     * @param additionalInfo Info about the competition
-     * @param minWeight      The minimum weight allowed in a competition
-     * @param maxWeight      The maximum weight allowed in a competition
-     * @param startDate      The start date of a competition
-     * @param endDate        The end date of a competition
-     * @param referee        The license of the referee in charge of the competition
-     * @return Redirection to the list of competitions, where new competition will be listed.
+     * @param shortName The name of a competitiom
+     * @param additionalInfo Information of a competition
+     * @param minWeight The minimum weight allowed in a competition
+     * @param maxWeight The maximum weight allowed in a competition
+     * @param startDate The start date of a competition
+     * @param endDate The end date of a competition
+     * @param referee  The license of the referee in charge of the competition
+     * @return Response Entity with the competition or bad request
+     * @throws ParseException Parsing exception
      */
     @PostMapping("/newCompetition")
     public ResponseEntity<Competition> addCompetition(@RequestParam String shortName,
@@ -73,7 +78,7 @@ public class AdminCompetitionAPIController {
     }
 
     /**
-     * Form to edit a competition
+     * Edits a competition
      *
      * @param idCompetition  Id of a competition
      * @param shortName      The name of a competitiom
@@ -83,7 +88,7 @@ public class AdminCompetitionAPIController {
      * @param startDate      The start date of a competition
      * @param endDate        The end date of a competition
      * @param referee        The license of the referee in charge of the competition
-     * @return The competition edited
+     * @return Response Entity with the competition or bad request
      * @throws ParseException Parsing exception
      */
     @PutMapping("/edit")
@@ -104,6 +109,11 @@ public class AdminCompetitionAPIController {
 
     }
 
+    /**
+     * Deletes a competition
+     * @param idCompetition Id of the competition
+     * @return Response Entity with the competition or bad request
+     */
     @DeleteMapping("/delete/{idCompetition}")
     public ResponseEntity<Competition> showCompetitionToDelete(@PathVariable String idCompetition) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
