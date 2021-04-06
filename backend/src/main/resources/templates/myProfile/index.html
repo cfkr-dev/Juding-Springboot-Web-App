@@ -62,12 +62,12 @@
                 <div class="width40">Género</div>
                 <div class="width60">{{ #isMale }}Hombre{{ /isMale }}{{ ^isMale }}Mujer{{ /isMale }}</div>
             </div>
-            {{#user.phone}}
+            {{ #user.phone }}
             <div class="rtRow">
                 <div class="width40">Teléfono</div>
-                <div class="width60">{{ user.phone }}</div>
+                <div class="width60">{{ . }}</div>
             </div>
-            {{/user.phone}}
+            {{ /user.phone }}
             <div class="rtRow">
                 <div class="width40">Correo electrónico</div>
                 <div class="width60">{{ user.email }}</div>
