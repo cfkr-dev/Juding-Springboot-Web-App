@@ -63,7 +63,7 @@
                 <label class="txt1" for="startDate">Fecha de inicio de la competición <span
                         class="asterisk">*</span></label>
                 <input class="form-control dateInput" id="startDate" name="startDate" required type="text"
-                       value="{{competition.getFormattedStartDate}}" data-time="true"
+                       data-time="true"
                        pattern="([0-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/2[0-9]{3} [0-2][0-9]:[0-5][0-9]">
                 <div class="invalid-feedback">
                     La fecha del inicio de la competición es obligatoria y debe introducirse en formato dd/mm/yyyy
@@ -74,7 +74,7 @@
                 <label class="txt1" for="endDate">Fecha del final de la competición <span
                         class="asterisk">*</span></label>
                 <input class="form-control dateInput" id="endDate" name="endDate" required type="text"
-                       value="{{competition.getFormattedEndDate}}" data-time="true">
+                        data-time="true">
                 <div class="invalid-feedback">
                     La fecha del final de la competición es obligatoria y debe introducirse en formato dd/mm/yyyy HH:mm.
                 </div>

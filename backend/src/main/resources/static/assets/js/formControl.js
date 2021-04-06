@@ -100,19 +100,22 @@ $(function () {
      */
     if ($(".dateInput").length) {
         $.datetimepicker.setLocale('es');
-        if ($(this).data("time") === "true"){
-            $('.dateInput').datetimepicker({
-                format: 'd/m/Y',
-                dayOfWeekStart: 1
-            });
-        } else {
-            $('.dateInput').datetimepicker({
-                timepicker: false,
-                format: 'd/m/Y',
-                maxDate: 0,
-                dayOfWeekStart: 1
-            });
-        }
+        $('.dateInput').each(function(){
+            if ($(this).data("time") === true){
+                $('.dateInput').datetimepicker({
+                    timepicker: true,
+                    format: 'd/m/Y H:i',
+                    dayOfWeekStart: 1
+                });
+            } else {
+                $('.dateInput').datetimepicker({
+                    timepicker: false,
+                    format: 'd/m/Y',
+                    maxDate: 0,
+                    dayOfWeekStart: 1
+                });
+            }
+        })
     }
 
     /**
