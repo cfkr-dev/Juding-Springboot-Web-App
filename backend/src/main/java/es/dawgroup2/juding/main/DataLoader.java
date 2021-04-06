@@ -888,7 +888,7 @@ public class DataLoader {
                 "Está competición es una celebración debido al nacimiento de la aplicación web Juding por lo que está abierta a todas las edades y es mixta.",
                 70,
                 80,
-                dateService.stringToTimestamp("01/04/2021 12:00"),
+                new Timestamp(System.currentTimeMillis() + 100000),
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
@@ -900,7 +900,7 @@ public class DataLoader {
                 "Está competición es una celebración debido al nacimiento de la aplicación web Juding por lo que está abierta a todas las edades y es mixta.",
                 60,
                 70,
-                dateService.stringToTimestamp("01/04/2021 12:00"),
+                new Timestamp(System.currentTimeMillis() + 100000),
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
@@ -912,7 +912,7 @@ public class DataLoader {
                 "Aprovecha esta nueva oportunidad para ganar si no pudiste la anterior vez o para mantenerte en el podium.",
                 70,
                 80,
-                dateService.stringToTimestamp("01/04/2021 12:00"),
+                new Timestamp(System.currentTimeMillis() + 100000),
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
@@ -924,7 +924,7 @@ public class DataLoader {
                 "Aprovecha esta nueva oportunidad para ganar si no pudiste la anterior vez o para mantenerte en el podium.",
                 60,
                 70,
-                dateService.stringToTimestamp("01/04/2021 12:00"),
+                new Timestamp(System.currentTimeMillis() + 100000),
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
@@ -936,7 +936,7 @@ public class DataLoader {
                 "Las inauguraciones ya terminaron y ahora es tu turno de de demostrar los frutos de tu nuevo entrenamiento. Dalo todo en el tatami",
                 70,
                 80,
-                dateService.stringToTimestamp("01/04/2021 12:00"),
+                new Timestamp(System.currentTimeMillis() + 100000),
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
@@ -948,7 +948,7 @@ public class DataLoader {
                 "Las inauguraciones ya terminaron y ahora es tu turno de de demostrar los frutos de tu nuevo entrenamiento. Dalo todo en el tatami",
                 60,
                 70,
-                dateService.stringToTimestamp("01/04/2021 12:00"),
+                new Timestamp(System.currentTimeMillis() + 100000),
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
@@ -960,7 +960,7 @@ public class DataLoader {
                 "Alcanza la cima del ranking de competidores y destaca ante los ojos de los seleccionadores nacionales",
                 70,
                 80,
-                dateService.stringToTimestamp("01/04/2021 12:00"),
+                new Timestamp(System.currentTimeMillis() + 100000),
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
@@ -972,7 +972,7 @@ public class DataLoader {
                 "Alcanza la cima del ranking de competidores y destaca ante los ojos de los seleccionadores nacionales",
                 60,
                 70,
-                dateService.stringToTimestamp("01/04/2021 12:00"),
+                new Timestamp(System.currentTimeMillis() + 100000),
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
@@ -984,7 +984,7 @@ public class DataLoader {
                 "Nuestro competidores son los mejores y ya dan mucho espectáculo. Hemos abierto una nueva tienda de regalos y todo lo que saquemos de la venta de productos durante la competición será donado a distintas ong",
                 70,
                 80,
-                dateService.stringToTimestamp("01/04/2021 12:00"),
+                new Timestamp(System.currentTimeMillis() + 100000),
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
@@ -996,7 +996,7 @@ public class DataLoader {
                 "Nuestro competidores son los mejores y ya dan mucho espectáculo. Hemos abierto una nueva tienda de regalos y todo lo que saquemos de la venta de productos durante la competición será donado a distintas ong",
                 60,
                 70,
-                dateService.stringToTimestamp("01/04/2021 12:00"),
+                new Timestamp(System.currentTimeMillis() + 100000),
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
@@ -1008,7 +1008,7 @@ public class DataLoader {
                 "Se terminó esta temporada por el momento pero dentro de unos meses empieza la siguiente. Inscríbete ya y entrena duro hasta la fecha.",
                 70,
                 80,
-                dateService.stringToTimestamp("01/04/2021 12:00"),
+                new Timestamp(System.currentTimeMillis() + 100000),
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(3)
         );
@@ -1020,7 +1020,7 @@ public class DataLoader {
                 "Se terminó esta temporada por el momento pero dentro de unos meses empieza la siguiente. Inscríbete ya y entrena duro hasta la fecha.",
                 60,
                 70,
-                dateService.stringToTimestamp("01/04/2021 12:00"),
+                new Timestamp(System.currentTimeMillis() + 100000),
                 dateService.stringToTimestamp("30/04/2021 12:00"),
                 referees.get(1)
         );
@@ -1659,7 +1659,7 @@ public class DataLoader {
                         "Además, adjuntamos este documento informativo que complementa a la Circular Nº 27 sobre el próximo curso de Katas del Club Pandy.</p>\n" +
                         "<a href=\"https://fmjudo.es//attachments/article/4188/27%20Reuni%C3%B3n%20Profesores%20y%20Curso%20de%20Kata%20Club%20Pandy%20marzo.pdf\">Circular Nº 27 - 4ª Jornada - ACTIVIDADES DE KATA “CLUB PANDY”</a>\n",
                 "/static/sampleImages/judoSample1.jpg",
-                "image/jpeg", new Timestamp(System.currentTimeMillis() + 100)));
+                "image/jpeg", new Timestamp(System.currentTimeMillis() + 100000)));
         posts.add(new Post(admin,
                 "12 - INFORMACIÓN COMPLETA curso de Kata del Club Pandy",
                 "Ampliamos la información del Curso de Katas del Club Pandy, con estos documentos y vídeos-explicativos. También aprovechamos para recordar que la entrega de premios del sorteo de la 2ª Jornada se hará el mismo día 21 de marzo a las 11:00.<br>" +
