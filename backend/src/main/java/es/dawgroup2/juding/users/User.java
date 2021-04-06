@@ -327,7 +327,7 @@ public class User {
      * @return True if one of the user's roles match with included one.
      */
     public boolean isRole(Role role) {
-        return (roles.contains(role));
+        return (this.getRoles() != null) && (roles.contains(role));
     }
 
     @JsonProperty("imageFile")
