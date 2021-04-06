@@ -283,15 +283,22 @@ public class UserService {
      */
     public User save(String name, String surname, String gender, String phone, String email, String birthDate, String dni, String licenseId, String nickname, String password, String securityQuestion, String securityAnswer, MultipartFile image, String belt, String gym, Integer weight, String refereeRange) {
         // If user already existed, must be retrieved and changed
-        User user = userRepository.findById(licenseId).orElse(new User());
+        User user;
+        Optional<User> optUser = userRepository.findById(licenseId);
+        if (optUser.isPresent()) {
+            user = optUser.get();
+        } else {
+            user = new User();
+            user.setLicenseId(licenseId);
+        }
 
-        if (name != null) user.setName(name);
-        if (surname != null) user.setSurname(surname);
-        if (gender != null) user.setGender(genderService.findGenderById(gender));
-        if (email != null) user.setEmail(email);
+        if (name != null && !name.isBlank()) user.setName(name);
+        if (surname != null && !surname.isBlank()) user.setSurname(surname);
+        if (gender != null && !gender.isBlank()) user.setGender(genderService.findGenderById(gender));
+        if (email != null && !email.isBlank()) user.setEmail(email);
         try {
-            if (phone != null) user.setPhone((phone.equals("")) ? null : Integer.parseInt(phone));
-            if (birthDate != null) user.setBirthDate(dateService.stringToDate(birthDate));
+            if (phone != null && !phone.isBlank()) user.setPhone((phone.equals("")) ? null : Integer.parseInt(phone));
+            if (birthDate != null && !birthDate.isBlank()) user.setBirthDate(dateService.stringToDate(birthDate));
             if (image != null)
                 if (!image.isEmpty()) {
                     user.setImageFile(imageService.uploadProfileImage(image));
@@ -300,16 +307,17 @@ public class UserService {
         } catch (Exception e) {
             return null;
         }
-        if (dni != null) user.setDni(dni);
-        if (nickname != null) user.setNickname(nickname);
-        if (password != null) user.setPassword(passwordEncoder.encode(password));
-        if (securityQuestion != null) user.setSecurityQuestion(securityQuestion);
-        if (securityAnswer != null) user.setSecurityAnswer(securityAnswer);
+        if (dni != null && !dni.isBlank()) user.setDni(dni);
+        if (nickname != null && !nickname.isBlank()) user.setNickname(nickname);
+        if (password != null && !password.isBlank()) user.setPassword(passwordEncoder.encode(password));
+        if (securityQuestion != null && !securityQuestion.isBlank()) user.setSecurityQuestion(securityQuestion);
+        if (securityAnswer != null && !securityAnswer.isBlank()) user.setSecurityAnswer(securityAnswer);
+        if (belt != null && !belt.isBlank()) user.setBelt(beltService.findBeltById(belt));
         if (user.isRole(Role.C)) {
-            if (gym != null) user.setGym(gym);
+            if (gym != null && !gym.isBlank()) user.setGym(gym);
             if (weight != null) user.setWeight(weight);
         } else if (user.isRole(Role.R)) {
-            if (refereeRange != null) user.setRefereeRange(refereeRangeService.findRefereeRangeById(refereeRange));
+            if (refereeRange != null && !refereeRange.isBlank()) user.setRefereeRange(refereeRangeService.findRefereeRangeById(refereeRange));
         }
         return userRepository.save(user);
     }
