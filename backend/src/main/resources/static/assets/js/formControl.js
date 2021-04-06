@@ -98,14 +98,22 @@ $(function () {
     /**
      * Function for showing datepicker in registration pages
      */
-    if ($("#birthDate").length) {
-        $("#birthDate").datepicker({
-            clearBtn: true,
-            format: "dd/mm/yyyy",
-            language: "es",
-            todayHighlight: true,
-            weekStart: 1
-        });
+    if ($(".dateInput").length) {
+        $.datetimepicker.setLocale('es');
+        if ($(this).data("time") === "true"){
+            $('.dateInput').datetimepicker({
+                format: 'd/m/Y',
+                maxDate: 0,
+                dayOfWeekStart: 1
+            });
+        } else {
+            $('.dateInput').datetimepicker({
+                timepicker: false,
+                format: 'd/m/Y',
+                maxDate: 0,
+                dayOfWeekStart: 1
+            });
+        }
     }
 
     /**
