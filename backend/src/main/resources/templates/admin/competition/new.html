@@ -1,6 +1,6 @@
 {{>header}}
 <div class="container pb-4">
-    <form action="/admin/competition/newCompetition" class="needs-validation flex-sb flex-w juding-form-competition" method="post"
+    <form action="/admin/competition/new" class="needs-validation flex-sb flex-w juding-form-competition" method="post"
           enctype="multipart/form-data"
           novalidate>
 
@@ -21,8 +21,7 @@
         <!-- Competition additional info -->
         <label class="txt1" for="additionalInfo">Información sobre la competición <span
                 class="asterisk">*</span></label>
-        <textarea cols="30" id="additionalInfo" name="additionalInfo" required rows="20"
-        ></textarea>
+        <textarea cols="30" id="additionalInfo" name="additionalInfo" required rows="20"></textarea>
         <div class="invalid-feedback">
             El campo no puede estar vacío.
         </div>
@@ -74,7 +73,7 @@
                 <label class="txt1" for="endDate">Fecha del final de la competición <span
                         class="asterisk">*</span></label>
                 <input class="form-control dateInput" id="endDate" name="endDate" required type="text"
-                        data-time="true">
+                       data-time="true">
                 <div class="invalid-feedback">
                     La fecha del final de la competición es obligatoria y debe introducirse en formato dd/mm/yyyy HH:mm.
                 </div>
