@@ -140,7 +140,7 @@ public class CompetitionService {
     public Competition save(String idCompetition, String shortName, String additionalInfo, int minWeight, int maxWeight, String startDate, String endDate, String referee) {
         Competition competition;
         try {
-            competition= (idCompetition == null) ? new Competition() : competitionRepository.findById(Integer.parseInt(idCompetition)).orElseThrow();
+            competition = (idCompetition == null) ? new Competition() : competitionRepository.findById(Integer.parseInt(idCompetition)).orElse(new Competition());
             competition.setShortName(shortName)
                     .setAdditionalInfo(additionalInfo)
                     .setMinWeight(minWeight)
@@ -157,6 +157,7 @@ public class CompetitionService {
         }
         return competitionRepository.save(competition);
     }
+
 
     /**
      * Adds or updates a competition.

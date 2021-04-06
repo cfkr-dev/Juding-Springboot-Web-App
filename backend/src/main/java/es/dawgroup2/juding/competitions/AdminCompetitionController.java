@@ -75,7 +75,7 @@ public class AdminCompetitionController {
     public String editCompetition(@PathVariable String idCompetition, HttpServletRequest request, Model model) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         model.addAttribute("competition", competition)
-                .addAllAttributes(headerInflater.getHeader("Edición de competición", request, "bootstrap/css/bootstrap.min.css", "datepicker/jquery.datetimepicker.min.css", "font-awesome/css/all.css", "chosen/component-chosen.css", "header", "bootstrapAccomodations"))
+                .addAllAttributes(headerInflater.getHeader("Edición de competición", request, "bootstrap/css/bootstrap.min.css", "datepicker/jquery.datetimepicker.min.css", "font-awesome/css/all.css", "chosen/component-chosen.css", "header", "bootstrapAccomodations", "loginAndRegistration"))
                 .addAttribute("refereeList", userService.getActiveRefereesList(competition.getReferee().getLicenseId()));
         return "/admin/competition/edit";
     }
@@ -86,11 +86,11 @@ public class AdminCompetitionController {
      * @param model model of the view
      * @return view of the competition to add
      */
-    @GetMapping("/admin/competition/newCompetition")
+    @GetMapping("/admin/competition/new")
     public String newCompetition(HttpServletRequest request, Model model) {
-        model.addAllAttributes(headerInflater.getHeader("Nueva competición", request, "bootstrap/css/bootstrap.min.css", "datepicker/jquery.datetimepicker.min.css", "font-awesome/css/all.css", "chosen/component-chosen.css", "header", "bootstrapAccomodations"))
+        model.addAllAttributes(headerInflater.getHeader("Nueva competición", request, "bootstrap/css/bootstrap.min.css", "datepicker/jquery.datetimepicker.min.css", "font-awesome/css/all.css", "chosen/component-chosen.css", "header", "bootstrapAccomodations", "loginAndRegistration"))
                 .addAttribute("refereeList", userService.getActiveRefereesList());
-        return "/admin/competition/newCompetition";
+        return "/admin/competition/new";
     }
 
     /**
@@ -105,14 +105,14 @@ public class AdminCompetitionController {
      * @param referee        The license of the referee in charge of the competition
      * @return Redirection to the list of competitions, where new competition will be listed.
      */
-    @PostMapping("/admin/competition/newCompetition")
+    @PostMapping("/admin/competition/new")
     public String addCompetition(@RequestParam String shortName,
                                  @RequestParam String additionalInfo,
                                  @RequestParam int minWeight,
                                  @RequestParam int maxWeight,
                                  @RequestParam String startDate,
                                  @RequestParam String endDate,
-                                 @RequestParam String referee) throws ParseException {
+                                 @RequestParam String referee) {
         competitionService.save(null, shortName, additionalInfo, minWeight, maxWeight, startDate, endDate, referee);
         return "redirect:/admin/competition/list";
     }

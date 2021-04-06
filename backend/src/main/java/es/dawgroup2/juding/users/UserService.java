@@ -111,10 +111,11 @@ public class UserService {
         List<User> referees = getActiveReferees();
         for (User u : referees) {
             sb.append("<option value=\"")
-                    .append(u.getLicenseId());
+                    .append(u.getLicenseId())
+                    .append("\"");
             if (u.getLicenseId().equals(activeLicenseId))
                 sb.append(" selected");
-            sb.append("\">")
+            sb.append(">")
                     .append(u.getName())
                     .append(" ")
                     .append(u.getSurname())
