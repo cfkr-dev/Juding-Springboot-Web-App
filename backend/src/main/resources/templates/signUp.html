@@ -11,7 +11,7 @@
 
     <!-- Vendor CSS Files -->
     <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet">
+    <link href="/assets/vendor/datepicker/jquery.datetimepicker.min.css" rel="stylesheet">
     <link href="/assets/vendor/font-awesome/css/all.css" rel="stylesheet">
 
     <!-- Own CSS Files -->
@@ -85,7 +85,7 @@
 
         <!-- Birth date field -->
         <label class="txt1" for="birthDate">Fecha de nacimiento <span class="asterisk">*</span></label>
-        <input class="form-control" id="birthDate" name="birthDate" required type="text">
+        <input class="form-control dateInput" id="birthDate" name="birthDate" required type="text">
         <div class="invalid-feedback">
             La fecha de nacimiento es obligatoria y debe introducirse en formato dd/mm/yyyy.
         </div>
@@ -202,8 +202,7 @@
 <script src="/assets/vendor/jquery/jquery.js"></script>
 <script src="/assets/vendor/aos/aos.js"></script>
 <script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-<script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.es.js"></script>
+<script src="/assets/vendor/datepicker/jquery.datetimepicker.full.min.js"></script>
 
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>

@@ -75,7 +75,7 @@ public class AdminCompetitionController {
     public String editCompetition(@PathVariable String idCompetition, HttpServletRequest request, Model model) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         model.addAttribute("competition", competition)
-                .addAllAttributes(headerInflater.getHeader("Edición de competición", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "chosen/component-chosen.css", "header", "bootstrapAccomodations"))
+                .addAllAttributes(headerInflater.getHeader("Edición de competición", request, "bootstrap/css/bootstrap.min.css", "datepicker/jquery.datetimepicker.min.css", "font-awesome/css/all.css", "chosen/component-chosen.css", "header", "bootstrapAccomodations"))
                 .addAttribute("refereeList", userService.getActiveRefereesList(competition.getReferee().getLicenseId()));
         return "/admin/competition/edit";
     }
@@ -88,7 +88,7 @@ public class AdminCompetitionController {
      */
     @GetMapping("/admin/competition/newCompetition")
     public String newCompetition(HttpServletRequest request, Model model) {
-        model.addAllAttributes(headerInflater.getHeader("Nueva competición", request, "bootstrap/css/bootstrap.min.css", "bootstrap-datepicker/bootstrap-datepicker.css", "font-awesome/css/all.css", "chosen/component-chosen.css", "header", "bootstrapAccomodations"))
+        model.addAllAttributes(headerInflater.getHeader("Nueva competición", request, "bootstrap/css/bootstrap.min.css", "datepicker/jquery.datetimepicker.min.css", "font-awesome/css/all.css", "chosen/component-chosen.css", "header", "bootstrapAccomodations"))
                 .addAttribute("refereeList", userService.getActiveRefereesList());
         return "/admin/competition/newCompetition";
     }

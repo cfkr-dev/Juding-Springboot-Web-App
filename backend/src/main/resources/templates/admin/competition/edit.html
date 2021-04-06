@@ -67,8 +67,8 @@
             <div class="col-lg-6 startDate">
                 <label class="txt1" for="startDate">Fecha de inicio de la competición <span
                         class="asterisk">*</span></label>
-                <input class="form-control" id="startDate" name="startDate" required type="text"
-                       value="{{competition.getFormattedStartDate}}"
+                <input class="form-control dateInput" id="startDate" name="startDate" required type="text"
+                       value="{{competition.getFormattedStartDate}}" data-time="true"
                        pattern="([0-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/2[0-9]{3} [0-2][0-9]:[0-5][0-9]">
                 <div class="invalid-feedback">
                     La fecha del inicio de la competición es obligatoria y debe introducirse en formato dd/mm/yyyy
@@ -78,8 +78,8 @@
             <div class="col-lg-6">
                 <label class="txt1" for="endDate">Fecha del final de la competición <span
                         class="asterisk">*</span></label>
-                <input class="form-control" id="endDate" name="endDate" required type="text"
-                       value="{{competition.getFormattedEndDate}}">
+                <input class="form-control dateInput" id="endDate" name="endDate" required type="text"
+                       value="{{competition.getFormattedEndDate}}" data-time="true">
                 <div class="invalid-feedback">
                     La fecha del final de la competición es obligatoria y debe introducirse en formato dd/mm/yyyy HH:mm.
                 </div>
@@ -96,8 +96,7 @@
 <script src="/assets/vendor/jquery/jquery.min.js"></script>
 <script src="/assets/vendor/aos/aos.js"></script>
 <script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-<script src="/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.es.js"></script>
+<script src="/assets/vendor/datepicker/jquery.datetimepicker.full.min.js"></script>
 <script src="/assets/vendor/tinymce/js/tinymce/tinymce.min.js"></script>
 <script src="/assets/vendor/chosen/chosen.jquery.js"></script>
 
