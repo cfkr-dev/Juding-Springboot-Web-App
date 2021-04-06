@@ -47,7 +47,7 @@ public class AdminPostAPIController {
      * @param request post request with the author
      * @return {@code True} response entity with the new post. {@code False} if bad request
      */
-    @PostMapping("/create")
+    @PostMapping("/new")
     public ResponseEntity<Post> addNewPost(@RequestParam String title,
                                            @RequestParam MultipartFile image,
                                            @RequestParam String body,
