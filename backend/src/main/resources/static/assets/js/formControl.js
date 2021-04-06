@@ -103,7 +103,6 @@ $(function () {
         if ($(this).data("time") === "true"){
             $('.dateInput').datetimepicker({
                 format: 'd/m/Y',
-                maxDate: 0,
                 dayOfWeekStart: 1
             });
         } else {
