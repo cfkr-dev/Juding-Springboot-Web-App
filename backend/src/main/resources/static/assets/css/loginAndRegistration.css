@@ -106,20 +106,17 @@ label {
     margin: 0;
 }
 
-/*---------------------------------------------*/
-button {
-    outline: none !important;
-    border: none;
-    background: transparent;
-    width: 60%;
-}
-
-button:hover {
-    cursor: pointer;
-}
-
-iframe {
-    border: none !important;
+button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0 10px 30px;
+    font-family: "Nunito", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #890101;
+    white-space: nowrap;
+    transition: 0.3s;
 }
 
 

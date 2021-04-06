@@ -1659,7 +1659,7 @@ public class DataLoader {
                         "Además, adjuntamos este documento informativo que complementa a la Circular Nº 27 sobre el próximo curso de Katas del Club Pandy.</p>\n" +
                         "<a href=\"https://fmjudo.es//attachments/article/4188/27%20Reuni%C3%B3n%20Profesores%20y%20Curso%20de%20Kata%20Club%20Pandy%20marzo.pdf\">Circular Nº 27 - 4ª Jornada - ACTIVIDADES DE KATA “CLUB PANDY”</a>\n",
                 "/static/sampleImages/judoSample1.jpg",
-                "image/jpeg", new Timestamp(System.currentTimeMillis() + 100000)));
+                "image/jpeg", new Timestamp(System.currentTimeMillis() + 100)));
         posts.add(new Post(admin,
                 "12 - INFORMACIÓN COMPLETA curso de Kata del Club Pandy",
                 "Ampliamos la información del Curso de Katas del Club Pandy, con estos documentos y vídeos-explicativos. También aprovechamos para recordar que la entrega de premios del sorteo de la 2ª Jornada se hará el mismo día 21 de marzo a las 11:00.<br>" +
