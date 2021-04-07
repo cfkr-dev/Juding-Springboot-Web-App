@@ -39,7 +39,7 @@ public class RefereeControlAPIController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Save successfully completed",
                     content = { @Content(mediaType = "application/json",
-                            schema = @Schema()) }),
+                            schema = @Schema(implementation = Competition.class)) }),
             @ApiResponse(responseCode = "404", description = "Request is invalid because of non-finished competition retrieve",
                     content = @Content),
     })

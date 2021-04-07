@@ -6,6 +6,7 @@ import es.dawgroup2.juding.main.HeaderInflater;
 import es.dawgroup2.juding.users.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -48,7 +49,7 @@ public class AdminCompetitionAPIController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Page with more than one competition",
                 content = { @Content(mediaType = "application/json",
-                schema = @Schema()) }),
+                array = @ArraySchema(schema = @Schema(implementation = Competition.class))) }),
             @ApiResponse(responseCode = "400", description = "Request is invalid because of empty or non-existant page retrieve",
                 content = @Content)
     })
@@ -153,7 +154,7 @@ public class AdminCompetitionAPIController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Elimination successfully completed",
                     content = { @Content(mediaType = "application/json",
-                            schema = @Schema()) }),
+                            schema = @Schema(implementation = Competition.class)) }),
             @ApiResponse(responseCode = "404", description = "Request is invalid because of empty or non-existant competition retrieve",
                     content = @Content)
     })

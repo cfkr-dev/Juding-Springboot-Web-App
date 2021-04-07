@@ -64,7 +64,7 @@ public class CompetitionAPIController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Join successfully completed",
                     content = { @Content(mediaType = "application/json",
-                            schema = @Schema()) }),
+                            schema = @Schema(implementation = Competition.class)) }),
             @ApiResponse(responseCode = "500", description = "Join cannot be made because it was already made",
                     content = @Content),
             @ApiResponse(responseCode = "500", description = "Join cannot be made on the basis of failed data",
