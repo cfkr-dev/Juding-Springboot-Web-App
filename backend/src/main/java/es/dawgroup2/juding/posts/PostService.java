@@ -79,6 +79,15 @@ public class PostService {
     }
 
     /**
+     *
+     * @param post
+     * @return
+     */
+    public Post save(Post post){
+        return postRepository.save(post);
+    }
+
+    /**
      * @param idPost
      * @param request
      * @param title
