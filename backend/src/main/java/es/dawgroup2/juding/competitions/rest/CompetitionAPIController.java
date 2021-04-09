@@ -1,5 +1,7 @@
-package es.dawgroup2.juding.competitions;
+package es.dawgroup2.juding.competitions.rest;
 
+import es.dawgroup2.juding.competitions.Competition;
+import es.dawgroup2.juding.competitions.CompetitionService;
 import es.dawgroup2.juding.fight.FightService;
 import es.dawgroup2.juding.main.DateService;
 import es.dawgroup2.juding.main.HeaderInflater;

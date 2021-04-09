@@ -1,5 +1,7 @@
-package es.dawgroup2.juding.competitions;
+package es.dawgroup2.juding.competitions.rest;
 
+import es.dawgroup2.juding.competitions.Competition;
+import es.dawgroup2.juding.competitions.CompetitionService;
 import es.dawgroup2.juding.fight.FightService;
 import es.dawgroup2.juding.main.DateService;
 import es.dawgroup2.juding.main.HeaderInflater;
@@ -55,27 +57,22 @@ public class AdminCompetitionAPIController {
     /**
      * Generates a new competition with the received information.
      *
-     * @param shortName      The name of a competitiom
-     * @param additionalInfo Information of a competition
-     * @param minWeight      The minimum weight allowed in a competition
-     * @param maxWeight      The maximum weight allowed in a competition
-     * @param startDate      The start date of a competition
-     * @param endDate        The end date of a competition
-     * @param referee        The license of the referee in charge of the competition
+     * @param competitionDTO Competition Data Transfer Object
      * @return Response Entity with the competition or bad request
      */
     @PostMapping("/new")
-    public ResponseEntity<Competition> addCompetition(@RequestParam String shortName,
-                                                      @RequestParam String additionalInfo,
-                                                      @RequestParam String minWeight,
-                                                      @RequestParam String maxWeight,
-                                                      @RequestParam String startDate,
-                                                      @RequestParam String endDate,
-                                                      @RequestParam String referee) {
+    public ResponseEntity<Competition> addCompetition(@RequestBody CompetitionDTO competitionDTO) {
         Competition competition;
         try {
-            competition = competitionService.save(null, shortName, additionalInfo, Integer.parseInt(minWeight), Integer.parseInt(maxWeight), startDate, endDate, referee);
-        } catch (Exception e){
+            competition = competitionService.save(null,
+                    competitionDTO.getShortName(),
+                    competitionDTO.getAdditionalInfo(),
+                    Integer.parseInt(competitionDTO.getMinWeight()),
+                    Integer.parseInt(competitionDTO.getMaxWeight()),
+                    competitionDTO.getStartDate(),
+                    competitionDTO.getEndDate(),
+                    competitionDTO.getReferee());
+        } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
         URI location = fromCurrentRequest().path("/api/competition/{idCompetition}").buildAndExpand(competition.getIdCompetition()).toUri();
@@ -85,29 +82,22 @@ public class AdminCompetitionAPIController {
     /**
      * Edits a competition
      *
-     * @param idCompetition  Id of a competition
-     * @param shortName      The name of a competitiom
-     * @param additionalInfo Information of a competition
-     * @param minWeight      The minimum weight allowed in a competition
-     * @param maxWeight      The maximum weight allowed in a competition
-     * @param startDate      The start date of a competition
-     * @param endDate        The end date of a competition
-     * @param referee        The license of the referee in charge of the competition
+     * @param competitionDTO Competition Data Transfer Object
      * @return Response Entity with the competition or bad request
      */
     @PutMapping("/edit")
-    public ResponseEntity<Competition> updatingCompetitionInfo(@RequestParam String idCompetition,
-                                                               @RequestParam String shortName,
-                                                               @RequestParam String additionalInfo,
-                                                               @RequestParam String minWeight,
-                                                               @RequestParam String maxWeight,
-                                                               @RequestParam String startDate,
-                                                               @RequestParam String endDate,
-                                                               @RequestParam String referee) {
+    public ResponseEntity<Competition> updatingCompetitionInfo(@RequestBody CompetitionDTO competitionDTO) {
         Competition competition;
         try {
-            competition = competitionService.save(idCompetition, shortName, additionalInfo, Integer.parseInt(minWeight), Integer.parseInt(maxWeight), startDate, endDate, referee);
-        } catch (Exception e){
+            competition = competitionService.save(competitionDTO.getIdCompetition(),
+                    competitionDTO.getShortName(),
+                    competitionDTO.getAdditionalInfo(),
+                    Integer.parseInt(competitionDTO.getMinWeight()),
+                    Integer.parseInt(competitionDTO.getMaxWeight()),
+                    competitionDTO.getStartDate(),
+                    competitionDTO.getEndDate(),
+                    competitionDTO.getReferee());
+        } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
         return (competition == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(competition);
