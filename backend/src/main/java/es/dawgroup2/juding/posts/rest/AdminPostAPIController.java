@@ -1,11 +1,12 @@
-package es.dawgroup2.juding.posts;
+package es.dawgroup2.juding.posts.rest;
 
+import es.dawgroup2.juding.posts.Post;
+import es.dawgroup2.juding.posts.PostService;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -41,18 +42,14 @@ public class AdminPostAPIController {
     /**
      * Creates a new post.
      *
-     * @param title   post title
-     * @param image   post image
-     * @param body    post body
+     * @param postDTO Post Data Transfer Object
      * @param request post request with the author
      * @return {@code True} response entity with the new post. {@code False} if bad request
      */
     @PostMapping("/new")
-    public ResponseEntity<Post> addNewPost(@RequestParam String title,
-                                           @RequestParam MultipartFile image,
-                                           @RequestParam String body,
+    public ResponseEntity<Post> addNewPost(@RequestBody PostDTO postDTO,
                                            HttpServletRequest request) {
-        Post newPost = postService.save(null, request, title, body, image);
+        Post newPost = postService.save(null, request, postDTO.getTitle(), postDTO.getBody(), null);
         return ResponseEntity.created(fromCurrentRequest().path("/api/news/{idPost}").buildAndExpand(newPost.getIdPost()).toUri()).body(newPost);
     }
 
@@ -60,19 +57,14 @@ public class AdminPostAPIController {
     /**
      * Updates a post
      *
-     * @param id    post id
-     * @param title post title
-     * @param image post image
-     * @param body  post body
+     * @param postDTO Post Data Transfer Object
+     * @param request HTTP Servlet Request
      * @return {@code True} response entity with the updated post. {@code False} if bad request
      */
     @PutMapping("/edit")
-    public ResponseEntity<Post> updatePost(@RequestParam String id,
-                                           @RequestParam String title,
-                                           @RequestParam MultipartFile image,
-                                           @RequestParam String body,
+    public ResponseEntity<Post> updatePost(@RequestBody PostDTO postDTO,
                                            HttpServletRequest request) {
-        Post updatedPost = postService.save(id, request, title, body, image);
+        Post updatedPost = postService.save(postDTO.getId(), request, postDTO.getTitle(), postDTO.getBody(), null);
         return (updatedPost == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(updatedPost);
     }
 

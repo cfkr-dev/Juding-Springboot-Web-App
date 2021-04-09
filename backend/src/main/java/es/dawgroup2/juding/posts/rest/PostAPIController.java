@@ -1,5 +1,7 @@
-package es.dawgroup2.juding.posts;
+package es.dawgroup2.juding.posts.rest;
 
+import es.dawgroup2.juding.posts.Post;
+import es.dawgroup2.juding.posts.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
