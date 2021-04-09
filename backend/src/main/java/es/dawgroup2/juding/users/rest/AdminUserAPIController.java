@@ -1,4 +1,4 @@
-package es.dawgroup2.juding.users;
+package es.dawgroup2.juding.users.rest;
 
 import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.auxTypes.gender.GenderService;
@@ -6,14 +6,13 @@ import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.main.DateService;
 import es.dawgroup2.juding.main.HeaderInflater;
 import es.dawgroup2.juding.main.image.ImageService;
+import es.dawgroup2.juding.users.User;
+import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.net.URI;
-import java.text.ParseException;
 import java.util.List;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -55,7 +54,9 @@ public class AdminUserAPIController {
     }
 
     @GetMapping("/referees/applications")
-    public List<User> applicantList(){ return userService.getRefereeApplications(); }
+    public List<User> applicantList() {
+        return userService.getRefereeApplications();
+    }
 
     @GetMapping("/referees")
     public ResponseEntity<Page<User>> refereeList(@RequestParam(required = false) Integer page) {
@@ -69,24 +70,29 @@ public class AdminUserAPIController {
     }
 
     @GetMapping("/{licenseId}")
-    public User getUser(@PathVariable String licenseId){return userService.getUserOrNull(licenseId); }
+    public User getUser(@PathVariable String licenseId) {
+        return userService.getUserOrNull(licenseId);
+    }
 
     @PostMapping("/")
-    public ResponseEntity<User> savingUser(@RequestParam String name,
-                             @RequestParam String surname,
-                             @RequestParam String gender,
-                             @RequestParam String phone,
-                             @RequestParam String email,
-                             @RequestParam String birthDate,
-                             @RequestParam String dni,
-                             @RequestParam String licenseId,
-                             @RequestParam String nickname,
-                             @RequestParam String belt,
-                             @RequestParam(required = false) String gym,
-                             @RequestParam(required = false) Integer weight,
-                             @RequestParam(required = false) String refereeRange
-    ) throws ParseException {
-        User user = userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, null, null, null, null, belt, gym, weight, refereeRange);
+    public ResponseEntity<User> savingUser(@RequestBody AdminUserEditionDTO adminUserEditionDTO) {
+        User user = userService.save(adminUserEditionDTO.getName(),
+                adminUserEditionDTO.getSurname(),
+                adminUserEditionDTO.getGender(),
+                adminUserEditionDTO.getPhone(),
+                adminUserEditionDTO.getEmail(),
+                adminUserEditionDTO.getBirthDate(),
+                adminUserEditionDTO.getDni(),
+                adminUserEditionDTO.getLicenseId(),
+                adminUserEditionDTO.getNickname(),
+                null,
+                null,
+                null,
+                null,
+                adminUserEditionDTO.getBelt(),
+                adminUserEditionDTO.getGym(),
+                adminUserEditionDTO.getWeight(),
+                adminUserEditionDTO.getRefereeRange());
         return ResponseEntity.created(fromCurrentRequest().path("/api/admin/user/{licenseId}").buildAndExpand(user.getLicenseId()).toUri()).body(user);
     }
 

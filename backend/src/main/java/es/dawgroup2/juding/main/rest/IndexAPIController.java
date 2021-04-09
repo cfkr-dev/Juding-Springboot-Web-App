@@ -1,9 +1,10 @@
-package es.dawgroup2.juding.main;
+package es.dawgroup2.juding.main.rest;
 
 import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.auxTypes.gender.GenderService;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
+import es.dawgroup2.juding.main.DateService;
 import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.posts.PostService;
 import es.dawgroup2.juding.security.jwt.AuthResponse;
@@ -11,6 +12,8 @@ import es.dawgroup2.juding.security.jwt.LoginRequest;
 import es.dawgroup2.juding.security.jwt.UserLoginService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
+import es.dawgroup2.juding.users.rest.CompetitorDTO;
+import es.dawgroup2.juding.users.rest.RefereeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -74,44 +77,47 @@ public class IndexAPIController {
         return ResponseEntity.ok(new AuthResponse(AuthResponse.Status.SUCCESS, userLoginService.logout(request, response)));
     }
 
-
     @PostMapping("/signUp/competitor")
-    public ResponseEntity<User> signUpCompetitor(@RequestParam String name,
-                                                 @RequestParam String surname,
-                                                 @RequestParam String gender,
-                                                 @RequestParam String phone,
-                                                 @RequestParam String email,
-                                                 @RequestParam String birthDate,
-                                                 @RequestParam String dni,
-                                                 @RequestParam String licenseId,
-                                                 @RequestParam String nickname,
-                                                 @RequestParam String password,
-                                                 @RequestParam String securityQuestion,
-                                                 @RequestParam String securityAnswer,
-                                                 @RequestParam MultipartFile image,
-                                                 @RequestParam String belt,
-                                                 @RequestParam String gym,
-                                                 @RequestParam int weight) {
-        User user = userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, password, securityQuestion, securityAnswer, image, belt, gym, weight, null);
+    public ResponseEntity<User> signUpCompetitor(@RequestBody CompetitorDTO competitorDTO) {
+        User user = userService.save(competitorDTO.getName(),
+                competitorDTO.getSurname(),
+                competitorDTO.getGender(),
+                competitorDTO.getPhone(),
+                competitorDTO.getEmail(),
+                competitorDTO.getBirthDate(),
+                competitorDTO.getDni(),
+                competitorDTO.getLicenseId(),
+                competitorDTO.getNickname(),
+                competitorDTO.getPassword(),
+                competitorDTO.getSecurityQuestion(),
+                competitorDTO.getSecurityAnswer(),
+                null,
+                competitorDTO.getBelt(),
+                competitorDTO.getGym(),
+                competitorDTO.getWeight(),
+                null);
         return ResponseEntity.created(fromCurrentRequest().path("/api/me/myProfile").buildAndExpand(user.getLicenseId()).toUri()).body(user);
     }
 
     @PostMapping("/signUp/referee")
-    public ResponseEntity<User> signUpReferee(@RequestParam String name,
-                                              @RequestParam String surname,
-                                              @RequestParam String gender,
-                                              @RequestParam String phone,
-                                              @RequestParam String email,
-                                              @RequestParam String birthDate,
-                                              @RequestParam String dni,
-                                              @RequestParam String licenseId,
-                                              @RequestParam String nickname,
-                                              @RequestParam String password,
-                                              @RequestParam String securityQuestion,
-                                              @RequestParam String securityAnswer,
-                                              MultipartFile image,
-                                              @RequestParam String belt) {
-        User user = userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, password, securityQuestion, securityAnswer, image, belt, null, null, RefereeRange.S.name());
+    public ResponseEntity<User> signUpReferee(@RequestBody RefereeDTO refereeDTO) {
+        User user = userService.save(refereeDTO.getName(),
+                refereeDTO.getSurname(),
+                refereeDTO.getGender(),
+                refereeDTO.getPhone(),
+                refereeDTO.getEmail(),
+                refereeDTO.getBirthDate(),
+                refereeDTO.getDni(),
+                refereeDTO.getLicenseId(),
+                refereeDTO.getNickname(),
+                refereeDTO.getPassword(),
+                refereeDTO.getSecurityQuestion(),
+                refereeDTO.getSecurityAnswer(),
+                null,
+                refereeDTO.getBelt(),
+                null,
+                null,
+                null);
         return ResponseEntity.created(fromCurrentRequest().path("/api/me/myProfile").buildAndExpand(user.getLicenseId()).toUri()).body(user);
     }
 }

@@ -1,21 +1,19 @@
-package es.dawgroup2.juding.main;
+package es.dawgroup2.juding.main.rest;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.competitions.Competition;
 import es.dawgroup2.juding.competitions.CompetitionService;
+import es.dawgroup2.juding.main.DateService;
+import es.dawgroup2.juding.main.HeaderInflater;
 import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -85,23 +83,31 @@ public class LoggedInUserAPIController {
     }
 
     @PutMapping("/me/myProfile")
-    public ResponseEntity<User> editingUser(@RequestParam String licenseId,
-                                            @RequestParam String belt,
-                                            @RequestParam(required = false) String gym,
-                                            @RequestParam(required = false) Integer weight,
-                                            @RequestParam(required = false) String refereeRange,
-                                            @RequestParam String nickname,
-                                            @RequestParam String phone,
-                                            @RequestParam String email,
-                                            MultipartFile image,
-                                            HttpServletRequest request) throws IOException {
+    public ResponseEntity<User> editingUser(@RequestBody UserProfileDTO userProfileDTO, HttpServletRequest request) {
         User user = null;
-        if (userService.findByNickname(request.getUserPrincipal().getName()).getLicenseId().equals(licenseId))
-            user = userService.save(null, null, null, phone, email, null, null, licenseId, nickname, null, null, null, image, belt, gym, weight, refereeRange);
-        if (user == null)
-            return ResponseEntity.notFound().build();
-        else
-            return ResponseEntity.ok(user);
+        if (userService.findByNickname(request.getUserPrincipal().getName()).getLicenseId().equals(userProfileDTO.getLicenseId()))
+            try {
+                user = userService.save(null,
+                        null,
+                        null,
+                        userProfileDTO.getPhone(),
+                        userProfileDTO.getEmail(),
+                        null,
+                        null,
+                        userProfileDTO.getLicenseId(),
+                        userProfileDTO.getNickname(),
+                        null,
+                        null,
+                        null,
+                        null,
+                        userProfileDTO.getBelt(),
+                        userProfileDTO.getGym(),
+                        userProfileDTO.getWeight(),
+                        userProfileDTO.getRefereeRange());
+            } catch (Exception e){
+                return ResponseEntity.notFound().build();
+            }
+        return (user == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(user);
     }
 
     @GetMapping("/ranking")
