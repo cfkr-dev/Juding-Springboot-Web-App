@@ -90,7 +90,7 @@ public class AdminUserAPIController {
                 null,
                 null,
                 adminUserEditionDTO.getBelt(),
-                adminUserEditionDTO.getGym(),
+                null, adminUserEditionDTO.getGym(),
                 adminUserEditionDTO.getWeight(),
                 adminUserEditionDTO.getRefereeRange());
         return ResponseEntity.created(fromCurrentRequest().path("/api/admin/user/{licenseId}").buildAndExpand(user.getLicenseId()).toUri()).body(user);
