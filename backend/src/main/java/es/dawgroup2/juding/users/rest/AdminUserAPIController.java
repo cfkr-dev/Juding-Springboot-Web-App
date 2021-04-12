@@ -197,7 +197,7 @@ public class AdminUserAPIController {
             @ApiResponse(responseCode = "403", description = "Not allowed (there is not logged in user or it is not an administrator).",
                     content = @Content),
             @ApiResponse(responseCode = "404", description = "Not able to delete user (user did not exist or user has taken part of any past or future competition)",
-                    content = @Content),
+                    content = @Content)
     })
     @DeleteMapping("/{licenseId}")
     public ResponseEntity<User> deleteUser(@Parameter(description = "License ID of user.") @PathVariable String licenseId) {

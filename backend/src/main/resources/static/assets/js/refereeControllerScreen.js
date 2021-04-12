@@ -383,8 +383,7 @@ $(function () {
             $.ajax({
                 data: {
                     "winner": (player1[0] === 10 || player2[2] === 3) ? player1[4] : player2[4],
-                    "loser": (player1[0] === 10 || player2[2] === 3) ? player2[4] : player1[4],
-                    "fightId": $("#fight").val()
+                    "loser": (player1[0] === 10 || player2[2] === 3) ? player2[4] : player1[4]
                 },
                 url: window.location.pathname + "/saveResult",
                 method: 'get'
