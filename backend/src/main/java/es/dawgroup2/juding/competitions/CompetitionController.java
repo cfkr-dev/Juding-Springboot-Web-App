@@ -160,7 +160,8 @@ public class CompetitionController {
             sb.append("</optgroup>");
 
 
-            model.addAttribute("selectItems", sb.toString());
+            model.addAttribute("selectItems", sb.toString())
+                    .addAttribute("idCompetition", idCompetition);
             return "competition/control";
         }
         return "redirect:/error/500";

@@ -227,6 +227,12 @@ public class UserService {
             return null;
     }
 
+    /**
+     * Admitting a referee.
+     *
+     * @param licenseId License ID of a referee.
+     * @return Admitted user entity.
+     */
     public User admitReferee(String licenseId) {
         User user = getUserOrNull(licenseId);
         if (user == null) return null;
@@ -255,24 +261,22 @@ public class UserService {
     }
 
     /**
-     * Checks if the user who wants to change some data doesn't use the same nickname as another user
+     * Checks if the user who wants to change some data doesn't use the same nickname as another user.
      *
-     * @param licenceId Licence id of the competitor
-     * @param nickname  Nickname that the user wants to use
-     * @return True if the nickname is already used by another user
+     * @param licenseId License id of the competitor.
+     * @param nickname  Nickname that the user wants to use.
+     * @return True if the nickname is already used by another user.
      */
-    public boolean matchingLicenseAndNickname(String licenceId, String nickname) {
+    public boolean matchingLicenseAndNickname(String licenseId, String nickname) {
         User user;
         User user2;
-        Optional<User> userOpt = userRepository.findById(licenceId);
+        Optional<User> userOpt = userRepository.findById(licenseId);
         Optional<User> userOpt2 = userRepository.findByNickname(nickname);
         if (userOpt.isPresent()) {
             if (userOpt2.isPresent()) {
                 user = userOpt.get();
                 user2 = userOpt2.get();
-                if (!user.getLicenseId().equals(user2.getLicenseId())) {
-                    return true;
-                }
+                return !user.getLicenseId().equals(user2.getLicenseId());
             }
         }
         return false;
@@ -283,7 +287,7 @@ public class UserService {
      *
      * @param licenseId License id of the competitor that the user wants to use
      * @param nickname  Nickname that the user wants to use
-     * @return
+     * @return 3 if every check was successful, 0 if no check was successful, 1 if nickname was not present but license ID was and 2 if nickname was present but license ID was not present.
      */
     public int matchingLicenseOrNickname(String licenseId, String nickname) {
         if (userRepository.findById(licenseId).isPresent())
@@ -305,20 +309,20 @@ public class UserService {
     /**
      * Creates a user attending to received parameters and then saves it into database.
      *
-     * @param name
-     * @param surname
-     * @param gender
-     * @param phone
-     * @param email
-     * @param birthDate
-     * @param dni
-     * @param licenseId
-     * @param nickname
-     * @param belt
-     * @param role
-     * @param gym
-     * @param weight
-     * @param refereeRange
+     * @param name Name.
+     * @param surname Surname
+     * @param gender Gender.
+     * @param phone Phone.
+     * @param email Email.
+     * @param birthDate Birth date.
+     * @param dni DNI.
+     * @param licenseId License ID.
+     * @param nickname Nickname.
+     * @param belt Belt.
+     * @param role Role.
+     * @param gym Gym.
+     * @param weight Weight.
+     * @param refereeRange Referee range.
      * @return User object that was saved.
      */
     public User save(String name, String surname, String gender, String phone, String email, String birthDate, String dni, String licenseId, String nickname, String password, String securityQuestion, String securityAnswer, MultipartFile image, String belt, Role role, String gym, Integer weight, String refereeRange) {
