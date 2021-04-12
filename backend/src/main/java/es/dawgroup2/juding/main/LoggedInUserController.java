@@ -1,7 +1,6 @@
 package es.dawgroup2.juding.main;
 
 import es.dawgroup2.juding.auxTypes.belts.BeltService;
-import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.auxTypes.roles.Role;
 import es.dawgroup2.juding.competitions.CompetitionService;
@@ -137,7 +136,7 @@ public class LoggedInUserController {
                               HttpServletRequest request) throws IOException {
         User user = null;
         if (userService.findByNickname(request.getUserPrincipal().getName()).getLicenseId().equals(licenseId))
-            user = userService.save(null, null, null, phone, email, null, null, licenseId, nickname, null, null, null, image, beltSelector, gym, weight, refereeRange);
+            user = userService.save(null, null, null, phone, email, null, null, licenseId, nickname, null, null, null, image, beltSelector, null, gym, weight, refereeRange);
         if (user != null)
             return "redirect:/myProfile";
         else
