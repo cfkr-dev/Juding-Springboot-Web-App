@@ -17,7 +17,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -139,7 +138,7 @@ public class AdminUserAPIController {
     })
     @PostMapping("/")
     public ResponseEntity<User> savingUser(@Valid @Parameter(description = "Admin user edition Data Transfer Object.") @RequestBody AdminUserEditionDTO adminUserEditionDTO) {
-  if (userService.matchingLicenceAndNickname(adminUserEditionDTO.getLicenseId(), adminUserEditionDTO.getNickname())) {
+  if (userService.matchingLicenseAndNickname(adminUserEditionDTO.getLicenseId(), adminUserEditionDTO.getNickname())) {
             return ResponseEntity.badRequest().build();
         }
         User user = userService.save(adminUserEditionDTO.getName(),

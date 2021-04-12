@@ -18,7 +18,7 @@ public class CommonUserDTO {
     @Pattern(regexp = "JU-[0-9]{10}$|[0-9]{10}$")
     private final String licenseId;
     private final String nickname;
-    @Pattern(regexp = "B|BAm|Am|AmN|NV|V|VAz|Az|M|N[1-10]{0,2}")
+    @Pattern(regexp = "B|BAm|Am|AmN|NV|V|VAz|Az|AzM|M|N10|N[1-9]?")
     private final String belt;
 
     public CommonUserDTO(String name, String surname, String gender, String phone, String email, String birthDate, String dni, String licenseId, String nickname, String belt) {

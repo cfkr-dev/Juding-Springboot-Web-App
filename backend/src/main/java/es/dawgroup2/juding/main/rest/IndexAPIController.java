@@ -22,7 +22,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -139,27 +138,27 @@ public class IndexAPIController {
     })
     @PostMapping("/signUp/competitor")
     public ResponseEntity<User> signUpCompetitor(@Valid @Parameter(description = "Competitor Data Transfer Object.") @RequestBody CompetitorDTO competitorDTO) {
-        if (userService.matchingLicenceOrNickname(competitorDTO.getLicenseId(),competitorDTO.getNickname()) == 3){
-          User user = userService.save(competitorDTO.getName(),
-                competitorDTO.getSurname(),
-                competitorDTO.getGender(),
-                competitorDTO.getPhone(),
-                competitorDTO.getEmail(),
-                competitorDTO.getBirthDate(),
-                competitorDTO.getDni(),
-                competitorDTO.getLicenseId(),
-                competitorDTO.getNickname(),
-                competitorDTO.getPassword(),
-                competitorDTO.getSecurityQuestion(),
-                competitorDTO.getSecurityAnswer(),
-                null,
-                competitorDTO.getBelt(),
-                Role.C,
-                competitorDTO.getGym(),
-                competitorDTO.getWeight(),
-                null);
-          if (user != null)
-          return ResponseEntity.created(fromCurrentRequest().path("/api/me/myProfile").buildAndExpand(user.getLicenseId()).toUri()).body(user);
+        if (userService.matchingLicenseOrNickname(competitorDTO.getLicenseId(), competitorDTO.getNickname()) == 3) {
+            User user = userService.save(competitorDTO.getName(),
+                    competitorDTO.getSurname(),
+                    competitorDTO.getGender(),
+                    competitorDTO.getPhone(),
+                    competitorDTO.getEmail(),
+                    competitorDTO.getBirthDate(),
+                    competitorDTO.getDni(),
+                    competitorDTO.getLicenseId(),
+                    competitorDTO.getNickname(),
+                    competitorDTO.getPassword(),
+                    competitorDTO.getSecurityQuestion(),
+                    competitorDTO.getSecurityAnswer(),
+                    null,
+                    competitorDTO.getBelt(),
+                    Role.C,
+                    competitorDTO.getGym(),
+                    competitorDTO.getWeight(),
+                    null);
+            if (user != null)
+                return ResponseEntity.created(fromCurrentRequest().path("/api/me/myProfile").buildAndExpand(user.getLicenseId()).toUri()).body(user);
         }
         return ResponseEntity.badRequest().build();
     }
@@ -180,30 +179,28 @@ public class IndexAPIController {
     })
     @PostMapping("/signUp/referee")
     public ResponseEntity<User> signUpReferee(@Valid @Parameter(description = "Referee Data Transfer Object.") @RequestBody RefereeDTO refereeDTO) {
-if (userService.matchingLicenceOrNickname(refereeDTO.getLicenseId(),refereeDTO.getNickname()) == 3){
-            
-        User user = userService.save(refereeDTO.getName(),
-                refereeDTO.getSurname(),
-                refereeDTO.getGender(),
-                refereeDTO.getPhone(),
-                refereeDTO.getEmail(),
-                refereeDTO.getBirthDate(),
-                refereeDTO.getDni(),
-                refereeDTO.getLicenseId(),
-                refereeDTO.getNickname(),
-                refereeDTO.getPassword(),
-                refereeDTO.getSecurityQuestion(),
-                refereeDTO.getSecurityAnswer(),
-                null,
-                refereeDTO.getBelt(),
-                Role.R,
-                null,
-                null,
-                RefereeRange.S.name());
-  if (user != null)
-    return ResponseEntity.created(fromCurrentRequest().path("/api/me/myProfile").buildAndExpand(user.getLicenseId()).toUri()).body(user);
+        if (userService.matchingLicenseOrNickname(refereeDTO.getLicenseId(), refereeDTO.getNickname()) == 3) {
+            User user = userService.save(refereeDTO.getName(),
+                    refereeDTO.getSurname(),
+                    refereeDTO.getGender(),
+                    refereeDTO.getPhone(),
+                    refereeDTO.getEmail(),
+                    refereeDTO.getBirthDate(),
+                    refereeDTO.getDni(),
+                    refereeDTO.getLicenseId(),
+                    refereeDTO.getNickname(),
+                    refereeDTO.getPassword(),
+                    refereeDTO.getSecurityQuestion(),
+                    refereeDTO.getSecurityAnswer(),
+                    null,
+                    refereeDTO.getBelt(),
+                    Role.R,
+                    null,
+                    null,
+                    RefereeRange.S.name());
+            if (user != null)
+                return ResponseEntity.created(fromCurrentRequest().path("/api/me/myProfile").buildAndExpand(user.getLicenseId()).toUri()).body(user);
         }
-}
         return ResponseEntity.badRequest().build();
     }
 }

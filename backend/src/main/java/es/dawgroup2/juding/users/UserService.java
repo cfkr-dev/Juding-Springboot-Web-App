@@ -261,7 +261,7 @@ public class UserService {
      * @param nickname  Nickname that the user wants to use
      * @return True if the nickname is already used by another user
      */
-    public boolean matchingLicenceAndNickname(String licenceId, String nickname) {
+    public boolean matchingLicenseAndNickname(String licenceId, String nickname) {
         User user;
         User user2;
         Optional<User> userOpt = userRepository.findById(licenceId);
@@ -285,7 +285,7 @@ public class UserService {
      * @param nickname  Nickname that the user wants to use
      * @return
      */
-    public int matchingLicenceOrNickname(String licenseId, String nickname) {
+    public int matchingLicenseOrNickname(String licenseId, String nickname) {
         if (userRepository.findById(licenseId).isPresent())
             return (userRepository.findByNickname(nickname).isPresent()) ? 0 : 1;
         else

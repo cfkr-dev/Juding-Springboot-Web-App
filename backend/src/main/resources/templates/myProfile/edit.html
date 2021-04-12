@@ -3,14 +3,16 @@
     <span class="profileModificationsTitle">
         Modifica tus datos
     </span>
-    <form action="/myProfile/edit" class="needs-validation flex-sb flex-w juding-form-user-update" method="post" enctype="multipart/form-data" novalidate>
+    <form action="/myProfile/edit" class="needs-validation flex-sb flex-w" method="post" enctype="multipart/form-data" novalidate>
         <input type="hidden" name="_csrf" value="{{token}}"/>
-        <input type="hidden" name="licenseId" id="licenceId" value="{{ user.licenseId }}">
+        <input type="hidden" name="licenseId" id="licenseId" value="{{ user.licenseId }}">
         <div class="px-2">
             <h3 class="h3">Información para competición</h3>
             <div class="responsiveTable">
                 <div class="rtRow">
-                    <div class="width40"><label for="beltSelector">Cinturón</label></div>
+                    <div class="width40">
+                        <label for="beltSelector">Cinturón</label>
+                    </div>
                     <div class="width60">
                         <div class="beltSelector">
                             <select class="form-select" id="beltSelector" name="beltSelector" required>
@@ -35,9 +37,9 @@
                     <div class="width40"><label for="weight">Peso</label></div>
                     <div class="width60">
                         <input class="form-control" id="weight" name="weight" pattern="^[1-9][0-9]+$" required
-                               type="number" value="{{ user.weight }}">
+                               type="number" value="{{ user.weight }}" min="0">
                         <div class="invalid-feedback">
-                            El peso no puede estar vacío.
+                            El peso es obligatorio y debe ser un valor numérico positivo.
                         </div>
                     </div>
                 </div>
@@ -65,13 +67,9 @@
                     <div class="width40"><label for="nickname">Apodo</label></div>
                     <div class="width60">
                         <input class="form-control" id="nickname" name="nickname" required type="text"
-                               value="{{ user.nickname }}">
-                        <div class="invalid-feedback">
-                            El apodo no puede estar vacío.
-                        </div>
+                               value="{{ user.nickname }}" readonly>
                     </div>
                 </div>
-                <div id="nicknameFeedback"></div>
                 <div class="rtRow">
                     <div class="width40"><label for="phone">Teléfono</label></div>
                     <div class="width60">
@@ -116,6 +114,6 @@
 
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>
-<script src="/assets/js/formControl.js"></script>
+<script src="/assets/js/validationScript.js"></script>
 </body>
 </html>

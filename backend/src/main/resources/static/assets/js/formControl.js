@@ -45,9 +45,7 @@ $(function () {
 
     $(".juding-form-competition-update").on("submit", function (evt) {
         evt.preventDefault();
-        alert("llega")
         if ($(this)[0].checkValidity()) {
-            alert("ojo")
             $.ajax({
                 data: {
                     "startDate": $("#startDate").val(),
@@ -58,7 +56,6 @@ $(function () {
                 url: "/api/formCheck/checkingUpdatedCompetition",
                 method: "get"
             }).done((ans) => {
-                alert(ans)
                 if (ans === 3) {
                     $(this).unbind().submit();
                 } else {

@@ -1,16 +1,12 @@
 package es.dawgroup2.juding.main;
 
-import es.dawgroup2.juding.auxTypes.roles.Role;
 import es.dawgroup2.juding.competitions.CompetitionService;
-import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/formCheck")
@@ -31,18 +27,18 @@ public class FormValidationController {
      */
     @GetMapping("/signup")
     public int signUp(@RequestParam String licenseId, @RequestParam String nickname) {
-        return userService.matchingLicenceOrNickname(licenseId, nickname);
+        return userService.matchingLicenseOrNickname(licenseId, nickname);
     }
 
     /**
      * Checks if the data introduced by the user are not duplicated in the database
-     * @param licenceId Id of the user
+     * @param licenseId Id of the user
      * @param nickname Nickname of the user
      * @return An integer depending on the use case
      */
     @GetMapping("/update")
-    public boolean update(@RequestParam String licenceId, @RequestParam String nickname) {
-        return userService.matchingLicenceAndNickname(licenceId, nickname);
+    public boolean update(@RequestParam String licenseId, @RequestParam String nickname) {
+        return userService.matchingLicenseAndNickname(licenseId, nickname);
     }
 
     /**

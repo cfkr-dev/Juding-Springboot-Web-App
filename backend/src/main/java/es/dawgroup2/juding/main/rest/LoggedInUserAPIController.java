@@ -18,14 +18,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -178,9 +175,6 @@ public class LoggedInUserAPIController {
     public ResponseEntity<User> editingUser(@Valid @Parameter(description = "User profile Data Transfer Object.") @RequestBody UserProfileDTO userProfileDTO,
                                             @Parameter(description = "HTTP Servlet Request (for catching logged in user nickname).") HttpServletRequest request) {
         User user = null;
-        if (userService.matchingLicenceAndNickname(userProfileDTO.getLicenseId(),userProfileDTO.getNickname())){
-            return ResponseEntity.badRequest().build();
-        }
         if (userService.findByNickname(request.getUserPrincipal().getName()).getLicenseId().equals(userProfileDTO.getLicenseId()))
             try {
                 user = userService.save(null,

@@ -4,6 +4,7 @@ import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.auxTypes.gender.GenderService;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
+import es.dawgroup2.juding.auxTypes.roles.Role;
 import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.posts.Post;
 import es.dawgroup2.juding.posts.PostService;
@@ -159,7 +160,7 @@ public class IndexController {
                                    @RequestParam String belt,
                                    @RequestParam String gym,
                                    @RequestParam Integer weight) {
-        if (userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, password, securityQuestion, securityAnswer, image, belt, null, gym, weight, null) != null)
+        if (userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, password, securityQuestion, securityAnswer, image, belt, Role.C, gym, weight, null) != null)
             return "redirect:/login";
         else
             return "redirect:/error/500";
@@ -199,7 +200,7 @@ public class IndexController {
                                 @RequestParam String securityAnswer,
                                 MultipartFile image,
                                 @RequestParam String belt) {
-        if (userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, password, securityQuestion, securityAnswer, image, belt, null, null, null, RefereeRange.S.name()) != null)
+        if (userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, password, securityQuestion, securityAnswer, image, belt, Role.R, null, null, RefereeRange.S.name()) != null)
             return "redirect:/login";
         else
             return "redirect:/error/500";
