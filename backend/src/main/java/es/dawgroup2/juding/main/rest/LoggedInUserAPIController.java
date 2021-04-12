@@ -185,7 +185,7 @@ public class LoggedInUserAPIController {
                         null,
                         null,
                         userProfileDTO.getLicenseId(),
-                        userProfileDTO.getNickname(),
+                        null,
                         null,
                         null,
                         null,

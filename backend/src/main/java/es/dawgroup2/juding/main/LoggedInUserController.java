@@ -134,7 +134,7 @@ public class LoggedInUserController {
                               HttpServletRequest request) throws IOException {
         User user = null;
         if (userService.findByNickname(request.getUserPrincipal().getName()).getLicenseId().equals(licenseId))
-            user = userService.save(null, null, null, phone, email, null, null, licenseId, null, null, null, null, image, beltSelector, gym, weight, refereeRange);
+            user = userService.save(null, null, null, phone, email, null, null, licenseId, null, null, null, null, image, beltSelector, null, gym, weight, refereeRange);
         if (user != null)
             return "redirect:/myProfile";
         else
