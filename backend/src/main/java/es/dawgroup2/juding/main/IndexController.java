@@ -4,11 +4,9 @@ import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.auxTypes.gender.GenderService;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
-import es.dawgroup2.juding.auxTypes.roles.Role;
 import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.posts.Post;
 import es.dawgroup2.juding.posts.PostService;
-import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,8 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.Set;
 
 @Controller
 public class IndexController {
@@ -163,7 +159,7 @@ public class IndexController {
                                    @RequestParam String belt,
                                    @RequestParam String gym,
                                    @RequestParam Integer weight) {
-        if (userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, password, securityQuestion, securityAnswer, image, belt, gym, weight, null) != null)
+        if (userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, password, securityQuestion, securityAnswer, image, belt, null, gym, weight, null) != null)
             return "redirect:/login";
         else
             return "redirect:/error/500";
@@ -203,7 +199,7 @@ public class IndexController {
                                 @RequestParam String securityAnswer,
                                 MultipartFile image,
                                 @RequestParam String belt) {
-        if (userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, password, securityQuestion, securityAnswer, image, belt, null, null, RefereeRange.S.name()) != null)
+        if (userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, password, securityQuestion, securityAnswer, image, belt, null, null, null, RefereeRange.S.name()) != null)
             return "redirect:/login";
         else
             return "redirect:/error/500";

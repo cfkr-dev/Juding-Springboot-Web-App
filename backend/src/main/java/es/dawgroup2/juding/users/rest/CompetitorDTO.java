@@ -5,7 +5,7 @@ public class CompetitorDTO extends RefereeDTO{
     private final String weight;
 
     public CompetitorDTO(String name, String surname, String gender, String phone, String email, String birthDate, String dni, String licenseId, String nickname, String password, String securityQuestion, String securityAnswer, String belt, String gym, String weight) {
-        super(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, password, securityQuestion, securityAnswer, belt);
+        super(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, belt, password, securityQuestion, securityAnswer);
         this.gym = gym;
         this.weight = weight;
     }
