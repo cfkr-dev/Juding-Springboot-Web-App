@@ -11,11 +11,13 @@ import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -83,8 +85,11 @@ public class LoggedInUserAPIController {
     }
 
     @PutMapping("/me/myProfile")
-    public ResponseEntity<User> editingUser(@RequestBody UserProfileDTO userProfileDTO, HttpServletRequest request) {
+    public ResponseEntity<User> editingUser(@Valid @RequestBody UserProfileDTO userProfileDTO, HttpServletRequest request) {
         User user = null;
+        if (userService.matchingLicenceAndNickname(userProfileDTO.getLicenseId(),userProfileDTO.getNickname())){
+            return ResponseEntity.badRequest().build();
+        }
         if (userService.findByNickname(request.getUserPrincipal().getName()).getLicenseId().equals(userProfileDTO.getLicenseId()))
             try {
                 user = userService.save(null,

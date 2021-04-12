@@ -1,12 +1,16 @@
 package es.dawgroup2.juding.competitions.rest;
 
+import javax.validation.constraints.Pattern;
+
 public class CompetitionDTO {
     private final String idCompetition;
     private final String shortName;
     private final String additionalInfo;
     private final String minWeight;
     private final String maxWeight;
+    @Pattern(regexp = "^([0-2][0-9]|3[0-1])/(0[0-9]|1[0-2])/([0-9][0-9])?[0-9][0-9] [012]?[0-9]:[0-5][0-9]$")
     private final String startDate;
+    @Pattern(regexp = "^([0-2][0-9]|3[0-1])/(0[0-9]|1[0-2])/([0-9][0-9])?[0-9][0-9] [012]?[0-9]:[0-5][0-9]$")
     private final String endDate;
     private final String referee;
 

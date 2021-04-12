@@ -255,6 +255,44 @@ public class UserService {
     }
 
     /**
+     * Checks if the user who wants to change some data doesn't use the same nickname as another user
+     *
+     * @param licenceId Licence id of the competitor
+     * @param nickname  Nickname that the user wants to use
+     * @return True if the nickname is already used by another user
+     */
+    public boolean matchingLicenceAndNickname(String licenceId, String nickname) {
+        User user;
+        User user2;
+        Optional<User> userOpt = userRepository.findById(licenceId);
+        Optional<User> userOpt2 = userRepository.findByNickname(nickname);
+        if (userOpt.isPresent()) {
+            if (userOpt2.isPresent()) {
+                user = userOpt.get();
+                user2 = userOpt2.get();
+                if (!user.getLicenseId().equals(user2.getLicenseId())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the new user who wants to create his profile doesn't use the same licence id, the nickname or the Dni as another user
+     *
+     * @param licenseId License id of the competitor that the user wants to use
+     * @param nickname  Nickname that the user wants to use
+     * @return
+     */
+    public int matchingLicenceOrNickname(String licenseId, String nickname) {
+        if (userRepository.findById(licenseId).isPresent())
+            return (userRepository.findByNickname(nickname).isPresent()) ? 0 : 1;
+        else
+            return (userRepository.findByNickname(nickname).isPresent()) ? 2 : 3;
+    }
+
+    /**
      * Saving user into repository.
      *
      * @param user User.
@@ -314,12 +352,10 @@ public class UserService {
         if (securityQuestion != null && !securityQuestion.isBlank()) user.setSecurityQuestion(securityQuestion);
         if (securityAnswer != null && !securityAnswer.isBlank()) user.setSecurityAnswer(securityAnswer);
         if (belt != null && !belt.isBlank()) user.setBelt(beltService.findBeltById(belt));
-        if (user.isRole(Role.C)) {
-            if (gym != null && !gym.isBlank()) user.setGym(gym);
-            if (weight != null) user.setWeight(weight);
-        } else if (user.isRole(Role.R)) {
-            if (refereeRange != null && !refereeRange.isBlank()) user.setRefereeRange(refereeRangeService.findRefereeRangeById(refereeRange));
-        }
+        if (gym != null && !gym.isBlank()) user.setGym(gym);
+        if (weight != null) user.setWeight(weight);
+        if (refereeRange != null && !refereeRange.isBlank())
+            user.setRefereeRange(refereeRangeService.findRefereeRangeById(refereeRange));
         return userRepository.save(user);
     }
 

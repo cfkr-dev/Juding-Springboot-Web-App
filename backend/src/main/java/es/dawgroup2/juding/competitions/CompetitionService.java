@@ -9,11 +9,10 @@ import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.text.ParseException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -126,15 +125,69 @@ public class CompetitionService {
     }
 
     /**
+     * Checks if the minWeight and maxWeight are correctly introduced
+     *
+     * @param minWeight MinWeight introduced
+     * @param maxWeight MaxWeight introduced
+     * @return Returns true if the minWeight and maxWeight are not correctly introduced
+     */
+    public boolean checkingMinAndMaxWeight(String minWeight, String maxWeight) {
+        if (Integer.parseInt(minWeight) > Integer.parseInt(maxWeight) || Integer.parseInt(minWeight) < 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the dates are correctly introduced
+     *
+     * @param startDate StartDate introduced
+     * @param endDate   EndDate introduced
+     * @return Return true if the dates are not correctly introduced
+     */
+    public boolean checkingDates(String startDate, String endDate) {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Timestamp actualDate = Timestamp.valueOf(localDateTime);
+        try {
+            Timestamp startDateT = dateService.stringToTimestamp(startDate);
+            Timestamp endDateT = dateService.stringToTimestamp(endDate);
+            if (actualDate.compareTo(startDateT) < 0 && startDateT.compareTo(endDateT) <= 0) {
+                return true;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the dates are correctly introduced
+     *
+     * @param startDate StartDate introduced
+     * @param endDate   EndDate introduced
+     * @return Return true if the dates are not correctly introduced
+     */
+    public boolean checkingDatesAlt(String startDate, String endDate) {
+        try {
+            Timestamp startDateT = dateService.stringToTimestamp(startDate);
+            Timestamp endDateT = dateService.stringToTimestamp(endDate);
+            return startDateT.compareTo(endDateT) <= 0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
      * If competition did not exist previously creates a new competition, else updates it with the new parameters
-     * @param idCompetition Id of the competition
-     * @param shortName  The short name of the competition
+     *
+     * @param idCompetition  Id of the competition
+     * @param shortName      The short name of the competition
      * @param additionalInfo Info about the competition
-     * @param minWeight The minimum weight allowed in a competition
-     * @param maxWeight The maximum weight allowed in a competition
-     * @param startDate The start date of a competition
-     * @param endDate The end date of a competition
-     * @param referee The license of the referee in charge of the competition
+     * @param minWeight      The minimum weight allowed in a competition
+     * @param maxWeight      The maximum weight allowed in a competition
+     * @param startDate      The start date of a competition
+     * @param endDate        The end date of a competition
+     * @param referee        The license of the referee in charge of the competition
      * @return The saved competition
      */
     public Competition save(String idCompetition, String shortName, String additionalInfo, int minWeight, int maxWeight, String startDate, String endDate, String referee) {
@@ -148,7 +201,7 @@ public class CompetitionService {
                     .setStartDate(dateService.stringToTimestamp(startDate))
                     .setEndDate(dateService.stringToTimestamp(endDate))
                     .setReferee(userService.getUserOrNull(referee));
-        } catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
         if (competition.getIdCompetition() == 0) {
@@ -174,10 +227,11 @@ public class CompetitionService {
     }
 
     /**
-     *  Creates all the necessary fights of a new competition
+     * Creates all the necessary fights of a new competition
+     *
      * @param competition A competition
      */
-    private void generateNewFights(Competition competition){
+    private void generateNewFights(Competition competition) {
         List<Fight> fights = new ArrayList<>();
 
         // STEP 1: Generating new fights from root to leaves (final fight to 8th-fights)

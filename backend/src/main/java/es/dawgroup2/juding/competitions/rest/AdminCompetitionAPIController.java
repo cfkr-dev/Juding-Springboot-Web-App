@@ -8,9 +8,11 @@ import es.dawgroup2.juding.main.HeaderInflater;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -61,9 +63,15 @@ public class AdminCompetitionAPIController {
      * @return Response Entity with the competition or bad request
      */
     @PostMapping("/new")
-    public ResponseEntity<Competition> addCompetition(@RequestBody CompetitionDTO competitionDTO) {
+    public ResponseEntity<Competition> addCompetition(@Valid @RequestBody CompetitionDTO competitionDTO) {
         Competition competition;
         try {
+            if (competitionService.checkingMinAndMaxWeight(competitionDTO.getMinWeight(), competitionDTO.getMaxWeight())) {
+                return ResponseEntity.badRequest().build();
+            }
+            if (!competitionService.checkingDates(competitionDTO.getStartDate(), competitionDTO.getEndDate())) {
+                return ResponseEntity.badRequest().build();
+            }
             competition = competitionService.save(null,
                     competitionDTO.getShortName(),
                     competitionDTO.getAdditionalInfo(),
@@ -86,9 +94,15 @@ public class AdminCompetitionAPIController {
      * @return Response Entity with the competition or bad request
      */
     @PutMapping("/edit")
-    public ResponseEntity<Competition> updatingCompetitionInfo(@RequestBody CompetitionDTO competitionDTO) {
+    public ResponseEntity<Competition> updatingCompetitionInfo(@Valid @RequestBody CompetitionDTO competitionDTO) {
         Competition competition;
         try {
+            if (competitionService.checkingMinAndMaxWeight(competitionDTO.getMinWeight(), competitionDTO.getMaxWeight())) {
+                return ResponseEntity.badRequest().build();
+            }
+            if (!competitionService.checkingDatesAlt(competitionDTO.getStartDate(), competitionDTO.getEndDate())) {
+                return ResponseEntity.badRequest().build();
+            }
             competition = competitionService.save(competitionDTO.getIdCompetition(),
                     competitionDTO.getShortName(),
                     competitionDTO.getAdditionalInfo(),

@@ -15,6 +15,7 @@ import es.dawgroup2.juding.users.UserService;
 import es.dawgroup2.juding.users.rest.CompetitorDTO;
 import es.dawgroup2.juding.users.rest.RefereeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
@@ -78,7 +80,10 @@ public class IndexAPIController {
     }
 
     @PostMapping("/signUp/competitor")
-    public ResponseEntity<User> signUpCompetitor(@RequestBody CompetitorDTO competitorDTO) {
+    public ResponseEntity<User> signUpCompetitor(@Valid @RequestBody CompetitorDTO competitorDTO) {
+        if (userService.matchingLicenceOrNickname(competitorDTO.getLicenseId(),competitorDTO.getNickname()) != 3){
+            return ResponseEntity.badRequest().build();
+        }
         User user = userService.save(competitorDTO.getName(),
                 competitorDTO.getSurname(),
                 competitorDTO.getGender(),
@@ -100,7 +105,10 @@ public class IndexAPIController {
     }
 
     @PostMapping("/signUp/referee")
-    public ResponseEntity<User> signUpReferee(@RequestBody RefereeDTO refereeDTO) {
+    public ResponseEntity<User> signUpReferee(@Valid @RequestBody RefereeDTO refereeDTO) {
+        if (userService.matchingLicenceOrNickname(refereeDTO.getLicenseId(),refereeDTO.getNickname()) != 3){
+            return ResponseEntity.badRequest().build();
+        }
         User user = userService.save(refereeDTO.getName(),
                 refereeDTO.getSurname(),
                 refereeDTO.getGender(),
