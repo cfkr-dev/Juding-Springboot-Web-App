@@ -7,6 +7,7 @@ import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.auxTypes.roles.Role;
 import es.dawgroup2.juding.main.DateService;
 import es.dawgroup2.juding.main.image.ImageService;
+import es.dawgroup2.juding.main.rest.RankingDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.internet.MimeMessage;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -187,12 +189,16 @@ public class UserService {
     }
 
     /**
-     * Retrieves the ranking with its necessary fields and in descendant order
+     * Retrieves the ranking with its necessary fields and in descendant order.
      *
-     * @return Returns ranking in a Object[] list.
+     * @return Returns ranking using {@link RankingDTO Ranking Data Transfer Object}.
      */
-    public List<?> getRanking() {
-        return userRepository.getRanking();
+    public List<RankingDTO> getRanking() {
+        List<RankingDTO> out = new ArrayList<>();
+        List<?> list = userRepository.getRanking();
+        for (Object o : list)
+            out.add(new RankingDTO((Object[]) o));
+        return out;
     }
 
     /**
@@ -309,19 +315,19 @@ public class UserService {
     /**
      * Creates a user attending to received parameters and then saves it into database.
      *
-     * @param name Name.
-     * @param surname Surname
-     * @param gender Gender.
-     * @param phone Phone.
-     * @param email Email.
-     * @param birthDate Birth date.
-     * @param dni DNI.
-     * @param licenseId License ID.
-     * @param nickname Nickname.
-     * @param belt Belt.
-     * @param role Role.
-     * @param gym Gym.
-     * @param weight Weight.
+     * @param name         Name.
+     * @param surname      Surname
+     * @param gender       Gender.
+     * @param phone        Phone.
+     * @param email        Email.
+     * @param birthDate    Birth date.
+     * @param dni          DNI.
+     * @param licenseId    License ID.
+     * @param nickname     Nickname.
+     * @param belt         Belt.
+     * @param role         Role.
+     * @param gym          Gym.
+     * @param weight       Weight.
      * @param refereeRange Referee range.
      * @return User object that was saved.
      */
@@ -359,7 +365,8 @@ public class UserService {
         if (belt != null && !belt.isBlank()) user.setBelt(beltService.findBeltById(belt));
         if (gym != null && !gym.isBlank()) user.setGym(gym);
         if (weight != null) user.setWeight(weight);
-        if (refereeRange != null && !refereeRange.isBlank()) user.setRefereeRange(refereeRangeService.findRefereeRangeById(refereeRange));
+        if (refereeRange != null && !refereeRange.isBlank())
+            user.setRefereeRange(refereeRangeService.findRefereeRangeById(refereeRange));
         return userRepository.save(user);
     }
 

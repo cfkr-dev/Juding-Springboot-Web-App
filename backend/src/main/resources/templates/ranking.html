@@ -13,12 +13,12 @@
         {{ #list }}
         <div class="rtRow">
             <div class="width5 text-center">{{ -index }}</div>
-            <div class="width30 nameModal">{{ 0 }}</div>
+            <div class="width30 nameModal">{{ nickname }}</div>
             <div class="width20 text-center">
-                <i class="fas fa-user-ninja beltStyle {{ 7 }}"></i>
+                <i class="fas fa-user-ninja beltStyle {{ belt }}"></i>
             </div>
-            <div class="width15 text-center">{{ 2 }}</div>
-            <div class="width15 text-center">{{ 1 }}</div>
+            <div class="width15 text-center">{{ num }}</div>
+            <div class="width15 text-center">{{ sum }}</div>
             <div class="width5 text-center">
                 <button class="btn btn-sm btn-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
                     <i class="fas fa-plus-circle"></i>
@@ -26,22 +26,22 @@
             </div>
             <div class="viewMore" style="display: none">
                 <div class="col-md-4">
-                    <img alt="avatar" class="avatar" src="/image/user/{{ 3 }}">
+                    <img alt="avatar" class="avatar" src="/image/user/{{ licenseId }}">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-10">
-                                <h5 class="card-title">{{ 0 }}</h5>
+                                <h5 class="card-title">{{ nickname }}</h5>
                             </div>
                             <div class="col-2">
-                                <i class="fas fa-2x fa-user-ninja beltStyle {{ 7 }}"></i>
+                                <i class="fas fa-2x fa-user-ninja beltStyle {{ belt }}"></i>
                             </div>
                         </div>
                         <div class="card-text text-start">
-                            {{ 4 }} <strong>{{ 5 }}</strong><br>
-                            <strong>Licencia:</strong> {{ 3 }}.<br>
-                            <strong>DNI:</strong> {{ 6 }}.<br>
+                            {{ name }} <strong>{{ surname }}</strong><br>
+                            <strong>Licencia:</strong> {{ licenseId }}.<br>
+                            <strong>DNI:</strong> {{ dni }}.<br>
                         </div>
                     </div>
                 </div>

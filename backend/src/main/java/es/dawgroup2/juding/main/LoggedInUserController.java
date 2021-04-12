@@ -5,6 +5,7 @@ import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.auxTypes.roles.Role;
 import es.dawgroup2.juding.competitions.CompetitionService;
 import es.dawgroup2.juding.main.image.ImageService;
+import es.dawgroup2.juding.main.rest.RankingDTO;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -150,7 +151,7 @@ public class LoggedInUserController {
      */
     @GetMapping("/ranking")
     public String getRanking(HttpServletRequest request, Model model) {
-        List<?> rankingList = userService.getRanking();
+        List<RankingDTO> rankingList = userService.getRanking();
         model.addAllAttributes(headerInflater.getHeader("Ranking", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "profiles", "beltAssignations"))
                 .addAttribute("list", rankingList);
         return "/ranking";

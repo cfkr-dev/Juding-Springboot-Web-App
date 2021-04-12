@@ -210,12 +210,12 @@ public class LoggedInUserAPIController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "List of ranking.",
                     content = {@Content(mediaType = "application/json",
-                            array = @ArraySchema(schema = @Schema(implementation = Object.class)))}),
+                            array = @ArraySchema(schema = @Schema(implementation = RankingDTO.class)))}),
             @ApiResponse(responseCode = "403", description = "Not allowed (user is not logged in).",
                     content = @Content)
     })
     @GetMapping("/ranking")
-    public ResponseEntity<List<?>> getRanking() {
+    public ResponseEntity<List<RankingDTO>> getRanking() {
         return ResponseEntity.ok(userService.getRanking());
     }
 }
