@@ -1,6 +1,6 @@
 {{>header}}
 <div class="container pb-4">
-    <form action="/admin/user/edit/save" class="needs-validation flex-sb flex-w juding-form-user" method="post" novalidate
+    <form action="/admin/user/edit/save" class="needs-validation flex-sb flex-w juding-form-user-update" method="post" novalidate
           enctype="multipart/form-data">
 
         <input type="hidden" name="_csrf" value="{{token}}"/>
@@ -82,6 +82,7 @@
         <div class="invalid-feedback">
             El campo no puede estar vacío.
         </div>
+        <div id="nicknameFeedback"></div>
 
         <h3 class="h3">Información para competición</h3>
 
@@ -139,6 +140,5 @@
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/formControl.js"></script>
-<script src="/assets/js/validationScript.js"></script>
 </body>
 </html>

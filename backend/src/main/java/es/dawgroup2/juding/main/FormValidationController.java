@@ -1,68 +1,89 @@
 package es.dawgroup2.juding.main;
 
 import es.dawgroup2.juding.auxTypes.roles.Role;
+import es.dawgroup2.juding.competitions.CompetitionService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@RequestMapping("/api/formCheck")
 public class FormValidationController {
 
     @Autowired
     UserService userService;
 
+    @Autowired
+    CompetitionService competitionService;
+
+
     /**
-     * Checks if a License ID is already registered in database.
-     *
-     * @param licenseId License ID
-     * @param req HTTP Servlet Request (for matching license ID with current user ID if logged in).
-     * @return True if License ID is already registered, false otherwise
+     * Checks if the data introduced by the user are not duplicated in the database
+     * @param licenseId Id of the user
+     * @param nickname Nickname of the user
+     * @return An integer depending on the use case
      */
-    @GetMapping("/formCheck/licenseId")
-    public boolean checkSignUpLicenseId(@RequestParam String licenseId, HttpServletRequest req) {
-        if (req.getUserPrincipal() != null) {
-            User curUser = userService.findByNickname(req.getUserPrincipal().getName());
-            if (curUser.getLicenseId().equals(licenseId))
-                return true;
-        }
-        return !userService.userExists(licenseId);
+    @GetMapping("/signup")
+    public int signUp(@RequestParam String licenseId, @RequestParam String nickname) {
+        return userService.matchingLicenceOrNickname(licenseId, nickname);
     }
 
     /**
-     * Checks if a nickname is already registered in database.
-     *
-     * @param nickname Nickname
-     * @param req HTTP Servlet Request (for matching nickname with current user ID if logged in).
-     * @return True if nickname is already registered, false otherwise
+     * Checks if the data introduced by the user are not duplicated in the database
+     * @param licenceId Id of the user
+     * @param nickname Nickname of the user
+     * @return An integer depending on the use case
      */
-    @GetMapping("/formCheck/nickname")
-    public boolean checkSignUpNickname(@RequestParam String nickname, HttpServletRequest req) {
-        if (req.getUserPrincipal() != null) {
-            if (req.getUserPrincipal().getName().equals(nickname))
-                return true;
-        }
-        return !userService.userExistsByNickname(nickname);
+    @GetMapping("/update")
+    public boolean update(@RequestParam String licenceId, @RequestParam String nickname) {
+        return userService.matchingLicenceAndNickname(licenceId, nickname);
     }
 
     /**
-     * Checks if a DNI is already registered in the database for a determined role.
-     *
-     * @param dni DNI of a user.
-     * @param role Role for which check is requested.
-     * @return True if DNI is already registered for this role, false otherwise
+     * Checks if the values introduced by the user are correct
+     * @param startDate The start date of a competition
+     * @param endDate The end date of a competition
+     * @param minWeight MinWeight introduced
+     * @param maxWeight MaxWeight introduced
+     * @return An integer depending on the use case
      */
-    @GetMapping("/formCheck/dni")
-    public boolean checkSignUpDNI(@RequestParam String dni, @RequestParam String role) {
-        for (Role r : Role.values()) {
-            if (r.getLongName().equals(role)) {
-                return userService.checkSignUpValidityByDni(dni, r);
+    @GetMapping("/checkingNewCompetition")
+    public int checkingNewCompetition(@RequestParam String startDate, String endDate, String minWeight, String maxWeight) {
+        if (competitionService.checkingMinAndMaxWeight(minWeight, maxWeight)) {
+            if (!competitionService.checkingDates(startDate, endDate)) {
+                return 0;
+            } else {
+                return 1;
             }
+        } else {
+            return competitionService.checkingDates(startDate, endDate) ? 3 : 2;
         }
-        return false;
+    }
+
+    /**
+     * Checks if the values introduced by the user are correct
+     * @param startDate The start date of a competition
+     * @param endDate The end date of a competition
+     * @param minWeight MinWeight introduced
+     * @param maxWeight MaxWeight introduced
+     * @return An integer depending on the use case
+     */
+    @GetMapping("/checkingUpdatedCompetition")
+    public int checkingUpdatedCompetitionData(@RequestParam String startDate, String endDate, String minWeight, String maxWeight) {
+        if (competitionService.checkingMinAndMaxWeight(minWeight, maxWeight)) {
+            if (!competitionService.checkingDatesAlt(startDate, endDate)) {
+                return 0;
+            } else {
+                return 1;
+            }
+        } else {
+            return competitionService.checkingDatesAlt(startDate, endDate) ? 3 : 2;
+        }
     }
 }

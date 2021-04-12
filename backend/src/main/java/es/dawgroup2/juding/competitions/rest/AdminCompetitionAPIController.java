@@ -15,9 +15,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -84,9 +86,15 @@ public class AdminCompetitionAPIController {
                     content = @Content)
     })
     @PostMapping("/new")
-    public ResponseEntity<Competition> addCompetition(@Parameter(description = "Competition Data Transfer Object") @RequestBody CompetitionDTO competitionDTO) {
+    public ResponseEntity<Competition> addCompetition(@Valid @Parameter(description = "Competition Data Transfer Object") @RequestBody CompetitionDTO competitionDTO) {
         Competition competition;
         try {
+            if (competitionService.checkingMinAndMaxWeight(competitionDTO.getMinWeight(), competitionDTO.getMaxWeight())) {
+                return ResponseEntity.badRequest().build();
+            }
+            if (!competitionService.checkingDates(competitionDTO.getStartDate(), competitionDTO.getEndDate())) {
+                return ResponseEntity.badRequest().build();
+            }
             competition = competitionService.save(null,
                     competitionDTO.getShortName(),
                     competitionDTO.getAdditionalInfo(),
@@ -117,9 +125,15 @@ public class AdminCompetitionAPIController {
                     content = @Content)
     })
     @PutMapping("/edit")
-    public ResponseEntity<Competition> updatingCompetitionInfo(@Parameter(description = "Competition Data Transfer Object") @RequestBody CompetitionDTO competitionDTO) {
+    public ResponseEntity<Competition> updatingCompetitionInfo(@Valid @Parameter(description = "Competition Data Transfer Object") @RequestBody CompetitionDTO competitionDTO) {
         Competition competition;
         try {
+            if (competitionService.checkingMinAndMaxWeight(competitionDTO.getMinWeight(), competitionDTO.getMaxWeight())) {
+                return ResponseEntity.badRequest().build();
+            }
+            if (!competitionService.checkingDatesAlt(competitionDTO.getStartDate(), competitionDTO.getEndDate())) {
+                return ResponseEntity.badRequest().build();
+            }
             competition = competitionService.save(competitionDTO.getIdCompetition(),
                     competitionDTO.getShortName(),
                     competitionDTO.getAdditionalInfo(),

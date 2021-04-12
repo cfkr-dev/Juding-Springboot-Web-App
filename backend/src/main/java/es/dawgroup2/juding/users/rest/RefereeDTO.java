@@ -1,6 +1,9 @@
 package es.dawgroup2.juding.users.rest;
 
+import javax.validation.constraints.Pattern;
+
 public class RefereeDTO extends CommonUserDTO{
+    @Pattern(regexp = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")
     private final String password;
     private final String securityQuestion;
     private final String securityAnswer;

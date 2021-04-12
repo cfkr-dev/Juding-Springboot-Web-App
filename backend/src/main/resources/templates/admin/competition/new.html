@@ -1,6 +1,6 @@
 {{>header}}
 <div class="container pb-4">
-    <form action="/admin/competition/new" class="needs-validation flex-sb flex-w juding-form-competition" method="post"
+    <form action="/admin/competition/new" class="needs-validation flex-sb flex-w juding-form-competition-new" method="post"
           enctype="multipart/form-data"
           novalidate>
 
@@ -45,6 +45,7 @@
                 </div>
             </div>
         </div>
+        <div id="weightFeedback"></div>
 
         <!-- LicenseId of the referee -->
         <label class="txt1" for="referee">Número de licencia del árbitro encargado de la competición<span
@@ -79,6 +80,7 @@
                 </div>
             </div>
         </div>
+        <div id="dateFeedback"></div>
 
         <div class="container-login100-form-btn">
             <button class="btn btn-corporative" type="submit">Crear competición</button>
@@ -98,6 +100,5 @@
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/adminScreens.js"></script>
 <script src="/assets/js/formControl.js"></script>
-<script src="/assets/js/validationScript.js"></script>
 </body>
 </html>

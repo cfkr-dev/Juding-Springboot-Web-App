@@ -3,7 +3,7 @@
     <span class="profileModificationsTitle">
         Modifica tus datos
     </span>
-    <form action="/myProfile/edit" class="needs-validation flex-sb flex-w juding-form-user" method="post" enctype="multipart/form-data" novalidate>
+    <form action="/myProfile/edit" class="needs-validation flex-sb flex-w juding-form-user-update" method="post" enctype="multipart/form-data" novalidate>
         <input type="hidden" name="_csrf" value="{{token}}"/>
         <input type="hidden" name="licenseId" id="licenceId" value="{{ user.licenseId }}">
         <div class="px-2">
@@ -62,6 +62,17 @@
             <h3 class="h3">Mi información personal</h3>
             <div class="responsiveTable">
                 <div class="rtRow">
+                    <div class="width40"><label for="nickname">Apodo</label></div>
+                    <div class="width60">
+                        <input class="form-control" id="nickname" name="nickname" required type="text"
+                               value="{{ user.nickname }}">
+                        <div class="invalid-feedback">
+                            El apodo no puede estar vacío.
+                        </div>
+                    </div>
+                </div>
+                <div id="nicknameFeedback"></div>
+                <div class="rtRow">
                     <div class="width40"><label for="phone">Teléfono</label></div>
                     <div class="width60">
                         <input class="form-control" id="phone" name="phone" pattern="(?=.*\d).{9}" type="text"
@@ -106,6 +117,5 @@
 <!-- Own JS Files -->
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/formControl.js"></script>
-<script src="/assets/js/validationScript.js"></script>
 </body>
 </html>

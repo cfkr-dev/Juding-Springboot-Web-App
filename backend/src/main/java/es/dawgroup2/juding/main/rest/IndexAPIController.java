@@ -22,12 +22,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
@@ -136,8 +138,9 @@ public class IndexAPIController {
                     content = @Content)
     })
     @PostMapping("/signUp/competitor")
-    public ResponseEntity<User> signUpCompetitor(@Parameter(description = "Competitor Data Transfer Object.") @RequestBody CompetitorDTO competitorDTO) {
-        User user = userService.save(competitorDTO.getName(),
+    public ResponseEntity<User> signUpCompetitor(@Valid @Parameter(description = "Competitor Data Transfer Object.") @RequestBody CompetitorDTO competitorDTO) {
+        if (userService.matchingLicenceOrNickname(competitorDTO.getLicenseId(),competitorDTO.getNickname()) == 3){
+          User user = userService.save(competitorDTO.getName(),
                 competitorDTO.getSurname(),
                 competitorDTO.getGender(),
                 competitorDTO.getPhone(),
@@ -155,7 +158,10 @@ public class IndexAPIController {
                 competitorDTO.getGym(),
                 competitorDTO.getWeight(),
                 null);
-        return (user == null) ? ResponseEntity.badRequest().build() : ResponseEntity.created(fromCurrentRequest().path("/api/me/myProfile").buildAndExpand(user.getLicenseId()).toUri()).body(user);
+          if (user != null)
+          return ResponseEntity.created(fromCurrentRequest().path("/api/me/myProfile").buildAndExpand(user.getLicenseId()).toUri()).body(user);
+        }
+        return ResponseEntity.badRequest().build();
     }
 
     /**
@@ -173,7 +179,9 @@ public class IndexAPIController {
                     content = @Content)
     })
     @PostMapping("/signUp/referee")
-    public ResponseEntity<User> signUpReferee(@Parameter(description = "Referee Data Transfer Object.") @RequestBody RefereeDTO refereeDTO) {
+    public ResponseEntity<User> signUpReferee(@Valid @Parameter(description = "Referee Data Transfer Object.") @RequestBody RefereeDTO refereeDTO) {
+if (userService.matchingLicenceOrNickname(refereeDTO.getLicenseId(),refereeDTO.getNickname()) == 3){
+            
         User user = userService.save(refereeDTO.getName(),
                 refereeDTO.getSurname(),
                 refereeDTO.getGender(),
@@ -191,7 +199,11 @@ public class IndexAPIController {
                 Role.R,
                 null,
                 null,
-                "S");
-        return ResponseEntity.created(fromCurrentRequest().path("/api/me/myProfile").buildAndExpand(user.getLicenseId()).toUri()).body(user);
+                RefereeRange.S.name());
+  if (user != null)
+    return ResponseEntity.created(fromCurrentRequest().path("/api/me/myProfile").buildAndExpand(user.getLicenseId()).toUri()).body(user);
+        }
+}
+        return ResponseEntity.badRequest().build();
     }
 }

@@ -42,7 +42,7 @@
         <!-- Passwords field -->
         <label class="txt1" for="password">Nueva contraseña <span class="asterisk">*</span></label>
         <div class="input-group">
-            <input class="form-control form-control-lg" id="password" name="password" required type="password">
+            <input class="form-control form-control-lg" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required type="password">
             <span class="input-group-text" id="showPassword"><i class="far fa-eye-slash"></i></span>
             <div class="invalid-feedback">
                 Es obligatorio introducir la contraseña para continuar.
