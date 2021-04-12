@@ -1,107 +1,11 @@
-function licenseIdControl() {
-    if ($("#licenseId")[0].checkValidity()) {
-        $.ajax({
-            data: {"licenseId": $("#licenseId").val()},
-            url: "/formCheck/licenseId",
-            method: 'get'
-        }).done(function (ans) {
-            $("#licenseIdBanner").remove();
-            if (ans) {
-                $("#licenseId").after('<div class="alert alert-success mt-1" id="licenseIdBanner">Este número de licencia se puede utilizar</div>');
-                return true;
-            } else {
-                $("#licenseId").after('<div class="alert alert-danger mt-1" id="licenseIdBanner">Este número de licencia no se puede utilizar</div>');
-            }
-        });
-    } else {
-        $("#licenseIdBanner").remove();
-    }
-    return false;
-}
-
-function nicknameControl() {
-    if ($("#nickname")[0].checkValidity()) {
-        $.ajax({
-            data: {"nickname": $("#nickname").val()},
-            url: "/formCheck/nickname",
-            method: 'get'
-        }).done(function (ans) {
-            $("#nicknameBanner").remove();
-            if (ans) {
-                $("#nickname").after('<div class="alert alert-success mt-1" id="nicknameBanner">Este apodo se puede utilizar</div>');
-                return true;
-            } else {
-                $("#nickname").after('<div class="alert alert-danger mt-1" id="nicknameBanner">Este apodo no se puede utilizar</div>');
-            }
-        });
-    } else {
-        $("#nicknameBanner").remove();
-    }
-    return false;
-}
-
-function dniControl() {
-    if ($("#dni")[0].checkValidity()) {
-        $.ajax({
-            data: {
-                "dni": $("#dni").val(),
-                "role": $("#dni").data("role")
-            },
-            url: "/formCheck/dni",
-            method: 'get'
-        }).done(function (ans) {
-            $("#dniBanner").remove();
-            if (ans) {
-                $("#dni").after('<div class="alert alert-success mt-1" id="dniBanner">Este DNI se puede utilizar para este rol</div>');
-                return true;
-            } else {
-                $("#dni").after('<div class="alert alert-danger mt-1" id="dniBanner">Este DNI no se puede utilizar para este rol</div>');
-            }
-        });
-    } else {
-        $("#dniBanner").remove();
-    }
-}
-
-function weightControl() {
-    if ($("#maxWeight").length > 0) {
-        if ($("#maxWeight")[0].checkValidity()) {
-            $("#maxWeightBanner").remove();
-            if ($("#maxWeight").val() <= $("#maxWeight").parent().siblings(".minWeight").children("#minWeight").val()) {
-                $("#maxWeight").after('<div class="alert alert-danger mt-1" id="maxWeightBanner">No se puede introducir un peso máximo menor que el peso mínimo</div>');
-            } else {
-                return true;
-            }
-        } else {
-            $("#maxWeightBanner").remove();
-        }
-    }
-    return false;
-}
-
-function dateControl() {
-    if ($("#endDate").length > 0) {
-        if ($("#endDate")[0].checkValidity()) {
-            $("#endDateBanner").remove();
-            if ($("#endDate").val() <= $("#endDate").parent().siblings(".startDate").children("#startDate").val()) {
-                $("#endDate").after('<div class="alert alert-danger mt-1" id="endDateBanner">No se puede introducir una fecha de fin anterior a la fecha de inicio</div>');
-            } else {
-                return true;
-            }
-        } else {
-            $("#endDateBanner").remove();
-        }
-    }
-    return false;
-}
 $(function () {
     /**
      * Function for showing datepicker in registration pages
      */
     if ($(".dateInput").length) {
         $.datetimepicker.setLocale('es');
-        $('.dateInput').each(function(){
-            if ($(this).data("time") === true){
+        $('.dateInput').each(function () {
+            if ($(this).data("time") === true) {
                 $('.dateInput').datetimepicker({
                     timepicker: true,
                     format: 'd/m/Y H:i',
@@ -136,26 +40,157 @@ $(function () {
 
 
     /*
-     * CONTROLLING SUBMISSION WITH FORBIDDEN VALUES
+     * CONTROLLING SUBMISSION
      */
 
-    // $("#licenseId").focusout(licenseIdControl());
-    // $("#nickname").focusout(nicknameControl());
-    // $("#dni").focusout(dniControl());
-    // $("#maxWeight").focusout(weightControl());
-    // $("#endDate").focusout(dateControl());
-
-    /* $(".juding-form-user").on("submit", function () {
-        if (!licenseIdControl() && !nicknameControl() && !dniControl())
-            if ($(this)[0].checkValidity()) {
-                $(this)[0].off("submit").submit();
-            }
+    $(".juding-form-competition-update").on("submit", function (evt) {
+        evt.preventDefault();
+        alert("llega")
+        if ($(this)[0].checkValidity()) {
+            alert("ojo")
+            $.ajax({
+                data: {
+                    "startDate": $("#startDate").val(),
+                    "endDate": $("#endDate").val(),
+                    "minWeight": $("#minWeight").val(),
+                    "maxWeight": $("#maxWeight").val()
+                },
+                url: "/api/formCheck/checkingUpdatedCompetition",
+                method: "get"
+            }).done((ans) => {
+                alert(ans)
+                if (ans === 3) {
+                    $(this).unbind().submit();
+                } else {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    if (ans === 0) {
+                        $("#dateFeedback").html("<div class=\"alert alert-danger\">La fecha del inicio de la competición debe ser anterior a la fecha del final de la competición</div>");
+                        $("#weightFeedback").html("<div class=\"alert alert-danger\">El peso mínimo debe ser menor que el peso máximo de la competición</div>");
+                    } else if (ans === 1) {
+                        $("#dateFeedback").html("");
+                        $("#weightFeedback").html("<div class=\"alert alert-danger\">El peso mínimo debe ser menor que el peso máximo de la competición</div>");
+                    } else if (ans === 2) {
+                        $("#dateFeedback").html("<div class=\"alert alert-danger\">La fecha del inicio de la competición debe ser anterior a la fecha del final de la competición</div>");
+                        $("#weightFeedback").html("");
+                    }
+                }
+                $(this).addClass('was-validated');
+            });
+        } else {
+            evt.preventDefault();
+            evt.stopPropagation();
+            $("#dateFeedback").html("");
+            $("#weightFeedback").html("");
+        }
+        $(this).addClass('was-validated');
     });
 
-    $(".juding-form-competition").on("submit", function () {
-        if (weightControl() && dateControl())
-            if ($(this)[0].checkValidity()) {
-                $(this)[0].off("submit").submit();
-            }
-    }); */
+    $(".juding-form-competition-new").on("submit", function (evt) {
+        evt.preventDefault();
+        if ($(this)[0].checkValidity()) {
+            $.ajax({
+                data: {
+                    "startDate": $("#startDate").val(),
+                    "endDate": $("#endDate").val(),
+                    "minWeight": $("#minWeight").val(),
+                    "maxWeight": $("#maxWeight").val()
+                },
+                url: "/api/formCheck/checkingNewCompetition",
+                method: "get"
+            }).done((ans) => {
+                if (ans === 3) {
+                    $(this).unbind().submit();
+                } else {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    if (ans === 0) {
+                        $("#dateFeedback").html("<div class=\"alert alert-danger\">La fecha del inicio de la competición debe ser anterior a la fecha del final de la competición, además de ser posterior a la fecha actual</div>");
+                        $("#weightFeedback").html("<div class=\"alert alert-danger\">El peso mínimo debe ser menor que el peso máximo de la competición</div>");
+                    } else if (ans === 1) {
+                        $("#dateFeedback").html("");
+                        $("#weightFeedback").html("<div class=\"alert alert-danger\">El peso mínimo debe ser menor que el peso máximo de la competición</div>");
+                    } else if (ans === 2) {
+                        $("#dateFeedback").html("<div class=\"alert alert-danger\">La fecha del inicio de la competición debe ser anterior a la fecha del final de la competición, además de ser posterior a la fecha actual</div>");
+                        $("#weightFeedback").html("");
+                    }
+                }
+                $(this).addClass('was-validated');
+            });
+        } else {
+            evt.preventDefault();
+            evt.stopPropagation();
+            $("#dateFeedback").html("");
+            $("#weightFeedback").html("");
+        }
+        $(this).addClass('was-validated');
+    });
+
+    $(".juding-form-user-update").on("submit", function (evt) {
+        evt.preventDefault();
+        if ($(this)[0].checkValidity()) {
+            $.ajax({
+                data: {
+                    "licenseId": $("#licenseId").val(),
+                    "nickname": $("#nickname").val()
+                },
+                url: "/api/formCheck/update",
+                method: "get"
+            }).done((ans) => {
+                if (ans) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    $("#nicknameFeedback").html("<div class=\"alert alert-danger\">Este apodo ya está registrado.</div>");
+                } else {
+                    $(this).unbind().submit();
+                }
+                $(this).addClass('was-validated');
+            });
+        } else {
+            evt.preventDefault();
+            evt.stopPropagation();
+            $("#nicknameFeedback").html("");
+        }
+        $(this).addClass('was-validated');
+    });
+
+    $(".juding-form-signup").on("submit", function (evt) {
+        evt.preventDefault();
+        if ($(this)[0].checkValidity()) {
+            $.ajax({
+                data: {
+                    "licenseId": $("#licenseId").val(),
+                    "nickname": $("#nickname").val()
+                },
+                url: "/api/formCheck/signup",
+                method: "get"
+            }).done((ans) => {
+                if (ans === 3) {
+                    $(this).unbind().submit();
+                } else {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    if (ans === 0) {
+                        $("#licenseIdFeedback").html("<div class=\"alert alert-danger\">Este número de licencia ya está registrado.</div>");
+                        $("#nicknameIdFeedback").html("<div class=\"alert alert-danger\">Este apodo ya está registrado.</div>");
+                    } else if (ans === 1) {
+                        $("#licenseIdFeedback").html("<div class=\"alert alert-danger\">Este número de licencia ya está registrado.</div>");
+                        $("#nicknameIdFeedback").html("");
+                    } else if (ans === 2) {
+                        $("#licenseIdFeedback").html("");
+                        $("#nicknameIdFeedback").html("<div class=\"alert alert-danger\">Este apodo ya está registrado.</div>");
+                    }
+                }
+                $(this).addClass('was-validated');
+            });
+        } else {
+            evt.preventDefault();
+            evt.stopPropagation();
+            $("#licenseIdFeedback").html("");
+            $("#nicknameIdFeedback").html("");
+        }
+        $(this).addClass('was-validated');
+    });
+
+
 });

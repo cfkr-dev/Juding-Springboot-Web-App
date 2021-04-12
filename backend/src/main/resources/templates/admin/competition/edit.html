@@ -1,6 +1,6 @@
 {{>header}}
 <div class="container pb-4">
-    <form action="/admin/competition/edit" class="needs-validation flex-sb flex-w juding-form-competition" method="post"
+    <form action="/admin/competition/edit" class="needs-validation flex-sb flex-w juding-form-competition-update" method="post"
           enctype="multipart/form-data" novalidate>
         <input type="hidden" name="_csrf" value="{{token}}"/>
         <h2 class="h2">Formulario competición</h2>
@@ -51,6 +51,7 @@
                 </div>
             </div>
         </div>
+        <div id="weightFeedback"></div>
 
         <!-- LicenseId of the referee -->
         <label class="txt1" for="referee">Número de licencia del árbitro encargado de la competición
@@ -85,6 +86,7 @@
                 </div>
             </div>
         </div>
+        <div id="dateFeedback"></div>
 
         <div class="container-login100-form-btn text-center">
             <button class="btn btn-corporative" type="submit">Actualizar datos</button>
@@ -104,6 +106,5 @@
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/adminScreens.js"></script>
 <script src="/assets/js/formControl.js"></script>
-<script src="/assets/js/validationScript.js"></script>
 </body>
 </html>
