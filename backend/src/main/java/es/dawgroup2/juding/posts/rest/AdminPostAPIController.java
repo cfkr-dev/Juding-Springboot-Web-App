@@ -10,6 +10,14 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
@@ -28,8 +36,16 @@ public class AdminPostAPIController {
      * @param page page number
      * @return {@code True} response entity with the page. {@code False} if bad request
      */
+    @Operation(summary = "Get a list with the posts (paginated)")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Page with more than one post",
+                    content = { @Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = Post.class))) }),
+            @ApiResponse(responseCode = "400", description = "Request is invalid because of empty or non-existant page retrieve",
+                    content = @Content)
+    })
     @GetMapping("/list")
-    public ResponseEntity<Page<Post>> getPostPage(@RequestParam(required = false) Integer page) {
+    public ResponseEntity<Page<Post>> getPostPage(@Parameter(description = "Number of page to be searched") @RequestParam(required = false) Integer page) {
         int defPage = (page == null) ? 1 : page - 1;
         if (defPage < 0) return ResponseEntity.badRequest().build();
         Page<Post> requiredPage = postService.getPostsInPages(defPage, 10);
@@ -46,9 +62,17 @@ public class AdminPostAPIController {
      * @param request post request with the author
      * @return {@code True} response entity with the new post. {@code False} if bad request
      */
+    @Operation(summary = "Post a new post")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Creation of a new post",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Post.class)) }),
+            @ApiResponse(responseCode = "500", description = "Post cannot be created on the basis of failed data",
+                    content = @Content)
+    })
     @PostMapping("/new")
-    public ResponseEntity<Post> addNewPost(@RequestBody PostDTO postDTO,
-                                           HttpServletRequest request) {
+    public ResponseEntity<Post> addNewPost(@Parameter(description = "Post DTO") @RequestBody PostDTO postDTO,
+                                           @Parameter(description = "Post request with the author") HttpServletRequest request) {
         Post newPost = postService.save(null, request, postDTO.getTitle(), postDTO.getBody(), null);
         return ResponseEntity.created(fromCurrentRequest().path("/api/news/{idPost}").buildAndExpand(newPost.getIdPost()).toUri()).body(newPost);
     }
@@ -61,9 +85,18 @@ public class AdminPostAPIController {
      * @param request HTTP Servlet Request
      * @return {@code True} response entity with the updated post. {@code False} if bad request
      */
+    @Operation(summary = "Existing post edition")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Edit the post",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Post.class)) }),
+
+            @ApiResponse(responseCode = "500", description = "Post cannot be modified on the basis of failed data",
+                    content = @Content)
+    })
     @PutMapping("/edit")
-    public ResponseEntity<Post> updatePost(@RequestBody PostDTO postDTO,
-                                           HttpServletRequest request) {
+    public ResponseEntity<Post> updatePost(@Parameter(description = "Post DTO") @RequestBody PostDTO postDTO,
+                                           @Parameter(description = "Post request with the author") HttpServletRequest request) {
         Post updatedPost = postService.save(postDTO.getId(), request, postDTO.getTitle(), postDTO.getBody(), null);
         return (updatedPost == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(updatedPost);
     }
@@ -75,8 +108,16 @@ public class AdminPostAPIController {
      * @param id post id
      * @return {@code True} response entity with the deleted post. {@code False} if bad request
      */
+    @Operation(summary = "Elimination of a post")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Elimination successfully completed",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Post.class)) }),
+            @ApiResponse(responseCode = "404", description = "Request is invalid because of empty or non-existant post retrieve",
+                    content = @Content)
+    })
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Post> deletePost(@PathVariable String id) {
+    public ResponseEntity<Post> deletePost(@Parameter(description = "Post id") @PathVariable String id) {
         Post post = postService.findById(id);
         postService.deleteById(id);
         return (post == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(post);

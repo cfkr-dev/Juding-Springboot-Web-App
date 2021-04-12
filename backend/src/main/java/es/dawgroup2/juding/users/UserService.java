@@ -315,12 +315,13 @@ public class UserService {
      * @param licenseId
      * @param nickname
      * @param belt
+     * @param role
      * @param gym
      * @param weight
      * @param refereeRange
      * @return User object that was saved.
      */
-    public User save(String name, String surname, String gender, String phone, String email, String birthDate, String dni, String licenseId, String nickname, String password, String securityQuestion, String securityAnswer, MultipartFile image, String belt, String gym, Integer weight, String refereeRange) {
+    public User save(String name, String surname, String gender, String phone, String email, String birthDate, String dni, String licenseId, String nickname, String password, String securityQuestion, String securityAnswer, MultipartFile image, String belt, Role role, String gym, Integer weight, String refereeRange) {
         // If user already existed, must be retrieved and changed
         User user;
         Optional<User> optUser = userRepository.findById(licenseId);
@@ -328,7 +329,7 @@ public class UserService {
             user = optUser.get();
         } else {
             user = new User();
-            user.setLicenseId(licenseId);
+            user.setLicenseId(licenseId).addRole(role);
         }
 
         if (name != null && !name.isBlank()) user.setName(name);
@@ -354,8 +355,7 @@ public class UserService {
         if (belt != null && !belt.isBlank()) user.setBelt(beltService.findBeltById(belt));
         if (gym != null && !gym.isBlank()) user.setGym(gym);
         if (weight != null) user.setWeight(weight);
-        if (refereeRange != null && !refereeRange.isBlank())
-            user.setRefereeRange(refereeRangeService.findRefereeRangeById(refereeRange));
+        if (refereeRange != null && !refereeRange.isBlank()) user.setRefereeRange(refereeRangeService.findRefereeRangeById(refereeRange));
         return userRepository.save(user);
     }
 

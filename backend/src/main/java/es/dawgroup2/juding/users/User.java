@@ -14,6 +14,7 @@ import java.sql.Blob;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -283,6 +284,14 @@ public class User {
 
     public User setRoles(Set<Role> roles) {
         this.roles = roles;
+        return this;
+    }
+
+    public User addRole(Role role) {
+        if (this.roles == null) {
+          this.roles = new HashSet<>();
+        }
+        this.roles.add(role);
         return this;
     }
 
