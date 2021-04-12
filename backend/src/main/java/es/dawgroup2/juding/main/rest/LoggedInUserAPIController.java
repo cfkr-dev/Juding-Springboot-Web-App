@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -101,7 +100,7 @@ public class LoggedInUserAPIController {
                         null,
                         null,
                         userProfileDTO.getBelt(),
-                        userProfileDTO.getGym(),
+                        null, userProfileDTO.getGym(),
                         userProfileDTO.getWeight(),
                         userProfileDTO.getRefereeRange());
             } catch (Exception e){

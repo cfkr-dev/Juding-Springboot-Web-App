@@ -4,6 +4,7 @@ import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.auxTypes.gender.GenderService;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
+import es.dawgroup2.juding.auxTypes.roles.Role;
 import es.dawgroup2.juding.main.DateService;
 import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.posts.PostService;
@@ -18,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -93,6 +93,7 @@ public class IndexAPIController {
                 competitorDTO.getSecurityAnswer(),
                 null,
                 competitorDTO.getBelt(),
+                Role.C,
                 competitorDTO.getGym(),
                 competitorDTO.getWeight(),
                 null);
@@ -115,9 +116,10 @@ public class IndexAPIController {
                 refereeDTO.getSecurityAnswer(),
                 null,
                 refereeDTO.getBelt(),
+                Role.R,
                 null,
                 null,
-                null);
+                "S");
         return ResponseEntity.created(fromCurrentRequest().path("/api/me/myProfile").buildAndExpand(user.getLicenseId()).toUri()).body(user);
     }
 }

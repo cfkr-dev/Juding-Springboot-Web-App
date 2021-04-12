@@ -1,7 +1,6 @@
 package es.dawgroup2.juding.main;
 
 import es.dawgroup2.juding.auxTypes.belts.BeltService;
-import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.auxTypes.roles.Role;
 import es.dawgroup2.juding.competitions.CompetitionService;
@@ -117,7 +116,6 @@ public class LoggedInUserController {
      * @param gym          Gym (if user is competitor)
      * @param weight       Weight (if user is competitor)
      * @param refereeRange Range (if user is referee)
-     * @param nickname     Nickname
      * @param phone        Phone
      * @param email        Email
      * @param image        Profile image (if changed, if null is not deleted)
@@ -130,14 +128,13 @@ public class LoggedInUserController {
                               @RequestParam(required = false) String gym,
                               @RequestParam(required = false) Integer weight,
                               @RequestParam(required = false) String refereeRange,
-                              @RequestParam String nickname,
                               @RequestParam String phone,
                               @RequestParam String email,
                               MultipartFile image,
                               HttpServletRequest request) throws IOException {
         User user = null;
         if (userService.findByNickname(request.getUserPrincipal().getName()).getLicenseId().equals(licenseId))
-            user = userService.save(null, null, null, phone, email, null, null, licenseId, nickname, null, null, null, image, beltSelector, gym, weight, refereeRange);
+            user = userService.save(null, null, null, phone, email, null, null, licenseId, null, null, null, null, image, beltSelector, gym, weight, refereeRange);
         if (user != null)
             return "redirect:/myProfile";
         else

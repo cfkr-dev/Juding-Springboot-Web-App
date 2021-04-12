@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
@@ -157,7 +156,7 @@ public class AdminUserController {
                              @RequestParam(required = false) Integer weight,
                              @RequestParam(required = false) String refereeRange
     ) throws ParseException {
-        User user = userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, null, null, null, null, belt, gym, weight, refereeRange);
+        User user = userService.save(name, surname, gender, phone, email, birthDate, dni, licenseId, nickname, null, null, null, null, belt, null, gym, weight, refereeRange);
         if (user.isRole(Role.C))
             return "redirect:/admin/user/list/competitors";
         else

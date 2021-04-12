@@ -5,10 +5,7 @@ import es.dawgroup2.juding.posts.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -21,6 +18,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/posts")
 public class PostAPIController {
     @Autowired
     PostService postService;
@@ -28,7 +26,7 @@ public class PostAPIController {
     /**
      * Gets a simple post to view
      *
-     * @param id post id
+     * @param id Unique identifier of a post.
      * @return {@code True} response entity with the single post. {@code False} if bad request
      */
     @Operation(summary = "Get a simple post")
@@ -39,8 +37,8 @@ public class PostAPIController {
             @ApiResponse(responseCode = "404", description = "Resource not found",
                     content = @Content)
     })
-    @GetMapping("/api/news/{id}")
-    public ResponseEntity<Post> newsPost(@Parameter(description = "Post ID to identify it") @PathVariable String id) {
+    @GetMapping("")
+    public ResponseEntity<Post> newsPost(@Parameter(description = "Unique identifier of a post.") @RequestParam String id) {
         Post post = postService.findById(id);
         return (post == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(post);
     }
@@ -59,8 +57,8 @@ public class PostAPIController {
             @ApiResponse(responseCode = "404", description = "Resource not found",
                     content = @Content)
     })
-    @GetMapping("/api/recentNews/{id}")
-    public ResponseEntity<List<Post>> recentNews(@Parameter(description = "Post ID to identify it") @PathVariable String id) {
+    @GetMapping("/recent")
+    public ResponseEntity<List<Post>> recentNews(@Parameter(description = "Post ID to identify it") @RequestParam String id) {
         List<Post> recentPosts = postService.findFirst5Desc(id);
         return ResponseEntity.ok(recentPosts);
     }
@@ -79,7 +77,7 @@ public class PostAPIController {
             @ApiResponse(responseCode = "400", description = "Request is invalid because of empty or non-existant page retrieve",
                     content = @Content)
     })
-    @GetMapping("/api/news/page/{page}")
+    @GetMapping("/page")
     public ResponseEntity<Page<Post>> getPage(@Parameter(description = "Number of page to be searched") @RequestParam(required = false) Integer page) {
         int defPage = (page == null) ? 1 : page - 1;
         if (defPage <= 0) return ResponseEntity.badRequest().build();
