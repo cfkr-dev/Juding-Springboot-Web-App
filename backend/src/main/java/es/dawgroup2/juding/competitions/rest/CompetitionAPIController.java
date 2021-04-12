@@ -57,22 +57,22 @@ public class CompetitionAPIController {
     }
 
     /**
-     * Joins a competition
-     * @param idCompetition Id of the competition
-     * @param request HTTP Servlet Request
-     * @return Response Entity with the competition or bad request
+     * Joins a competition.
+     * @param idCompetition Id of the competition.
+     * @param request HTTP Servlet Request.
+     * @return Response Entity with the competition or bad request.
      */
-    @Operation(summary = "Registration of a user to a competition")
+    @Operation(summary = "Registration of a user to a competition.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Join successfully completed",
+            @ApiResponse(responseCode = "200", description = "Join successfully completed.",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Competition.class)) }),
-            @ApiResponse(responseCode = "500", description = "Join cannot be made because it was already made",
+            @ApiResponse(responseCode = "500", description = "Join cannot be made because it was already made.",
                     content = @Content),
-            @ApiResponse(responseCode = "500", description = "Join cannot be made on the basis of failed data",
+            @ApiResponse(responseCode = "500", description = "Join cannot be made on the basis of failed data.",
                     content = @Content)
     })
-    @PutMapping("/{idCompetition}/join")
+    @PutMapping("/{idCompetition}")
     public ResponseEntity<Competition> joinCompetition(@Parameter(description = "Identifier of the competition") @PathVariable String idCompetition, HttpServletRequest request) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         User user = userService.findByNickname(request.getUserPrincipal().getName());

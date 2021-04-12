@@ -177,7 +177,7 @@ public class AdminUserAPIController {
             @ApiResponse(responseCode = "403", description = "Not allowed (there is not logged in user or it is not an administrator).",
                     content = @Content)
     })
-    @PutMapping("/admitReferee/{licenseId}")
+    @PutMapping("/refereeApplication/{licenseId}")
     public ResponseEntity<User> admitReferee(@Parameter(description = "License ID of admitted referee.") @PathVariable String licenseId) {
         User user = userService.admitReferee(licenseId);
         return (user == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(user);

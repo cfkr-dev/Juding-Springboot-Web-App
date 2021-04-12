@@ -57,7 +57,7 @@ public class AdminCompetitionAPIController {
             @ApiResponse(responseCode = "400", description = "Request is invalid because of empty or non-existant page retrieve",
                     content = @Content)
     })
-    @GetMapping("/list")
+    @GetMapping("/")
     public ResponseEntity<Page<Competition>> getCompetitionPage(@Parameter(description = "Number of page to be searched") @RequestParam(required = false) Integer page) {
         int defPage = (page == null) ? 0 : page;
         if (defPage < 0) {
@@ -85,7 +85,7 @@ public class AdminCompetitionAPIController {
             @ApiResponse(responseCode = "500", description = "Competition cannot be created on the basis of failed data",
                     content = @Content)
     })
-    @PostMapping("/new")
+    @PostMapping("/")
     public ResponseEntity<Competition> addCompetition(@Valid @Parameter(description = "Competition Data Transfer Object") @RequestBody CompetitionDTO competitionDTO) {
         Competition competition;
         try {
@@ -124,7 +124,7 @@ public class AdminCompetitionAPIController {
             @ApiResponse(responseCode = "500", description = "Competition cannot be modified on the basis of failed data",
                     content = @Content)
     })
-    @PutMapping("/edit")
+    @PutMapping("/")
     public ResponseEntity<Competition> updatingCompetitionInfo(@Valid @Parameter(description = "Competition Data Transfer Object") @RequestBody CompetitionDTO competitionDTO) {
         Competition competition;
         try {
@@ -162,7 +162,7 @@ public class AdminCompetitionAPIController {
             @ApiResponse(responseCode = "404", description = "Request is invalid because of empty or non-existant competition retrieve",
                     content = @Content)
     })
-    @DeleteMapping("/delete/{idCompetition}")
+    @DeleteMapping("/{idCompetition}")
     public ResponseEntity<Competition> showCompetitionToDelete(@Parameter(description = "Identifier of competition to be deleted") @PathVariable String idCompetition) {
         Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
         competitionService.deleteById(idCompetition);

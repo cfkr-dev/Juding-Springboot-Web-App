@@ -44,7 +44,7 @@ public class AdminPostAPIController {
             @ApiResponse(responseCode = "400", description = "Request is invalid because of empty or non-existant page retrieve",
                     content = @Content)
     })
-    @GetMapping("/list")
+    @GetMapping("/")
     public ResponseEntity<Page<Post>> getPostPage(@Parameter(description = "Number of page to be searched") @RequestParam(required = false) Integer page) {
         int defPage = (page == null) ? 1 : page - 1;
         if (defPage < 0) return ResponseEntity.badRequest().build();
@@ -70,7 +70,7 @@ public class AdminPostAPIController {
             @ApiResponse(responseCode = "500", description = "Post cannot be created on the basis of failed data",
                     content = @Content)
     })
-    @PostMapping("/new")
+    @PostMapping("/")
     public ResponseEntity<Post> addNewPost(@Parameter(description = "Post DTO") @RequestBody PostDTO postDTO,
                                            @Parameter(description = "Post request with the author") HttpServletRequest request) {
         Post newPost = postService.save(null, request, postDTO.getTitle(), postDTO.getBody(), null);
@@ -94,7 +94,7 @@ public class AdminPostAPIController {
             @ApiResponse(responseCode = "500", description = "Post cannot be modified on the basis of failed data",
                     content = @Content)
     })
-    @PutMapping("/edit")
+    @PutMapping("/")
     public ResponseEntity<Post> updatePost(@Parameter(description = "Post DTO") @RequestBody PostDTO postDTO,
                                            @Parameter(description = "Post request with the author") HttpServletRequest request) {
         Post updatedPost = postService.save(postDTO.getId(), request, postDTO.getTitle(), postDTO.getBody(), null);
@@ -116,7 +116,7 @@ public class AdminPostAPIController {
             @ApiResponse(responseCode = "404", description = "Request is invalid because of empty or non-existant post retrieve",
                     content = @Content)
     })
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Post> deletePost(@Parameter(description = "Post id") @PathVariable String id) {
         Post post = postService.findById(id);
         postService.deleteById(id);
