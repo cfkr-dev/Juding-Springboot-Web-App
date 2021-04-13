@@ -136,7 +136,7 @@ public class AdminUserAPIController {
             @ApiResponse(responseCode = "403", description = "Not allowed (there is not logged in user or it is not an administrator).",
                     content = @Content)
     })
-    @PostMapping("/")
+    @PutMapping("/")
     public ResponseEntity<User> savingUser(@Valid @Parameter(description = "Admin user edition Data Transfer Object.") @RequestBody AdminUserEditionDTO adminUserEditionDTO) {
   if (userService.matchingLicenseAndNickname(adminUserEditionDTO.getLicenseId(), adminUserEditionDTO.getNickname())) {
             return ResponseEntity.badRequest().build();

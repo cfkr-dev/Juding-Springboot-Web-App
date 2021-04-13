@@ -79,8 +79,8 @@ public class PostAPIController {
     })
     @GetMapping("/page")
     public ResponseEntity<Page<Post>> getPage(@Parameter(description = "Number of page to be searched") @RequestParam(required = false) Integer page) {
-        int defPage = (page == null) ? 1 : page - 1;
-        if (defPage <= 0) return ResponseEntity.badRequest().build();
+        int defPage = (page == null) ? 1 : page;
+        if (defPage < 0) return ResponseEntity.badRequest().build();
         Page<Post> requiredPage = postService.getPostsInPages(defPage, 3);
         return (requiredPage.hasContent()) ? ResponseEntity.ok(requiredPage) : ResponseEntity.badRequest().build();
     }

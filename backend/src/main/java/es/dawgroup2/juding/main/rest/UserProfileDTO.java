@@ -1,34 +1,32 @@
 package es.dawgroup2.juding.main.rest;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.validation.constraints.Pattern;
 
 public class UserProfileDTO {
     private final String licenseId;
+
     @Pattern(regexp = "B|BAm|Am|AmN|NV|V|VAz|Az|AzM|M|N10|N[1-9]?")
     private final String belt;
+
     private final String gym;
-    private final Integer weight;
+
+    private final String weight;
+
     private final String refereeRange;
+
     @Pattern(regexp = "(?=.*\\d).{9}")
     private final String phone;
+
     @Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
     private final String email;
 
-    public UserProfileDTO(String licenseId, String belt, String gym, Integer weight, String phone, String email) {
+    public UserProfileDTO(String licenseId, String belt, String gym, String weight, String refereeRange, String phone, String email) {
         this.licenseId = licenseId;
         this.belt = belt;
         this.gym = gym;
         this.weight = weight;
-        this.refereeRange = null;
-        this.phone = phone;
-        this.email = email;
-    }
-
-    public UserProfileDTO(String licenseId, String belt, String refereeRange, String phone, String email) {
-        this.licenseId = licenseId;
-        this.belt = belt;
-        this.gym = null;
-        this.weight = null;
         this.refereeRange = refereeRange;
         this.phone = phone;
         this.email = email;
@@ -47,7 +45,11 @@ public class UserProfileDTO {
     }
 
     public Integer getWeight() {
-        return weight;
+        try{
+            return Integer.parseInt(weight);
+        } catch (Exception e){
+            return null;
+        }
     }
 
     public String getRefereeRange() {
