@@ -75,7 +75,7 @@ public class AdminUserController {
         } else {
             return "redirect:/error/404";
         }
-        return "/admin/user/list";
+        return "admin/user/list";
     }
 
     /**
@@ -92,12 +92,12 @@ public class AdminUserController {
             Page<User> userPage = userService.getCompetitorsInPages(Integer.parseInt(page));
             model.addAttribute("competitors", true)
                     .addAttribute("userPage", userPage.getContent());
-            return "/admin/user/inflatedListCompetitor";
+            return "admin/user/inflatedListCompetitor";
         } else {
             Page<User> userPage = userService.getActiveRefereesInPages(Integer.parseInt(page));
             model.addAttribute("competitors", false)
                     .addAttribute("userPage", userPage.getContent());
-            return "/admin/user/inflatedListReferee";
+            return "admin/user/inflatedListReferee";
         }
     }
 
@@ -119,7 +119,7 @@ public class AdminUserController {
         if (user.isRole(Role.R)) {
             model.addAttribute("refereeRangeSelector", refereeRangeService.generateActiveRangesSelect(user.getRefereeRange(), true));
         }
-        return "/admin/user/edit";
+        return "admin/user/edit";
     }
 
     /**

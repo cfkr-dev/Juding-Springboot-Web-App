@@ -48,7 +48,7 @@ public class CompetitionController {
                 .addAttribute("competition", competition);
         for (int i = 0; i < competition.getFights().size(); i++)
             model.addAttribute("fight" + i, competition.getFights().get(i));
-        return "/competition/detail";
+        return "competition/detail";
     }
 
     /**

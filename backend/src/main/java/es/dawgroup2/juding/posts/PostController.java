@@ -30,7 +30,7 @@ public class PostController {
             List<Post> recentPosts = postService.findFirst5Desc(id);
             model.addAttribute("bigPost", bigPost)
                     .addAttribute("recentPosts", recentPosts);
-            return "/news/index";
+            return "news/index";
         }
         return "redirect:/error/404";
     }
@@ -46,6 +46,6 @@ public class PostController {
     public String getPage(@PathVariable String page, Model model) {
         Page<Post> postRow = postService.getPostsInPages(Integer.parseInt(page), 3);
         model.addAttribute("postRow", postRow.getContent());
-        return "/news/rowOfNews";
+        return "news/rowOfNews";
     }
 }
