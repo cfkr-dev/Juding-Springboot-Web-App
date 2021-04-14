@@ -1,0 +1,1064 @@
+{
+	"info": {
+		"_postman_id": "8417b81b-a5f0-46c2-95f0-c08a9b8bc8db",
+		"name": "Juding REST API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "MainRest",
+			"item": [
+				{
+					"name": "IndexAPIController",
+					"item": [
+						{
+							"name": "Competitor Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"Ismon\",\r\n    \"password\": \"Ismon2021\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/login",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Referee Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \r\n    \"username\": \"Clau\",\r\n    \"password\": \"Clau2021\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/login",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Admin Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \r\n    \"username\": \"Cron\", \r\n    \"password\": \"Cron2021\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/login",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/logout",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Competitor Sign Up",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"jose\",\r\n    \"surname\": \"toledano\",\r\n    \"gender\": \"H\",\r\n    \"phone\": null,\r\n    \"email\": \"pruebas@gmail.com\",\r\n    \"birthDate\": \"22/05/2006\",\r\n    \"dni\": \"44444444W\",\r\n    \"licenseId\": \"1111111112\",\r\n    \"nickname\": \"pruebas\",\r\n    \"password\": \"Pruebas2021\",\r\n    \"securityQuestion\": \"si\",\r\n    \"securityAnswer\": \"si\",\r\n    \"belt\": \"BAm\",\r\n    \"gym\": \"Gym\",\r\n    \"weight\": \"80\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/signUp/competitor",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"signUp",
+										"competitor"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Referee Application",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"jose\",\r\n    \"surname\": \"toledano\",\r\n    \"gender\": \"H\",\r\n    \"phone\": \"912345678\",\r\n    \"email\": \"pruebas@gmail.com\",\r\n    \"birthDate\": \"22/05/2006\",\r\n    \"dni\": \"44444444W\",\r\n    \"licenseId\": \"JU-1111111112\",\r\n    \"nickname\": \"Pepe\",\r\n    \"password\": \"Pruebas2021\",\r\n    \"securityQuestion\": \"si\",\r\n    \"securityAnswer\": \"si\",\r\n    \"belt\": \"N2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/signUp/referee",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"signUp",
+										"referee"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "LoggedInUserAPIController",
+					"item": [
+						{
+							"name": "My Profile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/me/myProfile",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"me",
+										"myProfile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "My Profile (get image)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/image/user/0000000003",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"image",
+										"user",
+										"0000000003"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "My Charts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/me/myCharts",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"me",
+										"myCharts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ranking",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/ranking",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"ranking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CurrentCompetitions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/me/currentCompetitions",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"me",
+										"currentCompetitions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PastCompetitions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/me/pastCompetitions",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"me",
+										"pastCompetitions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "FutureCompetitions (joined)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/me/futureCompetitions?joined=true",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"me",
+										"futureCompetitions"
+									],
+									"query": [
+										{
+											"key": "joined",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "FutureCompetitions (not joined)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/me/futureCompetitions?joined=false",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"me",
+										"futureCompetitions"
+									],
+									"query": [
+										{
+											"key": "joined",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit profile",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"licenseId\": \"0000000003\",\n    \"belt\": \"NV\",\n    \"gym\": \"Madrid\",\n    \"weight\": 80,\n    \"phone\": \"912345678\",\n    \"email\": \"memememe@memememe.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/me/myProfile",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"me",
+										"myProfile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a image to a user",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/home/daw/Escritorio/webapp2/backend/src/main/resources/static/sampleImages/1234567891.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/image/user/0000000003",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"image",
+										"user",
+										"0000000003"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "PostRest",
+			"item": [
+				{
+					"name": "AdminPostAPIController",
+					"item": [
+						{
+							"name": "List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/admin/post/?page=1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"admin",
+										"post",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"La cucaracha\",\r\n    \"body\": \"Ya no puede comeptir más porque no tiene porque le falta la licencia del ahorraMás\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/admin/post/",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"admin",
+										"post",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Change image of a post",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/home/daw/Escritorio/webapp2/backend/src/main/resources/static/sampleImages/1234567890.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/image/post/204",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"image",
+										"post",
+										"204"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"205\",\r\n    \"title\": \"La cucaracha\",\r\n    \"body\": \"Ya no puede comeptir más por que no tiene porque le falta las dos patitas de atrás\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/admin/post/",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"admin",
+										"post",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/admin/post/205",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"admin",
+										"post",
+										"205"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PostAPIController",
+					"item": [
+						{
+							"name": "Get a post",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/posts?id=204",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"posts"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "204"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Recent Posts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/posts/recent?id=204",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"posts",
+										"recent"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "204"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Posts Page",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/posts/page?page=0",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"posts",
+										"page"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "UsersRest",
+			"item": [
+				{
+					"name": "AdminUserAPIController",
+					"item": [
+						{
+							"name": "Page of competitors",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/admin/user/competitors?page=1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"admin",
+										"user",
+										"competitors"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit a user",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Cron\",\r\n    \"surname\": \"Tempo Limit\",\r\n    \"gender\": \"M\",\r\n    \"phone\": \"910000037\",\r\n    \"email\": \"c.tempo@admin.com\",\r\n    \"birthDate\": \"15/06/1001\",\r\n    \"dni\": \"00000037A\",\r\n    \"licenseId\": \"JU-0000000005\",\r\n    \"nickname\": \"Cron\",\r\n    \"password\": \"Cron2021\",\r\n    \"securityQuestion\": \"¿Quién es el padre de los dioses?\",\r\n    \"securityAnswer\": \"Soy yo\",\r\n    \"belt\": \"BAm\",\r\n    \"gym\": \"Temple\",\r\n    \"weight\": null,\r\n    \"refereeRange\": \"C\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/admin/user/",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"admin",
+										"user",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a user",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/admin/user/JU-0000000002",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"admin",
+										"user",
+										"JU-0000000002"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Admit Referee",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/admin/user/refereeApplication/JU-0000000002",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"admin",
+										"user",
+										"refereeApplication",
+										"JU-0000000002"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Referees",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/admin/user/referees?page=1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"admin",
+										"user",
+										"referees"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Referees Applications",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/admin/user/referees/applications",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"admin",
+										"user",
+										"referees",
+										"applications"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "CompetitionsRest",
+			"item": [
+				{
+					"name": "AdminCompetitionAPIController",
+					"item": [
+						{
+							"name": "List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/admin/competition/?page=0",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"admin",
+										"competition",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/admin/competition/161",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"admin",
+										"competition",
+										"161"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"shortName\": \"Copa plátano\",\r\n    \"additionalInfo\": \"Está competición es una celebración debido al nacimiento de la aplicación web Juding por lo que está abierta a todas las edades y es mixta.\",\r\n    \"minWeight\": 40,\r\n    \"maxWeight\": 180,\r\n    \"referee\": \"JU-0000000003\",\r\n    \"startDate\": \"23/09/2021 13:01\",\r\n    \"endDate\": \"23/03/2022 13:01\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/admin/competition/",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"admin",
+										"competition",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idCompetition\": \"161\",\r\n    \"shortName\": \"Competición de inauguración 1\",\r\n    \"additionalInfo\": \"Está competición es una celebración debido al nacimiento de la aplicación web Juding por lo que está abierta a todas las edades y es mixta.\",\r\n    \"minWeight\": 70,\r\n    \"maxWeight\": 80,\r\n    \"startDate\": \"01/04/2021 12:00\",\r\n    \"endDate\": \"01/04/2021 12:00\",\r\n    \"referee\": \"JU-0000000004\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/admin/competition/",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"admin",
+										"competition",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "CompetitionAPIController",
+					"item": [
+						{
+							"name": "Get a competition",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/competition/206",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"competition",
+										"206"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Join a competition",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/competition/206",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"competition",
+										"206"
+									]
+								},
+								"description": "It is only valid when a competitor is logged in and a new competition has been created using the attached example."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "RefereeControlAPIController",
+					"item": [
+						{
+							"name": "Save a result of a competition",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idCompetition\": \"129\",\r\n    \"winner\": \"Dieguin\",\r\n    \"loser\": \"Albertimus\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/competition/control",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"competition",
+										"control"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
