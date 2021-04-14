@@ -74,16 +74,14 @@ public class LoggedInUserController {
     @GetMapping("/myProfile")
     public String myProfile(Model model, HttpServletRequest request) {
         User currentUser = userService.findByNickname(request.getUserPrincipal().getName());
-        if (currentUser == null) {
-            return "/error/403";
-        } else {
+        if (currentUser != null) {
             model.addAllAttributes(headerInflater.getHeader("Mi perfil", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "profiles"))
                     .addAttribute("user", currentUser)
                     .addAttribute("isCompetitor", currentUser.isRole(Role.C))
                     .addAttribute("isMale", currentUser.isMale())
                     .addAttribute("beltValue", currentUser.getBelt().getLongName());
         }
-        return "/myProfile/index";
+        return "myProfile/index";
     }
 
     /**
@@ -106,7 +104,7 @@ public class LoggedInUserController {
                 model.addAttribute("refereeRangeSelector", refereeRangeService.generateActiveRangesSelect(currentUser.getRefereeRange(), true));
             }
         }
-        return "/myProfile/edit";
+        return "myProfile/edit";
     }
 
     /**
@@ -154,6 +152,6 @@ public class LoggedInUserController {
         List<RankingDTO> rankingList = userService.getRanking();
         model.addAllAttributes(headerInflater.getHeader("Ranking", request, "bootstrap/css/bootstrap.min.css", "aos/aos.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "responsiveTable", "profiles", "beltAssignations"))
                 .addAttribute("list", rankingList);
-        return "/ranking";
+        return "ranking";
     }
 }

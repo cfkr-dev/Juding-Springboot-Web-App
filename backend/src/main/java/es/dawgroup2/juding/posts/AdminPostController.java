@@ -43,7 +43,7 @@ public class AdminPostController {
                 .addAttribute("empty", postFirstPage.getTotalElements() == 0)
                 .addAttribute("morePages", postFirstPage.hasNext())
                 .addAttribute("totalPages", postFirstPage.getTotalPages());
-        return "/admin/post/list";
+        return "admin/post/list";
     }
 
     /**
@@ -57,7 +57,7 @@ public class AdminPostController {
     public String getPostPage(@PathVariable String page, Model model) {
         Page<Post> postPage = postService.getPostsInPages(Integer.parseInt(page), 10);
         model.addAttribute("postPage", postPage.getContent());
-        return "/admin/post/inflatedListPost";
+        return "admin/post/inflatedListPost";
     }
 
     /**
@@ -72,7 +72,7 @@ public class AdminPostController {
         Post post = postService.findById(id);
         model.addAllAttributes(headerInflater.getHeader("Edición de noticia", request, "bootstrap/css/bootstrap.min.css", "datepicker/jquery.datetimepicker.min.css", "font-awesome/css/all.css", "style", "header", "bootstrapAccomodations", "post", "loginAndRegistration"))
                 .addAttribute("post", post);
-        return "/admin/post/edit";
+        return "admin/post/edit";
     }
 
     /**
@@ -83,7 +83,7 @@ public class AdminPostController {
     @GetMapping("/admin/post/new")
     public String newPost(HttpServletRequest request, Model model) {
         model.addAllAttributes(headerInflater.getHeader("Nueva noticia", request, "bootstrap/css/bootstrap.min.css", "datepicker/jquery.datetimepicker.min.css", "font-awesome/css/all.css", "header", "bootstrapAccomodations", "loginAndRegistration"));
-        return "/admin/post/new";
+        return "admin/post/new";
     }
 
     /**

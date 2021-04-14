@@ -57,7 +57,7 @@ public class IndexController {
                 .addAttribute("empty", postFirstPage.getTotalElements() == 0)
                 .addAttribute("morePages", postFirstPage.hasNext())
                 .addAttribute("totalPages", postFirstPage.getTotalPages());
-        return "/index";
+        return "index";
     }
 
     /**
@@ -67,7 +67,7 @@ public class IndexController {
      */
     @GetMapping("/termsAndConditionsOfUse")
     public String termsAndConditionsOfUse() {
-        return "/termsAndConditionsOfUse";
+        return "termsAndConditionsOfUse";
     }
 
     /**
@@ -77,7 +77,7 @@ public class IndexController {
      */
     @GetMapping("/cookiePolicy")
     public String cookiePolicy() {
-        return "/cookiePolicy";
+        return "cookiePolicy";
     }
 
     /**
@@ -87,7 +87,7 @@ public class IndexController {
      */
     @RequestMapping("/login")
     public String login() {
-        return "/login";
+        return "login";
     }
 
     /**
@@ -100,7 +100,7 @@ public class IndexController {
     @GetMapping("/login/{error}")
     public String loginError(@PathVariable(required = false) String error, Model model) {
         model.addAttribute("error", (error != null));
-        return "/login";
+        return "login";
     }
 
     /**
@@ -119,7 +119,7 @@ public class IndexController {
         else if (role.equals("referee"))
             model.addAttribute("isCompetitor", false).addAttribute("action", "/signUp/referee");
         else return "redirect:/error/404";
-        return "/signUp";
+        return "signUp";
     }
 
     /**

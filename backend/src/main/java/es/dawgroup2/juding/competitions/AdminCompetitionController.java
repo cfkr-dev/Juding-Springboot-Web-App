@@ -47,7 +47,7 @@ public class AdminCompetitionController {
                 .addAttribute("empty", compFirstPage.getTotalElements() == 0)
                 .addAttribute("totalPages", compFirstPage.getTotalPages())
                 .addAttribute("morePages", compFirstPage.hasNext());
-        return "/admin/competition/list";
+        return "admin/competition/list";
     }
 
     /**
@@ -61,7 +61,7 @@ public class AdminCompetitionController {
     public String getCompetitionPage(@PathVariable String page, Model model) {
         Page<Competition> competitionPage = competitionService.getCompetitionsInPages(Integer.parseInt(page));
         model.addAttribute("competitionPage", competitionPage.getContent());
-        return "/admin/competition/inflatedListCompetition";
+        return "admin/competition/inflatedListCompetition";
     }
 
     /**
@@ -77,7 +77,7 @@ public class AdminCompetitionController {
         model.addAttribute("competition", competition)
                 .addAllAttributes(headerInflater.getHeader("Edición de competición", request, "bootstrap/css/bootstrap.min.css", "datepicker/jquery.datetimepicker.min.css", "font-awesome/css/all.css", "chosen/component-chosen.css", "header", "bootstrapAccomodations", "loginAndRegistration"))
                 .addAttribute("refereeList", userService.getActiveRefereesList(competition.getReferee().getLicenseId()));
-        return "/admin/competition/edit";
+        return "admin/competition/edit";
     }
 
     /**
@@ -90,7 +90,7 @@ public class AdminCompetitionController {
     public String newCompetition(HttpServletRequest request, Model model) {
         model.addAllAttributes(headerInflater.getHeader("Nueva competición", request, "bootstrap/css/bootstrap.min.css", "datepicker/jquery.datetimepicker.min.css", "font-awesome/css/all.css", "chosen/component-chosen.css", "header", "bootstrapAccomodations", "loginAndRegistration"))
                 .addAttribute("refereeList", userService.getActiveRefereesList());
-        return "/admin/competition/new";
+        return "admin/competition/new";
     }
 
     /**

@@ -31,7 +31,7 @@ public class PasswordRecoveryController {
                 model.addAttribute("isError", true);
             else if (error.equals("answerMismatch"))
                 model.addAttribute("answerMismatch", true);
-        return "/passwordRecovery/first";
+        return "passwordRecovery/first";
     }
 
     /**
@@ -62,7 +62,7 @@ public class PasswordRecoveryController {
             if (curUser != null) {
                 model.addAttribute("securityQuestion", curUser.getSecurityQuestion())
                         .addAttribute("licenseId", curUser.getLicenseId());
-                return "/passwordRecovery/second";
+                return "passwordRecovery/second";
             }
         }
         return "redirect:/passwordRecovery/1/error?";
@@ -95,7 +95,7 @@ public class PasswordRecoveryController {
     @GetMapping("/passwordRecovery/3/{licenseId}")
     public String thirdScreen(@PathVariable String licenseId, Model model) {
         model.addAttribute("licenseId", licenseId);
-        return "/passwordRecovery/third";
+        return "passwordRecovery/third";
     }
 
     /**
