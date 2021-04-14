@@ -226,3 +226,33 @@ A example for granting the needed permissions in the database for the user could
   * In case you are using Windows, you can substitute ``.mvnm`` by the route of the ``mvnm.cmd`` file in the same folder. It is necessary to configure ``JAVA_HOME`` before using it.
 
 5. It's done! Now, you can open your favourite browser and go to ``https://localhost:8443`` to start using this application!
+
+___
+
+## Stage 3: more functional application - REST API and Docker
+
+### Top 5 Commits & Files
+
+| Name | Top 5 Commits | Top 5 Files |
+| - | - | - |
+| Ismael<br>EMPTY DESCRIPTION | <ul><li>[DescriptionCommit1](LinkCommit1)</li><li>[DescriptionCommit2](LinkCommit2)</li><li>[DescriptionCommit3](LinkCommit3)</li><li>[DescriptionCommit4](LinkCommit4)</li><li>[DescriptionCommit5](LinkCommit5)</li></ul> |
+| Diego<br>EMPTY DESCRIPTION | <ul><li>[DescriptionCommit1](LinkCommit1)</li><li>[DescriptionCommit2](LinkCommit2)</li><li>[DescriptionCommit3](LinkCommit3)</li><li>[DescriptionCommit4](LinkCommit4)</li><li>[DescriptionCommit5](LinkCommit5)</li></ul> |
+| José Luis<br>EMPTY DESCRIPTION | <ul><li>[DescriptionCommit1](LinkCommit1)</li><li>[DescriptionCommit2](LinkCommit2)</li><li>[DescriptionCommit3](LinkCommit3)</li><li>[DescriptionCommit4](LinkCommit4)</li><li>[DescriptionCommit5](LinkCommit5)</li></ul> |
+| Alberto<br>EMPTY DESCRIPTION | <ul><li>[DescriptionCommit1](LinkCommit1)</li><li>[DescriptionCommit2](LinkCommit2)</li><li>[DescriptionCommit3](LinkCommit3)</li><li>[DescriptionCommit4](LinkCommit4)</li><li>[DescriptionCommit5](LinkCommit5)</li></ul> |
+
+### Classes and templates diagram
+This stage includes new controllers and DTO classes. These new artifacts are organized as the following diagram describes:
+CHANGE THIS IMAGE AND DELETE THIS LINE
+![Classes and templates diagram](documentation_imgs/stage3/ClassAndTemplatesDiagram.png)
+
+### REST API Documentation
+INCLUDE HERE REST API DOC
+
+### Guide: getting started with Juding - Docker Version
+The following steps show how to start the developed web application using only Docker in a Linux-based operative system.
+
+#### How to run application using Docker Hub?
+INCLUDE HERE DOCKER HUB GUIDE
+
+#### How to run application from GitHub?
+INCLUDE HERE COMMON DOCKER GUIDE
