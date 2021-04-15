@@ -246,7 +246,11 @@ CHANGE THIS IMAGE AND DELETE THIS LINE
 ![Classes and templates diagram](documentation_imgs/stage3/ClassAndTemplatesDiagram.png)
 
 ### REST API Documentation
-INCLUDE HERE REST API DOC
+The REST API developed documentation is accesible both in YAML and HTML format. You can:
+
+* Read YAML documentation: [YAML Documentation](http://raw.githack.com/CodeURJC-DAW-2020-21/webapp2/main/api-docs/api-docs.yaml).
+* Read HTML (raw) documentation: [HTML Documentation](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/api-docs.html).
+* Read interpreted HTML: [Interpreted HTML Documentation](http://raw.githack.com/CodeURJC-DAW-2020-21/webapp2/main/api-docs/api-docs.html).
 
 ### Guide: getting started with Juding - Docker Version
 The following steps show how to start the developed web application using only Docker in a Linux-based operative system.
