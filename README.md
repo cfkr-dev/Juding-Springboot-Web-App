@@ -257,14 +257,17 @@ To run this application using Docker Hub technology it is necessary to use Docke
 * The juding application's own files: juding
 
 First the Docker container image has to be generated:
+
 ``& docker-compose up``
 
 In case an image has already been generated and you want to rebuild it due to later modifications:
+
 ``& docker-compose up --build``
 
 The application will be available on the port http://locahost:5000/.
 
 To stop the app, Ctrl+C in the console or the following statement:
+
 ``& docker-compose stop``
 
 #### How to run application from GitHub?
