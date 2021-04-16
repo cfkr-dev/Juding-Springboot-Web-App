@@ -258,4 +258,17 @@ The following steps show how to start the developed web application using only D
 INCLUDE HERE DOCKER HUB GUIDE
 
 #### How to run application from GitHub?
-INCLUDE HERE COMMON DOCKER GUIDE
+To compile and execute Juding, follow the next steps.
+
+First use the following command for clone the application from the Git:
+
+``$ git clone https://github.com/CodeURJC-DAW-2020-21/webapp2.git``.
+
+Change the directory to the folder named docker:
+
+``$ cd ../docker``
+
+Use the following script:
+
+``$ bash create_image.sh``
+
