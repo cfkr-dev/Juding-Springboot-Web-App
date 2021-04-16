@@ -289,7 +289,7 @@ First use the following command for clone the application from the Git:
 
 Change the directory to the folder named docker:
 
-``$ cd ../docker``
+``$ cd webapp2/docker``
 
 Use the following script:
 
