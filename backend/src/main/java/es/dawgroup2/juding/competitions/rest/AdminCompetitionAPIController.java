@@ -59,9 +59,7 @@ public class AdminCompetitionAPIController {
     @GetMapping("/")
     public ResponseEntity<Page<Competition>> getCompetitionPage(@Parameter(description = "Number of page to be searched") @RequestParam(required = false) Integer page) {
         int defPage = (page == null) ? 0 : page;
-        if (defPage < 0) {
-            return ResponseEntity.badRequest().build();
-        }
+        if (defPage < 0) return ResponseEntity.badRequest().build();
         Page<Competition> competitionPage = competitionService.getCompetitionsInPages(defPage);
         if (competitionPage.hasContent()) {
             return ResponseEntity.ok(competitionPage);

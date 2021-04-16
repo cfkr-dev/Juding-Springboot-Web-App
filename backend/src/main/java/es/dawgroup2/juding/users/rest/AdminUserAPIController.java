@@ -68,7 +68,7 @@ public class AdminUserAPIController {
     })
     @GetMapping("/competitors")
     public ResponseEntity<Page<User>> competitorList(@Parameter(description = "Requested page number.") @RequestParam(required = false) Integer page) {
-        int defPage = (page == null) ? 1 : page - 1;
+        int defPage = (page == null) ? 1 : page;
         if (defPage < 0) return ResponseEntity.badRequest().build();
         Page<User> requiredPage = userService.getCompetitorsInPages(defPage);
         if (requiredPage.hasContent())
@@ -113,7 +113,7 @@ public class AdminUserAPIController {
     })
     @GetMapping("/referees")
     public ResponseEntity<Page<User>> refereeList(@Parameter(description = "Requested page number.") @RequestParam(required = false) Integer page) {
-        int defPage = (page == null) ? 1 : page - 1;
+        int defPage = (page == null) ? 1 : page;
         if (defPage < 0) return ResponseEntity.badRequest().build();
         Page<User> requiredPage = userService.getActiveRefereesInPages(defPage);
         if (requiredPage.hasContent())
