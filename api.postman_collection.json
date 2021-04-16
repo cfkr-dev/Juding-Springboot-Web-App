@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8417b81b-a5f0-46c2-95f0-c08a9b8bc8db",
+		"_postman_id": "2741d072-41ac-4e71-8723-a69540a3f95d",
 		"name": "Juding REST API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -177,6 +177,35 @@
 										"api",
 										"signUp",
 										"referee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Password Recovery",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"licenseId\": \"0000000002\",\r\n    \"securityAnswer\": \"A mi\",\r\n    \"newPassword\": \"12345678Az\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/passwordRecovery",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"passwordRecovery"
 									]
 								}
 							},
