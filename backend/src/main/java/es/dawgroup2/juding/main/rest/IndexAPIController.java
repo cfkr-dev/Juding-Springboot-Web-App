@@ -219,7 +219,7 @@ public class IndexAPIController {
                     content = @Content)
     })
     @PutMapping("/passwordRecovery")
-    public ResponseEntity<User> passwordRecovery(@Valid @Parameter(description = "Recover password Data Transfer Object.") @RequestBody RecoverPasswordDTO recoverPasswordDTO){
+    public ResponseEntity<User> passwordRecovery(@Valid @Parameter(description = "Recover password Data Transfer Object.") @RequestBody RecoverPasswordDTO recoverPasswordDTO) {
         User user = userService.getUserOrNull(recoverPasswordDTO.getLicenseId());
         if (user != null)
             if (user.getSecurityAnswer().equals(recoverPasswordDTO.getSecurityAnswer())) {

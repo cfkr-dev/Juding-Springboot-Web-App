@@ -11,7 +11,7 @@ public class RankingDTO {
     private final String dni;
     private final String belt;
 
-    public RankingDTO(Object[] parameters){
+    public RankingDTO(Object[] parameters) {
         this(
                 parameters[0].toString(),
                 Integer.parseInt(parameters[1].toString()),

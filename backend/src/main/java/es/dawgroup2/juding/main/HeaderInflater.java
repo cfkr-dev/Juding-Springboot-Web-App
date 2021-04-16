@@ -45,7 +45,7 @@ public class HeaderInflater {
         Map<String, Object> map = new HashMap<>();
         CsrfToken csrfToken = (CsrfToken) request.getAttribute("_csrf");
         List<String> cssList = new ArrayList<>();
-        for (String s: css){
+        for (String s : css) {
             if (OWN_CSS.contains(s))
                 cssList.add("/assets/css/" + s + ".css");
             else

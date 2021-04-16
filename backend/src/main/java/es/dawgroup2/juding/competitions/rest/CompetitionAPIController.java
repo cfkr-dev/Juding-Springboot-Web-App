@@ -39,14 +39,15 @@ public class CompetitionAPIController {
 
     /**
      * Gets the competition
+     *
      * @param idCompetition Id of the competition
      * @return Response Entity with the competition or bad request
      */
     @Operation(summary = "Gets a competition using its identifier (ID)")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Obtaining the competition",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Competition.class)) }),
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Competition.class))}),
             @ApiResponse(responseCode = "404", description = "Request is invalid because of empty or non-existant competition retrieve",
                     content = @Content)
     })
@@ -58,15 +59,16 @@ public class CompetitionAPIController {
 
     /**
      * Joins a competition.
+     *
      * @param idCompetition Id of the competition.
-     * @param request HTTP Servlet Request.
+     * @param request       HTTP Servlet Request.
      * @return Response Entity with the competition or bad request.
      */
     @Operation(summary = "Registration of a user to a competition.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Join successfully completed.",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Competition.class)) }),
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Competition.class))}),
             @ApiResponse(responseCode = "500", description = "Join cannot be made because it was already made.",
                     content = @Content),
             @ApiResponse(responseCode = "500", description = "Join cannot be made on the basis of failed data.",

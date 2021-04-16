@@ -2,11 +2,6 @@ package es.dawgroup2.juding.posts.rest;
 
 import es.dawgroup2.juding.posts.Post;
 import es.dawgroup2.juding.posts.PostService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -14,6 +9,13 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -32,8 +34,8 @@ public class PostAPIController {
     @Operation(summary = "Get a simple post")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the post",
-                    content = { @Content(mediaType = "application/json",
-                            array = @ArraySchema(schema = @Schema(implementation = Post.class))) }),
+                    content = {@Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = Post.class)))}),
             @ApiResponse(responseCode = "404", description = "Resource not found",
                     content = @Content)
     })
@@ -52,8 +54,8 @@ public class PostAPIController {
     @Operation(summary = "Get a recent post list")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the list",
-                    content = { @Content(mediaType = "application/json",
-                            array = @ArraySchema(schema = @Schema(implementation = Post.class))) }),
+                    content = {@Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = Post.class)))}),
             @ApiResponse(responseCode = "404", description = "Resource not found",
                     content = @Content)
     })
@@ -72,8 +74,8 @@ public class PostAPIController {
     @Operation(summary = "Get a list with the posts to view (paginated)")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Page with more than one post to view",
-                    content = { @Content(mediaType = "application/json",
-                            array = @ArraySchema(schema = @Schema(implementation = Post.class))) }),
+                    content = {@Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = Post.class)))}),
             @ApiResponse(responseCode = "400", description = "Request is invalid because of empty or non-existant page retrieve",
                     content = @Content)
     })

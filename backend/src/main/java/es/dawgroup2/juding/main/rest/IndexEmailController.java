@@ -2,7 +2,6 @@ package es.dawgroup2.juding.main.rest;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -44,9 +43,9 @@ public class IndexEmailController {
     })
     @GetMapping("/index-email")
     public ResponseEntity<?> sendEmail(@Parameter(description = "Name of sender.") @RequestParam String name,
-                                    @Parameter(description = "Email of sender.") @RequestParam String email,
-                                    @Parameter(description = "Subject of email.") @RequestParam String subject,
-                                    @Parameter(description = "Body of email.") @RequestParam String message) {
+                                       @Parameter(description = "Email of sender.") @RequestParam String email,
+                                       @Parameter(description = "Subject of email.") @RequestParam String subject,
+                                       @Parameter(description = "Body of email.") @RequestParam String message) {
         MimeMessage mimeMessage = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
         String htmlMsg = "<h2>Mensaje por formulario web</h2>" +

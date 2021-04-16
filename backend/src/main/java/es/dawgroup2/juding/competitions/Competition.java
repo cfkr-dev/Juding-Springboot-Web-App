@@ -1,7 +1,7 @@
 package es.dawgroup2.juding.competitions;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import es.dawgroup2.juding.fight.Fight;
 import es.dawgroup2.juding.users.User;
 
@@ -14,45 +14,33 @@ import java.util.List;
 @Entity
 public class Competition {
 
-    public static class MainAttributes {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonView(MainAttributes.class)
     private int idCompetition;
-
     @Column(nullable = false)
     @JsonView(MainAttributes.class)
     private String shortName;
-
     @Column(nullable = false, columnDefinition = "LONGTEXT")
     @JsonView(MainAttributes.class)
     private String additionalInfo;
-
     @Column(nullable = false)
     @JsonView(MainAttributes.class)
     private int minWeight;
-
     @Column(nullable = false)
     @JsonView(MainAttributes.class)
     private int maxWeight;
-
     @Column(nullable = false)
     @JsonView(MainAttributes.class)
     private Timestamp startDate;
-
     @Column(nullable = false)
     @JsonView(MainAttributes.class)
     private Timestamp endDate;
-
     @ManyToOne
     private User referee;
-
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Fight> fights;
-
 
     public Competition(String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, User referee) {
         this.shortName = shortName;
@@ -63,6 +51,7 @@ public class Competition {
         this.endDate = endDate;
         this.referee = referee;
     }
+
 
     protected Competition() {
 
@@ -186,6 +175,9 @@ public class Competition {
     public String getFormattedEndDate() {
         SimpleDateFormat simpDate = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         return simpDate.format(endDate);
+    }
+
+    public static class MainAttributes {
     }
 
 }

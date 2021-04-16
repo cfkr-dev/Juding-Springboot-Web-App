@@ -3,13 +3,6 @@ package es.dawgroup2.juding.posts.rest;
 import es.dawgroup2.juding.posts.Post;
 import es.dawgroup2.juding.posts.PostService;
 import es.dawgroup2.juding.users.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -17,6 +10,12 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
@@ -39,8 +38,8 @@ public class AdminPostAPIController {
     @Operation(summary = "Get a list with the posts (paginated)")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Page with more than one post",
-                    content = { @Content(mediaType = "application/json",
-                            array = @ArraySchema(schema = @Schema(implementation = Post.class))) }),
+                    content = {@Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = Post.class)))}),
             @ApiResponse(responseCode = "400", description = "Request is invalid because of empty or non-existant page retrieve",
                     content = @Content)
     })
@@ -65,8 +64,8 @@ public class AdminPostAPIController {
     @Operation(summary = "Post a new post")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Creation of a new post",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Post.class)) }),
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Post.class))}),
             @ApiResponse(responseCode = "500", description = "Post cannot be created on the basis of failed data",
                     content = @Content)
     })
@@ -88,8 +87,8 @@ public class AdminPostAPIController {
     @Operation(summary = "Existing post edition")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Edit the post",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Post.class)) }),
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Post.class))}),
 
             @ApiResponse(responseCode = "500", description = "Post cannot be modified on the basis of failed data",
                     content = @Content)
@@ -111,8 +110,8 @@ public class AdminPostAPIController {
     @Operation(summary = "Elimination of a post")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Elimination successfully completed",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Post.class)) }),
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Post.class))}),
             @ApiResponse(responseCode = "404", description = "Request is invalid because of empty or non-existant post retrieve",
                     content = @Content)
     })

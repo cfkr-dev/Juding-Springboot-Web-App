@@ -138,7 +138,7 @@ public class AdminUserAPIController {
     })
     @PutMapping("/")
     public ResponseEntity<User> savingUser(@Valid @Parameter(description = "Admin user edition Data Transfer Object.") @RequestBody AdminUserEditionDTO adminUserEditionDTO) {
-  if (userService.matchingLicenseAndNickname(adminUserEditionDTO.getLicenseId(), adminUserEditionDTO.getNickname())) {
+        if (userService.matchingLicenseAndNickname(adminUserEditionDTO.getLicenseId(), adminUserEditionDTO.getNickname())) {
             return ResponseEntity.badRequest().build();
         }
         User user = userService.save(adminUserEditionDTO.getName(),

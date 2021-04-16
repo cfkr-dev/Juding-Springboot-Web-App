@@ -23,7 +23,7 @@ public class RefereeRangeService {
      * Returns a String with HTML <option> elements, one per existing range.
      *
      * @param defaultValue Default selected range (null if not necessary)
-     * @param onlyActive True if "solicitant" range should not be included.
+     * @param onlyActive   True if "solicitant" range should not be included.
      * @return String built with all the available options attending to the desired parameters.
      */
     public String generateActiveRangesSelect(RefereeRange defaultValue, boolean onlyActive) {

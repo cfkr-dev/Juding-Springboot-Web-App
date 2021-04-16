@@ -79,11 +79,10 @@ public class PostService {
     }
 
     /**
-     *
      * @param post
      * @return
      */
-    public Post save(Post post){
+    public Post save(Post post) {
         return postRepository.save(post);
     }
 

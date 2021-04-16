@@ -2,7 +2,6 @@ package es.dawgroup2.juding.posts;
 
 import es.dawgroup2.juding.main.HeaderInflater;
 import es.dawgroup2.juding.users.UserService;
-import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
 @Controller
 public class AdminPostController {
