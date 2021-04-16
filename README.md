@@ -253,22 +253,29 @@ The following steps show how to start the developed web application using only D
 
 #### How to run application using Docker Hub?
 To run this application using Docker Hub technology it is necessary to use Docker Compose due to the existence of two containers:
-* The MySQL database: db
-* The juding application's own files: juding
+* The MySQL database: db.
+* The Juding application's own files: juding.
 
-First the Docker container image has to be generated:
+Prerequisites: Docker CLI and Docker Compose must be installed.
+If Docker Compose is not installed, you can run the following command:
 
-``& docker-compose up``
+``$ sudo apt install docker-compose``
 
-In case an image has already been generated and you want to rebuild it due to later modifications:
+When Docker Compose is available you must download the docker-compose.yml file using one of the following commands: ```wget``` or ```curl```. For example:
 
-``& docker-compose up --build``
+``$ wget http://raw.githack.com/CodeURJC-DAW-2020-21/webapp2/main/docker/docker-compose.yml``
 
-The application will be available on the port http://locahost:5000/.
+Now you can run Docker Compose using:
 
-To stop the app, Ctrl+C in the console or the following statement:
+``$ docker-compose up``
 
-``& docker-compose stop``
+* If you want to execute this Docker Compose as a detached process, you can add ```-d``` flag.
+
+The application will be available on the URL [https://locahost:8443/](https://locahost:8443/).
+
+To stop the app, Ctrl+C in the console or execute the following statement:
+
+``$ docker-compose down``
 
 #### How to run application from GitHub?
 INCLUDE HERE COMMON DOCKER GUIDE
