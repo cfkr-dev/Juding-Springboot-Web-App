@@ -226,3 +226,72 @@ A example for granting the needed permissions in the database for the user could
   * In case you are using Windows, you can substitute ``.mvnm`` by the route of the ``mvnm.cmd`` file in the same folder. It is necessary to configure ``JAVA_HOME`` before using it.
 
 5. It's done! Now, you can open your favourite browser and go to ``https://localhost:8443`` to start using this application!
+
+___
+
+## Stage 3: more functional application - REST API and Docker
+
+### Top 5 Commits & Files
+
+| Name | Top 5 Commits | Top 5 Files |
+| - | - | - |
+| Ismael<br>In this stage, I have done all the validation of the application both server-side and client-side. I have also done all of the competition's REST controllers | <ul><li>[Rest controller able to save the results of a competition fights](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/420ada062f4a2be4536b38619a3794e0099871be)</li><li>[Competition Rest controller](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/03f47d60ddbd86125fc06b486cc44e687ff2e1a3)</li><li>[Admin competition rest controller](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/b363116debeba3faf2b6085bde9538f3b408c945)</li><li>[Client-side validation for application forms ](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/0c576deae4fa6be584684d80111547b19f4bfe98)</li><li>[Server-side validation for rest controllers](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/f7af3be1a3d31d91f1a704c846d3cbea367d79a2)</li></ul> | <ul><li>[RefereeControlAPIController.java](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/backend/src/main/java/es/dawgroup2/juding/competitions/rest/RefereeControlAPIController.java)</li><li>[CompetitionAPIController.java](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/backend/src/main/java/es/dawgroup2/juding/competitions/rest/CompetitionAPIController.java)</li><li>[AdminCompetitionAPIController.java](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/backend/src/main/java/es/dawgroup2/juding/competitions/rest/AdminCompetitionAPIController.java)</li><li>[formControl.js](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/backend/src/main/resources/static/assets/js/formControl.js)</li><li>[CompetitionDTO.java](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/backend/src/main/java/es/dawgroup2/juding/competitions/rest/CompetitionDTO.java)</li></ul>|
+| Diego<br>In this stage, I started creating user REST API, including endpoints for both main profile pages and management information. I also included JWT security and created the Docker Compose required for executing both MySQL and webapp containers. | <ul><li>Including JSON Web Token security for REST API (commits [1](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/d25788fa0077f1a3fa67a5d115c6eab7ef4648b1) and [2](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/4083f74e935a9a6ed0dd73a04ed5d46037796ed9)).</li><li>[REST API for User management pages of administrators](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/81154f315851306bda49e45498350ac485e19f0b)  and [REST API for myHome, Ranking and myProfile pages](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/9ffcc79837f6d80adce73354f5980a483aa02263) (including also some other commits in this branch)</li><li>[Applying DTO pattern to some REST controllers](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/ddd99d21a2e68de9ca58c521cdc86e5afd838b4a#diff-78ae57fb990e8d500464f661b306be5dd0f19467b550e022753a780ca7a92618).</li><li>OpenAPI Documentation of REST API for User management and information pages (applied in multiple commits, some of them are [this one](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/9eb67cd30ed8d249795998664a162983aa92018e), [this one](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/f6265fdb0b1b54a152358e1cb640cb1b2e62723b) and others in this branch).</li><li>[Docker Compose.](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/76ba8637dd630d35f3ee57e79d4bf9d7a8dd01ba)</li></ul> | <ul><li>[UserService.java](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/backend/src/main/java/es/dawgroup2/juding/users/UserService.java).</li><li>[LoggedInUserAPIController.java](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/backend/src/main/java/es/dawgroup2/juding/main/rest/LoggedInUserAPIController.java).</li><li>[AdminUserAPIController.java](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/backend/src/main/java/es/dawgroup2/juding/users/rest/AdminUserAPIController.java).</li><li>[docker-compose.yml](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/docker/docker-compose.yml).</li><li>[IndexController.java](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/backend/src/main/java/es/dawgroup2/juding/main/IndexController.java).</li></ul> |
+| José Luis<br>In this stage, I have been identifying and fixing minor imperfections in the forms and links throughout the application. In addition, I've tested all the Rest APIs, I created the whole battery of postman tests and I have collaborate with the Docker's part | <ul><li>[Phone configuration as an optional attribute](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/9096d71bd2d75cfb0b2c7076d5521038d734853b)</li><li>[Datepicker](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/a21c2c799b1485d670acd9b7b8431b87ccedfc53)</li><li>[Datepicker implementation](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/52db51c3f6cd2abc99f2203bf789bb4ec3747d55)</li><li>[Creation of Postman tests](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/9541a66b50a75c21ffd9f521a31a255416658d8a)</li><li>[Docker's Image](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/a6ef2d5677d9e84d266f8f6313a36b945f478c79)</li></ul> | <ul><li>[api.postman_collection.json](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/api.postman_collection.json)</li><li>[formControl.js](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/backend/src/main/resources/static/assets/js/formControl.js)</li><li>[list.html](https://github.com/CodeURJC-DAW-2020-21/webapp2/tree/main/backend/src/main/resources/templates/admin/user/list.html)</li><li>[DataLoader.java](https://github.com/CodeURJC-DAW-2020-21/webapp2/tree/main/backend/src/main/java/es/dawgroup2/juding/main)</li><li>[create_image.sh](https://github.com/CodeURJC-DAhttps://github.com/CodeURJC-DAW-2020-21/webapp2/commit/a6ef2d5677d9e84d266f8f6313a36b945f478c79W-2020-21/webapp2/blob/main/docker/create_image.sh)</li></ul> |
+| Alberto<br>I created Post API REST, image API Controller and DTO collaboration and classes and templates diagram | <ul><li>[API REST Admin Post Controller](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/388114726e7b0ae6c22855371f92e58b1a569c9b)</li><li>[API REST Post Controller](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/579bfb92b5bc07467f113b8e4895a4b4fb97c224)</li><li>[DTO Pattern for Post](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/08476adf9dc2a3ae960cd9a520febfe8351474a3)</li><li>[Image API Controller for Post](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/18007ce1cb779308cfdf7ea9ebe7984d3134a324)</li><li>[Post Service modifications](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/a477098aeb0f05c04952e1387fde9935a67f26d8)</li></ul> | <ul><li>[AdminPostAPIController.java](backend/src/main/java/es/dawgroup2/juding/posts/AdminPostAPIController.java)</li><li>[PostAPIController.java](backend/src/main/java/es/dawgroup2/juding/posts/PostAPIController.java)</li><li>[ImageAPIController.java](backend/src/main/java/es/dawgroup2/juding/main/image/ImageAPIController.java)</li><li>[PostDTO.java](backend/src/main/java/es/dawgroup2/juding/posts/rest/PostDTO.java)</li><li>[PostService.java](backend/src/main/java/es/dawgroup2/juding/posts/PostService.java)</li></ul> |
+
+### Classes and templates diagram
+This stage includes new controllers and DTO classes. These new artifacts are organized as the following diagram describes:
+![Classes and templates diagram](documentation_imgs/stage3/ClassAndTemplatesDiagram.jpg)
+
+### REST API Documentation
+The REST API developed documentation is accesible both in YAML and HTML format. You can:
+
+* Read YAML documentation: [YAML Documentation](http://raw.githack.com/CodeURJC-DAW-2020-21/webapp2/main/api-docs/api-docs.yaml).
+* Read HTML (raw) documentation: [HTML Documentation](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/api-docs/api-docs.html).
+* Read interpreted HTML: [Interpreted HTML Documentation](http://raw.githack.com/CodeURJC-DAW-2020-21/webapp2/main/api-docs/api-docs.html).
+
+### Guide: getting started with Juding - Docker Version
+The following steps show how to start the developed web application using only Docker in a Linux-based operative system.
+
+#### How to run application using Docker Hub?
+To run this application using Docker Hub technology it is necessary to use Docker Compose due to the existence of two containers:
+* The MySQL database: db.
+* The Juding application's own files: juding.
+
+Prerequisites: Docker CLI and Docker Compose must be installed.
+If Docker Compose is not installed, you can run the following command:
+
+``$ sudo apt install docker-compose``
+
+When Docker Compose is available you must download the docker-compose.yml file using one of the following commands: ```wget``` or ```curl```. For example:
+
+``$ wget http://raw.githack.com/CodeURJC-DAW-2020-21/webapp2/main/docker/docker-compose.yml``
+
+Now you can run Docker Compose using:
+
+``$ docker-compose up``
+
+* If you want to execute this Docker Compose as a detached process, you can add ```-d``` flag.
+
+The application will be available on the URL [https://locahost:8443/](https://locahost:8443/).
+
+To stop the app, Ctrl+C in the console or execute the following statement:
+
+``$ docker-compose down``
+
+#### How to run application from GitHub?
+To compile and execute Juding, follow the next steps.
+
+First use the following command for clone the application from the Git:
+
+``$ git clone https://github.com/CodeURJC-DAW-2020-21/webapp2.git``.
+
+Change the directory to the folder named docker:
+
+``$ cd ../docker``
+
+Use the following script:
+
+``$ bash create_image.sh``
+
