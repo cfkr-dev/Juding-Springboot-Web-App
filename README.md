@@ -242,7 +242,6 @@ ___
 
 ### Classes and templates diagram
 This stage includes new controllers and DTO classes. These new artifacts are organized as the following diagram describes:
-CHANGE THIS IMAGE AND DELETE THIS LINE
 ![Classes and templates diagram](documentation_imgs/stage3/ClassAndTemplatesDiagram.jpg)
 
 ### REST API Documentation
