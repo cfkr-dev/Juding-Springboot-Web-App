@@ -132,10 +132,7 @@ public class CompetitionService {
      * @return Returns true if the minWeight and maxWeight are not correctly introduced
      */
     public boolean checkingMinAndMaxWeight(String minWeight, String maxWeight) {
-        if (Integer.parseInt(minWeight) > Integer.parseInt(maxWeight) || Integer.parseInt(minWeight) < 0) {
-            return true;
-        }
-        return false;
+        return Integer.parseInt(minWeight) > Integer.parseInt(maxWeight) || Integer.parseInt(minWeight) < 0;
     }
 
     /**

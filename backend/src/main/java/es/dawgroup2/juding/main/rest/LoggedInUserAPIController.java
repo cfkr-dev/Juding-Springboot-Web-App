@@ -3,7 +3,6 @@ package es.dawgroup2.juding.main.rest;
 import com.fasterxml.jackson.annotation.JsonView;
 import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
-import es.dawgroup2.juding.auxTypes.roles.Role;
 import es.dawgroup2.juding.competitions.Competition;
 import es.dawgroup2.juding.competitions.CompetitionService;
 import es.dawgroup2.juding.main.DateService;

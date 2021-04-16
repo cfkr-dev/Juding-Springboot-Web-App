@@ -1,6 +1,6 @@
 package es.dawgroup2.juding.users.rest;
 
-public class CompetitorDTO extends RefereeDTO{
+public class CompetitorDTO extends RefereeDTO {
     private final String gym;
     private final String weight;
 
@@ -15,9 +15,9 @@ public class CompetitorDTO extends RefereeDTO{
     }
 
     public Integer getWeight() {
-        try{
+        try {
             return Integer.parseInt(weight);
-        } catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }

@@ -1,7 +1,5 @@
 package es.dawgroup2.juding.main.rest;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.validation.constraints.Pattern;
 
 public class UserProfileDTO {
@@ -45,9 +43,9 @@ public class UserProfileDTO {
     }
 
     public Integer getWeight() {
-        try{
+        try {
             return Integer.parseInt(weight);
-        } catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }

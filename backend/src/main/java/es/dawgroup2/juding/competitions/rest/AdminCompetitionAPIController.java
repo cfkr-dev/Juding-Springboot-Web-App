@@ -15,7 +15,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,17 +51,15 @@ public class AdminCompetitionAPIController {
     @Operation(summary = "Get a list with the competitions (paginated)")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Page with more than one competition",
-                    content = { @Content(mediaType = "application/json",
-                            array = @ArraySchema(schema = @Schema(implementation = Competition.class))) }),
+                    content = {@Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = Competition.class)))}),
             @ApiResponse(responseCode = "400", description = "Request is invalid because of empty or non-existant page retrieve",
                     content = @Content)
     })
     @GetMapping("/")
     public ResponseEntity<Page<Competition>> getCompetitionPage(@Parameter(description = "Number of page to be searched") @RequestParam(required = false) Integer page) {
         int defPage = (page == null) ? 0 : page;
-        if (defPage < 0) {
-            return ResponseEntity.badRequest().build();
-        }
+        if (defPage < 0) return ResponseEntity.badRequest().build();
         Page<Competition> competitionPage = competitionService.getCompetitionsInPages(defPage);
         if (competitionPage.hasContent()) {
             return ResponseEntity.ok(competitionPage);
@@ -80,8 +77,8 @@ public class AdminCompetitionAPIController {
     @Operation(summary = "Post a new competition")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Creation of a new competition",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = CompetitionDTO.class)) }),
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CompetitionDTO.class))}),
             @ApiResponse(responseCode = "500", description = "Competition cannot be created on the basis of failed data",
                     content = @Content)
     })
@@ -119,8 +116,8 @@ public class AdminCompetitionAPIController {
     @Operation(summary = "Existing competition edition")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Edit the competition",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = CompetitionDTO.class)) }),
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CompetitionDTO.class))}),
             @ApiResponse(responseCode = "500", description = "Competition cannot be modified on the basis of failed data",
                     content = @Content)
     })
@@ -157,8 +154,8 @@ public class AdminCompetitionAPIController {
     @Operation(summary = "Elimination of a competition")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Elimination successfully completed",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Competition.class)) }),
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Competition.class))}),
             @ApiResponse(responseCode = "404", description = "Request is invalid because of empty or non-existant competition retrieve",
                     content = @Content)
     })

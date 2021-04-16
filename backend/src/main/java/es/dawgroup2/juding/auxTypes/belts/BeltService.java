@@ -22,7 +22,7 @@ public class BeltService {
     /**
      * Returns a String with HTML <option> elements, one per existing belt.
      *
-     * @param id Default selected belt (null if not necessary)
+     * @param id        Default selected belt (null if not necessary)
      * @param onlyBlack True if the String must contain only black belts.
      * @return String built with all the available options attending to the desired parameters.
      */

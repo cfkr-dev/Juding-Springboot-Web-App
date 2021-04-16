@@ -203,4 +203,30 @@ public class IndexAPIController {
         }
         return ResponseEntity.badRequest().build();
     }
+
+    /**
+     * Recovery password method (including licenseId, correct security answer and new password).
+     *
+     * @param recoverPasswordDTO Recover password Data Transfer Object.
+     * @return User saved with its new password (bad request otherwise).
+     */
+    @Operation(summary = "Recovery password method (including licenseId, correct security answer and new password).")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User saved with its new password.",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = User.class))}),
+            @ApiResponse(responseCode = "400", description = "Bad request since user was not found by its license ID or security answer was incorrect.",
+                    content = @Content)
+    })
+    @PutMapping("/passwordRecovery")
+    public ResponseEntity<User> passwordRecovery(@Valid @Parameter(description = "Recover password Data Transfer Object.") @RequestBody RecoverPasswordDTO recoverPasswordDTO) {
+        User user = userService.getUserOrNull(recoverPasswordDTO.getLicenseId());
+        if (user != null)
+            if (user.getSecurityAnswer().equals(recoverPasswordDTO.getSecurityAnswer())) {
+                user.setPassword(passwordEncoder.encode(recoverPasswordDTO.getNewPassword()));
+                userService.save(user);
+                return ResponseEntity.ok(user);
+            }
+        return ResponseEntity.badRequest().build();
+    }
 }

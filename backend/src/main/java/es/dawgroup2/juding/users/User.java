@@ -1,6 +1,5 @@
 package es.dawgroup2.juding.users;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import es.dawgroup2.juding.auxTypes.belts.Belt;
@@ -289,7 +288,7 @@ public class User {
 
     public User addRole(Role role) {
         if (this.roles == null) {
-          this.roles = new HashSet<>();
+            this.roles = new HashSet<>();
         }
         this.roles.add(role);
         return this;
@@ -340,5 +339,7 @@ public class User {
     }
 
     @JsonProperty("imageFile")
-    public String imageFile(){ return "/api/image/user/" + getLicenseId() + "/"; }
+    public String imageFile() {
+        return "/api/image/user/" + getLicenseId() + "/";
+    }
 }

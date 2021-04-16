@@ -14,6 +14,7 @@ import java.util.TimeZone;
 public class DateService {
     /**
      * Transforms a date in Spanish-readable format (e.g. 30/10/2000) into a SQL Date object.
+     *
      * @param dateString Date in Spanish-readable format.
      * @return Date object.
      * @throws ParseException Parsing exception.
@@ -27,6 +28,7 @@ public class DateService {
 
     /**
      * Transforms a date in Spanish-readable format (e.g. 30/10/2000 12:34) into a SQL Timestamp object.
+     *
      * @param dateString Date in Spanish-readable format.
      * @return Timestamp object.
      * @throws ParseException Parsing exception.
