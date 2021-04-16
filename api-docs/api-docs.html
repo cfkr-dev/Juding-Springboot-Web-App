@@ -328,12 +328,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Creation of a new competition
-        <a href="#CompetitionDTO">CompetitionDTO</a>
     <h4 class="field-label">500</h4>
     Competition cannot be created on the basis of failed data
         <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Creation of a new competition
+        <a href="#CompetitionDTO">CompetitionDTO</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="getCompetitionPage"></a>
@@ -960,15 +960,15 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    New referee&#x27;s complete information.
+        <a href="#User">User</a>
     <h4 class="field-label">403</h4>
     Not allowed (there is not logged in user or it is not an administrator).
         <a href="#"></a>
     <h4 class="field-label">400</h4>
     Requested license ID is not registered in the application or referee has been admitted before
         <a href="#"></a>
-    <h4 class="field-label">200</h4>
-    New referee&#x27;s complete information.
-        <a href="#User">User</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="applicantList"></a>
@@ -1274,15 +1274,15 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Page with referees.
-        
     <h4 class="field-label">403</h4>
     Not allowed (there is not logged in user or it is not an administrator).
         <a href="#"></a>
     <h4 class="field-label">400</h4>
     Requested page does not exist.
         <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Page with referees.
+        
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="savingUser"></a>
@@ -1347,12 +1347,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">201</h4>
-    User object with new information saved.
-        <a href="#User">User</a>
     <h4 class="field-label">403</h4>
     Not allowed (there is not logged in user or it is not an administrator).
         <a href="#"></a>
+    <h4 class="field-label">201</h4>
+    User object with new information saved.
+        <a href="#User">User</a>
   </div> <!-- method -->
   <hr/>
   <h1><a name="ChartRestController">ChartRestController</a></h1>
@@ -1394,15 +1394,15 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Information for charts in a list.
-        
     <h4 class="field-label">403</h4>
     Not allowed (there is not logged in user).
         <a href="#"></a>
     <h4 class="field-label">404</h4>
     Not able to return chart info (user is not a competitor, so it doesn&#x27;t have chart information).
         <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Information for charts in a list.
+        
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="competitorRestChartInformation"></a>
@@ -1438,15 +1438,15 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Information for charts in a list.
-        
     <h4 class="field-label">403</h4>
     Not allowed (there is not logged in user).
         <a href="#"></a>
     <h4 class="field-label">404</h4>
     Not able to return chart info (user is not a competitor, so it doesn&#x27;t have chart information).
         <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Information for charts in a list.
+        
   </div> <!-- method -->
   <hr/>
   <h1><a name="CompetitionApiController">CompetitionApiController</a></h1>
@@ -1822,9 +1822,6 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Image could be found and is downloaded.
-        <a href="#"></a>
     <h4 class="field-label">403</h4>
     Current logged user is not authorized to download this image.
         <a href="#"></a>
@@ -1833,6 +1830,9 @@
         <a href="#"></a>
     <h4 class="field-label">400</h4>
     Image was not properly processed.
+        <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Image could be found and is downloaded.
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -1890,12 +1890,12 @@
     <h4 class="field-label">403</h4>
     Current logged user is not authorized to upload or change this image.
         <a href="#"></a>
-    <h4 class="field-label">400</h4>
-    Image was not properly processed.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     Image could be found and is downloaded.
         <a href="#inline_response_200">inline_response_200</a>
+    <h4 class="field-label">400</h4>
+    Image was not properly processed.
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <h1><a name="IndexApiController">IndexApiController</a></h1>
@@ -2313,15 +2313,15 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">403</h4>
-    Not allowed (user is not logged in).
-        <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    Currently logged in user was not found.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     List of current competitions of logged-in user.
         
+    <h4 class="field-label">404</h4>
+    Currently logged in user was not found.
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Not allowed (user is not logged in).
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="editingUser"></a>
@@ -2386,15 +2386,15 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">403</h4>
-    Not allowed (user is not logged in).
-        <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    Currently logged in user was not found.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     User profile information with changed values.
         <a href="#User">User</a>
+    <h4 class="field-label">404</h4>
+    Currently logged in user was not found.
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Not allowed (user is not logged in).
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="futureCompetitions"></a>
@@ -2493,14 +2493,14 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">403</h4>
-    Not allowed (user is not logged in).
+    <h4 class="field-label">404</h4>
+    Currently logged in user was not found.
         <a href="#"></a>
     <h4 class="field-label">200</h4>
     List of future competitions.
         
-    <h4 class="field-label">404</h4>
-    Currently logged in user was not found.
+    <h4 class="field-label">403</h4>
+    Not allowed (user is not logged in).
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -2555,12 +2555,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">403</h4>
-    Not allowed (user is not logged in).
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     List of ranking.
         
+    <h4 class="field-label">403</h4>
+    Not allowed (user is not logged in).
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="me"></a>
@@ -2614,11 +2614,11 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">403</h4>
-    Not allowed (user is not logged in).
-        <a href="#"></a>
     <h4 class="field-label">404</h4>
     Currently logged in user was not found.
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Not allowed (user is not logged in).
         <a href="#"></a>
     <h4 class="field-label">200</h4>
     User profile information.
@@ -2716,11 +2716,11 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">403</h4>
-    Not allowed (user is not logged in).
-        <a href="#"></a>
     <h4 class="field-label">404</h4>
     Currently logged in user was not found.
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Not allowed (user is not logged in).
         <a href="#"></a>
     <h4 class="field-label">200</h4>
     List of past competitions of currently logged-in user.
@@ -2916,12 +2916,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">404</h4>
-    Resource not found
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     Found the post
         
+    <h4 class="field-label">404</h4>
+    Resource not found
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="recentNews"></a>
@@ -3014,12 +3014,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">404</h4>
-    Resource not found
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     Found the list
         
+    <h4 class="field-label">404</h4>
+    Resource not found
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <h1><a name="RefereeControlApiController">RefereeControlApiController</a></h1>
@@ -3071,12 +3071,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Save successfully completed
-        <a href="#CompetitionResultDTO">CompetitionResultDTO</a>
     <h4 class="field-label">404</h4>
     Request is invalid because of non-finished competition retrieve
         <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Save successfully completed
+        <a href="#CompetitionResultDTO">CompetitionResultDTO</a>
   </div> <!-- method -->
   <hr/>
   <h1><a name="RefereeControlController">RefereeControlController</a></h1>

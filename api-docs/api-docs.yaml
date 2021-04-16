@@ -13,10 +13,10 @@ paths:
       summary: Returns logged in user profile data.
       operationId: me
       responses:
-        "403":
-          description: Not allowed (user is not logged in).
         "404":
           description: Currently logged in user was not found.
+        "403":
+          description: Not allowed (user is not logged in).
         "200":
           description: User profile information.
           content:
@@ -36,16 +36,16 @@ paths:
               $ref: '#/components/schemas/UserProfileDTO'
         required: true
       responses:
-        "403":
-          description: Not allowed (user is not logged in).
-        "404":
-          description: Currently logged in user was not found.
         "200":
           description: User profile information with changed values.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+        "404":
+          description: Currently logged in user was not found.
+        "403":
+          description: Not allowed (user is not logged in).
   /api/image/{type}/{id}:
     get:
       tags:
@@ -67,10 +67,6 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: Image could be found and is downloaded.
-          content:
-            image/*: {}
         "403":
           description: Current logged user is not authorized to download this image.
         "404":
@@ -78,6 +74,10 @@ paths:
             exist or it does not have associated image).
         "400":
           description: Image was not properly processed.
+        "200":
+          description: Image could be found and is downloaded.
+          content:
+            image/*: {}
     put:
       tags:
       - image-api-controller
@@ -114,8 +114,6 @@ paths:
         "403":
           description: Current logged user is not authorized to upload or change this
             image.
-        "400":
-          description: Image was not properly processed.
         "200":
           description: Image could be found and is downloaded.
           content:
@@ -124,6 +122,8 @@ paths:
                 oneOf:
                 - $ref: '#/components/schemas/User'
                 - $ref: '#/components/schemas/Post'
+        "400":
+          description: Image was not properly processed.
   /api/competition/{idCompetition}:
     get:
       tags:
@@ -181,14 +181,14 @@ paths:
               $ref: '#/components/schemas/CompetitionResultDTO'
         required: true
       responses:
+        "404":
+          description: Request is invalid because of non-finished competition retrieve
         "200":
           description: Save successfully completed
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CompetitionResultDTO'
-        "404":
-          description: Request is invalid because of non-finished competition retrieve
   /api/admin/user/refereeApplication/{licenseId}:
     put:
       tags:
@@ -203,17 +203,17 @@ paths:
         schema:
           type: string
       responses:
-        "403":
-          description: Not allowed (there is not logged in user or it is not an administrator).
-        "400":
-          description: Requested license ID is not registered in the application or
-            referee has been admitted before
         "200":
           description: New referee's complete information.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+        "403":
+          description: Not allowed (there is not logged in user or it is not an administrator).
+        "400":
+          description: Requested license ID is not registered in the application or
+            referee has been admitted before
   /api/admin/user/:
     put:
       tags:
@@ -228,14 +228,14 @@ paths:
               $ref: '#/components/schemas/AdminUserEditionDTO'
         required: true
       responses:
+        "403":
+          description: Not allowed (there is not logged in user or it is not an administrator).
         "201":
           description: User object with new information saved.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-        "403":
-          description: Not allowed (there is not logged in user or it is not an administrator).
   /api/admin/post/:
     get:
       tags:
@@ -358,14 +358,14 @@ paths:
               $ref: '#/components/schemas/CompetitionDTO'
         required: true
       responses:
+        "500":
+          description: Competition cannot be created on the basis of failed data
         "200":
           description: Creation of a new competition
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CompetitionDTO'
-        "500":
-          description: Competition cannot be created on the basis of failed data
   /api/signUp/referee:
     post:
       tags:
@@ -489,6 +489,11 @@ paths:
         schema:
           type: string
       responses:
+        "403":
+          description: Not allowed (there is not logged in user).
+        "404":
+          description: "Not able to return chart info (user is not a competitor, so\
+            \ it doesn't have chart information)."
         "200":
           description: Information for charts in a list.
           content:
@@ -497,11 +502,6 @@ paths:
                 type: array
                 items:
                   type: integer
-        "403":
-          description: Not allowed (there is not logged in user).
-        "404":
-          description: "Not able to return chart info (user is not a competitor, so\
-            \ it doesn't have chart information)."
   /competition/{idCompetition}/control/saveResult:
     get:
       tags:
@@ -538,8 +538,6 @@ paths:
         table.
       operationId: getRanking
       responses:
-        "403":
-          description: Not allowed (user is not logged in).
         "200":
           description: List of ranking.
           content:
@@ -548,6 +546,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/RankingDTO'
+        "403":
+          description: Not allowed (user is not logged in).
   /api/posts:
     get:
       tags:
@@ -562,8 +562,6 @@ paths:
         schema:
           type: string
       responses:
-        "404":
-          description: Resource not found
         "200":
           description: Found the post
           content:
@@ -572,6 +570,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Post'
+        "404":
+          description: Resource not found
   /api/posts/recent:
     get:
       tags:
@@ -586,8 +586,6 @@ paths:
         schema:
           type: string
       responses:
-        "404":
-          description: Resource not found
         "200":
           description: Found the list
           content:
@@ -596,6 +594,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Post'
+        "404":
+          description: Resource not found
   /api/posts/page:
     get:
       tags:
@@ -628,10 +628,10 @@ paths:
       summary: Returns a list of past competitions of currently logged-in user.
       operationId: pastCompetitions
       responses:
-        "403":
-          description: Not allowed (user is not logged in).
         "404":
           description: Currently logged in user was not found.
+        "403":
+          description: Not allowed (user is not logged in).
         "200":
           description: List of past competitions of currently logged-in user.
           content:
@@ -649,6 +649,11 @@ paths:
       description: It has to be in a different method because of JWT authentication.
       operationId: competitorRestChartInformation
       responses:
+        "403":
+          description: Not allowed (there is not logged in user).
+        "404":
+          description: "Not able to return chart info (user is not a competitor, so\
+            \ it doesn't have chart information)."
         "200":
           description: Information for charts in a list.
           content:
@@ -657,11 +662,6 @@ paths:
                 type: array
                 items:
                   type: integer
-        "403":
-          description: Not allowed (there is not logged in user).
-        "404":
-          description: "Not able to return chart info (user is not a competitor, so\
-            \ it doesn't have chart information)."
   /api/me/futureCompetitions:
     get:
       tags:
@@ -677,8 +677,8 @@ paths:
         schema:
           type: string
       responses:
-        "403":
-          description: Not allowed (user is not logged in).
+        "404":
+          description: Currently logged in user was not found.
         "200":
           description: List of future competitions.
           content:
@@ -687,8 +687,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Competition_MainAttributes'
-        "404":
-          description: Currently logged in user was not found.
+        "403":
+          description: Not allowed (user is not logged in).
   /api/me/currentCompetitions:
     get:
       tags:
@@ -696,10 +696,6 @@ paths:
       summary: Returns a list of current competitions of logged-in user.
       operationId: currentCompetitions
       responses:
-        "403":
-          description: Not allowed (user is not logged in).
-        "404":
-          description: Currently logged in user was not found.
         "200":
           description: List of current competitions of logged-in user.
           content:
@@ -708,6 +704,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Competition_MainAttributes'
+        "404":
+          description: Currently logged in user was not found.
+        "403":
+          description: Not allowed (user is not logged in).
   /api/index-email:
     get:
       tags:
@@ -896,6 +896,10 @@ paths:
           type: integer
           format: int32
       responses:
+        "403":
+          description: Not allowed (there is not logged in user or it is not an administrator).
+        "400":
+          description: Requested page does not exist.
         "200":
           description: Page with referees.
           content:
@@ -904,10 +908,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/User'
-        "403":
-          description: Not allowed (there is not logged in user or it is not an administrator).
-        "400":
-          description: Requested page does not exist.
   /api/admin/user/referees/applications:
     get:
       tags:
