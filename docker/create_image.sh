@@ -26,10 +26,11 @@ echo "1. Compile Maven application from source code."
 sudo docker run --rm -v "$PWD":/data -w /data maven mvn package
 
 # Step 2: building Docker image (using Dockerfile)
+cp target/*.jar ../docker
 cd ../docker
 echo
 echo "2. Build Docker image using Dockerfile."
-sudo docker build -t juding ../backend
+sudo docker build -t juding .
 
 echo
 echo "It's ready! Image has been called \"juding\" and can be used"
