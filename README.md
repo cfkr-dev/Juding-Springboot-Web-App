@@ -274,7 +274,7 @@ Now you can run Docker Compose using:
 
 * If you want to execute this Docker Compose as a detached process, you can add ```-d``` flag.
 
-The application will be available on the URL [https://locahost:8443/](https://locahost:8443/).
+The application will be available on the URL [https://localhost:8443/](https://localhost:8443/).
 
 To stop the app, Ctrl+C in the console or execute the following statement:
 
