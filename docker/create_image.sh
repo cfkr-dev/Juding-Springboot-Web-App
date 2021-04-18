@@ -31,6 +31,7 @@ cd ../docker
 echo
 echo "2. Build Docker image using Dockerfile."
 sudo docker build -t juding .
+sudo rm -rf *.jar
 
 echo
 echo "It's ready! Image has been called \"juding\" and can be used"
