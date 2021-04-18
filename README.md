@@ -280,7 +280,7 @@ To stop the app, Ctrl+C in the console or execute the following statement:
 
 ``$ docker-compose down``
 
-#### How to run application from GitHub?
+#### How to build a Docker image?
 To compile and execute Juding, follow the next steps.
 
 First use the following command for clone the application from the Git:
@@ -295,3 +295,4 @@ Use the following script:
 
 ``$ bash create_image.sh``
 
+Warning: this image will work only if a database is set and properly configured. Bash script tells how to configure it.
