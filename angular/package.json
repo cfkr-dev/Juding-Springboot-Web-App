@@ -1,6 +1,6 @@
 {
-  "name": "juding",
-  "version": "1.0",
+  "name": "angular2",
+  "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
