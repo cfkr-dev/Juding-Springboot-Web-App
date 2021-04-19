@@ -1,0 +1,20 @@
+.responsiveTable .rtRow:nth-child(2n+1){
+    background-color: rgba(255, 204, 204, 0.5);
+}
+
+.responsiveTable .rtRow.rtHeader{
+    background-color: white;
+}
+
+.delete {
+    color: white;
+}
+
+.profile {
+    display: none;
+}
+
+.imageInTheMiddle {
+    text-align: center;
+    max-height: 400px;
+}

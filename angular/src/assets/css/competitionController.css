@@ -1,0 +1,109 @@
+/*  CONTAINER STYLES   */
+
+.container {
+    padding-top: 10px;
+}
+
+/*  COMPETITORS VIEW STYLES   */
+
+.competitorsView {
+    padding: 30px 30px 7px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 20px;
+    font-size: 30px;
+}
+
+.competitorsView .row {
+    padding: 3px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc !important;
+    border-radius: 5px;
+}
+
+.competitorsView .col-md-6 {
+    border-right: 1px solid #333 !important;
+    border-left: 1px solid #333 !important;
+}
+
+.redBack {
+    background-color: #ef5350;
+}
+
+/*  STOPWATCH STYLES   */
+
+.stopwatch {
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 20px 20px 20px 30%;
+    font-size: 1.8rem;
+}
+
+@media screen and (max-width: 768px) {
+    .stopwatch {
+        margin-left: 20px;
+    }
+}
+
+.bigstopwatch {
+    border-right: 1px solid #ccc !important;
+}
+
+.stopwatch .col-lg-5 {
+    padding-right: 0;
+}
+
+
+/*  CONTROLLERS VIEW STYLES   */
+
+.controller {
+    font-size: 30px;
+}
+
+.competitorController {
+    padding: 15px;
+    font-size: 30px;
+}
+
+.competitor2 {
+    background-color: #90CAF9;
+}
+
+.stopwatchController {
+    padding: 15px;
+    font-size: 30px;
+}
+
+.colShadow {
+    box-shadow: 0 0 25px rgb(160, 160, 160);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.btn {
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.controller .competitorController .btn-success {
+    margin-right: 50px;
+}
+
+.controller .competitorController .btn-danger {
+    margin-left: 50px;
+}
+
+.btnL {
+    margin-right: 50px;
+}
+
+.btnR {
+    margin-left: 50px;
+}
+
+.endButton {
+    margin-top: 40px;
+}
