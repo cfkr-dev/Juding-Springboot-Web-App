@@ -1,0 +1,76 @@
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+body > .container {
+    background-color: white;
+    padding-bottom: 15px;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 90%;
+    height: auto;
+    padding: 0;
+}
+
+.bigAvatar {
+    border-radius: 50%;
+    width: 20%;
+    height: auto;
+    padding: 0;
+}
+
+.nombre {
+    font-weight: 500;
+    font-size: 2em;
+}
+
+.apellidos {
+    font-weight: 700;
+    font-size: 2em;
+}
+
+.nick {
+    font-weight: 400;
+    font-size: 1.5em;
+}
+
+.biggerText {
+    font-size: 1.1em;
+    color: white;
+}
+
+.container-login100-form-btn {
+    width: 100%;
+    justify-content: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.txt1 > .asterisk {
+    padding-left: 2px;
+    color: #ff0000 !important;
+}
+
+#danField {
+    display: none;
+}
+
+.profileModificationsTitle {
+    padding-bottom: 32px;
+    font-size: 30px;
+    color: #555555;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    display: block;
+}

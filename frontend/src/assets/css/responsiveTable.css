@@ -1,0 +1,117 @@
+/*
+RESPONSIVE TABLES
+This is a little CSS library self-made. It can replace a normal HTML table with a combination of divs that allows the web
+to be adapted in mobile devices since media queries have been used.
+ */
+
+.responsiveTable {
+    display: flex;
+    flex-direction: column;
+}
+
+.responsiveTable > .rtRow {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(222, 226, 230);
+    justify-content: space-around;
+    padding: .5em 1em;
+    align-items: center;
+}
+
+.responsiveTable > .rtRow.rtHeader {
+    font-weight: 700;
+}
+
+.responsiveTable > .rtRow:first-child {
+    border-top: 1px solid rgb(222, 226, 230);
+}
+
+.width5 {
+    width: 5%;
+}
+
+.width10 {
+    width: 10%;
+}
+
+.width15 {
+    width: 15%;
+}
+
+.width20 {
+    width: 20%;
+}
+
+.width25 {
+    width: 25%;
+}
+
+.width30 {
+    width: 30%;
+}
+
+.width35 {
+    width: 35%;
+}
+
+.width40 {
+    width: 40%;
+}
+
+.width45 {
+    width: 45%;
+}
+
+.width50 {
+    width: 50%;
+}
+
+.width55 {
+    width: 55%;
+}
+
+.width60 {
+    width: 60%;
+}
+
+.width65 {
+    width: 65%;
+}
+
+.width70 {
+    width: 70%;
+}
+
+.width75 {
+    width: 75%;
+}
+
+.width80 {
+    width: 80%;
+}
+
+.width85 {
+    width: 85%;
+}
+
+.width90 {
+    width: 90%;
+}
+
+.width95 {
+    width: 95%;
+}
+
+.width100 {
+    width: 95%;
+}
+
+@media screen and (max-width: 768px) {
+    .responsiveTable > .rtRow {
+        flex-direction: column;
+    }
+
+    .width5, .width10, .width15, .width20, .width25, .width30, .width35, .width40, .width45, .width50, .width55, .width60, .width65, .width70, .width75, .width80, .width85, .width90, .width95, .width100 {
+        width: 100%;
+    }
+}
