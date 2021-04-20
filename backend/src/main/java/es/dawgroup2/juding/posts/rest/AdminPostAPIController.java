@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
-@RequestMapping("/api/admin/post")
+@RequestMapping("/api/posts")
 public class AdminPostAPIController {
 
     @Autowired
@@ -73,7 +73,7 @@ public class AdminPostAPIController {
     public ResponseEntity<Post> addNewPost(@Parameter(description = "Post DTO") @RequestBody PostDTO postDTO,
                                            @Parameter(description = "Post request with the author") HttpServletRequest request) {
         Post newPost = postService.save(null, request, postDTO.getTitle(), postDTO.getBody(), null);
-        return ResponseEntity.created(fromCurrentRequest().path("/api/news/{idPost}").buildAndExpand(newPost.getIdPost()).toUri()).body(newPost);
+        return ResponseEntity.created(fromCurrentRequest().path("/{id}").buildAndExpand(newPost.getIdPost()).toUri()).body(newPost);
     }
 
 
@@ -93,10 +93,11 @@ public class AdminPostAPIController {
             @ApiResponse(responseCode = "500", description = "Post cannot be modified on the basis of failed data",
                     content = @Content)
     })
-    @PutMapping("/")
+    @PutMapping("/{id}")
     public ResponseEntity<Post> updatePost(@Parameter(description = "Post DTO") @RequestBody PostDTO postDTO,
+                                           @Parameter(description = "ID of post.") @PathVariable String id,
                                            @Parameter(description = "Post request with the author") HttpServletRequest request) {
-        Post updatedPost = postService.save(postDTO.getId(), request, postDTO.getTitle(), postDTO.getBody(), null);
+        Post updatedPost = postService.save(id, request, postDTO.getTitle(), postDTO.getBody(), null);
         return (updatedPost == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(updatedPost);
     }
 

@@ -6,7 +6,6 @@ import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
 import es.dawgroup2.juding.competitions.Competition;
 import es.dawgroup2.juding.competitions.CompetitionService;
 import es.dawgroup2.juding.main.DateService;
-import es.dawgroup2.juding.main.HeaderInflater;
 import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
@@ -28,9 +27,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class LoggedInUserAPIController {
-    @Autowired
-    HeaderInflater headerInflater;
-
     @Autowired
     UserService userService;
 
@@ -65,13 +61,10 @@ public class LoggedInUserAPIController {
             @ApiResponse(responseCode = "404", description = "Currently logged in user was not found.",
                     content = @Content)
     })
-    @GetMapping("/me/myProfile")
-    public ResponseEntity<User> me(@Parameter(description = "HTTP Servlet Request (for catching logged in user nickname)") HttpServletRequest request) {
-        User currentUser = userService.findByNickname(request.getUserPrincipal().getName());
-        if (currentUser != null)
-            return ResponseEntity.ok(currentUser);
-        else
-            return ResponseEntity.notFound().build();
+    @GetMapping(value = {"/competitors/{id}", "/referees/{id}"})
+    public ResponseEntity<User> me(@Parameter(description = "ID of user.") @PathVariable String id) {
+        User currentUser = userService.getUserOrNull(id);
+        return (currentUser != null) ? ResponseEntity.ok(currentUser) : ResponseEntity.notFound().build();
     }
 
     /**
@@ -90,14 +83,11 @@ public class LoggedInUserAPIController {
             @ApiResponse(responseCode = "404", description = "Currently logged in user was not found.",
                     content = @Content)
     })
-    @GetMapping("/me/pastCompetitions")
+    @GetMapping("/competitions/{id}/past")
     @JsonView(Competition.MainAttributes.class)
-    public ResponseEntity<List<Competition>> pastCompetitions(@Parameter(description = "HTTP Servlet Request (for catching logged in user nickname)") HttpServletRequest request) {
-        User currentUser = userService.findByNickname(request.getUserPrincipal().getName());
-        if (currentUser != null)
-            return ResponseEntity.ok(competitionService.getPastFights(currentUser));
-        else
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<List<Competition>> pastCompetitions(@Parameter(description = "ID of user.") @PathVariable String id) {
+        User currentUser = userService.getUserOrNull(id);
+        return (currentUser != null) ? ResponseEntity.ok(competitionService.getPastFights(currentUser)) : ResponseEntity.notFound().build();
     }
 
     /**
@@ -116,14 +106,11 @@ public class LoggedInUserAPIController {
             @ApiResponse(responseCode = "404", description = "Currently logged in user was not found.",
                     content = @Content)
     })
-    @GetMapping("/me/currentCompetitions")
+    @GetMapping("/competitions/{id}/current")
     @JsonView(Competition.MainAttributes.class)
-    public ResponseEntity<List<Competition>> currentCompetitions(@Parameter(description = "HTTP Servlet Request (for catching logged in user nickname)") HttpServletRequest request) {
-        User currentUser = userService.findByNickname(request.getUserPrincipal().getName());
-        if (currentUser != null)
-            return ResponseEntity.ok(competitionService.getCurrentCompetitions(currentUser));
-        else
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<List<Competition>> currentCompetitions(@Parameter(description = "ID of user.") @PathVariable String id) {
+        User currentUser = userService.getUserOrNull(id);
+        return (currentUser != null) ? ResponseEntity.ok(competitionService.getCurrentCompetitions(currentUser)) : ResponseEntity.notFound().build();
     }
 
     /**
@@ -143,15 +130,12 @@ public class LoggedInUserAPIController {
             @ApiResponse(responseCode = "404", description = "Currently logged in user was not found.",
                     content = @Content)
     })
-    @GetMapping("/me/futureCompetitions")
+    @GetMapping("/competitions/{id}/future")
     @JsonView(Competition.MainAttributes.class)
-    public ResponseEntity<List<Competition>> futureCompetitions(@Parameter(description = "True if returning joined future competitions, false otherwise.") @RequestParam(required = false) String joined,
-                                                                @Parameter(description = "HTTP Servlet Request (for catching logged in user nickname)") HttpServletRequest request) {
-        User currentUser = userService.findByNickname(request.getUserPrincipal().getName());
-        if (currentUser != null)
-            return ResponseEntity.ok(competitionService.getFutureFights(currentUser, (joined != null && !(joined.equals("false")))));
-        else
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<List<Competition>> pastCompetitions(@Parameter(description = "True if returning joined future competitions, false otherwise.") @RequestParam(required = false) String joined,
+                                                              @Parameter(description = "ID of user.") @PathVariable String id) {
+        User currentUser = userService.getUserOrNull(id);
+        return (currentUser != null) ? ResponseEntity.ok(competitionService.getFutureFights(currentUser, (joined != null && !(joined.equals("false"))))) : ResponseEntity.notFound().build();
     }
 
     /**
@@ -171,7 +155,7 @@ public class LoggedInUserAPIController {
             @ApiResponse(responseCode = "404", description = "Currently logged in user was not found.",
                     content = @Content)
     })
-    @PutMapping("/me/myProfile")
+    @PutMapping({"/competitors/{id}", "/referees/{id}"})
     public ResponseEntity<User> editingUser(@Valid @Parameter(description = "User profile Data Transfer Object.") @RequestBody UserProfileDTO userProfileDTO,
                                             @Parameter(description = "HTTP Servlet Request (for catching logged in user nickname).") HttpServletRequest request) {
         User user = null;

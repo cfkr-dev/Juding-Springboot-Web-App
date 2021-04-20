@@ -4,7 +4,6 @@ import es.dawgroup2.juding.competitions.Competition;
 import es.dawgroup2.juding.competitions.CompetitionService;
 import es.dawgroup2.juding.fight.FightService;
 import es.dawgroup2.juding.main.DateService;
-import es.dawgroup2.juding.main.HeaderInflater;
 import es.dawgroup2.juding.users.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -24,11 +23,8 @@ import java.net.URI;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
-@RequestMapping("/api/admin/competition")
+@RequestMapping("/api/competitions")
 public class AdminCompetitionAPIController {
-
-    @Autowired
-    HeaderInflater headerInflater;
 
     @Autowired
     CompetitionService competitionService;
@@ -74,7 +70,7 @@ public class AdminCompetitionAPIController {
      * @param competitionDTO Competition Data Transfer Object
      * @return Response Entity with the competition or bad request
      */
-    @Operation(summary = "Post a new competition")
+    @Operation(summary = "Add a new competition.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Creation of a new competition",
                     content = {@Content(mediaType = "application/json",
@@ -86,12 +82,10 @@ public class AdminCompetitionAPIController {
     public ResponseEntity<Competition> addCompetition(@Valid @Parameter(description = "Competition Data Transfer Object") @RequestBody CompetitionDTO competitionDTO) {
         Competition competition;
         try {
-            if (competitionService.checkingMinAndMaxWeight(competitionDTO.getMinWeight(), competitionDTO.getMaxWeight())) {
+            if (competitionService.checkingMinAndMaxWeight(competitionDTO.getMinWeight(), competitionDTO.getMaxWeight()))
                 return ResponseEntity.badRequest().build();
-            }
-            if (!competitionService.checkingDates(competitionDTO.getStartDate(), competitionDTO.getEndDate())) {
+            if (!competitionService.checkingDates(competitionDTO.getStartDate(), competitionDTO.getEndDate()))
                 return ResponseEntity.badRequest().build();
-            }
             competition = competitionService.save(null,
                     competitionDTO.getShortName(),
                     competitionDTO.getAdditionalInfo(),
@@ -103,17 +97,18 @@ public class AdminCompetitionAPIController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
-        URI location = fromCurrentRequest().path("/api/competition/{idCompetition}").buildAndExpand(competition.getIdCompetition()).toUri();
+        URI location = fromCurrentRequest().path("/{id}").buildAndExpand(competition.getIdCompetition()).toUri();
         return ResponseEntity.created(location).body(competition);
     }
 
     /**
-     * Edits a competition
+     * Edits a competition.
      *
-     * @param competitionDTO Competition Data Transfer Object
+     * @param competitionDTO Competition Data Transfer Object.
+     * @param id Id of the competition.
      * @return Response Entity with the competition or bad request
      */
-    @Operation(summary = "Existing competition edition")
+    @Operation(summary = "Edition of existing competition.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Edit the competition",
                     content = {@Content(mediaType = "application/json",
@@ -121,17 +116,16 @@ public class AdminCompetitionAPIController {
             @ApiResponse(responseCode = "500", description = "Competition cannot be modified on the basis of failed data",
                     content = @Content)
     })
-    @PutMapping("/")
-    public ResponseEntity<Competition> updatingCompetitionInfo(@Valid @Parameter(description = "Competition Data Transfer Object") @RequestBody CompetitionDTO competitionDTO) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Competition> updatingCompetitionInfo(@Valid @Parameter(description = "Competition Data Transfer Object") @RequestBody CompetitionDTO competitionDTO,
+                                                               @Parameter(description = "ID of competition.") @PathVariable String id) {
         Competition competition;
         try {
-            if (competitionService.checkingMinAndMaxWeight(competitionDTO.getMinWeight(), competitionDTO.getMaxWeight())) {
+            if (competitionService.checkingMinAndMaxWeight(competitionDTO.getMinWeight(), competitionDTO.getMaxWeight()))
                 return ResponseEntity.badRequest().build();
-            }
-            if (!competitionService.checkingDatesAlt(competitionDTO.getStartDate(), competitionDTO.getEndDate())) {
+            if (!competitionService.checkingDatesAlt(competitionDTO.getStartDate(), competitionDTO.getEndDate()))
                 return ResponseEntity.badRequest().build();
-            }
-            competition = competitionService.save(competitionDTO.getIdCompetition(),
+            competition = competitionService.save(id,
                     competitionDTO.getShortName(),
                     competitionDTO.getAdditionalInfo(),
                     Integer.parseInt(competitionDTO.getMinWeight()),
@@ -148,7 +142,7 @@ public class AdminCompetitionAPIController {
     /**
      * Deletes a competition
      *
-     * @param idCompetition Id of the competition
+     * @param id Id of the competition
      * @return Response Entity with the competition or bad request
      */
     @Operation(summary = "Elimination of a competition")
@@ -159,10 +153,10 @@ public class AdminCompetitionAPIController {
             @ApiResponse(responseCode = "404", description = "Request is invalid because of empty or non-existant competition retrieve",
                     content = @Content)
     })
-    @DeleteMapping("/{idCompetition}")
-    public ResponseEntity<Competition> showCompetitionToDelete(@Parameter(description = "Identifier of competition to be deleted") @PathVariable String idCompetition) {
-        Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
-        competitionService.deleteById(idCompetition);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Competition> showCompetitionToDelete(@Parameter(description = "Identifier of competition to be deleted") @PathVariable String id) {
+        Competition competition = competitionService.findById(Integer.parseInt(id));
+        competitionService.deleteById(id);
         return (competition == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(competition);
     }
 }

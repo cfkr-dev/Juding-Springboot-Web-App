@@ -4,7 +4,6 @@ import es.dawgroup2.juding.competitions.Competition;
 import es.dawgroup2.juding.competitions.CompetitionService;
 import es.dawgroup2.juding.fight.FightService;
 import es.dawgroup2.juding.main.DateService;
-import es.dawgroup2.juding.main.HeaderInflater;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -20,11 +19,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/api/competition")
+@RequestMapping("/api/competitions")
 public class CompetitionAPIController {
-    @Autowired
-    HeaderInflater headerInflater;
-
     @Autowired
     UserService userService;
 
@@ -38,9 +34,9 @@ public class CompetitionAPIController {
     DateService dateService;
 
     /**
-     * Gets the competition
+     * Gets the competition.
      *
-     * @param idCompetition Id of the competition
+     * @param id Id of the competition
      * @return Response Entity with the competition or bad request
      */
     @Operation(summary = "Gets a competition using its identifier (ID)")
@@ -51,16 +47,16 @@ public class CompetitionAPIController {
             @ApiResponse(responseCode = "404", description = "Request is invalid because of empty or non-existant competition retrieve",
                     content = @Content)
     })
-    @GetMapping("/{idCompetition}")
-    public ResponseEntity<Competition> showCompetition(@Parameter(description = "Identifier of competition to be obtained") @PathVariable String idCompetition) {
-        Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
+    @GetMapping("/{id}")
+    public ResponseEntity<Competition> showCompetition(@Parameter(description = "Identifier of competition to be obtained") @PathVariable String id) {
+        Competition competition = competitionService.findById(Integer.parseInt(id));
         return (competition == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(competition);
     }
 
     /**
      * Joins a competition.
      *
-     * @param idCompetition Id of the competition.
+     * @param id Id of the competition.
      * @param request       HTTP Servlet Request.
      * @return Response Entity with the competition or bad request.
      */
@@ -69,14 +65,13 @@ public class CompetitionAPIController {
             @ApiResponse(responseCode = "200", description = "Join successfully completed.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Competition.class))}),
-            @ApiResponse(responseCode = "500", description = "Join cannot be made because it was already made.",
-                    content = @Content),
-            @ApiResponse(responseCode = "500", description = "Join cannot be made on the basis of failed data.",
+            @ApiResponse(responseCode = "400", description = "Join cannot be made because user was already joined or on the basis of failed data.",
                     content = @Content)
     })
-    @PutMapping("/{idCompetition}")
-    public ResponseEntity<Competition> joinCompetition(@Parameter(description = "Identifier of the competition") @PathVariable String idCompetition, HttpServletRequest request) {
-        Competition competition = competitionService.findById(Integer.parseInt(idCompetition));
+    @PutMapping("/members/{id}")
+    public ResponseEntity<Competition> joinCompetition(@Parameter(description = "Identifier of the competition.") @PathVariable String id,
+                                                       @Parameter(description = "HTTP Servlet Request.") HttpServletRequest request) {
+        Competition competition = competitionService.findById(Integer.parseInt(id));
         User user = userService.findByNickname(request.getUserPrincipal().getName());
         if (fightService.checkParticipation(competition, user)) {
             return ResponseEntity.badRequest().build();

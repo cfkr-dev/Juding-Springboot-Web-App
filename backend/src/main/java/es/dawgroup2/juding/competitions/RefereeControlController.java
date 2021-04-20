@@ -26,7 +26,7 @@ public class RefereeControlController {
      * @param loser         Loser.
      * @return True if successful, false otherwise.
      */
-    @GetMapping("/competition/{idCompetition}/control/saveResult")
+    @GetMapping("/competitions/{idCompetition}/control")
     public boolean controlCompetition(@PathVariable String idCompetition,
                                       @RequestParam String winner,
                                       @RequestParam String loser) {

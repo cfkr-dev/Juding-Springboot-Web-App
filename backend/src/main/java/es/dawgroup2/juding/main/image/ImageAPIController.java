@@ -47,7 +47,7 @@ public class ImageAPIController {
             @ApiResponse(responseCode = "404", description = "Image could not be found (because entity instance does not exist or it does not have associated image).",
                     content = @Content)
     })
-    @GetMapping("/image/{type}/{id}")
+    @GetMapping("/{type}/{id}/image")
     public ResponseEntity<Object> getImage(@Parameter(description = "Type of entity (either user or post).") @PathVariable String type,
                                            @Parameter(description = "Entity associated identifier (License ID for users and ID for posts).") @PathVariable String id) {
         try {
@@ -74,11 +74,11 @@ public class ImageAPIController {
             @ApiResponse(responseCode = "403", description = "Current logged user is not authorized to upload or change this image.",
                     content = @Content)
     })
-    @PutMapping("/image/{type}/{id}")
+    @PutMapping("/{type}/{id}/image/")
     public ResponseEntity<Object> uploadImage(@Parameter(description = "Type of entity (either user or post).") @PathVariable String type,
                                               @Parameter(description = "Entity associated identifier (License ID for users and ID for posts).") @PathVariable String id,
                                               @Parameter(description = "Multipart File.") @RequestParam MultipartFile file) {
-        if (type != null && type.equals("user")) {
+        if (type != null && type.matches("user(s)?")) {
             User user = userService.getUserOrNull(id);
             if (user != null) {
                 try {
@@ -91,7 +91,7 @@ public class ImageAPIController {
                     return ResponseEntity.badRequest().build();
                 }
             }
-        } else if (type != null && type.equals("post")) {
+        } else if (type != null && type.matches("post(s)?")) {
             Post post = postService.findById(id);
             if (post != null) {
                 try {

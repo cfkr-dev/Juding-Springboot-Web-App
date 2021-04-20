@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,10 +43,11 @@ public class RefereeControlAPIController {
             @ApiResponse(responseCode = "404", description = "Request is invalid because of non-finished competition retrieve",
                     content = @Content),
     })
-    @PutMapping("/api/competition/control")
-    public ResponseEntity<Competition> controlCompetition(@Parameter(description = "Competition result Data Transfer Object") @RequestBody CompetitionResultDTO competitionResultDTO,
+    @PutMapping("/api/competitions/{id}/control")
+    public ResponseEntity<Competition> controlCompetition(@Parameter(description = "ID of the competition.") @PathVariable String id,
+                                                          @Parameter(description = "Competition result Data Transfer Object") @RequestBody CompetitionResultDTO competitionResultDTO,
                                                           HttpServletRequest request) {
-        if (request.getUserPrincipal().getName().equals(competitionService.findById(Integer.parseInt(competitionResultDTO.getIdCompetition())).getReferee().getNickname())) {
+        if (request.getUserPrincipal().getName().equals(competitionService.findById(Integer.parseInt(id)).getReferee().getNickname())) {
             Competition competition = competitionService.findById(Integer.parseInt(competitionResultDTO.getIdCompetition()));
             if (competition != null) {
                 // 1. Find users

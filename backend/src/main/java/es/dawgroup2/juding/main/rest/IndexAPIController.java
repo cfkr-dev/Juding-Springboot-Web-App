@@ -136,7 +136,7 @@ public class IndexAPIController {
             @ApiResponse(responseCode = "400", description = "Request could not be completed successfully.",
                     content = @Content)
     })
-    @PostMapping("/signUp/competitor")
+    @PostMapping("/competitors")
     public ResponseEntity<User> signUpCompetitor(@Valid @Parameter(description = "Competitor Data Transfer Object.") @RequestBody CompetitorDTO competitorDTO) {
         if (userService.matchingLicenseOrNickname(competitorDTO.getLicenseId(), competitorDTO.getNickname()) == 3) {
             User user = userService.save(competitorDTO.getName(),
@@ -158,7 +158,7 @@ public class IndexAPIController {
                     competitorDTO.getWeight(),
                     null);
             if (user != null)
-                return ResponseEntity.created(fromCurrentRequest().path("/api/me/myProfile").buildAndExpand(user.getLicenseId()).toUri()).body(user);
+                return ResponseEntity.created(fromCurrentRequest().path("/{id}").buildAndExpand(user.getLicenseId()).toUri()).body(user);
         }
         return ResponseEntity.badRequest().build();
     }
@@ -177,7 +177,7 @@ public class IndexAPIController {
             @ApiResponse(responseCode = "400", description = "Request could not be completed successfully.",
                     content = @Content)
     })
-    @PostMapping("/signUp/referee")
+    @PostMapping("/referees")
     public ResponseEntity<User> signUpReferee(@Valid @Parameter(description = "Referee Data Transfer Object.") @RequestBody RefereeDTO refereeDTO) {
         if (userService.matchingLicenseOrNickname(refereeDTO.getLicenseId(), refereeDTO.getNickname()) == 3) {
             User user = userService.save(refereeDTO.getName(),
@@ -199,7 +199,7 @@ public class IndexAPIController {
                     null,
                     RefereeRange.S.name());
             if (user != null)
-                return ResponseEntity.created(fromCurrentRequest().path("/api/me/myProfile").buildAndExpand(user.getLicenseId()).toUri()).body(user);
+                return ResponseEntity.created(fromCurrentRequest().path("/{id}").buildAndExpand(user.getLicenseId()).toUri()).body(user);
         }
         return ResponseEntity.badRequest().build();
     }

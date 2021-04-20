@@ -12,10 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,10 +36,10 @@ public class PostAPIController {
             @ApiResponse(responseCode = "404", description = "Resource not found",
                     content = @Content)
     })
-    @GetMapping("")
-    public ResponseEntity<Post> newsPost(@Parameter(description = "Unique identifier of a post.") @RequestParam String id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Post> newsPost(@Parameter(description = "Unique identifier of a post.") @PathVariable String id) {
         Post post = postService.findById(id);
-        return (post == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(post);
+        return (post == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(post);
     }
 
     /**
@@ -60,8 +57,8 @@ public class PostAPIController {
                     content = @Content)
     })
     @GetMapping("/recent")
-    public ResponseEntity<List<Post>> recentNews(@Parameter(description = "Post ID to identify it") @RequestParam String id) {
-        List<Post> recentPosts = postService.findFirst5Desc(id);
+    public ResponseEntity<List<Post>> recentNews(@Parameter(description = "Post ID to dismiss.") @RequestParam String dismissedPost) {
+        List<Post> recentPosts = postService.findFirst5Desc(dismissedPost);
         return ResponseEntity.ok(recentPosts);
     }
 
@@ -79,7 +76,7 @@ public class PostAPIController {
             @ApiResponse(responseCode = "400", description = "Request is invalid because of empty or non-existant page retrieve",
                     content = @Content)
     })
-    @GetMapping("/page")
+    @GetMapping("/")
     public ResponseEntity<Page<Post>> getPage(@Parameter(description = "Number of page to be searched") @RequestParam(required = false) Integer page) {
         int defPage = (page == null) ? 1 : page;
         if (defPage < 0) return ResponseEntity.badRequest().build();
