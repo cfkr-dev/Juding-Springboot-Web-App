@@ -3,12 +3,14 @@ package es.dawgroup2.juding.main.rest;
 import com.fasterxml.jackson.annotation.JsonView;
 import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
+import es.dawgroup2.juding.auxTypes.roles.Role;
 import es.dawgroup2.juding.competitions.Competition;
 import es.dawgroup2.juding.competitions.CompetitionService;
 import es.dawgroup2.juding.main.DateService;
 import es.dawgroup2.juding.main.image.ImageService;
 import es.dawgroup2.juding.users.User;
 import es.dawgroup2.juding.users.UserService;
+import es.dawgroup2.juding.users.rest.AdminUserEditionDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -17,6 +19,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -156,32 +159,39 @@ public class LoggedInUserAPIController {
                     content = @Content)
     })
     @PutMapping({"/competitors/{id}", "/referees/{id}"})
-    public ResponseEntity<User> editingUser(@Valid @Parameter(description = "User profile Data Transfer Object.") @RequestBody UserProfileDTO userProfileDTO,
+    public ResponseEntity<User> editingUser(@Valid @Parameter(description = "DTO") AdminUserEditionDTO adminUserEditionDTO,
+                                            @Parameter(description = "PV") @PathVariable String id,
                                             @Parameter(description = "HTTP Servlet Request (for catching logged in user nickname).") HttpServletRequest request) {
-        User user = null;
-        if (userService.findByNickname(request.getUserPrincipal().getName()).getLicenseId().equals(userProfileDTO.getLicenseId()))
+        User user = userService.findByNickname(request.getUserPrincipal().getName());
+        // A control boolean helps to check if a user is allowed to modify some values or not.
+        // Edition is only allowed if user is admin or currently logged in user
+        boolean isAdmin = user.isRole(Role.A);
+        if (isAdmin || user.getLicenseId().equals(adminUserEditionDTO.getLicenseId())) {
             try {
-                user = userService.save(null,
+                user = userService.save((isAdmin) ? adminUserEditionDTO.getName() : null,
+                        (isAdmin) ? adminUserEditionDTO.getSurname() : null,
+                        (isAdmin) ? adminUserEditionDTO.getGender() : null,
+                        adminUserEditionDTO.getPhone(),
+                        adminUserEditionDTO.getEmail(),
+                        adminUserEditionDTO.getBirthDate(),
+                        adminUserEditionDTO.getDni(),
+                        id,
+                        (isAdmin) ? adminUserEditionDTO.getNickname() : null,
                         null,
                         null,
-                        userProfileDTO.getPhone(),
-                        userProfileDTO.getEmail(),
                         null,
                         null,
-                        userProfileDTO.getLicenseId(),
+                        adminUserEditionDTO.getBelt(),
                         null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        userProfileDTO.getBelt(),
-                        null, userProfileDTO.getGym(),
-                        userProfileDTO.getWeight(),
-                        userProfileDTO.getRefereeRange());
+                        adminUserEditionDTO.getGym(),
+                        adminUserEditionDTO.getWeight(),
+                        adminUserEditionDTO.getRefereeRange());
             } catch (Exception e) {
                 return ResponseEntity.notFound().build();
             }
-        return (user == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(user);
+            return (user == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(user);
+        } else
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
     /**

@@ -30,31 +30,6 @@ public class AdminPostAPIController {
     UserService userService;
 
     /**
-     * Gets a posts lists (pagination format)
-     *
-     * @param page page number
-     * @return {@code True} response entity with the page. {@code False} if bad request
-     */
-    @Operation(summary = "Get a list with posts (paginated)")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Page with more than one post",
-                    content = {@Content(mediaType = "application/json",
-                            array = @ArraySchema(schema = @Schema(implementation = Post.class)))}),
-            @ApiResponse(responseCode = "400", description = "Request is invalid because of empty or non-existant page retrieve",
-                    content = @Content)
-    })
-    @GetMapping("/")
-    public ResponseEntity<Page<Post>> getPostPage(@Parameter(description = "Number of page to be searched") @RequestParam(required = false) Integer page) {
-        int defPage = (page == null) ? 1 : page;
-        if (defPage < 0) return ResponseEntity.badRequest().build();
-        Page<Post> requiredPage = postService.getPostsInPages(defPage, 10);
-        if (requiredPage.hasContent())
-            return ResponseEntity.ok(requiredPage);
-        else
-            return ResponseEntity.badRequest().build();
-    }
-
-    /**
      * Creates a new post.
      *
      * @param postDTO Post Data Transfer Object

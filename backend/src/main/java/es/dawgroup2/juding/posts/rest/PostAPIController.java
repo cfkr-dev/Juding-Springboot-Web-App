@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -77,10 +78,11 @@ public class PostAPIController {
                     content = @Content)
     })
     @GetMapping("/")
-    public ResponseEntity<Page<Post>> getPage(@Parameter(description = "Number of page to be searched") @RequestParam(required = false) Integer page) {
+    public ResponseEntity<Page<Post>> getPage(@Parameter(description = "Number of page to be searched.") @RequestParam(required = false) Integer page,
+                                              @Parameter(description = "Size of page (default is 10).") @RequestParam(required = false) Integer size) {
         int defPage = (page == null) ? 1 : page;
         if (defPage < 0) return ResponseEntity.badRequest().build();
-        Page<Post> requiredPage = postService.getPostsInPages(defPage, 3);
+        Page<Post> requiredPage = postService.getPostsInPages(defPage, (size == null) ? 10 : size);
         return (requiredPage.hasContent()) ? ResponseEntity.ok(requiredPage) : ResponseEntity.badRequest().build();
     }
 }

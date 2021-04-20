@@ -114,46 +114,6 @@ public class AdminUserAPIController {
     }
 
     /**
-     * Saves new information associated with a user and returns the user with the new information modified.
-     *
-     * @param adminUserEditionDTO Admin user edition Data Transfer Object.
-     * @return User object with new information saved.
-     */
-    @Operation(summary = "Saves new information associated with a user and returns the user with the new information modified.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "User object with new information saved.",
-                    content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = User.class))}),
-            @ApiResponse(responseCode = "403", description = "Not allowed (there is not logged in user or it is not an administrator).",
-                    content = @Content)
-    })
-    @PutMapping(value = {"/competitors/{id}", "/referees/{id}"})
-    public ResponseEntity<User> savingUser(@Valid @Parameter(description = "Admin user edition Data Transfer Object.") @RequestBody AdminUserEditionDTO adminUserEditionDTO,
-                                           @Parameter(description = "ID of user.") @PathVariable String id) {
-        if (userService.matchingLicenseAndNickname(id, adminUserEditionDTO.getNickname())) {
-            return ResponseEntity.badRequest().build();
-        }
-        User user = userService.save(adminUserEditionDTO.getName(),
-                adminUserEditionDTO.getSurname(),
-                adminUserEditionDTO.getGender(),
-                adminUserEditionDTO.getPhone(),
-                adminUserEditionDTO.getEmail(),
-                adminUserEditionDTO.getBirthDate(),
-                adminUserEditionDTO.getDni(),
-                id,
-                adminUserEditionDTO.getNickname(),
-                null,
-                null,
-                null,
-                null,
-                adminUserEditionDTO.getBelt(),
-                null, adminUserEditionDTO.getGym(),
-                adminUserEditionDTO.getWeight(),
-                adminUserEditionDTO.getRefereeRange());
-        return ResponseEntity.ok(user);
-    }
-
-    /**
      * Process a referee's application and saves it as an official referee.
      *
      * @param id License ID of admitted referee.
