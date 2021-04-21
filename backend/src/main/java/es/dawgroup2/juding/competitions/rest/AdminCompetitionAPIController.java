@@ -39,21 +39,21 @@ public class AdminCompetitionAPIController {
     FightService fightService;
 
     /**
-     * Gets a list with the competitions (paginated)
+     * Gets a list with the competitions (paginated).
      *
-     * @param page Number of the page
-     * @return Response Entity with the competition or bad request
+     * @param page Number of the page.
+     * @return Response Entity with the competition or bad request.
      */
-    @Operation(summary = "Get a list with the competitions (paginated)")
+    @Operation(summary = "Get a list with the competitions (paginated).")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Page with more than one competition",
+            @ApiResponse(responseCode = "200", description = "Page with more than one competition.",
                     content = {@Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Competition.class)))}),
-            @ApiResponse(responseCode = "400", description = "Request is invalid because of empty or non-existant page retrieve",
+            @ApiResponse(responseCode = "400", description = "Request is invalid because of empty or non-existent page retrieve.",
                     content = @Content)
     })
     @GetMapping("/")
-    public ResponseEntity<Page<Competition>> getCompetitionPage(@Parameter(description = "Number of page to be searched") @RequestParam(required = false) Integer page) {
+    public ResponseEntity<Page<Competition>> getCompetitionPage(@Parameter(description = "Number of page to be searched.") @RequestParam(required = false) Integer page) {
         int defPage = (page == null) ? 0 : page;
         if (defPage < 0) return ResponseEntity.badRequest().build();
         Page<Competition> competitionPage = competitionService.getCompetitionsInPages(defPage);
@@ -67,19 +67,19 @@ public class AdminCompetitionAPIController {
     /**
      * Generates a new competition with the received information.
      *
-     * @param competitionDTO Competition Data Transfer Object
-     * @return Response Entity with the competition or bad request
+     * @param competitionDTO Competition Data Transfer Object.
+     * @return Response Entity with the competition or bad request.
      */
     @Operation(summary = "Add a new competition.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Creation of a new competition",
+            @ApiResponse(responseCode = "200", description = "Creation of a new competition.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = CompetitionDTO.class))}),
-            @ApiResponse(responseCode = "500", description = "Competition cannot be created on the basis of failed data",
+            @ApiResponse(responseCode = "500", description = "Competition cannot be created on the basis of failed data.",
                     content = @Content)
     })
     @PostMapping("/")
-    public ResponseEntity<Competition> addCompetition(@Valid @Parameter(description = "Competition Data Transfer Object") @RequestBody CompetitionDTO competitionDTO) {
+    public ResponseEntity<Competition> addCompetition(@Valid @Parameter(description = "Competition Data Transfer Object.") @RequestBody CompetitionDTO competitionDTO) {
         Competition competition;
         try {
             if (competitionService.checkingMinAndMaxWeight(competitionDTO.getMinWeight(), competitionDTO.getMaxWeight()))
@@ -106,18 +106,18 @@ public class AdminCompetitionAPIController {
      *
      * @param competitionDTO Competition Data Transfer Object.
      * @param id Id of the competition.
-     * @return Response Entity with the competition or bad request
+     * @return Response Entity with the competition or bad request.
      */
     @Operation(summary = "Edition of existing competition.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Edit the competition",
+            @ApiResponse(responseCode = "200", description = "Edit the competition.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = CompetitionDTO.class))}),
-            @ApiResponse(responseCode = "500", description = "Competition cannot be modified on the basis of failed data",
+            @ApiResponse(responseCode = "500", description = "Competition cannot be modified on the basis of failed data.",
                     content = @Content)
     })
     @PutMapping("/{id}")
-    public ResponseEntity<Competition> updatingCompetitionInfo(@Valid @Parameter(description = "Competition Data Transfer Object") @RequestBody CompetitionDTO competitionDTO,
+    public ResponseEntity<Competition> updatingCompetitionInfo(@Valid @Parameter(description = "Competition Data Transfer Object.") @RequestBody CompetitionDTO competitionDTO,
                                                                @Parameter(description = "ID of competition.") @PathVariable String id) {
         Competition competition;
         try {
@@ -140,21 +140,21 @@ public class AdminCompetitionAPIController {
     }
 
     /**
-     * Deletes a competition
+     * Deletes a competition.
      *
-     * @param id Id of the competition
-     * @return Response Entity with the competition or bad request
+     * @param id Id of the competition.
+     * @return Response Entity with the competition or bad request.
      */
-    @Operation(summary = "Elimination of a competition")
+    @Operation(summary = "Elimination of a competition.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Elimination successfully completed",
+            @ApiResponse(responseCode = "200", description = "Elimination successfully completed.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Competition.class))}),
-            @ApiResponse(responseCode = "404", description = "Request is invalid because of empty or non-existant competition retrieve",
+            @ApiResponse(responseCode = "404", description = "Request is invalid because of empty or non-existent competition retrieve.",
                     content = @Content)
     })
     @DeleteMapping("/{id}")
-    public ResponseEntity<Competition> showCompetitionToDelete(@Parameter(description = "Identifier of competition to be deleted") @PathVariable String id) {
+    public ResponseEntity<Competition> showCompetitionToDelete(@Parameter(description = "Identifier of competition to be deleted.") @PathVariable String id) {
         Competition competition = competitionService.findById(Integer.parseInt(id));
         competitionService.deleteById(id);
         return (competition == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(competition);

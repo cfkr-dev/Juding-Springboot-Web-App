@@ -39,16 +39,16 @@ public class CompetitionAPIController {
      * @param id Id of the competition
      * @return Response Entity with the competition or bad request
      */
-    @Operation(summary = "Gets a competition using its identifier (ID)")
+    @Operation(summary = "Gets a competition using its identifier (ID).")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Obtaining the competition",
+            @ApiResponse(responseCode = "200", description = "Obtaining the competition.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Competition.class))}),
-            @ApiResponse(responseCode = "404", description = "Request is invalid because of empty or non-existant competition retrieve",
+            @ApiResponse(responseCode = "404", description = "Request is invalid because of empty or non-existent competition retrieve.",
                     content = @Content)
     })
     @GetMapping("/{id}")
-    public ResponseEntity<Competition> showCompetition(@Parameter(description = "Identifier of competition to be obtained") @PathVariable String id) {
+    public ResponseEntity<Competition> showCompetition(@Parameter(description = "Identifier of competition to be obtained.") @PathVariable String id) {
         Competition competition = competitionService.findById(Integer.parseInt(id));
         return (competition == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(competition);
     }

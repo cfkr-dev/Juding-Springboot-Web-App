@@ -24,17 +24,17 @@ public class PostAPIController {
     PostService postService;
 
     /**
-     * Gets a simple post to view
+     * Gets a simple post to view.
      *
      * @param id Unique identifier of a post.
-     * @return {@code True} response entity with the single post. {@code False} if bad request
+     * @return {@code True} response entity with the single post. {@code False} if bad request.
      */
-    @Operation(summary = "Get a simple post")
+    @Operation(summary = "Get a simple post.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Found the post",
+            @ApiResponse(responseCode = "200", description = "Found the post.",
                     content = {@Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Post.class)))}),
-            @ApiResponse(responseCode = "404", description = "Resource not found",
+            @ApiResponse(responseCode = "404", description = "Resource not found.",
                     content = @Content)
     })
     @GetMapping("/{id}")
@@ -44,17 +44,17 @@ public class PostAPIController {
     }
 
     /**
-     * Gets a recent post list
+     * Gets a recent post list.
      *
-     * @param id post id that is not in the list
-     * @return {@code True} response entity with the post list. {@code False} if bad request
+     * @param dismissedPost Post id that is not in the list.
+     * @return {@code True} Response entity with the post list. {@code False} if bad request.
      */
-    @Operation(summary = "Get a recent post list")
+    @Operation(summary = "Get a recent post list.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Found the list",
+            @ApiResponse(responseCode = "200", description = "Found the list.",
                     content = {@Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Post.class)))}),
-            @ApiResponse(responseCode = "404", description = "Resource not found",
+            @ApiResponse(responseCode = "404", description = "Resource not found.",
                     content = @Content)
     })
     @GetMapping("/recent")
@@ -64,17 +64,18 @@ public class PostAPIController {
     }
 
     /**
-     * Gets a list with a post to view (pagination format)
+     * Gets a list with a post to view (pagination format).
      *
-     * @param page page number
-     * @return {@code True} response entity with the post to view list. {@code False} if bad request
+     * @param page Page number.
+     * @param size Size of the post list to show
+     * @return {@code True} Response entity with the post to view list. {@code False} if bad request.
      */
-    @Operation(summary = "Get a list with the posts to view (paginated)")
+    @Operation(summary = "Get a list with the posts to view (paginated).")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Page with more than one post to view",
+            @ApiResponse(responseCode = "200", description = "Page with more than one post to view.",
                     content = {@Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Post.class)))}),
-            @ApiResponse(responseCode = "400", description = "Request is invalid because of empty or non-existant page retrieve",
+            @ApiResponse(responseCode = "400", description = "Request is invalid because of empty or non-existent page retrieve.",
                     content = @Content)
     })
     @GetMapping("/")

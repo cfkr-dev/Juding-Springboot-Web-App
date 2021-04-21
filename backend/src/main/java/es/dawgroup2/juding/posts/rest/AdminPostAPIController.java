@@ -32,67 +32,67 @@ public class AdminPostAPIController {
     /**
      * Creates a new post.
      *
-     * @param postDTO Post Data Transfer Object
-     * @param request post request with the author
-     * @return {@code True} response entity with the new post. {@code False} if bad request
+     * @param postDTO Post Data Transfer Object.
+     * @param request Post request with the author.
+     * @return {@code True} response entity with the new post. {@code False} if bad request.
      */
-    @Operation(summary = "Creates a new post")
+    @Operation(summary = "Creates a new post.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Creation of a new post",
+            @ApiResponse(responseCode = "200", description = "Creation of a new post.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Post.class))}),
-            @ApiResponse(responseCode = "500", description = "Post cannot be created on the basis of failed data",
+            @ApiResponse(responseCode = "500", description = "Post cannot be created on the basis of failed data.",
                     content = @Content)
     })
     @PostMapping("/")
-    public ResponseEntity<Post> addNewPost(@Parameter(description = "Post DTO") @RequestBody PostDTO postDTO,
-                                           @Parameter(description = "Post request with the author") HttpServletRequest request) {
+    public ResponseEntity<Post> addNewPost(@Parameter(description = "Post DTO.") @RequestBody PostDTO postDTO,
+                                           @Parameter(description = "Post request with the author.") HttpServletRequest request) {
         Post newPost = postService.save(null, request, postDTO.getTitle(), postDTO.getBody(), null);
         return ResponseEntity.created(fromCurrentRequest().path("/{id}").buildAndExpand(newPost.getIdPost()).toUri()).body(newPost);
     }
 
 
     /**
-     * Updates a post
+     * Updates a post.
      *
-     * @param postDTO Post Data Transfer Object
-     * @param request HTTP Servlet Request
-     * @return {@code True} response entity with the updated post. {@code False} if bad request
+     * @param postDTO Post Data Transfer Object.
+     * @param request HTTP Servlet Request.
+     * @return {@code True} response entity with the updated post. {@code False} if bad request.
      */
     @Operation(summary = "Updates a post.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Edit the post",
+            @ApiResponse(responseCode = "200", description = "Edit the post.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Post.class))}),
 
-            @ApiResponse(responseCode = "500", description = "Post cannot be modified on the basis of failed data",
+            @ApiResponse(responseCode = "500", description = "Post cannot be modified on the basis of failed data.",
                     content = @Content)
     })
     @PutMapping("/{id}")
-    public ResponseEntity<Post> updatePost(@Parameter(description = "Post DTO") @RequestBody PostDTO postDTO,
+    public ResponseEntity<Post> updatePost(@Parameter(description = "Post DTO.") @RequestBody PostDTO postDTO,
                                            @Parameter(description = "ID of post.") @PathVariable String id,
-                                           @Parameter(description = "Post request with the author") HttpServletRequest request) {
+                                           @Parameter(description = "Post request with the author.") HttpServletRequest request) {
         Post updatedPost = postService.save(id, request, postDTO.getTitle(), postDTO.getBody(), null);
         return (updatedPost == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(updatedPost);
     }
 
 
     /**
-     * Deleted a post
+     * Deleted a post.
      *
-     * @param id post id
-     * @return {@code True} response entity with the deleted post. {@code False} if bad request
+     * @param id Post id.
+     * @return {@code True} response entity with the deleted post. {@code False} if bad request.
      */
     @Operation(summary = "Deletes a post.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Elimination successfully completed",
+            @ApiResponse(responseCode = "200", description = "Elimination successfully completed.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Post.class))}),
-            @ApiResponse(responseCode = "404", description = "Request is invalid because of empty or non-existant post retrieve",
+            @ApiResponse(responseCode = "404", description = "Request is invalid because of empty or non-existent post retrieve.",
                     content = @Content)
     })
     @DeleteMapping("/{id}")
-    public ResponseEntity<Post> deletePost(@Parameter(description = "Post id") @PathVariable String id) {
+    public ResponseEntity<Post> deletePost(@Parameter(description = "Post id.") @PathVariable String id) {
         Post post = postService.findById(id);
         postService.deleteById(id);
         return (post == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(post);

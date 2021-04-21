@@ -51,7 +51,7 @@ public class LoggedInUserAPIController {
     /**
      * Returns logged in user profile data.
      *
-     * @param request HTTP Servlet Request (for catching logged in user nickname).
+     * @param id Id of the user.
      * @return Logged in user date profile data.
      */
     @Operation(summary = "Returns logged in user profile data.")
@@ -73,7 +73,7 @@ public class LoggedInUserAPIController {
     /**
      * Returns a list of past competitions of currently logged-in user.
      *
-     * @param request HTTP Servlet Request (for catching logged in user nickname).
+     * @param id Id of the user.
      * @return List of past competitions of currently logged-in user.
      */
     @Operation(summary = "Returns a list of past competitions of currently logged-in user.")
@@ -96,7 +96,7 @@ public class LoggedInUserAPIController {
     /**
      * Returns a list of current competitions of logged-in user.
      *
-     * @param request HTTP Servlet Request (for catching logged in user nickname).
+     * @param id Id of the user.
      * @return List of current competitions of logged-in user.
      */
     @Operation(summary = "Returns a list of current competitions of logged-in user.")
@@ -120,7 +120,7 @@ public class LoggedInUserAPIController {
      * Returns a list of future competitions of logged-in user, distinguishing if user has joined them or not.
      *
      * @param joined  True if returning joined future competitions, false otherwise.
-     * @param request HTTP Servlet Request (for catching logged in user nickname).
+     * @param id Id of the user.
      * @return List of future competitions.
      */
     @Operation(summary = "Returns a list of future competitions of logged-in user.", description = "This method can distinguish if user has joined them or not.")
@@ -142,11 +142,11 @@ public class LoggedInUserAPIController {
     }
 
     /**
-     * Saves new information for some values relating to currently logged in user (list of all of them in {@link UserProfileDTO}).
+     * Saves new information for some values relating to currently logged in user (list of all of them in {@link AdminUserEditionDTO}).
      *
-     * @param userProfileDTO User profile Data Transfer Object.
-     * @param request        HTTP Servlet Request (for catching logged in user nickname).
-     * @return List of future competitions.
+     * @param adminUserEditionDTO Admin Data Transfer Object.
+     * @param id Id of the user.
+     * @return Saved user.
      */
     @Operation(summary = "Saves new information for some values relating to currently logged in user.")
     @ApiResponses(value = {
@@ -159,8 +159,8 @@ public class LoggedInUserAPIController {
                     content = @Content)
     })
     @PutMapping({"/competitors/{id}", "/referees/{id}"})
-    public ResponseEntity<User> editingUser(@Valid @Parameter(description = "DTO") AdminUserEditionDTO adminUserEditionDTO,
-                                            @Parameter(description = "PV") @PathVariable String id,
+    public ResponseEntity<User> editingUser(@Valid @Parameter(description = "Admin Data Transfer Object.") AdminUserEditionDTO adminUserEditionDTO,
+                                            @Parameter(description = "ID of the user.") @PathVariable String id,
                                             @Parameter(description = "HTTP Servlet Request (for catching logged in user nickname).") HttpServletRequest request) {
         User user = userService.findByNickname(request.getUserPrincipal().getName());
         // A control boolean helps to check if a user is allowed to modify some values or not.

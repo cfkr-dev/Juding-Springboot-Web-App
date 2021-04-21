@@ -124,7 +124,7 @@ public class AdminUserAPIController {
             @ApiResponse(responseCode = "200", description = "New referee's complete information.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = User.class))}),
-            @ApiResponse(responseCode = "400", description = "Requested license ID is not registered in the application or referee has been admitted before",
+            @ApiResponse(responseCode = "400", description = "Requested license ID is not registered in the application or referee has been admitted before.",
                     content = @Content),
             @ApiResponse(responseCode = "403", description = "Not allowed (there is not logged in user or it is not an administrator).",
                     content = @Content)
@@ -148,7 +148,7 @@ public class AdminUserAPIController {
                             schema = @Schema(implementation = User.class))}),
             @ApiResponse(responseCode = "403", description = "Not allowed (there is not logged in user or it is not an administrator).",
                     content = @Content),
-            @ApiResponse(responseCode = "404", description = "Not able to delete user (user did not exist or user has taken part of any past or future competition)",
+            @ApiResponse(responseCode = "404", description = "Not able to delete user (user did not exist or user has taken part of any past or future competition).",
                     content = @Content)
     })
     @DeleteMapping("/{id}")
