@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "2741d072-41ac-4e71-8723-a69540a3f95d",
-		"name": "Juding REST API",
+		"_postman_id": "ae43bc39-026a-45bc-8364-4fd9e12634da",
+		"name": "Juding REST API Copy 2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -137,7 +137,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/signUp/competitor",
+									"raw": "https://localhost:8443/api/competitors",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -145,8 +145,7 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"signUp",
-										"competitor"
+										"competitors"
 									]
 								}
 							},
@@ -167,7 +166,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/signUp/referee",
+									"raw": "https://localhost:8443/api/referees",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -175,8 +174,7 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"signUp",
-										"referee"
+										"referees"
 									]
 								}
 							},
@@ -218,11 +216,23 @@
 					"item": [
 						{
 							"name": "My Profile",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "https://localhost:8443/api/me/myProfile",
+									"raw": "https://localhost:8443/api/competitors/0000000003",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -230,8 +240,8 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"me",
-										"myProfile"
+										"competitors",
+										"0000000003"
 									]
 								}
 							},
@@ -243,7 +253,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/image/user/0000000003",
+									"raw": "https://localhost:8443/api/user/0000000003/image",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -251,9 +261,9 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"image",
 										"user",
-										"0000000003"
+										"0000000003",
+										"image"
 									]
 								}
 							},
@@ -306,7 +316,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/me/currentCompetitions",
+									"raw": "https://localhost:8443/api/competitions/0000000003/current",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -314,8 +324,9 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"me",
-										"currentCompetitions"
+										"competitions",
+										"0000000003",
+										"current"
 									]
 								}
 							},
@@ -327,7 +338,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/me/pastCompetitions",
+									"raw": "https://localhost:8443/api/competitions/0000000003/past",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -335,8 +346,9 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"me",
-										"pastCompetitions"
+										"competitions",
+										"0000000003",
+										"past"
 									]
 								}
 							},
@@ -348,7 +360,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/me/futureCompetitions?joined=true",
+									"raw": "https://localhost:8443/api/competitions/0000000003/future?joined=true",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -356,8 +368,9 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"me",
-										"futureCompetitions"
+										"competitions",
+										"0000000003",
+										"future"
 									],
 									"query": [
 										{
@@ -375,7 +388,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/me/futureCompetitions?joined=false",
+									"raw": "https://localhost:8443/api/competitions/0000000003/future?joined=false",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -383,8 +396,9 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"me",
-										"futureCompetitions"
+										"competitions",
+										"0000000003",
+										"future"
 									],
 									"query": [
 										{
@@ -411,7 +425,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/me/myProfile",
+									"raw": "https://localhost:8443/api/competitors/0000000003",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -419,8 +433,8 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"me",
-										"myProfile"
+										"competitors",
+										"0000000003"
 									]
 								}
 							},
@@ -442,7 +456,7 @@
 									]
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/image/user/0000000003",
+									"raw": "https://localhost:8443/api/user/0000000003/image",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -450,9 +464,9 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"image",
 										"user",
-										"0000000003"
+										"0000000003",
+										"image"
 									]
 								}
 							},
@@ -469,34 +483,6 @@
 					"name": "AdminPostAPIController",
 					"item": [
 						{
-							"name": "List",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://localhost:8443/api/admin/post/?page=1",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"admin",
-										"post",
-										""
-									],
-									"query": [
-										{
-											"key": "page",
-											"value": "1"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "New",
 							"request": {
 								"method": "POST",
@@ -511,7 +497,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/admin/post/",
+									"raw": "https://localhost:8443/api/posts/",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -519,8 +505,7 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"admin",
-										"post",
+										"posts",
 										""
 									]
 								}
@@ -543,7 +528,7 @@
 									]
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/image/post/204",
+									"raw": "https://localhost:8443/api/post/204/image",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -551,9 +536,9 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"image",
 										"post",
-										"204"
+										"204",
+										"image"
 									]
 								}
 							},
@@ -574,7 +559,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/admin/post/",
+									"raw": "https://localhost:8443/api/posts/205",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -582,9 +567,8 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"admin",
-										"post",
-										""
+										"posts",
+										"205"
 									]
 								}
 							},
@@ -596,7 +580,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/admin/post/205",
+									"raw": "https://localhost:8443/api/posts/205",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -604,8 +588,7 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"admin",
-										"post",
+										"posts",
 										"205"
 									]
 								}
@@ -623,7 +606,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/posts?id=204",
+									"raw": "https://localhost:8443/api/posts/204",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -631,13 +614,8 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"posts"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "204"
-										}
+										"posts",
+										"204"
 									]
 								}
 							},
@@ -676,7 +654,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/posts/page?page=0",
+									"raw": "https://localhost:8443/api/posts/?page=0&size=3",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -685,12 +663,47 @@
 									"path": [
 										"api",
 										"posts",
-										"page"
+										""
 									],
 									"query": [
 										{
 											"key": "page",
 											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/posts/?page=0&size=10",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"posts",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
 										}
 									]
 								}
@@ -713,7 +726,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/admin/user/competitors?page=1",
+									"raw": "https://localhost:8443/api/competitors?page=1",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -721,8 +734,6 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"admin",
-										"user",
 										"competitors"
 									],
 									"query": [
@@ -742,7 +753,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Cron\",\r\n    \"surname\": \"Tempo Limit\",\r\n    \"gender\": \"M\",\r\n    \"phone\": \"910000037\",\r\n    \"email\": \"c.tempo@admin.com\",\r\n    \"birthDate\": \"15/06/1001\",\r\n    \"dni\": \"00000037A\",\r\n    \"licenseId\": \"JU-0000000005\",\r\n    \"nickname\": \"Cron\",\r\n    \"password\": \"Cron2021\",\r\n    \"securityQuestion\": \"¿Quién es el padre de los dioses?\",\r\n    \"securityAnswer\": \"Soy yo\",\r\n    \"belt\": \"BAm\",\r\n    \"gym\": \"Temple\",\r\n    \"weight\": null,\r\n    \"refereeRange\": \"C\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Ismaelito\",\r\n    \"surname\": \"Gonzalez\",\r\n    \"gender\": \"M\",\r\n    \"phone\": \"910000037\",\r\n    \"email\": \"cambio@gmail.com\",\r\n    \"birthDate\": \"15/06/2001\",\r\n    \"dni\": \"00000003A\",\r\n    \"licenseId\": \"0000000001\",\r\n    \"nickname\": \"Ismon\",\r\n    \"password\": \"Ismon2021\",\r\n    \"securityQuestion\": \"¿Quién es el padre de los dioses?\",\r\n    \"securityAnswer\": \"Soy yo\",\r\n    \"belt\": \"BAm\",\r\n    \"gym\": \"Temple\",\r\n    \"weight\": null,\r\n    \"refereeRange\": \"null\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -750,7 +761,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/admin/user/",
+									"raw": "https://localhost:8443/api/competitors/0000000003",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -758,9 +769,8 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"admin",
-										"user",
-										""
+										"competitors",
+										"0000000003"
 									]
 								}
 							},
@@ -781,7 +791,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/admin/user/JU-0000000002",
+									"raw": "https://localhost:8443/api/JU-0000000002",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -789,8 +799,6 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"admin",
-										"user",
 										"JU-0000000002"
 									]
 								}
@@ -812,7 +820,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/admin/user/refereeApplication/JU-0000000002",
+									"raw": "https://localhost:8443/api/referees/applications/JU-1111111112",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -820,10 +828,9 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"admin",
-										"user",
-										"refereeApplication",
-										"JU-0000000002"
+										"referees",
+										"applications",
+										"JU-1111111112"
 									]
 								}
 							},
@@ -835,7 +842,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/admin/user/referees?page=1",
+									"raw": "https://localhost:8443/api/referees?page=0",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -843,14 +850,12 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"admin",
-										"user",
 										"referees"
 									],
 									"query": [
 										{
 											"key": "page",
-											"value": "1"
+											"value": "0"
 										}
 									]
 								}
@@ -863,7 +868,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/admin/user/referees/applications",
+									"raw": "https://localhost:8443/api/referees/applications",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -871,8 +876,6 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"admin",
-										"user",
 										"referees",
 										"applications"
 									]
@@ -896,7 +899,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/admin/competition/?page=0",
+									"raw": "https://localhost:8443/api/competitions/?page=0",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -904,8 +907,7 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"admin",
-										"competition",
+										"competitions",
 										""
 									],
 									"query": [
@@ -924,7 +926,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/admin/competition/161",
+									"raw": "https://localhost:8443/api/competitions/161",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -932,8 +934,7 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"admin",
-										"competition",
+										"competitions",
 										"161"
 									]
 								}
@@ -955,7 +956,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/admin/competition/",
+									"raw": "https://localhost:8443/api/competitions/",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -963,8 +964,7 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"admin",
-										"competition",
+										"competitions",
 										""
 									]
 								}
@@ -986,7 +986,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/admin/competition/",
+									"raw": "https://localhost:8443/api/competitions/161",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -994,9 +994,8 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"admin",
-										"competition",
-										""
+										"competitions",
+										"161"
 									]
 								}
 							},
@@ -1013,7 +1012,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/competition/206",
+									"raw": "https://localhost:8443/api/competitions/206",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -1021,7 +1020,7 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"competition",
+										"competitions",
 										"206"
 									]
 								}
@@ -1034,7 +1033,7 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/competition/206",
+									"raw": "https://localhost:8443/api/competitions/members/206",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -1042,7 +1041,8 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"competition",
+										"competitions",
+										"members",
 										"206"
 									]
 								},
@@ -1070,7 +1070,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/competition/control",
+									"raw": "https://localhost:8443/api/competitions/129/control",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -1078,7 +1078,8 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"competition",
+										"competitions",
+										"129",
 										"control"
 									]
 								}
