@@ -339,6 +339,7 @@ public class User {
         return (this.getRoles() != null) && (roles.contains(role));
     }
 
+    // Warning: also used in RankingDTO
     @JsonProperty("imageFile")
     public String imageFile() {
         return "/api/users/" + getLicenseId() + "/image";

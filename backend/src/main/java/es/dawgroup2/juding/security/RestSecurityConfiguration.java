@@ -50,7 +50,8 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
         // All users
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/login", "/api/refresh", "/api/logout").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/referees","/api/competitors").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/passwordRecovery").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/passwordRecovery/{id}").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/passwordRecovery/{id}").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/index-email").permitAll();
 
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/posts").permitAll();
