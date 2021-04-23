@@ -53,16 +53,14 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/passwordRecovery").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/index-email").permitAll();
 
-        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/posts/").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/posts").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/posts/recent").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/posts/{id}").permitAll();
 
         //Admin & Referees & Competitors
-        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/{type}/{id}/image/").hasAnyRole(Role.C.name(), Role.R.name(), Role.A.name());
-        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/{type}/{id}/image/").hasAnyRole(Role.C.name(), Role.R.name(), Role.A.name());
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/users/{id}/image", "/api/competitors/{id}/image", "/api/referees/{id}/image").hasAnyRole(Role.C.name(), Role.R.name(), Role.A.name());
 
         //Referees & Competitors
-        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/competitions/members/{id}").hasAnyRole(Role.C.name(), Role.R.name());
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/competitions/{id}").hasAnyRole(Role.C.name(), Role.R.name());
 
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/competitions/{id}/past").hasAnyRole(Role.C.name(), Role.R.name());
@@ -70,21 +68,25 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/competitions/{id}/future").hasAnyRole(Role.C.name(), Role.R.name());
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/ranking").hasAnyRole(Role.C.name(), Role.R.name());
 
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/users/{id}/image", "/api/competitors/{id}/image").hasAnyRole(Role.C.name());
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/users/{id}/image", "/api/referees/{id}/image").hasAnyRole(Role.R.name());
+
         //Admin
-        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/competitions/").hasRole(Role.A.name());
-        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/competitions/").hasRole(Role.A.name());
+        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/competitions").hasRole(Role.A.name());
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/competitions").hasRole(Role.A.name());
         http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/competitions/{id}").hasRole(Role.A.name());
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/competitions/{id}").hasRole(Role.A.name());
 
-        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/post/").hasRole(Role.A.name());
+        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/posts").hasRole(Role.A.name());
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/posts/{id}").hasRole(Role.A.name());
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/posts/{id}/image").hasRole(Role.A.name());
         http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/posts/{id}").hasRole(Role.A.name());
 
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/competitors").hasRole(Role.A.name());
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/referees").hasRole(Role.A.name());
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/referees/applications").hasRole(Role.A.name());
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/referees/applications/{id}").hasRole(Role.A.name());
-        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/{id}").hasRole(Role.A.name());
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/competitors/{id}", "/api/referees/{id}").hasRole(Role.A.name());
 
         //Referees
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/referees/{id}").hasAnyRole(Role.R.name());
@@ -93,54 +95,12 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/competitions/{id}/control").hasAnyRole(Role.R.name());
 
         //Competitors
-        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/competitors/{id}").hasAnyRole(Role.C.name());
-        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/competitors/{id}").hasAnyRole(Role.C.name());
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/competitions/members/{id}").hasAnyRole(Role.C.name());
 
-        // AdminCompetitionAPIController
-        //http.authorizeRequests().antMatchers("/api/competitions/").hasRole(Role.A.name());
-        //http.authorizeRequests().antMatchers("/api/competitions/{id}").hasRole(Role.A.name());
-
-        // LoggedInUserAPIController
-        //http.authorizeRequests().antMatchers("/api/competitors/{id}").hasAnyRole(Role.C.name());
-        //http.authorizeRequests().antMatchers("/api/referees/{id}").hasAnyRole(Role.R.name());
-        //http.authorizeRequests().antMatchers("/api/competitions/{id}/past").hasAnyRole(Role.C.name(), Role.R.name());
-        //http.authorizeRequests().antMatchers("/api/competitions/{id}/current").hasAnyRole(Role.C.name(), Role.R.name());
-        //http.authorizeRequests().antMatchers("/api/competitions/{id}/future").hasAnyRole(Role.C.name(), Role.R.name());
-        //http.authorizeRequests().antMatchers("/api/ranking").hasAnyRole(Role.C.name(), Role.R.name());
-
-        // ImageAPIController
-        //http.authorizeRequests().antMatchers("/api/{type}/{id}/image/").hasAnyRole(Role.C.name(), Role.R.name(), Role.A.name());
-        //http.authorizeRequests().antMatchers("/api/{type}/{id}/image/").hasAnyRole(Role.C.name(), Role.R.name(), Role.A.name());
-
-        // IndexAPIController
-        //http.authorizeRequests().antMatchers("/api/login", "/api/refresh", "/api/logout").permitAll();
-        //http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/referees","/api/competitors").permitAll();
-        //http.authorizeRequests().antMatchers("/api/passwordRecovery").permitAll();
-
-        // AdminUserAPIController
-        //http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/competitors").hasRole(Role.A.name());
-        //http.authorizeRequests().antMatchers("/api/referees/applications").hasRole(Role.A.name());
-        //http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/referees").hasRole(Role.A.name());
-        //http.authorizeRequests().antMatchers("/api//referees/applications/{id}").hasRole(Role.A.name());
-        //http.authorizeRequests().antMatchers("/api/{id}").hasRole(Role.A.name());
-
-        // CompetitionAPIController
-        //http.authorizeRequests().antMatchers("/api/competitions/{id}").hasAnyRole(Role.C.name(), Role.R.name());
-        //http.authorizeRequests().antMatchers("/api/competitions/members/{id}").hasAnyRole(Role.C.name(), Role.R.name());
-
-        // RefereeControlAPIController
-        //http.authorizeRequests().antMatchers("/api/competitions/{id}/control").hasAnyRole(Role.R.name());
-
-        // AdminPostAPIController
-        //http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/posts/").hasRole(Role.A.name());
-        //http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/posts/{id}").hasRole(Role.A.name());
-        //http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/posts/{id}").hasRole(Role.A.name());
-
-        // PostAPIController
-        //http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/posts/{id}").permitAll();
-        //http.authorizeRequests().antMatchers("/api/posts/recent").permitAll();
-        //http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/posts/").permitAll();
-
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/competitors/{id}").hasAnyRole(Role.C.name(), Role.A.name());
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/competitors/points/{id}").hasAnyRole(Role.C.name());
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/competitors/{id}").hasAnyRole(Role.C.name(), Role.A.name());
+        
         // Allow all others
         http.authorizeRequests().anyRequest().permitAll();
 

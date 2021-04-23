@@ -85,7 +85,7 @@ public class ImageService {
     }
 
     public ResponseEntity<Object> downloadImage(@PathVariable String type, @PathVariable String id, UserService userService, ImageService imageService, PostService postService) throws SQLException {
-        if (type.matches("user(s)?")) {
+        if (type.matches("(user(s)?|competitors|referees)")) {
             User user = userService.getUserOrNull(id);
             if (user != null)
                 return imageService.getObjectResponseEntity(user.getImageFile(), user.getMimeProfileImage());

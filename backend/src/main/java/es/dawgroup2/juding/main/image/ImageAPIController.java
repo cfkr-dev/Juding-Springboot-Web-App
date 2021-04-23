@@ -12,9 +12,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api")
@@ -74,24 +77,25 @@ public class ImageAPIController {
             @ApiResponse(responseCode = "403", description = "Current logged user is not authorized to upload or change this image.",
                     content = @Content)
     })
-    @PutMapping("/{type}/{id}/image/")
+    @PutMapping("/{type}/{id}/image")
     public ResponseEntity<Object> uploadImage(@Parameter(description = "Type of entity (either user or post).") @PathVariable String type,
                                               @Parameter(description = "Entity associated identifier (License ID for users and ID for posts).") @PathVariable String id,
-                                              @Parameter(description = "Multipart File.") @RequestParam MultipartFile file) {
-        if (type != null && type.matches("user(s)?")) {
+                                              @Parameter(description = "Multipart File.") @RequestParam MultipartFile file,
+                                              HttpServletRequest request) {
+        if (type != null && type.matches("(users|competitors|referees)")) {
             User user = userService.getUserOrNull(id);
-            if (user != null) {
-                try {
-                    user.setImageFile(imageService.uploadProfileImage(file))
-                            .setMimeProfileImage(file.getContentType());
-                    user = userService.save(user);
-                    if (user != null)
-                        return ResponseEntity.ok(user);
-                } catch (Exception e) {
-                    return ResponseEntity.badRequest().build();
-                }
+            if (user == null) return ResponseEntity.notFound().build();
+            if (!user.getNickname().equals(request.getUserPrincipal().getName())) return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+            try {
+                user.setImageFile(imageService.uploadProfileImage(file))
+                        .setMimeProfileImage(file.getContentType());
+                user = userService.save(user);
+                if (user != null)
+                    return ResponseEntity.ok(user);
+            } catch (Exception e) {
+                return ResponseEntity.badRequest().build();
             }
-        } else if (type != null && type.matches("post(s)?")) {
+        } else if (type != null && type.equals("posts")) {
             Post post = postService.findById(id);
             if (post != null) {
                 try {
@@ -105,7 +109,7 @@ public class ImageAPIController {
                 }
             }
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.notFound().build();
     }
 }
    

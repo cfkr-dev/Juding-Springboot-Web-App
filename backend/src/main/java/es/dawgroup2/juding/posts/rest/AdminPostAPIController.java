@@ -44,7 +44,7 @@ public class AdminPostAPIController {
             @ApiResponse(responseCode = "500", description = "Post cannot be created on the basis of failed data",
                     content = @Content)
     })
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Post> addNewPost(@Parameter(description = "Post DTO") @RequestBody PostDTO postDTO,
                                            @Parameter(description = "Post request with the author") HttpServletRequest request) {
         Post newPost = postService.save(null, request, postDTO.getTitle(), postDTO.getBody(), null);
@@ -72,6 +72,7 @@ public class AdminPostAPIController {
     public ResponseEntity<Post> updatePost(@Parameter(description = "Post DTO") @RequestBody PostDTO postDTO,
                                            @Parameter(description = "ID of post.") @PathVariable String id,
                                            @Parameter(description = "Post request with the author") HttpServletRequest request) {
+        if (postService.findById(id) == null) return ResponseEntity.notFound().build();
         Post updatedPost = postService.save(id, request, postDTO.getTitle(), postDTO.getBody(), null);
         return (updatedPost == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(updatedPost);
     }
@@ -94,7 +95,8 @@ public class AdminPostAPIController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Post> deletePost(@Parameter(description = "Post id") @PathVariable String id) {
         Post post = postService.findById(id);
+        if (post == null) return ResponseEntity.notFound().build();
         postService.deleteById(id);
-        return (post == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(post);
+        return ResponseEntity.ok(post);
     }
 }

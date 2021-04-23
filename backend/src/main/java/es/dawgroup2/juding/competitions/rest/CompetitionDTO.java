@@ -3,6 +3,7 @@ package es.dawgroup2.juding.competitions.rest;
 import javax.validation.constraints.Pattern;
 
 public class CompetitionDTO {
+    private final String id;
     private final String shortName;
     private final String additionalInfo;
     private final String minWeight;
@@ -13,7 +14,8 @@ public class CompetitionDTO {
     private final String endDate;
     private final String referee;
 
-    public CompetitionDTO(String shortName, String additionalInfo, String minWeight, String maxWeight, String startDate, String endDate, String referee) {
+    public CompetitionDTO(String id, String shortName, String additionalInfo, String minWeight, String maxWeight, String startDate, String endDate, String referee) {
+        this.id = id;
         this.shortName = shortName;
         this.additionalInfo = additionalInfo;
         this.minWeight = minWeight;
@@ -21,6 +23,10 @@ public class CompetitionDTO {
         this.startDate = startDate;
         this.endDate = endDate;
         this.referee = referee;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getShortName() {

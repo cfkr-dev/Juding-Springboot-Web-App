@@ -52,7 +52,7 @@ public class AdminCompetitionAPIController {
             @ApiResponse(responseCode = "400", description = "Request is invalid because of empty or non-existant page retrieve",
                     content = @Content)
     })
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<Page<Competition>> getCompetitionPage(@Parameter(description = "Number of page to be searched") @RequestParam(required = false) Integer page) {
         int defPage = (page == null) ? 0 : page;
         if (defPage < 0) return ResponseEntity.badRequest().build();
@@ -78,7 +78,7 @@ public class AdminCompetitionAPIController {
             @ApiResponse(responseCode = "500", description = "Competition cannot be created on the basis of failed data",
                     content = @Content)
     })
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Competition> addCompetition(@Valid @Parameter(description = "Competition Data Transfer Object") @RequestBody CompetitionDTO competitionDTO) {
         Competition competition;
         try {
@@ -121,9 +121,7 @@ public class AdminCompetitionAPIController {
                                                                @Parameter(description = "ID of competition.") @PathVariable String id) {
         Competition competition;
         try {
-            if (competitionService.checkingMinAndMaxWeight(competitionDTO.getMinWeight(), competitionDTO.getMaxWeight()))
-                return ResponseEntity.badRequest().build();
-            if (!competitionService.checkingDatesAlt(competitionDTO.getStartDate(), competitionDTO.getEndDate()))
+            if (competitionService.checkingMinAndMaxWeight(competitionDTO.getMinWeight(), competitionDTO.getMaxWeight()) || !competitionService.checkingDatesAlt(competitionDTO.getStartDate(), competitionDTO.getEndDate()))
                 return ResponseEntity.badRequest().build();
             competition = competitionService.save(id,
                     competitionDTO.getShortName(),

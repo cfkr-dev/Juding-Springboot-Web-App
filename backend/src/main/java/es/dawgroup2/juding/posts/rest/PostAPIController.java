@@ -77,7 +77,7 @@ public class PostAPIController {
             @ApiResponse(responseCode = "400", description = "Request is invalid because of empty or non-existant page retrieve",
                     content = @Content)
     })
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<Page<Post>> getPage(@Parameter(description = "Number of page to be searched.") @RequestParam(required = false) Integer page,
                                               @Parameter(description = "Size of page (default is 10).") @RequestParam(required = false) Integer size) {
         int defPage = (page == null) ? 1 : page;

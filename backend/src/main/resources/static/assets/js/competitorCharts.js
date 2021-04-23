@@ -4,8 +4,7 @@
 let ctx = document.getElementById("chart1").getContext("2d");
 let ctx2 = document.getElementById("chart2").getContext("2d");
 $.ajax({
-    data: {"licenseId": $("#licenseId").text()},
-    url: "/myCharts",
+    url: "/api/competitorPoints/" + $("#licenseId").text(),
     method: 'get'
 }).done((ans) => {
     if (ans != null) {
