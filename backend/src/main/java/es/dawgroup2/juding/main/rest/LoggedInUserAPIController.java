@@ -102,13 +102,6 @@ public class LoggedInUserAPIController {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
-    @GetMapping(value = {"/competitorPoints/{id}"})
-    public ResponseEntity<List<Integer>> chartInfo(@PathVariable String id) {
-        User currentUser = userService.getUserOrNull(id);
-        if (currentUser == null) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(currentUser.getCompetitorMedals());
-    }
-
     /**
      * Returns a list of past competitions of currently logged-in user.
      *
@@ -199,7 +192,7 @@ public class LoggedInUserAPIController {
                     content = @Content)
     })
     @PutMapping({"/competitors/{id}", "/referees/{id}"})
-    public ResponseEntity<User> editingUser(@Valid @Parameter(description = "Admin Data Transfer Object.") AdminUserEditionDTO adminUserEditionDTO,
+    public ResponseEntity<User> editingUser(@Valid @Parameter(description = "Admin Data Transfer Object.") @RequestBody AdminUserEditionDTO adminUserEditionDTO,
                                             @Parameter(description = "ID of the user.") @PathVariable String id,
                                             @Parameter(description = "HTTP Servlet Request.") HttpServletRequest request) {
         User user = userService.findByNickname(request.getUserPrincipal().getName());
@@ -217,10 +210,10 @@ public class LoggedInUserAPIController {
                     adminUserEditionDTO.getBirthDate(),
                     adminUserEditionDTO.getDni(),
                     id,
-                    (isAdmin) ? adminUserEditionDTO.getNickname() : null,
+                    (isAdmin && !user.getLicenseId().equals(adminUserEditionDTO.getLicenseId())) ? adminUserEditionDTO.getNickname() : null,
                     null,
-                    null,
-                    null,
+                    (isAdmin) ? adminUserEditionDTO.getSecurityQuestion() : null,
+                    (isAdmin) ? adminUserEditionDTO.getSecurityAnswer() : null,
                     null,
                     adminUserEditionDTO.getBelt(),
                     null,

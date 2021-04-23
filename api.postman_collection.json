@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1552a43a-06bf-43f6-836e-83a33ba67672",
+		"_postman_id": "6d9e7705-4950-4a9a-a475-cd30259a470c",
 		"name": "Juding REST API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -181,7 +181,28 @@
 							"response": []
 						},
 						{
-							"name": "Password Recovery",
+							"name": "Password Recovery - Return security question",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/passwordRecovery/0000000002",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"passwordRecovery",
+										"0000000002"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Password Recovery - Saving new password",
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -195,7 +216,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/passwordRecovery",
+									"raw": "https://localhost:8443/api/passwordRecovery/0000000002",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -203,7 +224,8 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"passwordRecovery"
+										"passwordRecovery",
+										"0000000002"
 									]
 								}
 							},
@@ -464,12 +486,12 @@
 										{
 											"key": "file",
 											"type": "file",
-											"src": "/home/daw/Escritorio/DAW-RepoNoOficial/src/main/resources/static/sampleImages/1234567891.jpg"
+											"src": "/home/daw/Escritorio/webapp2/backend/src/main/resources/static/sampleImages/1234567891.jpg"
 										}
 									]
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/referees/JU-0000000004/image",
+									"raw": "https://localhost:8443/api/competitors/0000000003/image",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -477,8 +499,8 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"referees",
-										"JU-0000000004",
+										"competitors",
+										"0000000003",
 										"image"
 									]
 								}
@@ -734,7 +756,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Ismaelito\",\r\n    \"surname\": \"Gonzalez\",\r\n    \"gender\": \"M\",\r\n    \"phone\": \"910000037\",\r\n    \"email\": \"cambio@gmail.com\",\r\n    \"birthDate\": \"15/06/2001\",\r\n    \"dni\": \"00000003A\",\r\n    \"licenseId\": \"0000000003\",\r\n    \"nickname\": \"Ismon\",\r\n    \"password\": \"Ismon2021\",\r\n    \"securityQuestion\": \"¿Quién es el padre de los dioses?\",\r\n    \"securityAnswer\": \"Soy yo\",\r\n    \"belt\": \"BAm\",\r\n    \"gym\": \"Temple\",\r\n    \"weight\": null,\r\n    \"refereeRange\": \"null\"\r\n}\r\n",
+									"raw": "{\r\n    \"name\": \"Ismaelito\",\r\n    \"surname\": \"Gonzalez\",\r\n    \"gender\": \"M\",\r\n    \"phone\": \"910000037\",\r\n    \"email\": \"cambio@gmail.com\",\r\n    \"birthDate\": \"15/06/2001\",\r\n    \"dni\": \"00000003A\",\r\n    \"licenseId\": \"0000000003\",\r\n    \"nickname\": \"Ismon\",\r\n    \"securityQuestion\": \"¿Quién es el padre de los dioses?\",\r\n    \"securityAnswer\": \"Soy yo\",\r\n    \"belt\": \"BAm\",\r\n    \"gym\": \"Temple\",\r\n    \"weight\": null,\r\n    \"refereeRange\": \"null\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"

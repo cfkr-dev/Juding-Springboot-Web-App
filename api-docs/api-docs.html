@@ -248,7 +248,6 @@
   <h4><a href="#LoggedInUserApiController">LoggedInUserApiController</a></h4>
   <ul>
   <li><a href="#chartInfo"><code><span class="http-method">get</span> /api/competitors/points/{id}</code></a></li>
-  <li><a href="#chartInfo1"><code><span class="http-method">get</span> /api/competitorPoints/{id}</code></a></li>
   <li><a href="#currentCompetitions"><code><span class="http-method">get</span> /api/competitions/{id}/current</code></a></li>
   <li><a href="#editingUser"><code><span class="http-method">put</span> /api/competitors/{id}</code></a></li>
   <li><a href="#editingUser1"><code><span class="http-method">put</span> /api/referees/{id}</code></a></li>
@@ -327,12 +326,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">500</h4>
-    Competition cannot be created on the basis of failed data.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     Creation of a new competition.
         <a href="#CompetitionDTO">CompetitionDTO</a>
+    <h4 class="field-label">500</h4>
+    Competition cannot be created on the basis of failed data.
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="getCompetitionPage"></a>
@@ -431,12 +430,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">400</h4>
-    Request is invalid because of empty or non-existent page retrieve.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     Page with more than one competition.
         
+    <h4 class="field-label">400</h4>
+    Request is invalid because of empty or non-existent page retrieve.
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="showCompetitionToDelete"></a>
@@ -651,12 +650,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">500</h4>
-    Post cannot be created on the basis of failed data.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     Creation of a new post.
         <a href="#Post">Post</a>
+    <h4 class="field-label">500</h4>
+    Post cannot be created on the basis of failed data.
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="deletePost"></a>
@@ -806,12 +805,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Edit the post.
-        <a href="#Post">Post</a>
     <h4 class="field-label">500</h4>
     Post cannot be modified on the basis of failed data.
         <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Edit the post.
+        <a href="#Post">Post</a>
   </div> <!-- method -->
   <hr/>
   <h1><a name="AdminUserApiController">AdminUserApiController</a></h1>
@@ -871,11 +870,11 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">400</h4>
-    Requested license ID is not registered in the application or referee has been admitted before.
-        <a href="#"></a>
     <h4 class="field-label">403</h4>
     Not allowed (there is not logged in user or it is not an administrator).
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Requested license ID is not registered in the application or referee has been admitted before.
         <a href="#"></a>
     <h4 class="field-label">200</h4>
     New referee&#x27;s complete information.
@@ -951,12 +950,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    List of referee applications.
-        
     <h4 class="field-label">403</h4>
     Not allowed (there is not logged in user or it is not an administrator).
         <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    List of referee applications.
+        
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="competitorList"></a>
@@ -1033,12 +1032,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Page with competitors.
-        
     <h4 class="field-label">403</h4>
     Not allowed (there is not logged in user or it is not an administrator).
         <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Page with competitors.
+        
     <h4 class="field-label">400</h4>
     Requested page does not exist.
         <a href="#"></a>
@@ -1100,11 +1099,11 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">404</h4>
-    Not able to delete user (user did not exist or user has taken part of any past or future competition).
-        <a href="#"></a>
     <h4 class="field-label">403</h4>
     Not allowed (there is not logged in user or it is not an administrator).
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Not able to delete user (user did not exist or user has taken part of any past or future competition).
         <a href="#"></a>
     <h4 class="field-label">200</h4>
     User deleted.
@@ -1167,11 +1166,11 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">404</h4>
-    Not able to delete user (user did not exist or user has taken part of any past or future competition).
-        <a href="#"></a>
     <h4 class="field-label">403</h4>
     Not allowed (there is not logged in user or it is not an administrator).
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Not able to delete user (user did not exist or user has taken part of any past or future competition).
         <a href="#"></a>
     <h4 class="field-label">200</h4>
     User deleted.
@@ -1252,15 +1251,15 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Page with referees.
-        
     <h4 class="field-label">403</h4>
     Not allowed (there is not logged in user or it is not an administrator).
         <a href="#"></a>
     <h4 class="field-label">400</h4>
     Requested page does not exist.
         <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Page with referees.
+        
   </div> <!-- method -->
   <hr/>
   <h1><a name="CompetitionApiController">CompetitionApiController</a></h1>
@@ -1636,17 +1635,17 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">403</h4>
-    Current logged user is not authorized to download this image.
-        <a href="#"></a>
-    <h4 class="field-label">200</h4>
-    Image could be found and is downloaded.
-        <a href="#"></a>
     <h4 class="field-label">400</h4>
     Image was not properly processed.
         <a href="#"></a>
     <h4 class="field-label">404</h4>
     Image could not be found (because entity instance does not exist or it does not have associated image).
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Current logged user is not authorized to download this image.
+        <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Image could be found and is downloaded.
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -1701,15 +1700,15 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">403</h4>
-    Current logged user is not authorized to upload or change this image.
-        <a href="#"></a>
-    <h4 class="field-label">400</h4>
-    Image was not properly processed.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     Image could be found and is downloaded.
         <a href="#inline_response_200">inline_response_200</a>
+    <h4 class="field-label">400</h4>
+    Image was not properly processed.
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Current logged user is not authorized to upload or change this image.
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <h1><a name="IndexApiController">IndexApiController</a></h1>
@@ -1870,12 +1869,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    User saved with its new password.
-        <a href="#User">User</a>
     <h4 class="field-label">400</h4>
     Bad request since user was not found by its license ID or security answer was incorrect.
         <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    User saved with its new password.
+        <a href="#User">User</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="refreshToken"></a>
@@ -2144,57 +2143,14 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    User chart information.
-        
     <h4 class="field-label">404</h4>
     Requested user was not found.
         <a href="#"></a>
     <h4 class="field-label">403</h4>
     Not allowed.
         <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="chartInfo1"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/competitorPoints/{id}</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">chartInfo1</span>)</div>
-    <div class="method-notes"></div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      
-      array[Integer]
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>[ 0, 0 ]</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    OK
+    User chart information.
         
   </div> <!-- method -->
   <hr/>
@@ -2294,15 +2250,15 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    List of current competitions of logged-in user.
+        
     <h4 class="field-label">403</h4>
     Not allowed (user is not logged in).
         <a href="#"></a>
     <h4 class="field-label">404</h4>
     Currently logged in user was not found.
         <a href="#"></a>
-    <h4 class="field-label">200</h4>
-    List of current competitions of logged-in user.
-        
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="editingUser"></a>
@@ -2326,7 +2282,7 @@
 
     <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">body <a href="#AdminUserEditionDTO">AdminUserEditionDTO</a> (optional)</div>
+      <div class="param">body <a href="#AdminUserEditionDTO">AdminUserEditionDTO</a> (required)</div>
       
             <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
                 </div>  <!-- field-items -->
@@ -2375,12 +2331,12 @@
     <h4 class="field-label">403</h4>
     Not allowed (user is not logged in).
         <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    Currently logged in user was not found.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     User profile information with changed values.
         <a href="#User">User</a>
+    <h4 class="field-label">404</h4>
+    Currently logged in user was not found.
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="editingUser1"></a>
@@ -2404,7 +2360,7 @@
 
     <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">body <a href="#AdminUserEditionDTO">AdminUserEditionDTO</a> (optional)</div>
+      <div class="param">body <a href="#AdminUserEditionDTO">AdminUserEditionDTO</a> (required)</div>
       
             <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
                 </div>  <!-- field-items -->
@@ -2453,12 +2409,12 @@
     <h4 class="field-label">403</h4>
     Not allowed (user is not logged in).
         <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    Currently logged in user was not found.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     User profile information with changed values.
         <a href="#User">User</a>
+    <h4 class="field-label">404</h4>
+    Currently logged in user was not found.
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="getRanking"></a>
@@ -2487,6 +2443,7 @@
     <pre class="example"><code>[ {
   "belt" : "belt",
   "surname" : "surname",
+  "imageFile" : "imageFile",
   "num" : 6,
   "nickname" : "nickname",
   "name" : "name",
@@ -2496,6 +2453,7 @@
 }, {
   "belt" : "belt",
   "surname" : "surname",
+  "imageFile" : "imageFile",
   "num" : 6,
   "nickname" : "nickname",
   "name" : "name",
@@ -2512,12 +2470,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">403</h4>
-    Not allowed (user is not logged in).
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     List of ranking.
         
+    <h4 class="field-label">403</h4>
+    Not allowed (user is not logged in).
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="pastCompetitions"></a>
@@ -2619,12 +2577,12 @@
     <h4 class="field-label">403</h4>
     Not allowed (user is not logged in).
         <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    Currently logged in user was not found.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     List of past competitions of currently logged-in user.
         
+    <h4 class="field-label">404</h4>
+    Currently logged in user was not found.
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="pastCompetitions1"></a>
@@ -2731,12 +2689,12 @@
     <h4 class="field-label">403</h4>
     Not allowed (user is not logged in).
         <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    Currently logged in user was not found.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     List of future competitions.
         
+    <h4 class="field-label">404</h4>
+    Currently logged in user was not found.
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="profileInfo"></a>
@@ -2966,12 +2924,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">400</h4>
-    Request is invalid because of empty or non-existent page retrieve.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     Page with more than one post to view.
         
+    <h4 class="field-label">400</h4>
+    Request is invalid because of empty or non-existent page retrieve.
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="newsPost"></a>
@@ -3064,12 +3022,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Found the post.
-        
     <h4 class="field-label">404</h4>
     Resource not found.
         <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Found the post.
+        
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="recentNews"></a>
@@ -3322,6 +3280,8 @@
 <div class="param">licenseId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">nickname (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">belt (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">securityQuestion (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">securityAnswer (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">gym (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">weight (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
 <div class="param">refereeRange (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
@@ -3455,6 +3415,7 @@
 <div class="param">surname (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">dni (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">belt (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">imageFile (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
