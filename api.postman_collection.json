@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ae43bc39-026a-45bc-8364-4fd9e12634da",
+		"_postman_id": "1552a43a-06bf-43f6-836e-83a33ba67672",
 		"name": "Juding REST API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -158,7 +158,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"jose\",\r\n    \"surname\": \"toledano\",\r\n    \"gender\": \"H\",\r\n    \"phone\": \"912345678\",\r\n    \"email\": \"pruebas@gmail.com\",\r\n    \"birthDate\": \"22/05/2006\",\r\n    \"dni\": \"44444444W\",\r\n    \"licenseId\": \"JU-1111111112\",\r\n    \"nickname\": \"Pepe\",\r\n    \"password\": \"Pruebas2021\",\r\n    \"securityQuestion\": \"si\",\r\n    \"securityAnswer\": \"si\",\r\n    \"belt\": \"N2\"\r\n}",
+									"raw": "{\r\n    \"name\": \"jose\",\r\n    \"surname\": \"toledano\",\r\n    \"gender\": \"H\",\r\n    \"phone\": \"912345678\",\r\n    \"email\": \"juding.noreply@gmail.com\",\r\n    \"birthDate\": \"22/05/2006\",\r\n    \"dni\": \"44444444W\",\r\n    \"licenseId\": \"JU-1111111112\",\r\n    \"nickname\": \"Pepe\",\r\n    \"password\": \"Pruebas2021\",\r\n    \"securityQuestion\": \"si\",\r\n    \"securityAnswer\": \"si\",\r\n    \"belt\": \"N2\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -248,12 +248,24 @@
 							"response": []
 						},
 						{
-							"name": "My Profile (get image)",
+							"name": "My Chart Information (points)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "https://localhost:8443/api/user/0000000003/image",
+									"raw": "https://localhost:8443/api/competitors/points/0000000003",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -261,21 +273,21 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"user",
-										"0000000003",
-										"image"
+										"competitors",
+										"points",
+										"0000000003"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "My Charts",
+							"name": "My Profile (get image)",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/me/myCharts",
+									"raw": "https://localhost:8443/api/competitors/0000000003/image",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -283,8 +295,9 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"me",
-										"myCharts"
+										"competitors",
+										"0000000003",
+										"image"
 									]
 								}
 							},
@@ -441,7 +454,7 @@
 							"response": []
 						},
 						{
-							"name": "Add a image to a user",
+							"name": "Add/Change image of a user",
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -451,12 +464,12 @@
 										{
 											"key": "file",
 											"type": "file",
-											"src": "/home/daw/Escritorio/webapp2/backend/src/main/resources/static/sampleImages/1234567891.jpg"
+											"src": "/home/daw/Escritorio/DAW-RepoNoOficial/src/main/resources/static/sampleImages/1234567891.jpg"
 										}
 									]
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/user/0000000003/image",
+									"raw": "https://localhost:8443/api/referees/JU-0000000004/image",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -464,8 +477,8 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"user",
-										"0000000003",
+										"referees",
+										"JU-0000000004",
 										"image"
 									]
 								}
@@ -497,7 +510,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/posts/",
+									"raw": "https://localhost:8443/api/posts",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -505,8 +518,7 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"posts",
-										""
+										"posts"
 									]
 								}
 							},
@@ -523,12 +535,12 @@
 										{
 											"key": "file",
 											"type": "file",
-											"src": "/home/daw/Escritorio/webapp2/backend/src/main/resources/static/sampleImages/1234567890.jpg"
+											"src": "/home/daw/Escritorio/DAW-RepoNoOficial/src/main/resources/static/sampleImages/1234567890.jpg"
 										}
 									]
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/post/204/image",
+									"raw": "https://localhost:8443/api/posts/204/image",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -536,7 +548,7 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"post",
+										"posts",
 										"204",
 										"image"
 									]
@@ -551,7 +563,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"205\",\r\n    \"title\": \"La cucaracha\",\r\n    \"body\": \"Ya no puede comeptir más por que no tiene porque le falta las dos patitas de atrás\"\r\n}",
+									"raw": "{\r\n    \"id\": \"204\",\r\n    \"title\": \"La cucaracha\",\r\n    \"body\": \"Ya no puede comeptir más porque no tiene, porque le faltan las dos patitas de detrás.\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -559,7 +571,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/posts/205",
+									"raw": "https://localhost:8443/api/posts/204",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -568,7 +580,7 @@
 									"path": [
 										"api",
 										"posts",
-										"205"
+										"204"
 									]
 								}
 							},
@@ -627,7 +639,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/posts/recent?id=204",
+									"raw": "https://localhost:8443/api/posts/recent?dismissedPost=204",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -640,7 +652,7 @@
 									],
 									"query": [
 										{
-											"key": "id",
+											"key": "dismissedPost",
 											"value": "204"
 										}
 									]
@@ -673,37 +685,6 @@
 										{
 											"key": "size",
 											"value": "3"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "List",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://localhost:8443/api/posts/?page=0&size=10",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"posts",
-										""
-									],
-									"query": [
-										{
-											"key": "page",
-											"value": "0"
-										},
-										{
-											"key": "size",
-											"value": "10"
 										}
 									]
 								}
@@ -753,7 +734,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Ismaelito\",\r\n    \"surname\": \"Gonzalez\",\r\n    \"gender\": \"M\",\r\n    \"phone\": \"910000037\",\r\n    \"email\": \"cambio@gmail.com\",\r\n    \"birthDate\": \"15/06/2001\",\r\n    \"dni\": \"00000003A\",\r\n    \"licenseId\": \"0000000001\",\r\n    \"nickname\": \"Ismon\",\r\n    \"password\": \"Ismon2021\",\r\n    \"securityQuestion\": \"¿Quién es el padre de los dioses?\",\r\n    \"securityAnswer\": \"Soy yo\",\r\n    \"belt\": \"BAm\",\r\n    \"gym\": \"Temple\",\r\n    \"weight\": null,\r\n    \"refereeRange\": \"null\"\r\n}\r\n",
+									"raw": "{\r\n    \"name\": \"Ismaelito\",\r\n    \"surname\": \"Gonzalez\",\r\n    \"gender\": \"M\",\r\n    \"phone\": \"910000037\",\r\n    \"email\": \"cambio@gmail.com\",\r\n    \"birthDate\": \"15/06/2001\",\r\n    \"dni\": \"00000003A\",\r\n    \"licenseId\": \"0000000003\",\r\n    \"nickname\": \"Ismon\",\r\n    \"password\": \"Ismon2021\",\r\n    \"securityQuestion\": \"¿Quién es el padre de los dioses?\",\r\n    \"securityAnswer\": \"Soy yo\",\r\n    \"belt\": \"BAm\",\r\n    \"gym\": \"Temple\",\r\n    \"weight\": null,\r\n    \"refereeRange\": \"null\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -791,7 +772,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/JU-0000000002",
+									"raw": "https://localhost:8443/api/competitors/1111111112",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -799,7 +780,8 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"JU-0000000002"
+										"competitors",
+										"1111111112"
 									]
 								}
 							},
@@ -820,7 +802,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/referees/applications/JU-1111111112",
+									"raw": "https://localhost:8443/api/referees/applications/JU-0000000002",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -830,7 +812,7 @@
 										"api",
 										"referees",
 										"applications",
-										"JU-1111111112"
+										"JU-0000000002"
 									]
 								}
 							},
@@ -899,7 +881,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/competitions/?page=0",
+									"raw": "https://localhost:8443/api/competitions?page=0",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -907,8 +889,7 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"competitions",
-										""
+										"competitions"
 									],
 									"query": [
 										{
@@ -956,7 +937,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/competitions/",
+									"raw": "https://localhost:8443/api/competitions",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -964,8 +945,7 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"competitions",
-										""
+										"competitions"
 									]
 								}
 							},
@@ -978,7 +958,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"idCompetition\": \"161\",\r\n    \"shortName\": \"Competición de inauguración 1\",\r\n    \"additionalInfo\": \"Está competición es una celebración debido al nacimiento de la aplicación web Juding por lo que está abierta a todas las edades y es mixta.\",\r\n    \"minWeight\": 70,\r\n    \"maxWeight\": 80,\r\n    \"startDate\": \"01/04/2021 12:00\",\r\n    \"endDate\": \"01/04/2021 12:00\",\r\n    \"referee\": \"JU-0000000004\"\r\n}",
+									"raw": "{\r\n    \"idCompetition\": \"177\",\r\n    \"shortName\": \"Competición de inauguración 1\",\r\n    \"additionalInfo\": \"Está competición es una celebración debido al nacimiento de la aplicación web Juding por lo que está abierta a todas las edades y es mixta.\",\r\n    \"minWeight\": 70,\r\n    \"maxWeight\": 80,\r\n    \"startDate\": \"01/04/2021 12:00\",\r\n    \"endDate\": \"01/04/2021 12:00\",\r\n    \"referee\": \"JU-0000000004\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -986,7 +966,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/competitions/161",
+									"raw": "https://localhost:8443/api/competitions/177",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -995,7 +975,7 @@
 									"path": [
 										"api",
 										"competitions",
-										"161"
+										"177"
 									]
 								}
 							},
@@ -1012,7 +992,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/competitions/206",
+									"raw": "https://localhost:8443/api/competitions/161",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -1021,7 +1001,7 @@
 									"path": [
 										"api",
 										"competitions",
-										"206"
+										"161"
 									]
 								}
 							},
@@ -1033,7 +1013,7 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/competitions/members/206",
+									"raw": "https://localhost:8443/api/competitions/members/161",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -1043,7 +1023,7 @@
 										"api",
 										"competitions",
 										"members",
-										"206"
+										"161"
 									]
 								},
 								"description": "It is only valid when a competitor is logged in and a new competition has been created using the attached example."
