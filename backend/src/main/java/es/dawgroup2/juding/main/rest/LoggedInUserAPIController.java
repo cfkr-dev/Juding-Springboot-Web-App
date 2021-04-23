@@ -49,24 +49,25 @@ public class LoggedInUserAPIController {
     RefereeRangeService refereeRangeService;
 
     /**
-     * Returns logged in user profile data.
+     * Returns user profile data.
      *
      * @param id Id of the user.
-     * @return Logged in user date profile data.
+     * @param request HTTP Servlet Request.
+     * @return User profile information.
      */
-    @Operation(summary = "Returns logged in user profile data.")
+    @Operation(summary = "Returns user profile data.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User profile information.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = User.class))}),
-            @ApiResponse(responseCode = "403", description = "Not allowed (user is not logged in).",
+            @ApiResponse(responseCode = "403", description = "Not allowed.",
                     content = @Content),
-            @ApiResponse(responseCode = "404", description = "Currently logged in user was not found.",
+            @ApiResponse(responseCode = "404", description = "Requested user was not found.",
                     content = @Content)
     })
     @GetMapping(value = {"/competitors/{id}", "/referees/{id}"})
     public ResponseEntity<User> profileInfo(@Parameter(description = "ID of user.") @PathVariable String id,
-                                            HttpServletRequest request) {
+                                            @Parameter(description = "HTTP Servlet Request.") HttpServletRequest request) {
         User currentUser = userService.getUserOrNull(id);
         if (currentUser == null) return ResponseEntity.notFound().build();
         if (currentUser.getNickname().equals(request.getUserPrincipal().getName()) || userService.findByNickname(request.getUserPrincipal().getName()).isRole(Role.A))
@@ -74,8 +75,26 @@ public class LoggedInUserAPIController {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
+    /**
+     * Returns user chart information.
+     *
+     * @param id Id of the user.
+     * @param request HTTP Servlet Request.
+     * @return User profile information.
+     */
+    @Operation(summary = "Returns user profile data.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User chart information.",
+                    content = {@Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = Integer.class)))}),
+            @ApiResponse(responseCode = "403", description = "Not allowed.",
+                    content = @Content),
+            @ApiResponse(responseCode = "404", description = "Requested user was not found.",
+                    content = @Content)
+    })
     @GetMapping(value = {"/competitors/points/{id}"})
-    public ResponseEntity<List<Integer>> chartInfo(@PathVariable String id, HttpServletRequest request) {
+    public ResponseEntity<List<Integer>> chartInfo(@Parameter(description = "ID of user.") @PathVariable String id,
+                                                   @Parameter(description = "HTTP Servlet Request.") HttpServletRequest request) {
         User currentUser = userService.getUserOrNull(id);
         if (currentUser == null) return ResponseEntity.notFound().build();
         if (currentUser.getNickname().equals(request.getUserPrincipal().getName()) || userService.findByNickname(request.getUserPrincipal().getName()).isRole(Role.A))
@@ -166,6 +185,7 @@ public class LoggedInUserAPIController {
      *
      * @param adminUserEditionDTO Admin Data Transfer Object.
      * @param id Id of the user.
+     * @param request HTTP Servlet Request.
      * @return Saved user.
      */
     @Operation(summary = "Saves new information for some values relating to currently logged in user.")
@@ -181,7 +201,7 @@ public class LoggedInUserAPIController {
     @PutMapping({"/competitors/{id}", "/referees/{id}"})
     public ResponseEntity<User> editingUser(@Valid @Parameter(description = "Admin Data Transfer Object.") AdminUserEditionDTO adminUserEditionDTO,
                                             @Parameter(description = "ID of the user.") @PathVariable String id,
-                                            @Parameter(description = "HTTP Servlet Request (for catching logged in user nickname).") HttpServletRequest request) {
+                                            @Parameter(description = "HTTP Servlet Request.") HttpServletRequest request) {
         User user = userService.findByNickname(request.getUserPrincipal().getName());
         boolean isAdmin = user.isRole(Role.A);
         if (!isAdmin && !user.getLicenseId().equals(id))

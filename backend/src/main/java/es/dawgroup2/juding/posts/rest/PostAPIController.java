@@ -24,7 +24,7 @@ public class PostAPIController {
     PostService postService;
 
     /**
-     * Gets a simple post to view.
+     * Gets a simple post.
      *
      * @param id Unique identifier of a post.
      * @return {@code True} response entity with the single post. {@code False} if bad request.
@@ -46,7 +46,7 @@ public class PostAPIController {
     /**
      * Gets a recent post list.
      *
-     * @param dismissedPost Post id that is not in the list.
+     * @param dismissedPost Post id to dismiss.
      * @return {@code True} Response entity with the post list. {@code False} if bad request.
      */
     @Operation(summary = "Get a recent post list.")
@@ -67,7 +67,7 @@ public class PostAPIController {
      * Gets a list with a post to view (pagination format).
      *
      * @param page Page number.
-     * @param size Size of the post list to show
+     * @param size Size of the post list to show.
      * @return {@code True} Response entity with the post to view list. {@code False} if bad request.
      */
     @Operation(summary = "Get a list with the posts to view (paginated).")
@@ -79,8 +79,8 @@ public class PostAPIController {
                     content = @Content)
     })
     @GetMapping("")
-    public ResponseEntity<Page<Post>> getPage(@Parameter(description = "Number of page to be searched.") @RequestParam(required = false) Integer page,
-                                              @Parameter(description = "Size of page (default is 10).") @RequestParam(required = false) Integer size) {
+    public ResponseEntity<Page<Post>> getPage(@Parameter(description = "Page number.") @RequestParam(required = false) Integer page,
+                                              @Parameter(description = "Size of the post list to show.") @RequestParam(required = false) Integer size) {
         int defPage = (page == null) ? 1 : page;
         if (defPage < 0) return ResponseEntity.badRequest().build();
         Page<Post> requiredPage = postService.getPostsInPages(defPage, (size == null) ? 10 : size);

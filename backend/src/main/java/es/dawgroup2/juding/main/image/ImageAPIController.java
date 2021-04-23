@@ -63,9 +63,10 @@ public class ImageAPIController {
     /**
      * Changes the image of a user or a post by a new one and updates the entity instance.
      *
-     * @param type Type of entity (either user or post).
-     * @param id   Entity associated identifier (License ID for users and ID for posts).
-     * @param file Multipart File.
+     * @param type    Type of entity (either user or post).
+     * @param id      Entity associated identifier (License ID for users and ID for posts).
+     * @param file    Multipart File.
+     * @param request HTTP Servlet Request.
      * @return User or post updated, bad request if process was not successfully finished.
      */
     @Operation(summary = "Changes the image of a user or a post by a new one and updates the entity instance.")
@@ -81,11 +82,12 @@ public class ImageAPIController {
     public ResponseEntity<Object> uploadImage(@Parameter(description = "Type of entity (either user or post).") @PathVariable String type,
                                               @Parameter(description = "Entity associated identifier (License ID for users and ID for posts).") @PathVariable String id,
                                               @Parameter(description = "Multipart File.") @RequestParam MultipartFile file,
-                                              HttpServletRequest request) {
+                                              @Parameter(description = "HTTP Servlet Request.") HttpServletRequest request) {
         if (type != null && type.matches("(users|competitors|referees)")) {
             User user = userService.getUserOrNull(id);
             if (user == null) return ResponseEntity.notFound().build();
-            if (!user.getNickname().equals(request.getUserPrincipal().getName())) return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+            if (!user.getNickname().equals(request.getUserPrincipal().getName()))
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
             try {
                 user.setImageFile(imageService.uploadProfileImage(file))
                         .setMimeProfileImage(file.getContentType());

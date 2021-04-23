@@ -82,9 +82,7 @@ public class AdminCompetitionAPIController {
     public ResponseEntity<Competition> addCompetition(@Valid @Parameter(description = "Competition Data Transfer Object.") @RequestBody CompetitionDTO competitionDTO) {
         Competition competition;
         try {
-            if (competitionService.checkingMinAndMaxWeight(competitionDTO.getMinWeight(), competitionDTO.getMaxWeight()))
-                return ResponseEntity.badRequest().build();
-            if (!competitionService.checkingDates(competitionDTO.getStartDate(), competitionDTO.getEndDate()))
+            if (competitionService.checkingMinAndMaxWeight(competitionDTO.getMinWeight(), competitionDTO.getMaxWeight()) || !competitionService.checkingDates(competitionDTO.getStartDate(), competitionDTO.getEndDate()))
                 return ResponseEntity.badRequest().build();
             competition = competitionService.save(null,
                     competitionDTO.getShortName(),
