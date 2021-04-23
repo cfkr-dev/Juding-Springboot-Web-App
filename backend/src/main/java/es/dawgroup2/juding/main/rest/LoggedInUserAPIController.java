@@ -65,9 +65,29 @@ public class LoggedInUserAPIController {
                     content = @Content)
     })
     @GetMapping(value = {"/competitors/{id}", "/referees/{id}"})
-    public ResponseEntity<User> me(@Parameter(description = "ID of user.") @PathVariable String id) {
+    public ResponseEntity<User> profileInfo(@Parameter(description = "ID of user.") @PathVariable String id,
+                                            HttpServletRequest request) {
         User currentUser = userService.getUserOrNull(id);
-        return (currentUser != null) ? ResponseEntity.ok(currentUser) : ResponseEntity.notFound().build();
+        if (currentUser == null) return ResponseEntity.notFound().build();
+        if (currentUser.getNickname().equals(request.getUserPrincipal().getName()) || userService.findByNickname(request.getUserPrincipal().getName()).isRole(Role.A))
+            return ResponseEntity.ok(currentUser);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+    }
+
+    @GetMapping(value = {"/competitors/points/{id}"})
+    public ResponseEntity<List<Integer>> chartInfo(@PathVariable String id, HttpServletRequest request) {
+        User currentUser = userService.getUserOrNull(id);
+        if (currentUser == null) return ResponseEntity.notFound().build();
+        if (currentUser.getNickname().equals(request.getUserPrincipal().getName()) || userService.findByNickname(request.getUserPrincipal().getName()).isRole(Role.A))
+            return ResponseEntity.ok(currentUser.getCompetitorMedals());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+    }
+
+    @GetMapping(value = {"/competitorPoints/{id}"})
+    public ResponseEntity<List<Integer>> chartInfo(@PathVariable String id) {
+        User currentUser = userService.getUserOrNull(id);
+        if (currentUser == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(currentUser.getCompetitorMedals());
     }
 
     /**
@@ -163,35 +183,34 @@ public class LoggedInUserAPIController {
                                             @Parameter(description = "ID of the user.") @PathVariable String id,
                                             @Parameter(description = "HTTP Servlet Request (for catching logged in user nickname).") HttpServletRequest request) {
         User user = userService.findByNickname(request.getUserPrincipal().getName());
+        boolean isAdmin = user.isRole(Role.A);
+        if (!isAdmin && !user.getLicenseId().equals(id))
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         // A control boolean helps to check if a user is allowed to modify some values or not.
         // Edition is only allowed if user is admin or currently logged in user
-        boolean isAdmin = user.isRole(Role.A);
-        if (isAdmin || user.getLicenseId().equals(adminUserEditionDTO.getLicenseId())) {
-            try {
-                user = userService.save((isAdmin) ? adminUserEditionDTO.getName() : null,
-                        (isAdmin) ? adminUserEditionDTO.getSurname() : null,
-                        (isAdmin) ? adminUserEditionDTO.getGender() : null,
-                        adminUserEditionDTO.getPhone(),
-                        adminUserEditionDTO.getEmail(),
-                        adminUserEditionDTO.getBirthDate(),
-                        adminUserEditionDTO.getDni(),
-                        id,
-                        (isAdmin) ? adminUserEditionDTO.getNickname() : null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        adminUserEditionDTO.getBelt(),
-                        null,
-                        adminUserEditionDTO.getGym(),
-                        adminUserEditionDTO.getWeight(),
-                        adminUserEditionDTO.getRefereeRange());
-            } catch (Exception e) {
-                return ResponseEntity.notFound().build();
-            }
-            return (user == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(user);
-        } else
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        try {
+            user = userService.save((isAdmin) ? adminUserEditionDTO.getName() : null,
+                    (isAdmin) ? adminUserEditionDTO.getSurname() : null,
+                    (isAdmin) ? adminUserEditionDTO.getGender() : null,
+                    adminUserEditionDTO.getPhone(),
+                    adminUserEditionDTO.getEmail(),
+                    adminUserEditionDTO.getBirthDate(),
+                    adminUserEditionDTO.getDni(),
+                    id,
+                    (isAdmin) ? adminUserEditionDTO.getNickname() : null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    adminUserEditionDTO.getBelt(),
+                    null,
+                    adminUserEditionDTO.getGym(),
+                    adminUserEditionDTO.getWeight(),
+                    adminUserEditionDTO.getRefereeRange());
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+        return (user == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(user);
     }
 
     /**

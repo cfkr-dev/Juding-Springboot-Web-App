@@ -1,5 +1,6 @@
 package es.dawgroup2.juding.users.rest;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import es.dawgroup2.juding.auxTypes.belts.BeltService;
 import es.dawgroup2.juding.auxTypes.gender.GenderService;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRangeService;
@@ -151,10 +152,11 @@ public class AdminUserAPIController {
             @ApiResponse(responseCode = "404", description = "Not able to delete user (user did not exist or user has taken part of any past or future competition).",
                     content = @Content)
     })
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = {"/competitors/{id}", "/referees/{id}"})
     public ResponseEntity<User> deleteUser(@Parameter(description = "License ID of user.") @PathVariable String id) {
         User user = userService.getUserOrNull(id);
+        if (user == null) return ResponseEntity.notFound().build();
         userService.delete(user);
-        return (user == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(user);
+        return ResponseEntity.ok(user);
     }
 }
