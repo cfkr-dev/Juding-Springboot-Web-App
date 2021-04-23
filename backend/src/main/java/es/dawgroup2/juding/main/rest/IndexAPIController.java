@@ -63,62 +63,62 @@ public class IndexAPIController {
     private UserLoginService userLoginService;
 
     /**
-     * Login into application (via JWT)
+     * Login into application (via JWT).
      *
-     * @param accessToken  Access token
-     * @param refreshToken Refresh token
-     * @param loginRequest Login Request
-     * @return Auth response
+     * @param accessToken  Access token.
+     * @param refreshToken Refresh token.
+     * @param loginRequest Login Request.
+     * @return Auth response.
      */
-    @Operation(summary = "Login into application (via JWT)")
+    @Operation(summary = "Login into application (via JWT).")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Login into application (via JWT)",
+            @ApiResponse(responseCode = "200", description = "Login into application (via JWT).",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = AuthResponse.class))})
     })
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(
-            @Parameter(description = "Access token") @CookieValue(name = "accessToken", required = false) String accessToken,
-            @Parameter(description = "Refresh token") @CookieValue(name = "refreshToken", required = false) String refreshToken,
-            @Parameter(description = "Login request") @RequestBody LoginRequest loginRequest) {
+            @Parameter(description = "Access token.") @CookieValue(name = "accessToken", required = false) String accessToken,
+            @Parameter(description = "Refresh token.") @CookieValue(name = "refreshToken", required = false) String refreshToken,
+            @Parameter(description = "Login request.") @RequestBody LoginRequest loginRequest) {
 
         return userLoginService.login(loginRequest, accessToken, refreshToken);
     }
 
     /**
-     * Refreshing of token
+     * Refreshing of token.
      *
-     * @param refreshToken Refresh token
-     * @return Refreshed token
+     * @param refreshToken Refresh token.
+     * @return Refreshed token.
      */
-    @Operation(summary = "Refreshing of token")
+    @Operation(summary = "Refreshing of token.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Refreshing of token",
+            @ApiResponse(responseCode = "200", description = "Refreshing of token.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = AuthResponse.class))})
     })
     @PostMapping("/refresh")
     public ResponseEntity<AuthResponse> refreshToken(
-            @Parameter(description = "Refresh token") @CookieValue(name = "refreshToken", required = false) String refreshToken) {
+            @Parameter(description = "Refresh token.") @CookieValue(name = "refreshToken", required = false) String refreshToken) {
         return userLoginService.refresh(refreshToken);
     }
 
     /**
-     * Logout from application and deletion of cookies
+     * Logout from application and deletion of cookies.
      *
-     * @param request  HTTP Servlet Request
-     * @param response HTTP Servlet Response
-     * @return Confirmation of logout
+     * @param request  HTTP Servlet Request.
+     * @param response HTTP Servlet Response.
+     * @return Confirmation of logout.
      */
-    @Operation(summary = "Logout from application and deletion of cookies")
+    @Operation(summary = "Logout from application and deletion of cookies.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Confirmation of logout",
+            @ApiResponse(responseCode = "200", description = "Confirmation of logout.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = AuthResponse.class))})
     })
     @PostMapping("/logout")
-    public ResponseEntity<AuthResponse> logOut(@Parameter(description = "HTTP Servlet Request") HttpServletRequest request,
-                                               @Parameter(description = "HTTP Servlet Response") HttpServletResponse response) {
+    public ResponseEntity<AuthResponse> logOut(@Parameter(description = "HTTP Servlet Request.") HttpServletRequest request,
+                                               @Parameter(description = "HTTP Servlet Response.") HttpServletResponse response) {
         return ResponseEntity.ok(new AuthResponse(AuthResponse.Status.SUCCESS, userLoginService.logout(request, response)));
     }
 

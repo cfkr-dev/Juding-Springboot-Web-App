@@ -29,24 +29,24 @@ public class RefereeControlAPIController {
     UserService userService;
 
     /**
-     * Saves the result of a competition
+     * Saves the result of a competition.
      *
-     * @param competitionResultDTO Competition result Data Transfer Object
-     * @param request              HTTP Servlet Request
-     * @return Response Entity with the competition changed or bad request
+     * @param competitionResultDTO Competition result Data Transfer Object.
+     * @param request              HTTP Servlet Request.
+     * @return Response Entity with the competition changed or bad request.
      */
-    @Operation(summary = "Saves the result of a competition")
+    @Operation(summary = "Saves the result of a competition.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Save successfully completed",
+            @ApiResponse(responseCode = "200", description = "Save successfully completed.",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = CompetitionResultDTO.class))}),
-            @ApiResponse(responseCode = "404", description = "Request is invalid because of non-finished competition retrieve",
+            @ApiResponse(responseCode = "404", description = "Request is invalid because of non-finished competition retrieve.",
                     content = @Content),
     })
     @PutMapping("/api/competitions/{id}/control")
     public ResponseEntity<Competition> controlCompetition(@Parameter(description = "ID of the competition.") @PathVariable String id,
-                                                          @Parameter(description = "Competition result Data Transfer Object") @RequestBody CompetitionResultDTO competitionResultDTO,
-                                                          HttpServletRequest request) {
+                                                          @Parameter(description = "Competition result Data Transfer Object.") @RequestBody CompetitionResultDTO competitionResultDTO,
+                                                          @Parameter(description = "HTTP Servlet Request.") HttpServletRequest request) {
         if (request.getUserPrincipal().getName().equals(competitionService.findById(Integer.parseInt(id)).getReferee().getNickname())) {
             Competition competition = competitionService.findById(Integer.parseInt(competitionResultDTO.getIdCompetition()));
             if (competition != null) {
