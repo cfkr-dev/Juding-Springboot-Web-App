@@ -1,0 +1,33 @@
+<header class="header fixed-top" id="header">
+  <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+    <a class="logo d-flex align-items-center" href="/myHome">
+      <img alt="" src="/assets/img/hero-img.png">
+      <span>Juding</span>
+    </a>
+    <nav class="navbar" id="navbar">
+      <ul>
+        <li><a class="nav-link scrollto" href="/myHome">Inicio</a></li>
+        <li><a class="nav-link scrollto" href="/ranking">Ranking</a></li>
+        <li><a class="nav-link scrollto" href="/myProfile">Mi perfil</a></li>
+        <li class="dropdown">
+          <a href="#"><span>Administración</span> <i class="far fa-chevron-down"></i></a>
+          <ul>
+            <li class="dropdown">
+              <a href="#"><span>Usuarios</span> <i class="far fa-chevron-right"></i></a>
+              <ul>
+                <li><a href="/admin/user/list/competitors">Competidores</a></li>
+                <li><a href="/admin/user/list/referees">Árbitros</a></li>
+              </ul>
+            <li><a href="/admin/competition/list">Competiciones</a></li>
+            <li><a href="/admin/post/list">Noticias</a></li>
+          </ul>
+        </li>
+        <li>
+          <a [routerLink]="['/logout']" class="login scrollto">Cerrar sesión</a>
+        </li>
+      </ul>
+      <i class="far fa-bars mobile-nav-toggle"></i>
+    </nav>
+    <!-- .navbar -->
+  </div>
+</header>
