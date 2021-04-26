@@ -4,11 +4,11 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { CompetitorListComponent } from './user/components/competitor-list.component';
 import { routing } from './app.routing';
+import {HeaderComponent} from './header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, CompetitorListComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, routing],
   bootstrap: [AppComponent]
 })
