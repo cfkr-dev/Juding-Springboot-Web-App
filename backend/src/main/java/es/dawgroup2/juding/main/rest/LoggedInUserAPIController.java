@@ -49,6 +49,28 @@ public class LoggedInUserAPIController {
     RefereeRangeService refereeRangeService;
 
     /**
+     * Returns currently logged-in user information.
+     *
+     * @param request HTTP Servlet Request.
+     * @return Information about currently logged-in user.
+     */
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Information about currently logged-in user.",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = User.class))}),
+            @ApiResponse(responseCode = "403", description = "Not allowed.",
+                    content = @Content),
+            @ApiResponse(responseCode = "404", description = "Requested user was not found.",
+                    content = @Content)
+    })
+    @GetMapping("/api/users/me")
+    public ResponseEntity<User> me(HttpServletRequest request){
+        if (request.getUserPrincipal().getName() != null && !request.getUserPrincipal().getName().isBlank()){
+            return ResponseEntity.ok(userService.findByNickname(request.getUserPrincipal().getName()));
+        } else return ResponseEntity.notFound().build();
+    }
+
+    /**
      * Returns user profile data.
      *
      * @param id Id of the user.
@@ -82,7 +104,7 @@ public class LoggedInUserAPIController {
      * @param request HTTP Servlet Request.
      * @return User profile information.
      */
-    @Operation(summary = "Returns user profile data.")
+    @Operation(summary = "Returns user chart information.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User chart information.",
                     content = {@Content(mediaType = "application/json",
@@ -119,7 +141,6 @@ public class LoggedInUserAPIController {
                     content = @Content)
     })
     @GetMapping("/competitions/{id}/past")
-    @JsonView(Competition.MainAttributes.class)
     public ResponseEntity<List<Competition>> pastCompetitions(@Parameter(description = "ID of user.") @PathVariable String id) {
         User currentUser = userService.getUserOrNull(id);
         return (currentUser != null) ? ResponseEntity.ok(competitionService.getPastFights(currentUser)) : ResponseEntity.notFound().build();
@@ -142,7 +163,6 @@ public class LoggedInUserAPIController {
                     content = @Content)
     })
     @GetMapping("/competitions/{id}/current")
-    @JsonView(Competition.MainAttributes.class)
     public ResponseEntity<List<Competition>> currentCompetitions(@Parameter(description = "ID of user.") @PathVariable String id) {
         User currentUser = userService.getUserOrNull(id);
         return (currentUser != null) ? ResponseEntity.ok(competitionService.getCurrentCompetitions(currentUser)) : ResponseEntity.notFound().build();
@@ -166,7 +186,6 @@ public class LoggedInUserAPIController {
                     content = @Content)
     })
     @GetMapping("/competitions/{id}/future")
-    @JsonView(Competition.MainAttributes.class)
     public ResponseEntity<List<Competition>> pastCompetitions(@Parameter(description = "True if returning joined future competitions, false otherwise.") @RequestParam(required = false) String joined,
                                                               @Parameter(description = "ID of user.") @PathVariable String id) {
         User currentUser = userService.getUserOrNull(id);

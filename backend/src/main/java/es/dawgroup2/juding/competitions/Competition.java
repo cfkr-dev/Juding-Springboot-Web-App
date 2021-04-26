@@ -1,6 +1,7 @@
 package es.dawgroup2.juding.competitions;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 import es.dawgroup2.juding.fight.Fight;
 import es.dawgroup2.juding.users.User;
@@ -36,10 +37,10 @@ public class Competition {
     @Column(nullable = false)
     @JsonView(MainAttributes.class)
     private Timestamp endDate;
+    @JsonView(MainAttributes.class)
     @ManyToOne
     private User referee;
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Fight> fights;
 
     public Competition(String shortName, String additionalInfo, int minWeight, int maxWeight, Timestamp startDate, Timestamp endDate, User referee) {
