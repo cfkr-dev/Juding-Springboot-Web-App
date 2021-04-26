@@ -10,15 +10,15 @@ body {
     color: #444444;
 }
 
-a {
-    color: #f14141;
-    text-decoration: none;
-}
+/*a {*/
+/*    color: #f14141;*/
+/*    text-decoration: none;*/
+/*}*/
 
-a:hover {
-    color: #f57171;
-    text-decoration: none;
-}
+/*a:hover {*/
+/*    color: #f57171;*/
+/*    text-decoration: none;*/
+/*}*/
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "Nunito", sans-serif;
@@ -628,7 +628,6 @@ section {
 .contact .contact-form {
     background: #fff6f6;
     padding: 30px;
-    height: 100%;
 }
 
 .contact .contact-form .error-message {
@@ -900,4 +899,8 @@ section {
     text-align: center;
     font-size: 13px;
     color: #700101;
+}
+
+.container{
+    margin-top: 5rem;
 }
