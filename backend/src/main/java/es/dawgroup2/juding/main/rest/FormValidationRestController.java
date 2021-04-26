@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/formCheck")
+@RequestMapping("/api/formValidation")
 public class FormValidationRestController {
 
     @Autowired
@@ -39,7 +39,7 @@ public class FormValidationRestController {
                     content = {@Content(mediaType = "text/plain",
                             schema = @Schema(type = "integer"))})
     })
-    @GetMapping("/newUser")
+    @GetMapping("/users/new")
     public int signUp(@Parameter(description = "License ID of the user.") @RequestParam String licenseId,
                       @Parameter(description = "Nickname of the user.") @RequestParam String nickname) {
         return userService.matchingLicenseOrNickname(licenseId, nickname);
@@ -59,7 +59,7 @@ public class FormValidationRestController {
                     content = {@Content(mediaType = "text/plain",
                             schema = @Schema(type = "integer"))})
     })
-    @GetMapping("/userUpdate")
+    @GetMapping("/users/alteration")
     public boolean update(@Parameter(description = "License ID of the user.") @RequestParam String licenseId,
                           @Parameter(description = "Nickname of the user.") @RequestParam String nickname) {
         return userService.matchingLicenseAndNickname(licenseId, nickname);
@@ -80,7 +80,7 @@ public class FormValidationRestController {
                     content = {@Content(mediaType = "text/plain",
                             schema = @Schema(type = "integer"))})
     })
-    @GetMapping("/competitionCreation")
+    @GetMapping("/competitions/new")
     public int checkingNewCompetition(@Parameter(description = "The start date of a competition.") @RequestParam String startDate,
                                       @Parameter(description = "The end date of a competition.") @RequestParam String endDate,
                                       @Parameter(description = "Min Weight introduced.") @RequestParam String minWeight,
@@ -107,7 +107,7 @@ public class FormValidationRestController {
                     content = {@Content(mediaType = "text/plain",
                             schema = @Schema(type = "integer"))})
     })
-    @GetMapping("/competitionUpdate")
+    @GetMapping("/competitions/alteration")
     public int checkingUpdatedCompetitionData(@Parameter(description = "The start date of a competition.") @RequestParam String startDate,
                                               @Parameter(description = "The end date of a competition.") @RequestParam String endDate,
                                               @Parameter(description = "Min Weight introduced.") @RequestParam String minWeight,

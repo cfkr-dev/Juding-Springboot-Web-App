@@ -19,15 +19,17 @@ import java.util.Optional;
 
 @Service
 public class CompetitionService {
-
     @Autowired
     FightService fightService;
+
     @Autowired
     UserService userService;
+
     @Autowired
     DateService dateService;
+
     @Autowired
-    private CompetitionRepository competitionRepository;
+    CompetitionRepository competitionRepository;
 
     /**
      * Deletes a competition by its id
@@ -44,7 +46,8 @@ public class CompetitionService {
      * @param idCompetition Id of the competition
      * @return A competition
      */
-    public Competition findById(int idCompetition) {
+    public Competition findById(Integer idCompetition) {
+        if (idCompetition == null) return null;
         Optional<Competition> comp = competitionRepository.findById(idCompetition);
         return comp.orElse(null);
     }
