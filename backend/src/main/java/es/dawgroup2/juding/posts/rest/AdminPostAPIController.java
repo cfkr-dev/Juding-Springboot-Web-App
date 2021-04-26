@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
@@ -45,7 +46,7 @@ public class AdminPostAPIController {
     })
     @GetMapping("/")
     public ResponseEntity<Page<Post>> getPostPage(@Parameter(description = "Number of page to be searched") @RequestParam(required = false) Integer page) {
-        int defPage = (page == null) ? 1 : page;
+        int defPage = (page == null) ? 0 : page;
         if (defPage < 0) return ResponseEntity.badRequest().build();
         Page<Post> requiredPage = postService.getPostsInPages(defPage, 10);
         if (requiredPage.hasContent())
@@ -70,7 +71,7 @@ public class AdminPostAPIController {
                     content = @Content)
     })
     @PostMapping("/")
-    public ResponseEntity<Post> addNewPost(@Parameter(description = "Post DTO") @RequestBody PostDTO postDTO,
+    public ResponseEntity<Post> addNewPost(@Valid @Parameter(description = "Post DTO") @RequestBody PostDTO postDTO,
                                            @Parameter(description = "Post request with the author") HttpServletRequest request) {
         Post newPost = postService.save(null, request, postDTO.getTitle(), postDTO.getBody(), null);
         return ResponseEntity.created(fromCurrentRequest().path("/api/news/{idPost}").buildAndExpand(newPost.getIdPost()).toUri()).body(newPost);
@@ -94,7 +95,7 @@ public class AdminPostAPIController {
                     content = @Content)
     })
     @PutMapping("/")
-    public ResponseEntity<Post> updatePost(@Parameter(description = "Post DTO") @RequestBody PostDTO postDTO,
+    public ResponseEntity<Post> updatePost(@Valid @Parameter(description = "Post DTO") @RequestBody PostDTO postDTO,
                                            @Parameter(description = "Post request with the author") HttpServletRequest request) {
         Post updatedPost = postService.save(postDTO.getId(), request, postDTO.getTitle(), postDTO.getBody(), null);
         return (updatedPost == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(updatedPost);

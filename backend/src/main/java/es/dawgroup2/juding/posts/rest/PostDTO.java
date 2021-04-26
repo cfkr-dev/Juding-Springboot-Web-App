@@ -1,8 +1,12 @@
 package es.dawgroup2.juding.posts.rest;
 
+import javax.validation.constraints.NotBlank;
+
 public class PostDTO {
     private final String id;
+    @NotBlank
     private final String title;
+    @NotBlank
     private final String body;
 
     public PostDTO(String id, String title, String body) {
