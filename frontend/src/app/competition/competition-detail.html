@@ -1,0 +1,116 @@
+<div class="container">
+    <div class="competition">
+        <h2 class="competitionTitle">{{ competition.shortName }}</h2>
+        <h3 class="competitionSub">Información general</h3>
+        <div class="competitionText">{{ competition.additionalInfo }}
+        </div>
+        <!-- Technical information of the competition -->
+        <div class="responsiveTable">
+            <div class="rtRow rtHeader">
+                <div class="width15 text-center">Estado</div>
+                <div class="width20 text-center">Fecha de inicio</div>
+                <div class="width20 text-center">Fecha de finalización</div>
+                <div class="width20 text-center">Árbitro</div>
+                <div class="width15 text-center">Número de competidores</div>
+            </div>
+            <div class="rtRow">
+                <div class="width15 text-center">
+                    <div
+                        class="badge bg-secondary">{{ competition.translatingDates(competition.startDate, competition.endDate) }}</div>
+                </div>
+                <div class="width20 text-center">{{ competition.startDate | date: 'dd/MM/yyyy HH:mm' }}</div>
+                <div class="width20 text-center">{{ competition.endDate | date: 'dd/MM/yyyy HH:mm' }}</div>
+                <div class="width20 text-center">
+                    <div>{{ competition.referee.name }} {{ competition.referee.surname }}</div>
+                </div>
+                <div class="width15 text-center">{{ people }}</div>
+            </div>
+        </div>
+        <competitionFightTree [fightsList]='competition.fights'></competitionFightTree>
+        <h3 class="competitionSub">Resultados</h3>
+        <!--Competition results-->
+        <div class="responsiveTable">
+            <div *ngIf="competition.getFight(0).isFinished">
+                <div class="rtRow rtHeader">
+                    <div class="width15 text-center">Posición</div>
+                    <div class="width20 text-center">Apodo</div>
+                    <div class="width15 text-center">Peso</div>
+                    <div class="width15 text-center">Género</div>
+                    <div class="width20 text-center">Cinturón</div>
+                    <div class="width15 text-center">Medalla</div>
+                </div>
+                <div *ngIf="competition.getFight(0).isFinished">
+                    <div class="rtRow">
+                        <div class="width15 text-center">1ª</div>
+                        <div class="width20 text-center"> {{competition.getFight(0).winner.name}} </div>
+                        <div class="width15 text-center"> {{competition.getFight(0).winner.weight}} Kg</div>
+                        <div class="width15 text-center"> {{competition.getFight(0).winner.descripcion}} </div>
+                        <div class="width20 text-center">
+                            <i class="fas fa-user-tie beltStyle {{competition.getFights(0).winner.belt} "
+                               title=" {{competition.getFight(0).winner.belt.longname}} "></i>
+                        </div>
+                        <div class="width15 text-center">
+                            <i class="fas fa-medal goldMedal"></i>
+                        </div>
+                    </div>
+                    <div class="rtRow">
+                        <div class="width15 text-center">2ª</div>
+                        <div class="width20 text-center"> {{competition.getFight(0).loser.name}} </div>
+                        <div class="width15 text-center"> {{competition.getFight(0).loser.weight}} Kg</div>
+                        <div class="width15 text-center"> {{competition.getFight(0).loser.descripcion}} </div>
+                        <div class="width20 text-center">
+                            <i class="fas fa-user-tie beltStyle {{competition.getFights(0).winner.belt} "
+                               title=" {{competition.getFight(0).loser.belt.longname}} "></i>
+                        </div>
+                        <div class="width15 text-center">
+                            <i class="fas fa-medal silverMedal"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="competition.getFight(2).isFinished">
+                    <div *ngIf="competition.getFight(2).winner">
+                        <div class="rtRow mb-5">
+                            <div class="width15 text-center">3ª</div>
+                            <div class="width20 text-center">{{competition.getFight(2).loser.name}}</div>
+                            <div class="width15 text-center">{{competition.getFight(2).loser.weight}}Kg</div>
+                            <div
+                                class="width15 text-center">{{competition.getFight(2).loser.gender.gendername}}</div>
+                            <div class="width20 text-center">
+                                <i class="fas fa-user-tie beltStyle {{competition.getFight(2).loser.belt}}"
+                                   title="{{competition.getFight(2).loser.belt.longname}}"></i>
+                            </div>
+                            <div class="width15 text-center">
+                                <i class="fas fa-medal bronzeMedal"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="competition.getFight(1).isFinished">
+                    <div *ngIf="competition.getFight(1).winner">
+                        <div class="rtRow mb-5">
+                            <div class="width15 text-center">3ª</div>
+                            <div class="width20 text-center">{{competition.getFight(1).loser.name}}</div>
+                            <div class="width15 text-center">{{competition.getFight(1).loser.weight}}Kg</div>
+                            <div
+                                class="width15 text-center">{{competition.getFight(1).loser.gender.gendername}}</div>
+                            <div class="width20 text-center">
+                                <i class="fas fa-user-tie beltStyle {{competition.getFight(1).loser.belt}}"
+                                   title="{{competition.getFight(1).loser.belt.longname}}"></i>
+                            </div>
+                            <div class="width15 text-center">
+                                <i class="fas fa-medal bronzeMedal"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!competition.getFight(0).isFinished">
+                <div class="alert alert-info">Aún no se puede mostrar el podio.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Own JS Files -->
+<script src="/assets/js/main.js"></script>
