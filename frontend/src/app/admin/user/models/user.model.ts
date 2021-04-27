@@ -3,10 +3,11 @@ export interface User {
   name: string;
   surname: string;
   gender: string;
-  phone: number;
+  phone?: number;
   email: string;
   birthdate: string;
   dni: string;
+  imageFile: string;
   nickname: string;
   password: string;
   securityQuestion: string;

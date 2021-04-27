@@ -1,43 +1,70 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
 import {User} from '../models/user.model';
 import {CompetitorService} from '../services/competitor.service';
-import {LoginService} from '../../../login/login.service';
-
 
 @Component({
-  template: `
-    <h2>Books</h2>
-    <ul class="items">
-      <li *ngFor="let user of users">
-        {{user.nickname}}
-      </li>
-      <button (click)="loadMoreCompetitors(currentPage + 1)">Load more</button>
-    </ul>
-  `
+    selector: 'app-competitors-list',
+    templateUrl: 'competitor-list.components.html',
+    styleUrls: ['../../../../assets/vendor/bootstrap/v4/css/bootstrap.css',
+        '../../../../assets/vendor/aos/aos.css',
+        '../../../../assets/vendor/font-awesome/css/all.css',
+        '../../../../assets/css/style.css',
+        '../../../../assets/css/header.css',
+        '../../../../assets/css/profiles.css',
+        '../../../../assets/css/bootstrapAccomodations.css',
+        '../../../../assets/css/responsiveTable.css',
+        '../../../../assets/css/adminScreen.css',
+        '../../../../assets/css/beltAssignations.css'
+    ]
 })
 export class CompetitorListComponent implements OnInit {
 
-  users: User[];
-  currentPage: number;
+    users: User[];
+    hasErrorOnLoad: boolean;
+    isLastPage: boolean;
+    currentPage: number;
+    noMorePages: boolean;
+    totalPages: number;
+    loading: boolean;
 
-  constructor(private router: Router, private competitorService: CompetitorService, private loginService: LoginService) {
-  }
+    constructor(private router: Router, private competitorService: CompetitorService) {
+        this.hasErrorOnLoad = false;
+        this.isLastPage = false;
+        this.noMorePages = false;
+        this.currentPage = 0;
+    }
 
-  ngOnInit() {
-    this.loginService.login('Cron', 'Cron2021');
-    this.competitorService.getCompetitors(0).subscribe(
-      users => this.users = users,
-      error => console.log(error)
-    );
-    this.currentPage = 0;
-  }
+    ngOnInit() {
+        this.competitorService.getCompetitors(0).subscribe(
+            pageOfUsers => {
+                if (Object.keys(pageOfUsers).length === 0) {
+                    this.noMorePages = true;
+                    this.isLastPage = true;
+                } else {
+                    this.users = pageOfUsers.content;
+                    this.isLastPage = pageOfUsers.last;
+                    this.totalPages = pageOfUsers.totalPages;
+                }
+            },
+            error => this.hasErrorOnLoad = true
+        );
+        this.currentPage = 1;
+    }
 
-  loadMoreCompetitors(page) {
-    this.competitorService.getCompetitors(page).subscribe(
-      users => this.users.concat(users),
-      error => console.log(error)
-    );
-    this.currentPage += 1;
-  }
+    loadMoreCompetitors(page) {
+        if (!this.isLastPage) {
+            this.loading = true;
+            this.competitorService.getCompetitors(page).subscribe(
+                pageOfUsers => {
+                    this.loading = false;
+                    this.users = this.users.concat(pageOfUsers.content);
+                    this.isLastPage = pageOfUsers.last;
+                },
+                error => this.hasErrorOnLoad = true
+            );
+            this.currentPage += 1;
+        }
+    }
 }
