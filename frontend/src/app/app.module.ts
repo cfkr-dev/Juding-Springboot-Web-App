@@ -7,6 +7,7 @@ import {CompetitionDetailComponent} from './competition/competition-detail/compe
 import {CompetitionFightTreeComponent} from './competition/competition-fight-tree/competition-fight-tree.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CompetitionControlComponent} from './competition/competition-control/competition-control.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import {CompetitionControlComponent} from './competition/competition-control/com
         AppComponent,
         CompetitionDetailComponent,
         CompetitionFightTreeComponent,
-        CompetitionControlComponent
+        CompetitionControlComponent,
+        LoginComponent
     ],
     imports: [
         BrowserModule,
