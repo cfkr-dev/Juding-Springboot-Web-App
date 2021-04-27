@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {CompetitionDetail} from './competition/competition-detail/competition-detail.component';
+import {CompetitionDetailComponent} from './competition/competition-detail/competition-detail.component';
 import {CompetitionFightTreeComponent} from './competition/competition-fight-tree/competitionFightTree.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CompetitionControlComponent} from './competition/competition-control/competition-control.component';
@@ -12,7 +12,7 @@ import {CompetitionControlComponent} from './competition/competition-control/com
 @NgModule({
     declarations: [
         AppComponent,
-        CompetitionDetail,
+        CompetitionDetailComponent,
         CompetitionFightTreeComponent,
         CompetitionControlComponent
     ],

@@ -1,16 +1,16 @@
-import {Fight} from "../fight/fight.model";
-import {User} from "../user/user.model";
+import {Fight} from '../fight/fight.model';
+import {User} from '../user/user.model';
 
 export class Competition {
-  private _shortName:string;
-  private _additionalInfo:string;
-  private _minWeight:number;
-  private _maxWeight:number;
-  private _startDate:Date;
-  private _endDate:Date;
-  private _referee:User;
-  private _id?:number;
-  private _fights:Fight[];
+  private _shortName: string;
+  private _additionalInfo: string;
+  private _minWeight: number;
+  private _maxWeight: number;
+  private _startDate: Date;
+  private _endDate: Date;
+  private _referee: User;
+  private _id?: number;
+  private _fights: Fight[];
 
   constructor(shortName:string, additionalInfo:string, minWeight:number, maxWeight:number, startDate:Date, endDate:Date, referee:User){
   this._shortName = shortName;
@@ -87,31 +87,11 @@ export class Competition {
         this._id = value;
     }
 
-    getFight(numberOfFight:number): Fight {
-        return this._fights[numberOfFight];
-    }
-
     get fights(): Fight[] {
         return this._fights;
     }
 
-    set fights(value:Fight[]) {
+    set fights(value: Fight[]) {
         this._fights = value;
     }
-
-    translatingDates(startDate:Date, endDate:Date): String{
-    let localDate: Date = new Date();
-    if (localDate > this._startDate) {
-      if (localDate > this._endDate) {
-        return "Finalizada";
-      }
-      else {
-        return "Comenzada";
-      }
-    }
-    else {
-      return "Por comenzar";
-    }
-  }
-
 }
