@@ -1,13 +1,13 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CompetitionDetailComponent} from './competition/competition-detail/competition-detail.component';
 import {CompetitionFightTreeComponent} from './competition/competition-fight-tree/competition-fight-tree.component';
-import {HttpClientModule} from '@angular/common/http';
 import {CompetitionControlComponent} from './competition/competition-control/competition-control.component';
 import { LoginComponent } from './login/login.component';
+import {FormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -18,11 +18,12 @@ import { LoginComponent } from './login/login.component';
         CompetitionControlComponent,
         LoginComponent
     ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
+  ],
     providers: [],
     bootstrap: [AppComponent]
 })

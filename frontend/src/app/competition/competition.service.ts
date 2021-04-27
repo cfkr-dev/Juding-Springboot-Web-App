@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
 import {Competition} from './competition.model';
 import {catchError} from 'rxjs/internal/operators/catchError';
 import {FightService} from '../fight/fight.service';
 import {Fight} from '../fight/fight.model';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
 
 const BASE_URL = '/api/competition/';
 
@@ -18,13 +18,11 @@ export class CompetitionService {
         ) as Observable<Competition>;
     }
 
-    updateCompetition(competition: Competition) {
-        return this.httpClient.post(BASE_URL, competition).pipe(
-            catchError(error => this.handleError(error))
-        );
+    updateCompetition(competition: Competition): Observable<Competition> {
+        return this.httpClient.post(BASE_URL, competition) as Observable<Competition>;
     }
 
-    private handleError(error: any): string {
+    private handleError(error: any): any {
         console.error(error);
         return throwError('Server error (' + error.status + '): ' + error.text());
     }

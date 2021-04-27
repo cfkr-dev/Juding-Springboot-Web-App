@@ -25,7 +25,7 @@ export class LoginService {
             }
           );
         },
-        (error) => alert('Wrong credentials')
+        (error) => console.log(error)
       );
   }
 

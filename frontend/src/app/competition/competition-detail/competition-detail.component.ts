@@ -6,7 +6,8 @@ import {Fight} from '../../fight/fight.model';
 
 @Component({
     selector: 'app-competition-detail',
-    templateUrl: './competition-detail.html'
+    templateUrl: './competition-detail.html',
+    styleUrls: []
 })
 export class CompetitionDetailComponent{
     competition: Competition;
