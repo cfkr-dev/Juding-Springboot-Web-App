@@ -63,7 +63,7 @@ public class LoggedInUserAPIController {
             @ApiResponse(responseCode = "404", description = "Requested user was not found.",
                     content = @Content)
     })
-    @GetMapping("/api/users/me")
+    @GetMapping("/users/me")
     public ResponseEntity<User> me(HttpServletRequest request){
         if (request.getUserPrincipal().getName() != null && !request.getUserPrincipal().getName().isBlank()){
             return ResponseEntity.ok(userService.findByNickname(request.getUserPrincipal().getName()));

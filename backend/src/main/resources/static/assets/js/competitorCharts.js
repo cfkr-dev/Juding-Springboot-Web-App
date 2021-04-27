@@ -4,7 +4,7 @@
 let ctx = document.getElementById("chart1").getContext("2d");
 let ctx2 = document.getElementById("chart2").getContext("2d");
 $.ajax({
-    url: "/api/competitorPoints/" + $("#licenseId").text(),
+    url: "/api/competitors/points/" + $("#licenseId").text(),
     method: 'get'
 }).done((ans) => {
     if (ans != null) {
@@ -47,11 +47,9 @@ $.ajax({
                         'rgb(205,127,50)',
                         'rgb(192, 192, 192)',
                         'rgb(255, 215, 0)',
-                        'rgb(125, 127, 125)',
-
+                        'rgb(125, 127, 125)'
                     ]
                 }],
-
             },
             options: {
                 scales: {
