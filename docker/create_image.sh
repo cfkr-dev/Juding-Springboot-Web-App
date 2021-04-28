@@ -10,7 +10,7 @@ echo
 echo "JUDING - FEDERATION OF JUDO OF MADRID."
 echo "Install and run application via Docker."
 echo "Prerrequisites: Docker CLI must be installed."
-echo "Warning: this script assumes that current directory is webapp2. If not, close and change directory before continuing."
+echo "Warning: this script assumes that current directory is webapp2/docker. If not, close and change directory before continuing."
 echo "Continue? (Y/N)"
 read VAR
 if [[ $VAR != Y && $VAR != y ]]

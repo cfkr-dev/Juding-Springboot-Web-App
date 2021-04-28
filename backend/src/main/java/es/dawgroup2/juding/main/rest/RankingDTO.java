@@ -10,6 +10,7 @@ public class RankingDTO {
     private final String surname;
     private final String dni;
     private final String belt;
+    private final String imageFile;
 
     public RankingDTO(Object[] parameters) {
         this(
@@ -20,11 +21,12 @@ public class RankingDTO {
                 parameters[4].toString(),
                 parameters[5].toString(),
                 parameters[6].toString(),
-                parameters[7].toString()
+                parameters[7].toString(),
+                "/api/users/" + parameters[3] + "/image"
         );
     }
 
-    public RankingDTO(String nickname, int sum, int num, String licenseId, String name, String surname, String dni, String belt) {
+    public RankingDTO(String nickname, int sum, int num, String licenseId, String name, String surname, String dni, String belt, String imageFile) {
         this.nickname = nickname;
         this.sum = sum;
         this.num = num;
@@ -33,6 +35,7 @@ public class RankingDTO {
         this.surname = surname;
         this.dni = dni;
         this.belt = belt;
+        this.imageFile = imageFile;
     }
 
     public String getNickname() {
@@ -65,5 +68,9 @@ public class RankingDTO {
 
     public String getBelt() {
         return belt;
+    }
+
+    public String getImageFile() {
+        return imageFile;
     }
 }
