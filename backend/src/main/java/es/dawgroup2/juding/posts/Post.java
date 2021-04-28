@@ -1,6 +1,7 @@
 package es.dawgroup2.juding.posts;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import es.dawgroup2.juding.users.User;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.ClassPathResource;
@@ -31,6 +32,7 @@ public class Post {
     @JsonIgnore
     private Blob imageFile;
 
+    @JsonIgnore
     private String mimeImage;
 
     @Column(nullable = false)
@@ -126,5 +128,10 @@ public class Post {
     public String getFormattedEditionTimestamp() {
         SimpleDateFormat simpDate = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         return simpDate.format(timestamp);
+    }
+
+    @JsonProperty("imageFile")
+    public String imageFile() {
+        return "/api/posts/" + getIdPost() + "/image";
     }
 }

@@ -2,6 +2,7 @@ package es.dawgroup2.juding.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
 import es.dawgroup2.juding.auxTypes.belts.Belt;
 import es.dawgroup2.juding.auxTypes.gender.Gender;
 import es.dawgroup2.juding.auxTypes.refereeRange.RefereeRange;
@@ -338,8 +339,9 @@ public class User {
         return (this.getRoles() != null) && (roles.contains(role));
     }
 
+    // Warning: also used in RankingDTO
     @JsonProperty("imageFile")
     public String imageFile() {
-        return "/api/image/user/" + getLicenseId() + "/";
+        return "/api/users/" + getLicenseId() + "/image";
     }
 }
