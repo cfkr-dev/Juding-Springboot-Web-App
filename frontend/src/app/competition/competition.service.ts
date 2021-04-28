@@ -6,7 +6,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 
-const BASE_URL = '/api/competition/';
+const BASE_URL = '/api/competitions/';
 
 @Injectable()
 export class CompetitionService {

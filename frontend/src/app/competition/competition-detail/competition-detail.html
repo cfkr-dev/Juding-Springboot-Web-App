@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="competition">
+    <div *ngIf="competition" class="competition">
         <h2 class="competitionTitle">{{ competition.shortName }}</h2>
         <h3 class="competitionSub">Información general</h3>
         <div class="competitionText">{{ competition.additionalInfo }}

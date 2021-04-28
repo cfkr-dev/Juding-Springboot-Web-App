@@ -8,24 +8,26 @@ import {FormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { InflatedListCompetitionComponent } from './competition/admin/inflated-list-competition/inflated-list-competition.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        CompetitionDetailComponent,
-        CompetitionFightTreeComponent,
-        CompetitionControlComponent,
-        LoginComponent
-    ],
+  declarations: [
+    AppComponent,
+    CompetitionDetailComponent,
+    CompetitionFightTreeComponent,
+    CompetitionControlComponent,
+    LoginComponent,
+    InflatedListCompetitionComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule
   ],
-    providers: [],
-    bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent],
 })
+
 export class AppModule {
 }

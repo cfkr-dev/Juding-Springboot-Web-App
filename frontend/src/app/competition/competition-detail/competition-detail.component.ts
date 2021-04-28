@@ -7,6 +7,7 @@ import {Fight} from '../../fight/fight.model';
 @Component({
     selector: 'app-competition-detail',
     templateUrl: './competition-detail.html',
+    providers: [CompetitionService],
     styleUrls: []
 })
 export class CompetitionDetailComponent{
@@ -15,7 +16,7 @@ export class CompetitionDetailComponent{
     fightslist: Fight[];
 
     constructor(activatedRouter: ActivatedRoute, public service: CompetitionService) {
-        let id = activatedRouter.snapshot.params['id'];
+        const id = activatedRouter.snapshot.params.id;
         service.getCompetition(id).subscribe(
             competition => {
                 this.competition = competition;
