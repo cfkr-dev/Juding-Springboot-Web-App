@@ -1,8 +1,9 @@
-import {Component, OnInit, Input} from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {Component, OnInit} from '@angular/core';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
 import {User} from '../models/user.model';
 import {CompetitorService} from '../services/competitor.service';
+
 
 @Component({
     selector: 'app-competitors-list',
@@ -28,11 +29,13 @@ export class CompetitorListComponent implements OnInit {
     noMorePages: boolean;
     totalPages: number;
     loading: boolean;
+    errorOnRemoving: boolean;
 
-    constructor(private router: Router, private competitorService: CompetitorService) {
+    constructor(private router: Router, private competitorService: CompetitorService, private modalService: NgbModal) {
         this.hasErrorOnLoad = false;
         this.isLastPage = false;
         this.noMorePages = false;
+        this.errorOnRemoving = false;
         this.currentPage = 0;
     }
 
@@ -66,5 +69,22 @@ export class CompetitorListComponent implements OnInit {
             );
             this.currentPage += 1;
         }
+    }
+
+    removeCompetitor(user) {
+        this.competitorService.removeCompetitor(user).subscribe(
+            removedUser => {
+                this.users.forEach((element, index) => {
+                    if (element.licenseId === removedUser.licenseId) {
+                        delete this.users[index];
+                    }
+                });
+            },
+            error => this.errorOnRemoving = true
+        );
+    }
+
+    openModal(content) {
+        this.modalService.open(content);
     }
 }

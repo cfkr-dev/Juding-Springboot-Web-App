@@ -24,10 +24,8 @@ export class CompetitorService {
     }
 
 
-    removeCompetitor(user: User) {
-        return this.httpClient.delete(COMPETITORS_URL + '/' + user.licenseId).pipe(
-            catchError(error => this.handleError(error))
-        );
+    removeCompetitor(user: User): Observable<any> {
+        return this.httpClient.delete(COMPETITORS_URL + '/' + user.licenseId);
     }
 
     updateCompetitor(user: User) {

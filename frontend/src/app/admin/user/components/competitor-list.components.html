@@ -26,22 +26,47 @@
                 <div class="width15 text-center">{{ user.surname }}</div>
                 <div class="width20 text-center">{{ user.email }}</div>
                 <div class="width15 text-center">
-                    <button class="btn btn-outline-corporative" data-bs-target="#modalProfile" data-bs-toggle="modal">
+                    <button class="btn btn-outline-corporative" (click)="openModal(viewMoreModal)">
                         <i class="fas fa-info-circle"></i>
                     </button>
                     <a href="/admin/user/edit/{{ user.licenseId }}" class="btn btn-outline-corporative">
                         <i class="fas fa-pencil"></i>
                     </a>
-                    <button class="btn btn-corporative" data-bs-target="#modalDelete" data-bs-toggle="modal"
+                    <button class="btn btn-corporative" (click)="openModal(deleteModal)"
                             data-id="{{ user.licenseId }}" data-type="user">
                         <i class="fas fa-trash-alt delete"></i>
                     </button>
                 </div>
-                <div class="viewMore" style="display: none">
-                    <div class="col-12 col-lg-4 text-center px-3">
-                        <img alt="avatar" class="avatar" src="{{ user.imageFile }}">
+                <ng-template #deleteModal let-modal>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmación</h5>
                     </div>
-                    <div class="col-12 col-lg-8">
+                    <div class="modal-body">
+                        <div class="alert alert-info"><strong>Advertencia:</strong> Solo se garantiza el correcto borrado de un
+                            usuario en caso de que no haya participado en ninguna competición o no sea autor de ninguna
+                            publicación.
+                        </div>
+                        ¿Seguro de que desea continuar?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">
+                            <i class="fas fa-times-circle"></i> Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-danger" (click)="removeCompetitor(user); modal.dismiss()">
+                            <i class="fas fa-trash-alt"></i> Eliminar
+                        </button>
+                    </div>
+                </ng-template>
+                <ng-template #viewMoreModal let-modal>
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-12 col-lg-4 text-center px-3">
+                            <img alt="avatar" class="avatar" src="{{ user.imageFile }}">
+                        </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-10">
@@ -56,19 +81,22 @@
                                 <strong>Licencia:</strong> {{ user.licenseId }}.<br>
                                 <strong>DNI:</strong> {{ user.dni }}.<br>
                                 <strong>Correo Electrónico:</strong> {{ user.email }}.<br>
-                                <ng-container *ngIf="user.phone !== undefined"><strong>Teléfono:</strong> {{user.phone}}.<br></ng-container>
-                                <strong>Género:</strong><span *ngIf="user.gender === 'H'"> Hombre</span><span *ngIf="user.gender === 'M'"> Mujer</span>.<br>
+                                <ng-container *ngIf="user.phone !== undefined"><strong>Teléfono:</strong> {{user.phone}}
+                                    .<br></ng-container>
+                                <strong>Género:</strong><span *ngIf="user.gender === 'H'"> Hombre</span><span
+                                *ngIf="user.gender === 'M'"> Mujer</span>.<br>
                                 <strong>Fecha de nacimiento:</strong> {{ user.birthdate }}.<br>
                                 <strong>Gimnasio:</strong> {{ user.gym }}.<br>
                                 <strong>Peso:</strong> {{ user.weight }}kg.
                             </div>
                         </div>
                     </div>
-                </div>
+                </ng-template>
             </div>
         </div>
         <div class="pt-2 text-center">
-            <button *ngIf="!isLastPage else noMoreContent" (click)="loadMoreCompetitors(currentPage)" data-role="competitors"
+            <button *ngIf="!isLastPage else noMoreContent" (click)="loadMoreCompetitors(currentPage)"
+                    data-role="competitors"
                     id="loadNextPage" class="btn btn-corporative" data-numpage="1" data-totalpages="{{ totalPages }}">
                 <i *ngIf="loading" class="fas fa-circle-notch fa-spin"></i> Cargar más usuarios
             </button>
@@ -79,54 +107,3 @@
     </ng-template>
 </div>
 
-
-<!-- Modal for profiles info (dynamically filled with info when opening thanks to JS) -->
-<div class="modal fade" id="modalProfile" tabindex="-1">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalOpenedTitle"></h5>
-                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-8">
-                        <div class="card mb-3">
-                            <div class="row g-0" id="modalOpenedBody"></div>
-                        </div>
-                    </div>
-                    <div class="col-2"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal for confirmating deleting of item in list -->
-<div class="modal fade" id="modalDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Confirmación</h5>
-            </div>
-            <div class="modal-body">
-                <div class="alert alert-info"><strong>Advertencia:</strong> Solo se garantiza el correcto borrado de un
-                    usuario en caso de que no haya participado en ninguna competición o no sea autor de ninguna
-                    publicación.
-                </div>
-                ¿Seguro de que desea continuar?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                    <i class="fas fa-times-circle"></i> Cancelar
-                </button>
-                <a href="" id="modalDeleteLink">
-                    <button type="submit" class="btn btn-danger">
-                        <i class="fas fa-trash-alt"></i> Eliminar
-                    </button>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
