@@ -10,15 +10,15 @@ body {
     color: #444444;
 }
 
-/*a {*/
-/*    color: #f14141;*/
-/*    text-decoration: none;*/
-/*}*/
+a:not(.btn) {
+    color: #f14141;
+    text-decoration: none;
+}
 
-/*a:hover {*/
-/*    color: #f57171;*/
-/*    text-decoration: none;*/
-/*}*/
+a:not(.btn):hover {
+    color: #f57171;
+    text-decoration: none;
+}
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "Nunito", sans-serif;

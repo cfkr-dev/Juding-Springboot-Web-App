@@ -1,4 +1,9 @@
-<div class="container">
+<ng-template #loading>
+  <div class="alert alert-secondary">
+    <i class="fas fa-spin fa-circle-notch"></i> Cargando...
+  </div>
+</ng-template>
+<ng-container *ngIf="ranking.length > 0; else loading">
   <h1 class="h1">Ranking</h1>
   <div class="responsiveTable">
     <div class="rtRow rtHeader">
@@ -24,44 +29,44 @@
       </div>
     </div>
   </div>
-</div>
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h5 class="modal-title">{{ modalMember.name }} {{ modalMember.surname }}</h5>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="row">
-      <div class="col-2"></div>
-      <div class="col-8">
-        <div class="card mb-3">
-          <div class="row g-0" id="modalOpenedBody">
-            <div class="col-md-4">
-              <img alt="avatar" class="avatar" src="/api/users/{{ modalMember.licenseId }}/image">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-10">
-                    <h5 class="card-title">{{ modalMember.nickname }}</h5>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">{{ modalMember.name }} {{ modalMember.surname }}</h5>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <div class="card mb-3">
+            <div class="row g-0" id="modalOpenedBody">
+              <div class="col-md-4">
+                <img alt="avatar" class="avatar" src="/api/users/{{ modalMember.licenseId }}/image">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-10">
+                      <h5 class="card-title">{{ modalMember.nickname }}</h5>
+                    </div>
+                    <div class="col-2">
+                      <i class="fas fa-2x fa-user-ninja beltStyle {{ modalMember.belt }}"></i>
+                    </div>
                   </div>
-                  <div class="col-2">
-                    <i class="fas fa-2x fa-user-ninja beltStyle {{ modalMember.belt }}"></i>
+                  <div class="card-text text-start">
+                    {{ modalMember.name }} <strong>{{ modalMember.surname }}</strong><br>
+                    <strong>Licencia:</strong> {{ modalMember.licenseId }}.<br>
+                    <strong>DNI:</strong> {{ modalMember.dni }}.<br>
                   </div>
-                </div>
-                <div class="card-text text-start">
-                  {{ modalMember.name }} <strong>{{ modalMember.surname }}</strong><br>
-                  <strong>Licencia:</strong> {{ modalMember.licenseId }}.<br>
-                  <strong>DNI:</strong> {{ modalMember.dni }}.<br>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="col-2"></div>
       </div>
-      <div class="col-2"></div>
     </div>
-  </div>
-</ng-template>
+  </ng-template>
+</ng-container>
