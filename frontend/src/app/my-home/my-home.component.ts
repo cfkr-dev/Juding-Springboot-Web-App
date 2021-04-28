@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {LoggedInUserService} from '../logged-in-user.service';
 import {UserInterface} from '../user/user.interface';
 import {MyHomeService} from './my-home.service';
+import { RefereeRangeService } from '../auxTypes/refereeRange.service';
 
 interface Auxiliar {
   list: CompetitionInterface[];
@@ -28,7 +29,8 @@ export class MyHomeComponent implements OnInit {
   constructor(private http: HttpClient,
               private loggedInUser: LoggedInUserService,
               private router: Router,
-              private homeInfo: MyHomeService) {
+              private homeInfo: MyHomeService,
+              public rangeService: RefereeRangeService) {
     this.fullLoaded = false;
   }
 
@@ -85,7 +87,6 @@ export class MyHomeComponent implements OnInit {
                       this.homeInfo.getCompetitions(currentUser, 'future?joined=false').subscribe(
                         ((futureNotJoinedCompetitions: CompetitionInterface[]) => {
                           this.futureNotJoinedCompetitions = futureNotJoinedCompetitions;
-                          this.fullLoaded = true;
                         }));
                       this.homeInfo.getCharts(currentUser).subscribe(
                         ((chartInfo: number[]) => {
@@ -127,10 +128,14 @@ export class MyHomeComponent implements OnInit {
                             ];
                             this.chart2.lineChartLabels = tags;
 
+                            this.fullLoaded = true;
+
                             // this.chart2.lineChartData = list;
                           }
                         })
                       );
+                    } else if (currentUser.roles.includes('R')) {
+                      this.fullLoaded = true;
                     }
                   })
                 );

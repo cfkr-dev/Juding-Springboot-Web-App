@@ -24,6 +24,7 @@ export class HeaderComponent {
 
   headerType2 = [
     '/login',
+    '/logout',
     '/termsAndConditionsOfUse',
     '/cookiePolicy'
   ];
@@ -34,7 +35,6 @@ export class HeaderComponent {
     router.events.subscribe(
       (change) => {
         if (change instanceof NavigationEnd) {
-          console.log(change);
           this.headerChange();
         }
       }
