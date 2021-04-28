@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-md-8">
+    <h1 class="h1">Mi perfil</h1>
+  </div>
+  <div class="col-md-4 d-flex justify-content-end align-items-center">
+    <a routerLink="/myProfile/edit">
+      <button class="btn btn-corporative"><i class="far fa-pencil"></i> Editar perfil</button>
+    </a>
+  </div>
+</div>
+<div class="row d-flex flex-column align-items-center text-center">
+  <img class="bigAvatar" src="{{ userInfo.imageFile }}" alt="avatar">
+  <div>
+    <span class="nombre">{{ userInfo.name }}</span>&nbsp;<span class="apellidos">{{ userInfo.surname }}</span>
+  </div>
+  <div>
+    <span class="nick">{{ userInfo.nickname }}</span>
+  </div>
+  <div>
+    <span class="badge bg-secondary biggerText" *ngIf="userInfo.roles.includes('C')">Competidor</span>
+    <span class="badge bg-secondary biggerText" *ngIf="userInfo.roles.includes('R')">Árbitro</span>
+  </div>
+</div>
+<br>
+<div class="px-2">
+  <h3>Información para competición</h3>
+  <div class="responsiveTable">
+    <div class="rtRow">
+      <div class="width40">Número de licencia</div>
+      <div class="width60">{{ userInfo.licenseId }}</div>
+    </div>
+    <div class="rtRow">
+      <div class="width40">Cinturón</div>
+      <div class="width60">{{ beltService.getBeltByName(userInfo.belt).name }}</div>
+    </div>
+    <div class="rtRow" *ngIf="userInfo.roles.includes('C')">
+      <div class="width40">Gimnasio</div>
+      <div class="width60">{{ userInfo.gym }}</div>
+    </div>
+    <div class="rtRow" *ngIf="userInfo.roles.includes('C')">
+      <div class="width40">Peso</div>
+      <div class="width60">{{ userInfo.weight }} kg</div>
+    </div>
+    <div class="rtRow" *ngIf="userInfo.roles.includes('R')">
+      <div class="width40">Rango</div>
+      <div class="width60">{{ refereeRangeService.getRangeByName(userInfo.refereeRange).name }}</div>
+    </div>
+  </div>
+</div>
+<div class="px-2 mt-3">
+  <h3>Mi información personal</h3>
+  <div class="responsiveTable">
+    <div class="rtRow">
+      <div class="width40">DNI</div>
+      <div class="width60">{{ userInfo.dni }}</div>
+    </div>
+    <div class="rtRow">
+      <div class="width40">Género</div>
+      <div class="width60" *ngIf="userInfo.gender == 'H'">Hombre</div>
+      <div class="width60" *ngIf="userInfo.gender == 'M'">Mujer</div>
+    </div>
+    <div class="rtRow" *ngIf="userInfo.phone !== undefined">
+      <div class="width40">Teléfono</div>
+      <div class="width60">{{ userInfo.phone }}</div>
+    </div>
+    <div class="rtRow">
+      <div class="width40">Correo electrónico</div>
+      <div class="width60">{{ userInfo.email }}</div>
+    </div>
+    <div class="rtRow">
+      <div class="width40">Fecha de nacimiento</div>
+      <div class="width60">{{ userInfo.birthdate }}</div>
+    </div>
+  </div>
+</div>
