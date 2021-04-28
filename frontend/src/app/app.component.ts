@@ -1,5 +1,6 @@
-import {Component, Output} from '@angular/core';
-import { Router } from '@angular/router';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {LoggedInUserService} from './logged-in-user.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,6 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'juding';
 
-  constructor(public router: Router){}
+  constructor(public router: Router, public loggedInUser: LoggedInUserService) {
+  }
 }

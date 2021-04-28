@@ -1,21 +1,26 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
 import {LoggedInUserService} from '../logged-in-user.service';
-import {UserInterface} from '../user/user.interface';
-import {Router} from '@angular/router';
+
+export interface PageInfoInterface {
+  headerValue: number;
+  isAdmin?: boolean;
+  loading: boolean;
+}
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['../../assets/vendor/font-awesome/css/all.css', '../../assets/css/header.css']
 })
-export class HeaderComponent implements OnInit {
-
-  currentUser: UserInterface;
-
+export class HeaderComponent {
+  // headerValue possible values:
   // 0 -> Default (logged-in user)
   // 1 -> Index page
   // 2 -> Only show "return to index" button
-  @Input() mainPage: number;
+  pageInfo: PageInfoInterface;
+
+  @Input() isType1: boolean;
 
   headerType2 = [
     '/login',
@@ -23,18 +28,34 @@ export class HeaderComponent implements OnInit {
     '/cookiePolicy'
   ];
 
-  constructor(private loggedUser: LoggedInUserService, public router: Router) {
-    if (this.mainPage === undefined) {
-      this.mainPage = 0;
-    }
-    if (this.headerType2.includes(this.router.url)){
-      this.mainPage = 2;
-    }
+  constructor(public router: Router, public loggedInUser: LoggedInUserService) {
+    this.pageInfo = {headerValue: 0, isAdmin: false, loading: true};
+    this.headerChange();
+    router.events.subscribe(
+      (change) => {
+        if (change instanceof NavigationEnd) {
+          console.log(change);
+          this.headerChange();
+        }
+      }
+    );
   }
 
-  ngOnInit(): void {
-    this.loggedUser.getLoggedUser().subscribe(
-      (currentUser => this.currentUser = currentUser)
+  headerChange(): void {
+    this.loggedInUser.getLoggedUser().subscribe(
+      (user => {
+        this.pageInfo.isAdmin = user.roles.includes('A');
+        this.headerAssignation();
+      }),
+      (error => {
+        this.pageInfo.isAdmin = false;
+        this.headerAssignation();
+      })
     );
+  }
+
+  private headerAssignation(): void {
+    this.pageInfo.headerValue = this.isType1 ? 1 : this.headerType2.includes(this.router.url) ? 2 : 0;
+    this.pageInfo.loading = false;
   }
 }
