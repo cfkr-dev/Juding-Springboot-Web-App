@@ -1,2 +1,17 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<!--This is where my before login router stays-->
+<ng-template #other>
+  <app-header></app-header>
+  <div class="container main-container">
+    <ng-container *ngTemplateOutlet="template"></ng-container>
+  </div>
+</ng-template>
+
+<!--This is where my after login router stays-->
+<div *ngIf="this.router.url === '/' || this.router.url.substring(0, 2) === '/#'; else other">
+  <app-header [mainPage]="1"></app-header>
+  <ng-container *ngTemplateOutlet="template"></ng-container>
+</div>
+
+<ng-template #template>
+  <router-outlet></router-outlet>
+</ng-template>

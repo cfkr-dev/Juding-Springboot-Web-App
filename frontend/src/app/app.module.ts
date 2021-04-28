@@ -12,6 +12,10 @@ import {ChartsModule} from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './header/header.component';
 import { IndexComponent } from './index/index.component';
+import { RankingComponent } from './ranking/ranking.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
+import { TermsAndConditionsOfUseComponent } from './terms-and-conditions-of-use/terms-and-conditions-of-use.component';
+import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { IndexComponent } from './index/index.component';
     LoginComponent,
     MyHomeComponent,
     HeaderComponent,
-    IndexComponent
+    IndexComponent,
+    RankingComponent,
+    MyProfileComponent,
+    TermsAndConditionsOfUseComponent,
+    CookiePolicyComponent
   ],
   imports: [
     BrowserModule,
