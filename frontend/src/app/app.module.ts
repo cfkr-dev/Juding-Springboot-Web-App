@@ -16,6 +16,7 @@ import {RankingComponent} from './ranking/ranking.component';
 import {MyProfileComponent} from './my-profile/my-profile.component';
 import {TermsAndConditionsOfUseComponent} from './terms-and-conditions-of-use/terms-and-conditions-of-use.component';
 import {CookiePolicyComponent} from './cookie-policy/cookie-policy.component';
+import { MyProfileEditComponent } from './my-profile-edit/my-profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {CookiePolicyComponent} from './cookie-policy/cookie-policy.component';
     RankingComponent,
     MyProfileComponent,
     TermsAndConditionsOfUseComponent,
-    CookiePolicyComponent
+    CookiePolicyComponent,
+    MyProfileEditComponent
   ],
   imports: [
     BrowserModule,
