@@ -1,11 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
-import {catchError} from 'rxjs/operators';
-
+import {Observable} from 'rxjs';
 import {User} from '../models/user.model';
-import Any = jasmine.Any;
-
 const REFEREE_URL = 'api/referees';
 
 @Injectable({providedIn: 'root'})

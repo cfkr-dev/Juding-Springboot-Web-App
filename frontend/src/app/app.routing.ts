@@ -18,7 +18,6 @@ const appRoutes = [
     {path: '403', component: E403Component},
     {path: '404', component: E404Component},
     {path: '500', component: E500Component},
-    {path: '', redirectTo: '', pathMatch: 'full'}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

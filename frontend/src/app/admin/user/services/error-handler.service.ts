@@ -10,8 +10,11 @@ export class ErrorHandlerService {
     constructor(private router: Router) {
     }
 
-    public handleError(error: any) {
+    public handleError(error: any): any {
         switch (error.status) {
+            case 400: {
+                return true;
+            }
             case 403: {
                 this.router.navigate(['403']);
                 break;

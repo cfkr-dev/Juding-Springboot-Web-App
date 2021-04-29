@@ -1,5 +1,5 @@
 <div *ngIf="!errorOnLoadUserData" class="container pb-4">
-    <form action="/admin/user/edit/save" class="needs-validation flex-sb flex-w juding-form-user-update" method="post"
+    <form action="/admin/user/edit/save" class="needs-validation flex-sb flex-w juding-form-user-update" (submit)=modifyCompetitor(user) method="post"
           novalidate
           enctype="multipart/form-data">
 

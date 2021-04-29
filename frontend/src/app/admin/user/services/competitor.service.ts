@@ -26,6 +26,6 @@ export class CompetitorService {
     }
 
     updateCompetitor(user: User): Observable<any> {
-        return this.httpClient.put(COMPETITORS_URL + '/' + user.licenseId, {});
+        return this.httpClient.put(COMPETITORS_URL + '/' + user.licenseId, user);
     }
 }

@@ -83,8 +83,15 @@ export class CompetitorListComponent implements OnInit {
             removedUser => {
                 this.users.forEach((element, index) => {
                     if (element.licenseId === removedUser.licenseId) {
-                        delete this.users[index];
+                        this.users.splice(index);
                     }
+                });
+                if (this.users.length === 0){
+                    this.noMorePages = true;
+                }
+                const currentUrl = this.router.url;
+                this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+                    this.router.navigate([currentUrl]);
                 });
             },
             error => {
@@ -95,6 +102,6 @@ export class CompetitorListComponent implements OnInit {
     }
 
     openModal(content) {
-        this.modalService.open(content);
+        this.modalService.open(content, {size: 'lg'});
     }
 }

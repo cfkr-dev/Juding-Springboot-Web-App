@@ -1,108 +1,152 @@
-<!--<div *ngIf="!hasErrorOnLoad" class="container pb-3">-->
-<!--    <h2 class="h2">Usuarios</h2>-->
-<!--    <h3 class="h3">Competidores</h3>-->
-<!--    <div *ngIf="noMorePages else hasContent" class="alert alert-corporative">-->
-<!--        No hay usuarios registrados de este rol.-->
-<!--    </div>-->
-<!--    <ng-template #hasContent>-->
-<!--        <div class="responsiveTable" id="table">-->
-<!--            <div class="rtRow rtHeader">-->
-<!--                <div class="width10 text-center">Rol</div>-->
-<!--                <div class="width15 text-center">Licencia</div>-->
-<!--                <div class="width15 text-center">Nick</div>-->
-<!--                <div class="width10 text-center">Nombre</div>-->
-<!--                <div class="width15 text-center">Apellidos</div>-->
-<!--                <div class="width20 text-center">Correo Electrónico</div>-->
-<!--                <div class="width15 text-center">Acciones</div>-->
-<!--            </div>-->
-<!--            <div *ngFor="let user of users" class="rtRow">-->
-<!--                <div class="width10 text-center">-->
-<!--                    <i class="fas beltStyle {{ user.belt }} fa-user-ninja"></i>-->
-<!--                    ({{ user.belt }})-->
-<!--                </div>-->
-<!--                <div class="width15 text-center">{{ user.licenseId }}</div>-->
-<!--                <div class="width15 text-center">{{ user.nickname }}</div>-->
-<!--                <div class="width10 text-center">{{ user.name }}</div>-->
-<!--                <div class="width15 text-center">{{ user.surname }}</div>-->
-<!--                <div class="width20 text-center">{{ user.email }}</div>-->
-<!--                <div class="width15 text-center">-->
-<!--                    <button class="btn btn-outline-corporative" (click)="openModal(viewMoreModal)">-->
-<!--                        <i class="fas fa-info-circle"></i>-->
-<!--                    </button>-->
-<!--                    <a [routerLink]="['edit/', user.licenseId]" class="btn btn-outline-corporative">-->
-<!--                        <i class="fas fa-pencil"></i>-->
-<!--                    </a>-->
-<!--                    <button class="btn btn-corporative" (click)="openModal(deleteModal)"-->
-<!--                            data-id="{{ user.licenseId }}" data-type="user">-->
-<!--                        <i class="fas fa-trash-alt delete"></i>-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--                <ng-template #deleteModal let-modal>-->
-<!--                    <div class="modal-header">-->
-<!--                        <h5 class="modal-title">Confirmación</h5>-->
-<!--                    </div>-->
-<!--                    <div class="modal-body">-->
-<!--                        <div class="alert alert-info"><strong>Advertencia:</strong> Solo se garantiza el correcto borrado de un-->
-<!--                            usuario en caso de que no haya participado en ninguna competición o no sea autor de ninguna-->
-<!--                            publicación.-->
-<!--                        </div>-->
-<!--                        ¿Seguro de que desea continuar?-->
-<!--                    </div>-->
-<!--                    <div class="modal-footer">-->
-<!--                        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">-->
-<!--                            <i class="fas fa-times-circle"></i> Cancelar-->
-<!--                        </button>-->
-<!--                        <button type="submit" class="btn btn-danger" (click)="removeCompetitor(user); modal.dismiss()">-->
-<!--                            <i class="fas fa-trash-alt"></i> Eliminar-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                </ng-template>-->
-<!--                <ng-template #viewMoreModal let-modal>-->
-<!--                    <div class="modal-header">-->
-<!--                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">-->
-<!--                            <span aria-hidden="true">&times;</span>-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                    <div class="modal-body">-->
-<!--                        <div class="col-12 col-lg-4 text-center px-3">-->
-<!--                            <img alt="avatar" class="avatar" src="{{ user.imageFile }}">-->
-<!--                        </div>-->
-<!--                        <div class="card-body">-->
-<!--                            <div class="row">-->
-<!--                                <div class="col-10">-->
-<!--                                    <h5 class="card-title">{{ user.nickname }}</h5>-->
-<!--                                </div>-->
-<!--                                <div class="col-2">-->
-<!--                                    <i class="fas fa-2x beltStyle {{ user.belt }} fa-user-ninja"></i>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="card-text text-start">-->
-<!--                                {{ user.name }} <strong>{{ user.surname }}</strong><br>-->
-<!--                                <strong>Licencia:</strong> {{ user.licenseId }}.<br>-->
-<!--                                <strong>DNI:</strong> {{ user.dni }}.<br>-->
-<!--                                <strong>Correo Electrónico:</strong> {{ user.email }}.<br>-->
-<!--                                <ng-container *ngIf="user.phone !== undefined"><strong>Teléfono:</strong> {{user.phone}}-->
-<!--                                    .<br></ng-container>-->
-<!--                                <strong>Género:</strong><span *ngIf="user.gender === 'H'"> Hombre</span><span-->
-<!--                                *ngIf="user.gender === 'M'"> Mujer</span>.<br>-->
-<!--                                <strong>Fecha de nacimiento:</strong> {{ user.birthdate }}.<br>-->
-<!--                                <strong>Gimnasio:</strong> {{ user.gym }}.<br>-->
-<!--                                <strong>Peso:</strong> {{ user.weight }}kg.-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </ng-template>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="pt-2 text-center">-->
-<!--            <button *ngIf="!isLastPage else noMoreContent" (click)="loadMoreCompetitors(currentPage)"-->
-<!--                    data-role="competitors"-->
-<!--                    id="loadNextPage" class="btn btn-corporative" data-numpage="1" data-totalpages="{{ totalPages }}">-->
-<!--                <i *ngIf="loading" class="fas fa-circle-notch fa-spin"></i> Cargar más usuarios-->
-<!--            </button>-->
-<!--            <ng-template #noMoreContent>-->
-<!--                <button class="btn btn-outline-corporative" disabled>No hay más ítems</button>-->
-<!--            </ng-template>-->
-<!--        </div>-->
-<!--    </ng-template>-->
-<!--</div>-->
+<div *ngIf="!hasErrorOnLoad" class="container pb-3">
+    <h2 class="h2">Usuarios</h2>
+    <h3 class="h3">Solicitudes de federación de nuevos árbitros</h3>
+    <div *ngIf="!noApplications else noHasApplications" class="responsiveTable mb-3">
+        <div class="rtRow rtHeader">
+            <div class="width10 text-center">Rol</div>
+            <div class="width15 text-center">Licencia</div>
+            <div class="width15 text-center">Nick</div>
+            <div class="width10 text-center">Nombre</div>
+            <div class="width15 text-center">Apellidos</div>
+            <div class="width20 text-center">Correo Electrónico</div>
+            <div class="width15 text-center">Acciones</div>
+        </div>
+        <div *ngFor="let user of applicators" class="rtRow">
+            <div class="width10 text-center">
+                <i class="fas fa-user-tie beltStyle {{ user.belt }}"></i> ({{ user.belt }})
+            </div>
+            <div class="width15 text-center">{{ user.licenseId }}</div>
+            <div class="width15 text-center">{{ user.nickname }}</div>
+            <div class="width10 text-center">{{ user.name }}</div>
+            <div class="width15 text-center">{{ user.surname }}</div>
+            <div class="width20 text-center">{{ user.email }}</div>
+            <div class="width15 text-center">
+                <button class="btn btn-outline-corporative" (click)="openModal(viewMoreModal, user)">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <a (click)="acceptApplication(user)" class="btn btn-outline-success">
+                    <i class="fas fa-check"></i>
+                </a>
+                <a (click)="removeApplication(user)" class="btn btn-outline-danger">
+                    <i class="fas fa-times"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <ng-template #noHasApplications>
+        <div class="alert alert-corporative mb-2">No hay nuevas solicitudes pendientes de revisión.</div>
+    </ng-template>
+    <h3 class="h3">Árbitros</h3>
+    <div *ngIf="noMorePages else hasContent" class="alert alert-corporative">
+        No hay usuarios registrados de este rol.
+    </div>
+    <ng-template #hasContent>
+        <div class="responsiveTable" id="table">
+            <div class="rtRow rtHeader">
+                <div class="width10 text-center">Rol</div>
+                <div class="width15 text-center">Licencia</div>
+                <div class="width15 text-center">Nick</div>
+                <div class="width10 text-center">Nombre</div>
+                <div class="width15 text-center">Apellidos</div>
+                <div class="width20 text-center">Correo Electrónico</div>
+                <div class="width15 text-center">Acciones</div>
+            </div>
+            <div *ngFor="let user of users" class="rtRow">
+                <div class="width10 text-center">
+                    <i class="fas beltStyle {{ user.belt }} fa-user-tie"></i>
+                    ({{ user.belt }})
+                </div>
+                <div class="width15 text-center">{{ user.licenseId }}</div>
+                <div class="width15 text-center">{{ user.nickname }}</div>
+                <div class="width10 text-center">{{ user.name }}</div>
+                <div class="width15 text-center">{{ user.surname }}</div>
+                <div class="width20 text-center">{{ user.email }}</div>
+                <div class="width15 text-center">
+                    <button class="btn btn-outline-corporative" (click)="openModal(viewMoreModal, user)">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    <a [routerLink]="['edit/', user.licenseId]" class="btn btn-outline-corporative">
+                        <i class="fas fa-pencil"></i>
+                    </a>
+                    <button class="btn btn-corporative" (click)="openModal(deleteModal, user)"
+                            data-id="{{ user.licenseId }}" data-type="user">
+                        <i class="fas fa-trash-alt delete"></i>
+                    </button>
+                </div>
+                <ng-template #deleteModal let-modal>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmación</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-info"><strong>Advertencia:</strong> Solo se garantiza el correcto
+                            borrado de un
+                            usuario en caso de que no haya participado en ninguna competición o no sea autor de ninguna
+                            publicación.
+                        </div>
+                        ¿Seguro de que desea continuar?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">
+                            <i class="fas fa-times-circle"></i> Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-danger" (click)="removeReferee(user); modal.dismiss()">
+                            <i class="fas fa-trash-alt"></i> Eliminar
+                        </button>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+        <div class="pt-2 text-center">
+            <button *ngIf="!isLastPage else noMoreContent" (click)="loadMoreReferees(currentPage)"
+                    data-role="referees"
+                    id="loadNextPage" class="btn btn-corporative" data-numpage="1" data-totalpages="{{ totalPages }}">
+                <i *ngIf="loading" class="fas fa-circle-notch fa-spin"></i> Cargar más usuarios
+            </button>
+            <ng-template #noMoreContent>
+                <button class="btn btn-outline-corporative" disabled>No hay más ítems</button>
+            </ng-template>
+        </div>
+    </ng-template>
+</div>
+
+<ng-template #viewMoreModal let-modal>
+    <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12 col-lg-4 text-center px-3">
+                <img alt="avatar" class="avatar" src="{{ userModal.imageFile }}">
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-10">
+                        <h5 class="card-title">{{ userModal.nickname }}</h5>
+                    </div>
+                    <div class="col-2">
+                        <i class="fas fa-2x beltStyle {{ userModal.belt }} fa-user-tie"></i>
+                    </div>
+                </div>
+                <div class="card-text text-start">
+                    {{ userModal.name }} <strong>{{ userModal.surname }}</strong><br>
+                    <strong>Licencia:</strong> {{ userModal.licenseId }}.<br>
+                    <strong>DNI:</strong> {{ userModal.dni }}.<br>
+                    <strong>Correo Electrónico:</strong> {{ userModal.email }}.<br>
+                    <ng-container *ngIf="userModal.phone !== undefined"><strong>Teléfono:</strong> {{userModal.phone}}
+                        .<br></ng-container>
+                    <strong>Género:</strong><span *ngIf="userModal.gender === 'H'"> Hombre</span><span
+                    *ngIf="userModal.gender === 'M'"> Mujer</span>.<br>
+                    <strong>Fecha de nacimiento:</strong> {{ userModal.birthdate }}.<br>
+                    <strong>Rango:</strong><span *ngIf="userModal.refereeRange === 'S'"> Solicitante</span><span
+                    *ngIf="userModal.refereeRange === 'E'"> Árbitro estándar</span><span
+                    *ngIf="userModal.refereeRange === 'C'"> Árbitro de competición</span><span
+                    *ngIf="userModal.refereeRange === 'A'"> Árbitro auxiliar</span>.
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+

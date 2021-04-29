@@ -18,6 +18,7 @@ export class CompetitorEditComponent implements OnInit {
 
     user: User;
     errorOnLoadUserData: boolean;
+    validationError: boolean;
 
     constructor(private router: Router, activatedRoute: ActivatedRoute, private competitorService: CompetitorService, private errorHandlerService: ErrorHandlerService) {
         const licenseId = activatedRoute.snapshot.params['licenseId'];
@@ -31,11 +32,18 @@ export class CompetitorEditComponent implements OnInit {
                 this.errorHandlerService.handleError(error);
             }
         );
+        this.validationError = false;
     }
 
     ngOnInit(): void {
     }
 
+    modifyCompetitor(user) {
+        this.competitorService.updateCompetitor(user).subscribe(
+            modifiedUser => this.router.navigate(['/competitors']),
+            // error => this.validationError = this.errorHandlerService.handleError(error)
+        );
+    }
 
 
 }

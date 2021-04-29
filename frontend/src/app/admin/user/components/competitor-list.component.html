@@ -42,7 +42,8 @@
                         <h5 class="modal-title">Confirmación</h5>
                     </div>
                     <div class="modal-body">
-                        <div class="alert alert-info"><strong>Advertencia:</strong> Solo se garantiza el correcto borrado de un
+                        <div class="alert alert-info"><strong>Advertencia:</strong> Solo se garantiza el correcto
+                            borrado de un
                             usuario en caso de que no haya participado en ninguna competición o no sea autor de ninguna
                             publicación.
                         </div>
@@ -64,30 +65,33 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="col-12 col-lg-4 text-center px-3">
-                            <img alt="avatar" class="avatar" src="{{ user.imageFile }}">
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-10">
-                                    <h5 class="card-title">{{ user.nickname }}</h5>
-                                </div>
-                                <div class="col-2">
-                                    <i class="fas fa-2x beltStyle {{ user.belt }} fa-user-ninja"></i>
-                                </div>
+                        <div class="row">
+                            <div class="col-12 col-lg-4 text-center px-3">
+                                <img alt="avatar" class="avatar" src="{{ user.imageFile }}">
                             </div>
-                            <div class="card-text text-start">
-                                {{ user.name }} <strong>{{ user.surname }}</strong><br>
-                                <strong>Licencia:</strong> {{ user.licenseId }}.<br>
-                                <strong>DNI:</strong> {{ user.dni }}.<br>
-                                <strong>Correo Electrónico:</strong> {{ user.email }}.<br>
-                                <ng-container *ngIf="user.phone !== undefined"><strong>Teléfono:</strong> {{user.phone}}
-                                    .<br></ng-container>
-                                <strong>Género:</strong><span *ngIf="user.gender === 'H'"> Hombre</span><span
-                                *ngIf="user.gender === 'M'"> Mujer</span>.<br>
-                                <strong>Fecha de nacimiento:</strong> {{ user.birthdate }}.<br>
-                                <strong>Gimnasio:</strong> {{ user.gym }}.<br>
-                                <strong>Peso:</strong> {{ user.weight }}kg.
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <h5 class="card-title">{{ user.nickname }}</h5>
+                                    </div>
+                                    <div class="col-2">
+                                        <i class="fas fa-2x beltStyle {{ user.belt }} fa-user-ninja"></i>
+                                    </div>
+                                </div>
+                                <div class="card-text text-start">
+                                    {{ user.name }} <strong>{{ user.surname }}</strong><br>
+                                    <strong>Licencia:</strong> {{ user.licenseId }}.<br>
+                                    <strong>DNI:</strong> {{ user.dni }}.<br>
+                                    <strong>Correo Electrónico:</strong> {{ user.email }}.<br>
+                                    <ng-container *ngIf="user.phone !== undefined">
+                                        <strong>Teléfono:</strong> {{user.phone}}
+                                        .<br></ng-container>
+                                    <strong>Género:</strong><span *ngIf="user.gender === 'H'"> Hombre</span><span
+                                    *ngIf="user.gender === 'M'"> Mujer</span>.<br>
+                                    <strong>Fecha de nacimiento:</strong> {{ user.birthdate }}.<br>
+                                    <strong>Gimnasio:</strong> {{ user.gym }}.<br>
+                                    <strong>Peso:</strong> {{ user.weight }}kg.
+                                </div>
                             </div>
                         </div>
                     </div>
