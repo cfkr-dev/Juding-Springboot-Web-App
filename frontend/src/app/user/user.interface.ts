@@ -3,7 +3,7 @@ export interface UserInterface{
   name: string;
   surname: string;
   gender: string;
-  phone: number;
+  phone?: number;
   email: string;
   dni: string;
   nickname: string;

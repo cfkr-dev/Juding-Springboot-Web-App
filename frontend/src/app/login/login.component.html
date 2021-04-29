@@ -1,32 +1,29 @@
-<header class="header fixed-top" id="header">
-  <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-    <a class="logo d-flex align-items-center" href="/">
-      <img alt="" src="/assets/img/hero-img.png">
-      <span>Juding</span>
-    </a>
-    <nav class="navbar" id="navbar">
-      <ul>
-        <li><a class="nav-link scrollto active" href="#">Inicio de sesión</a>
-        <li><a class="login scrollto" href="/">Volver al inicio</a></li>
-      </ul>
-      <i class="far fa-bars mobile-nav-toggle"></i>
-    </nav><!-- .navbar -->
-  </div>
-</header><!-- End Header -->
-
 <div class="container-login100">
   <div class="wrap-login100">
-    <form class="needs-validation flex-sb flex-w" method="post" novalidate (submit)="formLogin($event)">
+    <form (submit)="formLogin($event)" class="needs-validation flex-sb flex-w" method="post" novalidate>
       <span class="login100-form-title">Iniciar sesión</span>
+      <div *ngIf="this.error === 1" class="alert alert-danger">Las credenciales no son correctas.</div>
+      <div *ngIf="this.error === 2" class="alert alert-danger">Se ha producido un error inesperado. Inténtelo de
+        nuevo.
+      </div>
+      <div *ngIf="this.error === 3" class="alert alert-success"><i class="fas fa-check-circle"></i> La sesión se ha
+        cerrado satisfactoriamente.
+      </div>
       <label class="txt1" for="nickname">Apodo <span class="asterisk">*</span></label>
-      <input class="form-control form-control-lg" id="nickname" name="nickname" required type="text" [(ngModel)]="loginForm.nickname">
+      <input [(ngModel)]="loginForm.nickname" class="form-control form-control-lg" id="nickname" name="nickname" required
+             type="text">
       <div class="invalid-feedback">
         Es obligatorio introducir el apodo para continuar.
       </div>
       <label class="txt1" for="password">Contraseña <span class="asterisk">*</span></label>
-      <div class="input-group">
-        <input class="form-control form-control-lg" id="password" name="password" required type="password" [(ngModel)]="loginForm.password">
-        <span class="input-group-text" id="showPassword"><i class="far fa-eye-slash"></i></span>
+      <div class="input-group mb-3">
+        <input [(ngModel)]="loginForm.password" [type]="passwordType" class="form-control form-control-lg" id="password" name="password"
+               required>
+        <div class="input-group-append">
+          <button (click)="changeVisibility()" class="btn btn-outline-secondary" type="button"><i
+            [ngClass]="{'far': true, 'fa-eye': passwordType === 'text', 'fa-eye-slash': passwordType === 'password'}"></i>
+          </button>
+        </div>
         <div class="invalid-feedback">
           Es obligatorio introducir la contraseña para continuar.
         </div>
