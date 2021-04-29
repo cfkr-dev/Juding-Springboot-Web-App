@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, Subscription, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-
 import {User} from '../models/user.model';
 
 const COMPETITORS_URL = 'api/competitors';
@@ -17,10 +16,8 @@ export class CompetitorService {
         return this.httpClient.get(COMPETITORS_URL + '?page=' + page);
     }
 
-    getCompetitor(id: number): Observable<User> {
-        return this.httpClient.get(COMPETITORS_URL + '/' + id).pipe(
-            catchError(error => this.handleError(error))
-        ) as Observable<User>;
+    getCompetitor(id: number | string): Observable<any> {
+        return this.httpClient.get(COMPETITORS_URL + '/' + id);
     }
 
 
@@ -29,14 +26,6 @@ export class CompetitorService {
     }
 
     updateCompetitor(user: User) {
-        return this.httpClient.put(COMPETITORS_URL + '/' + user.licenseId, user).pipe(
-            catchError(error => this.handleError(error))
-        );
-    }
-
-    private handleError(error: any) {
-        console.log('ERROR:');
-        console.error(error);
-        return throwError('Server error (' + error.status + '): ' + error.text());
+        return this.httpClient.put(COMPETITORS_URL + '/' + user.licenseId, user);
     }
 }

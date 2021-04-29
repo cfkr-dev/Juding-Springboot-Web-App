@@ -1,5 +1,5 @@
 export interface User {
-  licenseId?: number;
+  licenseId: number | string;
   name: string;
   surname: string;
   gender: string;

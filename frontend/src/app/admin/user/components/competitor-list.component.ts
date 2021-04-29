@@ -1,13 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
 import {User} from '../models/user.model';
 import {CompetitorService} from '../services/competitor.service';
+import {ErrorHandlerService} from '../services/error-handler.service';
 
 
 @Component({
     selector: 'app-competitors-list',
-    templateUrl: 'competitor-list.components.html',
+    templateUrl: 'competitor-list.component.html',
     styleUrls: ['../../../../assets/vendor/bootstrap/v4/css/bootstrap.css',
         '../../../../assets/vendor/aos/aos.css',
         '../../../../assets/vendor/font-awesome/css/all.css',
@@ -31,7 +32,7 @@ export class CompetitorListComponent implements OnInit {
     loading: boolean;
     errorOnRemoving: boolean;
 
-    constructor(private router: Router, private competitorService: CompetitorService, private modalService: NgbModal) {
+    constructor(private router: Router, private competitorService: CompetitorService, private modalService: NgbModal, private errorHandlerService: ErrorHandlerService) {
         this.hasErrorOnLoad = false;
         this.isLastPage = false;
         this.noMorePages = false;
@@ -51,7 +52,10 @@ export class CompetitorListComponent implements OnInit {
                     this.totalPages = pageOfUsers.totalPages;
                 }
             },
-            error => this.hasErrorOnLoad = true
+            error => {
+                this.hasErrorOnLoad = true;
+                this.errorHandlerService.handleError(error);
+            }
         );
         this.currentPage = 1;
     }
@@ -65,7 +69,10 @@ export class CompetitorListComponent implements OnInit {
                     this.users = this.users.concat(pageOfUsers.content);
                     this.isLastPage = pageOfUsers.last;
                 },
-                error => this.hasErrorOnLoad = true
+                error => {
+                    this.hasErrorOnLoad = true;
+                    this.errorHandlerService.handleError(error);
+                }
             );
             this.currentPage += 1;
         }
@@ -80,7 +87,10 @@ export class CompetitorListComponent implements OnInit {
                     }
                 });
             },
-            error => this.errorOnRemoving = true
+            error => {
+                this.errorOnRemoving = true;
+                this.errorHandlerService.handleError(error);
+            }
         );
     }
 

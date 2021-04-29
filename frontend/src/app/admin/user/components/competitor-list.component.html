@@ -1,4 +1,4 @@
-<div class="container pb-3">
+<div *ngIf="!hasErrorOnLoad" class="container pb-3">
     <h2 class="h2">Usuarios</h2>
     <h3 class="h3">Competidores</h3>
     <div *ngIf="noMorePages else hasContent" class="alert alert-corporative">
@@ -29,7 +29,7 @@
                     <button class="btn btn-outline-corporative" (click)="openModal(viewMoreModal)">
                         <i class="fas fa-info-circle"></i>
                     </button>
-                    <a href="/admin/user/edit/{{ user.licenseId }}" class="btn btn-outline-corporative">
+                    <a [routerLink]="['/edit/', user.licenseId]" class="btn btn-outline-corporative">
                         <i class="fas fa-pencil"></i>
                     </a>
                     <button class="btn btn-corporative" (click)="openModal(deleteModal)"
