@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {ExtraOptions, RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
-import {MyHomeComponent} from './loggedInUserPages/my-home/my-home.component';
-import {IndexComponent} from './mainPages/index/index.component';
-import {RankingComponent} from './loggedInUserPages/ranking/ranking.component';
-import {CookiePolicyComponent} from './mainPages/cookie-policy/cookie-policy.component';
-import {TermsAndConditionsOfUseComponent} from './mainPages/terms-and-conditions-of-use/terms-and-conditions-of-use.component';
-import {MyProfileComponent} from './loggedInUserPages/my-profile/my-profile.component';
-import {MyProfileEditComponent} from './loggedInUserPages/my-profile-edit/my-profile-edit.component';
+import {MyHomeComponent} from './my-home/my-home.component';
+import {IndexComponent} from './index/index.component';
+import {RankingComponent} from './ranking/ranking.component';
+import {CookiePolicyComponent} from './cookie-policy/cookie-policy.component';
+import {TermsAndConditionsOfUseComponent} from './terms-and-conditions-of-use/terms-and-conditions-of-use.component';
+import {MyProfileComponent} from './my-profile/my-profile.component';
+import {MyProfileEditComponent} from './my-profile-edit/my-profile-edit.component';
 
 const routes: Routes = [
   {path: '', component: IndexComponent},

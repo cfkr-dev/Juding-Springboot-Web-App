@@ -16,34 +16,34 @@ import {RankingComponent} from './ranking/ranking.component';
 import {MyProfileComponent} from './my-profile/my-profile.component';
 import {TermsAndConditionsOfUseComponent} from './terms-and-conditions-of-use/terms-and-conditions-of-use.component';
 import {CookiePolicyComponent} from './cookie-policy/cookie-policy.component';
-import { MyProfileEditComponent } from './my-profile-edit/my-profile-edit.component';
-import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
+import {MyProfileEditComponent} from './my-profile-edit/my-profile-edit.component';
+import {PasswordRecoveryComponent} from './password-recovery/password-recovery.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    MyHomeComponent,
-    HeaderComponent,
-    IndexComponent,
-    RankingComponent,
-    MyProfileComponent,
-    TermsAndConditionsOfUseComponent,
-    CookiePolicyComponent,
-    MyProfileEditComponent,
-    PasswordRecoveryComponent
-  ],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ChartsModule,
-    NgbModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        MyHomeComponent,
+        HeaderComponent,
+        IndexComponent,
+        RankingComponent,
+        MyProfileComponent,
+        TermsAndConditionsOfUseComponent,
+        CookiePolicyComponent,
+        MyProfileEditComponent,
+        PasswordRecoveryComponent
+    ],
+    imports: [
+        BrowserModule,
+        CommonModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        ChartsModule,
+        NgbModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

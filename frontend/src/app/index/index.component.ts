@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {PostInterface} from '../../post/post.interface';
+import {PostInterface} from '../post/post.interface';
 import {IndexService} from './index.service';
 
 interface Email {
@@ -19,7 +19,7 @@ interface Posts{
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['../../../assets/vendor/font-awesome/css/all.css', '../../../assets/css/style.css', '../../../assets/css/header.css', '../../../assets/css/bootstrapAccomodations.css'],
+  styleUrls: ['../../assets/vendor/font-awesome/css/all.css', '../../assets/css/style.css', '../../assets/css/header.css', '../../assets/css/bootstrapAccomodations.css'],
   providers: [IndexService]
 })
 export class IndexComponent implements OnInit {

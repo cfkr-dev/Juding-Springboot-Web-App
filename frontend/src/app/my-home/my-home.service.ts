@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {CompetitionInterface} from '../../competition/competition.interface';
+import {CompetitionInterface} from '../competition/competition.interface';
 import {Observable} from 'rxjs';
-import {UserInterface} from '../../user/user.interface';
+import {UserInterface} from '../user/user.interface';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({

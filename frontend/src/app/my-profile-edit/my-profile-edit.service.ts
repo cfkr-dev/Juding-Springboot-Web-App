@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {UserInterface} from '../../user/user.interface';
+import {UserInterface} from '../user/user.interface';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {ProfileEditForm} from './my-profile-edit.component';

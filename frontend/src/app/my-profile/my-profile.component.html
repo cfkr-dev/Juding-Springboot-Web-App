@@ -37,7 +37,7 @@
       </div>
       <div class="rtRow">
         <div class="width40">Cinturón</div>
-        <div class="width60">{{ beltService.getBeltByName(userInfo.belt).name }}</div>
+        <div class="width60">{{ beltService.getBeltByName(userInfo.belt).longName }}</div>
       </div>
       <div class="rtRow" *ngIf="userInfo.roles.includes('C')">
         <div class="width40">Gimnasio</div>
@@ -49,7 +49,7 @@
       </div>
       <div class="rtRow" *ngIf="userInfo.roles.includes('R')">
         <div class="width40">Rango</div>
-        <div class="width60">{{ refereeRangeService.getRangeByName(userInfo.refereeRange).name }}</div>
+        <div class="width60">{{ refereeRangeService.getRangeByName(userInfo.refereeRange).longName }}</div>
       </div>
     </div>
   </div>
@@ -62,8 +62,7 @@
       </div>
       <div class="rtRow">
         <div class="width40">Género</div>
-        <div class="width60" *ngIf="userInfo.gender == 'H'">Hombre</div>
-        <div class="width60" *ngIf="userInfo.gender == 'M'">Mujer</div>
+        <div class="width60">{{ genderService.getGenderByName(userInfo.gender).longName }}</div>
       </div>
       <div class="rtRow" *ngIf="userInfo.phone !== undefined">
         <div class="width40">Teléfono</div>
