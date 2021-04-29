@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {UserInterface} from '../user/user.interface';
-import {LoggedInUserService} from '../logged-in-user.service';
-import {BeltService} from '../auxTypes/belt.service';
-import {RefereeRangeService} from '../auxTypes/refereeRange.service';
+import {UserInterface} from '../../user/user.interface';
+import {LoggedInUserService} from '../../logged-in-user.service';
+import {BeltService} from '../../auxTypes/belt.service';
+import {RefereeRangeService} from '../../auxTypes/refereeRange.service';
 import {MyProfileEditService} from './my-profile-edit.service';
-import {ImageService} from '../image.service';
+import {ImageService} from '../../image.service';
 import {Router} from '@angular/router';
 
 export interface ProfileEditForm {
@@ -20,7 +20,7 @@ export interface ProfileEditForm {
 @Component({
   selector: 'app-my-profile-edit',
   templateUrl: './my-profile-edit.component.html',
-  styleUrls: ['../../assets/vendor/bootstrap/css/bootstrap.min.css', '../../assets/vendor/font-awesome/css/all.css', '../../assets/css/style.css', '../../assets/css/header.css', '../../assets/css/bootstrapAccomodations.css', '../../assets/css/responsiveTable.css', '../../assets/css/profiles.css'],
+  styleUrls: ['../../../assets/vendor/bootstrap/css/bootstrap.min.css', '../../../assets/vendor/font-awesome/css/all.css', '../../../assets/css/style.css', '../../../assets/css/header.css', '../../../assets/css/bootstrapAccomodations.css', '../../../assets/css/responsiveTable.css', '../../../assets/css/profiles.css'],
   providers: [MyProfileEditService]
 })
 export class MyProfileEditComponent implements OnInit {

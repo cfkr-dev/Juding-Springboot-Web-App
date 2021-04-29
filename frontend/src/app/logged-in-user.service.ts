@@ -14,4 +14,8 @@ export class LoggedInUserService {
   getLoggedUser(): Observable<UserInterface> {
     return this.http.get('/api/users/me', {withCredentials: true}) as Observable<UserInterface>;
   }
+
+  getLoggedUserImage(role: string, licenseId: string): Observable<Blob>{
+    return this.http.get('/api/' + role + '/' + licenseId + '/image', {responseType: 'blob'}) as Observable<Blob>;
+  }
 }

@@ -1,7 +1,12 @@
-<ng-container *ngIf="editProfileForm && userInfo">
+<ng-template #loading>
+  <div class="alert alert-secondary">
+    <i class="fas fa-spin fa-circle-notch"></i> Cargando...
+  </div>
+</ng-template>
+<ng-container *ngIf="editProfileForm && userInfo; else loading">
   <span class="profileModificationsTitle">Modifica tus datos</span>
-  <div class="alert alert-danger" *ngIf="error"><i class="fas fa-exclamation-triangle"></i> Se ha producido algún error
-    inesperado. Inténtalo de nuevo.
+  <div class="alert alert-danger" *ngIf="error"><i class="fas fa-exclamation-triangle"></i> Alguno de los campos no
+    verifica el formato deseado. Inténtelo de nuevo.
   </div>
   <form class="needs-validation flex-sb flex-w" method="post" enctype="multipart/form-data" novalidate
         (submit)="submitForm($event)">
@@ -86,7 +91,8 @@
         <div class="rtRow">
           <div class="width40"><label for="email">Correo electrónico</label></div>
           <div class="width60">
-            <input class="form-control" id="email" name="email" required type="email" [(ngModel)]="editProfileForm.email">
+            <input class="form-control" id="email" name="email" required type="email"
+                   [(ngModel)]="editProfileForm.email">
             <div class="invalid-feedback">
               El correo electrónico no verifica el formato requerido.
             </div>
