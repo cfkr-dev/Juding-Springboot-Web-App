@@ -65,7 +65,7 @@ public class LoggedInUserAPIController {
     })
     @GetMapping("/users/me")
     public ResponseEntity<User> me(HttpServletRequest request){
-        if (request.getUserPrincipal().getName() != null && !request.getUserPrincipal().getName().isBlank()){
+        if (request.getUserPrincipal() != null && request.getUserPrincipal().getName() != null && !request.getUserPrincipal().getName().isBlank()){
             return ResponseEntity.ok(userService.findByNickname(request.getUserPrincipal().getName()));
         } else return ResponseEntity.notFound().build();
     }
@@ -216,7 +216,7 @@ public class LoggedInUserAPIController {
                                             @Parameter(description = "HTTP Servlet Request.") HttpServletRequest request) {
         User user = userService.findByNickname(request.getUserPrincipal().getName());
         boolean isAdmin = user.isRole(Role.A);
-        if (!isAdmin && !user.getLicenseId().equals(id))
+        if (!isAdmin && !user.getLicenseId().equals(id) && !user.getLicenseId().equals(adminUserEditionDTO.getLicenseId()))
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         // A control boolean helps to check if a user is allowed to modify some values or not.
         // Edition is only allowed if user is admin or currently logged in user
