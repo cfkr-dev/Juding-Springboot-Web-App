@@ -8,6 +8,9 @@ import {CookiePolicyComponent} from './cookie-policy/cookie-policy.component';
 import {TermsAndConditionsOfUseComponent} from './terms-and-conditions-of-use/terms-and-conditions-of-use.component';
 import {MyProfileComponent} from './my-profile/my-profile.component';
 import {MyProfileEditComponent} from './my-profile-edit/my-profile-edit.component';
+          import {ListCompetitionComponent} from './competition/admin/list/list-competition.component';
+import {CompetitionDetailComponent} from './competition/competition-detail/competition-detail.component';
+
 
 const routes: Routes = [
   {path: '', component: IndexComponent},
@@ -18,7 +21,9 @@ const routes: Routes = [
   {path: 'myHome', component: MyHomeComponent},
   {path: 'ranking', component: RankingComponent},
   {path: 'myProfile', component: MyProfileComponent},
-  {path: 'myProfile/edit', component: MyProfileEditComponent}
+  {path: 'myProfile/edit', component: MyProfileEditComponent},
+  {path: 'competition/list', component: ListCompetitionComponent},
+  {path: 'competition/:id', component: CompetitionDetailComponent}
 ];
 
 const routerOptions: ExtraOptions = {

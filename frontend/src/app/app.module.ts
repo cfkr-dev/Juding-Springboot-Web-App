@@ -28,6 +28,11 @@ import {TermsAndConditionsOfUseComponent} from './terms-and-conditions-of-use/te
 import {CookiePolicyComponent} from './cookie-policy/cookie-policy.component';
 import {MyProfileEditComponent} from './my-profile-edit/my-profile-edit.component';
 import {PasswordRecoveryComponent} from './password-recovery/password-recovery.component';
+          import {CompetitionDetailComponent} from './competition/competition-detail/competition-detail.component';
+import {CompetitionFightTreeComponent} from './competition/competition-fight-tree/competition-fight-tree.component';
+import {CompetitionControlComponent} from './competition/competition-control/competition-control.component';
+          import {ListCompetitionComponent} from './competition/admin/list/list-competition.component';
+
 
 @NgModule({
     declarations: [
@@ -41,7 +46,11 @@ import {PasswordRecoveryComponent} from './password-recovery/password-recovery.c
         TermsAndConditionsOfUseComponent,
         CookiePolicyComponent,
         MyProfileEditComponent,
-        PasswordRecoveryComponent
+        PasswordRecoveryComponent,
+          CompetitionDetailComponent,
+        CompetitionFightTreeComponent,
+        CompetitionControlComponent,
+        ListCompetitionComponent
     ],
     imports: [
         BrowserModule,
