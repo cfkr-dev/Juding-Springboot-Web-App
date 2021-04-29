@@ -53,7 +53,7 @@ $(function () {
                     "minWeight": $("#minWeight").val(),
                     "maxWeight": $("#maxWeight").val()
                 },
-                url: "/api/formCheck/competitionUpdate",
+                url: "/api/formValidation/competitions/alteration",
                 method: "get"
             }).done((ans) => {
                 if (ans === 3) {
@@ -93,7 +93,7 @@ $(function () {
                     "minWeight": $("#minWeight").val(),
                     "maxWeight": $("#maxWeight").val()
                 },
-                url: "/api/formCheck/competitionCreation",
+                url: "/api/formValidation/competitions/new",
                 method: "get"
             }).done((ans) => {
                 if (ans === 3) {
@@ -131,7 +131,7 @@ $(function () {
                     "licenseId": $("#licenseId").val(),
                     "nickname": $("#nickname").val()
                 },
-                url: "/api/formCheck/userUpdate",
+                url: "/api/formValidation/users/alteration",
                 method: "get"
             }).done((ans) => {
                 if (ans) {
@@ -159,7 +159,7 @@ $(function () {
                     "licenseId": $("#licenseId").val(),
                     "nickname": $("#nickname").val()
                 },
-                url: "/api/formCheck/newUser",
+                url: "/api/formValidation/users/new",
                 method: "get"
             }).done((ans) => {
                 if (ans === 3) {

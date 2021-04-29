@@ -143,7 +143,6 @@ button{
 .container-login100 {
     width: 100%;
     z-index: -1;
-    height: 100vh;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -162,7 +161,6 @@ button{
     background: #fff;
     border-radius: 10px;
     position: center;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 

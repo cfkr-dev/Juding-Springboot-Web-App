@@ -6,70 +6,7 @@ servers:
 - url: https://localhost:8443
   description: Generated server url
 paths:
-  /api/passwordRecovery:
-    put:
-      tags:
-      - index-api-controller
-      summary: "Recovery password method (including licenseId, correct security answer\
-        \ and new password)."
-      operationId: passwordRecovery
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RecoverPasswordDTO'
-        required: true
-      responses:
-        "400":
-          description: Bad request since user was not found by its license ID or security
-            answer was incorrect.
-        "200":
-          description: User saved with its new password.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-  /api/me/myProfile:
-    get:
-      tags:
-      - logged-in-user-api-controller
-      summary: Returns logged in user profile data.
-      operationId: me
-      responses:
-        "403":
-          description: Not allowed (user is not logged in).
-        "404":
-          description: Currently logged in user was not found.
-        "200":
-          description: User profile information.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-    put:
-      tags:
-      - logged-in-user-api-controller
-      summary: Saves new information for some values relating to currently logged
-        in user.
-      operationId: editingUser
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UserProfileDTO'
-        required: true
-      responses:
-        "403":
-          description: Not allowed (user is not logged in).
-        "200":
-          description: User profile information with changed values.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-        "404":
-          description: Currently logged in user was not found.
-  /api/image/{type}/{id}:
+  /api/{type}/{id}/image:
     get:
       tags:
       - image-api-controller
@@ -90,11 +27,11 @@ paths:
         schema:
           type: string
       responses:
+        "400":
+          description: Image was not properly processed.
         "404":
           description: Image could not be found (because entity instance does not
             exist or it does not have associated image).
-        "400":
-          description: Image was not properly processed.
         "403":
           description: Current logged user is not authorized to download this image.
         "200":
@@ -142,84 +79,19 @@ paths:
                 oneOf:
                 - $ref: '#/components/schemas/User'
                 - $ref: '#/components/schemas/Post'
+        "400":
+          description: Image was not properly processed.
         "403":
           description: Current logged user is not authorized to upload or change this
             image.
-        "400":
-          description: Image was not properly processed.
-  /api/competition/{idCompetition}:
-    get:
-      tags:
-      - competition-api-controller
-      summary: Gets a competition using its identifier (ID)
-      operationId: showCompetition
-      parameters:
-      - name: idCompetition
-        in: path
-        description: Identifier of competition to be obtained
-        required: true
-        schema:
-          type: string
-      responses:
-        "404":
-          description: Request is invalid because of empty or non-existant competition
-            retrieve
-        "200":
-          description: Obtaining the competition
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Competition'
-    put:
-      tags:
-      - competition-api-controller
-      summary: Registration of a user to a competition.
-      operationId: joinCompetition
-      parameters:
-      - name: idCompetition
-        in: path
-        description: Identifier of the competition
-        required: true
-        schema:
-          type: string
-      responses:
-        "500":
-          description: Join cannot be made because it was already made.
-        "200":
-          description: Join successfully completed.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Competition'
-  /api/competition/control:
-    put:
-      tags:
-      - referee-control-api-controller
-      summary: Saves the result of a competition
-      operationId: controlCompetition
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CompetitionResultDTO'
-        required: true
-      responses:
-        "200":
-          description: Save successfully completed
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CompetitionResultDTO'
-        "404":
-          description: Request is invalid because of non-finished competition retrieve
-  /api/admin/user/refereeApplication/{licenseId}:
+  /api/referees/applications/{id}:
     put:
       tags:
       - admin-user-api-controller
       summary: Process a referee's application and saves it as an official referee.
       operationId: admitReferee
       parameters:
-      - name: licenseId
+      - name: id
         in: path
         description: License ID of admitted referee.
         required: true
@@ -228,56 +100,33 @@ paths:
       responses:
         "403":
           description: Not allowed (there is not logged in user or it is not an administrator).
+        "400":
+          description: Requested license ID is not registered in the application or
+            referee has been admitted before.
         "200":
           description: New referee's complete information.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-        "400":
-          description: Requested license ID is not registered in the application or
-            referee has been admitted before
-  /api/admin/user/:
-    put:
-      tags:
-      - admin-user-api-controller
-      summary: Saves new information associated with a user and returns the user with
-        the new information modified.
-      operationId: savingUser
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AdminUserEditionDTO'
-        required: true
-      responses:
-        "403":
-          description: Not allowed (there is not logged in user or it is not an administrator).
-        "201":
-          description: User object with new information saved.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-  /api/admin/post/:
+  /api/posts/{id}:
     get:
       tags:
-      - admin-post-api-controller
-      summary: Get a list with posts (paginated)
-      operationId: getPostPage
+      - post-api-controller
+      summary: Get a simple post.
+      operationId: newsPost
       parameters:
-      - name: page
-        in: query
-        description: Number of page to be searched
-        required: false
+      - name: id
+        in: path
+        description: Unique identifier of a post.
+        required: true
         schema:
-          type: integer
-          format: int32
+          type: string
       responses:
-        "400":
-          description: Request is invalid because of empty or non-existant page retrieve
+        "404":
+          description: Resource not found.
         "200":
-          description: Page with more than one post
+          description: Found the post.
           content:
             application/json:
               schema:
@@ -289,6 +138,13 @@ paths:
       - admin-post-api-controller
       summary: Updates a post.
       operationId: updatePost
+      parameters:
+      - name: id
+        in: path
+        description: ID of post.
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -297,99 +153,387 @@ paths:
         required: true
       responses:
         "500":
-          description: Post cannot be modified on the basis of failed data
+          description: Post cannot be modified on the basis of failed data.
         "200":
-          description: Edit the post
+          description: Edit the post.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Post'
-    post:
+    delete:
       tags:
       - admin-post-api-controller
-      summary: Creates a new post
-      operationId: addNewPost
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PostDTO'
+      summary: Deletes a post.
+      operationId: deletePost
+      parameters:
+      - name: id
+        in: path
+        description: Post id.
         required: true
+        schema:
+          type: string
       responses:
-        "500":
-          description: Post cannot be created on the basis of failed data
         "200":
-          description: Creation of a new post
+          description: Elimination successfully completed.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Post'
-  /api/admin/competition/:
+        "404":
+          description: Request is invalid because of empty or non-existent post retrieve.
+  /api/passwordRecovery:
+    put:
+      tags:
+      - index-api-controller
+      summary: "Recovery password method (including licenseId, correct security answer\
+        \ and new password)."
+      operationId: passwordRecovery
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecoverPasswordDTO'
+        required: true
+      responses:
+        "400":
+          description: Bad request since user was not found by its license ID or security
+            answer was incorrect.
+        "200":
+          description: User saved with its new password.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/competitors/{id}:
     get:
       tags:
+      - logged-in-user-api-controller
+      summary: Returns user profile data.
+      operationId: profileInfo
+      parameters:
+      - name: id
+        in: path
+        description: ID of user.
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: Requested user was not found.
+        "200":
+          description: User profile information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "403":
+          description: Not allowed.
+    put:
+      tags:
+      - logged-in-user-api-controller
+      summary: Saves new information for some values relating to currently logged
+        in user.
+      operationId: editingUser
+      parameters:
+      - name: id
+        in: path
+        description: ID of the user.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminUserEditionDTO'
+        required: true
+      responses:
+        "403":
+          description: Not allowed (user is not logged in).
+        "200":
+          description: User profile information with changed values.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "404":
+          description: Currently logged in user was not found.
+    delete:
+      tags:
+      - admin-user-api-controller
+      summary: Deletes a user.
+      description: "Warning: this method is only successful if user has not taken\
+        \ part of any competition previously or if it has joined no one."
+      operationId: deleteUser
+      parameters:
+      - name: id
+        in: path
+        description: License ID of user.
+        required: true
+        schema:
+          type: string
+      responses:
+        "403":
+          description: Not allowed (there is not logged in user or it is not an administrator).
+        "404":
+          description: Not able to delete user (user did not exist or user has taken
+            part of any past or future competition).
+        "200":
+          description: User deleted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/referees/{id}:
+    get:
+      tags:
+      - logged-in-user-api-controller
+      summary: Returns user profile data.
+      operationId: profileInfo_1
+      parameters:
+      - name: id
+        in: path
+        description: ID of user.
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: Requested user was not found.
+        "200":
+          description: User profile information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "403":
+          description: Not allowed.
+    put:
+      tags:
+      - logged-in-user-api-controller
+      summary: Saves new information for some values relating to currently logged
+        in user.
+      operationId: editingUser_1
+      parameters:
+      - name: id
+        in: path
+        description: ID of the user.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminUserEditionDTO'
+        required: true
+      responses:
+        "403":
+          description: Not allowed (user is not logged in).
+        "200":
+          description: User profile information with changed values.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "404":
+          description: Currently logged in user was not found.
+    delete:
+      tags:
+      - admin-user-api-controller
+      summary: Deletes a user.
+      description: "Warning: this method is only successful if user has not taken\
+        \ part of any competition previously or if it has joined no one."
+      operationId: deleteUser_1
+      parameters:
+      - name: id
+        in: path
+        description: License ID of user.
+        required: true
+        schema:
+          type: string
+      responses:
+        "403":
+          description: Not allowed (there is not logged in user or it is not an administrator).
+        "404":
+          description: Not able to delete user (user did not exist or user has taken
+            part of any past or future competition).
+        "200":
+          description: User deleted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/competitions/{id}:
+    get:
+      tags:
+      - competition-api-controller
+      summary: Gets a competition using its identifier (ID).
+      operationId: showCompetition
+      parameters:
+      - name: id
+        in: path
+        description: Identifier of competition to be obtained.
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Obtaining the competition.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+        "404":
+          description: Request is invalid because of empty or non-existent competition
+            retrieve.
+    put:
+      tags:
       - admin-competition-api-controller
-      summary: Get a list with the competitions (paginated)
-      operationId: getCompetitionPage
+      summary: Edition of existing competition.
+      operationId: updatingCompetitionInfo
+      parameters:
+      - name: id
+        in: path
+        description: ID of competition.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompetitionDTO'
+        required: true
+      responses:
+        "500":
+          description: Competition cannot be modified on the basis of failed data.
+        "200":
+          description: Edit the competition.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompetitionDTO'
+    delete:
+      tags:
+      - admin-competition-api-controller
+      summary: Elimination of a competition.
+      operationId: showCompetitionToDelete
+      parameters:
+      - name: id
+        in: path
+        description: Identifier of competition to be deleted.
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Elimination successfully completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+        "404":
+          description: Request is invalid because of empty or non-existent competition
+            retrieve.
+  /api/competitions/{id}/control:
+    put:
+      tags:
+      - referee-control-api-controller
+      summary: Saves the result of a competition.
+      operationId: controlCompetition
+      parameters:
+      - name: id
+        in: path
+        description: ID of the competition.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompetitionResultDTO'
+        required: true
+      responses:
+        "200":
+          description: Save successfully completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompetitionResultDTO'
+        "404":
+          description: Request is invalid because of non-finished competition retrieve.
+  /api/competitions/members/{id}:
+    put:
+      tags:
+      - competition-api-controller
+      summary: Registration of a user to a competition.
+      operationId: joinCompetition
+      parameters:
+      - name: id
+        in: path
+        description: Identifier of the competition.
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Join successfully completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+        "400":
+          description: Join cannot be made because user was already joined or on the
+            basis of failed data.
+  /api/refresh:
+    post:
+      tags:
+      - index-api-controller
+      summary: Refreshing of token.
+      operationId: refreshToken
+      parameters:
+      - name: refreshToken
+        in: cookie
+        description: Refresh token.
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Refreshing of token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/referees:
+    get:
+      tags:
+      - admin-user-api-controller
+      summary: Returns a list with all referees registered in the application (paginated).
+      operationId: refereeList
       parameters:
       - name: page
         in: query
-        description: Number of page to be searched
+        description: Requested page number.
         required: false
         schema:
           type: integer
           format: int32
       responses:
+        "403":
+          description: Not allowed (there is not logged in user or it is not an administrator).
+        "400":
+          description: Requested page does not exist.
         "200":
-          description: Page with more than one competition
+          description: Page with referees.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Competition'
-        "400":
-          description: Request is invalid because of empty or non-existant page retrieve
-    put:
-      tags:
-      - admin-competition-api-controller
-      summary: Existing competition edition
-      operationId: updatingCompetitionInfo
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CompetitionDTO'
-        required: true
-      responses:
-        "200":
-          description: Edit the competition
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CompetitionDTO'
-        "500":
-          description: Competition cannot be modified on the basis of failed data
-    post:
-      tags:
-      - admin-competition-api-controller
-      summary: Post a new competition
-      operationId: addCompetition
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CompetitionDTO'
-        required: true
-      responses:
-        "200":
-          description: Creation of a new competition
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CompetitionDTO'
-        "500":
-          description: Competition cannot be created on the basis of failed data
-  /api/signUp/referee:
+                  $ref: '#/components/schemas/User'
     post:
       tags:
       - index-api-controller
@@ -402,15 +546,138 @@ paths:
               $ref: '#/components/schemas/RefereeDTO'
         required: true
       responses:
-        "400":
-          description: Request could not be completed successfully.
         "201":
           description: Successful application.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-  /api/signUp/competitor:
+        "400":
+          description: Request could not be completed successfully.
+  /api/posts:
+    get:
+      tags:
+      - post-api-controller
+      summary: Get a list with the posts to view (paginated).
+      operationId: getPage
+      parameters:
+      - name: page
+        in: query
+        description: Page number.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        description: Size of the post list to show.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: Page with more than one post to view.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+        "400":
+          description: Request is invalid because of empty or non-existent page retrieve.
+    post:
+      tags:
+      - admin-post-api-controller
+      summary: Creates a new post.
+      operationId: addNewPost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostDTO'
+        required: true
+      responses:
+        "200":
+          description: Creation of a new post.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        "500":
+          description: Post cannot be created on the basis of failed data.
+  /api/logout:
+    post:
+      tags:
+      - index-api-controller
+      summary: Logout from application and deletion of cookies.
+      operationId: logOut
+      responses:
+        "200":
+          description: Confirmation of logout.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/login:
+    post:
+      tags:
+      - index-api-controller
+      summary: Login into application (via JWT).
+      operationId: login
+      parameters:
+      - name: accessToken
+        in: cookie
+        description: Access token.
+        required: false
+        schema:
+          type: string
+      - name: refreshToken
+        in: cookie
+        description: Refresh token.
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        "200":
+          description: Login into application (via JWT).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/competitors:
+    get:
+      tags:
+      - admin-user-api-controller
+      summary: Returns a list with all competitors registered in the application (paginated).
+      operationId: competitorList
+      parameters:
+      - name: page
+        in: query
+        description: Requested page number.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "403":
+          description: Not allowed (there is not logged in user or it is not an administrator).
+        "200":
+          description: Page with competitors.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        "400":
+          description: Requested page does not exist.
     post:
       tags:
       - index-api-controller
@@ -423,109 +690,60 @@ paths:
               $ref: '#/components/schemas/CompetitorDTO'
         required: true
       responses:
-        "400":
-          description: Request could not be completed successfully.
         "201":
           description: Successful sign up.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-  /api/refresh:
-    post:
+        "400":
+          description: Request could not be completed successfully.
+  /api/competitions:
+    get:
       tags:
-      - index-api-controller
-      summary: Refreshing of token
-      operationId: refreshToken
+      - admin-competition-api-controller
+      summary: Get a list with the competitions (paginated).
+      operationId: getCompetitionPage
       parameters:
-      - name: refreshToken
-        in: cookie
-        description: Refresh token
+      - name: page
+        in: query
+        description: Number of page to be searched.
         required: false
         schema:
-          type: string
+          type: integer
+          format: int32
       responses:
         "200":
-          description: Refreshing of token
+          description: Page with more than one competition.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthResponse'
-  /api/logout:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Competition'
+        "400":
+          description: Request is invalid because of empty or non-existent page retrieve.
     post:
       tags:
-      - index-api-controller
-      summary: Logout from application and deletion of cookies
-      operationId: logOut
-      responses:
-        "200":
-          description: Confirmation of logout
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthResponse'
-  /api/login:
-    post:
-      tags:
-      - index-api-controller
-      summary: Login into application (via JWT)
-      operationId: login
-      parameters:
-      - name: accessToken
-        in: cookie
-        description: Access token
-        required: false
-        schema:
-          type: string
-      - name: refreshToken
-        in: cookie
-        description: Refresh token
-        required: false
-        schema:
-          type: string
+      - admin-competition-api-controller
+      summary: Add a new competition.
+      operationId: addCompetition
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LoginRequest'
+              $ref: '#/components/schemas/CompetitionDTO'
         required: true
       responses:
         "200":
-          description: Login into application (via JWT)
+          description: Creation of a new competition.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthResponse'
-  /myCharts:
-    get:
-      tags:
-      - chart-rest-controller
-      summary: Returns the required information for building competitor charts FOR
-        REST API.
-      description: It has to be in a different method because of JWT authentication.
-      operationId: competitorChartInformation
-      parameters:
-      - name: licenseId
-        in: query
-        description: License ID of competitor.
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          description: Information for charts in a list.
-          content:
-            text/plain:
-              schema:
-                type: array
-                items:
-                  type: integer
-        "403":
-          description: Not allowed (there is not logged in user).
-        "404":
-          description: "Not able to return chart info (user is not a competitor, so\
-            \ it doesn't have chart information)."
-  /competition/{idCompetition}/control/saveResult:
+                $ref: '#/components/schemas/CompetitionDTO'
+        "500":
+          description: Competition cannot be created on the basis of failed data.
+  /competitions/{idCompetition}/control:
     get:
       tags:
       - referee-control-controller
@@ -553,6 +771,23 @@ paths:
             '*/*':
               schema:
                 type: boolean
+  /api/referees/applications:
+    get:
+      tags:
+      - admin-user-api-controller
+      summary: Returns a list with all registered referee applications.
+      operationId: applicantList
+      responses:
+        "403":
+          description: Not allowed (there is not logged in user or it is not an administrator).
+        "200":
+          description: List of referee applications.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
   /api/ranking:
     get:
       tags:
@@ -571,166 +806,30 @@ paths:
                   $ref: '#/components/schemas/RankingDTO'
         "403":
           description: Not allowed (user is not logged in).
-  /api/posts:
-    get:
-      tags:
-      - post-api-controller
-      summary: Get a simple post
-      operationId: newsPost
-      parameters:
-      - name: id
-        in: query
-        description: Unique identifier of a post.
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          description: Found the post
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Post'
-        "404":
-          description: Resource not found
   /api/posts/recent:
     get:
       tags:
       - post-api-controller
-      summary: Get a recent post list
+      summary: Get a recent post list.
       operationId: recentNews
       parameters:
-      - name: id
+      - name: dismissedPost
         in: query
-        description: Post ID to identify it
+        description: Post ID to dismiss.
         required: true
         schema:
           type: string
       responses:
+        "404":
+          description: Resource not found.
         "200":
-          description: Found the list
+          description: Found the list.
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/Post'
-        "404":
-          description: Resource not found
-  /api/posts/page:
-    get:
-      tags:
-      - post-api-controller
-      summary: Get a list with the posts to view (paginated)
-      operationId: getPage
-      parameters:
-      - name: page
-        in: query
-        description: Number of page to be searched
-        required: false
-        schema:
-          type: integer
-          format: int32
-      responses:
-        "400":
-          description: Request is invalid because of empty or non-existant page retrieve
-        "200":
-          description: Page with more than one post to view
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Post'
-  /api/me/pastCompetitions:
-    get:
-      tags:
-      - logged-in-user-api-controller
-      summary: Returns a list of past competitions of currently logged-in user.
-      operationId: pastCompetitions
-      responses:
-        "403":
-          description: Not allowed (user is not logged in).
-        "200":
-          description: List of past competitions of currently logged-in user.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Competition_MainAttributes'
-        "404":
-          description: Currently logged in user was not found.
-  /api/me/myCharts:
-    get:
-      tags:
-      - chart-rest-controller
-      summary: Returns the required information for building competitor charts FOR
-        REST API.
-      description: It has to be in a different method because of JWT authentication.
-      operationId: competitorRestChartInformation
-      responses:
-        "200":
-          description: Information for charts in a list.
-          content:
-            text/plain:
-              schema:
-                type: array
-                items:
-                  type: integer
-        "403":
-          description: Not allowed (there is not logged in user).
-        "404":
-          description: "Not able to return chart info (user is not a competitor, so\
-            \ it doesn't have chart information)."
-  /api/me/futureCompetitions:
-    get:
-      tags:
-      - logged-in-user-api-controller
-      summary: Returns a list of future competitions of logged-in user.
-      description: This method can distinguish if user has joined them or not.
-      operationId: futureCompetitions
-      parameters:
-      - name: joined
-        in: query
-        description: "True if returning joined future competitions, false otherwise."
-        required: false
-        schema:
-          type: string
-      responses:
-        "403":
-          description: Not allowed (user is not logged in).
-        "404":
-          description: Currently logged in user was not found.
-        "200":
-          description: List of future competitions.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Competition_MainAttributes'
-  /api/me/currentCompetitions:
-    get:
-      tags:
-      - logged-in-user-api-controller
-      summary: Returns a list of current competitions of logged-in user.
-      operationId: currentCompetitions
-      responses:
-        "403":
-          description: Not allowed (user is not logged in).
-        "200":
-          description: List of current competitions of logged-in user.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Competition_MainAttributes'
-        "404":
-          description: Currently logged in user was not found.
   /api/index-email:
     get:
       tags:
@@ -764,41 +863,13 @@ paths:
         schema:
           type: string
       responses:
+        "400":
+          description: Email could not be correctly sent.
         "200":
           description: Email was sent properly.
           content:
             application/json: {}
-        "400":
-          description: Email could not be correctly sent.
-  /api/formCheck/userUpdate:
-    get:
-      tags:
-      - form-validation-rest-controller
-      summary: Checks if the data introduced (license ID and nickname) by the user
-        are not duplicated in the database.
-      description: License ID and nickname have to be unique when updating a user.
-      operationId: update
-      parameters:
-      - name: licenseId
-        in: query
-        description: License ID of the user.
-        required: true
-        schema:
-          type: string
-      - name: nickname
-        in: query
-        description: Nickname of the user.
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          description: Checking was successful.
-          content:
-            text/plain:
-              schema:
-                type: integer
-  /api/formCheck/newUser:
+  /api/formValidation/users/new:
     get:
       tags:
       - form-validation-rest-controller
@@ -826,35 +897,24 @@ paths:
             text/plain:
               schema:
                 type: integer
-  /api/formCheck/competitionUpdate:
+  /api/formValidation/users/alteration:
     get:
       tags:
       - form-validation-rest-controller
-      summary: Checks if the values introduced by the user are correct when updating
-        a competition.
-      operationId: checkingUpdatedCompetitionData
+      summary: Checks if the data introduced (license ID and nickname) by the user
+        are not duplicated in the database.
+      description: License ID and nickname have to be unique when updating a user.
+      operationId: update
       parameters:
-      - name: startDate
+      - name: licenseId
         in: query
-        description: The start date of a competition.
+        description: License ID of the user.
         required: true
         schema:
           type: string
-      - name: endDate
+      - name: nickname
         in: query
-        description: The end date of a competition.
-        required: true
-        schema:
-          type: string
-      - name: minWeight
-        in: query
-        description: Min Weight introduced.
-        required: true
-        schema:
-          type: string
-      - name: maxWeight
-        in: query
-        description: Max Weight introduced.
+        description: Nickname of the user.
         required: true
         schema:
           type: string
@@ -865,7 +925,7 @@ paths:
             text/plain:
               schema:
                 type: integer
-  /api/formCheck/competitionCreation:
+  /api/formValidation/competitions/new:
     get:
       tags:
       - form-validation-rest-controller
@@ -904,163 +964,159 @@ paths:
             text/plain:
               schema:
                 type: integer
-  /api/admin/user/referees:
+  /api/formValidation/competitions/alteration:
     get:
       tags:
-      - admin-user-api-controller
-      summary: Returns a list with all referees registered in the application (paginated).
-      operationId: refereeList
+      - form-validation-rest-controller
+      summary: Checks if the values introduced by the user are correct when updating
+        a competition.
+      operationId: checkingUpdatedCompetitionData
       parameters:
-      - name: page
+      - name: startDate
         in: query
-        description: Requested page number.
-        required: false
+        description: The start date of a competition.
+        required: true
         schema:
-          type: integer
-          format: int32
-      responses:
-        "403":
-          description: Not allowed (there is not logged in user or it is not an administrator).
-        "200":
-          description: Page with referees.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/User'
-        "400":
-          description: Requested page does not exist.
-  /api/admin/user/referees/applications:
-    get:
-      tags:
-      - admin-user-api-controller
-      summary: Returns a list with all registered referee applications.
-      operationId: applicantList
-      responses:
-        "200":
-          description: List of referee applications.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/User'
-        "403":
-          description: Not allowed (there is not logged in user or it is not an administrator).
-  /api/admin/user/competitors:
-    get:
-      tags:
-      - admin-user-api-controller
-      summary: Returns a list with all competitors registered in the application (paginated).
-      operationId: competitorList
-      parameters:
-      - name: page
+          type: string
+      - name: endDate
         in: query
-        description: Requested page number.
-        required: false
+        description: The end date of a competition.
+        required: true
         schema:
-          type: integer
-          format: int32
-      responses:
-        "200":
-          description: Page with competitors.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/User'
-        "403":
-          description: Not allowed (there is not logged in user or it is not an administrator).
-        "400":
-          description: Requested page does not exist.
-  /api/admin/user/{licenseId}:
-    delete:
-      tags:
-      - admin-user-api-controller
-      summary: Deletes a user.
-      description: "Warning: this method is only successful if user has not taken\
-        \ part of any competition previously or if it has joined no one."
-      operationId: deleteUser
-      parameters:
-      - name: licenseId
-        in: path
-        description: License ID of user.
+          type: string
+      - name: minWeight
+        in: query
+        description: Min Weight introduced.
+        required: true
+        schema:
+          type: string
+      - name: maxWeight
+        in: query
+        description: Max Weight introduced.
         required: true
         schema:
           type: string
       responses:
-        "403":
-          description: Not allowed (there is not logged in user or it is not an administrator).
-        "404":
-          description: Not able to delete user (user did not exist or user has taken
-            part of any past or future competition)
         "200":
-          description: User deleted.
+          description: Checking was successful.
           content:
-            application/json:
+            text/plain:
               schema:
-                $ref: '#/components/schemas/User'
-  /api/admin/post/{id}:
-    delete:
+                type: integer
+  /api/competitors/points/{id}:
+    get:
       tags:
-      - admin-post-api-controller
-      summary: Deletes a post.
-      operationId: deletePost
+      - logged-in-user-api-controller
+      summary: Returns user profile data.
+      operationId: chartInfo
       parameters:
       - name: id
         in: path
-        description: Post id
+        description: ID of user.
         required: true
         schema:
           type: string
       responses:
         "404":
-          description: Request is invalid because of empty or non-existant post retrieve
+          description: Requested user was not found.
+        "403":
+          description: Not allowed.
         "200":
-          description: Elimination successfully completed
+          description: User chart information.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Post'
-  /api/admin/competition/{idCompetition}:
-    delete:
+                type: array
+                items:
+                  type: integer
+                  format: int32
+  /api/competitions/{id}/past:
+    get:
       tags:
-      - admin-competition-api-controller
-      summary: Elimination of a competition
-      operationId: showCompetitionToDelete
+      - logged-in-user-api-controller
+      summary: Returns a list of past competitions of currently logged-in user.
+      operationId: pastCompetitions
       parameters:
-      - name: idCompetition
+      - name: id
         in: path
-        description: Identifier of competition to be deleted
+        description: ID of user.
         required: true
         schema:
           type: string
       responses:
-        "404":
-          description: Request is invalid because of empty or non-existant competition
-            retrieve
+        "403":
+          description: Not allowed (user is not logged in).
         "200":
-          description: Elimination successfully completed
+          description: List of past competitions of currently logged-in user.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Competition'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Competition_MainAttributes'
+        "404":
+          description: Currently logged in user was not found.
+  /api/competitions/{id}/future:
+    get:
+      tags:
+      - logged-in-user-api-controller
+      summary: Returns a list of future competitions of logged-in user.
+      description: This method can distinguish if user has joined them or not.
+      operationId: pastCompetitions_1
+      parameters:
+      - name: joined
+        in: query
+        description: "True if returning joined future competitions, false otherwise."
+        required: false
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ID of user.
+        required: true
+        schema:
+          type: string
+      responses:
+        "403":
+          description: Not allowed (user is not logged in).
+        "200":
+          description: List of future competitions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Competition_MainAttributes'
+        "404":
+          description: Currently logged in user was not found.
+  /api/competitions/{id}/current:
+    get:
+      tags:
+      - logged-in-user-api-controller
+      summary: Returns a list of current competitions of logged-in user.
+      operationId: currentCompetitions
+      parameters:
+      - name: id
+        in: path
+        description: ID of user.
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: List of current competitions of logged-in user.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Competition_MainAttributes'
+        "403":
+          description: Not allowed (user is not logged in).
+        "404":
+          description: Currently logged in user was not found.
 components:
   schemas:
-    RecoverPasswordDTO:
-      type: object
-      properties:
-        licenseId:
-          pattern: "JU-[0-9]{10}$|[0-9]{10}$"
-          type: string
-        securityAnswer:
-          type: string
-        newPassword:
-          pattern: "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-          type: string
-      description: Recover password Data Transfer Object.
     User:
       type: object
       properties:
@@ -1137,28 +1193,6 @@ components:
           type: string
         birthdate:
           type: string
-    UserProfileDTO:
-      type: object
-      properties:
-        licenseId:
-          type: string
-        belt:
-          pattern: "B|BAm|Am|AmN|NV|V|VAz|Az|AzM|M|N10|N[1-9]?"
-          type: string
-        gym:
-          type: string
-        weight:
-          type: integer
-          format: int32
-        refereeRange:
-          type: string
-        phone:
-          pattern: "(?=.*\\d).{9}"
-          type: string
-        email:
-          pattern: "^[A-Za-z0-9+_.-]+@(.+)$"
-          type: string
-      description: User profile Data Transfer Object.
     Post:
       type: object
       properties:
@@ -1171,50 +1205,33 @@ components:
           type: string
         body:
           type: string
-        mimeImage:
-          type: string
         timestamp:
           type: string
           format: date-time
         formattedEditionTimestamp:
           type: string
-    Competition:
+        imageFile:
+          type: string
+    PostDTO:
       type: object
       properties:
-        idCompetition:
-          type: integer
-          format: int32
-        shortName:
+        title:
           type: string
-        additionalInfo:
+        body:
           type: string
-        minWeight:
-          type: integer
-          format: int32
-        maxWeight:
-          type: integer
-          format: int32
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-        referee:
-          $ref: '#/components/schemas/User'
-        formattedStartDate:
-          type: string
-        formattedEndDate:
-          type: string
-    CompetitionResultDTO:
+      description: Post DTO.
+    RecoverPasswordDTO:
       type: object
       properties:
-        idCompetition:
+        licenseId:
+          pattern: "JU-[0-9]{10}$|[0-9]{10}$"
           type: string
-        winner:
+        securityAnswer:
           type: string
-        loser:
+        newPassword:
+          pattern: "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           type: string
+      description: Recover password Data Transfer Object.
     AdminUserEditionDTO:
       type: object
       properties:
@@ -1245,6 +1262,10 @@ components:
         belt:
           pattern: "B|BAm|Am|AmN|NV|V|VAz|Az|AzM|M|N10|N[1-9]?"
           type: string
+        securityQuestion:
+          type: string
+        securityAnswer:
+          type: string
         gym:
           type: string
         weight:
@@ -1252,21 +1273,11 @@ components:
           format: int32
         refereeRange:
           type: string
-      description: Admin user edition Data Transfer Object.
-    PostDTO:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-        body:
-          type: string
-      description: Post DTO
+      description: Admin Data Transfer Object.
     CompetitionDTO:
       type: object
       properties:
-        idCompetition:
+        id:
           type: string
         shortName:
           type: string
@@ -1283,6 +1294,55 @@ components:
           pattern: "^([0-2][0-9]|3[0-1])/(0[0-9]|1[0-2])/([0-9][0-9])?[0-9][0-9] [012]?[0-9]:[0-5][0-9]$"
           type: string
         referee:
+          type: string
+    CompetitionResultDTO:
+      type: object
+      properties:
+        idCompetition:
+          type: string
+        winner:
+          type: string
+        loser:
+          type: string
+    Competition:
+      type: object
+      properties:
+        idCompetition:
+          type: integer
+          format: int32
+        shortName:
+          type: string
+        additionalInfo:
+          type: string
+        minWeight:
+          type: integer
+          format: int32
+        maxWeight:
+          type: integer
+          format: int32
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        referee:
+          $ref: '#/components/schemas/User'
+        formattedStartDate:
+          type: string
+        formattedEndDate:
+          type: string
+    AuthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILURE
+        message:
+          type: string
+        error:
           type: string
     RefereeDTO:
       type: object
@@ -1322,6 +1382,14 @@ components:
         securityAnswer:
           type: string
       description: Referee Data Transfer Object.
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      description: Login request.
     CompetitorDTO:
       type: object
       properties:
@@ -1365,26 +1433,6 @@ components:
           type: integer
           format: int32
       description: Competitor Data Transfer Object.
-    AuthResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - SUCCESS
-          - FAILURE
-        message:
-          type: string
-        error:
-          type: string
-    LoginRequest:
-      type: object
-      properties:
-        username:
-          type: string
-        password:
-          type: string
-      description: Login request
     RankingDTO:
       type: object
       properties:
@@ -1405,6 +1453,8 @@ components:
         dni:
           type: string
         belt:
+          type: string
+        imageFile:
           type: string
     Competition_MainAttributes:
       type: object

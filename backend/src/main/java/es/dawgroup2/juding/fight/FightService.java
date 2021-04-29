@@ -35,8 +35,7 @@ public class FightService {
      * @return True if partakes, false otherwise.
      */
     public boolean checkParticipation(Competition competition, User user) {
-        int a = fightRepository.countByCompetitionAndLevelInTreeAndWinnerOrLoser(competition, 3, user);
-        return a > 0;
+        return fightRepository.countByCompetitionAndLevelInTreeAndWinnerOrLoser(competition, 3, user) > 0;
     }
 
     /**
