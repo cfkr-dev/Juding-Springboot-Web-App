@@ -1,14 +1,14 @@
 <h3 class="competitionSub">Árbol de competición</h3>
 <div id="wrapper">
-    <div *ngIf="fightsList[0].isFinished; else otherCont">
+    <div *ngIf="fightsList[0].finished; else otherCont">
         <span class="label winner">{{fightsList[0].winner.nickname}}</span>
     </div>
     <div class="branch lv1">
         <div class="entry">
-            <div *ngIf="fightsList[1].isFinished; else otherCont">
+            <div *ngIf="fightsList[1].finished; else otherCont">
                 <div *ngIf="fightsList[1].winner !== null">
                                           <span
-                                              [ngClass]="{'label': true, 'finished': fightsList[0].isFinished, 'notFinished': !fightsList[0].isFinished}"> {{fightsList[1].winner.nickname}} </span>
+                                              [ngClass]="{'label': true, 'finished': fightsList[0].finished, 'notFinished': !fightsList[0].finished}"> {{fightsList[1].winner.nickname}} </span>
                 </div>
                 <div *ngIf="fightsList[1].winner === null">
                     <span class="label notFinished">{{ fightsList[1].winner.nickname }}</span>
@@ -16,10 +16,10 @@
             </div>
             <div class="branch lv2">
                 <div class="entry">
-                    <div *ngIf="fightsList[3].isFinished; else otherCont">
+                    <div *ngIf="fightsList[3].finished; else otherCont">
                         <div *ngIf="fightsList[3].winner !== null">
                                           <span
-                                              [ngClass]="{'label': true, 'finished': fightsList[1].isFinished, 'notFinished': !fightsList[1].isFinished}"> {{fightsList[3].winner.nickname}} </span>
+                                              [ngClass]="{'label': true, 'finished': fightsList[1].finished, 'notFinished': !fightsList[1].finished}"> {{fightsList[3].winner.nickname}} </span>
                         </div>
                         <div *ngIf="fightsList[3].winner === null">
                                     <span
@@ -28,12 +28,12 @@
                     </div>
                     <div class="branch lv3">
                         <div class="entry">
-                            <div *ngIf="fightsList[7].isFinished; else otherCont">
+                            <div *ngIf="fightsList[7].finished; else otherCont">
                                 <div *ngIf="fightsList[7].winner !== null">
                                           <span
-                                              [ngClass]="{'label': true, 'finished': fightsList[3].isFinished, 'notFinished': !fightsList[3].isFinished}"> {{fightsList[7].winner.nickname}} </span>
+                                              [ngClass]="{'label': true, 'finished': fightsList[3].finished, 'notFinished': !fightsList[3].finished}"> {{fightsList[7].winner.nickname}} </span>
                                 </div>
-                                <div *ngIf="fightsList[8].winner === null">
+                                <div *ngIf="fightsList[7].winner === null">
                                             <span
                                                 class="label notFinished">{{ fightsList[7].winner.nickname }}</span>
                                 </div>
@@ -42,22 +42,22 @@
                                 <div class="entry">
                                     <div *ngIf="fightsList[7].winner !== null; else otherCont">
                                                 <span
-                                                    [ngClass]="{'label': true, 'finished': fightsList[7].isFinished, 'notFinished': !fightsList[7].isFinished}"> {{fightsList[7].winner.nickname}} </span>
+                                                    [ngClass]="{'label': true, 'finished': fightsList[7].finished, 'notFinished': !fightsList[7].finished}"> {{fightsList[7].winner.nickname}} </span>
                                     </div>
                                 </div>
                                 <div class="entry">
                                     <div *ngIf="fightsList[7].loser !== null; else otherCont">
                                                 <span
-                                                    [ngClass]="{'label': true, 'finished': fightsList[7].isFinished, 'notFinished': !fightsList[7].isFinished}"> {{fightsList[7].loser.nickname}} </span>
+                                                    [ngClass]="{'label': true, 'finished': fightsList[7].finished, 'notFinished': !fightsList[7].finished}"> {{fightsList[7].loser.nickname}} </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="entry">
-                            <div *ngIf="fightsList[8].isFinished; else otherCont">
+                            <div *ngIf="fightsList[8].finished; else otherCont">
                                 <div *ngIf="fightsList[8].winner !== null">
                                           <span
-                                              [ngClass]="{'label': true, 'finished': fightsList[3].isFinished, 'notFinished': !fightsList[3].isFinished}"> {{fightsList[8].winner.nickname}} </span>
+                                              [ngClass]="{'label': true, 'finished': fightsList[3].finished, 'notFinished': !fightsList[3].finished}"> {{fightsList[8].winner.nickname}} </span>
                                 </div>
                                 <div *ngIf="fightsList[8].winner === null">
                                             <span
@@ -68,13 +68,13 @@
                                 <div class="entry">
                                     <div *ngIf="fightsList[8].winner !== null; else otherCont">
                                                 <span
-                                                    [ngClass]="{'label': true, 'finished': fightsList[8].isFinished, 'notFinished': !fightsList[8].isFinished}"> {{fightsList[8].winner.nickname}} </span>
+                                                    [ngClass]="{'label': true, 'finished': fightsList[8].finished, 'notFinished': !fightsList[8].finished}"> {{fightsList[8].winner.nickname}} </span>
                                     </div>
                                 </div>
                                 <div class="entry">
                                     <div *ngIf="fightsList[8].loser !== null; else otherCont">
                                                 <span
-                                                    [ngClass]="{'label': true, 'finished': fightsList[8].isFinished, 'notFinished': !fightsList[8].isFinished}"> {{fightsList[8].loser.nickname}} </span>
+                                                    [ngClass]="{'label': true, 'finished': fightsList[8].finished, 'notFinished': !fightsList[8].finished}"> {{fightsList[8].loser.nickname}} </span>
                                     </div>
                                 </div>
                             </div>
@@ -82,10 +82,10 @@
                     </div>
                 </div>
                 <div class="entry">
-                    <div *ngIf="fightsList[4].isFinished; else otherCont">
+                    <div *ngIf="fightsList[4].finished; else otherCont">
                         <div *ngIf="fightsList[4].winner !== null">
                                           <span
-                                              [ngClass]="{'label': true, 'finished': fightsList[1].isFinished, 'notFinished': !fightsList[1].isFinished}"> {{fightsList[4].winner.nickname}} </span>
+                                              [ngClass]="{'label': true, 'finished': fightsList[1].finished, 'notFinished': !fightsList[1].finished}"> {{fightsList[4].winner.nickname}} </span>
                         </div>
                         <div *ngIf="fightsList[4].winner === null">
                                     <span
@@ -94,10 +94,10 @@
                     </div>
                     <div class="branch lv3">
                         <div class="entry">
-                            <div *ngIf="fightsList[9].isFinished; else otherCont">
+                            <div *ngIf="fightsList[9].finished; else otherCont">
                                 <div *ngIf="fightsList[9].winner !== null">
                                           <span
-                                              [ngClass]="{'label': true, 'finished': fightsList[4].isFinished, 'notFinished': !fightsList[4].isFinished}"> {{fightsList[9].winner.nickname}} </span>
+                                              [ngClass]="{'label': true, 'finished': fightsList[4].finished, 'notFinished': !fightsList[4].finished}"> {{fightsList[9].winner.nickname}} </span>
                                 </div>
                                 <div *ngIf="fightsList[9].winner === null">
                                             <span
@@ -108,22 +108,22 @@
                                 <div class="entry">
                                     <div *ngIf="fightsList[9].winner !== null; else otherCont">
                                                 <span
-                                                    [ngClass]="{'label': true, 'finished': fightsList[9].isFinished, 'notFinished': !fightsList[9].isFinished}"> {{fightsList[9].winner.nickname}} </span>
+                                                    [ngClass]="{'label': true, 'finished': fightsList[9].finished, 'notFinished': !fightsList[9].finished}"> {{fightsList[9].winner.nickname}} </span>
                                     </div>
                                 </div>
                                 <div class="entry">
                                     <div *ngIf="fightsList[9].loser !== null; else otherCont">
                                                 <span
-                                                    [ngClass]="{'label': true, 'finished': fightsList[9].isFinished, 'notFinished': !fightsList[9].isFinished}"> {{fightsList[9].loser.nickname}} </span>
+                                                    [ngClass]="{'label': true, 'finished': fightsList[9].finished, 'notFinished': !fightsList[9].finished}"> {{fightsList[9].loser.nickname}} </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="entry">
-                            <div *ngIf="fightsList[10].isFinished; else otherCont">
+                            <div *ngIf="fightsList[10].finished; else otherCont">
                                 <div *ngIf="fightsList[10].winner !== null">
                                           <span
-                                              [ngClass]="{'label': true, 'finished': fightsList[4].isFinished, 'notFinished': !fightsList[4].isFinished}"> {{fightsList[10].winner.nickname}} </span>
+                                              [ngClass]="{'label': true, 'finished': fightsList[4].finished, 'notFinished': !fightsList[4].finished}"> {{fightsList[10].winner.nickname}} </span>
                                 </div>
                                 <div *ngIf="fightsList[10].winner === null">
                                             <span
@@ -134,13 +134,13 @@
                                 <div class="entry">
                                     <div *ngIf="fightsList[10].winner !== null; else otherCont">
                                                 <span
-                                                    [ngClass]="{'label': true, 'finished': fightsList[10].isFinished, 'notFinished': !fightsList[10].isFinished}"> {{fightsList[10].winner.nickname}} </span>
+                                                    [ngClass]="{'label': true, 'finished': fightsList[10].finished, 'notFinished': !fightsList[10].finished}"> {{fightsList[10].winner.nickname}} </span>
                                     </div>
                                 </div>
                                 <div class="entry">
                                     <div *ngIf="fightsList[10].loser !== null; else otherCont">
                                                 <span
-                                                    [ngClass]="{'label': true, 'finished': fightsList[10].isFinished, 'notFinished': !fightsList[10].isFinished}"> {{fightsList[10].loser.nickname}} </span>
+                                                    [ngClass]="{'label': true, 'finished': fightsList[10].finished, 'notFinished': !fightsList[10].finished}"> {{fightsList[10].loser.nickname}} </span>
                                     </div>
                                 </div>
                             </div>
@@ -150,10 +150,10 @@
             </div>
         </div>
         <div class="entry">
-            <div *ngIf="fightsList[2].isFinished; else otherCont">
+            <div *ngIf="fightsList[2].finished; else otherCont">
                 <div *ngIf="fightsList[2].winner !== null">
                                           <span
-                                              [ngClass]="{'label': true, 'finished': fightsList[0].isFinished, 'notFinished': !fightsList[0].isFinished}"> {{fightsList[2].winner.nickname}} </span>
+                                              [ngClass]="{'label': true, 'finished': fightsList[0].finished, 'notFinished': !fightsList[0].finished}"> {{fightsList[2].winner.nickname}} </span>
                 </div>
                 <div *ngIf="fightsList[2].winner === null">
                     <span class="label notFinished">{{ fightsList[2].winner.nickname }}</span>
@@ -161,10 +161,10 @@
             </div>
             <div class="branch lv2">
                 <div class="entry">
-                    <div *ngIf="fightsList[5].isFinished; else otherCont">
+                    <div *ngIf="fightsList[5].finished; else otherCont">
                         <div *ngIf="fightsList[5].winner !== null">
                                           <span
-                                              [ngClass]="{'label': true, 'finished': fightsList[2].isFinished, 'notFinished': !fightsList[2].isFinished}"> {{fightsList[5].winner.nickname}} </span>
+                                              [ngClass]="{'label': true, 'finished': fightsList[2].finished, 'notFinished': !fightsList[2].finished}"> {{fightsList[5].winner.nickname}} </span>
                         </div>
                         <div *ngIf="fightsList[5].winner === null">
                                     <span
@@ -173,10 +173,10 @@
                     </div>
                     <div class="branch lv3">
                         <div class="entry">
-                            <div *ngIf="fightsList[11].isFinished; else otherCont">
+                            <div *ngIf="fightsList[11].finished; else otherCont">
                                 <div *ngIf="fightsList[11].winner !== null">
                                           <span
-                                              [ngClass]="{'label': true, 'finished': fightsList[5].isFinished, 'notFinished': !fightsList[5].isFinished}"> {{fightsList[11].winner.nickname}} </span>
+                                              [ngClass]="{'label': true, 'finished': fightsList[5].finished, 'notFinished': !fightsList[5].finished}"> {{fightsList[11].winner.nickname}} </span>
                                 </div>
                                 <div *ngIf="fightsList[11].winner === null">
                                             <span
@@ -187,22 +187,22 @@
                                 <div class="entry">
                                     <div *ngIf="fightsList[11].winner !== null; else otherCont">
                                                 <span
-                                                    [ngClass]="{'label': true, 'finished': fightsList[11].isFinished, 'notFinished': !fightsList[11].isFinished}"> {{fightsList[11].winner.nickname}} </span>
+                                                    [ngClass]="{'label': true, 'finished': fightsList[11].finished, 'notFinished': !fightsList[11].finished}"> {{fightsList[11].winner.nickname}} </span>
                                     </div>
                                 </div>
                                 <div class="entry">
                                     <div *ngIf="fightsList[11].loser !== null; else otherCont">
                                                 <span
-                                                    [ngClass]="{'label': true, 'finished': fightsList[11].isFinished, 'notFinished': !fightsList[11].isFinished}"> {{fightsList[11].loser.nickname}} </span>
+                                                    [ngClass]="{'label': true, 'finished': fightsList[11].finished, 'notFinished': !fightsList[11].finished}"> {{fightsList[11].loser.nickname}} </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="entry">
-                            <div *ngIf="fightsList[12].isFinished; else otherCont">
+                            <div *ngIf="fightsList[12].finished; else otherCont">
                                 <div *ngIf="fightsList[12].winner !== null">
                                           <span
-                                              [ngClass]="{'label': true, 'finished': fightsList[5].isFinished, 'notFinished': !fightsList[5].isFinished}"> {{fightsList[12].winner.nickname}} </span>
+                                              [ngClass]="{'label': true, 'finished': fightsList[5].finished, 'notFinished': !fightsList[5].finished}"> {{fightsList[12].winner.nickname}} </span>
                                 </div>
                                 <div *ngIf="fightsList[12].winner === null">
                                             <span
@@ -213,13 +213,13 @@
                                 <div class="entry">
                                     <div *ngIf="fightsList[12].winner !== null; else otherCont">
                                                 <span
-                                                    [ngClass]="{'label': true, 'finished': fightsList[12].isFinished, 'notFinished': !fightsList[12].isFinished}"> {{fightsList[12].winner.nickname}} </span>
+                                                    [ngClass]="{'label': true, 'finished': fightsList[12].finished, 'notFinished': !fightsList[12].finished}"> {{fightsList[12].winner.nickname}} </span>
                                     </div>
                                 </div>
                                 <div class="entry">
                                     <div *ngIf="fightsList[12].loser !== null; else otherCont">
                                                 <span
-                                                    [ngClass]="{'label': true, 'finished': fightsList[12].isFinished, 'notFinished': !fightsList[12].isFinished}"> {{fightsList[12].loser.nickname}} </span>
+                                                    [ngClass]="{'label': true, 'finished': fightsList[12].finished, 'notFinished': !fightsList[12].finished}"> {{fightsList[12].loser.nickname}} </span>
                                     </div>
                                 </div>
                             </div>
@@ -227,10 +227,10 @@
                     </div>
                 </div>
                 <div class="entry">
-                    <div *ngIf="fightsList[6].isFinished; else otherCont">
+                    <div *ngIf="fightsList[6].finished; else otherCont">
                         <div *ngIf="fightsList[6].winner !== null">
                                           <span
-                                              [ngClass]="{'label': true, 'finished': fightsList[2].isFinished, 'notFinished': !fightsList[2].isFinished}"> {{fightsList[6].winner.nickname}} </span>
+                                              [ngClass]="{'label': true, 'finished': fightsList[2].finished, 'notFinished': !fightsList[2].finished}"> {{fightsList[6].winner.nickname}} </span>
                         </div>
                         <div *ngIf="fightsList[6].winner === null">
                                     <span
@@ -239,10 +239,10 @@
                     </div>
                     <div class="branch lv3">
                         <div class="entry">
-                            <div *ngIf="fightsList[13].isFinished; else otherCont">
+                            <div *ngIf="fightsList[13].finished; else otherCont">
                                 <div *ngIf="fightsList[13].winner !== null">
                                           <span
-                                              [ngClass]="{'label': true, 'finished': fightsList[6].isFinished, 'notFinished': !fightsList[6].isFinished}"> {{fightsList[13].winner.nickname}} </span>
+                                              [ngClass]="{'label': true, 'finished': fightsList[6].finished, 'notFinished': !fightsList[6].finished}"> {{fightsList[13].winner.nickname}} </span>
                                 </div>
                                 <div *ngIf="fightsList[13].winner === null">
                                             <span
@@ -253,22 +253,22 @@
                                 <div class="entry">
                                     <div *ngIf="fightsList[13].winner !== null; else otherCont">
                                                 <span
-                                                    [ngClass]="{'label': true, 'finished': fightsList[13].isFinished, 'notFinished': !fightsList[13].isFinished}"> {{fightsList[13].winner.nickname}} </span>
+                                                    [ngClass]="{'label': true, 'finished': fightsList[13].finished, 'notFinished': !fightsList[13].finished}"> {{fightsList[13].winner.nickname}} </span>
                                     </div>
                                 </div>
                                 <div class="entry">
                                     <div *ngIf="fightsList[13].loser !== null; else otherCont">
                                                 <span
-                                                    [ngClass]="{'label': true, 'finished': fightsList[13].isFinished, 'notFinished': !fightsList[13].isFinished}"> {{fightsList[13].loser.nickname}} </span>
+                                                    [ngClass]="{'label': true, 'finished': fightsList[13].finished, 'notFinished': !fightsList[13].finished}"> {{fightsList[13].loser.nickname}} </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="entry">
-                            <div *ngIf="fightsList[14].isFinished; else otherCont">
+                            <div *ngIf="fightsList[14].finished; else otherCont">
                                 <div *ngIf="fightsList[14].winner !== null">
                                           <span
-                                              [ngClass]="{'label': true, 'finished': fightsList[6].isFinished, 'notFinished': !fightsList[6].isFinished}"> {{fightsList[14].winner.nickname}} </span>
+                                              [ngClass]="{'label': true, 'finished': fightsList[6].finished, 'notFinished': !fightsList[6].finished}"> {{fightsList[14].winner.nickname}} </span>
                                 </div>
                                 <div *ngIf="fightsList[14].winner === null">
                                             <span
@@ -279,13 +279,13 @@
                                 <div class="entry">
                                     <div *ngIf="fightsList[14].winner !== null; else otherCont">
                                                 <span
-                                                    [ngClass]="{'label': true, 'finished': fightsList[14].isFinished, 'notFinished': !fightsList[14].isFinished}"> {{fightsList[14].winner.nickname}} </span>
+                                                    [ngClass]="{'label': true, 'finished': fightsList[14].finished, 'notFinished': !fightsList[14].finished}"> {{fightsList[14].winner.nickname}} </span>
                                     </div>
                                 </div>
                                 <div class="entry">
                                     <div *ngIf="fightsList[14].loser !== null; else otherCont">
                                                 <span
-                                                    [ngClass]="{'label': true, 'finished': fightsList[14].isFinished, 'notFinished': !fightsList[14].isFinished}"> {{fightsList[14].loser.nickname}} </span>
+                                                    [ngClass]="{'label': true, 'finished': fightsList[14].finished, 'notFinished': !fightsList[14].finished}"> {{fightsList[14].loser.nickname}} </span>
                                     </div>
                                 </div>
                             </div>

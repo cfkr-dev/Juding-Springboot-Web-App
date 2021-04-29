@@ -8,7 +8,15 @@ import {Fight} from '../../fight/fight.model';
     selector: 'app-competition-detail',
     templateUrl: './competition-detail.html',
     providers: [CompetitionService],
-    styleUrls: []
+    styleUrls: ['../../../assets/vendor/bootstrap/v4/css/bootstrap.css',
+        '../../../assets/vendor/font-awesome/css/all.css',
+        '../../../assets/vendor/aos/aos.css',
+        '../../../assets/css/style.css',
+        '../../../assets/css/header.css',
+        '../../../assets/css/bootstrapAccomodations.css',
+        '../../../assets/css/responsiveTable.css',
+        '../../../assets/css/competitionController.css',
+        '../../../assets/css/beltAssignations.css']
 })
 export class CompetitionDetailComponent{
     competition: Competition;
@@ -26,4 +34,6 @@ export class CompetitionDetailComponent{
             error => console.error(error),
         );
     }
+
+
 }
