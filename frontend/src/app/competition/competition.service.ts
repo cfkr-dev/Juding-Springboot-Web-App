@@ -13,13 +13,16 @@ export class CompetitionService {
     constructor(private httpClient: HttpClient) {}
 
     getCompetition(id: number | string): Observable<Competition> {
-        return this.httpClient.get(BASE_URL + id).pipe(
-            catchError(error => this.handleError(error))
-        ) as Observable<Competition>;
+        return this.httpClient.get(BASE_URL + id, {withCredentials: true})  as Observable<Competition>;
     }
 
+    getCompetitionPage(page: number): Observable<any> {
+        return this.httpClient.get(BASE_URL + '?page=' + page, {withCredentials: true}) as Observable<any>;
+    }
+
+
     updateCompetition(competition: Competition): Observable<Competition> {
-        return this.httpClient.post(BASE_URL, competition) as Observable<Competition>;
+        return this.httpClient.post(BASE_URL, competition, {withCredentials: true}) as Observable<Competition>;
     }
 
     private handleError(error: any): any {
@@ -35,6 +38,10 @@ export class CompetitionService {
       return competition.fights[numberOfFight];
     }
 
+    deleteCompetition(id: number): Observable<any> {
+        return this.httpClient.delete(BASE_URL + id, {withCredentials: true}) as Observable<any>;
+    }
+
   translatingDates(competition: Competition): string{
     const localDate: Date = new Date();
     if (localDate > competition.startDate) {
@@ -48,5 +55,8 @@ export class CompetitionService {
     else {
       return 'Por comenzar';
     }
+  }
+  haveCompetitions(competitions: Competition[]): boolean{
+      return (competitions == null);
   }
 }

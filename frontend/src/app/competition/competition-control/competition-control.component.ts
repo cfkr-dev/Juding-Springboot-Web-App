@@ -89,7 +89,9 @@ function showControlScreen(competition: Competition): string{
 }
 @Component({
     selector: 'app-competitioncontrol',
-    templateUrl: './competition-control.html'
+    templateUrl: './competition-control.html',
+    providers: [CompetitionService],
+    styleUrls: []
 })
 export class CompetitionControlComponent {
     competition: Competition;

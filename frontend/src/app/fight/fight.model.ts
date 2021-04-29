@@ -1,5 +1,5 @@
-import {Competition} from "../competition/competition.model";
-import {User} from "../user/user.model";
+import {Competition} from '../competition/competition.model';
+import {User} from '../user/user.model';
 
 export class Fight {
     private _competition: Competition;
@@ -7,7 +7,7 @@ export class Fight {
     private _upFight: Fight;
     private _downFight: Fight;
     private _parentFight: Fight;
-    private _isFinished: boolean;
+    private _finished: boolean;
     private _winner: User;
     private _loser: User;
 
@@ -18,7 +18,7 @@ export class Fight {
         this._upFight = upFight;
         this._downFight = downFight;
         this._parentFight = parentFight;
-        this._isFinished = isFinished;
+        this._finished = isFinished;
         this._winner = winner;
         this._loser = loser;
     }
@@ -64,12 +64,12 @@ export class Fight {
         this._parentFight = value;
     }
 
-    get isFinished(): boolean {
-        return this._isFinished;
+    get finished(): boolean {
+        return this._finished;
     }
 
-    set isFinished(value: boolean) {
-        this._isFinished = value;
+    set finished(value: boolean) {
+        this._finished = value;
     }
 
     get winner(): User {

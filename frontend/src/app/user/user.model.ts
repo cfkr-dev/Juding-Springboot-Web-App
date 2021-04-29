@@ -1,12 +1,11 @@
-import {belt} from "./belt.model";
-import {gender} from "./gender.model";
+import {belt} from './belt.model';
 
 export class User {
-    nickname: "Jose";
-    name:"Kk";
-    surname:"KKKKKK";
-    weight:80;
-    descripcion: "Esto es la descriocion";
+    nickname: 'Jose';
+    name: 'Kk';
+    surname: 'KKKKKK';
+    weight: 80;
+    descripcion: 'Pruebas de usuario';
     belt: belt;
-    gender: gender;
+    gender: 'Hombre';
 }

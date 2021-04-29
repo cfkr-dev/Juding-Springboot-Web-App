@@ -9,7 +9,7 @@ export class Competition {
   private _startDate: Date;
   private _endDate: Date;
   private _referee: User;
-  private _id?: number;
+  private _idCompetition?: number;
   private _fights: Fight[];
 
   constructor(shortName:string, additionalInfo:string, minWeight:number, maxWeight:number, startDate:Date, endDate:Date, referee:User){
@@ -79,12 +79,12 @@ export class Competition {
         this._referee = value;
     }
 
-    get id(): number {
-        return this._id;
+    get idCompetition(): number {
+        return this._idCompetition;
     }
 
-    set id(value: number) {
-        this._id = value;
+    set idCompetition(value: number) {
+        this._idCompetition = value;
     }
 
     get fights(): Fight[] {
