@@ -1,23 +1,59 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-
-import { AppComponent } from './app.component';
-import {LoginComponent} from './login/login.component';
-import { CompetitorListComponent } from './admin/user/components/competitor-list.component';
-import { routing } from './app.routing';
-import {HeaderComponent} from './header/header.component';
-import { CompetitorEditComponent } from './admin/user/components/competitor-edit-component';
-import { E403Component } from './error/e403/e403.component';
-import { E404Component } from './error/e404/e404.component';
-import { E500Component } from './error/e500/e500.component';
-import { RefereeListComponent } from './admin/user/components/referee-list.component';
-import { RefereeEditComponent } from './admin/user/components/referee-edit.component';
-
 @NgModule({
   declarations: [AppComponent, HeaderComponent, CompetitorListComponent, LoginComponent, CompetitorEditComponent, E403Component, E404Component, E500Component, RefereeListComponent, RefereeEditComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, routing],
   bootstrap: [AppComponent]
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+    import { CompetitorListComponent } from './admin/user/components/competitor-list.component';
+    import { CompetitorEditComponent } from './admin/user/components/competitor-edit-component';
+    import { E403Component } from './error/e403/e403.component';
+    import { E404Component } from './error/e404/e404.component';
+    import { E500Component } from './error/e500/e500.component';
+    import { RefereeListComponent } from './admin/user/components/referee-list.component';
+    import { RefereeEditComponent } from './admin/user/components/referee-edit.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {LoginComponent} from './login/login.component';
+import {MyHomeComponent} from './my-home/my-home.component';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
+import {ChartsModule} from 'ng2-charts';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HeaderComponent} from './header/header.component';
+import {IndexComponent} from './index/index.component';
+import {RankingComponent} from './ranking/ranking.component';
+import {MyProfileComponent} from './my-profile/my-profile.component';
+import {TermsAndConditionsOfUseComponent} from './terms-and-conditions-of-use/terms-and-conditions-of-use.component';
+import {CookiePolicyComponent} from './cookie-policy/cookie-policy.component';
+import {MyProfileEditComponent} from './my-profile-edit/my-profile-edit.component';
+import {PasswordRecoveryComponent} from './password-recovery/password-recovery.component';
+
+@NgModule({
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        MyHomeComponent,
+        HeaderComponent,
+        IndexComponent,
+        RankingComponent,
+        MyProfileComponent,
+        TermsAndConditionsOfUseComponent,
+        CookiePolicyComponent,
+        MyProfileEditComponent,
+        PasswordRecoveryComponent
+    ],
+    imports: [
+        BrowserModule,
+        CommonModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        ChartsModule,
+        NgbModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

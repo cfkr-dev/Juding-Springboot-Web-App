@@ -1,15 +1,15 @@
-<app-header></app-header>
+<ng-template #other>
+  <app-header [isType1]="false"></app-header>
+  <div class="container main-container">
+    <ng-container *ngTemplateOutlet="template"></ng-container>
+  </div>
+</ng-template>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+<div *ngIf="this.router.url === '/' || this.router.url.substring(0, 2) === '/#'; else other">
+  <app-header [isType1]="true"></app-header>
+  <ng-container *ngTemplateOutlet="template"></ng-container>
+</div>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <div class="navbar-nav mr-auto">
-            <a class="navbar-brand" href="/">Library</a>
-        </div>
-
-    </div>
-
-</nav>
-
-<router-outlet></router-outlet>
+<ng-template #template>
+  <router-outlet></router-outlet>
+</ng-template>
