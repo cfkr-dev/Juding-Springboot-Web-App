@@ -1,0 +1,110 @@
+<div class="container">
+    <div *ngIf="competition" class="competition">
+        <h2 class="competitionTitle">{{ competition.shortName }}</h2>
+        <h3 class="competitionSub">Información general</h3>
+        <div class="competitionText">{{ competition.additionalInfo }}
+        </div>
+        <!-- Technical information of the competition -->
+        <div class="responsiveTable">
+            <div class="rtRow rtHeader">
+                <div class="width15 text-center">Estado</div>
+                <div class="width20 text-center">Fecha de inicio</div>
+                <div class="width20 text-center">Fecha de finalización</div>
+                <div class="width20 text-center">Árbitro</div>
+                <div class="width15 text-center">Número de competidores</div>
+            </div>
+            <div class="rtRow">
+                <div class="width15 text-center">
+                    <div
+                        class="badge bg-secondary">{{ service.translatingDates(competition) }}</div>
+                </div>
+                <div class="width20 text-center">{{ competition.startDate | date: 'dd/MM/yyyy HH:mm' }}</div>
+                <div class="width20 text-center">{{ competition.endDate | date: 'dd/MM/yyyy HH:mm' }}</div>
+                <div class="width20 text-center">
+                    <div>{{ competition.referee.name }} {{ competition.referee.surname }}</div>
+                </div>
+                <div class="width15 text-center">{{ people }}</div>
+            </div>
+        </div>
+        <app-competition-fight-tree [fightsList]='competition.fights'></app-competition-fight-tree>
+        <h3 class="competitionSub">Resultados</h3>
+        <!--Competition results-->
+        <div class="responsiveTable">
+            <ng-container *ngIf="service.getFight(competition,0).finished">
+                <div class="rtRow rtHeader">
+                    <div class="width15 text-center">Posición</div>
+                    <div class="width20 text-center">Apodo</div>
+                    <div class="width15 text-center">Peso</div>
+                    <div class="width15 text-center">Género</div>
+                    <div class="width20 text-center">Cinturón</div>
+                    <div class="width15 text-center">Medalla</div>
+                </div>
+                <ng-container *ngIf="service.getFight(competition,0).finished">
+                    <div class="rtRow">
+                        <div class="width15 text-center">1ª</div>
+                        <div class="width20 text-center"> {{service.getFight(competition,0).winner.nickname}} </div>
+                        <div class="width15 text-center"> {{service.getFight(competition,0).winner.weight}} Kg</div>
+                        <div class="width15 text-center"> {{service.getFight(competition,0).winner.gender}} </div>
+                        <div class="width20 text-center">
+                            <i class="fas fa-user-tie beltStyle {{competition.getFights(0).winner.belt} "
+                               title=" {{service.getFight(competition,0).winner.belt.longname}} "></i>
+                        </div>
+                        <div class="width15 text-center">
+                            <i class="fas fa-medal goldMedal"></i>
+                        </div>
+                    </div>
+                    <div class="rtRow">
+                        <div class="width15 text-center">2ª</div>
+                        <div class="width20 text-center"> {{service.getFight(competition,0).loser.name}} </div>
+                        <div class="width15 text-center"> {{service.getFight(competition,0).loser.weight}} Kg</div>
+                        <div class="width15 text-center"> {{service.getFight(competition,0).winner.gender}} </div>
+                        <div class="width20 text-center">
+                            <i class="fas fa-user-tie beltStyle {{competition.getFights(0).winner.belt} "
+                               title=" {{service.getFight(competition,0).loser.belt.longname}} "></i>
+                        </div>
+                        <div class="width15 text-center">
+                            <i class="fas fa-medal silverMedal"></i>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="service.getFight(competition,2).finished">
+                    <ng-container *ngIf="service.getFight(competition,2).winner">
+                        <div class="rtRow">
+                            <div class="width15 text-center">3ª</div>
+                            <div class="width20 text-center">{{service.getFight(competition,2).loser.name}}</div>
+                            <div class="width15 text-center">{{service.getFight(competition,2).loser.weight}}Kg</div>
+                            <div class="width15 text-center">{{service.getFight(competition,2).loser.gender}}</div>
+                            <div class="width20 text-center">
+                                <i class="fas fa-user-tie beltStyle {{service.getFight(competition,2).loser.belt}}"
+                                   title="{{service.getFight(competition,2).loser.belt.longname}}"></i>
+                            </div>
+                            <div class="width15 text-center">
+                                <i class="fas fa-medal bronzeMedal"></i>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+                <ng-container *ngIf="service.getFight(competition,1).finished">
+                    <ng-container *ngIf="service.getFight(competition,1).winner">
+                        <div class="rtRow mb-5">
+                            <div class="width15 text-center">3ª</div>
+                            <div class="width20 text-center">{{service.getFight(competition,1).loser.name}}</div>
+                            <div class="width15 text-center">{{service.getFight(competition,1).loser.weight}}Kg</div>
+                            <div class="width15 text-center">{{service.getFight(competition,1).loser.gender}}</div>
+                            <div class="width20 text-center">
+                                <i class="fas fa-user-tie beltStyle {{service.getFight(competition,1).loser.belt}}"
+                                   title="{{service.getFight(competition,1).loser.belt.longname}}"></i>
+                            </div>
+                            <div class="width15 text-center">
+                                <i class="fas fa-medal bronzeMedal"></i>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+            <div *ngIf="!service.getFight(competition,0).finished">
+                <div class="alert alert-info">Aún no se puede mostrar el podio.</div>
+            </div>
+        </div>
+    </div>
+</div>

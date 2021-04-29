@@ -1,0 +1,63 @@
+<header class="header fixed-top" id="header">
+  <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+    <a *ngIf="pageInfo.headerValue !== 0" class="logo d-flex align-items-center" routerLink="/">
+      <img alt="" src="/assets/img/hero-img.png">
+      <span>Juding</span>
+    </a>
+    <a *ngIf="pageInfo.headerValue === 0" class="logo d-flex align-items-center" routerLink="/myHome">
+      <img alt="" src="/assets/img/hero-img.png">
+      <span>Juding</span>
+    </a>
+    <ng-template #loading>
+      <nav class="navbar">
+        <ul>
+          <li class="nav-link">
+            <i class="fa fa-spin far-circle-notch"></i>
+          </li>
+        </ul>
+      </nav>
+    </ng-template>
+    <ng-container *ngIf="!pageInfo.loading; else loading">
+      <nav [ngSwitch]="pageInfo.headerValue" class="navbar" id="navbar">
+        <ul *ngSwitchCase="0">
+          <li><a class="nav-link scrollto" routerLink="/myHome">Inicio</a></li>
+          <li><a class="nav-link scrollto" routerLink="/ranking">Ranking</a></li>
+          <li><a class="nav-link scrollto" routerLink="/myProfile">Mi perfil</a></li>
+          <li *ngIf="pageInfo.isAdmin" class="dropdown">
+            <a href="#"><span>Administración</span> <i class="far fa-chevron-down"></i></a>
+            <ul>
+              <li class="dropdown">
+                <a href="#"><span>Usuarios</span> <i class="far fa-chevron-right"></i></a>
+                <ul>
+                  <li><a href="/admin/user/list/competitors">Competidores</a></li>
+                  <li><a href="/admin/user/list/referees">Árbitros</a></li>
+                </ul>
+              <li><a href="/admin/competition/list">Competiciones</a></li>
+              <li><a href="/admin/post/list">Noticias</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="login scrollto" routerLink="/logout">Cerrar sesión</a>
+          </li>
+        </ul>
+        <ul *ngSwitchCase="1">
+          <li><a [routerLink]="['/']" class="nav-link scrollto">Inicio</a></li>
+          <li><a [routerLink]="['/']" class="nav-link scrollto" fragment="about">Sobre Nosotros</a></li>
+          <li><a [routerLink]="['/']" class="nav-link scrollto" fragment="values">Valores</a></li>
+          <li><a [routerLink]="['/']" class="nav-link scrollto" fragment="history">Historia</a></li>
+          <li><a [routerLink]="['/']" class="nav-link scrollto" fragment="contact">Contáctanos</a></li>
+          <li><a [routerLink]="['/']" class="nav-link scrollto" fragment="location">Dónde estamos</a></li>
+          <li><a [routerLink]="['/']" class="nav-link scrollto" fragment="posts">Publicaciones</a></li>
+          <li><a class="login scrollto" routerLink="/login">Iniciar sesión</a></li>
+        </ul>
+        <ul *ngSwitchCase="2">
+          <li>
+            <a class="login scrollto" routerLink="/">Volver al inicio</a>
+          </li>
+        </ul>
+        <i class="far fa-bars mobile-nav-toggle"></i>
+      </nav>
+    </ng-container>
+    <!-- .navbar -->
+  </div>
+</header>

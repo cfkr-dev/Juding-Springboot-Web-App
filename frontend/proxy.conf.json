@@ -1,0 +1,8 @@
+{
+  "/api/*": {
+    "target": "https://diegoguerrero.net:8443/",
+    "secure": false,
+    "loglevel": "debug",
+    "changeOrigin": true
+  }
+}

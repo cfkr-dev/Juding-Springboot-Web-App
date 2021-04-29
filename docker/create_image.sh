@@ -30,7 +30,7 @@ cp target/*.jar ../docker
 cd ../docker
 echo
 echo "2. Build Docker image using Dockerfile."
-sudo docker build -t juding .
+sudo docker build -t daw2021webapp2/juding:v1.2 .
 sudo rm -rf *.jar
 
 echo

@@ -1,0 +1,59 @@
+<div class="container-login100">
+  <div class="wrap-login100">
+    <form (submit)="formLogin($event)" class="needs-validation flex-sb flex-w" method="post" novalidate>
+      <span class="login100-form-title">Iniciar sesión</span>
+      <div *ngIf="this.error === 1" class="alert alert-danger">Las credenciales no son correctas.</div>
+      <div *ngIf="this.error === 2" class="alert alert-danger">Se ha producido un error inesperado. Inténtelo de
+        nuevo.
+      </div>
+      <div *ngIf="this.error === 3" class="alert alert-success"><i class="fas fa-check-circle"></i> La sesión se ha
+        cerrado satisfactoriamente.
+      </div>
+      <label class="txt1" for="nickname">Apodo <span class="asterisk">*</span></label>
+      <input [(ngModel)]="loginForm.nickname" class="form-control form-control-lg" id="nickname" name="nickname" required
+             type="text">
+      <div class="invalid-feedback">
+        Es obligatorio introducir el apodo para continuar.
+      </div>
+      <label class="txt1" for="password">Contraseña <span class="asterisk">*</span></label>
+      <div class="input-group mb-3">
+        <input [(ngModel)]="loginForm.password" [type]="passwordType" class="form-control form-control-lg" id="password" name="password"
+               required>
+        <div class="input-group-append">
+          <button (click)="changeVisibility()" class="btn btn-outline-secondary" type="button"><i
+            [ngClass]="{'far': true, 'fa-eye': passwordType === 'text', 'fa-eye-slash': passwordType === 'password'}"></i>
+          </button>
+        </div>
+        <div class="invalid-feedback">
+          Es obligatorio introducir la contraseña para continuar.
+        </div>
+      </div>
+      <div id="beforeLogin">
+        <a class="txt3" href="/passwordRecovery/1">¿Olvidaste tu contraseña?</a>
+      </div>
+      <div class="container-login100-form-btn">
+        <button class="btn btn-corporative">Iniciar sesión</button>
+      </div>
+    </form>
+    <div id="newAccount">
+      <div class="row text-center">
+        <div class="alert alert-corporative">¿Nuevo en Juding? <strong>¡Regístrate!</strong></div>
+      </div>
+      <div class="row text-center">
+        <div class="col-6 d-flex justify-content-center flex-column">
+          <i class="fas fa-user-ninja bigIcon"></i>
+          <div>Competidor</div>
+          <a href="/signUp/competitor">
+            <button class="btn btn-corporative">Registro</button>
+          </a>
+        </div>
+        <div class="col-6">
+          <i class="fas fa-user-tie bigIcon"></i>
+          <div>Árbitro</div>
+          <a href="/signUp/referee">
+            <button class="btn btn-corporative">Solicitud</button>
+          </a></div>
+      </div>
+    </div>
+  </div>
+</div>
