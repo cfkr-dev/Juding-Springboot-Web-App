@@ -3,61 +3,59 @@
         <i class="fas fa-spin fa-circle-notch"></i> Cargando...
     </div>
 </ng-template>
-<div *ngIf="loadedPage===true; else loading">
-    <div class="container pb-3">
-        <div class="row pt-3">
-            <div class="col-md-10">
-                <h2 class="h2">Noticias</h2>
-            </div>
-            <div class="col-md-2">
-                <a [routerLink]="['/admin/post/new']" class="btn btn-corporative">
-                    <i class="fa fa-plus-circle"></i> Nueva noticia
+<ng-container *ngIf="loadedPage===true; else loading">
+    <div class="row pt-3">
+        <div class="col-md-10">
+            <h2 class="h2">Noticias</h2>
+        </div>
+        <div class="col-md-2">
+            <a [routerLink]="['/admin/post/new']" class="btn btn-corporative">
+                <i class="fa fa-plus-circle"></i> Nueva noticia
+            </a>
+        </div>
+    </div>
+    <div class="responsiveTable" id="table">
+        <div class="rtRow rtHeader">
+            <div class="width5 text-center">Id.</div>
+            <div class="width40 text-center">Título</div>
+            <div class="width15 text-center">Fecha</div>
+            <div class="width25 text-center">Autor</div>
+            <div class="width15 text-center">Acciones</div>
+        </div>
+        <div class="rtRow" *ngFor="let post of posts; let p = index">
+            <div class="width5 text-center">{{ post.idPost}}</div>
+            <div class="width40">{{ post.title }}</div>
+            <div class="width15 text-center">{{ post.timestamp | date: 'dd/MM/yyyy'}}</div>
+            <div class="width25 text-center">{{ post.author.name }}</div>
+            <div class="width15 text-center">
+                <a class="btn btn-outline-corporative" routerLink="/news/{{ post.idPost }}" target="_blank">
+                    <i class="fas fa-external-link-alt"></i>
                 </a>
+                <a [routerLink]="['/admin/posts/', post.idPost]" class="btn btn-outline-corporative">
+                    <i class="fas fa-pencil"></i>
+                </a>
+                <button class="btn btn-corporative">
+                    <i (click)="open(p,content)" class="fas fa-trash-alt delete"></i>
+                </button>
             </div>
         </div>
-        <div class="responsiveTable" id="table">
-            <div class="rtRow rtHeader">
-                <div class="width5 text-center">Id.</div>
-                <div class="width40 text-center">Título</div>
-                <div class="width15 text-center">Fecha</div>
-                <div class="width25 text-center">Autor</div>
-                <div class="width15 text-center">Acciones</div>
-            </div>
-            <div class="rtRow" *ngFor="let post of posts; let p = index">
-                <div class="width5 text-center">{{ post.idPost}}</div>
-                <div class="width40">{{ post.title }}</div>
-                <div class="width15 text-center">{{ post.timestamp | date: 'dd/MM/yyyy'}}</div>
-                <div class="width25 text-center">{{ post.author.name }}</div>
-                <div class="width15 text-center">
-                    <a class="btn btn-outline-corporative" href="/news/{{ post.idPost }}" target="_blank">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
-                    <a [routerLink]="[ '/admin/post/edit/', post.idPost ]" class="btn btn-outline-corporative">
-                        <i class="fas fa-pencil"></i>
-                    </a>
-                    <button class="btn btn-corporative" >
-                        <i (click)="open(p,content)" class="fas fa-trash-alt delete"></i>
-                    </button>
-                </div>
-            </div>
-            <div *ngIf="loadedButton===false">
-                <div class="alert alert-danger" *ngIf="empty===true" role="alert">
-                    No hay más competiciones.
-                </div>
+        <div *ngIf="loadedButton===false">
+            <div class="alert alert-danger" *ngIf="empty===true" role="alert">
+                No hay más competiciones.
             </div>
         </div>
     </div>
     <div class="width100 pt-2 text-center">
-        <button data-role="post" id="loadNextPage" class="btn btn-corporative" (click)="loadNextPage()" *ngIf="finalPage===false"
-        >
-            <i *ngIf="loadedButton===false" class="fas fa-circle-notch fa-spin"></i><i *ngIf="loadedButton===true"></i>Cargar más noticias
+        <button data-role="post" id="loadNextPage" class="btn btn-corporative" (click)="loadNextPage()"
+                *ngIf="finalPage===false">
+            <i *ngIf="loadedButton===false" class="fas fa-circle-notch fa-spin"></i><i *ngIf="loadedButton===true"></i>Cargar
+            más noticias
         </button>
-        <button  *ngIf="finalPage===true" data-role="post" class="btn btn-outline-corporative"
-        >
+        <button *ngIf="finalPage===true" data-role="post" class="btn btn-outline-corporative">
             <i></i> No hay más noticias
         </button>
     </div>
-</div>
+</ng-container>
 
 <!-- Modal for confirmating deleting of item in list -->
 <ng-template #content let-modal>

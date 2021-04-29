@@ -1,9 +1,9 @@
-<div class="container pb-3">
+<ng-container>
     <div class="row pt-3">
-        <div class="col-md-10">
+        <div class="col-md-9">
             <h2 class="h2">Competiciones</h2>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <a href="">
                 <button class="btn btn-corporative"><i class="fa fa-plus-circle"></i> Nueva competición</button>
             </a>
@@ -38,7 +38,7 @@
                                     data-bs-toggle="modal">
                                 <i class="fas fa-info-circle"></i>
                             </button>
-                            <a href="/admin/competition/edit/{{ competition.idCompetition }}" class="btn btn-outline-corporative">
+                            <a routerLink="/admin/competitions/{{ competition.idCompetition }}" class="btn btn-outline-corporative">
                                 <i class="fas fa-pencil"></i>
                             </a>
                             <button class="btn btn-corporative" (click)="showDelete(i,delet)" data-bs-target="#modalDelete"
@@ -62,12 +62,7 @@
             </ng-template>
         </div>
     </div>
-</div>
-
-
-
-
-
+</ng-container>
 
 <ng-template #info let-modal>
     <div class="modal-header">

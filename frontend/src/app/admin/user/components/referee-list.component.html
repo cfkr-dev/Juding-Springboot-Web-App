@@ -1,4 +1,4 @@
-<div *ngIf="!hasErrorOnLoad" class="container pb-3">
+<ng-container *ngIf="!hasErrorOnLoad">
     <h2 class="h2">Usuarios</h2>
     <h3 class="h3">Solicitudes de federación de nuevos árbitros</h3>
     <div *ngIf="!noApplications else noHasApplications" class="responsiveTable mb-3">
@@ -107,7 +107,7 @@
             </ng-template>
         </div>
     </ng-template>
-</div>
+</ng-container>
 
 <ng-template #viewMoreModal let-modal>
     <div class="modal-header">

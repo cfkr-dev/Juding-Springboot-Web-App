@@ -1,4 +1,4 @@
-<div *ngIf="!errorOnLoadUserData" class="container pb-4">
+<ng-container *ngIf="!errorOnLoadUserData">
     <form action="/admin/user/edit/save" class="needs-validation flex-sb flex-w juding-form-user-update" (submit)=modifyCompetitor(user) method="post"
           novalidate
           enctype="multipart/form-data">
@@ -148,4 +148,4 @@
             <button class="btn btn-corporative" type="submit">Actualizar datos</button>
         </div>
     </form>
-</div>
+</ng-container>

@@ -1,4 +1,4 @@
-<div *ngIf="!hasErrorOnLoad" class="container pb-3">
+<ng-container *ngIf="!hasErrorOnLoad">
     <h2 class="h2">Usuarios</h2>
     <h3 class="h3">Competidores</h3>
     <div *ngIf="noMorePages else hasContent" class="alert alert-corporative">
@@ -109,5 +109,5 @@
             </ng-template>
         </div>
     </ng-template>
-</div>
+</ng-container>
 

@@ -51,11 +51,11 @@ export class PostFormComponent{
                     formData.append('file', this.image, this.image.name);
                     this.http.put('/api/posts/' + post.idPost + '/image', formData, {withCredentials: true}).subscribe(
                         (response => {
-                            this.router.navigate(['/admin/post/list']);
+                            this.router.navigate(['/admin/posts']);
                         })
                     );
                 }
-                this.router.navigate(['/admin/post/list']);
+                this.router.navigate(['/admin/posts']);
             }),
             (error => {
                 this.alert = true;

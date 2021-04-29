@@ -19,7 +19,7 @@
                 <div *ngFor="let posts of postList">
                     <div class="post-item clearfix mb-3">
                         <img alt="" class="img-fluid newsImage" src="{{ posts.imageFile }}">
-                        <h4 class="newsTitle"><a href="/news/{{ posts.idPost }}">{{ posts.title }}</a></h4>
+                        <h4 class="newsTitle"><a routerLink="/news/{{ posts.idPost }}">{{ posts.title }}</a></h4>
                         <span class="post-date newsDate">{{ posts.timestamp | date: 'dd/MM/yyyy' }}</span>
                     </div>
                 </div>

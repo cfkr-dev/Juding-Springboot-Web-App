@@ -9,9 +9,14 @@ public class PostDTO {
     @NotBlank
     private final String body;
 
-    public PostDTO(String title, String body) {
+    public PostDTO(String id, String title, String body) {
+        this.id = id;
         this.title = title;
         this.body = body;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getTitle() {

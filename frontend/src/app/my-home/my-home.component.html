@@ -88,10 +88,10 @@
               </p>
             </div>
             <div class="card-footer text-center">
-              <a class="btn btn-primary" href="/competition/idCompetition">
+              <a class="btn btn-primary" routerLink="/competitions/{{ currentCompetition.idCompetition }}">
                 Ver detalle
               </a>
-              <a class="btn btn-success" href="/competition/idCompetition/control"
+              <a class="btn btn-success" routerLink="/competitions/{{ currentCompetition.idCompetition }}/control"
                  *ngIf="currentUser.roles.includes('R')">Arbitrar</a>
             </div>
           </div>
@@ -119,7 +119,7 @@
                     </p>
                   </div>
                   <div class="card-footer text-center">
-                    <a class="btn btn-primary" href="/competition/idCompetition">
+                    <a class="btn btn-primary" routerLink="/competition/{{ joinedFuture.idCompetition }}">
                       Ver detalle
                     </a>
                   </div>
@@ -147,7 +147,7 @@
                     </p>
                   </div>
                   <div class="card-footer text-center">
-                    <a class="btn btn-success" href="/competition/idCompetition/join">
+                    <a class="btn btn-success" routerLink="/competition/{{ notJoinedFuture.idCompetition }}/join">
                       Inscribirme
                     </a>
                   </div>
@@ -176,7 +176,7 @@
               </p>
             </div>
             <div class="card-footer text-center">
-              <a class="btn btn-primary" href="/competition/idCompetition">
+              <a class="btn btn-primary" routerLink="/competition/{{ joinedFuture.idCompetition }}">
                 Ver detalle
               </a>
             </div>
@@ -194,7 +194,7 @@
     <div class="shadow p-1 mb-3 bg-white rounded" *ngFor="let competition of pastCompetitions">
       <div class="alert alert-light" role="alert">
         {{ competition.shortName }}
-        <a class="btn btn-secondary" href="/competition/{{ competition.idCompetition }}"><i class="fas fa-award"></i>
+        <a class="btn btn-secondary" routerLink="/competition/{{ competition.idCompetition }}"><i class="fas fa-award"></i>
           Ver detalle</a>
       </div>
     </div>
