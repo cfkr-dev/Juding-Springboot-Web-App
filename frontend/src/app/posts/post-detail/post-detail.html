@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 news pb-3">
+            <h2 class="competitionTitle">{{ post.title }}</h2>
+            <div class="imageInTheMiddle">
+                <img alt="" class="imageNews pb-2" src="{{ post.imageFile }}">
+            </div>
+            <div class="responsiveTable">
+                <div class="rtRow modificationResponsibleTable">
+                    <div class="width3 text-center modificationResponsibleChild">Autor: {{ post.author.name}} {{ post.author.surname }}</div>
+                    <div class="width3 text-center modificationResponsibleChild">Fecha de publicación: {{ post.timestamp | date: 'dd/MM/yyyy' }}</div>
+                </div>
+            </div>
+            <div>{{ post.body }}</div>
+        </div>
+        <div class="col-lg-4">
+            <div class="sidebar">
+                <div class="sidebarTitle">Noticias recientes</div>
+                <div *ngFor="let posts of postList">
+                    <div class="post-item clearfix mb-3">
+                        <img alt="" class="img-fluid newsImage" src="{{ posts.imageFile }}">
+                        <h4 class="newsTitle"><a href="/news/{{ posts.idPost }}">{{ posts.title }}</a></h4>
+                        <span class="post-date newsDate">{{ posts.timestamp | date: 'dd/MM/yyyy' }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

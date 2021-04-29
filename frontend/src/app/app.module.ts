@@ -32,7 +32,9 @@ import {PasswordRecoveryComponent} from './password-recovery/password-recovery.c
 import {CompetitionFightTreeComponent} from './competition/competition-fight-tree/competition-fight-tree.component';
 import {CompetitionControlComponent} from './competition/competition-control/competition-control.component';
           import {ListCompetitionComponent} from './competition/admin/list/list-competition.component';
-
+import {PostDetailComponent} from './posts/post-detail/post-detail.component';
+import {PostFormComponent} from './posts/admin/post-forms/post-form.component';
+import {PostListComponent} from './posts/admin/post-list/post-list.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +52,10 @@ import {CompetitionControlComponent} from './competition/competition-control/com
           CompetitionDetailComponent,
         CompetitionFightTreeComponent,
         CompetitionControlComponent,
-        ListCompetitionComponent
+        ListCompetitionComponent,
+        PostListComponent,
+        PostDetailComponent,
+        PostFormComponent
     ],
     imports: [
         BrowserModule,
