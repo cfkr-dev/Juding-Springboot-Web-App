@@ -889,7 +889,7 @@ public class DataLoader {
                 70,
                 80,
                 new Timestamp(System.currentTimeMillis() + 100000),
-                dateService.stringToTimestamp("30/04/2021 12:00"),
+                dateService.stringToTimestamp("30/07/2021 12:00"),
                 referees.get(1)
         );
         competitionService.save(trial1);
@@ -901,7 +901,7 @@ public class DataLoader {
                 60,
                 70,
                 new Timestamp(System.currentTimeMillis() + 100000),
-                dateService.stringToTimestamp("30/04/2021 12:00"),
+                dateService.stringToTimestamp("30/07/2021 12:00"),
                 referees.get(3)
         );
         competitionService.save(trial2);
@@ -913,7 +913,7 @@ public class DataLoader {
                 70,
                 80,
                 new Timestamp(System.currentTimeMillis() + 100000),
-                dateService.stringToTimestamp("30/04/2021 12:00"),
+                dateService.stringToTimestamp("30/07/2021 12:00"),
                 referees.get(1)
         );
         competitionService.save(trial3);
@@ -925,7 +925,7 @@ public class DataLoader {
                 60,
                 70,
                 new Timestamp(System.currentTimeMillis() + 100000),
-                dateService.stringToTimestamp("30/04/2021 12:00"),
+                dateService.stringToTimestamp("30/07/2021 12:00"),
                 referees.get(3)
         );
         competitionService.save(trial4);
@@ -937,7 +937,7 @@ public class DataLoader {
                 70,
                 80,
                 new Timestamp(System.currentTimeMillis() + 100000),
-                dateService.stringToTimestamp("30/04/2021 12:00"),
+                dateService.stringToTimestamp("30/07/2021 12:00"),
                 referees.get(1)
         );
         competitionService.save(trial5);
@@ -949,7 +949,7 @@ public class DataLoader {
                 60,
                 70,
                 new Timestamp(System.currentTimeMillis() + 100000),
-                dateService.stringToTimestamp("30/04/2021 12:00"),
+                dateService.stringToTimestamp("30/07/2021 12:00"),
                 referees.get(3)
         );
         competitionService.save(trial6);
@@ -961,7 +961,7 @@ public class DataLoader {
                 70,
                 80,
                 new Timestamp(System.currentTimeMillis() + 100000),
-                dateService.stringToTimestamp("30/04/2021 12:00"),
+                dateService.stringToTimestamp("30/07/2021 12:00"),
                 referees.get(1)
         );
         competitionService.save(trial7);
@@ -973,7 +973,7 @@ public class DataLoader {
                 60,
                 70,
                 new Timestamp(System.currentTimeMillis() + 100000),
-                dateService.stringToTimestamp("30/04/2021 12:00"),
+                dateService.stringToTimestamp("30/07/2021 12:00"),
                 referees.get(3)
         );
         competitionService.save(trial8);
@@ -985,7 +985,7 @@ public class DataLoader {
                 70,
                 80,
                 new Timestamp(System.currentTimeMillis() + 100000),
-                dateService.stringToTimestamp("30/04/2021 12:00"),
+                dateService.stringToTimestamp("30/07/2021 12:00"),
                 referees.get(3)
         );
         competitionService.save(trial9);
@@ -997,7 +997,7 @@ public class DataLoader {
                 60,
                 70,
                 new Timestamp(System.currentTimeMillis() + 100000),
-                dateService.stringToTimestamp("30/04/2021 12:00"),
+                dateService.stringToTimestamp("30/07/2021 12:00"),
                 referees.get(1)
         );
         competitionService.save(trial10);
@@ -1009,7 +1009,7 @@ public class DataLoader {
                 70,
                 80,
                 new Timestamp(System.currentTimeMillis() + 100000),
-                dateService.stringToTimestamp("30/04/2021 12:00"),
+                dateService.stringToTimestamp("30/07/2021 12:00"),
                 referees.get(3)
         );
         competitionService.save(trial11);
@@ -1021,7 +1021,7 @@ public class DataLoader {
                 60,
                 70,
                 new Timestamp(System.currentTimeMillis() + 100000),
-                dateService.stringToTimestamp("30/04/2021 12:00"),
+                dateService.stringToTimestamp("30/07/2021 12:00"),
                 referees.get(1)
         );
         competitionService.save(trial12);
@@ -1308,11 +1308,11 @@ public class DataLoader {
         competitionService.save(competitions.get(7));
 
         competitions.get(8).setStartDate(dateService.stringToTimestamp("30/03/2021 12:00"))
-                .setEndDate(dateService.stringToTimestamp("04/05/2021 12:00"));
+                .setEndDate(dateService.stringToTimestamp("28/05/2021 12:00"));
         competitionService.save(competitions.get(8));
 
         competitions.get(9).setStartDate(dateService.stringToTimestamp("30/03/2021 12:00"))
-                .setEndDate(dateService.stringToTimestamp("04/05/2021 12:00"));
+                .setEndDate(dateService.stringToTimestamp("28/05/2021 12:00"));
         competitionService.save(competitions.get(9));
 
         competitions.get(10).setStartDate(dateService.stringToTimestamp("07/07/2021 12:00"))
