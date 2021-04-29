@@ -16,7 +16,7 @@ export class CompetitorService {
         return this.httpClient.get(COMPETITORS_URL + '?page=' + page);
     }
 
-    getCompetitor(id: number | string): Observable<any> {
+    getCompetitor(id: number): Observable<any> {
         return this.httpClient.get(COMPETITORS_URL + '/' + id);
     }
 
@@ -25,7 +25,7 @@ export class CompetitorService {
         return this.httpClient.delete(COMPETITORS_URL + '/' + user.licenseId);
     }
 
-    updateCompetitor(user: User) {
-        return this.httpClient.put(COMPETITORS_URL + '/' + user.licenseId, user);
+    updateCompetitor(user: User): Observable<any> {
+        return this.httpClient.put(COMPETITORS_URL + '/' + user.licenseId, {});
     }
 }

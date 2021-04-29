@@ -4,55 +4,40 @@ import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 
 import {User} from '../models/user.model';
+import Any = jasmine.Any;
 
 const REFEREE_URL = 'api/referees';
 
 @Injectable({providedIn: 'root'})
 export class RefereeService {
 
-  constructor(private httpClient: HttpClient) {
-  }
-
-  getReferees(page: number): Observable<User[]> {
-    return this.httpClient.get(REFEREE_URL + '?page=' + page).pipe(
-      catchError(error => this.handleError(error))
-    ) as Observable<User[]>;
-  }
-
-  getApplications(): Observable<User[]> {
-    return this.httpClient.get(REFEREE_URL + '/applications').pipe(
-      catchError(error => this.handleError(error))
-    ) as Observable<User[]>;
-  }
-
-  getReferee(id: number): Observable<User> {
-    return this.httpClient.get(REFEREE_URL + '/' + id).pipe(
-      catchError(error => this.handleError(error))
-    ) as Observable<User>;
-  }
+    constructor(private httpClient: HttpClient) {
+    }
 
 
-  removeReferee(user: User) {
-    return this.httpClient.delete(REFEREE_URL + '/' + user.licenseId).pipe(
-      catchError(error => this.handleError(error))
-    );
-  }
+    getReferees(page: number): Observable<any> {
+        return this.httpClient.get(REFEREE_URL + '?page=' + page);
+    }
 
-  updateReferee(user: User) {
-    return this.httpClient.put(REFEREE_URL + '/' + user.licenseId, user).pipe(
-      catchError(error => this.handleError(error))
-    );
-  }
+    getReferee(id: number | string): Observable<any> {
+        return this.httpClient.get(REFEREE_URL + '/' + id);
+    }
 
-  admitReferee(user: User) {
-    return this.httpClient.put(REFEREE_URL + '/applications/' + user.licenseId, user).pipe(
-      catchError(error => this.handleError(error))
-    );
-  }
 
-  private handleError(error: any) {
-    console.log('ERROR:');
-    console.error(error);
-    return throwError('Server error (' + error.status + '): ' + error.text());
-  }
+    removeReferee(user: User): Observable<any> {
+        return this.httpClient.delete(REFEREE_URL + '/' + user.licenseId);
+    }
+
+    updateReferee(user: User): Observable<any> {
+        return this.httpClient.put(REFEREE_URL + '/' + user.licenseId, user);
+    }
+
+    getApplications(): Observable<any> {
+        return this.httpClient.get(REFEREE_URL + '/applications');
+    }
+
+    admitReferee(user: User): Observable<any> {
+        return this.httpClient.put(REFEREE_URL + '/applications/' + user.licenseId, {});
+    }
+
 }

@@ -12,9 +12,11 @@ import { CompetitorEditComponent } from './admin/user/components/competitor-edit
 import { E403Component } from './error/e403/e403.component';
 import { E404Component } from './error/e404/e404.component';
 import { E500Component } from './error/e500/e500.component';
+import { RefereeListComponent } from './admin/user/components/referee-list.component';
+import { RefereeEditComponent } from './admin/user/components/referee-edit.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, CompetitorListComponent, LoginComponent, CompetitorEditComponent, E403Component, E404Component, E500Component],
+  declarations: [AppComponent, HeaderComponent, CompetitorListComponent, LoginComponent, CompetitorEditComponent, E403Component, E404Component, E500Component, RefereeListComponent, RefereeEditComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, routing],
   bootstrap: [AppComponent]
 })
