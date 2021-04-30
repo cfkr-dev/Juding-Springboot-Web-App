@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {throwError} from 'rxjs';
 import {Router} from '@angular/router';
 
 @Injectable({

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../../../user/user.model';
+
 const REFEREE_URL = 'api/referees';
 
 @Injectable({providedIn: 'root'})

@@ -4,199 +4,205 @@
     </div>
 </ng-template>
 <ng-container *ngIf="fullLoaded; else loading">
-  <h1 class="h1">Inicio</h1>
-  <div class="row d-flex flex-column align-items-center text-center">
-    <div class="col-7">
-      <div class="card mb-3">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img alt="avatar" class="avatar" [src]="currentUser.imageFile">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-10">
-                  <h5 class="card-title">{{ currentUser.nickname }}</h5>
-                </div>
-                <div class="col-md-2">
-                  <i class="fas fa-user-ninja fa-2x beltStyle {{ currentUser.belt }}" title="belt.getLongName"></i>
-                </div>
-              </div>
-              <div class="card-text text-left">
-                {{ currentUser.name }} <strong>{{ currentUser.surname }}</strong><br>
-                <strong>Licencia:</strong> {{ currentUser.licenseId }}.<br>
-                <strong>DNI:</strong> {{ currentUser.dni }}.<br>
-                <span *ngIf="currentUser.roles.includes('C')">
+    <h1 class="h1">Inicio</h1>
+    <div class="row d-flex flex-column align-items-center text-center">
+        <div class="col-7">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img [src]="currentUser.imageFile" alt="avatar" class="avatar">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h5 class="card-title">{{ currentUser.nickname }}</h5>
+                                </div>
+                                <div class="col-md-2">
+                                    <i class="fas fa-user-ninja fa-2x beltStyle {{ currentUser.belt }}"
+                                       title="belt.getLongName"></i>
+                                </div>
+                            </div>
+                            <div class="card-text text-left">
+                                {{ currentUser.name }} <strong>{{ currentUser.surname }}</strong><br>
+                                <strong>Licencia:</strong> {{ currentUser.licenseId }}.<br>
+                                <strong>DNI:</strong> {{ currentUser.dni }}.<br>
+                                <span *ngIf="currentUser.roles.includes('C')">
                     <strong>Gimnasio:</strong> {{ currentUser.gym }}.<br>
                   </span>
-                <span *ngIf="currentUser.roles.includes('C')">
+                                <span *ngIf="currentUser.roles.includes('C')">
                     <strong>Peso:</strong> {{ currentUser.weight }} kg.
                   </span>
-                <span *ngIf="currentUser.roles.includes('R')">
+                                <span *ngIf="currentUser.roles.includes('R')">
                     <strong>Rango:</strong> {{ rangeService.getRangeByName(currentUser.refereeRange).longName }}.
                   </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row" *ngIf="currentUser.roles.includes('C')">
-    <div class="col-12 col-md-6 text-center">
-      <h4 class="h4">Gráfico de medallas</h4>
-      <div *ngIf="chart1.barChartData !== undefined; else loading">
-        <canvas baseChart
-                [datasets]="chart1.barChartData"
-                [labels]="chart1.barChartLabels"
-                [options]="chart1.barChartOptions"
-                [legend]="chart1.barChartLegend"
-                [chartType]="chart1.barChartType">
-        </canvas>
-      </div>
-    </div>
-    <div class="col-12 col-md-6 text-center">
-      <h4 class="h4">Evolución anual</h4>
-      <div *ngIf="chart2.lineChartData !== undefined || chart2.lineChartData.length > 0; else loading">
-        <canvas baseChart
-                [datasets]="chart2.lineChartData"
-                [labels]="chart2.lineChartLabels"
-                [options]="chart2.lineChartOptions"
-                [colors]="chart2.lineChartColors"
-                [legend]="chart2.lineChartLegend"
-                [chartType]="chart2.lineChartType"
-                [plugins]="chart2.lineChartPlugins"></canvas>
-      </div>
-    </div>
-  </div>
-  <div class="row mx-3 my-3">
-    <div class="alert alert-info" *ngIf="currentCompetitions.length !== 0">
-      <div class="row">
-        <h2 class="h2">Competiciones actuales</h2>
-      </div>
-      <div class="row d-flex justify-content-center">
-        <div class="col-md-4" *ngFor="let currentCompetition of currentCompetitions">
-          <div class="card h-100 mb-2">
-            <div class="card-body">
-              <h4 class="card-title">{{ currentCompetition.shortName }}</h4>
-              <p class="card-text text-center">
-                <i class="far fa-calendar"></i> {{ currentCompetition.startDate | date:'dd/MM/yyyy' }}
-                - {{ currentCompetition.endDate | date:'dd/MM/yyyy' }}
-                <br>
-                <i class="fas fa-user-tie"></i> {{ currentCompetition.referee.nickname }}
-                ({{ currentCompetition.referee.licenseId }}).
-              </p>
-            </div>
-            <div class="card-footer text-center">
-              <a class="btn btn-primary" routerLink="/competitions/{{ currentCompetition.idCompetition }}">
-                Ver detalle
-              </a>
-              <a class="btn btn-success" routerLink="/competitions/{{ currentCompetition.idCompetition }}/control"
-                 *ngIf="currentUser.roles.includes('R')">Arbitrar</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="px-2 mt-2 pb-3">
-    <h3>Competiciones futuras</h3>
-    <ng-container *ngIf="currentUser.roles.includes('C')">
-      <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-panel-0">
-        <ngb-panel title="Inscritas">
-          <ng-template ngbPanelContent>
-            <div class="row">
-              <div class="col-md-4" *ngFor="let joinedFuture of futureJoinedCompetitions">
-                <div class="card h-100 mb-2">
-                  <div class="card-body">
-                    <h4 class="card-title">{{ joinedFuture.shortName }}</h4>
-                    <p class="card-text text-center">
-                      <i class="far fa-calendar"></i> {{ joinedFuture.startDate | date:'dd/MM/yyyy' }}
-                      - {{ joinedFuture.endDate | date:'dd/MM/yyyy' }}
-                      <br>
-                      <i class="fas fa-user-tie"></i> {{ joinedFuture.referee.nickname }}
-                      ({{ joinedFuture.referee.licenseId }}).
-                    </p>
-                  </div>
-                  <div class="card-footer text-center">
-                    <a class="btn btn-primary" routerLink="/competition/{{ joinedFuture.idCompetition }}">
-                      Ver detalle
-                    </a>
-                  </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="alert alert-info" *ngIf="futureJoinedCompetitions.length === 0">
-                No hay competiciones inscritas por el momento. ¡Inscríbete en alguna!
-              </div>
             </div>
-          </ng-template>
-        </ngb-panel>
-        <ngb-panel title="No inscritas">
-          <ng-template ngbPanelContent>
-            <div class="row">
-              <div class="col-md-4" *ngFor="let notJoinedFuture of futureNotJoinedCompetitions">
-                <div class="card h-100 mb-2">
-                  <div class="card-body">
-                    <h4 class="card-title">{{ notJoinedFuture.shortName }}</h4>
-                    <p class="card-text text-center">
-                      <i class="far fa-calendar"></i> {{ notJoinedFuture.startDate | date:'dd/MM/yyyy' }}
-                      - {{ notJoinedFuture.endDate | date:'dd/MM/yyyy' }}
-                      <br>
-                      <i class="fas fa-user-tie"></i> {{ notJoinedFuture.referee.nickname }}
-                      ({{ notJoinedFuture.referee.licenseId }}).
-                    </p>
-                  </div>
-                  <div class="card-footer text-center">
-                    <a class="btn btn-success" routerLink="/competition/{{ notJoinedFuture.idCompetition }}/join">
-                      Inscribirme
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="alert alert-info" *ngIf="futureNotJoinedCompetitions.length === 0">
-                No hay competiciones no inscritas por el momento. ¡Revísalo de nuevo en unos días!
-              </div>
-            </div>
-          </ng-template>
-        </ngb-panel>
-      </ngb-accordion>
-    </ng-container>
-    <ng-container *ngIf="currentUser.roles.includes('R')">
-      <div class="row">
-        <div class="col-md-4" *ngFor="let joinedFuture of futureJoinedCompetitions">
-          <div class="card h-100 mb-2">
-            <div class="card-body">
-              <h4 class="card-title">{{ joinedFuture.shortName }}</h4>
-              <p class="card-text text-center">
-                <i class="far fa-calendar"></i> {{ joinedFuture.startDate | date:'dd/MM/yyyy' }}
-                - {{ joinedFuture.endDate | date:'dd/MM/yyyy' }}
-                <br>
-                <i class="fas fa-user-tie"></i> {{ joinedFuture.referee.nickname }}
-                ({{ joinedFuture.referee.licenseId }}).
-              </p>
-            </div>
-            <div class="card-footer text-center">
-              <a class="btn btn-primary" routerLink="/competition/{{ joinedFuture.idCompetition }}">
-                Ver detalle
-              </a>
-            </div>
-          </div>
         </div>
-        <div class="alert alert-info" *ngIf="futureJoinedCompetitions.length === 0">
-          No hay competiciones inscritas por el momento. ¡Inscríbete en alguna!
-        </div>
-      </div>
-    </ng-container>
-  </div>
-  <div class="px-2 mt-2 pb-3">
-    <h3>Historial de competiciones</h3>
-    <div class="alert alert-info" *ngIf="pastCompetitions.length === 0">No hay competiciones anteriores.</div>
-    <div class="shadow p-1 mb-3 bg-white rounded" *ngFor="let competition of pastCompetitions">
-      <div class="alert alert-light" role="alert">
-        {{ competition.shortName }}
-        <a class="btn btn-secondary" routerLink="/competition/{{ competition.idCompetition }}"><i class="fas fa-award"></i>
-          Ver detalle</a>
-      </div>
     </div>
-  </div>
+    <div *ngIf="currentUser.roles.includes('C')" class="row">
+        <div class="col-12 col-md-6 text-center">
+            <h4 class="h4">Gráfico de medallas</h4>
+            <div *ngIf="chart1.barChartData !== undefined; else loading">
+                <canvas [chartType]="chart1.barChartType"
+                        [datasets]="chart1.barChartData"
+                        [labels]="chart1.barChartLabels"
+                        [legend]="chart1.barChartLegend"
+                        [options]="chart1.barChartOptions"
+                        baseChart>
+                </canvas>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 text-center">
+            <h4 class="h4">Evolución anual</h4>
+            <div *ngIf="chart2.lineChartData !== undefined || chart2.lineChartData.length > 0; else loading">
+                <canvas [chartType]="chart2.lineChartType"
+                        [colors]="chart2.lineChartColors"
+                        [datasets]="chart2.lineChartData"
+                        [labels]="chart2.lineChartLabels"
+                        [legend]="chart2.lineChartLegend"
+                        [options]="chart2.lineChartOptions"
+                        [plugins]="chart2.lineChartPlugins"
+                        baseChart></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row mx-3 my-3">
+        <div *ngIf="currentCompetitions.length !== 0" class="alert alert-info">
+            <div class="row">
+                <h2 class="h2">Competiciones actuales</h2>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div *ngFor="let currentCompetition of currentCompetitions" class="col-md-4">
+                    <div class="card h-100 mb-2">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ currentCompetition.shortName }}</h4>
+                            <p class="card-text text-center">
+                                <i class="far fa-calendar"></i> {{ currentCompetition.startDate | date:'dd/MM/yyyy' }}
+                                - {{ currentCompetition.endDate | date:'dd/MM/yyyy' }}
+                                <br>
+                                <i class="fas fa-user-tie"></i> {{ currentCompetition.referee.nickname }}
+                                ({{ currentCompetition.referee.licenseId }}).
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a class="btn btn-primary"
+                               routerLink="/competitions/{{ currentCompetition.idCompetition }}">
+                                Ver detalle
+                            </a>
+                            <a *ngIf="currentUser.roles.includes('R')"
+                               class="btn btn-success"
+                               routerLink="/competitions/{{ currentCompetition.idCompetition }}/control">Arbitrar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="px-2 mt-2 pb-3">
+        <h3>Competiciones futuras</h3>
+        <ng-container *ngIf="currentUser.roles.includes('C')">
+            <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="ngb-panel-0">
+                <ngb-panel title="Inscritas">
+                    <ng-template ngbPanelContent>
+                        <div class="row">
+                            <div *ngFor="let joinedFuture of futureJoinedCompetitions" class="col-md-4">
+                                <div class="card h-100 mb-2">
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{ joinedFuture.shortName }}</h4>
+                                        <p class="card-text text-center">
+                                            <i class="far fa-calendar"></i> {{ joinedFuture.startDate | date:'dd/MM/yyyy' }}
+                                            - {{ joinedFuture.endDate | date:'dd/MM/yyyy' }}
+                                            <br>
+                                            <i class="fas fa-user-tie"></i> {{ joinedFuture.referee.nickname }}
+                                            ({{ joinedFuture.referee.licenseId }}).
+                                        </p>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <a class="btn btn-primary"
+                                           routerLink="/competition/{{ joinedFuture.idCompetition }}">
+                                            Ver detalle
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="futureJoinedCompetitions.length === 0" class="alert alert-info">
+                                No hay competiciones inscritas por el momento. ¡Inscríbete en alguna!
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+                <ngb-panel title="No inscritas">
+                    <ng-template ngbPanelContent>
+                        <div class="row">
+                            <div *ngFor="let notJoinedFuture of futureNotJoinedCompetitions" class="col-md-4">
+                                <div class="card h-100 mb-2">
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{ notJoinedFuture.shortName }}</h4>
+                                        <p class="card-text text-center">
+                                            <i class="far fa-calendar"></i> {{ notJoinedFuture.startDate | date:'dd/MM/yyyy' }}
+                                            - {{ notJoinedFuture.endDate | date:'dd/MM/yyyy' }}
+                                            <br>
+                                            <i class="fas fa-user-tie"></i> {{ notJoinedFuture.referee.nickname }}
+                                            ({{ notJoinedFuture.referee.licenseId }}).
+                                        </p>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <a class="btn btn-success"
+                                           routerLink="/competition/{{ notJoinedFuture.idCompetition }}/join">
+                                            Inscribirme
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="futureNotJoinedCompetitions.length === 0" class="alert alert-info">
+                                No hay competiciones no inscritas por el momento. ¡Revísalo de nuevo en unos días!
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
+        </ng-container>
+        <ng-container *ngIf="currentUser.roles.includes('R')">
+            <div class="row">
+                <div *ngFor="let joinedFuture of futureJoinedCompetitions" class="col-md-4">
+                    <div class="card h-100 mb-2">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ joinedFuture.shortName }}</h4>
+                            <p class="card-text text-center">
+                                <i class="far fa-calendar"></i> {{ joinedFuture.startDate | date:'dd/MM/yyyy' }}
+                                - {{ joinedFuture.endDate | date:'dd/MM/yyyy' }}
+                                <br>
+                                <i class="fas fa-user-tie"></i> {{ joinedFuture.referee.nickname }}
+                                ({{ joinedFuture.referee.licenseId }}).
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a class="btn btn-primary" routerLink="/competition/{{ joinedFuture.idCompetition }}">
+                                Ver detalle
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="futureJoinedCompetitions.length === 0" class="alert alert-info">
+                    No hay competiciones inscritas por el momento. ¡Inscríbete en alguna!
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div class="px-2 mt-2 pb-3">
+        <h3>Historial de competiciones</h3>
+        <div *ngIf="pastCompetitions.length === 0" class="alert alert-info">No hay competiciones anteriores.</div>
+        <div *ngFor="let competition of pastCompetitions" class="shadow p-1 mb-3 bg-white rounded">
+            <div class="alert alert-light" role="alert">
+                {{ competition.shortName }}
+                <a class="btn btn-secondary" routerLink="/competition/{{ competition.idCompetition }}"><i
+                    class="fas fa-award"></i>
+                    Ver detalle</a>
+            </div>
+        </div>
+    </div>
 </ng-container>

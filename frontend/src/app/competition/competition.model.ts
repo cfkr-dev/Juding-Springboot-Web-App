@@ -2,26 +2,17 @@ import {Fight} from '../fight/fight.model';
 import {User} from '../user/user.model';
 
 export class Competition {
-  private _shortName: string;
-  private _additionalInfo: string;
-  private _minWeight: number;
-  private _maxWeight: number;
-  private _startDate: Date;
-  private _endDate: Date;
-  private _referee: User;
-  private _idCompetition?: number;
-  private _fights: Fight[];
+    constructor(shortName: string, additionalInfo: string, minWeight: number, maxWeight: number, startDate: Date, endDate: Date, referee: User) {
+        this._shortName = shortName;
+        this._additionalInfo = additionalInfo;
+        this._minWeight = minWeight;
+        this._maxWeight = maxWeight;
+        this._startDate = startDate;
+        this._endDate = endDate;
+        this._referee = referee;
+    }
 
-  constructor(shortName:string, additionalInfo:string, minWeight:number, maxWeight:number, startDate:Date, endDate:Date, referee:User){
-  this._shortName = shortName;
-  this._additionalInfo = additionalInfo;
-  this._minWeight = minWeight;
-  this._maxWeight = maxWeight;
-  this._startDate = startDate;
-  this._endDate = endDate;
-  this._referee = referee;
-  }
-
+    private _shortName: string;
 
     get shortName(): string {
         return this._shortName;
@@ -31,6 +22,8 @@ export class Competition {
         this._shortName = value;
     }
 
+    private _additionalInfo: string;
+
     get additionalInfo(): string {
         return this._additionalInfo;
     }
@@ -38,6 +31,8 @@ export class Competition {
     set additionalInfo(value: string) {
         this._additionalInfo = value;
     }
+
+    private _minWeight: number;
 
     get minWeight(): number {
         return this._minWeight;
@@ -47,6 +42,8 @@ export class Competition {
         this._minWeight = value;
     }
 
+    private _maxWeight: number;
+
     get maxWeight(): number {
         return this._maxWeight;
     }
@@ -54,6 +51,8 @@ export class Competition {
     set maxWeight(value: number) {
         this._maxWeight = value;
     }
+
+    private _startDate: Date;
 
     get startDate(): Date {
         return this._startDate;
@@ -63,6 +62,8 @@ export class Competition {
         this._startDate = value;
     }
 
+    private _endDate: Date;
+
     get endDate(): Date {
         return this._endDate;
     }
@@ -70,6 +71,8 @@ export class Competition {
     set endDate(value: Date) {
         this._endDate = value;
     }
+
+    private _referee: User;
 
     get referee(): User {
         return this._referee;
@@ -79,6 +82,8 @@ export class Competition {
         this._referee = value;
     }
 
+    private _idCompetition?: number;
+
     get idCompetition(): number {
         return this._idCompetition;
     }
@@ -86,6 +91,8 @@ export class Competition {
     set idCompetition(value: number) {
         this._idCompetition = value;
     }
+
+    private _fights: Fight[];
 
     get fights(): Fight[] {
         return this._fights;

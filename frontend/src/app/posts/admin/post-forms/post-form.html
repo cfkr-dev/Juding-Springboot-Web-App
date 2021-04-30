@@ -1,8 +1,8 @@
 <div class="container pb-4">
     <h2 *ngIf="post.idPost" class="h2">Edición de noticia</h2>
-    <h2 *ngIf="!post.idPost"  class="h2">Creación de una nueva noticia</h2>
+    <h2 *ngIf="!post.idPost" class="h2">Creación de una nueva noticia</h2>
 
-    <form class="needs-validation" (submit)="submitForm($event)" enctype="multipart/form-data" novalidate>
+    <form (submit)="submitForm($event)" class="needs-validation" enctype="multipart/form-data" novalidate>
 
         <div class="alert alert-danger" role="alert">
             <strong>Error:</strong> Recuerda que el campo del título y el cuerpo de la noticia no pueden estar vacíos.
@@ -10,8 +10,8 @@
 
         <!-- Title -->
         <label class="txt1" for="title">Título <span class="asterisk">*</span></label>
-        <input class="form-control" id="title" name="title" required type="text"
-               [(ngModel)]="post.title">
+        <input [(ngModel)]="post.title" class="form-control" id="title" name="title" required
+               type="text">
         <div class="invalid-feedback">
             Este campo no puede estar vacio.
         </div>
@@ -22,9 +22,10 @@
         <img *ngIf="post.imageFile" class="imageInTheMiddle" src="{{post.imageFile}}">
 
         <div class="custom-file mt-4">
-            <input type="file" class="custom-file-input" id="image" name="image"
-                   accept="image/jpeg, image/png" (change)="onImageSelected($event)"
-                   [(ngModel)]="image">
+            <input (change)="onImageSelected($event)" [(ngModel)]="image" accept="image/jpeg, image/png"
+                   class="custom-file-input"
+                   id="image" name="image"
+                   type="file">
             <label class="custom-file-label" for="image">{{ getInterpretedFileName() }}</label>
         </div>
         <div class="invalid-feedback">
@@ -33,7 +34,7 @@
 
         <!-- Body -->
         <label class="txt1" for="body">Cuerpo <span class="asterisk">*</span></label>
-        <textarea cols="30" id="body" name="body" rows="20" required [(ngModel)]="post.body"></textarea>
+        <textarea [(ngModel)]="post.body" cols="30" id="body" name="body" required rows="20"></textarea>
         <div class="container-login100-form-btn mt-2">
             <button class="btn btn-corporative">Actualizar datos</button>
         </div>

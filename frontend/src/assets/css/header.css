@@ -9,7 +9,7 @@
     text-decoration: none;
 }
 
-::selection{
+::selection {
     background-color: #ee1212;
     color: white;
 }
@@ -93,7 +93,7 @@
     transition: 0.3s;
 }
 
-.navbar a span{
+.navbar a span {
     font-family: "Nunito", sans-serif;
 }
 
@@ -188,8 +188,8 @@
     background: #f35959;
 }
 
-.navbar a.login:hover{
-  color: #fff !important;
+.navbar a.login:hover {
+    color: #fff !important;
 }
 
 

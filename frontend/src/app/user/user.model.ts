@@ -1,23 +1,5 @@
 export class User {
-  private _licenseId: string;
-  private _name: string;
-  private _surname: string;
-  private _gender: string;
-  private _phone?: number;
-  private _email: string;
-  private _birthdate: string;
-  private _dni: string;
-  private _imageFile: string;
-  private _nickname: string;
-  private _password: string;
-  private _securityQuestion: string;
-  private _securityAnswer: string;
-  private _belt: string;
-  private _gym?: string;
-  private _weight?: string;
-  private _refereeRange?: string;
-  private _roles: string[];
-
+    private _licenseId: string;
 
     get licenseId(): string {
         return this._licenseId;
@@ -27,6 +9,8 @@ export class User {
         this._licenseId = value;
     }
 
+    private _name: string;
+
     get name(): string {
         return this._name;
     }
@@ -34,6 +18,8 @@ export class User {
     set name(value: string) {
         this._name = value;
     }
+
+    private _surname: string;
 
     get surname(): string {
         return this._surname;
@@ -43,6 +29,8 @@ export class User {
         this._surname = value;
     }
 
+    private _gender: string;
+
     get gender(): string {
         return this._gender;
     }
@@ -50,6 +38,8 @@ export class User {
     set gender(value: string) {
         this._gender = value;
     }
+
+    private _phone?: number;
 
     get phone(): number {
         return this._phone;
@@ -59,6 +49,8 @@ export class User {
         this._phone = value;
     }
 
+    private _email: string;
+
     get email(): string {
         return this._email;
     }
@@ -66,6 +58,8 @@ export class User {
     set email(value: string) {
         this._email = value;
     }
+
+    private _birthdate: string;
 
     get birthdate(): string {
         return this._birthdate;
@@ -75,6 +69,8 @@ export class User {
         this._birthdate = value;
     }
 
+    private _dni: string;
+
     get dni(): string {
         return this._dni;
     }
@@ -82,6 +78,8 @@ export class User {
     set dni(value: string) {
         this._dni = value;
     }
+
+    private _imageFile: string;
 
     get imageFile(): string {
         return this._imageFile;
@@ -91,6 +89,8 @@ export class User {
         this._imageFile = value;
     }
 
+    private _nickname: string;
+
     get nickname(): string {
         return this._nickname;
     }
@@ -98,6 +98,8 @@ export class User {
     set nickname(value: string) {
         this._nickname = value;
     }
+
+    private _password: string;
 
     get password(): string {
         return this._password;
@@ -107,6 +109,8 @@ export class User {
         this._password = value;
     }
 
+    private _securityQuestion: string;
+
     get securityQuestion(): string {
         return this._securityQuestion;
     }
@@ -114,6 +118,8 @@ export class User {
     set securityQuestion(value: string) {
         this._securityQuestion = value;
     }
+
+    private _securityAnswer: string;
 
     get securityAnswer(): string {
         return this._securityAnswer;
@@ -123,6 +129,8 @@ export class User {
         this._securityAnswer = value;
     }
 
+    private _belt: string;
+
     get belt(): string {
         return this._belt;
     }
@@ -130,6 +138,8 @@ export class User {
     set belt(value: string) {
         this._belt = value;
     }
+
+    private _gym?: string;
 
     get gym(): string {
         return this._gym;
@@ -139,6 +149,8 @@ export class User {
         this._gym = value;
     }
 
+    private _weight?: string;
+
     get weight(): string {
         return this._weight;
     }
@@ -147,6 +159,8 @@ export class User {
         this._weight = value;
     }
 
+    private _refereeRange?: string;
+
     get refereeRange(): string {
         return this._refereeRange;
     }
@@ -154,6 +168,8 @@ export class User {
     set refereeRange(value: string) {
         this._refereeRange = value;
     }
+
+    private _roles: string[];
 
     get roles(): string[] {
         return this._roles;

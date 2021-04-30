@@ -293,7 +293,7 @@ $(function () {
                 } else {
                     smallStopwatch[2]++;
                 }
-                if (smallStopwatch[2] === 12){
+                if (smallStopwatch[2] === 12) {
                     if (smallStopwatch[1] === 1) addPointPlayer1();
                     else addPointPlayer2();
                 }
@@ -391,8 +391,7 @@ $(function () {
                 if (ans) {
                     alert("Combate finalizado y registrado correctamente. Cierre para continuar.");
                     window.location.replace(window.location.pathname.slice(0, -8));
-                }
-                else alert("Error fatal: anota los resultados antes de cerrar la página.");
+                } else alert("Error fatal: anota los resultados antes de cerrar la página.");
             });
         } else {
             alert("Ninguno de los competidores cumple las condiciones para ser declarado ganador.");
@@ -495,7 +494,7 @@ $(function () {
     keySpace2.click(() => bigStopwatchTurnOff());
     endBtn.click(() => endOfFight());
 
-    $("#return").click(function(){
+    $("#return").click(function () {
         if (confirm("¿Desea abandonar la página? Se perderán los valores actuales."))
             $(location).attr("href", "/myHome");
     })

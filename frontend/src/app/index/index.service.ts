@@ -6,14 +6,14 @@ import {PostInterface} from '../post/post.interface';
 @Injectable()
 export class IndexService {
 
-  constructor(private http: HttpClient) {
-  }
+    constructor(private http: HttpClient) {
+    }
 
-  sendEmail(emailValues): Observable<any> {
-    return this.http.get('/api/index-email?name=' + emailValues.name + '&email=' + emailValues.email + '&subject=' + emailValues.subject + '&message=' + emailValues.message);
-  }
+    sendEmail(emailValues): Observable<any> {
+        return this.http.get('/api/index-email?name=' + emailValues.name + '&email=' + emailValues.email + '&subject=' + emailValues.subject + '&message=' + emailValues.message);
+    }
 
-  getPosts(page: number): Observable<any>{
-    return this.http.get('/api/posts?page=' + page + '&size=3') as Observable<PostInterface[]>;
-  }
+    getPosts(page: number): Observable<any> {
+        return this.http.get('/api/posts?page=' + page + '&size=3') as Observable<PostInterface[]>;
+    }
 }

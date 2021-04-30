@@ -22,7 +22,7 @@
             <div class="width25 text-center">Autor</div>
             <div class="width15 text-center">Acciones</div>
         </div>
-        <div class="rtRow" *ngFor="let post of posts; let p = index">
+        <div *ngFor="let post of posts; let p = index" class="rtRow">
             <div class="width5 text-center">{{ post.idPost}}</div>
             <div class="width40">{{ post.title }}</div>
             <div class="width15 text-center">{{ post.timestamp | date: 'dd/MM/yyyy'}}</div>
@@ -40,18 +40,18 @@
             </div>
         </div>
         <div *ngIf="loadedButton===false">
-            <div class="alert alert-danger" *ngIf="empty===true" role="alert">
+            <div *ngIf="empty===true" class="alert alert-danger" role="alert">
                 No hay más competiciones.
             </div>
         </div>
     </div>
     <div class="width100 pt-2 text-center">
-        <button data-role="post" id="loadNextPage" class="btn btn-corporative" (click)="loadNextPage()"
-                *ngIf="finalPage===false">
+        <button (click)="loadNextPage()" *ngIf="finalPage===false" class="btn btn-corporative" data-role="post"
+                id="loadNextPage">
             <i *ngIf="loadedButton===false" class="fas fa-circle-notch fa-spin"></i><i *ngIf="loadedButton===true"></i>Cargar
             más noticias
         </button>
-        <button *ngIf="finalPage===true" data-role="post" class="btn btn-outline-corporative">
+        <button *ngIf="finalPage===true" class="btn btn-outline-corporative" data-role="post">
             <i></i> No hay más noticias
         </button>
     </div>
@@ -66,10 +66,10 @@
         ¿Seguro de que desea continuar?
     </div>
     <div class="modal-footer">
-        <button type="button" aria-label="Close" class="btn-close" (click)="modal.dismiss('Cross Click')">
+        <button (click)="modal.dismiss('Cross Click')" aria-label="Close" class="btn-close" type="button">
             <i class="fas fa-times-circle"></i> Cancelar
         </button>
-        <button type="button" class="btn btn-danger" (click)="[modal.dismiss(), deletePost()]">
+        <button (click)="[modal.dismiss(), deletePost()]" class="btn btn-danger" type="button">
             <i class="fas fa-trash-alt"></i> Eliminar
         </button>
     </div>

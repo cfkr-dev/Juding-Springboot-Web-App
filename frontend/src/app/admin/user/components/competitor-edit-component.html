@@ -1,7 +1,8 @@
 <ng-container *ngIf="!errorOnLoadUserData">
-    <form action="/admin/user/edit/save" class="needs-validation flex-sb flex-w juding-form-user-update" (submit)=modifyCompetitor(user) method="post"
-          novalidate
-          enctype="multipart/form-data">
+    <form (submit)=modifyCompetitor(user) action="/admin/user/edit/save"
+          class="needs-validation flex-sb flex-w juding-form-user-update" enctype="multipart/form-data"
+          method="post"
+          novalidate>
 
         <h2 class="h2">Edición de usuarios</h2>
         <h3 class="h3">Información personal</h3>
@@ -10,14 +11,16 @@
         <div class="row">
             <div class="col-md-6">
                 <label class="txt1" for="name">Nombre <span class="asterisk">*</span></label>
-                <input [(ngModel)]="user.name" class="form-control" id="name" name="name" required type="text" value="{{ user.name }}">
+                <input [(ngModel)]="user.name" class="form-control" id="name" name="name" required type="text"
+                       value="{{ user.name }}">
                 <div class="invalid-feedback">
                     El campo no puede estar vacío.
                 </div>
             </div>
             <div class="col-md-6">
                 <label class="txt1" for="surname">Apellidos <span class="asterisk">*</span></label>
-                <input [(ngModel)]="user.surname" class="form-control" id="surname" name="surname" required type="text" value="{{ user.surname }}">
+                <input [(ngModel)]="user.surname" class="form-control" id="surname" name="surname" required type="text"
+                       value="{{ user.surname }}">
                 <div class="invalid-feedback">
                     El campo no puede estar vacío.
                 </div>
@@ -27,11 +30,13 @@
         <!-- Gender radio selection -->
         <span class="txt1">Género <span class="asterisk">*</span></span>
         <div class="form-check">
-            <input [(ngModel)]="user.gender" [checked]="user.gender === 'H'" class="form-check-input" id="genderH" name="gender" required="" type="radio" value="H">
+            <input [(ngModel)]="user.gender" [checked]="user.gender === 'H'" class="form-check-input" id="genderH"
+                   name="gender" required="" type="radio" value="H">
             <label class="form-check-label" for="genderH">Hombre</label>
         </div>
         <div class="form-check">
-            <input [(ngModel)]="user.gender" [checked]="user.gender === 'M'" class="form-check-input" id="genderM" name="gender" required="" type="radio" value="M">
+            <input [(ngModel)]="user.gender" [checked]="user.gender === 'M'" class="form-check-input" id="genderM"
+                   name="gender" required="" type="radio" value="M">
             <label class="form-check-label" for="genderM">Mujer</label>
             <div class="invalid-feedback">Es obligatorio seleccionar un género.</div>
         </div>
@@ -40,7 +45,8 @@
                 <div class="col-md-6">
                     <!-- Phone field -->
                     <label class="txt1" for="phone">Teléfono</label>
-                    <input [(ngModel)]="user.phone" class="form-control" id="phone" name="phone" pattern="(?=.*\d).{9}" type="text"
+                    <input [(ngModel)]="user.phone" class="form-control" id="phone" name="phone" pattern="(?=.*\d).{9}"
+                           type="text"
                            value="{{user.phone}}">
                     <div class="invalid-feedback">
                         El teléfono debe contener 9 dígitos.
@@ -50,7 +56,8 @@
             <div class="col-md-6">
                 <!-- Email field -->
                 <label class="txt1" for="email">Correo electrónico <span class="asterisk">*</span></label>
-                <input [(ngModel)]="user.email" class="form-control" id="email" name="email" required type="email" value="{{ user.email }}">
+                <input [(ngModel)]="user.email" class="form-control" id="email" name="email" required type="email"
+                       value="{{ user.email }}">
                 <div class="invalid-feedback">
                     El correo electrónico no tiene el formato adecuado.
                 </div>
@@ -67,9 +74,10 @@
 
         <!-- DNI -->
         <label class="txt1" for="dni">DNI <span class="asterisk">*</span></label>
-        <input [(ngModel)]="user.dni" class="form-control" id="dni" name="dni" pattern="^([0-9]{8}|[XYZ][0-9]{7})[A-Z]{1}$" required
+        <input [(ngModel)]="user.dni" class="form-control" data-role="Competitor" id="dni"
+               name="dni" pattern="^([0-9]{8}|[XYZ][0-9]{7})[A-Z]{1}$"
+               required
                type="text"
-               data-role="Competitor"
                value="{{ user.dni }}">
         <div class="invalid-feedback">
             El DNI no sigue el formato requerido (ejemplo: 12345678Z).
@@ -78,15 +86,17 @@
         <h3 class="h3 mt-2">Información de autenticación</h3>
         <!-- License ID -->
         <label class="txt1" for="licenseId">Número de licencia</label>
-        <input [(ngModel)]="user.licenseId" class="form-control" id="licenseId" name="licenseId" type="text" value="{{ user.licenseId }}" readonly
-               pattern="[0-9]{10}$">
+        <input [(ngModel)]="user.licenseId" class="form-control" id="licenseId" name="licenseId" pattern="[0-9]{10}$"
+               readonly type="text"
+               value="{{ user.licenseId }}">
         <div class="invalid-feedback">
             La licencia no se ajusta al formato requerido (10 dígitos).
         </div>
 
         <!-- Nickname field -->
         <label class="txt1" for="nickname">Apodo <span class="asterisk">*</span></label>
-        <input [(ngModel)]="user.nickname" class="form-control" id="nickname" name="nickname" required type="text" value="{{ user.nickname }}">
+        <input [(ngModel)]="user.nickname" class="form-control" id="nickname" name="nickname" required type="text"
+               value="{{ user.nickname }}">
         <div class="invalid-feedback">
             El campo no puede estar vacío.
         </div>
@@ -96,8 +106,8 @@
 
         <!-- Belt selector -->
         <label class="txt1" for="belt">Cinturón <span class="asterisk">*</span></label>
-        <select [(ngModel)]="user.belt" name="belt" id="belt" class="form-select" required>
-            <option selected disabled>Seleccione un cinturón...</option>
+        <select [(ngModel)]="user.belt" class="form-select" id="belt" name="belt" required>
+            <option disabled selected>Seleccione un cinturón...</option>
             <option [selected]="user.belt === 'B'" value="B">Blanco</option>
             <option [selected]="user.belt === 'BAm'" value="BAm">Blanco-Amarillo</option>
             <option [selected]="user.belt === 'Am'" value="Am">Amarillo</option>
@@ -128,7 +138,8 @@
             <div class="col-md-6">
                 <!-- Gym -->
                 <label class="txt1" for="gym">Gimnasio <span class="asterisk">*</span></label>
-                <input [(ngModel)]="user.gym" class="form-control" id="gym" name="gym" required type="text" value="{{ user.gym }}">
+                <input [(ngModel)]="user.gym" class="form-control" id="gym" name="gym" required type="text"
+                       value="{{ user.gym }}">
                 <div class="invalid-feedback">
                     El gimnasio es obligatorio.
                 </div>
@@ -136,8 +147,9 @@
             <div class="col-md-6">
                 <!-- Weight -->
                 <label class="txt1" for="weight">Peso <span class="asterisk">*</span></label>
-                <input [(ngModel)]="user.weight" class="form-control" id="weight" name="weight" pattern="^[1-9][0-9]+$" type="number" required
-                       value="{{ user.weight }}" min="0">
+                <input [(ngModel)]="user.weight" class="form-control" id="weight" min="0" name="weight"
+                       pattern="^[1-9][0-9]+$" required
+                       type="number" value="{{ user.weight }}">
                 <div class="invalid-feedback">
                     El peso es obligatorio.
                 </div>

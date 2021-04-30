@@ -16,7 +16,7 @@ import {HttpClient} from '@angular/common/http';
         '../../../../assets/css/loginAndRegistration.css'],
     providers: [PostsService]
 })
-export class PostFormComponent{
+export class PostFormComponent {
     post: Post;
     image: File = null;
     alert: boolean;
@@ -24,21 +24,21 @@ export class PostFormComponent{
     constructor(private router: Router, activatedRoute: ActivatedRoute, private service: PostsService, private http: HttpClient) {
         this.alert = false;
         const id = activatedRoute.snapshot.params.id;
-        if (id){
+        if (id) {
             service.getPost(id).subscribe(
                 post => this.post = post,
                 error => console.log(error)
             );
-        }
-        else {
+        } else {
             this.post = {author: undefined, title: '', body: '', timestamp: undefined};
         }
     }
 
-    onImageSelected(event): void{
+    onImageSelected(event): void {
         this.image = event.target.files[0];
     }
-    getInterpretedFileName(): string{
+
+    getInterpretedFileName(): string {
         return (this.image !== null) ? this.image.name : 'Examinar...';
     }
 
@@ -46,7 +46,7 @@ export class PostFormComponent{
         event.preventDefault();
         this.service.savePost(this.post).subscribe(
             (post => {
-                if (this.image !== null){
+                if (this.image !== null) {
                     const formData = new FormData();
                     formData.append('file', this.image, this.image.name);
                     this.http.put('/api/posts/' + post.idPost + '/image', formData, {withCredentials: true}).subscribe(

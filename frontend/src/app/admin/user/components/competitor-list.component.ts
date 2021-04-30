@@ -86,7 +86,7 @@ export class CompetitorListComponent implements OnInit {
                         this.users.splice(index);
                     }
                 });
-                if (this.users.length === 0){
+                if (this.users.length === 0) {
                     this.noMorePages = true;
                 }
                 const currentUrl = this.router.url;

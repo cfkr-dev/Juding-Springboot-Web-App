@@ -47,7 +47,11 @@ const routes: Routes = [
     {path: 'admin/posts/new', component: PostFormComponent, canActivate: [AdminActivationService]},
     {path: 'admin/posts/:id', component: PostFormComponent, canActivate: [AdminActivationService]},
     {path: 'admin/competitors', component: CompetitorListComponent, canActivate: [AdminActivationService]},
-    {path: 'admin/competitors/edit/:licenseId', component: CompetitorEditComponent, canActivate: [AdminActivationService]},
+    {
+        path: 'admin/competitors/edit/:licenseId',
+        component: CompetitorEditComponent,
+        canActivate: [AdminActivationService]
+    },
     {path: 'admin/referees', component: RefereeListComponent, canActivate: [AdminActivationService]},
     {path: 'admin/referees/edit/:licenseId', component: RefereeEditComponent, canActivate: [AdminActivationService]},
 
