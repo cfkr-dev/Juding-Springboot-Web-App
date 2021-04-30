@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CompetitorService} from '../services/competitor.service';
-import {User} from '../models/user.model';
+import {User} from '../../../user/user.model';
 import {ErrorHandlerService} from '../services/error-handler.service';
 
 @Component({

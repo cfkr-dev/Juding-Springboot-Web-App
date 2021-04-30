@@ -42,9 +42,9 @@
                 <ng-container *ngIf="service.getFight(competition,0).finished">
                     <div class="rtRow">
                         <div class="width15 text-center">1ª</div>
-                        <div class="width20 text-center"> {{service.getFight(competition,0).winner.nickname}} </div>
-                        <div class="width15 text-center"> {{service.getFight(competition,0).winner.weight}} Kg</div>
-                        <div class="width15 text-center"> {{service.getFight(competition,0).winner.gender}} </div>
+                        <div class="width20 text-center"> {{service.getFight(competition, 0).winner.nickname}} </div>
+                        <div class="width15 text-center"> {{service.getFight(competition, 0).winner.weight}} Kg</div>
+                        <div class="width15 text-center"> {{service.getFight(competition, 0).winner.gender}} </div>
                         <div class="width20 text-center">
                             <i class="fas fa-user-tie beltStyle {{competition.getFights(0).winner.belt} "
                                title=" {{service.getFight(competition,0).winner.belt.longname}} "></i>
@@ -55,9 +55,9 @@
                     </div>
                     <div class="rtRow">
                         <div class="width15 text-center">2ª</div>
-                        <div class="width20 text-center"> {{service.getFight(competition,0).loser.name}} </div>
-                        <div class="width15 text-center"> {{service.getFight(competition,0).loser.weight}} Kg</div>
-                        <div class="width15 text-center"> {{service.getFight(competition,0).winner.gender}} </div>
+                        <div class="width20 text-center"> {{service.getFight(competition, 0).loser.name}} </div>
+                        <div class="width15 text-center"> {{service.getFight(competition, 0).loser.weight}} Kg</div>
+                        <div class="width15 text-center"> {{service.getFight(competition, 0).winner.gender}} </div>
                         <div class="width20 text-center">
                             <i class="fas fa-user-tie beltStyle {{competition.getFights(0).winner.belt} "
                                title=" {{service.getFight(competition,0).loser.belt.longname}} "></i>
@@ -71,9 +71,9 @@
                     <ng-container *ngIf="service.getFight(competition,2).winner">
                         <div class="rtRow">
                             <div class="width15 text-center">3ª</div>
-                            <div class="width20 text-center">{{service.getFight(competition,2).loser.name}}</div>
-                            <div class="width15 text-center">{{service.getFight(competition,2).loser.weight}}Kg</div>
-                            <div class="width15 text-center">{{service.getFight(competition,2).loser.gender}}</div>
+                            <div class="width20 text-center">{{service.getFight(competition, 2).loser.name}}</div>
+                            <div class="width15 text-center">{{service.getFight(competition, 2).loser.weight}}Kg</div>
+                            <div class="width15 text-center">{{service.getFight(competition, 2).loser.gender}}</div>
                             <div class="width20 text-center">
                                 <i class="fas fa-user-tie beltStyle {{service.getFight(competition,2).loser.belt}}"
                                    title="{{service.getFight(competition,2).loser.belt.longname}}"></i>
@@ -88,9 +88,9 @@
                     <ng-container *ngIf="service.getFight(competition,1).winner">
                         <div class="rtRow mb-5">
                             <div class="width15 text-center">3ª</div>
-                            <div class="width20 text-center">{{service.getFight(competition,1).loser.name}}</div>
-                            <div class="width15 text-center">{{service.getFight(competition,1).loser.weight}}Kg</div>
-                            <div class="width15 text-center">{{service.getFight(competition,1).loser.gender}}</div>
+                            <div class="width20 text-center">{{service.getFight(competition, 1).loser.name}}</div>
+                            <div class="width15 text-center">{{service.getFight(competition, 1).loser.weight}}Kg</div>
+                            <div class="width15 text-center">{{service.getFight(competition, 1).loser.gender}}</div>
                             <div class="width20 text-center">
                                 <i class="fas fa-user-tie beltStyle {{service.getFight(competition,1).loser.belt}}"
                                    title="{{service.getFight(competition,1).loser.belt.longname}}"></i>

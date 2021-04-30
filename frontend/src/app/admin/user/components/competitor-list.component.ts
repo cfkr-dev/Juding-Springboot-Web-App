@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
-import {User} from '../models/user.model';
+import {User} from '../../../user/user.model';
 import {CompetitorService} from '../services/competitor.service';
 import {ErrorHandlerService} from '../services/error-handler.service';
 
@@ -86,7 +86,7 @@ export class CompetitorListComponent implements OnInit {
                         this.users.splice(index);
                     }
                 });
-                if (this.users.length === 0){
+                if (this.users.length === 0) {
                     this.noMorePages = true;
                 }
                 const currentUrl = this.router.url;

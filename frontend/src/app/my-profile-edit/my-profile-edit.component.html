@@ -5,12 +5,13 @@
 </ng-template>
 <ng-container *ngIf="editProfileForm && userInfo; else loading">
     <span class="profileModificationsTitle">Modifica tus datos</span>
-    <div class="alert alert-danger" *ngIf="error"><i class="fas fa-exclamation-triangle"></i> Alguno de los campos no
+    <div *ngIf="error" class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i> Alguno de los campos no
         verifica el formato deseado. Inténtelo de nuevo.
     </div>
-    <form class="needs-validation flex-sb flex-w" method="post" enctype="multipart/form-data" novalidate
-          (submit)="submitForm($event)">
-        <input type="hidden" name="licenseId" id="licenseId" value="{{ editProfileForm.licenseId }}">
+    <form (submit)="submitForm($event)" class="needs-validation flex-sb flex-w" enctype="multipart/form-data"
+          method="post"
+          novalidate>
+        <input id="licenseId" name="licenseId" type="hidden" value="{{ editProfileForm.licenseId }}">
         <div class="px-2">
             <h3 class="h3">Información para competición</h3>
             <div class="responsiveTable">
@@ -20,8 +21,9 @@
                     </div>
                     <div class="width60">
                         <div class="beltSelector">
-                            <select class="custom-select" id="beltSelector" name="beltSelector" required
-                                    [(ngModel)]="editProfileForm.belt">
+                            <select [(ngModel)]="editProfileForm.belt" class="custom-select" id="beltSelector"
+                                    name="beltSelector"
+                                    required>
                                 <ng-container *ngFor="let belt of beltService.belts">
                                     <option [ngValue]="belt.name">{{ belt.longName }}</option>
                                 </ng-container>
@@ -29,36 +31,38 @@
                         </div>
                     </div>
                 </div>
-                <div class="rtRow" *ngIf="userInfo.roles.includes('C')">
+                <div *ngIf="userInfo.roles.includes('C')" class="rtRow">
                     <div class="width40">
                         <label for="gym">Gimnasio</label>
                     </div>
                     <div class="width60">
-                        <input class="form-control" id="gym" name="gym" required type="text"
-                               [(ngModel)]="editProfileForm.gym">
+                        <input [(ngModel)]="editProfileForm.gym" class="form-control" id="gym" name="gym" required
+                               type="text">
                         <div class="invalid-feedback">
                             El gimnasio no puede estar vacío.
                         </div>
                     </div>
                 </div>
-                <div class="rtRow" *ngIf="userInfo.roles.includes('C')">
+                <div *ngIf="userInfo.roles.includes('C')" class="rtRow">
                     <div class="width40"><label for="weight">Peso</label></div>
                     <div class="width60">
-                        <input class="form-control" id="weight" name="weight" pattern="^[1-9][0-9]+$" required
-                               type="number" min="0"
-                               [(ngModel)]="editProfileForm.weight">
+                        <input [(ngModel)]="editProfileForm.weight" class="form-control" id="weight" min="0"
+                               name="weight"
+                               pattern="^[1-9][0-9]+$" required
+                               type="number">
                         <div class="invalid-feedback">
                             El peso es obligatorio y debe ser un valor numérico positivo.
                         </div>
                     </div>
                 </div>
-                <div class="rtRow" *ngIf="userInfo.roles.includes('R')">
+                <div *ngIf="userInfo.roles.includes('R')" class="rtRow">
                     <div class="width40">
                         <label for="refereeRange">Rango</label>
                     </div>
                     <div class="width60">
-                        <select class="custom-select" id="refereeRange" name="refereeRange" required
-                                [(ngModel)]="editProfileForm.refereeRange">
+                        <select [(ngModel)]="editProfileForm.refereeRange" class="custom-select" id="refereeRange"
+                                name="refereeRange"
+                                required>
                             <ng-container *ngFor="let range of refereeRangeService.ranges">
                                 <option [ngValue]="range.name">{{ range.longName }}</option>
                             </ng-container>
@@ -76,15 +80,16 @@
                 <div class="rtRow">
                     <div class="width40"><label for="nickname">Apodo</label></div>
                     <div class="width60">
-                        <input class="form-control" id="nickname" name="nickname" required type="text"
-                               value="{{ userInfo.nickname }}" readonly>
+                        <input class="form-control" id="nickname" name="nickname" readonly required
+                               type="text" value="{{ userInfo.nickname }}">
                     </div>
                 </div>
                 <div class="rtRow">
                     <div class="width40"><label for="phone">Teléfono</label></div>
                     <div class="width60">
-                        <input class="form-control" id="phone" name="phone" pattern="(?=.*\d).{9}" type="text"
-                               [(ngModel)]="editProfileForm.phone">
+                        <input [(ngModel)]="editProfileForm.phone" class="form-control" id="phone" name="phone"
+                               pattern="(?=.*\d).{9}"
+                               type="text">
                         <div class="invalid-feedback">
                             El teléfono no verifica el formato requerido.
                         </div>
@@ -93,8 +98,8 @@
                 <div class="rtRow">
                     <div class="width40"><label for="email">Correo electrónico</label></div>
                     <div class="width60">
-                        <input class="form-control" id="email" name="email" required type="email"
-                               [(ngModel)]="editProfileForm.email">
+                        <input [(ngModel)]="editProfileForm.email" class="form-control" id="email" name="email" required
+                               type="email">
                         <div class="invalid-feedback">
                             El correo electrónico no verifica el formato requerido.
                         </div>
@@ -104,10 +109,12 @@
                     <div class="width40"><label for="image">Imagen de perfil</label></div>
                     <div class="width60">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="image" name="image"
-                                   accept="image/jpeg, image/png" (change)="imageService.onFileChanged($event)"
-                                   [(ngModel)]="fileInput">
-                            <label class="custom-file-label" for="image">{{ imageService.getInterpretedFileName() }}</label>
+                            <input (change)="imageService.onFileChanged($event)" [(ngModel)]="fileInput"
+                                   accept="image/jpeg, image/png" class="custom-file-input"
+                                   id="image" name="image"
+                                   type="file">
+                            <label class="custom-file-label"
+                                   for="image">{{ imageService.getInterpretedFileName() }}</label>
                         </div>
                         <div class="invalid-feedback">
                             Prueba de nuevo a subir la imagen en formato ".jpg" o ".png".

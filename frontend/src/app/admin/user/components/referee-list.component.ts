@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../models/user.model';
+import {User} from '../../../user/user.model';
 import {Router} from '@angular/router';
 import {RefereeService} from '../services/referee.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';

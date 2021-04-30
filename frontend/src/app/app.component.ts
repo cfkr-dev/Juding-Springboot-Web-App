@@ -8,8 +8,8 @@ import {LoggedInUserService} from './logged-in-user.service';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'juding';
+    title = 'juding';
 
-  constructor(public router: Router, public loggedInUser: LoggedInUserService) {
-  }
+    constructor(public router: Router, public loggedInUser: LoggedInUserService) {
+    }
 }

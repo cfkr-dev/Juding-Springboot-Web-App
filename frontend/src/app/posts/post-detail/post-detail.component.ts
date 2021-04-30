@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Post} from '../post.model';
 import {PostsService} from '../posts.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
         '../../../assets/css/header.css',
         '../../../assets/css/responsiveTable.css',
         '../../../assets/css/news.css'],
-    providers:[PostsService]
+    providers: [PostsService]
 })
 export class PostDetailComponent {
     post: Post;
@@ -23,11 +23,18 @@ export class PostDetailComponent {
                 this.post = post;
                 postService.getRecentPosts(this.post.idPost).subscribe(
                     ((postList) => {
-                       this.postList = postList;
+                        this.postList = postList;
                     })
                 );
             })
         );
+    }
+
+    goToNews(newsId: number): void {
+        const currentUrl = '/news/' + newsId;
+        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+            this.router.navigate([currentUrl]);
+        });
     }
 }
 

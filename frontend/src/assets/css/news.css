@@ -72,3 +72,13 @@
     color: #f14141;
     position: relative;
 }
+
+.postLink {
+    color: #f14141;
+}
+
+.postLink:hover {
+    color: #f57171;
+    cursor: pointer;
+    text-decoration: none;
+}

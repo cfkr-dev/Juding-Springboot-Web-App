@@ -18,7 +18,7 @@ import {Fight} from '../../fight/fight.model';
         '../../../assets/css/competitionController.css',
         '../../../assets/css/beltAssignations.css']
 })
-export class CompetitionDetailComponent{
+export class CompetitionDetailComponent {
     competition: Competition;
     people: number;
     fightslist: Fight[];

@@ -106,7 +106,7 @@ label {
     margin: 0;
 }
 
-button{
+button {
     display: flex;
     align-items: center;
     justify-content: space-between;

@@ -162,12 +162,12 @@
     margin-top: -15px;
 }
 
-.label.finished{
+.label.finished {
     background-color: #f14141;
     box-shadow: 0 0 20px rgba(241, 65, 65, 0.75);
 }
 
-.label.notFinished{
+.label.notFinished {
     background-color: white;
     border: 1px solid #F14141;
     box-shadow: 0 0 20px rgba(241, 65, 65, 0.75);

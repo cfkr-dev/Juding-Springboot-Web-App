@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {User} from '../models/user.model';
+import {Component, OnInit} from '@angular/core';
+import {User} from '../../../user/user.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ErrorHandlerService} from '../services/error-handler.service';
 import {RefereeService} from '../services/referee.service';
 
 @Component({
-  selector: 'app-referee-edit',
-  templateUrl: './referee-edit.component.html',
+    selector: 'app-referee-edit',
+    templateUrl: './referee-edit.component.html',
     styleUrls: ['../../../../assets/vendor/bootstrap/v4/css/bootstrap.css',
         '../../../../assets/vendor/datepicker/jquery.datetimepicker.min.css',
         '../../../../assets/vendor/font-awesome/css/all.css',

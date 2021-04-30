@@ -23,15 +23,13 @@ import {ListCompetitionComponent} from './competition/admin/list/list-competitio
 import {PostDetailComponent} from './posts/post-detail/post-detail.component';
 import {PostFormComponent} from './posts/admin/post-forms/post-form.component';
 import {PostListComponent} from './posts/admin/post-list/post-list.component';
-import { CompetitorListComponent } from './admin/user/components/competitor-list.component';
+import {CompetitorListComponent} from './admin/user/components/competitor-list.component';
 import {CompetitorEditComponent} from './admin/user/components/competitor-edit-component';
 import {E403Component} from './error/e403/e403.component';
 import {E500Component} from './error/e500/e500.component';
 import {RefereeEditComponent} from './admin/user/components/referee-edit.component';
 import {E404Component} from './error/e404/e404.component';
 import {RefereeListComponent} from './admin/user/components/referee-list.component';
-
-
 
 
 @NgModule({
