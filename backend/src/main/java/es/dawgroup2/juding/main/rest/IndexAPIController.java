@@ -205,6 +205,32 @@ public class IndexAPIController {
     }
 
     /**
+     * Recovery password method (get security question of user by its license ID).
+     *
+     * @param licenseId License ID of user.
+     * @return User's security question.
+     */
+    @Operation(summary = "Recovery password method (get security question of user by its license ID).")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User's security question.",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode = "400", description = "Bad request since user was not found.",
+                    content = @Content)
+    })
+    @GetMapping("/passwordRecovery")
+    public ResponseEntity<String> passwordRecovery(@Parameter(description = "License ID of user.") @RequestParam String licenseId,
+                                                   @Parameter(description = "License ID of user.") @RequestParam(required = false) String secAnswer,
+                                                   @Parameter(description = "Step of recovery process (1 or 2).") @RequestParam int step) {
+        User user = userService.getUserOrNull(licenseId);
+        if (step == 1)
+            return (user == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(user.getSecurityQuestion());
+        else if (step == 2)
+            return (user.getSecurityAnswer().equals(secAnswer)) ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
+        return ResponseEntity.badRequest().build();
+    }
+
+    /**
      * Recovery password method (including licenseId, correct security answer and new password).
      *
      * @param recoverPasswordDTO Recover password Data Transfer Object.
