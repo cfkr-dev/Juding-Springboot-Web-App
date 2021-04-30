@@ -1,48 +1,52 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Arbitraje - Juding</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <!-- Favicons -->
-    <link href="/src/assets/img/hero-img.png" rel="icon">
-
-    <!-- Vendor CSS Files -->
-    <link href="/src/assets/vendor/font-awesome/css/all.css" rel="stylesheet">
-    <link href="/src/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Own CSS Files -->
-    <link href="/src/assets/css/header.css" rel="stylesheet">
-    <link href="/src/assets/css/responsiveTable.css" rel="stylesheet">
-    <link href="/src/assets/css/profiles.css" rel="stylesheet">
-    <link href="/src/assets/css/competitionController.css" rel="stylesheet">
-
-</head>
-<body>
-<header class="header fixed-top" id="header">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-        <a class="logo d-flex align-items-center" href="../../../index.html">
-            <img alt="" src="/src/assets/img/hero-img.png">
-            <span>Juding</span>
-        </a>
-        <nav class="navbar" id="navbar">
-            <ul>
-                <li>
-                    <button class="login scrollto" id="return">Volver</button>
-                </li>
-            </ul>
-            <i class="far fa-bars mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
+<ng-template #loading>
+    <div class="alert alert-secondary">
+        <i class="fas fa-spin fa-circle-notch"></i> Cargando...
     </div>
-</header>
-<div class="container">
+</ng-template>
+<ng-container *ngIf="fullLoaded; else loading">
     <label for="fight">Selecciona una lucha para comenzar a arbitrar...</label>
     <div class="row">
         <div class="col-md-10 d-flex align-items-center">
-            <select class="form-select" id="fight" name="fight">
+            <select class="custom-select" id="fight" name="fight">
                 <option disabled selected value="-1">Seleccionar un combate...</option>
-                {{ selectItems }}
+                        <optgroup label="Octavos">
+                            <ng-container *ngFor="let fight of fights.roundOfSixteen; let i=index">
+                            <ng-container *ngIf="!fight.finished && fight.winner !== null && fight.loser !== null">
+                                <option value="{{i}}" data-nick1="{{fight.winner.nickname}}"
+                                        data-nick2="{{fight.loser.nickname}}">
+                                    {{fight.winner.nickname}} - {{fight.loser.nickname}}
+                                </option>
+                            </ng-container>
+                            </ng-container>
+                        </optgroup>
+                        <optgroup label="Cuartos">
+                            <ng-container *ngFor="let fight of fights.quarterFinals; let i=index">
+                            <ng-container *ngIf="!fight.finished && fight.winner !== null && fight.loser !== null">
+                                <option value="{{i}}" data-nick1="{{fight.winner.nickname}}"
+                                        data-nick2="{{fight.loser.nickname}}">
+                                    {{fight.winner.nickname}} - {{fight.loser.nickname}}
+                                </option>
+                            </ng-container>
+                            </ng-container>
+                        </optgroup>
+                        <optgroup label="Semifinales">
+                            <ng-container *ngFor="let fight of fights.semifinal; let i=index">
+                            <ng-container *ngIf="!fight.finished && fight.winner !== null && fight.loser !== null">
+                                <option value="{{i}}" data-nick1="{{fight.winner.nickname}}"
+                                        data-nick2="{{fight.loser.nickname}}">
+                                    {{fight.winner.nickname}} - {{fight.loser.nickname}}
+                                </option>
+                            </ng-container>
+                            </ng-container>
+                        </optgroup>
+                        <optgroup label="Final">
+                            <ng-container *ngIf="!fights.final[0].finished && fights.final[0].winner !== null && fights.final[0].loser !== null">
+                                <option value="0" data-nick1="{{fights.final[0].winner.nickname}}"
+                                        data-nick2="{{fights.final[0].loser.nickname}}">
+                                    {{fights.final[0].winner.nickname}} - {{fights.final[0].loser.nickname}}
+                                </option>
+                            </ng-container>
+                        </optgroup>
             </select>
         </div>
         <div class="col-md-2 d-flex justify-content-center">
@@ -203,16 +207,5 @@
             </div>
         </div>
     </div>
+</ng-container>
 
-</div>
-
-<!-- Vendor JS Files -->
-<script src="/src/assets/vendor/jquery/jquery.min.js"></script>
-<script src="/src/assets/vendor/aos/aos.js"></script>
-<script src="/src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Own JS Files -->
-<script src="/src/assets/js/main.js"></script>
-<script src="/src/assets/js/refereeControllerScreen.js"></script>
-</body>
-</html>

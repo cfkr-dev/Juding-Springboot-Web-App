@@ -20,10 +20,11 @@ import {RefereeEditComponent} from './admin/user/components/referee-edit.compone
 import {E403Component} from './error/e403/e403.component';
 import {E404Component} from './error/e404/e404.component';
 import {E500Component} from './error/e500/e500.component';
-import {AdminActivationService} from "./security/admin-activation.service";
-import {RefereeActivationService} from "./security/referee-activation.service";
-import {CompetitorActivationService} from "./security/competitor-activation.service";
-import {IsLoggedActivationService} from "./security/isLogged-activation.service";
+import {AdminActivationService} from './security/admin-activation.service';
+import {RefereeActivationService} from './security/referee-activation.service';
+import {CompetitorActivationService} from './security/competitor-activation.service';
+import {IsLoggedActivationService} from './security/isLogged-activation.service';
+import {CompetitionControlComponent} from './competition/competition-control/competition-control.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
     {path: 'myProfile', component: MyProfileComponent, canActivate: [IsLoggedActivationService]},
     {path: 'myProfile/edit', component: MyProfileEditComponent, canActivate: [IsLoggedActivationService]},
     {path: 'competitions/:id', component: CompetitionDetailComponent, canActivate: [IsLoggedActivationService]},
+    {path: 'competitions/:id/control', component: CompetitionControlComponent, canActivate: [IsLoggedActivationService]},
 
     // Admin pages
     {path: 'admin/competitions', component: ListCompetitionComponent, canActivate: [AdminActivationService]},
