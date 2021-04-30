@@ -30,6 +30,7 @@ import {E500Component} from './error/e500/e500.component';
 import {RefereeEditComponent} from './admin/user/components/referee-edit.component';
 import {E404Component} from './error/e404/e404.component';
 import {RefereeListComponent} from './admin/user/components/referee-list.component';
+import {PasswordRecoveryComponent} from './password-recovery/password-recovery.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import {RefereeListComponent} from './admin/user/components/referee-list.compone
         E404Component,
         E500Component,
         RefereeListComponent,
-        RefereeEditComponent
+        RefereeEditComponent,
+        PasswordRecoveryComponent
     ],
     imports: [
         BrowserModule,
