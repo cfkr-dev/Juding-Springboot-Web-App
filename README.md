@@ -5,8 +5,11 @@
 **JUDO FEDERATION OF MADRID**
 
 This application try to replace the [official website](https://www.fmjudo.es/) of Judo Federation of Madrid, adding new
-tools for competitions, competitors and referees management. In order to unify the diferents existing tools such as the
-register of the differents kinds of users and the monitoring of the results of the competitions.
+tools for competitions, competitors and referees management. It pretends to unify the different existing tools such as the
+register of the different kinds of users and the monitoring of the results of the competitions.
+
+**VIDEO (stage 4)**
+PENDING.
 
 ## The team: developers
 
@@ -296,3 +299,27 @@ Use the following script:
 ``$ bash create_image.sh``
 
 Warning: this image will work only if a database is set and properly configured. Bash script tells how to configure it.
+
+---
+
+
+## Stage 4: new frontend with Angular
+
+### Top 5 Commits & Files
+
+| Name | Top 5 Commits | Top 5 Files |
+| - | - | - |
+| Ismael<br>DESCRIPTION | <ul><li>[DescriptionCommit1](LinkCommit1)</li><li>[DescriptionCommit2](LinkCommit2)</li><li>[DescriptionCommit3](LinkCommit3)</li><li>[DescriptionCommit4](LinkCommit4)</li><li>[DescriptionCommit5](LinkCommit5)</li></ul> | <ul><li>[DescriptionFile1](LinkFile1)</li><li>[DescriptionFile2](LinkFile2)</li><li>[DescriptionFile3](LinkFile3)</li><li>[DescriptionFile4](LinkFile4)</li><li>[DescriptionFile5](LinkFile5)</li></ul>|
+| Diego<br>DESCRIPTION | <ul><li>[DescriptionCommit1](LinkCommit1)</li><li>[DescriptionCommit2](LinkCommit2)</li><li>[DescriptionCommit3](LinkCommit3)</li><li>[DescriptionCommit4](LinkCommit4)</li><li>[DescriptionCommit5](LinkCommit5)</li></ul> | <ul><li>[DescriptionFile1](LinkFile1)</li><li>[DescriptionFile2](LinkFile2)</li><li>[DescriptionFile3](LinkFile3)</li><li>[DescriptionFile4](LinkFile4)</li><li>[DescriptionFile5](LinkFile5)</li></ul>|
+| José Luis<br>DESCRIPTION | <ul><li>[DescriptionCommit1](LinkCommit1)</li><li>[DescriptionCommit2](LinkCommit2)</li><li>[DescriptionCommit3](LinkCommit3)</li><li>[DescriptionCommit4](LinkCommit4)</li><li>[DescriptionCommit5](LinkCommit5)</li></ul> | <ul><li>[DescriptionFile1](LinkFile1)</li><li>[DescriptionFile2](LinkFile2)</li><li>[DescriptionFile3](LinkFile3)</li><li>[DescriptionFile4](LinkFile4)</li><li>[DescriptionFile5](LinkFile5)</li></ul>|
+| Alberto<br>DESCRIPTION | <ul><li>[DescriptionCommit1](LinkCommit1)</li><li>[DescriptionCommit2](LinkCommit2)</li><li>[DescriptionCommit3](LinkCommit3)</li><li>[DescriptionCommit4](LinkCommit4)</li><li>[DescriptionCommit5](LinkCommit5)</li></ul> | <ul><li>[DescriptionFile1](LinkFile1)</li><li>[DescriptionFile2](LinkFile2)</li><li>[DescriptionFile3](LinkFile3)</li><li>[DescriptionFile4](LinkFile4)</li><li>[DescriptionFile5](LinkFile5)</li></ul>|
+
+### Classes and templates diagram
+This stage includes new controllers and DTO classes. These new artifacts are organized as the following diagram describes:
+![Classes and templates diagram](documentation_imgs/stage4/ClassAndTemplatesDiagram.jpg)
+
+### How to use this new version?
+PENDING.
+
+### Video: working app
+PENDING.
