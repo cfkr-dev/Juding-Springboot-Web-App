@@ -31,6 +31,7 @@ import {RefereeEditComponent} from './admin/user/components/referee-edit.compone
 import {E404Component} from './error/e404/e404.component';
 import {RefereeListComponent} from './admin/user/components/referee-list.component';
 import {PasswordRecoveryComponent} from './password-recovery/password-recovery.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import {PasswordRecoveryComponent} from './password-recovery/password-recovery.c
         E500Component,
         RefereeListComponent,
         RefereeEditComponent,
-        PasswordRecoveryComponent
+        PasswordRecoveryComponent,
+        SignUpComponent
     ],
     imports: [
         BrowserModule,

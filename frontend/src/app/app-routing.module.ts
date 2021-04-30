@@ -25,6 +25,7 @@ import {RefereeActivationService} from "./security/referee-activation.service";
 import {CompetitorActivationService} from "./security/competitor-activation.service";
 import {IsLoggedActivationService} from "./security/isLogged-activation.service";
 import {PasswordRecoveryComponent} from "./password-recovery/password-recovery.component";
+import {SignUpComponent} from "./sign-up/sign-up.component";
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
     {path: 'termsAndConditionsOfUse', component: TermsAndConditionsOfUseComponent},
     {path: 'news/:id', component: PostDetailComponent},
     {path: 'passwordRecovery', component: PasswordRecoveryComponent},
+    {path: 'signUp/:role', component: SignUpComponent},
 
     // Logged in pages
     {path: 'login', component: LoginComponent},
