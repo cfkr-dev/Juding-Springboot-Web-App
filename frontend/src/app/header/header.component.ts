@@ -25,6 +25,9 @@ export class HeaderComponent {
   headerType2 = [
     '/login',
     '/logout',
+    '/403',
+    '/404',
+    '/500',
     '/termsAndConditionsOfUse',
     '/cookiePolicy'
   ];

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, Subscription, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {User} from '../models/user.model';
+import {User} from '../../../user/user.model';
 
 const COMPETITORS_URL = 'api/competitors';
 

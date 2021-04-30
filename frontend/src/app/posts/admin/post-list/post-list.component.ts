@@ -2,10 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Post} from '../../post.model';
 import {PostsService} from '../../posts.service';
 import {LoggedInUserService} from '../../../logged-in-user.service';
-import {UserInterface} from '../../../user/user.interface';
+import {User} from '../../../user/user.model';
 import {Router} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {isEmpty} from 'rxjs/operators';
 
 @Component({
     templateUrl: './post-list.html',
@@ -23,7 +22,7 @@ export class PostListComponent implements OnInit {
     posts: Post[];
     page: number;
     finalPage: boolean;
-    user: UserInterface;
+    user: User;
     loadedButton: boolean;
     idAlt: number;
     empty: boolean;
@@ -44,7 +43,7 @@ export class PostListComponent implements OnInit {
 
     ngOnInit(): void {
         this.loggedInUser.getLoggedUser().subscribe(
-            ((user: UserInterface) => {
+            ((user: User) => {
                 this.user = user;
                 if (this.user.roles.includes('A')) {
                     this.service.getPosts(this.page).subscribe(

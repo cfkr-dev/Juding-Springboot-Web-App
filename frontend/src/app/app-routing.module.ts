@@ -20,6 +20,10 @@ import {RefereeEditComponent} from './admin/user/components/referee-edit.compone
 import {E403Component} from './error/e403/e403.component';
 import {E404Component} from './error/e404/e404.component';
 import {E500Component} from './error/e500/e500.component';
+import {AdminActivationService} from "./security/admin-activation.service";
+import {RefereeActivationService} from "./security/referee-activation.service";
+import {CompetitorActivationService} from "./security/competitor-activation.service";
+import {IsLoggedActivationService} from "./security/isLogged-activation.service";
 
 
 const routes: Routes = [
@@ -30,27 +34,27 @@ const routes: Routes = [
 
     // Logged in pages
     {path: 'login', component: LoginComponent},
-    {path: 'logout', component: LoginComponent},
-    {path: 'myHome', component: MyHomeComponent},
-    {path: 'ranking', component: RankingComponent},
-    {path: 'myProfile', component: MyProfileComponent},
-    {path: 'myProfile/edit', component: MyProfileEditComponent},
-    {path: 'competitions/:id', component: CompetitionDetailComponent},
+    {path: 'logout', component: LoginComponent, canActivate: [IsLoggedActivationService]},
+    {path: 'myHome', component: MyHomeComponent, canActivate: [IsLoggedActivationService]},
+    {path: 'ranking', component: RankingComponent, canActivate: [IsLoggedActivationService]},
+    {path: 'myProfile', component: MyProfileComponent, canActivate: [IsLoggedActivationService]},
+    {path: 'myProfile/edit', component: MyProfileEditComponent, canActivate: [IsLoggedActivationService]},
+    {path: 'competitions/:id', component: CompetitionDetailComponent, canActivate: [IsLoggedActivationService]},
 
     // Admin pages
-    {path: 'admin/competitions', component: ListCompetitionComponent},
-    {path: 'admin/posts', component: PostListComponent},
-    {path: 'admin/posts/new', component: PostFormComponent},
-    {path: 'admin/posts/:id', component: PostFormComponent},
-    {path: 'admin/competitors', component: CompetitorListComponent},
-    {path: 'admin/competitors/edit/:licenseId', component: CompetitorEditComponent},
-    {path: 'admin/referees', component: RefereeListComponent},
-    {path: 'admin/referees/edit/:licenseId', component: RefereeEditComponent},
+    {path: 'admin/competitions', component: ListCompetitionComponent, canActivate: [AdminActivationService]},
+    {path: 'admin/posts', component: PostListComponent, canActivate: [AdminActivationService]},
+    {path: 'admin/posts/new', component: PostFormComponent, canActivate: [AdminActivationService]},
+    {path: 'admin/posts/:id', component: PostFormComponent, canActivate: [AdminActivationService]},
+    {path: 'admin/competitors', component: CompetitorListComponent, canActivate: [AdminActivationService]},
+    {path: 'admin/competitors/edit/:licenseId', component: CompetitorEditComponent, canActivate: [AdminActivationService]},
+    {path: 'admin/referees', component: RefereeListComponent, canActivate: [AdminActivationService]},
+    {path: 'admin/referees/edit/:licenseId', component: RefereeEditComponent, canActivate: [AdminActivationService]},
 
     // Error pages
     {path: '403', component: E403Component},
-    {path: '404', component: E404Component},
-    {path: '500', component: E500Component}
+    {path: '500', component: E500Component},
+    {path: '**', component: E404Component}
 ];
 
 const routerOptions: ExtraOptions = {
@@ -61,7 +65,8 @@ const routerOptions: ExtraOptions = {
 
 @NgModule({
     imports: [RouterModule.forRoot(routes, routerOptions)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [AdminActivationService, RefereeActivationService, CompetitorActivationService, IsLoggedActivationService]
 })
 export class AppRoutingModule {
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../models/user.model';
+import {User} from '../../../user/user.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ErrorHandlerService} from '../services/error-handler.service';
 import {RefereeService} from '../services/referee.service';

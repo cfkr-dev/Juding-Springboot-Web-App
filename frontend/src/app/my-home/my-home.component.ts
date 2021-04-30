@@ -3,9 +3,9 @@ import {Router} from '@angular/router';
 import {CompetitionInterface} from '../competition/competition.interface';
 import {HttpClient} from '@angular/common/http';
 import {LoggedInUserService} from '../logged-in-user.service';
-import {UserInterface} from '../user/user.interface';
 import {MyHomeService} from './my-home.service';
 import {RefereeRangeService} from '../auxTypes/refereeRange.service';
+import {User} from "../user/user.model";
 
 interface Auxiliar {
   list: CompetitionInterface[];
@@ -20,7 +20,7 @@ interface Auxiliar {
 export class MyHomeComponent implements OnInit {
 
   fullLoaded: boolean;
-  currentUser: UserInterface;
+  currentUser: User;
   pastCompetitions: CompetitionInterface[];
   currentCompetitions: CompetitionInterface[];
   futureJoinedCompetitions: CompetitionInterface[];
@@ -72,7 +72,7 @@ export class MyHomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedInUser.getLoggedUser().subscribe(
-      ((currentUser: UserInterface) => {
+      ((currentUser: User) => {
         this.currentUser = currentUser;
         this.loggedInUser.getLoggedUserImage(currentUser.roles.includes('C') ? 'competitors' : 'referees', currentUser.licenseId).subscribe(
           ((image: Blob) => {

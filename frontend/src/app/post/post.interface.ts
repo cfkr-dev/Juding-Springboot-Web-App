@@ -1,8 +1,8 @@
-import {UserInterface} from '../user/user.interface';
+import {User} from '../user/user.model';
 
 export interface PostInterface{
     idPost: number;
-    author: UserInterface;
+    author: User;
     title: string;
     body: string;
     timestamp: string;

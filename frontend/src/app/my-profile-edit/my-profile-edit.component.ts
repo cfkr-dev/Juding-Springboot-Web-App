@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserInterface} from '../user/user.interface';
+import {User} from '../user/user.model';
 import {LoggedInUserService} from '../logged-in-user.service';
 import {BeltService} from '../auxTypes/belt.service';
 import {RefereeRangeService} from '../auxTypes/refereeRange.service';
@@ -25,7 +25,7 @@ export interface ProfileEditForm {
 })
 export class MyProfileEditComponent implements OnInit {
 
-    userInfo: UserInterface;
+    userInfo: User;
     error: boolean;
     editProfileForm: ProfileEditForm;
     fileInput: string;
@@ -42,7 +42,7 @@ export class MyProfileEditComponent implements OnInit {
 
     ngOnInit(): void {
         this.loggedUser.getLoggedUser().subscribe(
-            ((user: UserInterface) => {
+            ((user: User) => {
                 this.userInfo = user;
                 this.editProfileForm.belt = user.belt;
                 this.editProfileForm.email = user.email;
@@ -59,7 +59,7 @@ export class MyProfileEditComponent implements OnInit {
         event.preventDefault();
         const roleString = this.userInfo.roles.includes('C') ? 'competitors' : 'referees';
         this.editService.sendData(this.editProfileForm, roleString).subscribe(
-            ((savedUser: UserInterface) => {
+            ((savedUser: User) => {
                 if (this.fileInput !== undefined) {
                     this.imageService.onUpload('/api/' + roleString + '/' + this.editProfileForm.licenseId + '/image').subscribe(
                         (successful => {

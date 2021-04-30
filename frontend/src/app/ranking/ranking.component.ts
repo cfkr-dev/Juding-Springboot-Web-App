@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {RankingInterface} from './RankingInterface';
 import {HttpClient} from '@angular/common/http';
 import {LoggedInUserService} from '../logged-in-user.service';
-import {UserInterface} from '../user/user.interface';
+import {User} from '../user/user.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -37,7 +37,7 @@ export class RankingComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedUser.getLoggedUser().subscribe(
-      ((currentUser: UserInterface) => {
+      ((currentUser: User) => {
         this.http.get('/api/ranking', {withCredentials: true}).subscribe(
           ((ranking: RankingInterface[]) => this.ranking = ranking)
         );

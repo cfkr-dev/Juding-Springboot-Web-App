@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoggedInUserService} from '../logged-in-user.service';
-import {UserInterface} from '../user/user.interface';
+import {User} from '../user/user.model';
 import {BeltService} from '../auxTypes/belt.service';
 import {GenderService} from '../auxTypes/gender.service';
 import {RefereeRangeService} from '../auxTypes/refereeRange.service';
@@ -14,7 +14,7 @@ import {ImageService} from '../image.service';
 })
 export class MyProfileComponent implements OnInit {
 
-  userInfo: UserInterface;
+  userInfo: User;
   loading: boolean;
 
   constructor(private loggedUser: LoggedInUserService,
