@@ -3,6 +3,8 @@ import {Competition} from '../competition.model';
 import {CompetitionService} from '../competition.service';
 import {ActivatedRoute} from '@angular/router';
 import {Fight} from '../../fight/fight.model';
+import {BeltService} from '../../auxTypes/belt.service';
+import {GenderService} from '../../auxTypes/gender.service';
 
 @Component({
     selector: 'app-competition-detail',
@@ -21,15 +23,18 @@ import {Fight} from '../../fight/fight.model';
 export class CompetitionDetailComponent {
     competition: Competition;
     people: number;
-    fightslist: Fight[];
+    fightsList: Fight[];
 
-    constructor(activatedRouter: ActivatedRoute, public service: CompetitionService) {
+    fullLoaded: boolean;
+
+    constructor(activatedRouter: ActivatedRoute, public competitionService: CompetitionService, public beltService: BeltService, public genderService: GenderService) {
         const id = activatedRouter.snapshot.params.id;
-        service.getCompetition(id).subscribe(
+        competitionService.getCompetition(id).subscribe(
             competition => {
                 this.competition = competition;
-                this.people = service.getPeople(this.competition);
-                this.fightslist = competition.fights;
+                this.people = competitionService.getPeople(this.competition);
+                this.fightsList = competition.fights;
+                this.fullLoaded = true;
             },
             error => console.error(error),
         );

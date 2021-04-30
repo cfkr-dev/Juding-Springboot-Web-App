@@ -1,4 +1,9 @@
-<ng-container>
+<ng-template #loading>
+    <div class="alert alert-secondary">
+        <i class="fas fa-spin fa-circle-notch"></i> Cargando...
+    </div>
+</ng-template>
+<ng-container *ngIf="fullLoaded; else loading">
     <div class="row pt-3">
         <div class="col-md-9">
             <h2 class="h2">Competiciones</h2>
@@ -57,12 +62,14 @@
         </ng-template>
 
         <div class="width100 pt-2 text-center">
-            <div *ngIf="latest else chargeMore">
-
-            </div>
+            <ng-container *ngIf="latest else chargeMore">
+                <button class="btn btn-outline-corporative" data-role="post">
+                    <i></i> No hay más competiciones
+                </button>
+            </ng-container>
             <ng-template #chargeMore>
                 <button (click)="showPage()" class="btn btn-corporative" id="loadNextPage">
-                    <i></i> Cargar más competiciones
+                    <i *ngIf="loading === true" class="fas fa-circle-notch fa-spin"></i> Cargar más competiciones
                 </button>
             </ng-template>
         </div>
@@ -89,8 +96,8 @@
                     <br>
                     <strong>Peso mínimo:</strong> {{ modalMember.minWeight }}kg<br>
                     <strong>Peso máximo:</strong> {{ modalMember.maxWeight }}kg <br>
-                    <strong>Fecha de inicio</strong> {{ modalMember.startDate | date: 'dd/MM/yyyy HH:mm' }} <br>
-                    <strong>Fecha del final:</strong> {{ modalMember.startDate | date: 'dd/MM/yyyy HH:mm' }} <br>
+                    <strong>Fecha de inicio:</strong> {{ modalMember.startDate | date: 'dd/MM/yyyy HH:mm' }} <br>
+                    <strong>Fecha del final:</strong> {{ modalMember.endDate | date: 'dd/MM/yyyy HH:mm' }} <br>
                 </div>
             </div>
             <div class="col-2"></div>
