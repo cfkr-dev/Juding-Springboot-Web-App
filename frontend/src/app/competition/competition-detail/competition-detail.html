@@ -49,10 +49,10 @@
                         <div class="width15 text-center">1ª</div>
                         <div class="width20 text-center"> {{competitionService.getFight(competition, 0).winner.nickname}} </div>
                         <div class="width15 text-center"> {{competitionService.getFight(competition, 0).winner.weight}} Kg</div>
-                        <div class="width15 text-center"> {{genderService.getGenderByName(competitionService.getFight(competition, 1).loser.gender)}} </div>
+                        <div class="width15 text-center"> {{genderService.getGenderByName(competitionService.getFight(competition, 0).winner.gender).longName}} </div>
                         <div class="width20 text-center">
-                            <i class="fas fa-user-tie beltStyle {{competition.getFights(0).winner.belt} "
-                               title=" {{beltService.getBeltByName(competitionService.getFight(competition,0).loser.belt)}} "></i>
+                            <i class="fas fa-user-tie beltStyle {{competitionService.getFight(competition,0).winner.belt}} "
+                               title=" {{beltService.getBeltByName(competitionService.getFight(competition,0).winner.belt)}} "></i>
                         </div>
                         <div class="width15 text-center">
                             <i class="fas fa-medal goldMedal"></i>
@@ -60,11 +60,11 @@
                     </div>
                     <div class="rtRow">
                         <div class="width15 text-center">2ª</div>
-                        <div class="width20 text-center"> {{competitionService.getFight(competition, 0).loser.name}} </div>
+                        <div class="width20 text-center"> {{competitionService.getFight(competition, 0).loser.nickname}} </div>
                         <div class="width15 text-center"> {{competitionService.getFight(competition, 0).loser.weight}} Kg</div>
-                        <div class="width15 text-center"> {{genderService.getGenderByName(competitionService.getFight(competition, 1).loser.gender)}} </div>
+                        <div class="width15 text-center"> {{genderService.getGenderByName(competitionService.getFight(competition, 0).loser.gender).longName}} </div>
                         <div class="width20 text-center">
-                            <i class="fas fa-user-tie beltStyle {{competition.getFights(0).winner.belt} "
+                            <i class="fas fa-user-tie beltStyle {{competitionService.getFight(competition,0).loser.belt}}"
                                title=" {{beltService.getBeltByName(competitionService.getFight(competition,0).loser.belt)}} "></i>
                         </div>
                         <div class="width15 text-center">
@@ -76,12 +76,12 @@
                     <ng-container *ngIf="competitionService.getFight(competition,2).winner">
                         <div class="rtRow">
                             <div class="width15 text-center">3ª</div>
-                            <div class="width20 text-center">{{competitionService.getFight(competition, 2).loser.name}}</div>
+                            <div class="width20 text-center">{{competitionService.getFight(competition, 2).loser.nickname}}</div>
                             <div class="width15 text-center">{{competitionService.getFight(competition, 2).loser.weight}}Kg</div>
-                            <div class="width15 text-center">{{genderService.getGenderByName(competitionService.getFight(competition, 1).loser.gender)}}</div>
+                            <div class="width15 text-center">{{genderService.getGenderByName(competitionService.getFight(competition, 2).loser.gender).longName}}</div>
                             <div class="width20 text-center">
                                 <i class="fas fa-user-tie beltStyle {{competitionService.getFight(competition,2).loser.belt}}"
-                                   title="{{beltService.getBeltByName(competitionService.getFight(competition,0).loser.belt)}}"></i>
+                                   title="{{beltService.getBeltByName(competitionService.getFight(competition,2).loser.belt)}}"></i>
                             </div>
                             <div class="width15 text-center">
                                 <i class="fas fa-medal bronzeMedal"></i>
@@ -93,12 +93,12 @@
                     <ng-container *ngIf="competitionService.getFight(competition,1).winner">
                         <div class="rtRow mb-5">
                             <div class="width15 text-center">3ª</div>
-                            <div class="width20 text-center">{{competitionService.getFight(competition, 1).loser.name}}</div>
+                            <div class="width20 text-center">{{competitionService.getFight(competition, 1).loser.nickname}}</div>
                             <div class="width15 text-center">{{competitionService.getFight(competition, 1).loser.weight}}Kg</div>
-                            <div class="width15 text-center">{{genderService.getGenderByName(competitionService.getFight(competition, 1).loser.gender)}}</div>
+                            <div class="width15 text-center">{{genderService.getGenderByName(competitionService.getFight(competition, 1).loser.gender).longName}}</div>
                             <div class="width20 text-center">
                                 <i class="fas fa-user-tie beltStyle {{competitionService.getFight(competition,1).loser.belt}}"
-                                   title="{{beltService.getBeltByName(competitionService.getFight(competition,0).loser.belt)}}"></i>
+                                   title="{{beltService.getBeltByName(competitionService.getFight(competition,1).loser.belt)}}"></i>
                             </div>
                             <div class="width15 text-center">
                                 <i class="fas fa-medal bronzeMedal"></i>

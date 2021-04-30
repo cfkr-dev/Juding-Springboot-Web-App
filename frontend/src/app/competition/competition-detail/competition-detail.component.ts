@@ -17,6 +17,7 @@ import {GenderService} from '../../auxTypes/gender.service';
         '../../../assets/css/header.css',
         '../../../assets/css/bootstrapAccomodations.css',
         '../../../assets/css/responsiveTable.css',
+        '../../../assets/css/competitionScreen.css',
         '../../../assets/css/competitionController.css',
         '../../../assets/css/beltAssignations.css']
 })
