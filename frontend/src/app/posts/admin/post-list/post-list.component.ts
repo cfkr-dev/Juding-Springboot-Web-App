@@ -42,24 +42,18 @@ export class PostListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.loggedInUser.getLoggedUser().subscribe(
-            ((user: User) => {
-                this.user = user;
-                if (this.user.roles.includes('A')) {
-                    this.service.getPosts(this.page).subscribe(
-                        (response => {
-                            this.posts = response.content;
-                            (this.posts.length === 0) ? this.empty = true : this.empty = false;
-                            this.finalPage = response.last;
-                            this.loadedPage = true;
-                        })
-                    );
-                }
+        this.service.getPosts(this.page).subscribe(
+            (response => {
+                this.posts = response.content;
+                (this.posts.length === 0) ? this.empty = true : this.empty = false;
+                this.finalPage = response.last;
+                this.loadedPage = true;
             }),
-            (error => {
-                console.log(error);
-                this.router.navigate(['/login']);
-            })
+            error => {
+                this.loadedPage = true;
+                this.finalPage = true;
+                this.empty = true;
+            }
         );
     }
 
@@ -82,7 +76,8 @@ export class PostListComponent implements OnInit {
                 this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
                     this.router.navigate([currentUrl]);
                 });
-            })
+            }),
+            error => this.router.navigate(['/404'])
         );
     }
 
