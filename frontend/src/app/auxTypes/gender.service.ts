@@ -10,17 +10,17 @@ export interface Gender {
 })
 export class GenderService {
 
-    ranges: Gender[];
+    genders: Gender[];
 
     constructor() {
-        this.ranges = [
+        this.genders = [
             {name: 'H', longName: 'Hombre'},
             {name: 'M', longName: 'Mujer'}
         ];
     }
 
     public getGenderByName(name: string): Gender {
-        for (const g of this.ranges) {
+        for (const g of this.genders) {
             if (g.name === name) {
                 return g;
             }

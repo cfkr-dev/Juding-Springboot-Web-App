@@ -7,11 +7,6 @@ import {MyHomeService} from './my-home.service';
 import {RefereeRangeService} from '../auxTypes/refereeRange.service';
 import {User} from "../user/user.model";
 
-interface Auxiliar {
-    list: CompetitionInterface[];
-    state: boolean;
-}
-
 @Component({
     selector: 'app-my-home',
     templateUrl: './my-home.component.html',

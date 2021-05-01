@@ -110,8 +110,7 @@
                     <div class="width60">
                         <div class="custom-file">
                             <input (change)="imageService.onFileChanged($event)" [(ngModel)]="fileInput"
-                                   accept="image/jpeg, image/png" class="custom-file-input"
-                                   id="image" name="image"
+                                   accept="image/jpeg, image/png" class="custom-file-input" id="image" name="image"
                                    type="file">
                             <label class="custom-file-label"
                                    for="image">{{ imageService.getInterpretedFileName() }}</label>
