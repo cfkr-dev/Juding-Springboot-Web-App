@@ -31,6 +31,9 @@ import {RefereeEditComponent} from './admin/user/components/referee-edit.compone
 import {E404Component} from './error/e404/e404.component';
 import {RefereeListComponent} from './admin/user/components/referee-list.component';
 import {EditorModule, TINYMCE_SCRIPT_SRC} from "@tinymce/tinymce-angular";
+import {PasswordRecoveryComponent} from './password-recovery/password-recovery.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+
 
 @NgModule({
     declarations: [
@@ -59,7 +62,9 @@ import {EditorModule, TINYMCE_SCRIPT_SRC} from "@tinymce/tinymce-angular";
         E404Component,
         E500Component,
         RefereeListComponent,
-        RefereeEditComponent
+        RefereeEditComponent,
+        PasswordRecoveryComponent,
+        SignUpComponent
     ],
     imports: [
         BrowserModule,
