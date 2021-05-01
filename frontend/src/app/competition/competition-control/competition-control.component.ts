@@ -1,10 +1,11 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Competition} from '../competition.model';
 import {ActivatedRoute} from '@angular/router';
 import {CompetitionService} from '../competition.service';
 import {Fight} from '../../fight/fight.model';
 import {Router} from '@angular/router';
-import { HostListener } from '@angular/core';
+import {HostListener} from '@angular/core';
+import {LoggedInUserService} from '../../logged-in-user.service';
 
 interface FightsTournament {
     final: Fight[];
@@ -26,7 +27,7 @@ interface FightsTournament {
         '../../../assets/css/responsiveTable.css',
         '../../../assets/css/competitionController.css']
 })
-export class CompetitionControlComponent {
+export class CompetitionControlComponent implements OnInit {
     competition: Competition;
     fights: FightsTournament;
     selectItems: string;
@@ -48,7 +49,8 @@ export class CompetitionControlComponent {
     selectedFight: string;
     selectedFightNumber: number;
 
-    constructor(private router: Router, activatedRouter: ActivatedRoute, private competitionService: CompetitionService) {
+
+    constructor(private router: Router, activatedRouter: ActivatedRoute, private competitionService: CompetitionService, public loginInUserService: LoggedInUserService) {
         // PLAYERS VARIABLES: include, in the following order:
         // [0]: Points of player X during fight (max 10)
         // [1]: Penalties of player X during fight (max 3)
@@ -57,7 +59,6 @@ export class CompetitionControlComponent {
         this.player2 = [0, 0, ' '];
         const id = activatedRouter.snapshot.params.id;
         this.fights = {final: [], quarterFinals: [], roundOfSixteen: [], semifinal: []};
-        this.initCronometer();
         competitionService.getCompetition(id).subscribe(
             competition => {
                 this.competition = competition;
@@ -73,7 +74,42 @@ export class CompetitionControlComponent {
                 this.fights.final.push(this.competition.fights[0]);
                 this.fullLoaded = true;
             },
-            error => console.error(error),
+            error => this.router.navigate(['/500']),
+        );
+    }
+
+    ngOnInit(): void {
+        this.loginInUserService.getLoggedUser().subscribe(
+            user => {
+                if (user.roles.includes('R')) {
+                    /*
+                    * GLOBAL VARIABLES
+                    * These variables are needed during all the simulator execution.
+                    */
+
+                    // STOPWATCHES VARIABLES
+                    // BIG STOPWATCH VARIABLE: include, in the following order:
+                    // [0]: Minute number of stopwatch
+                    // [1]: Second number of stopwatch (max 59)
+                    // [2]: isActivated (false if stopped, true if currently counting)
+                    this.bigStopwatch = [0, 0, false];
+
+                    // SMALL STOPWATCH VARIABLE
+                    // [0]: Player using currently small stopwatch (either 1 or 2, 0 if deactivated)
+                    // [1]: Second number of stopwatch (max 20)
+                    // [2]: isActivated (false if stopped, true if currently counting)
+                    this.smallStopwatch = [0, 0, false];
+
+                    // CONTROL VARIABLES
+                    // screenFullFunc (true if screen is working, false if not)
+                    this.screenFullFunc = false;
+
+                    this.disabled = true;
+                    this.disabledG = true;
+                    this.disabledSelect = false;
+                }
+            },
+            error => this.router.navigate(['/403']),
         );
     }
 
@@ -87,35 +123,6 @@ export class CompetitionControlComponent {
      * (C) May 2021 Group 2 Web Applications Development (DAW) - University Rey Juan Carlos.
      */
 
-    initCronometer(): void {
-        /*
-        * GLOBAL VARIABLES
-        * These variables are needed during all the simulator execution.
-        */
-
-        // STOPWATCHES VARIABLES
-        // BIG STOPWATCH VARIABLE: include, in the following order:
-        // [0]: Minute number of stopwatch
-        // [1]: Second number of stopwatch (max 59)
-        // [2]: isActivated (false if stopped, true if currently counting)
-        this.bigStopwatch = [0, 0, false];
-
-        // SMALL STOPWATCH VARIABLE
-        // [0]: Player using currently small stopwatch (either 1 or 2, 0 if deactivated)
-        // [1]: Second number of stopwatch (max 20)
-        // [2]: isActivated (false if stopped, true if currently counting)
-        this.smallStopwatch = [0, 0, false];
-
-        // CONTROL VARIABLES
-        // screenFullFunc (true if screen is working, false if not)
-        this.screenFullFunc = false;
-
-        this.disabled = true;
-        this.disabledG = true;
-        this.disabledSelect = false;
-
-    }
-
     /*
      * STOPWATCH INITIALIZATION
      *
@@ -126,7 +133,8 @@ export class CompetitionControlComponent {
     fightSelected(): void {
         // IF a valid fight is chosen
         this.selectedFightNumber = parseInt(this.selectedFight, 10);
-        if (this.selectedFightNumber !== -1) {
+        if (this.selectedFightNumber !== -1
+        ) {
 
             // Enabling start Button and Disabling select list
             this.disabledG = false;
@@ -156,15 +164,16 @@ export class CompetitionControlComponent {
      * Many functionalities are enabled during this step.
      */
 
-    // 3.1: Adding and substracting points and penalties functions
-    // These functions can be executed with keystrokes and with buttons
+// 3.1: Adding and substracting points and penalties functions
+// These functions can be executed with keystrokes and with buttons
     /**
      * addPointPlayer1()
      * Adds a point for player 1 and updates info.
      * If this player gets 10 points, the fight is ended (and player 1 wins).
      */
     addPointPlayer1(): void {
-        if (this.player1[0] < 10) {
+        if (this.player1[0] < 10
+        ) {
             this.player1[0] = this.player1[0] + 1;
         }
         if (this.player1[0] === 10) {
@@ -177,7 +186,8 @@ export class CompetitionControlComponent {
      * Subtracts a point for player 1 and updates info (no negative values allowed).
      */
     subtractPointPlayer1(): void {
-        if (this.player1[0] > 0) {
+        if (this.player1[0] > 0
+        ) {
             this.player1[0] = this.player1[0] - 1;
         }
     }
@@ -188,7 +198,8 @@ export class CompetitionControlComponent {
      * If this player gets 3 penalties, the fight is ended (and player 2 wins).
      */
     addPenaltyPlayer1(): void {
-        if (this.player1[1] < 3) {
+        if (this.player1[1] < 3
+        ) {
             this.player1[1] = this.player1[1] + 1;
         }
         if (this.player1[1] === 3) {
@@ -201,7 +212,8 @@ export class CompetitionControlComponent {
      * Subtracts a penalty for player 1 and updates info (no negative values allowed).
      */
     subtractPenaltyPlayer1(): void {
-        if (this.player1[1] > 0) {
+        if (this.player1[1] > 0
+        ) {
             this.player1[1] = this.player1[1] - 1;
         }
     }
@@ -213,7 +225,8 @@ export class CompetitionControlComponent {
      * If this player gets 10 points, the fight is ended (and player 2 wins).
      */
     addPointPlayer2(): void {
-        if (this.player2[0] < 10) {
+        if (this.player2[0] < 10
+        ) {
             this.player2[0] = this.player2[0] + 1;
         }
         if (this.player2[0] === 10) {
@@ -226,7 +239,8 @@ export class CompetitionControlComponent {
      * Subtracts a point for player 2 and updates info (no negative values allowed).
      */
     subtractPointPlayer2(): void {
-        if (this.player2[0] > 0) {
+        if (this.player2[0] > 0
+        ) {
             this.player2[0] = this.player2[0] - 1;
         }
     }
@@ -237,7 +251,8 @@ export class CompetitionControlComponent {
      * If this player gets 3 penalties, the fight is ended (and player 1 wins).
      */
     addPenaltyPlayer2(): void {
-        if (this.player2[1] < 3) {
+        if (this.player2[1] < 3
+        ) {
             this.player2[1] = this.player2[1] + 1;
         }
         if (this.player2[1] === 3) {
@@ -250,19 +265,22 @@ export class CompetitionControlComponent {
      * Subtracts a penalty for player 2 and updates info (no negative values allowed).
      */
     subtractPenaltyPlayer2(): void {
-        if (this.player2[1] > 0) {
+        if (this.player2[1] > 0
+        ) {
             this.player2[1] = this.player2[1] - 1;
         }
     }
 
-    // 3.2: Big stopwatch controllers
-    // These functions are controlling the main stopwatch.
+// 3.2: Big stopwatch controllers
+// These functions are controlling the main stopwatch.
     /**
      * bigStopwatchTurnOn()
      * Starts or restarts (if previously started) the stopwatch.
      */
     bigStopwatchTurnOn(): void {
-        if (!this.bigStopwatch[2]) {
+        if (!
+            this.bigStopwatch[2]
+        ) {
             // isActivated = true (big stopwatch gets active)
             this.bigStopwatch[2] = true;
             // Setting interval: lambda function inside is executed every 1000 milliseconds (1 second)
@@ -283,7 +301,8 @@ export class CompetitionControlComponent {
      * Stops (pauses) the big stopwatch.
      */
     bigStopwatchTurnOff(): void {
-        if (this.bigStopwatch[2]) {
+        if (this.bigStopwatch[2]
+        ) {
             // STOP HANDLER function of setInterval
             clearInterval(this.bigStopwatchInterv);
             // isActivated = false since it gets turned off.
@@ -291,15 +310,17 @@ export class CompetitionControlComponent {
         }
     }
 
-    // 3.3: Small stopwatch controllers
-    // These functions are controlling the little auxiliary stopwatch.
-    // This stopwatch changes its color depending on the player that needs it.
+// 3.3: Small stopwatch controllers
+// These functions are controlling the little auxiliary stopwatch.
+// This stopwatch changes its color depending on the player that needs it.
     /**
      * smallStopwatchTurnOn()
      * Starts or restarts (if previously started) the stopwatch attending to current player.
      */
     smallStopwatchTurnOn(player: number): void {
-        if (!this.smallStopwatch[2]) {
+        if (!
+            this.smallStopwatch[2]
+        ) {
             // Small stopwatch gets activated.
             this.smallStopwatch[2] = true;
             // IF the player that needs the stopwatch is NOT the same that used it the last time...
@@ -352,7 +373,8 @@ export class CompetitionControlComponent {
      * Stops (pauses) the small stopwatch.
      */
     smallStopwatchTurnOff(): void {
-        if (this.smallStopwatch[2]) {
+        if (this.smallStopwatch[2]
+        ) {
             // SET small stopwatch is stopped (isActivated = false)
             this.smallStopwatch[2] = false;
             // STOP interval handler function for small stopwatch
@@ -366,7 +388,8 @@ export class CompetitionControlComponent {
      */
     smallStopwatchReset(): void {
         // STOP interval handler function for small stopwatch
-        clearInterval(this.smallStopwatchInterv);
+        clearInterval(this.smallStopwatchInterv
+        );
         // RESTART values: timing is set to 0
         this.smallStopwatch[1] = 0;
         // RESTART values: player
@@ -374,9 +397,11 @@ export class CompetitionControlComponent {
     }
 
     @HostListener('window:keypress', ['$event'])
-    keyboardHandler(evt: KeyboardEvent): void {
+    keyboardHandler(evt: KeyboardEvent):
+        void {
         // Keyboard shortcuts is only working when screenFullFunc is enabled or when it's starting the fight
-        if (this.screenFullFunc || evt.key === 'G' || evt.key === 'g') {
+        if (this.screenFullFunc || evt.key === 'G' || evt.key === 'g'
+        ) {
             switch (evt.key) {
                 case 'W': // 87
                 case 'w': // 119
@@ -418,8 +443,7 @@ export class CompetitionControlComponent {
                 case ' ': // 32
                     if (this.bigStopwatch[2]) {
                         this.bigStopwatchTurnOff();
-                    }
-                    else {
+                    } else {
                         this.bigStopwatchTurnOn();
                     }
                     break;
@@ -458,7 +482,8 @@ export class CompetitionControlComponent {
         this.smallStopwatchTurnOff();
 
         // Answer of the fight
-        if (this.player1[0] === 10 || this.player1[1] === 3 || this.player2[0] === 10 || this.player2[1] === 3) {
+        if (this.player1[0] === 10 || this.player1[1] === 3 || this.player2[0] === 10 || this.player2[1] === 3
+        ) {
             if (this.player1[0] === 10 || this.player2[1] === 3) {
                 this.competitionService.updateFight(this.competition.idCompetition, this.player1[2], this.player2[2]).subscribe(
                     finish => {
@@ -486,12 +511,11 @@ export class CompetitionControlComponent {
     }
 
     exit(): void {
-        if (confirm('¿Desea abandonar la página? Se perderán los valores actuales.')) {
+        if (confirm('¿Desea abandonar la página? Se perderán los valores actuales.')
+        ) {
             this.router.navigate(['competitions/' + this.competition.idCompetition]);
         }
     }
-
-
 }
 
 

@@ -54,11 +54,11 @@ export class ListCompetitionComponent implements OnInit {
                             this.totalPages = competitions.totalPages;
                             this.fullLoaded = true;
                         },
-                        error => console.error(error),
+                        error => this.router.navigate(['/**']),
                     );
                 }
             },
-            error => console.error(error),
+            error => this.router.navigate(['/403']),
         );
     }
 
@@ -74,7 +74,7 @@ export class ListCompetitionComponent implements OnInit {
                 }
                 this.latest = competitions.last;
             },
-            error => console.error(error),
+            error => this.router.navigate(['/**']),
         );
     }
 
@@ -100,7 +100,7 @@ export class ListCompetitionComponent implements OnInit {
                 this.competitions.splice(this.position, 1);
                 this.modalService.dismissAll();
             },
-            error => console.error(error),
+            error => this.router.navigate(['/**']),
         );
     }
 
