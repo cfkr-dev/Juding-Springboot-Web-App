@@ -6,14 +6,23 @@ export class DatepickerService extends NgbDateParserFormatter {
 
     readonly DELIMITER = '/';
 
-    parse(value: string): NgbDateStruct | null {
+    parse(value: string, withHour: boolean = false): NgbDateStruct | null {
         if (value) {
             let date = value.split(this.DELIMITER);
-            return {
-                day: parseInt(date[0], 10),
-                month: parseInt(date[1], 10),
-                year: parseInt(date[2], 10)
-            };
+            if (withHour){
+                let yearWithoutHour = date[2].split(' ');
+                return {
+                    day: parseInt(date[0], 10),
+                    month: parseInt(date[1], 10),
+                    year: parseInt(date[2][0], 10)
+                };
+            } else {
+                return {
+                    day: parseInt(date[0], 10),
+                    month: parseInt(date[1], 10),
+                    year: parseInt(date[2], 10)
+                };
+            }
         }
         return null;
     }
