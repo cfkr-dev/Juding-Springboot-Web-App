@@ -3,7 +3,6 @@ import {User} from '../../../user/user.model';
 import {Router} from '@angular/router';
 import {RefereeService} from '../services/referee.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ErrorHandlerService} from '../services/error-handler.service';
 
 @Component({
     selector: 'app-referee-list',
@@ -24,6 +23,7 @@ export class RefereeListComponent implements OnInit {
 
     users: User[];
     applicators: User[];
+    userModal: User;
     hasErrorOnLoad: boolean;
     noApplications: boolean;
     isLastPage: boolean;
@@ -33,21 +33,25 @@ export class RefereeListComponent implements OnInit {
     loading: boolean;
     errorOnRemoving: boolean;
     errorOnAcceptApplication: boolean;
-    userModal: User;
+    loadingContent: boolean;
+    loadingAcceptReferee: boolean;
 
-    constructor(private router: Router, private refereeService: RefereeService, private modalService: NgbModal, private errorHandlerService: ErrorHandlerService) {
+    constructor(private router: Router, private refereeService: RefereeService, private modalService: NgbModal) {
         this.hasErrorOnLoad = false;
         this.noApplications = false;
         this.isLastPage = false;
         this.noMorePages = false;
         this.errorOnRemoving = false;
         this.errorOnAcceptApplication = false;
+        this.loadingAcceptReferee = false;
         this.currentPage = 0;
     }
 
     ngOnInit() {
+        this.loadingContent = true;
         this.refereeService.getApplications().subscribe(
             pageOfApplicators => {
+                this.loadingContent = false;
                 if (Object.keys(pageOfApplicators).length === 0) {
                     this.noApplications = true;
                 } else {
@@ -56,7 +60,7 @@ export class RefereeListComponent implements OnInit {
             },
             error => {
                 this.noApplications = true;
-                this.errorHandlerService.handleError(error);
+                this.router.navigate(['500']);
             }
         );
 
@@ -73,7 +77,7 @@ export class RefereeListComponent implements OnInit {
             },
             error => {
                 this.hasErrorOnLoad = true;
-                this.errorHandlerService.handleError(error);
+                this.router.navigate(['500']);
             }
         );
         this.currentPage = 1;
@@ -90,7 +94,7 @@ export class RefereeListComponent implements OnInit {
                 },
                 error => {
                     this.hasErrorOnLoad = true;
-                    this.errorHandlerService.handleError(error);
+                    this.router.navigate(['500']);
                 }
             );
             this.currentPage += 1;
@@ -115,7 +119,7 @@ export class RefereeListComponent implements OnInit {
             },
             error => {
                 this.errorOnRemoving = true;
-                this.errorHandlerService.handleError(error);
+                this.router.navigate(['500']);
             }
         );
     }
@@ -134,14 +138,16 @@ export class RefereeListComponent implements OnInit {
             },
             error => {
                 this.errorOnRemoving = true;
-                this.errorHandlerService.handleError(error);
+                this.router.navigate(['500']);
             }
         );
     }
 
     acceptApplication(user) {
+        this.loadingAcceptReferee = true;
         this.refereeService.admitReferee(user).subscribe(
             acceptUser => {
+                this.loadingAcceptReferee = false;
                 this.applicators.forEach((element, index) => {
                     if (element.licenseId === acceptUser.licenseId) {
                         this.applicators.splice(index, 1);
@@ -150,10 +156,14 @@ export class RefereeListComponent implements OnInit {
                 if (this.applicators.length === 0) {
                     this.noApplications = true;
                 }
+                const currentUrl = this.router.url;
+                this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+                    this.router.navigate([currentUrl]);
+                });
             },
             error => {
                 this.errorOnAcceptApplication = true;
-                this.errorHandlerService.handleError(error);
+                this.router.navigate(['500']);
             }
         );
     }

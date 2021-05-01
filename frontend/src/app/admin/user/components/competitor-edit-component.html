@@ -1,7 +1,11 @@
-<ng-container *ngIf="!errorOnLoadUserData">
-    <form (submit)=modifyCompetitor(user) action="/admin/user/edit/save"
-          class="needs-validation flex-sb flex-w juding-form-user-update" enctype="multipart/form-data"
-          method="post"
+<ng-container *ngIf="loadingContent">
+    <div class="alert alert-secondary">
+        <i class="fas fa-spin fa-circle-notch"></i> Cargando...
+    </div>
+</ng-container>
+<ng-container *ngIf="!errorOnLoadUserData && !loadingContent">
+    <form (submit)=modifyCompetitor(user)
+          class="needs-validation flex-sb flex-w juding-form-user-update" [ngClass]="{'was-validated': submitted && !validationError}" enctype="multipart/form-data"
           novalidate>
 
         <h2 class="h2">Edición de usuarios</h2>
@@ -66,8 +70,13 @@
 
         <!-- Birth date field -->
         <label class="txt1" for="birthDate">Fecha de nacimiento <span class="asterisk">*</span></label>
-        <input [(ngModel)]="user.birthdate" class="form-control" id="birthDate" name="birthDate" required type="text"
-               value="{{ user.birthdate }}">
+        <div class="input-group">
+            <input class="form-control dateInput" ngbDatepicker #d="ngbDatepicker" id="birthDate" name="birthDate" required
+                   type="text" [(ngModel)]="signUpFormBirthdate" (ngModelChange)="updateBirthdate()">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fas fa-calendar"></i></button>
+            </div>
+        </div>
         <div class="invalid-feedback">
             La fecha de nacimiento es obligatoria y debe introducirse en formato dd/mm/yyyy.
         </div>
@@ -101,12 +110,17 @@
             El campo no puede estar vacío.
         </div>
         <div id="nicknameFeedback"></div>
+        <ng-container *ngIf="validationError && submitted">
+            <div class="alert alert-danger">
+                <i class="fas fa-spin fa-circle-notch"></i> No se puede introducir un apodo ya registrado en el sistema.
+            </div>
+        </ng-container>
 
         <h3 class="h3">Información para competición</h3>
 
         <!-- Belt selector -->
         <label class="txt1" for="belt">Cinturón <span class="asterisk">*</span></label>
-        <select [(ngModel)]="user.belt" class="form-select" id="belt" name="belt" required>
+        <select [(ngModel)]="user.belt" class="custom-select" id="belt" name="belt" required>
             <option disabled selected>Seleccione un cinturón...</option>
             <option [selected]="user.belt === 'B'" value="B">Blanco</option>
             <option [selected]="user.belt === 'BAm'" value="BAm">Blanco-Amarillo</option>

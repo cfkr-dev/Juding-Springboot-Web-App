@@ -3,7 +3,6 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
 import {User} from '../../../user/user.model';
 import {CompetitorService} from '../services/competitor.service';
-import {ErrorHandlerService} from '../services/error-handler.service';
 
 
 @Component({
@@ -31,18 +30,22 @@ export class CompetitorListComponent implements OnInit {
     totalPages: number;
     loading: boolean;
     errorOnRemoving: boolean;
+    loadingContent: boolean;
 
-    constructor(private router: Router, private competitorService: CompetitorService, private modalService: NgbModal, private errorHandlerService: ErrorHandlerService) {
+    constructor(private router: Router, private competitorService: CompetitorService, private modalService: NgbModal) {
         this.hasErrorOnLoad = false;
         this.isLastPage = false;
         this.noMorePages = false;
         this.errorOnRemoving = false;
+        this.loadingContent = false;
         this.currentPage = 0;
     }
 
     ngOnInit() {
+        this.loadingContent = true;
         this.competitorService.getCompetitors(0).subscribe(
             pageOfUsers => {
+                this.loadingContent = false;
                 if (Object.keys(pageOfUsers).length === 0) {
                     this.noMorePages = true;
                     this.isLastPage = true;
@@ -54,7 +57,7 @@ export class CompetitorListComponent implements OnInit {
             },
             error => {
                 this.hasErrorOnLoad = true;
-                this.errorHandlerService.handleError(error);
+                this.router.navigate(['500']);
             }
         );
         this.currentPage = 1;
@@ -71,7 +74,7 @@ export class CompetitorListComponent implements OnInit {
                 },
                 error => {
                     this.hasErrorOnLoad = true;
-                    this.errorHandlerService.handleError(error);
+                    this.router.navigate(['500']);
                 }
             );
             this.currentPage += 1;
@@ -96,7 +99,7 @@ export class CompetitorListComponent implements OnInit {
             },
             error => {
                 this.errorOnRemoving = true;
-                this.errorHandlerService.handleError(error);
+                this.router.navigate(['500']);
             }
         );
     }
