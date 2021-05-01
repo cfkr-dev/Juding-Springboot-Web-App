@@ -25,6 +25,7 @@ export class HeaderComponent {
     headerType2 = [
         '\/login',
         '\/logout',
+        '\/passwordRecovery',
         '\\/news\\/[0-9]*',
         '\/403',
         '\/404',

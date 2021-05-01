@@ -17,20 +17,29 @@ import {HttpClient} from '@angular/common/http';
     providers: [PostsService]
 })
 export class PostFormComponent {
+    loadedPage: boolean;
     post: Post;
     image: File = null;
     alert: boolean;
+    validation: string
 
     constructor(private router: Router, activatedRoute: ActivatedRoute, private service: PostsService, private http: HttpClient) {
+        this.validation = 'needs-validation';
+        this.loadedPage = false;
         this.alert = false;
         const id = activatedRoute.snapshot.params.id;
         if (id) {
             service.getPost(id).subscribe(
-                post => this.post = post,
-                error => console.log(error)
-            );
+                post => {
+                    this.post = post;
+                    this.loadedPage = true;
+                },
+                error => this.router.navigate(['/404'])
+            )
+            ;
         } else {
             this.post = {author: undefined, title: '', body: '', timestamp: undefined};
+            this.loadedPage = true;
         }
     }
 
@@ -44,6 +53,7 @@ export class PostFormComponent {
 
     submitForm(event: Event): void {
         event.preventDefault();
+        this.validation = 'was-validated';
         this.service.savePost(this.post).subscribe(
             (post => {
                 if (this.image !== null) {

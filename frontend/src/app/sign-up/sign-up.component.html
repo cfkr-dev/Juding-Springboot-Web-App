@@ -1,0 +1,191 @@
+<form class="needs-validation juding-form-signup" novalidate enctype="multipart/form-data"
+      [ngClass]="{'was-validated': wasValidated}" (ngSubmit)="signUp($event)" #form>
+    <h2 class="h2" *ngIf="isCompetitor">Registro de competidores</h2>
+    <h2 class="h2" *ngIf="!isCompetitor">Solicitud de federación de árbitros</h2>
+    <div class="alert alert-danger" *ngIf="error === 1 || error === 2">Ha ocurrido algún error no esperado. Inténtalo de
+        nuevo.
+    </div>
+    <h3 class="h3">Información personal</h3>
+
+    <!-- Name and Surname fields -->
+    <div class="row">
+        <div class="col-md-6">
+            <label class="txt1" for="name">Nombre <span class="asterisk">*</span></label>
+            <input class="form-control" id="name" name="name" required type="text" [(ngModel)]="signUpForm.name">
+            <div class="invalid-feedback">
+                El campo no puede estar vacío.
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="txt1" for="surname">Apellidos <span class="asterisk">*</span></label>
+            <input class="form-control" id="surname" name="surname" required type="text"
+                   [(ngModel)]="signUpForm.surname">
+            <div class="invalid-feedback">
+                El campo no puede estar vacío.
+            </div>
+        </div>
+    </div>
+
+    <!-- Gender radio selection -->
+    <span class="txt1">Género <span class="asterisk">*</span></span>
+    <div class="form-check" *ngFor="let gender of genderService.genders">
+        <input class="form-check-input" type="radio" name="gender" id="gender{{ gender.name }}" [value]="gender.name"
+               [(ngModel)]="signUpForm.gender" required>
+        <label class="form-check-label" for="gender{{ gender.name }}">
+            {{ gender.longName }}
+        </label>
+    </div>
+    <div class="invalid-feedback">Es obligatorio seleccionar un género.</div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Phone field -->
+            <label class="txt1" for="phone">Teléfono</label>
+            <input class="form-control" id="phone" name="phone" pattern="(?=.*\d).{9}" type="text"
+                   [(ngModel)]="signUpForm.phone">
+            <div class="invalid-feedback">
+                El teléfono debe contener 9 dígitos.
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Email field -->
+            <label class="txt1" for="email">Correo electrónico <span class="asterisk">*</span></label>
+            <input class="form-control" id="email" name="email" required type="email" [(ngModel)]="signUpForm.email">
+            <div class="invalid-feedback">
+                El correo electrónico no tiene el formato adecuado.
+            </div>
+        </div>
+    </div>
+
+    <!-- Birth date field -->
+    <label class="txt1" for="birthDate">Fecha de nacimiento <span class="asterisk">*</span></label>
+    <div class="input-group">
+        <input class="form-control dateInput" ngbDatepicker #d="ngbDatepicker" id="birthDate" name="birthDate" required
+               type="text" [(ngModel)]="signUpFormBirthdate" (ngModelChange)="updateBirthdate()">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fas fa-calendar"></i></button>
+        </div>
+    </div>
+    <div class="invalid-feedback">
+        La fecha de nacimiento es obligatoria y debe introducirse en formato dd/mm/yyyy.
+    </div>
+
+    <!-- DNI -->
+    <label class="txt1" for="dni">DNI <span class="asterisk">*</span></label>
+    <input class="form-control" id="dni" name="dni" pattern="^([0-9]{8}|[XYZ][0-9]{7})[A-Z]{1}$" required
+           type="text" [(ngModel)]="signUpForm.dni">
+    <div class="invalid-feedback">
+        El DNI no sigue el formato requerido (ejemplo: 12345678Z).
+    </div>
+
+    <h3 class="h3 mt-2">Información de autenticación</h3>
+    <div class="alert alert-danger" *ngIf="error === 3"><strong>Advertencia: </strong> este número de licencia o este
+        apodo ya están registrados. Deben ser únicos para poder registrarte.
+    </div>
+    <!-- License ID -->
+    <label class="txt1" for="licenseId">Número de licencia <span class="asterisk">*</span></label>
+    <input class="form-control" id="licenseId" name="licenseId" type="text" required
+           [pattern]="isCompetitor ? '[0-9]{10}$' : 'JU-[0-9]{10}'" [(ngModel)]="signUpForm.licenseId"
+           [placeholder]="'(Por ejemplo, ' + (isCompetitor ? '1234567890' : 'JU-1234567890') + ')'">
+    <div class="invalid-feedback">
+        La licencia no se ajusta al formato requerido.
+    </div>
+
+    <!-- Nickname field -->
+    <label class="txt1" for="nickname">Apodo <span class="asterisk">*</span></label>
+    <input class="form-control" id="nickname" name="nickname" required type="text" [(ngModel)]="signUpForm.nickname">
+    <div class="invalid-feedback">
+        El campo no puede estar vacío.
+    </div>
+
+    <!-- Password -->
+    <label class="txt1" for="password">Contraseña <span class="asterisk">*</span></label>
+    <div class="input-group has-validation">
+        <input class="form-control" id="password" name="password" required type="password"
+               [(ngModel)]="signUpForm.password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+        <span class="input-group-text" id="showPassword">
+            <i class="far fa-eye-slash"></i>
+        </span>
+        <div class="invalid-feedback">
+            Esta contraseña no se acoge al formato solicitado.
+        </div>
+    </div>
+    <div class="passwrequirements">La contraseña debe tener al menos 8 caracteres incluyendo al menos un
+        número, una letra minúscula y una letra mayúscula.
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label class="txt1" for="securityQuestion">Pregunta de seguridad <span class="asterisk">*</span></label>
+            <input class="form-control" id="securityQuestion" name="securityQuestion" required type="text"
+                   [(ngModel)]="signUpForm.securityQuestion">
+            <div class="invalid-feedback">
+                Es obligatorio determinar una pregunta de seguridad.
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="txt1" for="securityAnswer">Respuesta de seguridad <span class="asterisk">*</span></label>
+            <input class="form-control" id="securityAnswer" name="securityAnswer" required type="text"
+                   [(ngModel)]="signUpForm.securityAnswer">
+            <div class="invalid-feedback">
+                Es obligatorio determinar una respuesta de seguridad.
+            </div>
+        </div>
+    </div>
+
+    <h3 class="h3">Información para competición</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Profile image -->
+            <label class="txt1" for="image">Imagen de perfil <span class="asterisk">*</span></label>
+            <div class="custom-file">
+                <input (change)="imageService.onFileChanged($event)" [(ngModel)]="signUpForm.imageFile"
+                       accept="image/jpeg, image/png" class="custom-file-input" id="image" name="image"
+                       type="file">
+                <label class="custom-file-label"
+                       for="image">{{ imageService.getInterpretedFileName() }}</label>
+            </div>
+            <div class="invalid-feedback">
+                Prueba de nuevo a subir la imagen en formato .jpg o .png.
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Belt selector -->
+            <label class="txt1" for="belt">Cinturón <span class="asterisk">*</span></label>
+            <select name="belt" id="belt" class="custom-select" required [(ngModel)]="signUpForm.belt">
+                <option selected disabled value="">Seleccione un cinturón...</option>
+                <ng-container *ngFor="let belt of beltService.belts">
+                    <option [value]="belt.name">{{ belt.longName }}</option>
+                </ng-container>
+            </select>
+            <div class="invalid-feedback">
+                El cinturón es obligatorio.
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="isCompetitor">
+        <div class="col-md-6">
+            <!-- Gym -->
+            <label class="txt1" for="gym">Gimnasio <span class="asterisk">*</span></label>
+            <input class="form-control" id="gym" name="gym" required type="text" [(ngModel)]="signUpForm.gym">
+            <div class="invalid-feedback">
+                El gimnasio es obligatorio.
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Weight -->
+            <label class="txt1" for="weight">Peso <span class="asterisk">*</span></label>
+            <input class="form-control" id="weight" name="weight" pattern="^[1-9][0-9]+$" type="number" required
+                   min="0" [(ngModel)]="signUpForm.weight">
+            <div class="invalid-feedback">
+                El peso es obligatorio.
+            </div>
+        </div>
+    </div>
+
+    <div class="container-login100-form-btn mt-3">
+        <button class="btn btn-corporative" type="submit"><i class="fas fa-spin fa-circle-notch" *ngIf="loading"></i>
+            Registrarse
+        </button>
+    </div>
+</form>
