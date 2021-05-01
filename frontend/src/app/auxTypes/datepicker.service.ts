@@ -14,7 +14,7 @@ export class DatepickerService extends NgbDateParserFormatter {
                 return {
                     day: parseInt(date[0], 10),
                     month: parseInt(date[1], 10),
-                    year: parseInt(date[2][0], 10)
+                    year: parseInt(yearWithoutHour[0], 10)
                 };
             } else {
                 return {
