@@ -17,4 +17,5 @@ export class FightService {
         }
         return count;
     }
+
 }

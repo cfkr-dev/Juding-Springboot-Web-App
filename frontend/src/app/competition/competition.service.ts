@@ -58,4 +58,8 @@ export class CompetitionService {
         console.error(error);
         return throwError('Server error (' + error.status + '): ' + error.text());
     }
+
+    updateFight(idCompetition: number, winner: string, loser: string): Observable<Competition> {
+        return this.httpClient.put(BASE_URL + idCompetition + '/control', {idCompetition: idCompetition, winner: winner, loser: loser}, {withCredentials: true}) as Observable<Competition>;
+    }
 }
