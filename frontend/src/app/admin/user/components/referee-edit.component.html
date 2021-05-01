@@ -1,7 +1,11 @@
-<ng-container *ngIf="!errorOnLoadUserData">
-    <form (submit)=modifyReferee(user) action="/admin/user/edit/save"
-          class="needs-validation flex-sb flex-w juding-form-user-update" enctype="multipart/form-data"
-          method="post"
+<ng-container *ngIf="loadingContent">
+    <div class="alert alert-secondary">
+        <i class="fas fa-spin fa-circle-notch"></i> Cargando...
+    </div>
+</ng-container>
+<ng-container *ngIf="!errorOnLoadUserData && !loadingContent">
+    <form (submit)=modifyReferee(user)
+          class="needs-validation flex-sb flex-w juding-form-user-update" [ngClass]="{'was-validated': submitted}" enctype="multipart/form-data"
           novalidate>
 
         <h2 class="h2">Edición de usuarios</h2>
@@ -103,7 +107,7 @@
 
         <!-- Belt selector -->
         <label class="txt1" for="belt">Cinturón <span class="asterisk">*</span></label>
-        <select [(ngModel)]="user.belt" class="form-select" id="belt" name="belt" required>
+        <select [(ngModel)]="user.belt" class="custom-select" id="belt" name="belt" required>
             <option disabled selected>Seleccione un cinturón...</option>
             <option [selected]="user.belt === 'B'" value="B">Blanco</option>
             <option [selected]="user.belt === 'BAm'" value="BAm">Blanco-Amarillo</option>
@@ -132,7 +136,7 @@
         </div>
 
         <label class="txt1" for="refereeRange">Rango <span class="asterisk">*</span></label>
-        <select [(ngModel)]="user.refereeRange" class="form-select" id="refereeRange" name="refereeRange" required>
+        <select [(ngModel)]="user.refereeRange" class="custom-select" id="refereeRange" name="refereeRange" required>
             <option [selected]="user.refereeRange === 'E'" value="E">Árbitro estándar</option>
             <option [selected]="user.refereeRange === 'C'" value="C">Árbitro de competición</option>
             <option [selected]="user.refereeRange === 'A'" value="A">Árbitro auxiliar</option>

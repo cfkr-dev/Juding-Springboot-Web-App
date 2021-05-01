@@ -1,4 +1,9 @@
-<ng-container *ngIf="!hasErrorOnLoad">
+<ng-container *ngIf="loadingContent">
+    <div class="alert alert-secondary">
+        <i class="fas fa-spin fa-circle-notch"></i> Cargando...
+    </div>
+</ng-container>
+<ng-container *ngIf="!hasErrorOnLoad && !loadingContent">
     <h2 class="h2">Usuarios</h2>
     <h3 class="h3">Solicitudes de federación de nuevos árbitros</h3>
     <div *ngIf="!noApplications else noHasApplications" class="responsiveTable mb-3">
@@ -25,7 +30,7 @@
                     <i class="fas fa-info-circle"></i>
                 </button>
                 <a (click)="acceptApplication(user)" class="btn btn-outline-success">
-                    <i class="fas fa-check"></i>
+                    <i [ngClass]="{'fa fa-check': !loadingAcceptReferee, 'fas fa-circle-notch fa-spin': loadingAcceptReferee}"></i>
                 </a>
                 <a (click)="removeApplication(user)" class="btn btn-outline-danger">
                     <i class="fas fa-times"></i>

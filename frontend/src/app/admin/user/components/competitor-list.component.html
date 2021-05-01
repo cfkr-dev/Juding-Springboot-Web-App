@@ -1,4 +1,9 @@
-<ng-container *ngIf="!hasErrorOnLoad">
+<ng-container *ngIf="loadingContent">
+    <div class="alert alert-secondary">
+        <i class="fas fa-spin fa-circle-notch"></i> Cargando...
+    </div>
+</ng-container>
+<ng-container *ngIf="!hasErrorOnLoad && !loadingContent">
     <h2 class="h2">Usuarios</h2>
     <h3 class="h3">Competidores</h3>
     <div *ngIf="noMorePages else hasContent" class="alert alert-corporative">
