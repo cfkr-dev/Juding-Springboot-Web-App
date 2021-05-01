@@ -15,7 +15,7 @@ public class CommonUserDTO {
     private final String birthDate;
     @Pattern(regexp = "^([0-9]{8}|[XYZ][0-9]{7})[A-Z]{1}$")
     private final String dni;
-    @Pattern(regexp = "JU-[0-9]{10}$|[0-9]{10}$")
+    @Pattern(regexp = "^((JU-[0-9]{10})|([0-9]{10}))$")
     private final String licenseId;
     private final String nickname;
     @Pattern(regexp = "B|BAm|Am|AmN|NV|V|VAz|Az|AzM|M|N10|N[1-9]?")

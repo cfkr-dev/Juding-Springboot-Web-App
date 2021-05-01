@@ -17,6 +17,7 @@ import {Router} from '@angular/router';
         '../../../../assets/css/header.css',
         '../../../../assets/css/bootstrapAccomodations.css',
         '../../../../assets/css/responsiveTable.css',
+        '../../../../assets/css/adminScreen.css',
         '../../../../assets/css/competitionController.css',
         '../../../../assets/css/beltAssignations.css']
 })
@@ -32,6 +33,9 @@ export class ListCompetitionComponent implements OnInit {
     identifier: number;
     position: number;
 
+    fullLoaded: boolean;
+    loading: boolean;
+
     // tslint:disable-next-line:max-line-length
     constructor(public competitionService: CompetitionService, public loginInUserService: LoggedInUserService, private modalService: NgbModal, private router: Router) {
     }
@@ -43,30 +47,34 @@ export class ListCompetitionComponent implements OnInit {
                     this.page = 0;
                     this.competitionService.getCompetitionPage(this.page).subscribe(
                         competitions => {
+                            this.page = this.page + 1;
                             this.competitions = competitions.content;
                             this.latest = competitions.last;
                             this.empty = this.competitionService.haveCompetitions(this.competitions);
                             this.totalPages = competitions.totalPages;
+                            this.fullLoaded = true;
                         },
-                        error => console.error(error),
+                        error => this.router.navigate(['/**']),
                     );
                 }
             },
-            error => console.error(error),
+            error => this.router.navigate(['/403']),
         );
     }
 
 
     showPage(): void {
-        this.page = this.page + 1;
+        this.loading = true;
         this.competitionService.getCompetitionPage(this.page).subscribe(
             competitions => {
+                this.loading = false;
+                this.page = this.page + 1;
                 for (let i = 0; i < competitions.numberOfElements; i++) {
                     this.competitions.push(competitions.content[i]);
                 }
                 this.latest = competitions.last;
             },
-            error => console.error(error),
+            error => this.router.navigate(['/**']),
         );
     }
 
@@ -92,7 +100,7 @@ export class ListCompetitionComponent implements OnInit {
                 this.competitions.splice(this.position, 1);
                 this.modalService.dismissAll();
             },
-            error => console.error(error),
+            error => this.router.navigate(['/**']),
         );
     }
 

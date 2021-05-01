@@ -1,8 +1,21 @@
 import {Competition} from '../competition/competition.model';
 import {User} from '../user/user.model';
 
+
 export class Fight {
-    constructor(competition: Competition, levelInTree: number, upFight: Fight, downFight: Fight, parentFight: Fight, isFinished: boolean, winner: User, loser: User) {
+    private _idFight: number;
+    private _competition: Competition;
+    private _levelInTree: number;
+    private _upFight: Fight;
+    private _downFight: Fight;
+    private _parentFight: Fight;
+    private _finished: boolean;
+    private _winner: User;
+    private _loser: User;
+
+
+    constructor(idFight: number, competition: Competition, levelInTree: number, upFight: Fight, downFight: Fight, parentFight: Fight, isFinished: boolean, winner: User, loser: User) {
+        this._idFight = idFight;
         this._competition = competition;
         this._levelInTree = levelInTree;
         this._upFight = upFight;
@@ -13,7 +26,14 @@ export class Fight {
         this._loser = loser;
     }
 
-    private _competition: Competition;
+
+    get idFight(): number {
+        return this._idFight;
+    }
+
+    set idFight(value: number) {
+        this._idFight = value;
+    }
 
     get competition(): Competition {
         return this._competition;
@@ -23,8 +43,6 @@ export class Fight {
         this._competition = value;
     }
 
-    private _levelInTree: number;
-
     get levelInTree(): number {
         return this._levelInTree;
     }
@@ -32,8 +50,6 @@ export class Fight {
     set levelInTree(value: number) {
         this._levelInTree = value;
     }
-
-    private _upFight: Fight;
 
     get upFight(): Fight {
         return this._upFight;
@@ -43,8 +59,6 @@ export class Fight {
         this._upFight = value;
     }
 
-    private _downFight: Fight;
-
     get downFight(): Fight {
         return this._downFight;
     }
@@ -52,8 +66,6 @@ export class Fight {
     set downFight(value: Fight) {
         this._downFight = value;
     }
-
-    private _parentFight: Fight;
 
     get parentFight(): Fight {
         return this._parentFight;
@@ -63,8 +75,6 @@ export class Fight {
         this._parentFight = value;
     }
 
-    private _finished: boolean;
-
     get finished(): boolean {
         return this._finished;
     }
@@ -73,8 +83,6 @@ export class Fight {
         this._finished = value;
     }
 
-    private _winner: User;
-
     get winner(): User {
         return this._winner;
     }
@@ -82,8 +90,6 @@ export class Fight {
     set winner(value: User) {
         this._winner = value;
     }
-
-    private _loser: User;
 
     get loser(): User {
         return this._loser;

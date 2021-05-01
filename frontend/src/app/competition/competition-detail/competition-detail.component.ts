@@ -1,8 +1,12 @@
 import {Component} from '@angular/core';
 import {Competition} from '../competition.model';
 import {CompetitionService} from '../competition.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Fight} from '../../fight/fight.model';
+import {BeltService} from '../../auxTypes/belt.service';
+import {GenderService} from '../../auxTypes/gender.service';
+import { OnInit } from '@angular/core';
+import {LoggedInUserService} from '../../logged-in-user.service';
 
 @Component({
     selector: 'app-competition-detail',
@@ -15,24 +19,48 @@ import {Fight} from '../../fight/fight.model';
         '../../../assets/css/header.css',
         '../../../assets/css/bootstrapAccomodations.css',
         '../../../assets/css/responsiveTable.css',
+        '../../../assets/css/competitionScreen.css',
         '../../../assets/css/competitionController.css',
         '../../../assets/css/beltAssignations.css']
 })
-export class CompetitionDetailComponent {
+export class CompetitionDetailComponent implements OnInit {
     competition: Competition;
     people: number;
-    fightslist: Fight[];
+    fightsList: Fight[];
+    id: number;
+    fullLoaded: boolean;
 
-    constructor(activatedRouter: ActivatedRoute, public service: CompetitionService) {
-        const id = activatedRouter.snapshot.params.id;
-        service.getCompetition(id).subscribe(
-            competition => {
-                this.competition = competition;
-                this.people = service.getPeople(this.competition);
-                this.fightslist = competition.fights;
+    constructor(private router: Router, activatedRouter: ActivatedRoute, public competitionService: CompetitionService, public beltService: BeltService, public genderService: GenderService, public loginInUserService: LoggedInUserService) {
+        this.id = activatedRouter.snapshot.params.id;
+    }
+
+    ngOnInit(): void {
+        this.loginInUserService.getLoggedUser().subscribe(
+            user => {
+                if (user.roles.includes('C')) {
+                    this.competitionService.getCompetition(this.id).subscribe(
+                        competition => {
+                            this.competition = competition;
+                            this.people = this.competitionService.getPeople(this.competition);
+                            this.fightsList = competition.fights;
+                            this.fullLoaded = true;
+                        },
+                        error => this.router.navigate(['/**']),
+                    );
+                } else if (user.roles.includes('R')) {
+                    this.competitionService.getCompetition(this.id).subscribe(
+                        competition => {
+                            this.competition = competition;
+                            this.people = this.competitionService.getPeople(this.competition);
+                            this.fightsList = competition.fights;
+                            this.fullLoaded = true;
+                        },
+                        error => this.router.navigate(['/**']),
+                    );
+                }
             },
-            error => console.error(error),
-        );
+                error => this.router.navigate(['/403']),
+            );
     }
 
 

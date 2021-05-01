@@ -1,52 +1,56 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Arbitraje - Juding</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <!-- Favicons -->
-    <link href="/src/assets/img/hero-img.png" rel="icon">
-
-    <!-- Vendor CSS Files -->
-    <link href="/src/assets/vendor/font-awesome/css/all.css" rel="stylesheet">
-    <link href="/src/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Own CSS Files -->
-    <link href="/src/assets/css/header.css" rel="stylesheet">
-    <link href="/src/assets/css/responsiveTable.css" rel="stylesheet">
-    <link href="/src/assets/css/profiles.css" rel="stylesheet">
-    <link href="/src/assets/css/competitionController.css" rel="stylesheet">
-
-</head>
-<body>
-<header class="header fixed-top" id="header">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-        <a class="logo d-flex align-items-center" href="../../../index.html">
-            <img alt="" src="/src/assets/img/hero-img.png">
-            <span>Juding</span>
-        </a>
-        <nav class="navbar" id="navbar">
-            <ul>
-                <li>
-                    <button class="login scrollto" id="return">Volver</button>
-                </li>
-            </ul>
-            <i class="far fa-bars mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
+<ng-template #loading>
+    <div class="alert alert-secondary">
+        <i class="fas fa-spin fa-circle-notch"></i> Cargando...
     </div>
-</header>
-<div class="container">
+</ng-template>
+<ng-container *ngIf="fullLoaded; else loading">
     <label for="fight">Selecciona una lucha para comenzar a arbitrar...</label>
     <div class="row">
         <div class="col-md-10 d-flex align-items-center">
-            <select class="form-select" id="fight" name="fight">
+            <select class="custom-select" (change)="fightSelected()" [(ngModel)]="selectedFight" [disabled]="disabledSelect" id="fight" name="fight">
                 <option disabled selected value="-1">Seleccionar un combate...</option>
-                {{ selectItems }}
+                        <optgroup label="Octavos">
+                            <ng-container *ngFor="let fight of fights.roundOfSixteen; let i=index">
+                            <ng-container *ngIf="!fight.finished && fight.winner !== null && fight.loser !== null">
+                                <option value="{{fight.idFight}}" data-nick1="{{fight.winner.nickname}}"
+                                        data-nick2="{{fight.loser.nickname}}">
+                                    {{fight.winner.nickname}} - {{fight.loser.nickname}}
+                                </option>
+                            </ng-container>
+                            </ng-container>
+                        </optgroup>
+                        <optgroup label="Cuartos">
+                            <ng-container *ngFor="let fight of fights.quarterFinals; let i=index">
+                            <ng-container *ngIf="!fight.finished && fight.winner !== null && fight.loser !== null">
+                                <option value="{{fight.idFight}}" data-nick1="{{fight.winner.nickname}}"
+                                        data-nick2="{{fight.loser.nickname}}">
+                                    {{fight.winner.nickname}} - {{fight.loser.nickname}}
+                                </option>
+                            </ng-container>
+                            </ng-container>
+                        </optgroup>
+                        <optgroup label="Semifinales">
+                            <ng-container *ngFor="let fight of fights.semifinal; let i=index">
+                            <ng-container *ngIf="!fight.finished && fight.winner !== null && fight.loser !== null">
+                                <option value="{{fight.idFight}}" data-nick1="{{fight.winner.nickname}}"
+                                        data-nick2="{{fight.loser.nickname}}">
+                                    {{fight.winner.nickname}} - {{fight.loser.nickname}}
+                                </option>
+                            </ng-container>
+                            </ng-container>
+                        </optgroup>
+                        <optgroup label="Final">
+                            <ng-container *ngIf="!fights.final[0].finished && fights.final[0].winner !== null && fights.final[0].loser !== null">
+                                <option value="{{fights.final[0].idFight}}" data-nick1="{{fights.final[0].winner.nickname}}"
+                                        data-nick2="{{fights.final[0].loser.nickname}}">
+                                    {{fights.final[0].winner.nickname}} - {{fights.final[0].loser.nickname}}
+                                </option>
+                            </ng-container>
+                        </optgroup>
             </select>
         </div>
         <div class="col-md-2 d-flex justify-content-center">
-            <button class="btn btn-primary" disabled id="keyG">Arbitrar (G)</button>
+            <button class="btn btn-primary" (click)="startFight()" [disabled]="disabledG" id="keyG">Arbitrar (G)</button>
         </div>
     </div>
 
@@ -55,25 +59,25 @@
         <!-- COMPETITOR 1 VIEW -->
         <div class="row border-2">
             <div class="col-md-3">
-                <span id="nick1">-</span>
+                <span id="nick1">{{player1[2]}}</span>
             </div>
             <div class="col-md-6">
-                <span id="points1">0</span> puntos
+                <span id="points1">{{player1[0]}}</span> puntos
             </div>
             <div class="col-md-3 redBack">
-                <span id="penalties1">0</span> sanciones
+                <span id="penalties1">{{player1[1]}}</span> sanciones
             </div>
         </div>
         <!-- COMPETITOR 2 VIEW -->
         <div class="row competitor2">
             <div class="col-md-3">
-                <span id="nick2">-</span>
+                <span id="nick2">{{player2[2]}}</span>
             </div>
             <div class="col-md-6">
-                <span id="points2">0</span> puntos
+                <span id="points2">{{player2[0]}}</span> puntos
             </div>
             <div class="col-md-3 redBack">
-                <span id="penalties2">0</span> sanciones
+                <span id="penalties2">{{player2[1]}}</span> sanciones
             </div>
         </div>
     </div>
@@ -81,11 +85,11 @@
     <div class="row d-flex text-center stopwatch">
         <!-- BIG STOPWATCH -->
         <div class="col-lg-7 col-7 bigstopwatch" id="bigStopwatch">
-            00:00
+            {{('0' + bigStopwatch[0]).substr(-2)}}:{{('0' + bigStopwatch[1]).substr(-2)}}
         </div>
         <!-- SMALL STOPWATCH -->
-        <div class="col-lg-5 col-5 smallstopwatch" id="smallStopwatch">
-            --
+        <div class="col-lg-5 col-5 smallstopwatch" [ngClass]="{colorPlayer2: smallStopwatch[0] === 2}" id="smallStopwatch">
+            {{('0' + smallStopwatch[1]).substr(-2)}}
         </div>
     </div>
     <!-- BUTTONS CONTROL PANEL -->
@@ -94,7 +98,7 @@
         <div class="col-md-4 competitorController" id="controls1">
             <div class="colShadow">
                 <div class="buttonStart">
-                    <button class="btn btn-outline-primary" disabled id="keyQ" type="button">
+                    <button class="btn" [ngClass]="{'btn-outline-primary': smallStopwatch[0] === 0 || smallStopwatch[0] === 2, 'btn-primary': smallStopwatch[0] === 1}" (click)="smallStopwatchTurnOn(1)" [disabled]="disabled" id="keyQ" type="button">
                         <i class="fas fa-stopwatch"></i> <i class="fas fa-play"></i> 1
                     </button>
                 </div>
@@ -102,12 +106,12 @@
                     <h3>PUNTOS</h3>
                     <div class="row justify-content-center pointsController">
                         <div class="col-lg-2 col-2 d-flex justify-content-center">
-                            <button class="btn btn-success" disabled id="keyW" type="button">
+                            <button class="btn btn-success" (click)="addPointPlayer1()" [disabled]="disabled" id="keyW" type="button">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>
                         <div class="col-lg-2 col-2 d-flex justify-content-center">
-                            <button class="btn btn-danger" disabled id="keyE" type="button">
+                            <button class="btn btn-danger" (click)="subtractPointPlayer1()" [disabled]="disabled" id="keyE" type="button">
                                 <i class="fas fa-minus"></i>
                             </button>
                         </div>
@@ -115,12 +119,12 @@
                     <h3>SANCIONES</h3>
                     <div class="row justify-content-center foulsController">
                         <div class="col-lg-2 col-2 d-flex justify-content-center">
-                            <button class="btn btn-success" disabled id="keyS" type="button">
+                            <button class="btn btn-success" (click)="addPenaltyPlayer1()" [disabled]="disabled" id="keyS" type="button">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>
                         <div class="col-lg-2 col-2 d-flex justify-content-center">
-                            <button class="btn btn-danger" disabled id="keyD" type="button">
+                            <button class="btn btn-danger" (click)="subtractPenaltyPlayer1()" [disabled]="disabled" id="keyD" type="button">
                                 <i class="fas fa-minus"></i>
                             </button>
                         </div>
@@ -134,12 +138,12 @@
                 <h5 class="h5">Cronómetro pequeño</h5>
                 <div class="row justify-content-center bigstopwatchController">
                     <div class="col-lg-3 col-3 d-flex justify-content-center">
-                        <button class="btn btn-outline-danger btnL" disabled id="keyV" type="button">
+                        <button class="btn btnL" [ngClass]="{'btn-outline-danger': smallStopwatch[2], 'btn-danger': !smallStopwatch[2]}" (click)="smallStopwatchTurnOff()" [disabled]="disabled" id="keyV" type="button">
                             <i class="fas fa-pause"></i>
                         </button>
                     </div>
                     <div class="col-lg-3 col-3 d-flex justify-content-center">
-                        <button class="btn btn-outline-warning btnR" disabled id="keyB" type="button">
+                        <button class="btn btn-outline-warning btnR" (click)="smallStopwatchReset()" [disabled]="disabled" id="keyB" type="button">
                             <i class="fas fa-redo-alt"></i>
                         </button>
                     </div>
@@ -147,18 +151,18 @@
                 <h5 class="h5">Cronómetro general</h5>
                 <div class="row justify-content-center smallstopwatchController">
                     <div class="col-lg-3 col-3 d-flex justify-content-center">
-                        <button class="btn btn-outline-primary btnL" disabled id="keySpace1" type="button">
+                        <button class="btn btnL" [ngClass]="{'btn-outline-primary': !bigStopwatch[2], 'btn-primary': bigStopwatch[2]}" (click)="bigStopwatchTurnOn()" [disabled]="disabled" id="keySpace1" type="button">
                             <i class="fas fa-play"></i>
                         </button>
                     </div>
                     <div class="col-lg-3 col-3 d-flex justify-content-center">
-                        <button class="btn btn-outline-danger btnR" disabled id="keySpace2" type="button">
+                        <button class="btn btnR" [ngClass]="{'btn-outline-danger': bigStopwatch[2], 'btn-danger': !bigStopwatch[2]}" (click)="bigStopwatchTurnOff()" [disabled]="disabled" id="keySpace2" type="button">
                             <i class="fas fa-pause"></i>
                         </button>
                     </div>
                 </div>
                 <div class="col-12 endButton d-flex justify-content-center">
-                    <button class="btn btn-danger" disabled id="endBtn" type="button">
+                    <button class="btn btn-danger" (click)="endOfFight()" [disabled]="disabled" id="endBtn" type="button">
                         FIN
                     </button>
                 </div>
@@ -168,7 +172,7 @@
         <div class="col-md-4 competitorController" id="controls2">
             <div class="colShadow competitor2">
                 <div class="buttonStart">
-                    <button class="btn btn-outline-primary" disabled id="keyP" type="button">
+                    <button class="btn" [ngClass]="{'btn-outline-primary': smallStopwatch[0] === 0 || smallStopwatch[0] === 1, 'btn-primary': smallStopwatch[0] === 2}" (click)="smallStopwatchTurnOn(2)" [disabled]="disabled" id="keyP" type="button">
                         <i class="fas fa-stopwatch"></i> <i class="fas fa-play"></i> 2
                     </button>
                 </div>
@@ -176,12 +180,12 @@
                     <h3>PUNTOS</h3>
                     <div class="row justify-content-center pointsController">
                         <div class="col-lg-2 col-2 d-flex justify-content-center">
-                            <button class="btn btn-success" disabled id="keyI" type="button">
+                            <button class="btn btn-success" (click)="addPointPlayer2()" [disabled]="disabled" id="keyI" type="button">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>
                         <div class="col-lg-2 col-2 d-flex justify-content-center">
-                            <button class="btn btn-danger" disabled id="keyO" type="button">
+                            <button class="btn btn-danger" (click)="subtractPointPlayer2()" [disabled]="disabled" id="keyO" type="button">
                                 <i class="fas fa-minus"></i>
                             </button>
                         </div>
@@ -189,12 +193,12 @@
                     <h3>SANCIONES</h3>
                     <div class="row justify-content-center foulsController">
                         <div class="col-lg-2 col-2 d-flex justify-content-center">
-                            <button class="btn btn-success" disabled id="keyK" type="button">
+                            <button class="btn btn-success" (click)="addPenaltyPlayer2()" [disabled]="disabled" id="keyK" type="button">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>
                         <div class="col-lg-2 col-2 d-flex justify-content-center">
-                            <button class="btn btn-danger" disabled id="keyL" type="button">
+                            <button class="btn btn-danger" (click)="subtractPenaltyPlayer2()" [disabled]="disabled" id="keyL" type="button">
                                 <i class="fas fa-minus"></i>
                             </button>
                         </div>
@@ -203,16 +207,5 @@
             </div>
         </div>
     </div>
+</ng-container>
 
-</div>
-
-<!-- Vendor JS Files -->
-<script src="/src/assets/vendor/jquery/jquery.min.js"></script>
-<script src="/src/assets/vendor/aos/aos.js"></script>
-<script src="/src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Own JS Files -->
-<script src="/src/assets/js/main.js"></script>
-<script src="/src/assets/js/refereeControllerScreen.js"></script>
-</body>
-</html>

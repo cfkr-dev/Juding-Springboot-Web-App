@@ -9,7 +9,7 @@
             <h2 class="h2">Noticias</h2>
         </div>
         <div class="col-md-2">
-            <a [routerLink]="['/admin/post/new']" class="btn btn-corporative">
+            <a [routerLink]="['/admin/posts/new']" class="btn btn-corporative">
                 <i class="fa fa-plus-circle"></i> Nueva noticia
             </a>
         </div>
@@ -51,7 +51,7 @@
             <i *ngIf="loadedButton===false" class="fas fa-circle-notch fa-spin"></i><i *ngIf="loadedButton===true"></i>Cargar
             más noticias
         </button>
-        <button *ngIf="finalPage===true" class="btn btn-outline-corporative" data-role="post">
+        <button [disabled]="finalPage" *ngIf="finalPage===true" class="btn btn-outline-corporative" data-role="post">
             <i></i> No hay más noticias
         </button>
     </div>

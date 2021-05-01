@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, Router} from "@angular/router";
 import {LoggedInUserService} from "../logged-in-user.service";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {User} from "../user/user.model";
 import {map} from "rxjs/operators";
+import {catchError} from "rxjs/internal/operators/catchError";
 
 @Injectable()
 export class CompetitorActivationService implements CanActivate {
@@ -19,6 +20,9 @@ export class CompetitorActivationService implements CanActivate {
                 this.router.navigate(['/403']);
                 return false;
             }
+        }), catchError((error) => {
+            this.router.navigate(['/403']);
+            return of(false);
         })) as Observable<boolean>;
     }
 }
