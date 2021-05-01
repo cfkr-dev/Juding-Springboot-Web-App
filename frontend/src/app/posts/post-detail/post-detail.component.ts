@@ -13,10 +13,12 @@ import {ActivatedRoute, Router} from '@angular/router';
     providers: [PostsService]
 })
 export class PostDetailComponent {
+    loadedPage: boolean;
     post: Post;
     postList: Post[];
 
     constructor(public postService: PostsService, private router: Router, activatedRoute: ActivatedRoute) {
+        this.loadedPage = false;
         const id = activatedRoute.snapshot.params.id;
         postService.getPost(id).subscribe(
             ((post: Post) => {
@@ -24,9 +26,11 @@ export class PostDetailComponent {
                 postService.getRecentPosts(this.post.idPost).subscribe(
                     ((postList) => {
                         this.postList = postList;
+                        this.loadedPage = true;
                     })
                 );
-            })
+            }),
+            error => this.router.navigate(['/404'])
         );
     }
 
