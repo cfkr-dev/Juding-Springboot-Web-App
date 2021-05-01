@@ -39,7 +39,14 @@
 
         <!-- Body -->
         <label class="txt1" for="body">Cuerpo <span class="asterisk">*</span></label>
-        <textarea [(ngModel)]="post.body" cols="30" id="body" name="body" required rows="20"></textarea>
+        <editor [(ngModel)]="post.body" id="body" name="body" required [init]="{
+            base_url: '/tinymce',
+            suffix: '.min',
+            selector: 'textarea',
+            height: 400,
+            plugins: ['fullscreen', 'lists', 'link', 'table'],
+            toolbar: 'undo redo | styleselect | bold italic underline fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist | link unlink | table | fullscreen'
+        }"></editor>
         <div class="container-login100-form-btn mt-2">
             <button class="btn btn-corporative">Actualizar datos</button>
         </div>

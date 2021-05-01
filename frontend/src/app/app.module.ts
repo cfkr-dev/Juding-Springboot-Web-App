@@ -30,7 +30,7 @@ import {E500Component} from './error/e500/e500.component';
 import {RefereeEditComponent} from './admin/user/components/referee-edit.component';
 import {E404Component} from './error/e404/e404.component';
 import {RefereeListComponent} from './admin/user/components/referee-list.component';
-
+import {EditorModule, TINYMCE_SCRIPT_SRC} from "@tinymce/tinymce-angular";
 
 @NgModule({
     declarations: [
@@ -68,9 +68,12 @@ import {RefereeListComponent} from './admin/user/components/referee-list.compone
         FormsModule,
         HttpClientModule,
         ChartsModule,
+        EditorModule,
         NgbModule
     ],
-    providers: [],
+    providers: [
+        { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
