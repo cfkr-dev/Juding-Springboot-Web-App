@@ -2,7 +2,9 @@
       [ngClass]="{'was-validated': wasValidated}" (ngSubmit)="signUp($event)" #form>
     <h2 class="h2" *ngIf="isCompetitor">Registro de competidores</h2>
     <h2 class="h2" *ngIf="!isCompetitor">Solicitud de federación de árbitros</h2>
-    <div class="alert alert-danger" *ngIf="error === 1 || error === 2">Ha ocurrido algún error no esperado. Inténtalo de nuevo.</div>
+    <div class="alert alert-danger" *ngIf="error === 1 || error === 2">Ha ocurrido algún error no esperado. Inténtalo de
+        nuevo.
+    </div>
     <h3 class="h3">Información personal</h3>
 
     <!-- Name and Surname fields -->
@@ -57,8 +59,13 @@
 
     <!-- Birth date field -->
     <label class="txt1" for="birthDate">Fecha de nacimiento <span class="asterisk">*</span></label>
-    <input class="form-control dateInput" id="birthDate" name="birthDate" required type="text"
-           [(ngModel)]="signUpForm.birthDate">
+    <div class="input-group">
+        <input class="form-control dateInput" ngbDatepicker #d="ngbDatepicker" id="birthDate" name="birthDate" required
+               type="text" [(ngModel)]="signUpFormBirthdate" (ngModelChange)="updateBirthdate()">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fas fa-calendar"></i></button>
+        </div>
+    </div>
     <div class="invalid-feedback">
         La fecha de nacimiento es obligatoria y debe introducirse en formato dd/mm/yyyy.
     </div>

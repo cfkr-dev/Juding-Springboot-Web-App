@@ -5,6 +5,8 @@ import {GenderService} from "../auxTypes/gender.service";
 import {BeltService} from "../auxTypes/belt.service";
 import {ImageService} from "../image.service";
 import {LoginService} from "../login/login.service";
+import {NgbDateParserFormatter, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
+import {DatepickerService} from "../auxTypes/datepicker.service";
 
 export interface SignUpForm{
     name: string;
@@ -30,7 +32,9 @@ export interface SignUpForm{
     selector: 'app-sign-up',
     templateUrl: './sign-up.component.html',
     styleUrls: ['../../assets/vendor/bootstrap/v4/css/bootstrap.min.css', '../../assets/vendor/font-awesome/css/all.css', '../../assets/css/header.css', '../../assets/css/bootstrapAccomodations.css', '../../assets/css/loginAndRegistration.css'],
-    providers: [SignUpService, LoginService]
+    providers: [SignUpService, LoginService,
+        {provide: NgbDateParserFormatter, useClass: DatepickerService}
+    ]
 })
 export class SignUpComponent implements OnInit {
 
@@ -42,6 +46,7 @@ export class SignUpComponent implements OnInit {
     isCompetitor: boolean;
     wasValidated: boolean;
     loading: boolean;
+    signUpFormBirthdate: NgbDateStruct;
     signUpForm: SignUpForm;
     @ViewChild('form') signUpFormElement: ElementRef;
 
@@ -51,13 +56,15 @@ export class SignUpComponent implements OnInit {
                 private activeRoute: ActivatedRoute,
                 public genderService: GenderService,
                 public beltService: BeltService,
-                public imageService: ImageService) {
+                public imageService: ImageService,
+                private datepickerService: NgbDateParserFormatter) {
         this.error = 0;
         this.isCompetitor = this.activeRoute.snapshot.params['role'] === 'competitor';
         this.wasValidated = false;
+        this.signUpFormBirthdate = undefined;
         this.signUpForm = {
-            belt: '',
             birthDate: '',
+            belt: '',
             dni: '',
             email: '',
             gender: '',
@@ -115,5 +122,9 @@ export class SignUpComponent implements OnInit {
         } else {
             this.wasValidated = true;
         }
+    }
+
+    updateBirthdate(){
+        this.signUpForm.birthDate = this.datepickerService.format(this.signUpFormBirthdate);
     }
 }
