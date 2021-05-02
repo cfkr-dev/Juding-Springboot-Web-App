@@ -20,9 +20,21 @@ export class CompetitionService {
         return this.httpClient.get(BASE_URL + '?page=' + page, {withCredentials: true}) as Observable<any>;
     }
 
+    /*checkingUpdatedCompetitionData(minWeight: number, maxWeight: number, startDate: string, endDate: string): Observable<number> {
+        return this.httpClient.get('/api/formValidation/competitions/alteration' + '?startDate=' + startDate + '&endDate=' + endDate + '&minWeight=' + minWeight + '&maxWeight=' + maxWeight) as Observable<number>;
+    }
 
-    updateCompetition(competition: Competition): Observable<Competition> {
-        return this.httpClient.post(BASE_URL, competition, {withCredentials: true}) as Observable<Competition>;
+    checkingNewCompetition(minWeight: number, maxWeight: number, startDate: string, endDate: string): Observable<number> {
+        return this.httpClient.get('/api/formValidation/competitions/new' + '?startDate=' + startDate + '&endDate=' + endDate + '&minWeight=' + minWeight + '&maxWeight=' + maxWeight) as Observable<number>;
+
+    }*/
+
+    saveCompetition(competition: any): Observable<Competition> {
+        if (competition.id) {
+            return this.httpClient.put(BASE_URL + competition.id, competition, {withCredentials: true}) as Observable<any>;
+        } else {
+            return this.httpClient.post(BASE_URL, competition, {withCredentials: true}) as Observable<any>;
+        }
     }
 
     getPeople(competition: Competition): number {

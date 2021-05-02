@@ -4,7 +4,7 @@
             <h2 class="h2">Competiciones</h2>
         </div>
         <div class="col-md-3">
-            <a href="">
+            <a routerLink="/admin/competition/new">
                 <button class="btn btn-corporative"><i class="fa fa-plus-circle"></i> Nueva competición</button>
             </a>
         </div>
@@ -42,7 +42,7 @@
                                 <i class="fas fa-info-circle"></i>
                             </button>
                             <a class="btn btn-outline-corporative"
-                               routerLink="/admin/competitions/{{ competition.idCompetition }}">
+                               routerLink="/admin/competition/edit/{{ competition.idCompetition }}">
                                 <i class="fas fa-pencil"></i>
                             </a>
                             <button (click)="showDelete(i,delet)" class="btn btn-corporative"

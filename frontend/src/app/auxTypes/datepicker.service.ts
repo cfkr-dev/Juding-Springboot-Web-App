@@ -9,7 +9,7 @@ export class DatepickerService extends NgbDateParserFormatter {
     parse(value: string, withHour: boolean = false): NgbDateStruct | null {
         if (value) {
             let date = value.split(this.DELIMITER);
-            if (withHour){
+            if (withHour) {
                 let yearWithoutHour = date[2].split(' ');
                 return {
                     day: parseInt(date[0], 10),
@@ -28,6 +28,10 @@ export class DatepickerService extends NgbDateParserFormatter {
     }
 
     format(date: NgbDateStruct | null): string {
-        return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : '';
+        return date ? (('0' + date.day).substr(-2)) + this.DELIMITER + (('0' + date.month).substr(-2)) + this.DELIMITER + date.year : '';
+    }
+
+    formatAlt(date: NgbDateStruct | null): string {
+        return date ? (('0' + date.day).substr(-2)) + this.DELIMITER + (('0' + date.month).substr(-2)) + this.DELIMITER + date.year + ' 00:00' : '';
     }
 }
