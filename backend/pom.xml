@@ -10,7 +10,7 @@
     </parent>
     <groupId>es.dawgroup2</groupId>
     <artifactId>juding</artifactId>
-    <version>1.0</version>
+    <version>2.0</version>
     <name>Juding</name>
     <description>This app wants to help to the Judo Federation of Madrid in their work with a lot of features for
         managing competitions.

@@ -202,8 +202,9 @@
   </ul>
   <h4><a href="#AdminPostApiController">AdminPostApiController</a></h4>
   <ul>
-  <li><a href="#addNewPost"><code><span class="http-method">post</span> /api/posts</code></a></li>
+  <li><a href="#addNewPost"><code><span class="http-method">post</span> /api/posts/</code></a></li>
   <li><a href="#deletePost"><code><span class="http-method">delete</span> /api/posts/{id}</code></a></li>
+  <li><a href="#getPostPage"><code><span class="http-method">get</span> /api/posts/</code></a></li>
   <li><a href="#updatePost"><code><span class="http-method">put</span> /api/posts/{id}</code></a></li>
   </ul>
   <h4><a href="#AdminUserApiController">AdminUserApiController</a></h4>
@@ -214,6 +215,7 @@
   <li><a href="#deleteUser"><code><span class="http-method">delete</span> /api/competitors/{id}</code></a></li>
   <li><a href="#deleteUser1"><code><span class="http-method">delete</span> /api/referees/{id}</code></a></li>
   <li><a href="#refereeList"><code><span class="http-method">get</span> /api/referees</code></a></li>
+  <li><a href="#refereeList1"><code><span class="http-method">get</span> /api/referees/all</code></a></li>
   </ul>
   <h4><a href="#CompetitionApiController">CompetitionApiController</a></h4>
   <ul>
@@ -237,6 +239,7 @@
   <li><a href="#logOut"><code><span class="http-method">post</span> /api/logout</code></a></li>
   <li><a href="#login"><code><span class="http-method">post</span> /api/login</code></a></li>
   <li><a href="#passwordRecovery"><code><span class="http-method">put</span> /api/passwordRecovery</code></a></li>
+  <li><a href="#passwordRecovery1"><code><span class="http-method">get</span> /api/passwordRecovery</code></a></li>
   <li><a href="#refreshToken"><code><span class="http-method">post</span> /api/refresh</code></a></li>
   <li><a href="#signUpCompetitor"><code><span class="http-method">post</span> /api/competitors</code></a></li>
   <li><a href="#signUpReferee"><code><span class="http-method">post</span> /api/referees</code></a></li>
@@ -252,6 +255,7 @@
   <li><a href="#editingUser"><code><span class="http-method">put</span> /api/competitors/{id}</code></a></li>
   <li><a href="#editingUser1"><code><span class="http-method">put</span> /api/referees/{id}</code></a></li>
   <li><a href="#getRanking"><code><span class="http-method">get</span> /api/ranking</code></a></li>
+  <li><a href="#me"><code><span class="http-method">get</span> /api/users/me</code></a></li>
   <li><a href="#pastCompetitions"><code><span class="http-method">get</span> /api/competitions/{id}/past</code></a></li>
   <li><a href="#pastCompetitions1"><code><span class="http-method">get</span> /api/competitions/{id}/future</code></a></li>
   <li><a href="#profileInfo"><code><span class="http-method">get</span> /api/competitors/{id}</code></a></li>
@@ -365,6 +369,15 @@
     <pre class="example"><code>[ {
   "idCompetition" : 0,
   "endDate" : "2000-01-23T04:56:07.000+00:00",
+  "fights" : [ {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  }, {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  } ],
   "additionalInfo" : "additionalInfo",
   "minWeight" : 6,
   "maxWeight" : 1,
@@ -394,6 +407,15 @@
 }, {
   "idCompetition" : 0,
   "endDate" : "2000-01-23T04:56:07.000+00:00",
+  "fights" : [ {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  }, {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  } ],
   "additionalInfo" : "additionalInfo",
   "minWeight" : 6,
   "maxWeight" : 1,
@@ -469,6 +491,15 @@
     <pre class="example"><code>{
   "idCompetition" : 0,
   "endDate" : "2000-01-23T04:56:07.000+00:00",
+  "fights" : [ {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  }, {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  } ],
   "additionalInfo" : "additionalInfo",
   "minWeight" : 6,
   "maxWeight" : 1,
@@ -571,19 +602,19 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">500</h4>
-    Competition cannot be modified on the basis of failed data.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     Edit the competition.
         <a href="#CompetitionDTO">CompetitionDTO</a>
+    <h4 class="field-label">500</h4>
+    Competition cannot be modified on the basis of failed data.
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <h1><a name="AdminPostApiController">AdminPostApiController</a></h1>
   <div class="method"><a name="addNewPost"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/posts</code></pre></div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/posts/</code></pre></div>
     <div class="method-summary">Creates a new post. (<span class="nickname">addNewPost</span>)</div>
     <div class="method-notes"></div>
 
@@ -650,12 +681,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Creation of a new post.
-        <a href="#Post">Post</a>
     <h4 class="field-label">500</h4>
     Post cannot be created on the basis of failed data.
         <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Creation of a new post.
+        <a href="#Post">Post</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="deletePost"></a>
@@ -728,6 +759,104 @@
     <h4 class="field-label">404</h4>
     Request is invalid because of empty or non-existent post retrieve.
         <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getPostPage"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/posts/</code></pre></div>
+    <div class="method-summary">Get a list with posts (paginated) (<span class="nickname">getPostPage</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">page (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Number of page to be searched format: int32</div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Post">Post</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "formattedEditionTimestamp" : "formattedEditionTimestamp",
+  "author" : {
+    "refereeRange" : "S",
+    "birthdate" : "birthdate",
+    "gender" : "H",
+    "securityQuestion" : "securityQuestion",
+    "securityAnswer" : "securityAnswer",
+    "belt" : "B",
+    "roles" : [ "C", "C" ],
+    "weight" : 6,
+    "phone" : 0,
+    "surname" : "surname",
+    "imageFile" : "imageFile",
+    "name" : "name",
+    "nickname" : "nickname",
+    "gym" : "gym",
+    "licenseId" : "licenseId",
+    "email" : "email",
+    "dni" : "dni"
+  },
+  "imageFile" : "imageFile",
+  "title" : "title",
+  "body" : "body",
+  "idPost" : 0,
+  "timestamp" : "2000-01-23T04:56:07.000+00:00"
+}, {
+  "formattedEditionTimestamp" : "formattedEditionTimestamp",
+  "author" : {
+    "refereeRange" : "S",
+    "birthdate" : "birthdate",
+    "gender" : "H",
+    "securityQuestion" : "securityQuestion",
+    "securityAnswer" : "securityAnswer",
+    "belt" : "B",
+    "roles" : [ "C", "C" ],
+    "weight" : 6,
+    "phone" : 0,
+    "surname" : "surname",
+    "imageFile" : "imageFile",
+    "name" : "name",
+    "nickname" : "nickname",
+    "gym" : "gym",
+    "licenseId" : "licenseId",
+    "email" : "email",
+    "dni" : "dni"
+  },
+  "imageFile" : "imageFile",
+  "title" : "title",
+  "body" : "body",
+  "idPost" : 0,
+  "timestamp" : "2000-01-23T04:56:07.000+00:00"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">400</h4>
+    Request is invalid because of empty or non-existant page retrieve
+        <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Page with more than one post
+        
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="updatePost"></a>
@@ -873,12 +1002,12 @@
     <h4 class="field-label">403</h4>
     Not allowed (there is not logged in user or it is not an administrator).
         <a href="#"></a>
-    <h4 class="field-label">400</h4>
-    Requested license ID is not registered in the application or referee has been admitted before.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     New referee&#x27;s complete information.
         <a href="#User">User</a>
+    <h4 class="field-label">400</h4>
+    Requested license ID is not registered in the application or referee has been admitted before.
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="applicantList"></a>
@@ -1102,12 +1231,12 @@
     <h4 class="field-label">403</h4>
     Not allowed (there is not logged in user or it is not an administrator).
         <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    Not able to delete user (user did not exist or user has taken part of any past or future competition).
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     User deleted.
         <a href="#User">User</a>
+    <h4 class="field-label">404</h4>
+    Not able to delete user (user did not exist or user has taken part of any past or future competition).
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="deleteUser1"></a>
@@ -1169,12 +1298,12 @@
     <h4 class="field-label">403</h4>
     Not allowed (there is not logged in user or it is not an administrator).
         <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    Not able to delete user (user did not exist or user has taken part of any past or future competition).
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     User deleted.
         <a href="#User">User</a>
+    <h4 class="field-label">404</h4>
+    Not able to delete user (user did not exist or user has taken part of any past or future competition).
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="refereeList"></a>
@@ -1262,6 +1391,86 @@
         
   </div> <!-- method -->
   <hr/>
+  <div class="method"><a name="refereeList1"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/referees/all</code></pre></div>
+    <div class="method-summary">Returns a list with all referees registered in the application. (<span class="nickname">refereeList1</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#User">User</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "refereeRange" : "S",
+  "birthdate" : "birthdate",
+  "gender" : "H",
+  "securityQuestion" : "securityQuestion",
+  "securityAnswer" : "securityAnswer",
+  "belt" : "B",
+  "roles" : [ "C", "C" ],
+  "weight" : 6,
+  "phone" : 0,
+  "surname" : "surname",
+  "imageFile" : "imageFile",
+  "name" : "name",
+  "nickname" : "nickname",
+  "gym" : "gym",
+  "licenseId" : "licenseId",
+  "email" : "email",
+  "dni" : "dni"
+}, {
+  "refereeRange" : "S",
+  "birthdate" : "birthdate",
+  "gender" : "H",
+  "securityQuestion" : "securityQuestion",
+  "securityAnswer" : "securityAnswer",
+  "belt" : "B",
+  "roles" : [ "C", "C" ],
+  "weight" : 6,
+  "phone" : 0,
+  "surname" : "surname",
+  "imageFile" : "imageFile",
+  "name" : "name",
+  "nickname" : "nickname",
+  "gym" : "gym",
+  "licenseId" : "licenseId",
+  "email" : "email",
+  "dni" : "dni"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    List with referees.
+        
+    <h4 class="field-label">403</h4>
+    Not allowed (there is not logged in user or it is not an administrator).
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    List with users does not exist.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
   <h1><a name="CompetitionApiController">CompetitionApiController</a></h1>
   <div class="method"><a name="joinCompetition"></a>
     <div class="method-path">
@@ -1294,6 +1503,15 @@
     <pre class="example"><code>{
   "idCompetition" : 0,
   "endDate" : "2000-01-23T04:56:07.000+00:00",
+  "fights" : [ {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  }, {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  } ],
   "additionalInfo" : "additionalInfo",
   "minWeight" : 6,
   "maxWeight" : 1,
@@ -1369,6 +1587,15 @@
     <pre class="example"><code>{
   "idCompetition" : 0,
   "endDate" : "2000-01-23T04:56:07.000+00:00",
+  "fights" : [ {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  }, {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  } ],
   "additionalInfo" : "additionalInfo",
   "minWeight" : 6,
   "maxWeight" : 1,
@@ -1635,9 +1862,6 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">400</h4>
-    Image was not properly processed.
-        <a href="#"></a>
     <h4 class="field-label">404</h4>
     Image could not be found (because entity instance does not exist or it does not have associated image).
         <a href="#"></a>
@@ -1646,6 +1870,9 @@
         <a href="#"></a>
     <h4 class="field-label">200</h4>
     Image could be found and is downloaded.
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Image was not properly processed.
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -1700,15 +1927,15 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Image could be found and is downloaded.
-        <a href="#inline_response_200">inline_response_200</a>
-    <h4 class="field-label">400</h4>
-    Image was not properly processed.
-        <a href="#"></a>
     <h4 class="field-label">403</h4>
     Current logged user is not authorized to upload or change this image.
         <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Image was not properly processed.
+        <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Image could be found and is downloaded.
+        <a href="#inline_response_200">inline_response_200</a>
   </div> <!-- method -->
   <hr/>
   <h1><a name="IndexApiController">IndexApiController</a></h1>
@@ -1869,12 +2096,62 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">400</h4>
-    Bad request since user was not found by its license ID or security answer was incorrect.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     User saved with its new password.
         <a href="#User">User</a>
+    <h4 class="field-label">400</h4>
+    Bad request since user was not found by its license ID or security answer was incorrect.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="passwordRecovery1"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/passwordRecovery</code></pre></div>
+    <div class="method-summary">Recovery password method (get security question of user by its license ID). (<span class="nickname">passwordRecovery1</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">licenseId (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; License ID of user. </div>      <div class="param">secAnswer (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; License ID of user. </div>      <div class="param">step (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Step of recovery process (1 or 2). format: int32</div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">400</h4>
+    Bad request since user was not found.
+        <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    User&#x27;s security question.
+        <a href="#String">String</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="refreshToken"></a>
@@ -2096,11 +2373,11 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">400</h4>
-    Email could not be correctly sent.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     Email was sent properly.
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Email could not be correctly sent.
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -2109,7 +2386,7 @@
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /api/competitors/points/{id}</code></pre></div>
-    <div class="method-summary">Returns user profile data. (<span class="nickname">chartInfo</span>)</div>
+    <div class="method-summary">Returns user chart information. (<span class="nickname">chartInfo</span>)</div>
     <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
@@ -2143,11 +2420,11 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">404</h4>
-    Requested user was not found.
-        <a href="#"></a>
     <h4 class="field-label">403</h4>
     Not allowed.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Requested user was not found.
         <a href="#"></a>
     <h4 class="field-label">200</h4>
     User chart information.
@@ -2174,7 +2451,7 @@
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      array[<a href="#Competition_MainAttributes">Competition_MainAttributes</a>]
+      array[<a href="#Competition">Competition</a>]
       
     </div>
 
@@ -2185,6 +2462,15 @@
     <pre class="example"><code>[ {
   "idCompetition" : 0,
   "endDate" : "2000-01-23T04:56:07.000+00:00",
+  "fights" : [ {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  }, {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  } ],
   "additionalInfo" : "additionalInfo",
   "minWeight" : 6,
   "maxWeight" : 1,
@@ -2197,8 +2483,8 @@
     "securityAnswer" : "securityAnswer",
     "belt" : "B",
     "roles" : [ "C", "C" ],
-    "weight" : 5,
-    "phone" : 5,
+    "weight" : 6,
+    "phone" : 0,
     "surname" : "surname",
     "imageFile" : "imageFile",
     "name" : "name",
@@ -2214,6 +2500,15 @@
 }, {
   "idCompetition" : 0,
   "endDate" : "2000-01-23T04:56:07.000+00:00",
+  "fights" : [ {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  }, {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  } ],
   "additionalInfo" : "additionalInfo",
   "minWeight" : 6,
   "maxWeight" : 1,
@@ -2226,8 +2521,8 @@
     "securityAnswer" : "securityAnswer",
     "belt" : "B",
     "roles" : [ "C", "C" ],
-    "weight" : 5,
-    "phone" : 5,
+    "weight" : 6,
+    "phone" : 0,
     "surname" : "surname",
     "imageFile" : "imageFile",
     "name" : "name",
@@ -2253,11 +2548,11 @@
     <h4 class="field-label">200</h4>
     List of current competitions of logged-in user.
         
-    <h4 class="field-label">403</h4>
-    Not allowed (user is not logged in).
-        <a href="#"></a>
     <h4 class="field-label">404</h4>
     Currently logged in user was not found.
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Not allowed (user is not logged in).
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -2328,14 +2623,14 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">403</h4>
-    Not allowed (user is not logged in).
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     User profile information with changed values.
         <a href="#User">User</a>
     <h4 class="field-label">404</h4>
     Currently logged in user was not found.
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Not allowed (user is not logged in).
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -2406,14 +2701,14 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">403</h4>
-    Not allowed (user is not logged in).
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     User profile information with changed values.
         <a href="#User">User</a>
     <h4 class="field-label">404</h4>
     Currently logged in user was not found.
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Not allowed (user is not logged in).
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -2478,6 +2773,68 @@
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
+  <div class="method"><a name="me"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/users/me</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">me</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#User">User</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "refereeRange" : "S",
+  "birthdate" : "birthdate",
+  "gender" : "H",
+  "securityQuestion" : "securityQuestion",
+  "securityAnswer" : "securityAnswer",
+  "belt" : "B",
+  "roles" : [ "C", "C" ],
+  "weight" : 6,
+  "phone" : 0,
+  "surname" : "surname",
+  "imageFile" : "imageFile",
+  "name" : "name",
+  "nickname" : "nickname",
+  "gym" : "gym",
+  "licenseId" : "licenseId",
+  "email" : "email",
+  "dni" : "dni"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">403</h4>
+    Not allowed.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Requested user was not found.
+        <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Information about currently logged-in user.
+        <a href="#User">User</a>
+  </div> <!-- method -->
+  <hr/>
   <div class="method"><a name="pastCompetitions"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
@@ -2498,7 +2855,7 @@
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      array[<a href="#Competition_MainAttributes">Competition_MainAttributes</a>]
+      array[<a href="#Competition">Competition</a>]
       
     </div>
 
@@ -2509,6 +2866,15 @@
     <pre class="example"><code>[ {
   "idCompetition" : 0,
   "endDate" : "2000-01-23T04:56:07.000+00:00",
+  "fights" : [ {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  }, {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  } ],
   "additionalInfo" : "additionalInfo",
   "minWeight" : 6,
   "maxWeight" : 1,
@@ -2521,8 +2887,8 @@
     "securityAnswer" : "securityAnswer",
     "belt" : "B",
     "roles" : [ "C", "C" ],
-    "weight" : 5,
-    "phone" : 5,
+    "weight" : 6,
+    "phone" : 0,
     "surname" : "surname",
     "imageFile" : "imageFile",
     "name" : "name",
@@ -2538,6 +2904,15 @@
 }, {
   "idCompetition" : 0,
   "endDate" : "2000-01-23T04:56:07.000+00:00",
+  "fights" : [ {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  }, {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  } ],
   "additionalInfo" : "additionalInfo",
   "minWeight" : 6,
   "maxWeight" : 1,
@@ -2550,8 +2925,8 @@
     "securityAnswer" : "securityAnswer",
     "belt" : "B",
     "roles" : [ "C", "C" ],
-    "weight" : 5,
-    "phone" : 5,
+    "weight" : 6,
+    "phone" : 0,
     "surname" : "surname",
     "imageFile" : "imageFile",
     "name" : "name",
@@ -2574,14 +2949,14 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">403</h4>
-    Not allowed (user is not logged in).
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     List of past competitions of currently logged-in user.
         
     <h4 class="field-label">404</h4>
     Currently logged in user was not found.
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Not allowed (user is not logged in).
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -2610,7 +2985,7 @@
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      array[<a href="#Competition_MainAttributes">Competition_MainAttributes</a>]
+      array[<a href="#Competition">Competition</a>]
       
     </div>
 
@@ -2621,6 +2996,15 @@
     <pre class="example"><code>[ {
   "idCompetition" : 0,
   "endDate" : "2000-01-23T04:56:07.000+00:00",
+  "fights" : [ {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  }, {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  } ],
   "additionalInfo" : "additionalInfo",
   "minWeight" : 6,
   "maxWeight" : 1,
@@ -2633,8 +3017,8 @@
     "securityAnswer" : "securityAnswer",
     "belt" : "B",
     "roles" : [ "C", "C" ],
-    "weight" : 5,
-    "phone" : 5,
+    "weight" : 6,
+    "phone" : 0,
     "surname" : "surname",
     "imageFile" : "imageFile",
     "name" : "name",
@@ -2650,6 +3034,15 @@
 }, {
   "idCompetition" : 0,
   "endDate" : "2000-01-23T04:56:07.000+00:00",
+  "fights" : [ {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  }, {
+    "levelInTree" : 5,
+    "finished" : true,
+    "idFight" : 5
+  } ],
   "additionalInfo" : "additionalInfo",
   "minWeight" : 6,
   "maxWeight" : 1,
@@ -2662,8 +3055,8 @@
     "securityAnswer" : "securityAnswer",
     "belt" : "B",
     "roles" : [ "C", "C" ],
-    "weight" : 5,
-    "phone" : 5,
+    "weight" : 6,
+    "phone" : 0,
     "surname" : "surname",
     "imageFile" : "imageFile",
     "name" : "name",
@@ -2686,14 +3079,14 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">403</h4>
-    Not allowed (user is not logged in).
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     List of future competitions.
         
     <h4 class="field-label">404</h4>
     Currently logged in user was not found.
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Not allowed (user is not logged in).
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -2753,15 +3146,15 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">403</h4>
+    Not allowed.
+        <a href="#"></a>
     <h4 class="field-label">404</h4>
     Requested user was not found.
         <a href="#"></a>
     <h4 class="field-label">200</h4>
     User profile information.
         <a href="#User">User</a>
-    <h4 class="field-label">403</h4>
-    Not allowed.
-        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="profileInfo1"></a>
@@ -2820,15 +3213,15 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">403</h4>
+    Not allowed.
+        <a href="#"></a>
     <h4 class="field-label">404</h4>
     Requested user was not found.
         <a href="#"></a>
     <h4 class="field-label">200</h4>
     User profile information.
         <a href="#User">User</a>
-    <h4 class="field-label">403</h4>
-    Not allowed.
-        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <h1><a name="PostApiController">PostApiController</a></h1>
@@ -3022,12 +3415,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">404</h4>
-    Resource not found.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     Found the post.
         
+    <h4 class="field-label">404</h4>
+    Resource not found.
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="recentNews"></a>
@@ -3120,12 +3513,12 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">404</h4>
-    Resource not found.
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     Found the list.
         
+    <h4 class="field-label">404</h4>
+    Resource not found.
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <h1><a name="RefereeControlApiController">RefereeControlApiController</a></h1>
@@ -3252,8 +3645,8 @@
     <li><a href="#Competition"><code>Competition</code></a></li>
     <li><a href="#CompetitionDTO"><code>CompetitionDTO</code></a></li>
     <li><a href="#CompetitionResultDTO"><code>CompetitionResultDTO</code></a></li>
-    <li><a href="#Competition_MainAttributes"><code>Competition_MainAttributes</code></a></li>
     <li><a href="#CompetitorDTO"><code>CompetitorDTO</code></a></li>
+    <li><a href="#Fight"><code>Fight</code></a></li>
     <li><a href="#LoginRequest"><code>LoginRequest</code></a></li>
     <li><a href="#Post"><code>Post</code></a></li>
     <li><a href="#PostDTO"><code>PostDTO</code></a></li>
@@ -3261,7 +3654,6 @@
     <li><a href="#RecoverPasswordDTO"><code>RecoverPasswordDTO</code></a></li>
     <li><a href="#RefereeDTO"><code>RefereeDTO</code></a></li>
     <li><a href="#User"><code>User</code></a></li>
-    <li><a href="#User_MainAttributes"><code>User_MainAttributes</code></a></li>
     <li><a href="#body"><code>body</code></a></li>
     <li><a href="#inline_response_200"><code>inline_response_200</code></a></li>
   </ol>
@@ -3310,6 +3702,7 @@
 <div class="param">startDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">endDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">referee (optional)</div><div class="param-desc"><span class="param-type"><a href="#User">User</a></span>  </div>
+<div class="param">fights (optional)</div><div class="param-desc"><span class="param-type"><a href="#Fight">array[Fight]</a></span>  </div>
 <div class="param">formattedStartDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">formattedEndDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
@@ -3319,8 +3712,8 @@
     
     <div class="field-items">
       <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">shortName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">additionalInfo (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">shortName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">additionalInfo </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">minWeight (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">maxWeight (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">startDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
@@ -3335,22 +3728,6 @@
       <div class="param">idCompetition (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">winner (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">loser (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="Competition_MainAttributes"><code>Competition_MainAttributes</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">idCompetition (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">shortName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">additionalInfo (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">minWeight (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">maxWeight (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">startDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-<div class="param">endDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-<div class="param">referee (optional)</div><div class="param-desc"><span class="param-type"><a href="#User_MainAttributes">User_MainAttributes</a></span>  </div>
-<div class="param">formattedStartDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">formattedEndDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -3372,6 +3749,17 @@
 <div class="param">securityAnswer (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">gym (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">weight (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Fight"><code>Fight</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">idFight (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">levelInTree (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">winner (optional)</div><div class="param-desc"><span class="param-type"><a href="#User">User</a></span>  </div>
+<div class="param">loser (optional)</div><div class="param-desc"><span class="param-type"><a href="#User">User</a></span>  </div>
+<div class="param">finished (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -3397,10 +3785,11 @@
   </div>
   <div class="model">
     <h3><a name="PostDTO"><code>PostDTO</code></a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>Post DTO.</div>
+    <div class='model-description'>Post DTO</div>
     <div class="field-items">
-      <div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">body (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">title </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -3448,37 +3837,6 @@
   </div>
   <div class="model">
     <h3><a name="User"><code>User</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">licenseId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">surname (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">gender (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-        <div class="param-enum-header">Enum:</div>
-        <div class="param-enum">H</div><div class="param-enum">M</div>
-<div class="param">phone (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">email (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">dni (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">nickname (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">securityQuestion (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">securityAnswer (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">belt (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-        <div class="param-enum-header">Enum:</div>
-        <div class="param-enum">B</div><div class="param-enum">BAm</div><div class="param-enum">Am</div><div class="param-enum">AmN</div><div class="param-enum">N</div><div class="param-enum">NV</div><div class="param-enum">V</div><div class="param-enum">VAz</div><div class="param-enum">Az</div><div class="param-enum">AzM</div><div class="param-enum">M</div><div class="param-enum">N1</div><div class="param-enum">N2</div><div class="param-enum">N3</div><div class="param-enum">N4</div><div class="param-enum">N5</div><div class="param-enum">N6</div><div class="param-enum">N7</div><div class="param-enum">N8</div><div class="param-enum">N9</div><div class="param-enum">N10</div>
-<div class="param">gym (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">weight (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">refereeRange (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-        <div class="param-enum-header">Enum:</div>
-        <div class="param-enum">S</div><div class="param-enum">E</div><div class="param-enum">C</div><div class="param-enum">A</div>
-<div class="param">roles (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
-        <div class="param-enum-header">Enum:</div>
-        
-<div class="param">imageFile (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">birthdate (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="User_MainAttributes"><code>User_MainAttributes</code></a> <a class="up" href="#__Models">Up</a></h3>
     
     <div class="field-items">
       <div class="param">licenseId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
