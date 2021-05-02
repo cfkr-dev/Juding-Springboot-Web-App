@@ -17,6 +17,7 @@ export class MyHomeComponent implements OnInit {
 
     fullLoaded: boolean;
     error: boolean;
+    chartError: boolean;
     currentUser: User;
     pastCompetitions: CompetitionInterface[];
     currentCompetitions: CompetitionInterface[];
@@ -66,6 +67,7 @@ export class MyHomeComponent implements OnInit {
 
     ngOnInit(): void {
         this.fullLoaded = false;
+        this.chartError = false;
         this.error = false;
         this.loggedInUser.getLoggedUser().subscribe(
             ((currentUser: User) => {
@@ -95,6 +97,7 @@ export class MyHomeComponent implements OnInit {
                                                         }));
                                                     this.homeInfo.getCharts(currentUser).subscribe(
                                                         ((chartInfo: number[]) => {
+                                                            this.chartError = chartInfo.length === 0;
                                                             let bronzes = 0;
                                                             let silvers = 0;
                                                             let golds = 0;
@@ -157,11 +160,8 @@ export class MyHomeComponent implements OnInit {
                                                                     }
                                                                 ];
                                                                 this.chart2.lineChartLabels = tags;
-
-                                                                this.fullLoaded = true;
-
-                                                                // this.chart2.lineChartData = list;
                                                             }
+                                                            this.fullLoaded = true;
                                                         })
                                                     );
                                                 } else if (currentUser.roles.includes('R')) {
@@ -179,7 +179,7 @@ export class MyHomeComponent implements OnInit {
         );
     }
 
-    joinCompetition(idCompetition: number): void{
+    joinCompetition(idCompetition: number): void {
         this.homeInfo.joinCompetition(idCompetition.toString()).subscribe(
             (success => this.ngOnInit()),
             (error => this.error = true)

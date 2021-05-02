@@ -4,9 +4,9 @@
     </div>
 </ng-container>
 <ng-container *ngIf="!errorOnLoadUserData && !loadingContent">
-    <form (submit)=modifyReferee(user)
-          class="needs-validation flex-sb flex-w juding-form-user-update" [ngClass]="{'was-validated': submitted && !validationError}" enctype="multipart/form-data"
-          novalidate>
+    <form (submit)=modifyReferee(user) #form novalidate enctype="multipart/form-data"
+          class="needs-validation flex-sb flex-w juding-form-user-update"
+          [ngClass]="{'was-validated': submitted && !validationError}">
 
         <h2 class="h2">Edición de usuarios</h2>
         <h3 class="h3">Información personal</h3>
@@ -68,10 +68,12 @@
         <!-- Birth date field -->
         <label class="txt1" for="birthDate">Fecha de nacimiento <span class="asterisk">*</span></label>
         <div class="input-group">
-            <input class="form-control dateInput" ngbDatepicker #d="ngbDatepicker" id="birthDate" name="birthDate" required
+            <input class="form-control dateInput" ngbDatepicker #d="ngbDatepicker" id="birthDate" name="birthDate"
+                   required
                    type="text" [(ngModel)]="signUpFormBirthdate" (ngModelChange)="updateBirthdate()">
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fas fa-calendar"></i></button>
+                <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i
+                    class="fas fa-calendar"></i></button>
             </div>
         </div>
         <div class="invalid-feedback">
@@ -80,11 +82,8 @@
 
         <!-- DNI -->
         <label class="txt1" for="dni">DNI <span class="asterisk">*</span></label>
-        <input [(ngModel)]="user.dni" class="form-control" data-role="Competitor" id="dni"
-               name="dni" pattern="^([0-9]{8}|[XYZ][0-9]{7})[A-Z]{1}$"
-               required
-               type="text"
-               value="{{ user.dni }}">
+        <input [(ngModel)]="user.dni" class="form-control" data-role="Competitor" id="dni" name="dni"
+               pattern="^([0-9]{8}|[XYZ][0-9]{7})[A-Z]{1}$" required type="text" value="{{ user.dni }}">
         <div class="invalid-feedback">
             El DNI no sigue el formato requerido (ejemplo: 12345678Z).
         </div>
@@ -93,11 +92,7 @@
         <!-- License ID -->
         <label class="txt1" for="licenseId">Número de licencia</label>
         <input [(ngModel)]="user.licenseId" class="form-control" id="licenseId" name="licenseId" pattern="[0-9]{10}$"
-               readonly type="text"
-               value="{{ user.licenseId }}">
-        <div class="invalid-feedback">
-            La licencia no se ajusta al formato requerido (10 dígitos precedidos de JU-).
-        </div>
+               readonly type="text" value="{{ user.licenseId }}">
 
         <!-- Nickname field -->
         <label class="txt1" for="nickname">Apodo <span class="asterisk">*</span></label>
@@ -106,10 +101,9 @@
         <div class="invalid-feedback">
             El campo no puede estar vacío.
         </div>
-        <div id="nicknameFeedback"></div>
         <ng-container *ngIf="validationError && submitted">
             <div class="alert alert-danger">
-                <i class="fas fa-spin fa-circle-notch"></i> No se puede introducir un apodo ya registrado en el sistema.
+                <strong>Advertencia:</strong> No se puede introducir un apodo ya registrado en el sistema.
             </div>
         </ng-container>
 
@@ -141,9 +135,6 @@
             <option [selected]="user.belt === 'N9'" value="N9">Negro - Dan 9</option>
             <option [selected]="user.belt === 'N10'" value="N10">Negro - Dan 10</option>
         </select>
-        <div class="invalid-feedback">
-            El cinturón es obligatorio.
-        </div>
 
         <label class="txt1" for="refereeRange">Rango <span class="asterisk">*</span></label>
         <select [(ngModel)]="user.refereeRange" class="custom-select" id="refereeRange" name="refereeRange" required>
@@ -151,9 +142,6 @@
             <option [selected]="user.refereeRange === 'C'" value="C">Árbitro de competición</option>
             <option [selected]="user.refereeRange === 'A'" value="A">Árbitro auxiliar</option>
         </select>
-        <div class="invalid-feedback">
-            Es obligatorio seleccionar algún rango.
-        </div>
 
         <div class="container-login100-form-btn mt-2">
             <button class="btn btn-corporative" type="submit">Actualizar datos</button>

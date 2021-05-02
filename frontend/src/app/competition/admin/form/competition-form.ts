@@ -1,10 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {CompetitionService} from '../../competition.service';
 import {User} from '../../../user/user.model';
 import {RefereeService} from '../../../admin/user/services/referee.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Competition} from '../../competition.model';
-import {DatePipe} from '@angular/common';
 import {DatepickerService} from '../../../auxTypes/datepicker.service';
 import {NgbDateParserFormatter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
@@ -27,8 +25,9 @@ interface CompetitionInterface {
         '../../../../assets/css/loginAndRegistration.css'
     ],
     providers: [CompetitionService,
-        {provide: NgbDateParserFormatter, useClass: DatepickerService},
-        DatepickerService
+        RefereeService,
+        DatepickerService,
+        {provide: NgbDateParserFormatter, useClass: DatepickerService}
     ]
 })
 export class CompetitionFormComponent {

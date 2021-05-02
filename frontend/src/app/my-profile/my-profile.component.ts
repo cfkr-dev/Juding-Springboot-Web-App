@@ -13,14 +13,14 @@ import {RefereeRangeService} from '../auxTypes/refereeRange.service';
 export class MyProfileComponent implements OnInit {
 
     userInfo: User;
-    loading: boolean;
+    fullLoaded: boolean;
 
     constructor(private loggedUser: LoggedInUserService,
                 public beltService: BeltService,
                 public refereeRangeService: RefereeRangeService,
                 public genderService: GenderService) {
         this.userInfo = undefined;
-        this.loading = true;
+        this.fullLoaded = false;
     }
 
     ngOnInit(): void {
@@ -36,7 +36,7 @@ export class MyProfileComponent implements OnInit {
                             if (image) {
                                 reader.readAsDataURL(image);
                             }
-                            this.loading = false;
+                            this.fullLoaded = true;
                         }
                     )
                 );

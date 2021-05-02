@@ -7,7 +7,7 @@ public class CommonUserDTO {
     private final String surname;
     @Pattern(regexp = "M|H")
     private final String gender;
-    @Pattern(regexp = "(?=.*\\d).{9}")
+    @Pattern(regexp = "^$|(?=.*\\d).{9}")
     private final String phone;
     @Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
     private final String email;

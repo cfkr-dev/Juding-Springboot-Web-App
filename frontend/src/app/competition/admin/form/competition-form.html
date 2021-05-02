@@ -10,7 +10,9 @@
         <h3 class="h3">Información de la competición</h3>
 
         <div class="alert alert-danger" role="alert" *ngIf="alert">
-            <strong>Error:</strong> Recuerda que la fecha del inicio de la competición debe ser anterior a la fecha del final de la competición y, además, el peso mínimo debe ser menor que el peso máximo de la competición (siendo ambos pesos positivos).
+            <strong>Error:</strong> Recuerda que la fecha del inicio de la competición debe ser anterior a la fecha del
+            final de la competición y, además, el peso mínimo debe ser menor que el peso máximo de la competición
+            (siendo ambos pesos positivos).
         </div>
 
         <!-- Competition name -->
@@ -63,7 +65,7 @@
             <span class="asterisk">*</span></label>
         <select name="referee" id="referee" class="custom-select" [(ngModel)]="competition.referee" required>
             <ng-container *ngFor="let referee of referees">
-                <option [ngValue]="referee.licenseId">{{referee.licenseId}}</option>
+                <option [ngValue]="referee.licenseId">{{referee.licenseId}} - {{referee.name}} {{referee.surname}}</option>
             </ng-container>
         </select>
         <div class="invalid-feedback">
@@ -76,12 +78,12 @@
                 <label class="txt1" for="startDate">Fecha de inicio de la competición <span
                     class="asterisk">*</span></label>
                 <div class="input-group">
-                    <input class="form-control" id="startDate" placeholder="dd/mm/yyyy"
-                           name="dp" [(ngModel)]="modelS" ngbDatepicker #d="ngbDatepicker"
-                           (ngModelChange)="updateStartDate()" required>
+                    <input class="form-control" id="startDate" placeholder="dd/mm/yyyy" name="dp" [(ngModel)]="modelS"
+                           ngbDatepicker #d="ngbDatepicker" (ngModelChange)="updateStartDate()" required>
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" (click)="d.toggle()"
-                                type="button"><i class="fas fa-calendar"></i></button>
+                        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                            <i class="fas fa-calendar"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="invalid-feedback">

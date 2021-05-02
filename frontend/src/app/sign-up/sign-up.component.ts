@@ -46,6 +46,7 @@ export class SignUpComponent implements OnInit {
     isCompetitor: boolean;
     wasValidated: boolean;
     loading: boolean;
+    passwordType: boolean;
     signUpFormBirthdate: NgbDateStruct;
     signUpForm: SignUpForm;
     @ViewChild('form') signUpFormElement: ElementRef;
@@ -58,7 +59,11 @@ export class SignUpComponent implements OnInit {
                 public beltService: BeltService,
                 public imageService: ImageService,
                 private datepickerService: NgbDateParserFormatter) {
+    }
+
+    ngOnInit(): void {
         this.error = 0;
+        this.passwordType = true;
         this.isCompetitor = this.activeRoute.snapshot.params['role'] === 'competitor';
         this.wasValidated = false;
         this.signUpFormBirthdate = undefined;
@@ -80,9 +85,6 @@ export class SignUpComponent implements OnInit {
             surname: '',
             weight: ''
         };
-    }
-
-    ngOnInit(): void {
     }
 
     signUp(event: Event): void{
@@ -126,5 +128,9 @@ export class SignUpComponent implements OnInit {
 
     updateBirthdate(){
         this.signUpForm.birthDate = this.datepickerService.format(this.signUpFormBirthdate);
+    }
+
+    changeVisibility(){
+        this.passwordType = !this.passwordType;
     }
 }

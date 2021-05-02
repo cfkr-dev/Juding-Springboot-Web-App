@@ -4,9 +4,8 @@
     </div>
 </ng-container>
 <ng-container *ngIf="!errorOnLoadUserData && !loadingContent">
-    <form (submit)=modifyCompetitor(user)
-          class="needs-validation flex-sb flex-w juding-form-user-update" [ngClass]="{'was-validated': submitted && !validationError}" enctype="multipart/form-data"
-          novalidate>
+    <form (submit)=modifyCompetitor(user) class="needs-validation flex-sb flex-w juding-form-user-update" #form
+          [ngClass]="{'was-validated': submitted && !validationError}" enctype="multipart/form-data" novalidate>
 
         <h2 class="h2">Edición de usuarios</h2>
         <h3 class="h3">Información personal</h3>
@@ -71,10 +70,12 @@
         <!-- Birth date field -->
         <label class="txt1" for="birthDate">Fecha de nacimiento <span class="asterisk">*</span></label>
         <div class="input-group">
-            <input class="form-control dateInput" ngbDatepicker #d="ngbDatepicker" id="birthDate" name="birthDate" required
+            <input class="form-control dateInput" ngbDatepicker #d="ngbDatepicker" id="birthDate" name="birthDate"
+                   required
                    type="text" [(ngModel)]="signUpFormBirthdate" (ngModelChange)="updateBirthdate()">
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fas fa-calendar"></i></button>
+                <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i
+                    class="fas fa-calendar"></i></button>
             </div>
         </div>
         <div class="invalid-feedback">
@@ -112,7 +113,7 @@
         <div id="nicknameFeedback"></div>
         <ng-container *ngIf="validationError && submitted">
             <div class="alert alert-danger">
-                <i class="fas fa-spin fa-circle-notch"></i> No se puede introducir un apodo ya registrado en el sistema.
+                <strong>Advertencia:</strong> No se puede introducir un apodo ya registrado en el sistema.
             </div>
         </ng-container>
 

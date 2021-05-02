@@ -44,31 +44,39 @@
         </div>
     </div>
     <div *ngIf="currentUser.roles.includes('C')" class="row">
-        <div class="col-12 col-md-6 text-center">
-            <h4 class="h4">Gráfico de medallas</h4>
-            <div *ngIf="chart1.barChartData !== undefined; else loading">
-                <canvas [chartType]="chart1.barChartType"
-                        [datasets]="chart1.barChartData"
-                        [labels]="chart1.barChartLabels"
-                        [legend]="chart1.barChartLegend"
-                        [options]="chart1.barChartOptions"
-                        baseChart>
-                </canvas>
+        <div class="col-12">
+            <h4 class="h4">Gráficos</h4>
+            <div class="alert alert-info" *ngIf="chartError">Aún no hay información para construir los gráficos.
+                ¡Participa en alguna competición!
             </div>
         </div>
-        <div class="col-12 col-md-6 text-center">
-            <h4 class="h4">Evolución anual</h4>
-            <div *ngIf="chart2.lineChartData !== undefined || chart2.lineChartData.length > 0; else loading">
-                <canvas [chartType]="chart2.lineChartType"
-                        [colors]="chart2.lineChartColors"
-                        [datasets]="chart2.lineChartData"
-                        [labels]="chart2.lineChartLabels"
-                        [legend]="chart2.lineChartLegend"
-                        [options]="chart2.lineChartOptions"
-                        [plugins]="chart2.lineChartPlugins"
-                        baseChart></canvas>
+        <ng-container *ngIf="!chartError">
+            <div class="col-12 col-md-6 text-center">
+                <h4 class="h4">Gráfico de medallas</h4>
+                <div *ngIf="chart1.barChartData !== undefined; else loading">
+                    <canvas [chartType]="chart1.barChartType"
+                            [datasets]="chart1.barChartData"
+                            [labels]="chart1.barChartLabels"
+                            [legend]="chart1.barChartLegend"
+                            [options]="chart1.barChartOptions"
+                            baseChart>
+                    </canvas>
+                </div>
             </div>
-        </div>
+            <div class="col-12 col-md-6 text-center">
+                <h4 class="h4">Evolución anual</h4>
+                <div *ngIf="chart2.lineChartData !== undefined || chart2.lineChartData.length > 0; else loading">
+                    <canvas [chartType]="chart2.lineChartType"
+                            [colors]="chart2.lineChartColors"
+                            [datasets]="chart2.lineChartData"
+                            [labels]="chart2.lineChartLabels"
+                            [legend]="chart2.lineChartLegend"
+                            [options]="chart2.lineChartOptions"
+                            [plugins]="chart2.lineChartPlugins"
+                            baseChart></canvas>
+                </div>
+            </div>
+        </ng-container>
     </div>
     <div class="row mx-3 my-3">
         <div *ngIf="currentCompetitions.length !== 0" class="alert alert-info">
@@ -137,7 +145,8 @@
                 <ngb-panel title="No inscritas">
                     <ng-template ngbPanelContent>
                         <div class="alert alert-danger" *ngIf="error">
-                            <strong>Error: </strong>La solicitud de inscripción no se ha podido realizar. Inténtalo de nuevo.
+                            <strong>Error: </strong>La solicitud de inscripción no se ha podido realizar. Inténtalo de
+                            nuevo.
                         </div>
                         <div class="row">
                             <div *ngFor="let notJoinedFuture of futureNotJoinedCompetitions" class="col-md-4">
@@ -153,7 +162,8 @@
                                         </p>
                                     </div>
                                     <div class="card-footer text-center">
-                                        <a class="btn btn-success" (click)="joinCompetition(notJoinedFuture.idCompetition)">
+                                        <a class="btn btn-success"
+                                           (click)="joinCompetition(notJoinedFuture.idCompetition)">
                                             Inscribirme
                                         </a>
                                     </div>

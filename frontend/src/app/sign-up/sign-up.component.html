@@ -100,14 +100,16 @@
 
     <!-- Password -->
     <label class="txt1" for="password">Contraseña <span class="asterisk">*</span></label>
-    <div class="input-group has-validation">
-        <input class="form-control" id="password" name="password" required type="password"
+    <div class="input-group mb-3">
+        <input class="form-control" id="password" name="password" required [type]="passwordType ? 'password' : 'text'"
                [(ngModel)]="signUpForm.password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
-        <span class="input-group-text" id="showPassword">
-            <i class="far fa-eye-slash"></i>
-        </span>
+        <div class="input-group-append">
+            <button (click)="changeVisibility()" class="btn btn-outline-secondary" type="button"><i
+                [ngClass]="{'far': true, 'fa-eye': passwordType, 'fa-eye-slash': !passwordType}"></i>
+            </button>
+        </div>
         <div class="invalid-feedback">
-            Esta contraseña no se acoge al formato solicitado.
+            Es obligatorio introducir la contraseña para continuar.
         </div>
     </div>
     <div class="passwrequirements">La contraseña debe tener al menos 8 caracteres incluyendo al menos un

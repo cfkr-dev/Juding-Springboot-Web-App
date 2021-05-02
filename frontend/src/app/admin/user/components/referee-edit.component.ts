@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {User} from '../../../user/user.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RefereeService} from '../services/referee.service';
 import {NgbDateParserFormatter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {DatepickerService} from '../../../auxTypes/datepicker.service';
-import {FormValidationService} from '../../../auxTypes/form-validation.service';
+import {ValidationService} from "../services/validation.service";
 
 @Component({
     selector: 'app-referee-edit',
@@ -13,10 +13,12 @@ import {FormValidationService} from '../../../auxTypes/form-validation.service';
         '../../../../assets/vendor/datepicker/jquery.datetimepicker.min.css',
         '../../../../assets/vendor/font-awesome/css/all.css',
         '../../../../assets/css/header.css',
-        '../../../../assets/css/bootstrapAccomodations.css'
+        '../../../../assets/css/bootstrapAccomodations.css',
+        '../../../../assets/css/loginAndRegistration.css'
     ],
     providers: [
         RefereeService,
+        ValidationService,
         {provide: NgbDateParserFormatter, useClass: DatepickerService}
     ]
 })
@@ -28,8 +30,9 @@ export class RefereeEditComponent implements OnInit {
     signUpFormBirthdate: NgbDateStruct;
     validationError: boolean;
     submitted: boolean;
+    @ViewChild('form') form: ElementRef;
 
-    constructor(private router: Router, activatedRoute: ActivatedRoute, private refereeService: RefereeService, private datepickerService: NgbDateParserFormatter, private formValidaionService: FormValidationService) {
+    constructor(private router: Router, activatedRoute: ActivatedRoute, private refereeService: RefereeService, private datepickerService: NgbDateParserFormatter, private validation: ValidationService) {
         this.loadingContent = true;
         const licenseId = activatedRoute.snapshot.params['licenseId'];
         refereeService.getReferee(licenseId).subscribe(
@@ -58,20 +61,24 @@ export class RefereeEditComponent implements OnInit {
 
     modifyReferee(user) {
         this.submitted = true;
-        this.refereeService.updateReferee(user).subscribe(
-            modifiedUser => {
-                this.formValidaionService.checkValidity(modifiedUser).subscribe(
-                    validationResult => {
-                        if (validationResult === true){
-                            this.validationError = true;
-                        } else {
-                            this.validationError = false;
-                        }
+        if (this.form.nativeElement.checkValidity()) {
+            this.validation.checkNickname(user).subscribe(
+                ((validationResult: boolean) => {
+                    if (!validationResult) {
+                        this.validationError = false;
+                        this.refereeService.updateReferee(user).subscribe(
+                            (successful => this.router.navigate(['/admin/referees'])),
+                            error => this.router.navigate(['500'])
+                        );
+                    } else {
+                        this.validationError = true;
                     }
-                );
-                this.router.navigate(['/admin/referees']);
-            }
-        );
+                }),
+                error => this.router.navigate(['500'])
+            );
+        } else {
+            this.validationError = false;
+        }
     }
 
     updateBirthdate() {
