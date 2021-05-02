@@ -61,7 +61,7 @@
         <!-- LicenseId of the referee -->
         <label class="txt1" for="referee">Número de licencia del árbitro encargado de la competición
             <span class="asterisk">*</span></label>
-        <select name="referee" id="referee" class="custom-select" [(ngModel)]="competition?.referee.licenseId" required>
+        <select name="referee" id="referee" class="custom-select" [(ngModel)]="competition.referee" required>
             <ng-container *ngFor="let referee of referees">
                 <option [ngValue]="referee.licenseId">{{referee.licenseId}}</option>
             </ng-container>

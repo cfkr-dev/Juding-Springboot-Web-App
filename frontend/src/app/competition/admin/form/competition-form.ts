@@ -9,14 +9,14 @@ import {DatepickerService} from '../../../auxTypes/datepicker.service';
 import {NgbDateParserFormatter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 interface CompetitionInterface {
-    id?: string;
+    idCompetition?: string | number;
     shortName: string;
     additionalInfo: string;
-    minWeight: number;
-    maxWeight: number;
-    startDate: string;
-    endDate: string;
-    referee: string;
+    minWeight: string | number;
+    maxWeight: string | number;
+    startDate: string | Date;
+    endDate: string | Date;
+    referee: string | User;
 }
 
 @Component({
@@ -34,23 +34,13 @@ interface CompetitionInterface {
 export class CompetitionFormComponent {
     loadedPage: boolean;
     referees: User[];
-    competition: Competition;
     validation: string;
-    competitionToSubmit: CompetitionInterface;
+    competition: CompetitionInterface;
     alert: boolean;
     modelS: NgbDateStruct;
     modelE: NgbDateStruct;
 
     constructor(private competitionService: CompetitionService, private refereeService: RefereeService, private router: Router, private activatedRoute: ActivatedRoute, private datepickerService: DatepickerService) {
-        this.competitionToSubmit = {
-            additionalInfo: '',
-            shortName: '',
-            startDate: '',
-            endDate: '',
-            minWeight: 0,
-            maxWeight: 0,
-            referee: ''
-        };
         this.alert = false;
         this.validation = 'needs-validation';
         this.loadedPage = false;
@@ -64,6 +54,7 @@ export class CompetitionFormComponent {
                     competitionService.getCompetition(id).subscribe(
                         competition => {
                             this.competition = competition;
+                            this.competition.referee = competition.referee.licenseId;
                             this.modelS = this.datepickerService.parse(competition.formattedStartDate, true);
                             this.modelE = this.datepickerService.parse(competition.formattedEndDate, true);
                             this.loadedPage = true;
@@ -76,7 +67,15 @@ export class CompetitionFormComponent {
             refereeService.getRefereeList().subscribe(
                 referees => {
                     this.referees = referees;
-                    this.competition = new Competition('', '', 0, 0, undefined, undefined, new User());
+                    this.competition = {
+                        additionalInfo: '',
+                        shortName: '',
+                        startDate: '',
+                        endDate: '',
+                        minWeight: '',
+                        maxWeight: '',
+                        referee: null
+                    };
                     this.loadedPage = true;
                 },
                 error => this.router.navigate(['/404'])
@@ -87,25 +86,22 @@ export class CompetitionFormComponent {
     submitForm(event: Event): void {
         event.preventDefault();
         this.validation = 'was-validated';
-        this.competitionToSubmit.id = (this.competition.idCompetition) ? this.competition.idCompetition.toString() : null;
-        this.competitionToSubmit.startDate = this.datepickerService.formatAlt(this.modelS);
-        this.competitionToSubmit.endDate = this.datepickerService.formatAlt(this.modelE);
-        this.competitionToSubmit.shortName = this.competition.shortName;
-        this.competitionToSubmit.additionalInfo = this.competition.additionalInfo;
-        this.competitionToSubmit.minWeight = this.competition.minWeight;
-        this.competitionToSubmit.maxWeight = this.competition.maxWeight;
-        this.competitionToSubmit.referee = this.competition.referee.licenseId;
-        this.competitionService.saveCompetition(this.competitionToSubmit).subscribe(
+        this.competition.idCompetition = (this.competition.idCompetition) ? this.competition.idCompetition : null;
+        this.competition.startDate = this.datepickerService.formatAlt(this.modelS);
+        this.competition.endDate = this.datepickerService.formatAlt(this.modelE);
+        this.competition.minWeight = +this.competition.minWeight;
+        this.competition.maxWeight = +this.competition.maxWeight;
+        this.competitionService.saveCompetition(this.competition).subscribe(
             competition => this.router.navigate(['/admin/competitions']),
             error => this.alert = true
         );
     }
 
     updateStartDate(): void {
-        this.competitionToSubmit.startDate = this.datepickerService.formatAlt(this.modelS);
+        this.competition.startDate = this.datepickerService.formatAlt(this.modelS);
     }
 
     updateEndDate(): void {
-        this.competitionToSubmit.endDate = this.datepickerService.formatAlt(this.modelE);
+        this.competition.endDate = this.datepickerService.formatAlt(this.modelE);
     }
 }
