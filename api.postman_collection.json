@@ -186,7 +186,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/passwordRecovery/0000000002",
+									"raw": "https://localhost:8443/api/passwordRecovery?step=1&licenseId=0000000003",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -194,8 +194,51 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"passwordRecovery",
-										"0000000002"
+										"passwordRecovery"
+									],
+									"query": [
+										{
+											"key": "step",
+											"value": "1"
+										},
+										{
+											"key": "licenseId",
+											"value": "0000000003"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Password Recovery - Check security answer",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/passwordRecovery?step=2&licenseId=0000000002&secAnswer=A mi",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"passwordRecovery"
+									],
+									"query": [
+										{
+											"key": "step",
+											"value": "2"
+										},
+										{
+											"key": "licenseId",
+											"value": "0000000002"
+										},
+										{
+											"key": "secAnswer",
+											"value": "A mi"
+										}
 									]
 								}
 							},
@@ -216,7 +259,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8443/api/passwordRecovery/0000000002",
+									"raw": "https://localhost:8443/api/passwordRecovery",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -224,8 +267,7 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"passwordRecovery",
-										"0000000002"
+										"passwordRecovery"
 									]
 								}
 							},
