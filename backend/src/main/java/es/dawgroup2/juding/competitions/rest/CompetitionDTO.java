@@ -1,10 +1,13 @@
 package es.dawgroup2.juding.competitions.rest;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 public class CompetitionDTO {
     private final String id;
+    @NotBlank
     private final String shortName;
+    @NotBlank
     private final String additionalInfo;
     private final String minWeight;
     private final String maxWeight;

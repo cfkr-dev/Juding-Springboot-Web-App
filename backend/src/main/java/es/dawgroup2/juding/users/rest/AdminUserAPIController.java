@@ -115,6 +115,27 @@ public class AdminUserAPIController {
     }
 
     /**
+     * Returns a list with all referees registered in the application.
+     * @return List with referees.
+     */
+    @Operation(summary = "Returns a list with all referees registered in the application.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "List with referees.",
+                    content = {@Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = User.class)))}),
+            @ApiResponse(responseCode = "400", description = "List with users does not exist.",
+                    content = @Content),
+            @ApiResponse(responseCode = "403", description = "Not allowed (there is not logged in user or it is not an administrator).",
+                    content = @Content)
+    })
+    @GetMapping("/referees/all")
+    public ResponseEntity<List<User>> refereeList() {
+        List<User> refereeList = userService.getActiveReferees();
+        return (!refereeList.isEmpty()) ? ResponseEntity.ok(refereeList) : ResponseEntity.badRequest().build();
+
+    }
+
+    /**
      * Process a referee's application and saves it as an official referee.
      *
      * @param id License ID of admitted referee.
