@@ -30,9 +30,10 @@ import {E500Component} from './error/e500/e500.component';
 import {RefereeEditComponent} from './admin/user/components/referee-edit.component';
 import {E404Component} from './error/e404/e404.component';
 import {RefereeListComponent} from './admin/user/components/referee-list.component';
-import {EditorModule, TINYMCE_SCRIPT_SRC} from "@tinymce/tinymce-angular";
+import {EditorModule, TINYMCE_SCRIPT_SRC} from '@tinymce/tinymce-angular';
 import {PasswordRecoveryComponent} from './password-recovery/password-recovery.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import {CompetitionFormComponent} from './competition/admin/form/competition-form';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
         RefereeListComponent,
         RefereeEditComponent,
         PasswordRecoveryComponent,
-        SignUpComponent
+        SignUpComponent,
+        CompetitionFormComponent
     ],
     imports: [
         BrowserModule,

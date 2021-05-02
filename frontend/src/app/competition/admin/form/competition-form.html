@@ -1,0 +1,114 @@
+<ng-template #loading>
+    <div class="alert alert-secondary">
+        <i class="fas fa-spin fa-circle-notch"></i> Cargando...
+    </div>
+</ng-template>
+<ng-container *ngIf="loadedPage===true; else loading">
+    <form [ngClass]="validation" (submit)="submitForm($event)" novalidate>
+        <h2 class="h2">Formulario competición</h2>
+
+        <h3 class="h3">Información de la competición</h3>
+
+        <div class="alert alert-danger" role="alert" *ngIf="alert">
+            <strong>Error:</strong> Recuerda que la fecha del inicio de la competición debe ser anterior a la fecha del final de la competición y, además, el peso mínimo debe ser menor que el peso máximo de la competición (siendo ambos pesos positivos).
+        </div>
+
+        <!-- Competition name -->
+        <label class="txt1" for="shortName">Nombre de la competición <span class="asterisk">*</span></label>
+        <input class="form-control" id="shortName" name="shortName" required type="text"
+               [(ngModel)]="competition.shortName">
+        <div class="invalid-feedback">
+            El campo no puede estar vacío.
+        </div>
+
+        <!-- Competition additional info -->
+        <label class="txt1" for="additionalInfo">Información sobre la competición
+            <span class="asterisk">*</span></label>
+        <editor [(ngModel)]="competition.additionalInfo" id="additionalInfo" name="additionalInfo" required [init]="{
+            base_url: '/tinymce',
+            suffix: '.min',
+            selector: 'textarea',
+            height: 400,
+            plugins: ['fullscreen', 'lists', 'link', 'table'],
+            toolbar: 'undo redo | styleselect | bold italic underline fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist | link unlink | table | fullscreen'
+        }">
+        </editor>
+        <div class="invalid-feedback">
+            El campo no puede estar vacío.
+        </div>
+
+        <!-- Max weight and min wight fields -->
+        <div class="row">
+            <div class="col-lg-6 minWeight">
+                <label class="txt1" for="minWeight">Peso mínimo <span class="asterisk">*</span></label>
+                <input class="form-control" id="minWeight" name="minWeight" required type="text" pattern="[0-9]{0,3}$"
+                       [(ngModel)]="competition.minWeight">
+                <div class="invalid-feedback">
+                    El peso no se ajusta al formato requerido (mínimo 1 dígito y máximo 3 dígitos).
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="txt1" for="maxWeight">Peso máximo <span class="asterisk">*</span></label>
+                <input class="form-control" id="maxWeight" name="maxWeight" required type="text" pattern="[0-9]{0,3}$"
+                       [(ngModel)]="competition.maxWeight">
+                <div class="invalid-feedback">
+                    El peso no se ajusta al formato requerido (mínimo 1 dígito y máximo 3 dígitos).
+                </div>
+            </div>
+        </div>
+        <div id="weightFeedback"></div>
+
+        <!-- LicenseId of the referee -->
+        <label class="txt1" for="referee">Número de licencia del árbitro encargado de la competición
+            <span class="asterisk">*</span></label>
+        <select name="referee" id="referee" class="custom-select" [(ngModel)]="competition.referee" required>
+            <ng-container *ngFor="let referee of referees">
+                <option [ngValue]="referee.licenseId">{{referee.licenseId}}</option>
+            </ng-container>
+        </select>
+        <div class="invalid-feedback">
+            La licencia no se ajusta al formato JU-(10 dígitos).
+        </div>
+
+        <!-- Start date and end date of a competition fields -->
+        <div class="row mb-4">
+            <div class="col-lg-6 startDate">
+                <label class="txt1" for="startDate">Fecha de inicio de la competición <span
+                    class="asterisk">*</span></label>
+                <div class="input-group">
+                    <input class="form-control" id="startDate" placeholder="dd/mm/yyyy"
+                           name="dp" [(ngModel)]="modelS" ngbDatepicker #d="ngbDatepicker"
+                           (ngModelChange)="updateStartDate()" required>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="d.toggle()"
+                                type="button"><i class="fas fa-calendar"></i></button>
+                    </div>
+                </div>
+                <div class="invalid-feedback">
+                    La fecha del inicio de la competición de la competición es obligatoria.
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="txt1" for="endDate">Fecha del final de la competición <span
+                    class="asterisk">*</span></label>
+                <div class="input-group">
+                    <input class="form-control" id="endDate" placeholder="dd/mm/yyyy"
+                           name="dp" [(ngModel)]="modelE" ngbDatepicker #m="ngbDatepicker"
+                           (ngModelChange)="updateEndDate()" required>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="m.toggle()"
+                                type="button"><i class="fas fa-calendar"></i></button>
+                    </div>
+                </div>
+                <div class="invalid-feedback">
+                    La fecha del final de la competición es obligatoria.
+                </div>
+            </div>
+        </div>
+        <div class="width100 pt-2 text-center">
+            <button class="btn btn-corporative" type="submit">
+                Actualizar datos
+            </button>
+        </div>
+    </form>
+</ng-container>

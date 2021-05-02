@@ -24,8 +24,7 @@ export class PostsService {
 
     savePost(post: Post): Observable<Post> {
         if (post.idPost) {
-            const id = post.idPost;
-            return this.httpClient.put(url + id, post, {withCredentials: true}) as Observable<Post>;
+            return this.httpClient.put(url + post.idPost, post, {withCredentials: true}) as Observable<Post>;
         } else {
             return this.httpClient.post(url, post, {withCredentials: true}) as Observable<Post>;
         }

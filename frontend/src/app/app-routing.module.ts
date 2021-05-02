@@ -31,6 +31,7 @@ import {CompetitorActivationService} from "./security/competitor-activation.serv
 import {IsLoggedActivationService} from "./security/isLogged-activation.service";
 import {PasswordRecoveryComponent} from "./password-recovery/password-recovery.component";
 import {SignUpComponent} from "./sign-up/sign-up.component";
+import {CompetitionFormComponent} from './competition/admin/form/competition-form';
 
 
 const routes: Routes = [
@@ -64,7 +65,8 @@ const routes: Routes = [
     },
     {path: 'admin/referees', component: RefereeListComponent, canActivate: [AdminActivationService], data: {title: 'Árbitros'}},
     {path: 'admin/referees/edit/:licenseId', component: RefereeEditComponent, canActivate: [AdminActivationService], data: {title: 'Edición de árbitro'}},
-
+    {path: 'admin/competition/new', component: CompetitionFormComponent, canActivate: [AdminActivationService], data: {title:  'Nueva competición'}},
+    {path: 'admin/competition/edit/:id', component: CompetitionFormComponent, canActivate: [AdminActivationService], data: {title: 'Editar competición'}},
     // Error pages
     {path: '403', component: E403Component, data: {title: 'Error 403'}},
     {path: '500', component: E500Component, data: {title: 'Error 500'}},

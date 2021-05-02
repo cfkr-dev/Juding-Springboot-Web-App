@@ -20,9 +20,12 @@ export class CompetitionService {
         return this.httpClient.get(BASE_URL + '?page=' + page, {withCredentials: true}) as Observable<any>;
     }
 
-
-    updateCompetition(competition: Competition): Observable<Competition> {
-        return this.httpClient.post(BASE_URL, competition, {withCredentials: true}) as Observable<Competition>;
+    saveCompetition(competition: any): Observable<any> {
+        if (competition.idCompetition) {
+            return this.httpClient.put(BASE_URL + competition.idCompetition, competition, {withCredentials: true}) as Observable<any>;
+        } else {
+            return this.httpClient.post(BASE_URL, competition, {withCredentials: true}) as Observable<any>;
+        }
     }
 
     getPeople(competition: Competition): number {

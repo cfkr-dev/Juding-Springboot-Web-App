@@ -20,6 +20,9 @@ export class RefereeService {
         return this.httpClient.get(REFEREE_URL + '/' + id);
     }
 
+    getRefereeList(): Observable<User[]>{
+        return this.httpClient.get( REFEREE_URL + '/all') as Observable<User[]>;
+    }
 
     removeReferee(user: User): Observable<any> {
         return this.httpClient.delete(REFEREE_URL + '/' + user.licenseId);
