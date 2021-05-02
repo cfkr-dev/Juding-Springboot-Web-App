@@ -28,12 +28,10 @@ export class PostListComponent implements OnInit {
     empty: boolean;
     loadedPage: boolean;
 
-    constructor(private service: PostsService, private loggedInUser: LoggedInUserService, private router: Router, private modalService: NgbModal) {
-        this.posts = [];
-        this.page = 0;
-        this.loadedButton = true;
-        this.empty = true;
-        this.loadedPage = false;
+    constructor(private service: PostsService,
+                private loggedInUser: LoggedInUserService,
+                private router: Router,
+                private modalService: NgbModal) {
     }
 
     open(i: number, content): void {
@@ -42,6 +40,11 @@ export class PostListComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.posts = [];
+        this.page = 0;
+        this.loadedButton = true;
+        this.empty = true;
+        this.loadedPage = false;
         this.service.getPosts(this.page).subscribe(
             (response => {
                 this.posts = response.content;
@@ -71,12 +74,7 @@ export class PostListComponent implements OnInit {
 
     deletePost(): void {
         this.service.deletePost(this.idAlt).subscribe(
-            (post => {
-                const currentUrl = this.router.url;
-                this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-                    this.router.navigate([currentUrl]);
-                });
-            }),
+            (post => this.ngOnInit()),
             error => this.router.navigate(['/404'])
         );
     }

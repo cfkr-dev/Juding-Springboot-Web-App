@@ -17,7 +17,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
         '../../../../assets/css/responsiveTable.css',
         '../../../../assets/css/adminScreen.css',
         '../../../../assets/css/beltAssignations.css'
-    ]
+    ],
+    providers: [RefereeService]
 })
 export class RefereeListComponent implements OnInit {
 
@@ -37,6 +38,9 @@ export class RefereeListComponent implements OnInit {
     loadingAcceptReferee: boolean;
 
     constructor(private router: Router, private refereeService: RefereeService, private modalService: NgbModal) {
+    }
+
+    ngOnInit() {
         this.hasErrorOnLoad = false;
         this.noApplications = false;
         this.isLastPage = false;
@@ -45,9 +49,6 @@ export class RefereeListComponent implements OnInit {
         this.errorOnAcceptApplication = false;
         this.loadingAcceptReferee = false;
         this.currentPage = 0;
-    }
-
-    ngOnInit() {
         this.loadingContent = true;
         this.refereeService.getApplications().subscribe(
             pageOfApplicators => {
@@ -112,10 +113,7 @@ export class RefereeListComponent implements OnInit {
                 if (this.users.length === 0) {
                     this.noMorePages = true;
                 }
-                const currentUrl = this.router.url;
-                this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-                    this.router.navigate([currentUrl]);
-                });
+                this.ngOnInit();
             },
             error => {
                 this.errorOnRemoving = true;
@@ -156,10 +154,7 @@ export class RefereeListComponent implements OnInit {
                 if (this.applicators.length === 0) {
                     this.noApplications = true;
                 }
-                const currentUrl = this.router.url;
-                this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-                    this.router.navigate([currentUrl]);
-                });
+                this.ngOnInit();
             },
             error => {
                 this.errorOnAcceptApplication = true;

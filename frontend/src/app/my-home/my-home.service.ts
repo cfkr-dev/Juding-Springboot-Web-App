@@ -3,10 +3,9 @@ import {CompetitionInterface} from '../competition/competition.interface';
 import {Observable} from 'rxjs';
 import {User} from '../user/user.model';
 import {HttpClient} from '@angular/common/http';
+import {Competition} from "../competition/competition.model";
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class MyHomeService {
 
     constructor(private http: HttpClient) {
@@ -14,6 +13,10 @@ export class MyHomeService {
 
     public getCompetitions(currentUser: User, urlParameter: string): Observable<CompetitionInterface[]> {
         return this.http.get('/api/competitions/' + currentUser.licenseId + '/' + urlParameter, {withCredentials: true}) as Observable<CompetitionInterface[]>;
+    }
+
+    public joinCompetition(idCompetition: string): Observable<Competition>{
+        return this.http.put('/api/competitions/members/' + idCompetition, {}) as Observable<Competition>;
     }
 
     public getCharts(currentUser: User): Observable<number[]> {

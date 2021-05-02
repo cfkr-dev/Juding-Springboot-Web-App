@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {PostInterface} from '../post/post.interface';
+import {PostInterface} from '../posts/post.interface';
 import {IndexService} from './index.service';
 
 interface Email {

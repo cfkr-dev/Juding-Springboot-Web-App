@@ -15,7 +15,9 @@ import {FormValidationService} from '../../../auxTypes/form-validation.service';
         '../../../../assets/css/header.css',
         '../../../../assets/css/bootstrapAccomodations.css'
     ],
-    providers: [{provide: NgbDateParserFormatter, useClass: DatepickerService}
+    providers: [
+        RefereeService,
+        {provide: NgbDateParserFormatter, useClass: DatepickerService}
     ]
 })
 export class RefereeEditComponent implements OnInit {

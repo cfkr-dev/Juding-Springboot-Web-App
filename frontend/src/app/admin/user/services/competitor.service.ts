@@ -3,9 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../../../user/user.model';
 
-const COMPETITORS_URL = 'api/competitors';
+const COMPETITORS_URL = '/api/competitors';
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class CompetitorService {
 
     constructor(private httpClient: HttpClient) {

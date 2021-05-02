@@ -93,8 +93,7 @@
                                routerLink="/competitions/{{ currentCompetition.idCompetition }}">
                                 Ver detalle
                             </a>
-                            <a *ngIf="currentUser.roles.includes('R')"
-                               class="btn btn-success"
+                            <a *ngIf="currentUser.roles.includes('R')" class="btn btn-success"
                                routerLink="/competitions/{{ currentCompetition.idCompetition }}/control">Arbitrar</a>
                         </div>
                     </div>
@@ -137,6 +136,9 @@
                 </ngb-panel>
                 <ngb-panel title="No inscritas">
                     <ng-template ngbPanelContent>
+                        <div class="alert alert-danger" *ngIf="error">
+                            <strong>Error: </strong>La solicitud de inscripción no se ha podido realizar. Inténtalo de nuevo.
+                        </div>
                         <div class="row">
                             <div *ngFor="let notJoinedFuture of futureNotJoinedCompetitions" class="col-md-4">
                                 <div class="card h-100 mb-2">
@@ -151,8 +153,7 @@
                                         </p>
                                     </div>
                                     <div class="card-footer text-center">
-                                        <a class="btn btn-success"
-                                           routerLink="/competition/{{ notJoinedFuture.idCompetition }}/join">
+                                        <a class="btn btn-success" (click)="joinCompetition(notJoinedFuture.idCompetition)">
                                             Inscribirme
                                         </a>
                                     </div>

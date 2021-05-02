@@ -3,9 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../../../user/user.model';
 
-const REFEREE_URL = 'api/referees';
+const REFEREE_URL = '/api/referees';
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class RefereeService {
 
     constructor(private httpClient: HttpClient) {

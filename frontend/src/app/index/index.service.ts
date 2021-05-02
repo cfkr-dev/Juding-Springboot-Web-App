@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {PostInterface} from '../post/post.interface';
+import {PostInterface} from '../posts/post.interface';
 
 @Injectable()
 export class IndexService {

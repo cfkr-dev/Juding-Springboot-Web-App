@@ -10,11 +10,13 @@ import {User} from "../user/user.model";
 @Component({
     selector: 'app-my-home',
     templateUrl: './my-home.component.html',
-    styleUrls: ['../../assets/vendor/font-awesome/css/all.css', '../../assets/css/style.css', '../../assets/css/header.css', '../../assets/css/bootstrapAccomodations.css', '../../assets/css/profiles.css', '../../assets/css/responsiveTable.css', '../../assets/css/beltAssignations.css']
+    styleUrls: ['../../assets/vendor/font-awesome/css/all.css', '../../assets/css/style.css', '../../assets/css/header.css', '../../assets/css/bootstrapAccomodations.css', '../../assets/css/profiles.css', '../../assets/css/responsiveTable.css', '../../assets/css/beltAssignations.css'],
+    providers: [MyHomeService]
 })
 export class MyHomeComponent implements OnInit {
 
     fullLoaded: boolean;
+    error: boolean;
     currentUser: User;
     pastCompetitions: CompetitionInterface[];
     currentCompetitions: CompetitionInterface[];
@@ -60,10 +62,11 @@ export class MyHomeComponent implements OnInit {
                 private router: Router,
                 private homeInfo: MyHomeService,
                 public rangeService: RefereeRangeService) {
-        this.fullLoaded = false;
     }
 
     ngOnInit(): void {
+        this.fullLoaded = false;
+        this.error = false;
         this.loggedInUser.getLoggedUser().subscribe(
             ((currentUser: User) => {
                 this.currentUser = currentUser;
@@ -172,7 +175,14 @@ export class MyHomeComponent implements OnInit {
                         );
                     })
                 );
-            }), (error => this.router.navigate(['/login']))
+            })
         );
+    }
+
+    joinCompetition(idCompetition: number): void{
+        this.homeInfo.joinCompetition(idCompetition.toString()).subscribe(
+            (success => this.ngOnInit()),
+            (error => this.error = true)
+        )
     }
 }

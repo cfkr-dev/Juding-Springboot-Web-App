@@ -37,9 +37,9 @@ export class CompetitionControlComponent implements OnInit {
     player1: Array<any>;
     player2: Array<any>;
     bigStopwatch: Array<any>;
-    bigStopwatchInterv: number;
+    bigStopwatchInterv;
     smallStopwatch: Array<any>;
-    smallStopwatchInterv: number;
+    smallStopwatchInterv;
 
     screenFullFunc: boolean;
 

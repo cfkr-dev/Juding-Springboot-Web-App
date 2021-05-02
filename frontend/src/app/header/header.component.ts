@@ -31,7 +31,8 @@ export class HeaderComponent {
         '\/404',
         '\/500',
         '\/termsAndConditionsOfUse',
-        '\/cookiePolicy'
+        '\/cookiePolicy',
+        '\/signUp/(competitor|referee)'
     ];
 
     constructor(public router: Router, public loggedInUser: LoggedInUserService) {

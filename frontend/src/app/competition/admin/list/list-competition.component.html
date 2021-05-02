@@ -50,9 +50,8 @@
                                routerLink="/admin/competition/edit/{{ competition.idCompetition }}">
                                 <i class="fas fa-pencil"></i>
                             </a>
-                            <button (click)="showDelete(i,delet)" class="btn btn-corporative"
-                                    data-bs-target="#modalDelete"
-                                    data-bs-toggle="modal">
+                            <button (click)="showDelete(i,modal)" class="btn btn-corporative"
+                                    data-bs-target="#modalDelete" data-bs-toggle="modal">
                                 <i class="fas fa-trash-alt delete"></i>
                             </button>
                         </div>
@@ -105,7 +104,7 @@
     </div>
 </ng-template>
 
-<ng-template #delet let-modal>
+<ng-template #modal let-modal>
     <div class="modal-header">
         <h5 class="modal-title">Confirmación</h5>
     </div>

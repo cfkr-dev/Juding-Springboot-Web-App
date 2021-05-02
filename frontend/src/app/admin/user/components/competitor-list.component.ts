@@ -18,7 +18,8 @@ import {CompetitorService} from '../services/competitor.service';
         '../../../../assets/css/responsiveTable.css',
         '../../../../assets/css/adminScreen.css',
         '../../../../assets/css/beltAssignations.css'
-    ]
+    ],
+    providers: [CompetitorService]
 })
 export class CompetitorListComponent implements OnInit {
 
@@ -33,16 +34,15 @@ export class CompetitorListComponent implements OnInit {
     loadingContent: boolean;
 
     constructor(private router: Router, private competitorService: CompetitorService, private modalService: NgbModal) {
+    }
+
+    ngOnInit() {
         this.hasErrorOnLoad = false;
         this.isLastPage = false;
         this.noMorePages = false;
         this.errorOnRemoving = false;
         this.loadingContent = false;
         this.currentPage = 0;
-    }
-
-    ngOnInit() {
-        this.loadingContent = true;
         this.competitorService.getCompetitors(0).subscribe(
             pageOfUsers => {
                 this.loadingContent = false;
@@ -92,10 +92,7 @@ export class CompetitorListComponent implements OnInit {
                 if (this.users.length === 0) {
                     this.noMorePages = true;
                 }
-                const currentUrl = this.router.url;
-                this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-                    this.router.navigate([currentUrl]);
-                });
+                this.ngOnInit();
             },
             error => {
                 this.errorOnRemoving = true;

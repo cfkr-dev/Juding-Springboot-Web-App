@@ -36,8 +36,10 @@ export class ListCompetitionComponent implements OnInit {
     fullLoaded: boolean;
     loading: boolean;
 
-    // tslint:disable-next-line:max-line-length
-    constructor(public competitionService: CompetitionService, public loginInUserService: LoggedInUserService, private modalService: NgbModal, private router: Router) {
+    constructor(public competitionService: CompetitionService,
+                public loginInUserService: LoggedInUserService,
+                private modalService: NgbModal,
+                private router: Router) {
     }
 
     ngOnInit(): void {
@@ -54,11 +56,10 @@ export class ListCompetitionComponent implements OnInit {
                             this.totalPages = competitions.totalPages;
                             this.fullLoaded = true;
                         },
-                        error => this.router.navigate(['/**']),
+                        error => this.router.navigate(['500']),
                     );
                 }
-            },
-            error => this.router.navigate(['/403']),
+            }
         );
     }
 
@@ -74,7 +75,7 @@ export class ListCompetitionComponent implements OnInit {
                 }
                 this.latest = competitions.last;
             },
-            error => this.router.navigate(['/**']),
+            error => this.router.navigate(['500']),
         );
     }
 
@@ -83,24 +84,21 @@ export class ListCompetitionComponent implements OnInit {
         this.modalService.open(info, {ariaLabelledBy: 'modal-basic-title', size: 'lg'});
     }
 
-    showDelete(i: number, delet): void {
+    showDelete(i: number, modal): void {
         this.modalMember = this.competitions[i];
         this.identifier = this.competitions[i].idCompetition;
         this.position = i;
-        this.modalService.open(delet, {ariaLabelledBy: 'modal-basic-title'});
+        this.modalService.open(modal, {ariaLabelledBy: 'modal-basic-title'});
     }
 
     deleteCompetition(): void {
         this.competitionService.deleteCompetition(this.identifier).subscribe(
             competitions => {
-                const currentUrl = this.router.url;
-                this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-                    this.router.navigate([currentUrl]);
-                });
                 this.competitions.splice(this.position, 1);
                 this.modalService.dismissAll();
+                this.ngOnInit();
             },
-            error => this.router.navigate(['/**']),
+            error => this.router.navigate(['500']),
         );
     }
 

@@ -15,7 +15,9 @@ import {FormValidationService} from '../../../auxTypes/form-validation.service';
         '../../../../assets/css/header.css',
         '../../../../assets/css/bootstrapAccomodations.css'
     ],
-    providers: [{provide: NgbDateParserFormatter, useClass: DatepickerService}
+    providers: [
+        CompetitorService,
+        {provide: NgbDateParserFormatter, useClass: DatepickerService}
     ]
 })
 export class CompetitorEditComponent implements OnInit {
@@ -51,7 +53,11 @@ export class CompetitorEditComponent implements OnInit {
 
     private getBirthdate(date): NgbDateStruct {
         let reformattedDate = date.split('/');
-        return {year: parseInt(reformattedDate[2]), month: parseInt(reformattedDate[1]), day: parseInt(reformattedDate[0])};
+        return {
+            year: parseInt(reformattedDate[2]),
+            month: parseInt(reformattedDate[1]),
+            day: parseInt(reformattedDate[0])
+        };
     }
 
     modifyCompetitor(user) {
@@ -73,7 +79,7 @@ export class CompetitorEditComponent implements OnInit {
         );
     }
 
-    updateBirthdate(){
+    updateBirthdate() {
         this.user.birthdate = this.datepickerService.format(this.signUpFormBirthdate);
     }
 
