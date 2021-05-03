@@ -5,8 +5,15 @@
 **JUDO FEDERATION OF MADRID**
 
 This application try to replace the [official website](https://www.fmjudo.es/) of Judo Federation of Madrid, adding new
-tools for competitions, competitors and referees management. In order to unify the diferents existing tools such as the
-register of the differents kinds of users and the monitoring of the results of the competitions.
+tools for competitions, competitors and referees management. It pretends to unify the different existing tools such as the
+register of the different kinds of users and the monitoring of the results of the competitions.
+
+**VIDEO (stage 4)**
+
+Clicking the image below, you can go to see our video:
+
+[<img src="documentation_imgs/stage4/VideoThumbnail.png">](https://youtu.be/UT_Qajjws6g)
+
 
 ## The team: developers
 
@@ -296,3 +303,72 @@ Use the following script:
 ``$ bash create_image.sh``
 
 Warning: this image will work only if a database is set and properly configured. Bash script tells how to configure it.
+
+---
+
+
+## Stage 4: new frontend with Angular
+
+### Top 5 Commits & Files
+
+| Name | Top 5 Commits | Top 5 Files |
+| - | - | - |
+| Ismael<br>In this stage, I have been working on all the components of the post entity, and also on the forms for adding and modifying competitions. | <ul><li>Competition forms (for adding and modifying) component (completed in several commits, the most important of these are [this one](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/1578e4a1e58739eb69311e563ba7b8a2be886a05), [this one](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/a3d4d0b005ff37c0d50e9bf45ccadbb9b1619b3c) and [this one](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/2b7c32d653feecb17a9cb597122b5a779b6d8bd4)) </li><li>[Post forms(for adding and modifying) component](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/02f72cb139bf6dac40df72c42bdb494809db5c3b)</li><li>[Post list component](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/c50a2b22a9f6f0f8c249bb606893c79fceaab1e7)</li><li>[Post detail component](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/61c26483d0b87b53cab16befd992292170cdd956)</li><li>[Post service](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/f2b0aaebcf0388b865c2d37a9aa0d4c53f394dc0)</li></ul> | <ul><li>[post-list.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/frontend/src/app/posts/admin/post-list/post-list.component.ts)</li><li>[post-form.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/frontend/src/app/posts/admin/post-forms/post-form.component.ts)</li><li>[post-detail.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/frontend/src/app/posts/post-detail/post-detail.component.ts)</li><li>[posts.service.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/frontend/src/app/posts/posts.service.ts)</li><li>[competition-form.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/frontend/src/app/competition/admin/form/competition-form.ts)</li></ul>|
+| Diego<br>In this stage, I have created the Angular-equivalent versions of the main logged-in user pages and many transversal services. I also adapted *Dockerization* of web app for using Angular and helped creating other components and services. | <ul><li>[Login component](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/9375f83f0c99555f7309264094aecbe018ab277d) and [logged-in user service](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/876510403156ea009172aab10423981ef99d406e)</li><li>[My Home component](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/06508a58d55f3cfb0b453cd22369c4b79c32e621) and [My Profile edit component](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/5eee9fe83d659462543bdb5f2810c0b65c293399)</li><li>[Sign up component](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/687f24839622a2ac16ffe80aa6e01e78946c2740)</li><li>[Angular security options](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/29604fb0af633c9676690e6783b5546e9032d048)</li><li>[Dynamic header](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/ef12cab7715d400d9359d6fd8790bcb491fc930e) and [dynamic title of pages](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/1681fa169bf81f85f5598e4c23f9432dd93ade00)</li></ul> | <ul><li>[password-recovery.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/frontend/src/app/password-recovery/password-recovery.component.ts)</li><li>[sign-up.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/frontend/src/app/sign-up/sign-up.component.ts)</li><li>[app-routing.module.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/frontend/src/app/app-routing.module.ts)</li><li>[my-home.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/frontend/src/app/my-home/my-home.component.ts)</li><li>[create_image.sh](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/docker/create_image.sh)</li></ul>|
+| José Luis<br>At this stage, I have been transcribing the competitions section into Angular language except for the forms. I also adapted the Postman tests and security configuration to the phase three changes. | <ul><li>[Rest Security Configuration](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/e0ab3e4b80d2120d68912a51a3a584099ffdc833)</li><li>[Update Postman's test](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/8db72c3e4b9003c51e8ffc666934d0e7afed5430)</li><li>[Competition-FightTree Component](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/554bad0759e4ff0583dd805a3dfcb85e3edf7476)</li><li>[List Competition Component](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/3a7ed93a5f4df283e7429836407fe152da244b1d)</li><li>[Logical part of Competition Control Component](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/e6d2a073fe92cae0540c62083f37b5b7471c8e82)</li></ul> | <ul><li>[Api Postman Collection](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/api.postman_collection.json)</li><li>[Rest Security Configuration](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/backend/src/main/java/es/dawgroup2/juding/security/RestSecurityConfiguration.java)</li><li>[Competition-FightTree.html](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/frontend/src/app/competition/competition-fight-tree/competition-fight-tree.html)</li><li>[List-Competition-Component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/frontend/src/app/competition/admin/list/list-competition.component.ts)</li><li>[Competition-Control-component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/main/frontend/src/app/competition/competition-control/competition-control.component.ts)</li></ul>|
+| Alberto<br>I was working on referees and competitors admin functionalities (paginated list with competitors and referees, show more info with ngboostrap modals and user data modification with validated forms). I also made the classes and templates diagram. | <ul><li>[Referees stuff and forms structure](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/ed14c72919d6d5585f2c635d11fb4f002e7718bd)</li><li>[Competitor stuff and some pagination works](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/25626bdfa02f2017d75d6e56ffc3bdd7192c48bf)</li><li>[Modals with more info and delete users](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/0bcd27a614a74b6e199b15a2168f376a8195928c)</li><li>[Errors control](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/0b8d3a586280cb5ff1c401074fd08c5cd53b4905)</li><li>[Bug fixing and adding forms validation](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/38cd5d9d97c18bd1d2420352568755a865fad38d)</li></ul> | <ul><li>[referee-list.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/12-A-AngularAdminUserFinishingTouches/frontend/src/app/admin/user/components/referee-list.component.ts)</li><li>[competitor-list.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/12-A-AngularAdminUserFinishingTouches/frontend/src/app/admin/user/components/competitor-list.component.ts)</li><li>[competitor-edit-component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/12-A-AngularAdminUserFinishingTouches/frontend/src/app/admin/user/components/competitor-edit-component.ts)</li><li>[referee.service.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/12-A-AngularAdminUserFinishingTouches/frontend/src/app/admin/user/services/referee.service.ts)</li><li>[form-validation.service.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/12-A-AngularAdminUserFinishingTouches/frontend/src/app/auxTypes/form-validation.service.ts)</li></ul>|
+
+### Classes and templates diagram
+The following diagram shows all the components, services and templates of our new Angular frontend:
+![Classes and templates diagram](documentation_imgs/stage4/ClassAndTemplatesDiagram.jpg)
+
+### How to use this new version?
+To compile and execute this new version of Juding, follow the next steps.
+
+**Run the application using Docker Hub**
+
+Prerequisites: Docker CLI and Docker Compose must be installed.
+If Docker Compose is not installed, you can run the following command:
+
+``$ sudo apt install docker-compose``
+
+When Docker Compose is available you must download the docker-compose.yml file using one of the following commands: ```wget``` or ```curl```. For example:
+
+``$ wget http://raw.githack.com/CodeURJC-DAW-2020-21/webapp2/main/docker/docker-compose.yml``
+
+Now you can run Docker Compose using:
+
+``$ docker-compose up``
+
+* If you want to execute this Docker Compose as a detached process, you can add ```-d``` flag.
+
+The application will be available on the URL [https://localhost:8443/](https://localhost:8443/), on the other hand, if you want to use the SPA version of Juding will be available on the URL [https://localhost:8443/new](https://localhost:8443/new).
+
+To stop the app, Ctrl+C in the console or execute the following statement:
+
+``$ docker-compose down``
+
+**Build a Docker image**
+
+Also, you can compile and execute Juding from its source code, just following the next steps.
+
+First use the following command for clone the application from the Git:
+
+``$ git clone https://github.com/CodeURJC-DAW-2020-21/webapp2.git``.
+
+Change the directory to the folder named docker:
+
+``$ cd webapp2/docker``
+
+Use the following script:
+
+``$ bash create_image.sh``
+
+* This script will run a node.js container, executes ```npm install``` and ```npm run build```. Then, a Maven container is run for compiling Spring Boot web application. 
+
+Warning: this image will work only if a database is set and properly configured. Bash script tells how to configure it.
+
+The SPA version of Juding will be available on the URL [https://localhost:8443/new](https://localhost:8443/new).
+
+### Video: working app
+Link to the video: [https://youtu.be/UT_Qajjws6g](https://youtu.be/UT_Qajjws6g).
