@@ -5,6 +5,7 @@ import {RefereeService} from '../../../admin/user/services/referee.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DatepickerService} from '../../../auxTypes/datepicker.service';
 import {NgbDateParserFormatter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import {environment} from "../../../../environments/environment";
 
 interface CompetitionInterface {
     idCompetition?: string | number;
@@ -38,8 +39,10 @@ export class CompetitionFormComponent {
     alert: boolean;
     modelS: NgbDateStruct;
     modelE: NgbDateStruct;
+    environment: any;
 
     constructor(private competitionService: CompetitionService, private refereeService: RefereeService, private router: Router, private activatedRoute: ActivatedRoute, private datepickerService: DatepickerService) {
+        this.environment = environment;
         this.alert = false;
         this.validation = 'needs-validation';
         this.loadedPage = false;

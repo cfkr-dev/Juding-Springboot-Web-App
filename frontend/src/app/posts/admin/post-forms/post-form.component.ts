@@ -3,6 +3,7 @@ import {Post} from '../../post.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PostsService} from '../../posts.service';
 import {HttpClient} from '@angular/common/http';
+import {environment} from "../../../../environments/environment";
 
 @Component({
     templateUrl: './post-form.html',
@@ -21,9 +22,12 @@ export class PostFormComponent {
     post: Post;
     image: File = null;
     alert: boolean;
-    validation: string
+    validation: string;
+    environment: any;
+
 
     constructor(private router: Router, activatedRoute: ActivatedRoute, private service: PostsService, private http: HttpClient) {
+        this.environment = environment;
         this.validation = 'needs-validation';
         this.loadedPage = false;
         this.alert = false;

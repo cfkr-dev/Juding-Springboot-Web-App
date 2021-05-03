@@ -26,10 +26,11 @@
         <!-- Competition additional info -->
         <label class="txt1" for="additionalInfo">Información sobre la competición
             <span class="asterisk">*</span></label>
-        <editor [(ngModel)]="competition.additionalInfo" id="additionalInfo" name="additionalInfo" required [init]="{
-            base_url: '/tinymce',
+        <editor apiKey="zf9onqq7zxx3rilr92u62jj7qrthk8hl3tc3uket11a8d26s" [(ngModel)]="competition.additionalInfo" id="additionalInfo" name="additionalInfo" required [init]="{
+            base_url: (environment.production) ? '/new/tinymce' : '/tinymce',
             suffix: '.min',
             selector: 'textarea',
+            language: 'es',
             height: 400,
             plugins: ['fullscreen', 'lists', 'link', 'table'],
             toolbar: 'undo redo | styleselect | bold italic underline fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist | link unlink | table | fullscreen'

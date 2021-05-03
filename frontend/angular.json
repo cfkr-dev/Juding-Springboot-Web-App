@@ -24,7 +24,26 @@
                         "aot": true,
                         "assets": [
                             "src/assets",
-                            { "glob": "**/*", "input": "node_modules/tinymce", "output": "/tinymce/" }
+                            {
+                                "glob": "**/*",
+                                "input": "src/assets/vendor/tinymce/js/tinymce",
+                                "output": "/tinymce/"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "src/assets/vendor/tinymce/js/tinymce/skins",
+                                "output": "/tinymce/skins/"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "src/assets/vendor/tinymce/js/tinymce/themes",
+                                "output": "/tinymce/themes/"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "src/assets/vendor/tinymce/js/tinymce/plugins",
+                                "output": "/tinymce/plugins/"
+                            }
                         ],
                         "styles": [
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -33,7 +52,7 @@
                         "scripts": [
                             "src/assets/vendor/jquery/jquery.js",
                             "src/assets/js/main.js",
-                            "node_modules/tinymce/tinymce.min.js"
+                            "src/assets/vendor/tinymce/js/tinymce/tinymce.min.js"
                         ],
                         "allowedCommonJsDependencies": [
                             "rxjs/internal/operators/catchError",
