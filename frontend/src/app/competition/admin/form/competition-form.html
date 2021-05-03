@@ -78,8 +78,7 @@
                 <label class="txt1" for="startDate">Fecha de inicio de la competición <span
                     class="asterisk">*</span></label>
                 <div class="input-group">
-                    <input class="form-control" id="startDate" placeholder="dd/mm/yyyy" name="dp" [(ngModel)]="modelS"
-                           ngbDatepicker #d="ngbDatepicker" (ngModelChange)="updateStartDate()" required>
+                    <input class="form-control" id="startDate" placeholder="dd/mm/yyyy" name="sd" [(ngModel)]="modelS" ngbDatepicker #d="ngbDatepicker" (ngModelChange)="updateStartDate()" required>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
                             <i class="fas fa-calendar"></i>
@@ -94,9 +93,7 @@
                 <label class="txt1" for="endDate">Fecha del final de la competición <span
                     class="asterisk">*</span></label>
                 <div class="input-group">
-                    <input class="form-control" id="endDate" placeholder="dd/mm/yyyy"
-                           name="dp" [(ngModel)]="modelE" ngbDatepicker #m="ngbDatepicker"
-                           (ngModelChange)="updateEndDate()" required>
+                    <input class="form-control" id="endDate" placeholder="dd/mm/yyyy" name="ed" [(ngModel)]="modelE" ngbDatepicker #m="ngbDatepicker" (ngModelChange)="updateEndDate()" required>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" (click)="m.toggle()"
                                 type="button"><i class="fas fa-calendar"></i></button>

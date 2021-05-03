@@ -40,14 +40,13 @@ echo "2. Compile Maven application from source code."
 sudo docker run --rm -v "$PWD":/data -w /data maven:3.8.1 mvn package
 
 # Step 3: building Docker image (using Dockerfile)
-VER=1.4
 cd ..
 echo
 echo "3. Build Docker image using Dockerfile."
-sudo docker build -t daw2021webapp2/juding:v$VER -f ./docker/Dockerfile ./backend/target
+sudo docker build -t daw2021webapp2/juding:v2.0 -f ./docker/Dockerfile ./backend/target
 
 echo
-echo "It's ready! Image has been called \"juding\" and can be used"
+echo "It's ready! Image has been called \"daw2021webapp2/juding:v2.0\" and can be used"
 echo "Prerrequisite: MySQL database called 'juding' with username 'judingUser' and password 'judingPassword_DAWG2' (or use docker-compose method)."
 
 exit 0

@@ -313,7 +313,7 @@ public class User {
      *
      * @return Birth date in user-friendly format.
      */
-    @JsonProperty("birthdate")
+    @JsonProperty("birthDate")
     public String getFormattedBirthDate() {
         SimpleDateFormat simpDate = new SimpleDateFormat("dd/MM/yyyy");
         return simpDate.format(birthDate);

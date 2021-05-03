@@ -54,8 +54,8 @@ export class CompetitionFormComponent {
                         competition => {
                             this.competition = competition;
                             this.competition.referee = competition.referee.licenseId;
-                            this.modelS = this.datepickerService.parse(competition.formattedStartDate, true);
                             this.modelE = this.datepickerService.parse(competition.formattedEndDate, true);
+                            this.modelS = this.datepickerService.parse(competition.formattedStartDate, true);
                             this.loadedPage = true;
                         }
                     );
