@@ -9,7 +9,11 @@ tools for competitions, competitors and referees management. It pretends to unif
 register of the different kinds of users and the monitoring of the results of the competitions.
 
 **VIDEO (stage 4)**
-PENDING.
+
+Clicking the image below, you can go to see our video:
+
+[<img src="documentation_imgs/stage4/VideoThumbnail.png">](https://youtu.be/UT_Qajjws6g)
+
 
 ## The team: developers
 
@@ -315,7 +319,7 @@ Warning: this image will work only if a database is set and properly configured.
 | Alberto<br>I was working on referees and competitors admin functionalities (paginated list with competitors and referees, show more info with ngboostrap modals and user data modification with validated forms). I also made the classes and templates diagram. | <ul><li>[Referees stuff and forms structure](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/ed14c72919d6d5585f2c635d11fb4f002e7718bd)</li><li>[Competitor stuff and some pagination works](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/25626bdfa02f2017d75d6e56ffc3bdd7192c48bf)</li><li>[Modals with more info and delete users](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/0bcd27a614a74b6e199b15a2168f376a8195928c)</li><li>[Errors control](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/0b8d3a586280cb5ff1c401074fd08c5cd53b4905)</li><li>[Bug fixing and adding forms validation](https://github.com/CodeURJC-DAW-2020-21/webapp2/commit/38cd5d9d97c18bd1d2420352568755a865fad38d)</li></ul> | <ul><li>[referee-list.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/12-A-AngularAdminUserFinishingTouches/frontend/src/app/admin/user/components/referee-list.component.ts)</li><li>[competitor-list.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/12-A-AngularAdminUserFinishingTouches/frontend/src/app/admin/user/components/competitor-list.component.ts)</li><li>[competitor-edit-component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/12-A-AngularAdminUserFinishingTouches/frontend/src/app/admin/user/components/competitor-edit-component.ts)</li><li>[referee.service.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/12-A-AngularAdminUserFinishingTouches/frontend/src/app/admin/user/services/referee.service.ts)</li><li>[form-validation.service.ts](https://github.com/CodeURJC-DAW-2020-21/webapp2/blob/12-A-AngularAdminUserFinishingTouches/frontend/src/app/auxTypes/form-validation.service.ts)</li></ul>|
 
 ### Classes and templates diagram
-This stage includes new controllers and DTO classes. These new artifacts are organized as the following diagram describes:
+The following diagram shows all the components, services and templates of our new Angular frontend:
 ![Classes and templates diagram](documentation_imgs/stage4/ClassAndTemplatesDiagram.jpg)
 
 ### How to use this new version?
@@ -360,11 +364,11 @@ Use the following script:
 
 ``$ bash create_image.sh``
 
-* This script will run a node.js container, execute 'npm install' and 'npm run build '. Then, a Maven container is run for compiling Spring Boot web application. 
+* This script will run a node.js container, executes ```npm install``` and ```npm run build```. Then, a Maven container is run for compiling Spring Boot web application. 
 
 Warning: this image will work only if a database is set and properly configured. Bash script tells how to configure it.
 
 The SPA version of Juding will be available on the URL [https://localhost:8443/new](https://localhost:8443/new).
 
 ### Video: working app
-PENDING.
+Link to the video: [https://youtu.be/UT_Qajjws6g](https://youtu.be/UT_Qajjws6g).
