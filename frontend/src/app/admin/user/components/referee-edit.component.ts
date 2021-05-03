@@ -40,7 +40,7 @@ export class RefereeEditComponent implements OnInit {
                 this.loadingContent = false;
                 this.user = user;
                 this.errorOnLoadUserData = false;
-                this.signUpFormBirthdate = this.getBirthdate(user.birthdate);
+                this.signUpFormBirthdate = this.getBirthdate(user.birthDate);
             },
             error => {
                 this.errorOnLoadUserData = true;
@@ -82,7 +82,7 @@ export class RefereeEditComponent implements OnInit {
     }
 
     updateBirthdate() {
-        this.user.birthdate = this.datepickerService.format(this.signUpFormBirthdate);
+        this.user.birthDate = this.datepickerService.format(this.signUpFormBirthdate);
     }
 
 }

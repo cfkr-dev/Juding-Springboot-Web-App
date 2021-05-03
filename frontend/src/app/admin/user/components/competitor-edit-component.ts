@@ -40,7 +40,7 @@ export class CompetitorEditComponent implements OnInit {
                 this.loadingContent = false;
                 this.user = user;
                 this.errorOnLoadUserData = false;
-                this.signUpFormBirthdate = this.getBirthdate(user.birthdate);
+                this.signUpFormBirthdate = this.getBirthdate(user.birthDate);
             },
             error => {
                 this.errorOnLoadUserData = true;
@@ -71,7 +71,7 @@ export class CompetitorEditComponent implements OnInit {
                     if (!validationResult) {
                         this.validationError = false;
                         this.competitorService.updateCompetitor(user).subscribe(
-                            (successful => this.router.navigate(['/admin/referees'])),
+                            (successful => this.router.navigate(['/admin/competitors'])),
                             error => this.router.navigate(['500'])
                         );
                     } else {
@@ -86,6 +86,6 @@ export class CompetitorEditComponent implements OnInit {
     }
 
     updateBirthdate() {
-        this.user.birthdate = this.datepickerService.format(this.signUpFormBirthdate);
+        this.user.birthDate = this.datepickerService.format(this.signUpFormBirthdate);
     }
 }

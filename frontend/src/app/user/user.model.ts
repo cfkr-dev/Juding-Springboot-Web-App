@@ -59,14 +59,14 @@ export class User {
         this._email = value;
     }
 
-    private _birthdate: string;
+    private _birthDate: string;
 
-    get birthdate(): string {
-        return this._birthdate;
+    get birthDate(): string {
+        return this._birthDate;
     }
 
-    set birthdate(value: string) {
-        this._birthdate = value;
+    set birthDate(value: string) {
+        this._birthDate = value;
     }
 
     private _dni: string;

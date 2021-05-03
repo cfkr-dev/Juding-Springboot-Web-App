@@ -69,8 +69,7 @@
         <label class="txt1" for="birthDate">Fecha de nacimiento <span class="asterisk">*</span></label>
         <div class="input-group">
             <input class="form-control dateInput" ngbDatepicker #d="ngbDatepicker" id="birthDate" name="birthDate"
-                   required
-                   type="text" [(ngModel)]="signUpFormBirthdate" (ngModelChange)="updateBirthdate()">
+                   required type="text" [(ngModel)]="signUpFormBirthdate" (ngModelChange)="updateBirthdate()">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i
                     class="fas fa-calendar"></i></button>
