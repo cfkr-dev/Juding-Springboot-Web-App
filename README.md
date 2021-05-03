@@ -319,7 +319,52 @@ This stage includes new controllers and DTO classes. These new artifacts are org
 ![Classes and templates diagram](documentation_imgs/stage4/ClassAndTemplatesDiagram.jpg)
 
 ### How to use this new version?
-PENDING.
+To compile and execute this new version of Juding, follow the next steps.
+
+**Run the application using Docker Hub**
+
+Prerequisites: Docker CLI and Docker Compose must be installed.
+If Docker Compose is not installed, you can run the following command:
+
+``$ sudo apt install docker-compose``
+
+When Docker Compose is available you must download the docker-compose.yml file using one of the following commands: ```wget``` or ```curl```. For example:
+
+``$ wget http://raw.githack.com/CodeURJC-DAW-2020-21/webapp2/main/docker/docker-compose.yml``
+
+Now you can run Docker Compose using:
+
+``$ docker-compose up``
+
+* If you want to execute this Docker Compose as a detached process, you can add ```-d``` flag.
+
+The application will be available on the URL [https://localhost:8443/](https://localhost:8443/), on the other hand, if you want to use the SPA version of Juding will be available on the URL [https://localhost:8443/new](https://localhost:8443/new).
+
+To stop the app, Ctrl+C in the console or execute the following statement:
+
+``$ docker-compose down``
+
+**Build a Docker image**
+
+Also, you can compile and execute Juding from its source code, just following the next steps.
+
+First use the following command for clone the application from the Git:
+
+``$ git clone https://github.com/CodeURJC-DAW-2020-21/webapp2.git``.
+
+Change the directory to the folder named docker:
+
+``$ cd webapp2/docker``
+
+Use the following script:
+
+``$ bash create_image.sh``
+
+* This script will run a node.js container, execute 'npm install' and 'npm run build '. Then, a Maven container is run for compiling Spring Boot web application. 
+
+Warning: this image will work only if a database is set and properly configured. Bash script tells how to configure it.
+
+The SPA version of Juding will be available on the URL [https://localhost:8443/new](https://localhost:8443/new).
 
 ### Video: working app
 PENDING.
